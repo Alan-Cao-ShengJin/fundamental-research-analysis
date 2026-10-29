@@ -1,0 +1,441 @@
+{
+  "bundleVersion": "1.20.0",
+  "variant": "fundamental-research-only",
+  "preparedOn": "2026-10-29",
+  "skills": [
+    "pip-research-cycle",
+    "pip-evidence-intake",
+    "pip-company-model",
+    "pip-financial-quality",
+    "pip-corporate-governance",
+    "pip-valuation-thesis",
+    "pip-investment-conclusion",
+    "pip-research-challenge",
+    "pip-management-questions",
+    "pip-research-brief",
+    "pip-chart-visualization",
+    "pip-monitor-review",
+    "pip-theme-screening",
+    "pip-company-change-tracking",
+    "pip-macro-event-analysis"
+  ],
+  "flowCount": 9,
+  "scopeAdaptations": [
+    "Company fundamental research and company follow-up only",
+    "Excluded portfolio allocation, risk-budgeting and cross-asset trading skills/routes",
+    "Standalone checks and provider setup without private source archives or installed-source claims",
+    "Preserved governance, financial-red-flag, valuation, Hold-band, reporting and translation methods"
+  ],
+  "verification": {
+    "entryPointsValidated": 15,
+    "javascriptTestsPassed": 37,
+    "pythonTestsPassed": 16,
+    "bundleCheck": "passed",
+    "linksChecked": 268,
+    "suppliedCredentialScan": "passed",
+    "syntheticModelScenarioRun": "passed"
+  },
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 137,
+      "sha256": "6cb27ce63cd7bd6fe84d738d41f9387feaf983750e9d9f3073df2ec178f5c4bd"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 112,
+      "sha256": "92b86969da3594a5c95fa70fd1590f4926d471a54e6031cb88d15f6a647ea2a6"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1310,
+      "sha256": "af66f425472ad7597ede9ad34a1dade857011aa65336938bda6b034f0fd639a2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4320,
+      "sha256": "ed31238208d10469084191c4f604d6619b046cde66e84516a57dfd1bb373bd18"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1069,
+      "sha256": "b0270d8d4712dc51f24f6bee8b7213b017312eb33ebf15c733a6109c949c36e5"
+    },
+    {
+      "path": "licenses/antv-MIT.txt",
+      "bytes": 1080,
+      "sha256": "a6e512d52a66fcd88bebc7a62c7a348a7af70a17ca27f1d97943c56053712e48"
+    },
+    {
+      "path": "licenses/humanizer-MIT.txt",
+      "bytes": 1066,
+      "sha256": "4ac4810254ab36d45419141aeb8e69bf50652cfafe5b2dab947d06d44e5cbf96"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 36543,
+      "sha256": "a17354e6e67d64e1cfa0285eb9ab83d81d8f51c033ef5417e1a9c790895b3639"
+    },
+    {
+      "path": "package.json",
+      "bytes": 351,
+      "sha256": "97bb10510b32e77a1e9ba679a5b53f6e55bda1394abbcb4605e0de015426c351"
+    },
+    {
+      "path": "skills/README.md",
+      "bytes": 8639,
+      "sha256": "b2cd5b1d132eec3c50434f8f6a0bed43915d559470139b7ad253e79be77a3c39"
+    },
+    {
+      "path": "skills/catalog.json",
+      "bytes": 13372,
+      "sha256": "25fd08123fcd0b0d8df50e70299e0f4552d3ef4f52500200c028df69b9e20172"
+    },
+    {
+      "path": "skills/evals/research-cases.md",
+      "bytes": 30631,
+      "sha256": "523559b6277ef87cc067de44d9db658fad6a88a80faa568e81958ae2a829e862"
+    },
+    {
+      "path": "skills/lib/company-model.mjs",
+      "bytes": 10363,
+      "sha256": "fe117e02856cdfe349ec6454dad57c04388c0465cf951433a9d58be98f8b15e7"
+    },
+    {
+      "path": "skills/lib/handoffs.mjs",
+      "bytes": 6999,
+      "sha256": "dc1554d3f63b57011ad2b497a6c0632276a54202bbdf2a90d002df879e0969fc"
+    },
+    {
+      "path": "skills/pip-chart-visualization/SKILL.md",
+      "bytes": 4208,
+      "sha256": "cd8752beed09e7117a524ad05eb0fa23a5fdc466a205d9115a841674cc0aafce"
+    },
+    {
+      "path": "skills/pip-chart-visualization/assets/chart-theme.json",
+      "bytes": 1697,
+      "sha256": "94dd564bb473f0e2ef1b7ea3a228048988c7f2d2d6f63604dfad2b5fa9315f08"
+    },
+    {
+      "path": "skills/pip-chart-visualization/references/antv-workflow.md",
+      "bytes": 5242,
+      "sha256": "37900a80de4c6cfa0dbdbcb258fa2aef817efeb46f580e1ad8b9f4b40881155f"
+    },
+    {
+      "path": "skills/pip-company-change-tracking/SKILL.md",
+      "bytes": 4690,
+      "sha256": "b87819b8feda15ba965a95bfbd20ade4b1d1515482e8fd97795e50eca3b07613"
+    },
+    {
+      "path": "skills/pip-company-model/SKILL.md",
+      "bytes": 10359,
+      "sha256": "a9207900d51058d68a8884b2692013e89f1b4b5257a836b63a185067b8c69841"
+    },
+    {
+      "path": "skills/pip-company-model/references/actuals.md",
+      "bytes": 2996,
+      "sha256": "099ca640f039137f4ab4f7396da461e489225c0e8927db7511b3222ecb480944"
+    },
+    {
+      "path": "skills/pip-company-model/references/agent-model-example.json",
+      "bytes": 10114,
+      "sha256": "af4ed53d417004ca710e291fd5ccfe6300fa512c6ead801039b831e3d94383e3"
+    },
+    {
+      "path": "skills/pip-company-model/references/agent-model-scenario.json",
+      "bytes": 84,
+      "sha256": "73813d5bd840be4a3db87a4382a942f049853e3ea94316085094e723f4c6c94e"
+    },
+    {
+      "path": "skills/pip-company-model/references/agent-model.md",
+      "bytes": 7211,
+      "sha256": "f48904f2e8f3bcfb25baaef332d20157b6b67cf485706c1a28329bf6217eb3fb"
+    },
+    {
+      "path": "skills/pip-company-model/references/competition-and-capital-returns.md",
+      "bytes": 7450,
+      "sha256": "f1e86e5b580e104080053f7e2686d167d8372b7b0f599ab9084c2f8bd659e3c7"
+    },
+    {
+      "path": "skills/pip-company-model/references/drivers-guidance.md",
+      "bytes": 4313,
+      "sha256": "1f5e2dae653792dd1c60704bdf53bd514594964f04173e70f8c93724ed34ccce"
+    },
+    {
+      "path": "skills/pip-company-model/references/earnings-clock-and-peer-readthrough.md",
+      "bytes": 8509,
+      "sha256": "1dc168dc7dd14dca9e017d0d5cd3e74f733176d894c3d4780bd262c58b975725"
+    },
+    {
+      "path": "skills/pip-company-model/references/forecast-audit.md",
+      "bytes": 4098,
+      "sha256": "d1d1b8820335a0f246d8237de20f20c457ee39bd20e69c30688aca9d48802319"
+    },
+    {
+      "path": "skills/pip-company-model/references/model-setup.md",
+      "bytes": 4566,
+      "sha256": "7b87644e539142dbd875d3e79f935c2650a2d8c3a0c117fd1f731719f6587d9b"
+    },
+    {
+      "path": "skills/pip-company-model/references/revenue-projection.md",
+      "bytes": 5481,
+      "sha256": "25d85326fe83c563ff33b9df5c13407d9caf8351fc2a2579f249b0efef9c8bd4"
+    },
+    {
+      "path": "skills/pip-company-model/references/statement-forecast.md",
+      "bytes": 5187,
+      "sha256": "f7cc9f0be5ca99c296b8e1757565c8ca055419baab488d236c1423295edace08"
+    },
+    {
+      "path": "skills/pip-company-model/references/workbook-profile.md",
+      "bytes": 2964,
+      "sha256": "a240d84b78631e8d7ea471ffff0bc20c8c263c9a986ca80f850f057017d21eaa"
+    },
+    {
+      "path": "skills/pip-company-model/scripts/inspect_workbook.py",
+      "bytes": 5809,
+      "sha256": "454f00b334ad8633b140d04097f82193d502628e70a45e84b4ce51ab0ab96b8b"
+    },
+    {
+      "path": "skills/pip-company-model/scripts/run_agent_model.mjs",
+      "bytes": 647,
+      "sha256": "2c4c85c9d05a67468080bb4915fefdfd98de352dc9ee1a971cd99827f46543f0"
+    },
+    {
+      "path": "skills/pip-corporate-governance/SKILL.md",
+      "bytes": 9858,
+      "sha256": "287bcb4e97e5b4932f6134d3fcd9bebbb8a20521f6e1217e7126e59f324bcdcb"
+    },
+    {
+      "path": "skills/pip-corporate-governance/references/scoring-rubric.md",
+      "bytes": 4067,
+      "sha256": "e0bd2bba9770d55ac940334e7e8d74e55d20077d7ac3ee8379f0d5f09602f4f8"
+    },
+    {
+      "path": "skills/pip-evidence-intake/SKILL.md",
+      "bytes": 9027,
+      "sha256": "2662c4f8aa38324cee20fb4867e68e0b6c2f53449e04acc875189d1cb9b9e793"
+    },
+    {
+      "path": "skills/pip-evidence-intake/assets/provider-endpoints.json",
+      "bytes": 57882,
+      "sha256": "66ff4293c667de971318074e5b7c7a89f22577e1fe4c695ed93615ae69fc95ad"
+    },
+    {
+      "path": "skills/pip-evidence-intake/references/research-data-providers.md",
+      "bytes": 10794,
+      "sha256": "c737607121d4e357743ee2d951c36140f104097e65e386ce0f1961c40eaa2eda"
+    },
+    {
+      "path": "skills/pip-evidence-intake/scripts/research_data.py",
+      "bytes": 19683,
+      "sha256": "1ba6aab97d2f925fcca3ad5e49088c95050e5b117e839061b24e256bcef2d35d"
+    },
+    {
+      "path": "skills/pip-financial-quality/SKILL.md",
+      "bytes": 8720,
+      "sha256": "bef1752d4408609b15bc9ddf533d7b2a382382069c13dc1477437f88704b1565"
+    },
+    {
+      "path": "skills/pip-financial-quality/references/financial-red-flags-LICENSE.txt",
+      "bytes": 1102,
+      "sha256": "6044d3cdd7c709e893725063b3107c4f38dcbd18f9a8bc8125fb65c35422ed31"
+    },
+    {
+      "path": "skills/pip-financial-quality/references/financial-red-flags.md",
+      "bytes": 11859,
+      "sha256": "d5c34d4e502b5fabf7417ec512801d3bcc1f951d24eedce80b3665c457e1920c"
+    },
+    {
+      "path": "skills/pip-financial-quality/references/statement-review.md",
+      "bytes": 3473,
+      "sha256": "82b7f6a94eb5bdecb369fb1bd98b0bc43eedda6e698175ed3f5e745feb36ea63"
+    },
+    {
+      "path": "skills/pip-investment-conclusion/SKILL.md",
+      "bytes": 7972,
+      "sha256": "7f17b31849eb178edac6fdd94e9d8d966b86a4b8085b6d6475c433a8910c2459"
+    },
+    {
+      "path": "skills/pip-investment-conclusion/references/decision-contract.md",
+      "bytes": 8508,
+      "sha256": "4ea4a6514d66972284a41b02594c435a88e852832208c2e3597e5a1b7d9be1f1"
+    },
+    {
+      "path": "skills/pip-macro-event-analysis/SKILL.md",
+      "bytes": 4806,
+      "sha256": "4fe184cad49123df4c15666aee1b4cb5de1f1c701c878d493a15f560c7b236e7"
+    },
+    {
+      "path": "skills/pip-macro-event-analysis/references/market-regime-and-investor-base.md",
+      "bytes": 14211,
+      "sha256": "b5e8ec2a5fdbb5c8a774f43cfe4ccc2e9034af1d4ff8009a2695cfcbe0fe74f4"
+    },
+    {
+      "path": "skills/pip-management-questions/SKILL.md",
+      "bytes": 3903,
+      "sha256": "a09dc133c9fd9eb55c9685536d3cf3a609447c986591ba92bf13f8713a7d1298"
+    },
+    {
+      "path": "skills/pip-monitor-review/SKILL.md",
+      "bytes": 7969,
+      "sha256": "745a48a5407068a50e021f947d858212ccfc9bcf2647f9f45c6976ee71cf9c62"
+    },
+    {
+      "path": "skills/pip-research-brief/SKILL.md",
+      "bytes": 7614,
+      "sha256": "7eb98bfa47c0761bdcd898c8075c886c7645b69c64688a48f488c81d56f3b08e"
+    },
+    {
+      "path": "skills/pip-research-brief/references/natural-writing.md",
+      "bytes": 3471,
+      "sha256": "dbf8bf1d1f295325334808067745b4b8ff880101f3f980041efeb75f2e19db97"
+    },
+    {
+      "path": "skills/pip-research-brief/references/visual-reports.md",
+      "bytes": 5402,
+      "sha256": "6333706d668adc5630137bfcdc83b957077f8adde0f3189a5975e18e0fe9998c"
+    },
+    {
+      "path": "skills/pip-research-challenge/SKILL.md",
+      "bytes": 7225,
+      "sha256": "8e210f8d13a2123e1b33b222d847535c305197f71be1b4fad99c627ce305f9c0"
+    },
+    {
+      "path": "skills/pip-research-cycle/SKILL.md",
+      "bytes": 12562,
+      "sha256": "e34b6deeafd11594613ec6551bd4e52f0187a45dc7c78a7d76f402afddee47fc"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/company-sequence.md",
+      "bytes": 9330,
+      "sha256": "0e8bbce1129c0aaffdeeeae670cd754cf1da1f83f3e2b1c844e4fe9cc7cac3e1"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/empirical-research-and-validation.md",
+      "bytes": 7414,
+      "sha256": "6c0f39fa6e0da8aec749a2303191487055349935a67f013705b370f525e42df0"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/handoff-example.json",
+      "bytes": 1413,
+      "sha256": "e5994eb8011524e63b33c1c221156274b5494da000664ca0630cd177cf9c1974"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/handoff.schema.json",
+      "bytes": 11163,
+      "sha256": "80d3e697273d46acf565df255df5918234c6cbdb55dd56424769878dd1bcdb9b"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/handoffs.md",
+      "bytes": 9523,
+      "sha256": "4d001a94a1970c3156720a9da0ffe1c83f63633c3493f7d4560acc3273818c51"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/investor-judgment.md",
+      "bytes": 11434,
+      "sha256": "fd4bf6f4e53860702013c56af372bd50321ac4ea739694a05fa9f61b30821839"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/research-branches.md",
+      "bytes": 4194,
+      "sha256": "10c05bd17ecf8a9fe661c22958e65cf6902d3b1d8089149fa7b6de286dc61a68"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/underwriting-standard.md",
+      "bytes": 14197,
+      "sha256": "58efce19d81694c9a1a650c58fa5dea857378f85f20ba9099dac058fbb14c1d9"
+    },
+    {
+      "path": "skills/pip-research-cycle/references/workflow.md",
+      "bytes": 8517,
+      "sha256": "6687ba486d2c74646d1b8eaea4150b18bda93bb685fd7d553bcb8b203e437baa"
+    },
+    {
+      "path": "skills/pip-theme-screening/SKILL.md",
+      "bytes": 4505,
+      "sha256": "d026f09c51cf8f40a7ea5366d82fb83deefa6c512708912f133c5360563d29f1"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/SKILL.md",
+      "bytes": 12511,
+      "sha256": "4f04b9fe6f193ad6a63b1528888f42183a154a829bc2ac68a5e7af6656f69ad9"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/references/current-expectations.md",
+      "bytes": 4952,
+      "sha256": "f69ae547fa6b90ed143b91e7fe857fdf7aae03bfcbee2284fcb84173c8bef9f9"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/references/fcfe-example.json",
+      "bytes": 218,
+      "sha256": "51e02d2f88eec7eaa5f300cea807e6c06c1fa61085720431107eb1679eeb7a29"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/references/history-and-attribution.md",
+      "bytes": 2774,
+      "sha256": "1432d36239cd5fe9e179f537b351bf9dbfaf447824eeab5cf255cba2feaa769e"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/references/method-selection.md",
+      "bytes": 6267,
+      "sha256": "8f67328a5253319eba173bab356de5640df61eb035805856f16ef408fa0d375f"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/references/valuation-method.md",
+      "bytes": 3517,
+      "sha256": "c77079aa55e761f266bee8ae323a6d275d9489071b1b95db1a9f1a158de8286c"
+    },
+    {
+      "path": "skills/pip-valuation-thesis/scripts/reverse-dcf.mjs",
+      "bytes": 4811,
+      "sha256": "f4795479644f82cb3804f44d8fa3834ce2290571ad10c647223759acbb2bbe9d"
+    },
+    {
+      "path": "skills/scripts/check-bundle.mjs",
+      "bytes": 4375,
+      "sha256": "31181ddeb0574a29c022069954ef1c01a3b7b7c58685f89a641372863827c079"
+    },
+    {
+      "path": "skills/tests/company-model.test.mjs",
+      "bytes": 3876,
+      "sha256": "926802b57b503039fea25137436629fe748b6063df4f313f293dec96a9221a99"
+    },
+    {
+      "path": "skills/tests/handoffs.test.mjs",
+      "bytes": 6516,
+      "sha256": "fc8238a035ba44c3d86586735aa14b32ca5a3728ed97f3a0a6280ce5ac9614e6"
+    },
+    {
+      "path": "skills/tests/research-routing.test.mjs",
+      "bytes": 2117,
+      "sha256": "d2c59316cbb87983ac02a5a9e4201eba8e3e765c018d00dc0b459f50c009de0d"
+    },
+    {
+      "path": "skills/tests/test_inspect_workbook.py",
+      "bytes": 3022,
+      "sha256": "5a9093d48e82a5ae9defd25de1d6bf2f605dceb85e96b3ae2bd860aa0e54b07f"
+    },
+    {
+      "path": "skills/tests/test_research_data.py",
+      "bytes": 9127,
+      "sha256": "9a4ae67d4eef7f2bb7c8241fb8e8b5533ee649ba9a0ac628ab4dce00d274aa31"
+    },
+    {
+      "path": "skills/tests/valuation.test.mjs",
+      "bytes": 3886,
+      "sha256": "b9789c9dca8bc91fd80d40d7b2d58292de15954be76ac479b29cca3d442c791b"
+    },
+    {
+      "path": "vitest.config.mjs",
+      "bytes": 130,
+      "sha256": "217ddeef03441b27d760b11f091e44bd4db324aefc38c09b00e839c09c61965d"
+    }
+  ],
+  "lineEndings": "UTF-8 text with LF; Git attributes preserve LF on checkout"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "pip-research",
+  "version": "1.0.0",
+  "kind": "design tokens; map these into the renderer, not a raw G2 theme object",
+  "g2BaseTheme": "classic",
+  "font": {
+    "family": "Segoe UI, Arial, sans-serif",
+    "titleSize": 15,
+    "labelSize": 12,
+    "sourceSize": 11,
+    "titleWeight": 600
+  },
+  "colours": {
+    "background": "#FFFFFF",
+    "ink": "#142B43",
+    "body": "#263646",
+    "muted": "#667381",
+    "grid": "#DCE3E8",
+    "reference": "#667381",
+    "positive": "#166245",
+    "negative": "#993E42",
+    "caution": "#9B6F1E"
+  },
+  "series": ["#142B43", "#146B71", "#705A8D", "#9B6F1E", "#416B9A"],
+  "scenarios": {"bear": "#993E42", "base": "#146B71", "bull": "#166245"},
+  "ratings": {"Buy": "#166245", "Hold": "#9B6F1E", "Sell": "#993E42"},
+  "states": {
+    "actual": {"lineDash": [], "opacity": 1},
+    "forecast": {"lineDash": [5, 3], "opacity": 0.7},
+    "meaning": "Series colour stays fixed; status is also explicitly labelled. For bars, use lighter fill or a pattern and label the forecast boundary."
+  },
+  "marks": {"lineWidth": 2, "pointRadius": 3, "barRadius": 2, "areaOpacity": 0.25, "gridLineWidth": 1},
+  "layout": {"desktopWidth": 720, "desktopHeight": 320, "mobileHeight": 280, "padding": "auto", "autoFit": true},
+  "format": {"moneyDecimals": 2, "returnDecimals": 1, "compactScale": "Explicit unit label; preserve source precision in the dataset", "negativeSign": "Always visible", "source": "Readable source title plus period/date; no opaque IDs"},
+  "defaults": {"backgroundEffects": false, "gradient": false, "shadow": false, "animation": false, "zeroBaselineForMagnitudeBars": true, "colourOnlyMeaning": false, "hoverOnlyEssentialData": false}
+}

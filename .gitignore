@@ -1,0 +1,12 @@
+node_modules/
+.data/
+.env*
+!.env.example
+__pycache__/
+*.py[cod]
+coverage/
+*.log
+research/
+reports/
+*.xlsx
+*.pdf

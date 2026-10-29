@@ -1,0 +1,2361 @@
+{
+  "version": "1.0.0",
+  "scope": "Read-only investment-relevant endpoint families. Catalog presence is not a claim of entitlement.",
+  "endpoints": [
+    {
+      "provider": "alphavantage",
+      "operation": "overview",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "OVERVIEW"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "income-statement",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "INCOME_STATEMENT"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "balance-sheet",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "BALANCE_SHEET"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "cash-flow",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "CASH_FLOW"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "earnings-history",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "EARNINGS"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "earnings-estimates",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "EARNINGS_ESTIMATES"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "daily-prices",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "TIME_SERIES_DAILY",
+        "outputsize": "compact"
+      },
+      "allowed_params": [
+        "symbol",
+        "outputsize"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "adjusted-prices",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "TIME_SERIES_DAILY_ADJUSTED",
+        "outputsize": "compact"
+      },
+      "allowed_params": [
+        "symbol",
+        "outputsize"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "dividends",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "DIVIDENDS"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "splits",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "SPLITS"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "insider-transactions",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "INSIDER_TRANSACTIONS"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "institutional-holdings",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "INSTITUTIONAL_HOLDINGS"
+      },
+      "allowed_params": [
+        "symbol",
+        "year",
+        "quarter"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol",
+      "required_params": [
+        "year",
+        "quarter"
+      ]
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "etf-profile",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "ETF_PROFILE"
+      },
+      "allowed_params": [
+        "symbol"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "news-sentiment",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "NEWS_SENTIMENT",
+        "limit": 1
+      },
+      "allowed_params": [
+        "tickers",
+        "topics",
+        "time_from",
+        "time_to",
+        "sort",
+        "limit"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "tickers"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "market-movers",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "TOP_GAINERS_LOSERS"
+      },
+      "allowed_params": [],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "fx-rate",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "CURRENCY_EXCHANGE_RATE",
+        "from_currency": "USD",
+        "to_currency": "SGD"
+      },
+      "allowed_params": [
+        "from_currency",
+        "to_currency"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "treasury-yield",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "TREASURY_YIELD",
+        "interval": "monthly",
+        "maturity": "10year"
+      },
+      "allowed_params": [
+        "interval",
+        "maturity"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "inflation",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "INFLATION"
+      },
+      "allowed_params": [],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "gdp",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "REAL_GDP",
+        "interval": "annual"
+      },
+      "allowed_params": [
+        "interval"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "oil",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "WTI",
+        "interval": "monthly"
+      },
+      "allowed_params": [
+        "interval"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "sma",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "SMA",
+        "interval": "daily",
+        "time_period": 20,
+        "series_type": "close"
+      },
+      "allowed_params": [
+        "symbol",
+        "interval",
+        "time_period",
+        "series_type",
+        "month",
+        "entitlement"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "listing-status",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "LISTING_STATUS"
+      },
+      "allowed_params": [
+        "date",
+        "state"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "options-history",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "HISTORICAL_OPTIONS"
+      },
+      "allowed_params": [
+        "symbol",
+        "date"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "crypto-daily",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "DIGITAL_CURRENCY_DAILY",
+        "market": "USD"
+      },
+      "allowed_params": [
+        "symbol",
+        "market"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "alphavantage",
+      "operation": "quote",
+      "method": "GET",
+      "endpoint": "/query",
+      "defaults": {
+        "function": "GLOBAL_QUOTE"
+      },
+      "allowed_params": [
+        "symbol",
+        "entitlement"
+      ],
+      "docs": "https://www.alphavantage.co/documentation/",
+      "symbol_parameter": "symbol"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "balancesheet",
+      "method": "GET",
+      "endpoint": "/v1/balancesheet",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "cik",
+        "period",
+        "ticker",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/balancesheet",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "cashflow",
+      "method": "GET",
+      "endpoint": "/v1/cashflow",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "cik",
+        "period",
+        "ticker",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/cashflow",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "commodityprice",
+      "method": "GET",
+      "endpoint": "/v1/commodityprice",
+      "defaults": {
+        "name": "platinum"
+      },
+      "allowed_params": [
+        "card",
+        "category",
+        "currency",
+        "end",
+        "exchange",
+        "name",
+        "names",
+        "period",
+        "start",
+        "symbol",
+        "symbol_root",
+        "the",
+        "unit",
+        "with"
+      ],
+      "docs": "https://api-ninjas.com/api/commodityprice"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "convertcurrency",
+      "method": "GET",
+      "endpoint": "/v1/convertcurrency",
+      "defaults": {
+        "have": "USD",
+        "want": "SGD",
+        "amount": 1
+      },
+      "allowed_params": [
+        "amount",
+        "card",
+        "have",
+        "three",
+        "want"
+      ],
+      "docs": "https://api-ninjas.com/api/convertcurrency"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "cryptoprice",
+      "method": "GET",
+      "endpoint": "/v1/cryptoprice",
+      "defaults": {
+        "symbol": "BTCUSDT"
+      },
+      "allowed_params": [
+        "asset",
+        "card",
+        "cik",
+        "end",
+        "entity_type",
+        "include_unverified",
+        "interval",
+        "limit",
+        "name",
+        "offset",
+        "period",
+        "start",
+        "symbol",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/cryptoprice"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "earnings",
+      "method": "GET",
+      "endpoint": "/v2/earnings",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "cik",
+        "date",
+        "date_end",
+        "date_start",
+        "offset",
+        "period",
+        "quarter",
+        "ticker",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/earnings",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "etf",
+      "method": "GET",
+      "endpoint": "/v1/etf",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "country",
+        "holdings",
+        "is",
+        "isin",
+        "max_aum",
+        "max_expense_ratio",
+        "min_aum",
+        "min_expense_ratio",
+        "name",
+        "offset",
+        "the",
+        "ticker",
+        "when"
+      ],
+      "docs": "https://api-ninjas.com/api/etf",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "exchangerate",
+      "method": "GET",
+      "endpoint": "/v1/exchangerate",
+      "defaults": {
+        "pair": "USD_SGD"
+      },
+      "allowed_params": [
+        "annualized",
+        "card",
+        "date",
+        "day_count",
+        "days",
+        "end_date",
+        "horizon",
+        "lambda",
+        "method",
+        "pair",
+        "start_date",
+        "the",
+        "window"
+      ],
+      "docs": "https://api-ninjas.com/api/exchangerate"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "executivecompensation",
+      "method": "GET",
+      "endpoint": "/v1/executivecompensation",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "cik",
+        "name",
+        "the",
+        "ticker",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/executivecompensation",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "goldprice",
+      "method": "GET",
+      "endpoint": "/v1/goldprice",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "currency",
+        "end",
+        "period",
+        "start",
+        "the",
+        "unit"
+      ],
+      "docs": "https://api-ninjas.com/api/goldprice"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "incomestatement",
+      "method": "GET",
+      "endpoint": "/v1/incomestatement",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "cik",
+        "period",
+        "ticker",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/incomestatement",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "inflation",
+      "method": "GET",
+      "endpoint": "/v1/inflation",
+      "defaults": {
+        "country": "US"
+      },
+      "allowed_params": [
+        "and",
+        "card",
+        "country",
+        "end_time",
+        "start_time",
+        "the",
+        "type"
+      ],
+      "docs": "https://api-ninjas.com/api/inflation"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "insidertrading",
+      "method": "GET",
+      "endpoint": "/v1/insidertransactions",
+      "defaults": {},
+      "allowed_params": [
+        "are",
+        "card",
+        "cik",
+        "combine",
+        "company_cik",
+        "company_ticker",
+        "form_type",
+        "insider_type",
+        "limit",
+        "max_transaction_date",
+        "max_transaction_value",
+        "min_transaction_date",
+        "min_transaction_value",
+        "name",
+        "offset",
+        "ticker",
+        "transaction_code",
+        "transaction_date",
+        "transaction_type",
+        "with"
+      ],
+      "docs": "https://api-ninjas.com/api/insidertrading",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "institutionalholdings",
+      "method": "GET",
+      "endpoint": "/v1/institutionalholdings",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "card",
+        "change_type",
+        "cik",
+        "cusip",
+        "group_by",
+        "limit",
+        "manager_name",
+        "max_value",
+        "min_shares",
+        "min_value",
+        "mover_type",
+        "name",
+        "offset",
+        "period",
+        "period_list",
+        "put_call",
+        "sort",
+        "summary",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/institutionalholdings",
+      "required_params": [],
+      "required_any": [
+        [
+          "cik",
+          "manager_name"
+        ]
+      ]
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "interestrate",
+      "method": "GET",
+      "endpoint": "/v2/interestrate",
+      "defaults": {
+        "rate": "central_bank_us"
+      },
+      "allowed_params": [
+        "an",
+        "card",
+        "end_date",
+        "end_time",
+        "page",
+        "rate",
+        "start_date",
+        "start_time"
+      ],
+      "docs": "https://api-ninjas.com/api/interestrate"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "ipo",
+      "method": "GET",
+      "endpoint": "/v1/ipocalendar",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "are",
+        "card",
+        "cik",
+        "date",
+        "date_end",
+        "date_field",
+        "date_start",
+        "deal_type",
+        "exchange",
+        "limit",
+        "offset",
+        "sic_code",
+        "status",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/ipo",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "layoffnotices",
+      "method": "GET",
+      "endpoint": "/v1/layoffnotices",
+      "defaults": {
+        "state": "CA",
+        "min_workers": 100
+      },
+      "allowed_params": [
+        "are",
+        "card",
+        "city",
+        "company",
+        "county",
+        "end_date",
+        "end_month",
+        "event_type",
+        "id",
+        "limit",
+        "min_workers",
+        "offset",
+        "period",
+        "radius",
+        "sort",
+        "start_date",
+        "start_month",
+        "state",
+        "ticker",
+        "updated_since",
+        "zip"
+      ],
+      "docs": "https://api-ninjas.com/api/layoffnotices"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "marketcap",
+      "method": "GET",
+      "endpoint": "/v1/marketcap",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "the",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/marketcap",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "metalsprice",
+      "method": "GET",
+      "endpoint": "/v1/metalsprice",
+      "defaults": {
+        "metal": "gold"
+      },
+      "allowed_params": [
+        "card",
+        "currency",
+        "metal",
+        "metals",
+        "unit"
+      ],
+      "docs": "https://api-ninjas.com/api/metalsprice"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "mortgagerate",
+      "method": "GET",
+      "endpoint": "/v2/mortgagerate",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "date",
+        "max_date",
+        "min_date"
+      ],
+      "docs": "https://api-ninjas.com/api/mortgagerate"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "mutualfund",
+      "method": "GET",
+      "endpoint": "/v1/mutualfund",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "isin",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/mutualfund",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "oilprice",
+      "method": "GET",
+      "endpoint": "/v1/oilprice",
+      "defaults": {
+        "type": "wti"
+      },
+      "allowed_params": [
+        "card",
+        "currency",
+        "end",
+        "period",
+        "start",
+        "the",
+        "type",
+        "types",
+        "unit"
+      ],
+      "docs": "https://api-ninjas.com/api/oilprice"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "sec",
+      "method": "GET",
+      "endpoint": "/v1/sec",
+      "defaults": {
+        "filing": "10-K"
+      },
+      "allowed_params": [
+        "card",
+        "end",
+        "filing",
+        "limit",
+        "start",
+        "the",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/sec",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "shortinterest",
+      "method": "GET",
+      "endpoint": "/v1/shortinterest",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "exchange",
+        "exclude_capped_float",
+        "limit",
+        "max_float_price_gap_days",
+        "min_days_to_cover",
+        "min_price",
+        "min_shares_outstanding",
+        "min_short_percent_float",
+        "order",
+        "sector",
+        "settlement_date",
+        "sort_by",
+        "ticker",
+        "upcoming",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/shortinterest",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "stockexchange",
+      "method": "GET",
+      "endpoint": "/v1/stockexchange",
+      "defaults": {
+        "mic": "XNAS"
+      },
+      "allowed_params": [
+        "an",
+        "card",
+        "city",
+        "country",
+        "date",
+        "is",
+        "mic",
+        "name",
+        "timestamp"
+      ],
+      "docs": "https://api-ninjas.com/api/stockexchange"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "stocknews",
+      "method": "GET",
+      "endpoint": "/v1/stocknews",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "date",
+        "end_date",
+        "offset",
+        "start_date",
+        "the",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/stocknews",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "stockprice",
+      "method": "GET",
+      "endpoint": "/v1/stockprice",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "end",
+        "limit",
+        "offset",
+        "period",
+        "start",
+        "ticker",
+        "with"
+      ],
+      "docs": "https://api-ninjas.com/api/stockprice",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "stocksplit",
+      "method": "GET",
+      "endpoint": "/v1/stocksplit",
+      "defaults": {},
+      "allowed_params": [
+        "are",
+        "card",
+        "date",
+        "date_end",
+        "date_start",
+        "exchange",
+        "limit",
+        "offset",
+        "split_type",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/stocksplit",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "ticker",
+      "method": "GET",
+      "endpoint": "/v1/ticker",
+      "defaults": {},
+      "allowed_params": [
+        "card",
+        "name",
+        "negative_keywords",
+        "the",
+        "ticker"
+      ],
+      "docs": "https://api-ninjas.com/api/ticker",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "treasuryyield",
+      "method": "GET",
+      "endpoint": "/v1/treasuryyield",
+      "defaults": {
+        "type": "par"
+      },
+      "allowed_params": [
+        "card",
+        "date",
+        "end_date",
+        "format",
+        "maturity",
+        "start_date",
+        "type"
+      ],
+      "docs": "https://api-ninjas.com/api/treasuryyield"
+    },
+    {
+      "provider": "api-ninjas",
+      "operation": "unemployment",
+      "method": "GET",
+      "endpoint": "/v1/unemployment",
+      "defaults": {
+        "country": "United States"
+      },
+      "allowed_params": [
+        "card",
+        "country",
+        "year"
+      ],
+      "docs": "https://api-ninjas.com/api/unemployment"
+    },
+    {
+      "provider": "massive",
+      "operation": "income-statements",
+      "method": "GET",
+      "endpoint": "/stocks/financials/v1/income-statements",
+      "defaults": {
+        "limit": 1,
+        "sort": "period_end.desc"
+      },
+      "allowed_params": [
+        "cik",
+        "cik.any_of",
+        "cik.gt",
+        "cik.gte",
+        "cik.lt",
+        "cik.lte",
+        "filing_date",
+        "filing_date.gt",
+        "filing_date.gte",
+        "filing_date.lt",
+        "filing_date.lte",
+        "fiscal_quarter",
+        "fiscal_quarter.gt",
+        "fiscal_quarter.gte",
+        "fiscal_quarter.lt",
+        "fiscal_quarter.lte",
+        "fiscal_year",
+        "fiscal_year.gt",
+        "fiscal_year.gte",
+        "fiscal_year.lt",
+        "fiscal_year.lte",
+        "limit",
+        "period_end",
+        "period_end.gt",
+        "period_end.gte",
+        "period_end.lt",
+        "period_end.lte",
+        "sort",
+        "tickers",
+        "tickers.all_of",
+        "tickers.any_of",
+        "timeframe",
+        "timeframe.any_of",
+        "timeframe.gt",
+        "timeframe.gte",
+        "timeframe.lt",
+        "timeframe.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/income-statements.md",
+      "symbol_parameter": "tickers"
+    },
+    {
+      "provider": "massive",
+      "operation": "balance-sheets",
+      "method": "GET",
+      "endpoint": "/stocks/financials/v1/balance-sheets",
+      "defaults": {
+        "limit": 1,
+        "sort": "period_end.desc"
+      },
+      "allowed_params": [
+        "cik",
+        "cik.any_of",
+        "cik.gt",
+        "cik.gte",
+        "cik.lt",
+        "cik.lte",
+        "filing_date",
+        "filing_date.gt",
+        "filing_date.gte",
+        "filing_date.lt",
+        "filing_date.lte",
+        "fiscal_quarter",
+        "fiscal_quarter.gt",
+        "fiscal_quarter.gte",
+        "fiscal_quarter.lt",
+        "fiscal_quarter.lte",
+        "fiscal_year",
+        "fiscal_year.gt",
+        "fiscal_year.gte",
+        "fiscal_year.lt",
+        "fiscal_year.lte",
+        "limit",
+        "period_end",
+        "period_end.gt",
+        "period_end.gte",
+        "period_end.lt",
+        "period_end.lte",
+        "sort",
+        "tickers",
+        "tickers.all_of",
+        "tickers.any_of",
+        "timeframe",
+        "timeframe.any_of",
+        "timeframe.gt",
+        "timeframe.gte",
+        "timeframe.lt",
+        "timeframe.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/balance-sheets.md",
+      "symbol_parameter": "tickers"
+    },
+    {
+      "provider": "massive",
+      "operation": "cash-flow-statements",
+      "method": "GET",
+      "endpoint": "/stocks/financials/v1/cash-flow-statements",
+      "defaults": {
+        "limit": 1,
+        "sort": "period_end.desc"
+      },
+      "allowed_params": [
+        "cik",
+        "cik.any_of",
+        "cik.gt",
+        "cik.gte",
+        "cik.lt",
+        "cik.lte",
+        "filing_date",
+        "filing_date.gt",
+        "filing_date.gte",
+        "filing_date.lt",
+        "filing_date.lte",
+        "fiscal_quarter",
+        "fiscal_quarter.gt",
+        "fiscal_quarter.gte",
+        "fiscal_quarter.lt",
+        "fiscal_quarter.lte",
+        "fiscal_year",
+        "fiscal_year.gt",
+        "fiscal_year.gte",
+        "fiscal_year.lt",
+        "fiscal_year.lte",
+        "limit",
+        "period_end",
+        "period_end.gt",
+        "period_end.gte",
+        "period_end.lt",
+        "period_end.lte",
+        "sort",
+        "tickers",
+        "tickers.all_of",
+        "tickers.any_of",
+        "timeframe",
+        "timeframe.any_of",
+        "timeframe.gt",
+        "timeframe.gte",
+        "timeframe.lt",
+        "timeframe.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/cash-flow-statements.md",
+      "symbol_parameter": "tickers"
+    },
+    {
+      "provider": "massive",
+      "operation": "ratios",
+      "method": "GET",
+      "endpoint": "/stocks/financials/v1/ratios",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "average_volume",
+        "average_volume.gt",
+        "average_volume.gte",
+        "average_volume.lt",
+        "average_volume.lte",
+        "cash",
+        "cash.gt",
+        "cash.gte",
+        "cash.lt",
+        "cash.lte",
+        "cik",
+        "cik.any_of",
+        "cik.gt",
+        "cik.gte",
+        "cik.lt",
+        "cik.lte",
+        "current",
+        "current.gt",
+        "current.gte",
+        "current.lt",
+        "current.lte",
+        "debt_to_equity",
+        "debt_to_equity.gt",
+        "debt_to_equity.gte",
+        "debt_to_equity.lt",
+        "debt_to_equity.lte",
+        "dividend_yield",
+        "dividend_yield.gt",
+        "dividend_yield.gte",
+        "dividend_yield.lt",
+        "dividend_yield.lte",
+        "earnings_per_share",
+        "earnings_per_share.gt",
+        "earnings_per_share.gte",
+        "earnings_per_share.lt",
+        "earnings_per_share.lte",
+        "enterprise_value",
+        "enterprise_value.gt",
+        "enterprise_value.gte",
+        "enterprise_value.lt",
+        "enterprise_value.lte",
+        "ev_to_ebitda",
+        "ev_to_ebitda.gt",
+        "ev_to_ebitda.gte",
+        "ev_to_ebitda.lt",
+        "ev_to_ebitda.lte",
+        "ev_to_sales",
+        "ev_to_sales.gt",
+        "ev_to_sales.gte",
+        "ev_to_sales.lt",
+        "ev_to_sales.lte",
+        "free_cash_flow",
+        "free_cash_flow.gt",
+        "free_cash_flow.gte",
+        "free_cash_flow.lt",
+        "free_cash_flow.lte",
+        "limit",
+        "market_cap",
+        "market_cap.gt",
+        "market_cap.gte",
+        "market_cap.lt",
+        "market_cap.lte",
+        "price",
+        "price.gt",
+        "price.gte",
+        "price.lt",
+        "price.lte",
+        "price_to_book",
+        "price_to_book.gt",
+        "price_to_book.gte",
+        "price_to_book.lt",
+        "price_to_book.lte",
+        "price_to_cash_flow",
+        "price_to_cash_flow.gt",
+        "price_to_cash_flow.gte",
+        "price_to_cash_flow.lt",
+        "price_to_cash_flow.lte",
+        "price_to_earnings",
+        "price_to_earnings.gt",
+        "price_to_earnings.gte",
+        "price_to_earnings.lt",
+        "price_to_earnings.lte",
+        "price_to_free_cash_flow",
+        "price_to_free_cash_flow.gt",
+        "price_to_free_cash_flow.gte",
+        "price_to_free_cash_flow.lt",
+        "price_to_free_cash_flow.lte",
+        "price_to_sales",
+        "price_to_sales.gt",
+        "price_to_sales.gte",
+        "price_to_sales.lt",
+        "price_to_sales.lte",
+        "quick",
+        "quick.gt",
+        "quick.gte",
+        "quick.lt",
+        "quick.lte",
+        "return_on_assets",
+        "return_on_assets.gt",
+        "return_on_assets.gte",
+        "return_on_assets.lt",
+        "return_on_assets.lte",
+        "return_on_equity",
+        "return_on_equity.gt",
+        "return_on_equity.gte",
+        "return_on_equity.lt",
+        "return_on_equity.lte",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/ratios.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "float",
+      "method": "GET",
+      "endpoint": "/stocks/vX/float",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "free_float_percent",
+        "free_float_percent.gt",
+        "free_float_percent.gte",
+        "free_float_percent.lt",
+        "free_float_percent.lte",
+        "limit",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/float.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "short-interest",
+      "method": "GET",
+      "endpoint": "/stocks/v1/short-interest",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "avg_daily_volume",
+        "avg_daily_volume.any_of",
+        "avg_daily_volume.gt",
+        "avg_daily_volume.gte",
+        "avg_daily_volume.lt",
+        "avg_daily_volume.lte",
+        "days_to_cover",
+        "days_to_cover.any_of",
+        "days_to_cover.gt",
+        "days_to_cover.gte",
+        "days_to_cover.lt",
+        "days_to_cover.lte",
+        "limit",
+        "settlement_date",
+        "settlement_date.any_of",
+        "settlement_date.gt",
+        "settlement_date.gte",
+        "settlement_date.lt",
+        "settlement_date.lte",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/short-interest.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "short-volume",
+      "method": "GET",
+      "endpoint": "/stocks/v1/short-volume",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "short_volume_ratio",
+        "short_volume_ratio.any_of",
+        "short_volume_ratio.gt",
+        "short_volume_ratio.gte",
+        "short_volume_ratio.lt",
+        "short_volume_ratio.lte",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/fundamentals/short-volume.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "news",
+      "method": "GET",
+      "endpoint": "/v2/reference/news",
+      "defaults": {
+        "limit": 1,
+        "sort": "published_utc",
+        "order": "desc"
+      },
+      "allowed_params": [
+        "limit",
+        "order",
+        "published_utc",
+        "published_utc.gt",
+        "published_utc.gte",
+        "published_utc.lt",
+        "published_utc.lte",
+        "sort",
+        "ticker",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/news.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "related-tickers",
+      "method": "GET",
+      "endpoint": "/v1/related-companies/{symbol}",
+      "defaults": {},
+      "allowed_params": [
+        "ticker"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/tickers/related-tickers.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "previous-day-bar",
+      "method": "GET",
+      "endpoint": "/v2/aggs/ticker/{symbol}/prev",
+      "defaults": {},
+      "allowed_params": [
+        "adjusted",
+        "stocksTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/aggregates/previous-day-bar.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "market-status",
+      "method": "GET",
+      "endpoint": "/v1/marketstatus/now",
+      "defaults": {},
+      "allowed_params": [],
+      "docs": "https://massive.com/docs/rest/stocks/market-operations/market-status.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "market-holidays",
+      "method": "GET",
+      "endpoint": "/v1/marketstatus/upcoming",
+      "defaults": {},
+      "allowed_params": [],
+      "docs": "https://massive.com/docs/rest/stocks/market-operations/market-holidays.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "single-ticker-snapshot",
+      "method": "GET",
+      "endpoint": "/v2/snapshot/locale/us/markets/stocks/tickers/{symbol}",
+      "defaults": {},
+      "allowed_params": [
+        "stocksTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/snapshots/single-ticker-snapshot.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "top-market-movers",
+      "method": "GET",
+      "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
+      "defaults": {},
+      "allowed_params": [
+        "direction",
+        "include_otc"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/snapshots/top-market-movers.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "last-trade",
+      "method": "GET",
+      "endpoint": "/v2/last/trade/{symbol}",
+      "defaults": {},
+      "allowed_params": [
+        "stocksTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/trades-quotes/last-trade.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "last-quote",
+      "method": "GET",
+      "endpoint": "/v2/last/nbbo/{symbol}",
+      "defaults": {},
+      "allowed_params": [
+        "stocksTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/trades-quotes/last-quote.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "simple-moving-average",
+      "method": "GET",
+      "endpoint": "/v1/indicators/sma/{symbol}",
+      "defaults": {
+        "limit": 1,
+        "timespan": "day",
+        "window": 20,
+        "series_type": "close",
+        "order": "desc"
+      },
+      "allowed_params": [
+        "adjusted",
+        "expand_underlying",
+        "limit",
+        "order",
+        "series_type",
+        "stockTicker",
+        "timespan",
+        "timestamp",
+        "timestamp.gt",
+        "timestamp.gte",
+        "timestamp.lt",
+        "timestamp.lte",
+        "window"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/technical-indicators/simple-moving-average.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "options-option-chain-snapshot",
+      "method": "GET",
+      "endpoint": "/v3/snapshot/options/{symbol}",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "contract_type",
+        "expiration_date",
+        "expiration_date.gt",
+        "expiration_date.gte",
+        "expiration_date.lt",
+        "expiration_date.lte",
+        "limit",
+        "order",
+        "sort",
+        "strike_price",
+        "strike_price.gt",
+        "strike_price.gte",
+        "strike_price.lt",
+        "strike_price.lte",
+        "underlyingAsset"
+      ],
+      "docs": "https://massive.com/docs/rest/options/snapshots/option-chain-snapshot.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "indices-previous-day-bar",
+      "method": "GET",
+      "endpoint": "/v2/aggs/ticker/{symbol}/prev",
+      "defaults": {},
+      "allowed_params": [
+        "indicesTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/indices/aggregates/previous-day-bar.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "forex-previous-day-bar",
+      "method": "GET",
+      "endpoint": "/v2/aggs/ticker/{symbol}/prev",
+      "defaults": {},
+      "allowed_params": [
+        "adjusted",
+        "forexTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/forex/aggregates/previous-day-bar.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "crypto-previous-day-bar",
+      "method": "GET",
+      "endpoint": "/v2/aggs/ticker/{symbol}/prev",
+      "defaults": {},
+      "allowed_params": [
+        "adjusted",
+        "cryptoTicker"
+      ],
+      "docs": "https://massive.com/docs/rest/crypto/aggregates/previous-day-bar.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "forex-quotes-last-quote",
+      "method": "GET",
+      "endpoint": "/v1/last_quote/currencies/{base}/{quote}",
+      "defaults": {},
+      "allowed_params": [
+        "base",
+        "quote"
+      ],
+      "docs": "https://massive.com/docs/rest/forex/quotes/last-quote.md",
+      "required_params": [
+        "base",
+        "quote"
+      ],
+      "path_parameters": [
+        "base",
+        "quote"
+      ]
+    },
+    {
+      "provider": "massive",
+      "operation": "crypto-trades-last-trade",
+      "method": "GET",
+      "endpoint": "/v1/last/crypto/{base}/{quote}",
+      "defaults": {},
+      "allowed_params": [
+        "base",
+        "quote"
+      ],
+      "docs": "https://massive.com/docs/rest/crypto/trades/last-trade.md",
+      "required_params": [
+        "base",
+        "quote"
+      ],
+      "path_parameters": [
+        "base",
+        "quote"
+      ]
+    },
+    {
+      "provider": "massive",
+      "operation": "economy-treasury-yields",
+      "method": "GET",
+      "endpoint": "/fed/v1/treasury-yields",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/economy/treasury-yields.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "economy-inflation",
+      "method": "GET",
+      "endpoint": "/fed/v1/inflation",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/economy/inflation.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "economy-inflation-expectations",
+      "method": "GET",
+      "endpoint": "/fed/v1/inflation-expectations",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/economy/inflation-expectations.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "economy-labor-market",
+      "method": "GET",
+      "endpoint": "/fed/v1/labor-market",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/economy/labor-market.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "economy-funding-conditions",
+      "method": "GET",
+      "endpoint": "/fed/v1/funding-conditions",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/economy/funding-conditions.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "benzinga-analyst-ratings",
+      "method": "GET",
+      "endpoint": "/benzinga/v1/ratings",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "benzinga_analyst_id",
+        "benzinga_analyst_id.any_of",
+        "benzinga_analyst_id.gt",
+        "benzinga_analyst_id.gte",
+        "benzinga_analyst_id.lt",
+        "benzinga_analyst_id.lte",
+        "benzinga_firm_id",
+        "benzinga_firm_id.any_of",
+        "benzinga_firm_id.gt",
+        "benzinga_firm_id.gte",
+        "benzinga_firm_id.lt",
+        "benzinga_firm_id.lte",
+        "benzinga_id",
+        "benzinga_id.any_of",
+        "benzinga_id.gt",
+        "benzinga_id.gte",
+        "benzinga_id.lt",
+        "benzinga_id.lte",
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "importance",
+        "importance.gt",
+        "importance.gte",
+        "importance.lt",
+        "importance.lte",
+        "last_updated",
+        "last_updated.gt",
+        "last_updated.gte",
+        "last_updated.lt",
+        "last_updated.lte",
+        "limit",
+        "price_target_action",
+        "price_target_action.any_of",
+        "price_target_action.gt",
+        "price_target_action.gte",
+        "price_target_action.lt",
+        "price_target_action.lte",
+        "rating_action",
+        "rating_action.any_of",
+        "rating_action.gt",
+        "rating_action.gte",
+        "rating_action.lt",
+        "rating_action.lte",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/partners/benzinga/analyst-ratings.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "benzinga-analyst-insights",
+      "method": "GET",
+      "endpoint": "/benzinga/v1/analyst-insights",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "benzinga_firm_id",
+        "benzinga_firm_id.any_of",
+        "benzinga_firm_id.gt",
+        "benzinga_firm_id.gte",
+        "benzinga_firm_id.lt",
+        "benzinga_firm_id.lte",
+        "benzinga_rating_id",
+        "benzinga_rating_id.any_of",
+        "benzinga_rating_id.gt",
+        "benzinga_rating_id.gte",
+        "benzinga_rating_id.lt",
+        "benzinga_rating_id.lte",
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "firm",
+        "firm.any_of",
+        "firm.gt",
+        "firm.gte",
+        "firm.lt",
+        "firm.lte",
+        "last_updated",
+        "last_updated.gt",
+        "last_updated.gte",
+        "last_updated.lt",
+        "last_updated.lte",
+        "limit",
+        "rating_action",
+        "rating_action.any_of",
+        "rating_action.gt",
+        "rating_action.gte",
+        "rating_action.lt",
+        "rating_action.lte",
+        "sort",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/partners/benzinga/analyst-insights.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "massive",
+      "operation": "benzinga-consensus-ratings",
+      "method": "GET",
+      "endpoint": "/benzinga/v1/consensus-ratings/{symbol}",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "limit",
+        "ticker"
+      ],
+      "docs": "https://massive.com/docs/rest/partners/benzinga/consensus-ratings.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "tmx-corporate-events",
+      "method": "GET",
+      "endpoint": "/tmx/v1/corporate-events",
+      "defaults": {
+        "limit": 1
+      },
+      "allowed_params": [
+        "date",
+        "date.any_of",
+        "date.gt",
+        "date.gte",
+        "date.lt",
+        "date.lte",
+        "isin",
+        "isin.any_of",
+        "isin.gt",
+        "isin.gte",
+        "isin.lt",
+        "isin.lte",
+        "limit",
+        "sort",
+        "status",
+        "status.any_of",
+        "status.gt",
+        "status.gte",
+        "status.lt",
+        "status.lte",
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte",
+        "tmx_company_id",
+        "tmx_company_id.gt",
+        "tmx_company_id.gte",
+        "tmx_company_id.lt",
+        "tmx_company_id.lte",
+        "tmx_record_id",
+        "tmx_record_id.any_of",
+        "tmx_record_id.gt",
+        "tmx_record_id.gte",
+        "tmx_record_id.lt",
+        "tmx_record_id.lte",
+        "trading_venue",
+        "trading_venue.any_of",
+        "trading_venue.gt",
+        "trading_venue.gte",
+        "trading_venue.lt",
+        "trading_venue.lte",
+        "type",
+        "type.any_of",
+        "type.gt",
+        "type.gte",
+        "type.lt",
+        "type.lte"
+      ],
+      "docs": "https://massive.com/docs/rest/partners/tmx/corporate-events.md",
+      "symbol_parameter": "ticker"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "announcements",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/announcement/list",
+      "defaults": {
+        "pageNum": 1,
+        "pageSize": 1
+      },
+      "allowed_params": [
+        "keyword",
+        "market",
+        "pageNum",
+        "pageSize",
+        "publishFrom",
+        "publishTo",
+        "sortBy",
+        "sortOrder",
+        "stockCode",
+        "stockName"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "reports",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/report/list",
+      "defaults": {
+        "page": 1,
+        "pageSize": 1,
+        "reportScope": "domestic"
+      },
+      "allowed_params": [
+        "endDate",
+        "keyword",
+        "page",
+        "pageSize",
+        "reportScope",
+        "reportType",
+        "startDate",
+        "stockCombSymbol"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "reportScope"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "report-detail",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/report/detail",
+      "defaults": {},
+      "allowed_params": [
+        "reportId"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "reportId"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "comments",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/comments/list",
+      "defaults": {
+        "page": 1,
+        "pageSize": 1
+      },
+      "allowed_params": [
+        "commentScope",
+        "endDate",
+        "keyword",
+        "page",
+        "pageSize",
+        "startDate",
+        "stockCombSymbol"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "comment-detail",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/comments/detail",
+      "defaults": {},
+      "allowed_params": [
+        "commentId"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "commentId"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "comment-events",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/comments/event/list",
+      "defaults": {
+        "page": 1,
+        "pageSize": 1,
+        "marketScope": "ah"
+      },
+      "allowed_params": [
+        "endDate",
+        "marketScope",
+        "page",
+        "pageSize",
+        "startDate",
+        "stockCombSymbol"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "marketScope"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "hot-stocks",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/hot/stocks/board/list",
+      "defaults": {
+        "limit": 3
+      },
+      "allowed_params": [
+        "endDate",
+        "limit",
+        "startDate",
+        "stockComboSymbolTag",
+        "stockNameTag"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "bluebook-batches",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/blue/books/batch/list",
+      "defaults": {
+        "batchType": "all",
+        "batchScope": "all",
+        "page": 1,
+        "pageSize": 1
+      },
+      "allowed_params": [
+        "batchScope",
+        "batchType",
+        "endDate",
+        "keyword",
+        "page",
+        "pageSize",
+        "startDate"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "bluebook-topics",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/blue/books/topic/list",
+      "defaults": {
+        "batchType": "all",
+        "batchScope": "all",
+        "page": 1,
+        "pageSize": 1
+      },
+      "allowed_params": [
+        "batchScope",
+        "batchType",
+        "endDate",
+        "keyword",
+        "page",
+        "pageSize",
+        "startDate",
+        "stockComboSymbolTag"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "bluebook-detail",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/blue/books/topic/detail",
+      "defaults": {},
+      "allowed_params": [
+        "batchScope",
+        "topicId"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "topicId",
+        "batchScope"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "articles",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/social/media/article/list",
+      "defaults": {
+        "pageNum": 1,
+        "pageSize": 1,
+        "excludeContent": false
+      },
+      "allowed_params": [
+        "endDate",
+        "excludeContent",
+        "pageNum",
+        "pageSize",
+        "startDate",
+        "stock",
+        "word"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "recall",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/paipai/recall-data",
+      "defaults": {
+        "isCutOff": false,
+        "recallType": [
+          "ann"
+        ]
+      },
+      "allowed_params": [
+        "endTime",
+        "isCutOff",
+        "query",
+        "recallType",
+        "startTime"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "query"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "search-charts",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/paipai/search-image",
+      "defaults": {
+        "topk": 1,
+        "recallMode": "both",
+        "useLlmRank": false
+      },
+      "allowed_params": [
+        "endDate",
+        "filesRange",
+        "queryText",
+        "recallMode",
+        "startDate",
+        "topk",
+        "useLlmRank"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "queryText"
+      ]
+    },
+    {
+      "provider": "alphapai",
+      "operation": "data-query",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/paipai/da-query",
+      "defaults": {},
+      "allowed_params": [
+        "question"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md",
+      "required_params": [
+        "question"
+      ]
+    },
+    {
+      "provider": "massive",
+      "operation": "dividends",
+      "method": "GET",
+      "endpoint": "/stocks/v1/dividends",
+      "defaults": {
+        "limit": 1
+      },
+      "symbol_parameter": "ticker",
+      "allowed_params": [
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte",
+        "ex_dividend_date",
+        "ex_dividend_date.gt",
+        "ex_dividend_date.gte",
+        "ex_dividend_date.lt",
+        "ex_dividend_date.lte",
+        "frequency",
+        "frequency.gt",
+        "frequency.gte",
+        "frequency.lt",
+        "frequency.lte",
+        "distribution_type",
+        "distribution_type.any_of",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/corporate-actions/dividends.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "splits",
+      "method": "GET",
+      "endpoint": "/stocks/v1/splits",
+      "defaults": {
+        "limit": 1
+      },
+      "symbol_parameter": "ticker",
+      "allowed_params": [
+        "ticker",
+        "ticker.any_of",
+        "ticker.gt",
+        "ticker.gte",
+        "ticker.lt",
+        "ticker.lte",
+        "execution_date",
+        "execution_date.gt",
+        "execution_date.gte",
+        "execution_date.lt",
+        "execution_date.lte",
+        "adjustment_type",
+        "adjustment_type.any_of",
+        "limit",
+        "sort"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/corporate-actions/splits.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "article-detail",
+      "method": "GET",
+      "endpoint": "/alpha/open-api/v1/social/media/article/detail",
+      "defaults": {
+        "supplierId": "null"
+      },
+      "allowed_params": [
+        "id",
+        "supplierId"
+      ],
+      "required_params": [
+        "id"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "alphapai",
+      "operation": "document-text",
+      "method": "POST",
+      "endpoint": "/alpha/open-api/v1/common/parsing/download",
+      "defaults": {
+        "downloadType": "markdown"
+      },
+      "allowed_params": [
+        "documentId",
+        "documentType",
+        "downloadType"
+      ],
+      "required_params": [
+        "documentId",
+        "documentType"
+      ],
+      "docs": "https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md"
+    },
+    {
+      "provider": "massive",
+      "operation": "daily-bars",
+      "method": "GET",
+      "endpoint": "/v2/aggs/ticker/{symbol}/range/1/day/{from}/{to}",
+      "defaults": {
+        "limit": 30,
+        "sort": "asc",
+        "adjusted": true
+      },
+      "allowed_params": [
+        "from",
+        "to",
+        "limit",
+        "sort",
+        "adjusted"
+      ],
+      "required_params": [
+        "from",
+        "to"
+      ],
+      "path_parameters": [
+        "from",
+        "to"
+      ],
+      "docs": "https://massive.com/docs/rest/stocks/aggregates/custom-bars"
+    }
+  ]
+}

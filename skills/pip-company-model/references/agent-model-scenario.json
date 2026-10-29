@@ -1,0 +1,4 @@
+{
+  "scenarioId": "synthetic-price-down-ten-percent",
+  "overrides": {"price": 9}
+}
