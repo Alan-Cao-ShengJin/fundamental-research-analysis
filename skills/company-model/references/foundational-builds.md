@@ -126,6 +126,8 @@ python skills/company-model/scripts/forecast_blocks.py output/plan.json --output
 node skills/company-model/scripts/build_forecast_workbook.mjs output/compiled.json output/model.xlsx output/review
 ```
 
+Install the tracer/test dependencies from [requirements.txt](../requirements.txt) into the active Python environment before workbook tracing or running the complete test suite.
+
 The compiler uses Python's standard library. The read-only tracer needs
 `openpyxl`. The workbook adapter needs `@oai/artifact-tool` in the environment's
 supported Node dependency path. Use the spreadsheet authoring workflow and its

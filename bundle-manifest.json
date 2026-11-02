@@ -53,8 +53,8 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "bytes": 532,
-      "sha256": "8b6c53e0e65c472806e0f48d3de1f9ced19e1d2cb25c5e456ed363bd43522a31"
+      "bytes": 587,
+      "sha256": "744d1e154a89c5bbf2142963696a8ac8a5c4a38ba5edc6b78994ba5f95f08c65"
     },
     {
       "path": ".gitignore",
@@ -68,8 +68,8 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 7194,
-      "sha256": "a77755ca24ed8e6749a23d46c3e394fc102ff844b74d12c293a091401c37f5f3"
+      "bytes": 7422,
+      "sha256": "b21f6afa8d39cfc3a5362907dfe6675c1d4540c92949a7952843e26c7dbedb28"
     },
     {
       "path": "MIGRATION.md",
@@ -78,8 +78,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9353,
-      "sha256": "6f8d6bdbd1626727b0c2f648c752c94df8fcb25780b777f9b0f06265ef1540a9"
+      "bytes": 9579,
+      "sha256": "11ef96b3d0f6e31f67f9717c2490aa73066dd64f19502824bd62b553b27e5166"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -105,6 +105,11 @@
       "path": "package.json",
       "bytes": 350,
       "sha256": "e9b4a85493a7fe34478c22d4fed535f3b7540d5fae5675665671a655e7acd718"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 41,
+      "sha256": "7c2478249456aadb0f58597003eb25d2e631c67260c4b6adf57fd7f10e349b6c"
     },
     {
       "path": "skills/README.md",
@@ -218,8 +223,8 @@
     },
     {
       "path": "skills/company-model/references/foundational-builds.md",
-      "bytes": 10075,
-      "sha256": "af72db57cad55907b065249720b7b0898c75c57dc45c2c9b089968376d049120"
+      "bytes": 10253,
+      "sha256": "2fd1866b9f76f74a34c2f9f7a4dd408d4d2ca968d781cf2d0446068fc6ba8d50"
     },
     {
       "path": "skills/company-model/references/model-setup.md",
@@ -350,6 +355,11 @@
       "path": "skills/company-model/references/workbook-profile.md",
       "bytes": 7920,
       "sha256": "aedf6386e0bd58caeaef7fa49be8bf8fc4a62475b80c7908232865ddaaf54d68"
+    },
+    {
+      "path": "skills/company-model/requirements.txt",
+      "bytes": 95,
+      "sha256": "6b898f28786ddf6f26aba8aaf6de594e8c39791e828927fd3e369ceef365ab45"
     },
     {
       "path": "skills/company-model/scripts/build_forecast_workbook.mjs",

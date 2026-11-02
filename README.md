@@ -63,7 +63,7 @@ Use [foundational builds](skills/company-model/references/foundational-builds.md
 
 New forecasts and numerical revisions require a human-auditable, formula-driven Excel model alongside the executable model interface. Keep related calculations together, assumptions and source explanations nearby, and presentation consistent under the [workbook profile](skills/company-model/references/workbook-profile.md). Use quarters when supported, or halves when quarterly evidence is thin. The supplied examples are independently invented; they are not issuer forecasts or recommended assumptions.
 
-Python helpers use the standard library. The optional workbook-authoring JavaScript helper requires a compatible environment with `@oai/artifact-tool`; that runtime is not supplied by this repository or required for the test suite. Use another supported authoring/recalculation backend where appropriate and verify the resulting formulas and presentation. A workbook that merely balances is not economically validated.
+The coverage, provider, forecast-compiler and sector helpers use the Python standard library. Read-only Excel tracing and workbook-fixture tests require `openpyxl`; install the pinned [Python requirements](requirements.txt). The optional workbook-authoring JavaScript helper requires a compatible environment with `@oai/artifact-tool`; that runtime is not supplied by this repository or required for the test suite. Use another supported authoring/recalculation backend where appropriate and verify the resulting formulas and presentation. A workbook that merely balances is not economically validated.
 
 ## Conviction and the included decision profile
 
@@ -83,6 +83,7 @@ Use Node.js 24.13+ and Python 3.11+. On Windows PowerShell, use `npm.cmd` if exe
 
 ```text
 npm ci
+python -m pip install -r requirements.txt
 npm run skills:check
 npm test
 python -B -m unittest discover -s skills/tests -p "test_*.py"

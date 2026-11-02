@@ -18,6 +18,7 @@ The workspace has 21 generic skills. The standalone repository contains 18 compa
 | Regular reviews need valid inherited risk/audit support without automatically rebuilding forecasts. | Required coverage accounts for governance/model/quality reuse; targeted numerical revisions must reference risk review, recalculation, audit and refreshed outputs. |
 | A standalone export can retain dangling dependencies on excluded workflows. | Removed extension-only stages and routes and replaced external links/instructions with explicit scope boundaries. |
 | Public instructions contained workspace-specific branding and stale package scope/version claims. | Generic names, 2.0.0 package/manifest, updated index, migration guide and coherent standalone instructions. |
+| A clean Linux run exposed an Excel-tracer dependency already installed on the development machine. | Declared pinned `openpyxl`/`et_xmlfile` requirements, documented setup and installed them explicitly in CI before testing. |
 
 ## Dependency logic
 
