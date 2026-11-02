@@ -78,13 +78,53 @@
     },
     {
       "path": "README.md",
-      "bytes": 9579,
-      "sha256": "11ef96b3d0f6e31f67f9717c2490aa73066dd64f19502824bd62b553b27e5166"
+      "bytes": 10112,
+      "sha256": "b39a867b7b4db052b231a842d342d3bf9d2e2f4f466a7494c9495b178dc77201"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
       "bytes": 1288,
       "sha256": "41caf068a0e801cfe1dff390b2cdf9070f30a13c56b806ffc3524cdc0d6aea5f"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/Global_data_and_research_capabilities_brief_2026-11-02.html",
+      "bytes": 169511,
+      "sha256": "2b7046a1a62f3a4cf8bc109c0d472270e24a1801f0755965287a225609b14ef9"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/README.md",
+      "bytes": 2573,
+      "sha256": "4d41458a48832f928ab033ad4a513bf7725a4b4f01fcdd478509cf30c2e22c44"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/data_engineering_prompt.txt",
+      "bytes": 4682,
+      "sha256": "589d8051ab5a7ca226269da470224a26e982c3ac5675ed00ab889cefa716978d"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/global_source_catalog.json",
+      "bytes": 118943,
+      "sha256": "61c982f4b125190add6e2fdca8a80b7888780874022c996cf285f2e6d20025fd"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/proposed_observation_contract.json",
+      "bytes": 2329,
+      "sha256": "ce29569e167a45633839549079c5dad93873fe66deb82f93dc6958aa4a3cb1a8"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/research_capability_gaps.json",
+      "bytes": 11291,
+      "sha256": "0837770ebd41c2006c31e1bc55046562826ba2ea5fb2a6f5e2566783a50a4a97"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/sector_assumption_requirements.json",
+      "bytes": 20209,
+      "sha256": "91d0179ee023f8dca267ce3545545c359216497d5fa1278ab1721525311a4d18"
+    },
+    {
+      "path": "docs/data-planning/2026-11-02/verification.json",
+      "bytes": 657,
+      "sha256": "680d416c6c7c288129b224b9688e683768ef1d21d5d7d1a70fcc9cec7ddf5830"
     },
     {
       "path": "licenses/antv-MIT.txt",

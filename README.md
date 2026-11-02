@@ -77,6 +77,10 @@ The optional [read-only provider adapter](skills/evidence-intake/scripts/researc
 
 AlphaPai originals are generally Chinese: retain original evidence/locators and translate accurately into the preferred language, English by default. Source language or provider identity does not establish management attendance or make a generated summary verbatim speech.
 
+## Global data roadmap
+
+The [global data-planning brief](docs/data-planning/2026-11-02/README.md) maps 81 source families to the twenty sector activities, with a proposed observation contract, implementation order and remaining research-capability gaps. Start with the [source catalogue](docs/data-planning/2026-11-02/global_source_catalog.json) and [data-engineering prompt](docs/data-planning/2026-11-02/data_engineering_prompt.txt). This is a worldwide requirements plan; integrations and source rights need separate validation.
+
 ## Checks and audit
 
 Use Node.js 24.13+ and Python 3.11+. On Windows PowerShell, use `npm.cmd` if execution policy blocks the `npm.ps1` wrapper.

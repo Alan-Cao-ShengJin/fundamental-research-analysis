@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "source_families": 81,
+    "sectors": 20,
+    "skill_gaps": 8
+  },
+  "local_links_and_anchors": "passed",
+  "browser_layout_and_filter_checks": {
+    "desktop": {
+      "viewport": [
+        1440,
+        1000
+      ],
+      "horizontal_overflow": false,
+      "sector_search_results": 7,
+      "anchor_restores_catalog": true
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontal_overflow": false,
+      "sector_search_results": 7,
+      "anchor_restores_catalog": true
+    }
+  },
+  "scope": "Report and planning-data checks only; no API retrieval, license trial or live research evaluation."
+}

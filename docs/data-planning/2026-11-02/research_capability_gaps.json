@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "title": "Global research data requirements and remaining skill gaps",
+    "prepared_on": "2026-11-02",
+    "geographic_requirement": "Worldwide; no listing-market default. Match observations to company operating/customer/input exposure.",
+    "catalog_scope": "Reusable source families and datasets across the twenty sector guides. A scoped requirements catalogue, not every possible vendor or a claim of complete live world coverage.",
+    "working_directory_review": "Assessment of the eighteen bundled research skills and relevant references; no new live-agent benchmark was executed.",
+    "source_status": "Official documentation/product/release pages reviewed. No new feed, subscription, API entitlement, bulk permission or production parser was established.",
+    "existing_adapters": "The bundle contains adapters for AlphaPai, Alpha Vantage, API Ninjas and Massive. No credentials, universal country/field coverage or delivery rights are included; validate actual access before selecting a route.",
+    "counts": {
+      "source_families": 81,
+      "sector_guides": 20,
+      "non_data_capability_gaps": 8
+    }
+  },
+  "gaps": [
+    {
+      "id": "assumption-calibration",
+      "priority": "First",
+      "name": "Evidence-to-assumption construction and proxy calibration",
+      "state": "Principles present; reusable calibrated implementation is thin",
+      "evidence": [
+        "skills/research-cycle/references/underwriting-standard.md",
+        "skills/company-model/references/foundational-builds.md"
+      ],
+      "deliverable": "A repeatable method and generic tools for exposure matching, lag/pass-through estimation, reference-class priors, uncertainty ranges and assumption sensitivity. Preserve a judgment path when history cannot support a fitted model.",
+      "acceptance": "On an unfamiliar case, explain every decisive parameter from evidence/calibration, test a credible alternative and show why a broad indicator is or is not relevant. Use chronological holdouts; flag sparse data and structural breaks.",
+      "location": "Extend company-model and evidence-intake; do not add a second forecasting owner."
+    },
+    {
+      "id": "model-archetypes",
+      "priority": "First",
+      "name": "Complete sector model engineering",
+      "state": "Twenty short guides and arithmetic miniatures exist; full sector archetypes are not supplied",
+      "evidence": [
+        "skills/company-model/references/sectors/index.md",
+        "skills/company-model/assets/sector-examples.json"
+      ],
+      "deliverable": "Clean independent complete model archetypes: operating manufacturer/projects, subscription/cohorts, bank, insurer and drug-development model. Include appropriate statements/capital, cash, shares, periods and editable Excel.",
+      "acceptance": "Perturb foundational assumptions and verify every statement/value consequence, realistic adverse behavior, timing, cash/funding and human readability. Do not force industrial net-debt/3S conventions onto banks or insurers.",
+      "location": "Extend company-model scripts/assets and conditional sector references; build the first archetypes for actual research priorities."
+    },
+    {
+      "id": "evaluation",
+      "priority": "First",
+      "name": "Executed research-quality evaluation",
+      "state": "Authored behavioral cases and deterministic tests exist; live research-quality results are not established",
+      "evidence": [
+        "skills/evals/research-cases.md",
+        "skills/evals/sector-research-cases.md",
+        "AUDIT.md"
+      ],
+      "deliverable": "A runnable benchmark and reviewer rubric for complete initiation, regular and earnings/catalyst updates using dated source packs and withheld review material.",
+      "acceptance": "Evaluate source accuracy, assumption logic, accounting/cash, numerical integrity, interpretation, reproducibility and human model usability. Compare with analyst/broker examples without treating their forecasts as truth; flag historical knowledge leakage.",
+      "location": "Extend evals and generic evaluation scripts; attach outcomes to the existing research cycle."
+    },
+    {
+      "id": "economic-review",
+      "priority": "First",
+      "name": "Independent evidence and economic model review",
+      "state": "Challenge/review instructions exist; independent execution is not assured",
+      "evidence": [
+        "skills/research-challenge/SKILL.md",
+        "skills/research-cycle/references/empirical-research-and-validation.md"
+      ],
+      "deliverable": "A reviewer procedure that reconstructs the decisive mechanism from original evidence, checks independent calculations and tests the strongest competing explanation.",
+      "acceptance": "Catch plausible but unsupported mix, margin, timing and cash assumptions even when formulas balance. Distinguish a second self-review from an actual independent/blind assessment.",
+      "location": "Strengthen research-challenge and financial-quality with review records and realistic failure cases."
+    },
+    {
+      "id": "global-comparability",
+      "priority": "Next",
+      "name": "Cross-country accounting, periods and shareholder-claim comparability",
+      "state": "General standards/warnings exist; reusable country/accounting bridge assets are limited",
+      "evidence": [
+        "skills/company-model/references/model-setup.md",
+        "skills/company-model/references/actuals.md",
+        "skills/valuation-thesis/references/method-selection.md",
+        "skills/corporate-governance/SKILL.md"
+      ],
+      "deliverable": "Conditional normalization/claim bridges covering fiscal calendars, reported/adjusted earnings, leases, capitalized costs, pension/capital rules, consolidation, minorities, currencies and share-class rights. Verify current country rules on real assignments.",
+      "acceptance": "Reconcile materially different peers without blindly reusing standardized vendor ratios; preserve facts versus adjustments and quantify resulting forecast/value changes.",
+      "location": "Extend actuals, financial-quality, governance and valuation references; assign one owner for each adjustment."
+    },
+    {
+      "id": "scenario-calibration",
+      "priority": "Next",
+      "name": "Joint scenarios and calibrated uncertainty",
+      "state": "Scenario/probability principles exist; tested joint-driver implementations and empirical calibration are limited",
+      "evidence": [
+        "skills/research-cycle/references/investor-judgment.md",
+        "skills/valuation-thesis/SKILL.md"
+      ],
+      "deliverable": "Coherent scenario libraries for coupled volume/price/margin/capital/rate/FX changes, explicit timing and downside survival. Use probability weights only where defensible.",
+      "acceptance": "Avoid independent one-variable stresses presented as joint risk; show return with no rerating, funding consequences and how timing changes payoff. Qualitative uncertainty remains valid.",
+      "location": "Extend company-model scenario helpers and valuation methods rather than create an independent EPS/value engine."
+    },
+    {
+      "id": "case-learning",
+      "priority": "Next",
+      "name": "Forecast postmortems and reusable case judgment",
+      "state": "A learning specification exists; a broad populated, validated reference-class history is not established",
+      "evidence": [
+        "skills/research-cycle/references/empirical-research-and-validation.md",
+        "skills/monitor-review/SKILL.md",
+        "skills/investment-conviction/SKILL.md"
+      ],
+      "deliverable": "Dated matched assumption/actual cases, management guidance/delivery histories and useful analogues, including failures, delistings, false exclusions and unresolved outcomes.",
+      "acceptance": "Attribute misses by mechanism and original information availability. Distinguish correct reasoning from lucky prices and incorrect forecasts from external shocks. Do not claim predictive skill from a small selected archive.",
+      "location": "Extend model-revision and monitor-review; keep case facts in research records outside generic skills."
+    },
+    {
+      "id": "special-situations",
+      "priority": "Conditional",
+      "name": "Special situations and structural breaks",
+      "state": "Generic catalyst/change handling exists; dedicated worked methods are not apparent",
+      "evidence": [
+        "skills/model-revision/references/revision-workflow.md",
+        "skills/corporate-governance/SKILL.md"
+      ],
+      "deliverable": "Conditional methods for acquisitions/disposals, spin-offs, rights issues, recapitalizations, holding-company claims and distress/restructuring when a live case needs them.",
+      "acceptance": "Bridge old/new business perimeter, consideration, debt/cash, dilution, rights, taxes/fees and alternative outcomes; avoid comparing incomparable EPS vintages or double-counting look-through assets.",
+      "location": "Add focused references/fixtures under modeling, governance and valuation first; create a dedicated skill only if the recurring workflow warrants it."
+    }
+  ],
+  "priorities": [
+    {
+      "wave": "0",
+      "name": "Global identity, source registry and reproducibility",
+      "scope": "GLEIF/OpenFIGI where useful, worldwide official-source/NSDP registry, market/currency calendars, identifiers, raw-vintage archive and observation contract.",
+      "proof": "A restatement and delayed release can be replayed correctly at a frozen cutoff; country/source gaps remain visible."
+    },
+    {
+      "wave": "1",
+      "name": "Shared macro, trade, cost and public-disclosure backbone",
+      "scope": "World Bank, IMF, BIS, OECD, UN Comtrade/WTO, UNIDO, ILO and commodity prices, plus country extensions and a reusable public filings/peer panel.",
+      "proof": "Choose series by covered business exposure, not by the exchange where the stock is listed. Demonstrate units, definitions and publication/revision histories."
+    },
+    {
+      "wave": "2",
+      "name": "Sector observation modules",
+      "scope": "Add matched units/price/capacity/input datasets for the sectors actually entering research: software/hardware/chips, financials, consumer, industrials, health, energy, property and transport.",
+      "proof": "For each module, map observations to foundational drivers, identify what remains issuer-specific and reject at least one misleading proxy."
+    },
+    {
+      "wave": "3",
+      "name": "Targeted licensed gap-filling",
+      "scope": "Trial one adequate global fundamentals/point-in-time estimates route and only decision-relevant sector products. Use existing entitlements where rights and delivery are sufficient.",
+      "proof": "Compare sample coverage, vintages, definitions and incremental assumption usefulness before committing to a recurring product. This is not a shopping list."
+    },
+    {
+      "wave": "Parallel",
+      "name": "Research-method work owned by us",
+      "scope": "Assumption calibration, full sector archetypes, independent economic review and executed evaluations first; then cross-country bridges, scenarios and case learning.",
+      "proof": "A real research exercise demonstrates the method and an inspectable model, rather than merely adding another instruction file."
+    }
+  ]
+}

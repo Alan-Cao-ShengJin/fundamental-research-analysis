@@ -1,0 +1,65 @@
+{
+  "purpose": "A proposed common observation contract for Tim to implement later; no feed is activated.",
+  "identity": [
+    "source_id",
+    "dataset_id",
+    "series_id",
+    "entity_or_population_id",
+    "security_id_if_relevant",
+    "country_iso",
+    "economic_exposure_geography",
+    "industry_classification_and_version",
+    "product_code_and_version"
+  ],
+  "time": [
+    "observation_period_start",
+    "observation_period_end",
+    "publication_timestamp_and_timezone",
+    "known_first_available_timestamp_or_null",
+    "retrieved_at",
+    "revision_vintage",
+    "forecast_as_of_and_target_period_if_applicable"
+  ],
+  "meaning": [
+    "metric_definition",
+    "raw_value_or_null",
+    "raw_unit",
+    "normalized_value_or_null",
+    "normalized_unit",
+    "currency",
+    "nominal_real_ppp_basis",
+    "seasonal_adjustment",
+    "stock_flow_average_basis",
+    "reported_derived_estimated_forecast_status",
+    "gross_net_consolidation_and_scope"
+  ],
+  "quality": [
+    "coverage_population",
+    "sample_and_methodology",
+    "missing_reason",
+    "revision_flag",
+    "source_locator",
+    "raw_snapshot_hash",
+    "parser_version",
+    "transformation_id",
+    "rights_and_internal_use_status",
+    "quality_findings"
+  ],
+  "links": [
+    "economic_mechanism",
+    "applicable_model_node_ids",
+    "calibration_or_judgment_record",
+    "dependent_outputs",
+    "next_release_or_review"
+  ],
+  "acceptance_tests": [
+    "Replay an as-of query that excludes later releases and later revisions.",
+    "Retain nulls/missingness without converting them to zero or silently forward-filling an essential gap.",
+    "Preserve and reconcile stock/flow, cumulative/standalone, monthly/annual and nominal/real distinctions.",
+    "Keep actuals, derived values, provider estimates and provider forecasts in separate statuses.",
+    "Handle changing industry/HS codes, country boundaries, sources, sample coverage and definitions explicitly.",
+    "Demonstrate matched source-to-normalized lineage and source rights for one selected series before scale-up.",
+    "Show exact geography and operating exposure; never equate listing country with operating market.",
+    "Link a sample observation through a supported assumption and calculation to affected outputs, without asserting that lineage proves causality."
+  ]
+}
