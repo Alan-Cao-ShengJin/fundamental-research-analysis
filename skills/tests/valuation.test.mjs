@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { equityValue, impliedSteadyFcfe } from '../pip-valuation-thesis/scripts/reverse-dcf.mjs';
+import { equityValue, impliedSteadyFcfe } from '../valuation-thesis/scripts/reverse-dcf.mjs';
 
-const example = JSON.parse(readFileSync(new URL('../pip-valuation-thesis/references/fcfe-example.json', import.meta.url), 'utf8'));
+const example = JSON.parse(readFileSync(new URL('../valuation-thesis/references/fcfe-example.json', import.meta.url), 'utf8'));
 describe('conditional equity cash-flow calculator', () => {
   it('matches the independently known constant-cash-flow perpetuity', () => {
     expect(equityValue(example, 100)).toBeCloseTo(100 / 0.10, 9);

@@ -8,7 +8,7 @@ import unittest
 import zipfile
 
 spec = importlib.util.spec_from_file_location(
-    "inspect_workbook", Path(__file__).resolve().parents[1] / "pip-company-model/scripts/inspect_workbook.py")
+    "inspect_workbook", Path(__file__).resolve().parents[1] / "company-model/scripts/inspect_workbook.py")
 inspector = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(inspector)
 

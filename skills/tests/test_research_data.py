@@ -8,7 +8,7 @@ from urllib.request import Request
 from argparse import Namespace
 from pathlib import Path
 
-PATH = Path(__file__).resolve().parents[1] / "pip-evidence-intake/scripts/research_data.py"
+PATH = Path(__file__).resolve().parents[1] / "evidence-intake/scripts/research_data.py"
 spec = importlib.util.spec_from_file_location("research_data", PATH)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

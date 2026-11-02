@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "title": "Synthetic forecast build",
+  "synthetic": true,
+  "cadence": "unspecified",
+  "periods": [
+    {
+      "id": "P0",
+      "label": "P0 actual",
+      "kind": "actual"
+    },
+    {
+      "id": "P1",
+      "label": "P1 forecast",
+      "kind": "forecast"
+    },
+    {
+      "id": "P2",
+      "label": "P2 forecast",
+      "kind": "forecast"
+    }
+  ],
+  "blocks": [
+    {
+      "title": "Component A",
+      "nodes": [
+        {
+          "id": "a_activity",
+          "label": "Activity",
+          "unit": "activity",
+          "role": "foundation",
+          "values": {
+            "P0": 100,
+            "P1": 110,
+            "P2": 120
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "Activity could be 10% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "Activity could be 10% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "a_realisation",
+          "label": "Value per activity",
+          "unit": "currency/activity",
+          "role": "foundation",
+          "values": {
+            "P0": 10,
+            "P1": 10.5,
+            "P2": 11
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "Realisation could be 5% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "Realisation could be 5% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "a_unit_cost",
+          "label": "Cost per activity",
+          "unit": "currency/activity",
+          "role": "foundation",
+          "values": {
+            "P0": 6,
+            "P1": 6.2,
+            "P2": 6.4
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "Unit cost could be 8% higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "Unit cost could be 8% higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "a_revenue",
+          "label": "Component revenue",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": false,
+          "formula": "a_activity * a_realisation"
+        },
+        {
+          "id": "a_cost",
+          "label": "Component cost",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": false,
+          "formula": "a_activity * a_unit_cost"
+        },
+        {
+          "id": "a_contribution",
+          "label": "Component contribution",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": true,
+          "formula": "a_revenue - a_cost"
+        }
+      ]
+    },
+    {
+      "title": "Component B",
+      "nodes": [
+        {
+          "id": "b_activity",
+          "label": "Activity",
+          "unit": "activity",
+          "role": "foundation",
+          "values": {
+            "P0": 50,
+            "P1": 55,
+            "P2": 60
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "Activity could be 10% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative activity path",
+              "uncertainty": "Activity could be 10% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "b_realisation",
+          "label": "Value per activity",
+          "unit": "currency/activity",
+          "role": "foundation",
+          "values": {
+            "P0": 20,
+            "P1": 20.5,
+            "P2": 21
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "Realisation could be 5% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative realisation path",
+              "uncertainty": "Realisation could be 5% lower or higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "b_unit_cost",
+          "label": "Cost per activity",
+          "unit": "currency/activity",
+          "role": "foundation",
+          "values": {
+            "P0": 12,
+            "P1": 12.5,
+            "P2": 13
+          },
+          "basis": {
+            "P0": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P1": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "Unit cost could be 8% higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            },
+            "P2": {
+              "kind": "synthetic",
+              "source": "Invented demonstration data",
+              "rationale": "Illustrative cost path",
+              "uncertainty": "Unit cost could be 8% higher",
+              "next_evidence": "Replace with task-specific evidence before real use"
+            }
+          }
+        },
+        {
+          "id": "b_revenue",
+          "label": "Component revenue",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": false,
+          "formula": "b_activity * b_realisation"
+        },
+        {
+          "id": "b_cost",
+          "label": "Component cost",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": false,
+          "formula": "b_activity * b_unit_cost"
+        },
+        {
+          "id": "b_contribution",
+          "label": "Component contribution",
+          "unit": "currency",
+          "role": "calculation",
+          "subtotal": true,
+          "formula": "b_revenue - b_cost"
+        }
+      ]
+    },
+    {
+      "title": "Aggregate forecast",
+      "nodes": [
+        {
+          "id": "total_revenue",
+          "label": "Total revenue",
+          "unit": "currency",
+          "role": "output",
+          "formula": "a_revenue + b_revenue"
+        },
+        {
+          "id": "total_cost",
+          "label": "Total cost",
+          "unit": "currency",
+          "role": "output",
+          "formula": "a_cost + b_cost"
+        },
+        {
+          "id": "total_contribution",
+          "label": "Total contribution",
+          "unit": "currency",
+          "role": "output",
+          "formula": "a_contribution + b_contribution"
+        },
+        {
+          "id": "contribution_margin",
+          "label": "Contribution margin",
+          "unit": "ratio",
+          "role": "output",
+          "format": "percent",
+          "formula": "total_contribution / total_revenue"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    "total_revenue",
+    "total_cost",
+    "total_contribution",
+    "contribution_margin"
+  ],
+  "scope": "An operating-build demonstration. Choose supported quarterly, half-year or annual periods, replace relative labels with the actual fiscal periods, design the business decomposition and add applicable financial schedules. No issuer data or sector-specific assumptions are included."
+}

@@ -1,126 +1,156 @@
 {
-  "version": "1.20.0",
-  "entrySkill": "pip-research-cycle",
+  "version": "2.0.0",
+  "entrySkill": "research-cycle",
   "runtimeIntegrated": false,
   "skills": [
     {
-      "id": "pip-research-cycle",
-      "path": "pip-research-cycle/SKILL.md"
+      "id": "research-cycle",
+      "path": "research-cycle/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-evidence-intake",
-      "path": "pip-evidence-intake/SKILL.md"
+      "id": "evidence-intake",
+      "path": "evidence-intake/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-company-model",
-      "path": "pip-company-model/SKILL.md"
+      "id": "company-model",
+      "path": "company-model/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-financial-quality",
-      "path": "pip-financial-quality/SKILL.md"
+      "id": "financial-quality",
+      "path": "financial-quality/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-corporate-governance",
-      "path": "pip-corporate-governance/SKILL.md"
+      "id": "corporate-governance",
+      "path": "corporate-governance/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-valuation-thesis",
-      "path": "pip-valuation-thesis/SKILL.md"
+      "id": "valuation-thesis",
+      "path": "valuation-thesis/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-investment-conclusion",
-      "path": "pip-investment-conclusion/SKILL.md"
+      "id": "investment-conclusion",
+      "path": "investment-conclusion/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-research-challenge",
-      "path": "pip-research-challenge/SKILL.md"
+      "id": "research-challenge",
+      "path": "research-challenge/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-management-questions",
-      "path": "pip-management-questions/SKILL.md"
+      "id": "management-questions",
+      "path": "management-questions/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-research-brief",
-      "path": "pip-research-brief/SKILL.md"
+      "id": "research-brief",
+      "path": "research-brief/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-chart-visualization",
-      "path": "pip-chart-visualization/SKILL.md"
+      "id": "chart-visualization",
+      "path": "chart-visualization/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-monitor-review",
-      "path": "pip-monitor-review/SKILL.md"
+      "id": "monitor-review",
+      "path": "monitor-review/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-theme-screening",
-      "path": "pip-theme-screening/SKILL.md"
+      "id": "theme-screening",
+      "path": "theme-screening/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-company-change-tracking",
-      "path": "pip-company-change-tracking/SKILL.md"
+      "id": "company-change-tracking",
+      "path": "company-change-tracking/SKILL.md",
+      "sourceSkills": []
     },
     {
-      "id": "pip-macro-event-analysis",
-      "path": "pip-macro-event-analysis/SKILL.md"
+      "id": "macro-event-analysis",
+      "path": "macro-event-analysis/SKILL.md",
+      "sourceSkills": []
+    },
+    {
+      "id": "stock-initiation",
+      "path": "stock-initiation/SKILL.md",
+      "sourceSkills": []
+    },
+    {
+      "id": "model-revision",
+      "path": "model-revision/SKILL.md",
+      "sourceSkills": []
+    },
+    {
+      "id": "investment-conviction",
+      "path": "investment-conviction/SKILL.md",
+      "sourceSkills": []
     }
   ],
   "stages": {
     "scope": {
-      "skill": "pip-research-cycle",
+      "skill": "research-cycle",
       "output": "research-brief",
       "requiredBefore": []
     },
     "evidence": {
-      "skill": "pip-evidence-intake",
+      "skill": "evidence-intake",
       "output": "evidence-pack",
       "requiredBefore": [
         "scope"
       ]
     },
     "company-model-setup": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "evidence"
       ]
     },
     "company-actuals": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "company-model-setup"
       ]
     },
     "corporate-governance": {
-      "skill": "pip-corporate-governance",
+      "skill": "corporate-governance",
       "output": "corporate-governance",
       "requiredBefore": [
         "evidence"
       ]
     },
     "financial-red-flags": {
-      "skill": "pip-financial-quality",
+      "skill": "financial-quality",
       "output": "financial-quality",
       "requiredBefore": [
         "evidence"
       ]
     },
     "operating-data": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "company-actuals"
       ]
     },
     "management-guidance": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "evidence-pack",
       "requiredBefore": [
         "evidence"
       ]
     },
     "revenue-projection": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "company-actuals",
@@ -131,14 +161,14 @@
       ]
     },
     "cost-unit-economics": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "revenue-projection"
       ]
     },
     "company-forecast": {
-      "skill": "pip-company-model",
+      "skill": "company-model",
       "output": "company-model",
       "requiredBefore": [
         "revenue-projection",
@@ -146,7 +176,7 @@
       ]
     },
     "model-audit": {
-      "skill": "pip-financial-quality",
+      "skill": "financial-quality",
       "output": "financial-quality",
       "requiredBefore": [
         "company-forecast",
@@ -155,7 +185,7 @@
       ]
     },
     "valuation": {
-      "skill": "pip-valuation-thesis",
+      "skill": "valuation-thesis",
       "output": "valuation-thesis",
       "requiredBefore": [
         "model-audit",
@@ -163,7 +193,7 @@
       ]
     },
     "thesis-validation": {
-      "skill": "pip-financial-quality",
+      "skill": "financial-quality",
       "output": "financial-quality",
       "requiredBefore": [
         "valuation",
@@ -171,14 +201,14 @@
       ]
     },
     "challenge": {
-      "skill": "pip-research-challenge",
+      "skill": "research-challenge",
       "output": "challenge",
       "requiredBefore": [
         "thesis-validation"
       ]
     },
-    "conclusion": {
-      "skill": "pip-investment-conclusion",
+    "conviction": {
+      "skill": "investment-conviction",
       "output": "investment-conclusion",
       "requiredBefore": [
         "valuation",
@@ -187,59 +217,219 @@
         "challenge"
       ]
     },
+    "conclusion": {
+      "skill": "investment-conclusion",
+      "output": "investment-conclusion",
+      "requiredBefore": [
+        "valuation",
+        "corporate-governance",
+        "thesis-validation",
+        "challenge",
+        "conviction"
+      ]
+    },
     "questions": {
-      "skill": "pip-management-questions",
+      "skill": "management-questions",
       "output": "management-questions",
       "requiredBefore": [
         "evidence"
       ]
     },
+    "company-follow-up": {
+      "skill": "monitor-review",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "brief",
+        "conclusion"
+      ]
+    },
+    "revision-follow-up": {
+      "skill": "monitor-review",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "revision-brief"
+      ]
+    },
+    "regular-follow-up": {
+      "skill": "monitor-review",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "regular-brief"
+      ]
+    },
     "brief": {
-      "skill": "pip-research-brief",
+      "skill": "research-brief",
       "output": "brief",
       "requiredBefore": [
         "evidence"
       ]
     },
     "monitor-review": {
-      "skill": "pip-monitor-review",
+      "skill": "monitor-review",
       "output": "monitor-review",
       "requiredBefore": [
         "evidence"
       ]
     },
     "theme-screen": {
-      "skill": "pip-theme-screening",
+      "skill": "theme-screening",
       "output": "hypothesis",
       "requiredBefore": [
         "evidence"
       ]
     },
     "macro-event": {
-      "skill": "pip-macro-event-analysis",
+      "skill": "macro-event-analysis",
       "output": "hypothesis",
       "requiredBefore": [
         "evidence"
       ]
     },
     "historical-narrative": {
-      "skill": "pip-valuation-thesis",
+      "skill": "valuation-thesis",
       "output": "hypothesis",
       "requiredBefore": [
         "evidence"
       ]
     },
     "company-changes": {
-      "skill": "pip-company-change-tracking",
+      "skill": "company-change-tracking",
       "output": "monitor-review",
       "requiredBefore": [
         "evidence"
+      ]
+    },
+    "stock-initiation": {
+      "skill": "stock-initiation",
+      "output": "research-brief",
+      "requiredBefore": [
+        "scope"
+      ]
+    },
+    "revision-baseline": {
+      "skill": "model-revision",
+      "output": "company-model",
+      "requiredBefore": [
+        "scope"
+      ]
+    },
+    "revision-evidence": {
+      "skill": "evidence-intake",
+      "output": "evidence-pack",
+      "requiredBefore": [
+        "revision-baseline"
+      ]
+    },
+    "revision-impact": {
+      "skill": "model-revision",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "revision-evidence"
+      ]
+    },
+    "revision-forecast-evaluation": {
+      "skill": "model-revision",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "revision-impact"
+      ]
+    },
+    "revision-risk-review": {
+      "skill": "financial-quality",
+      "output": "financial-quality",
+      "requiredBefore": [
+        "revision-forecast-evaluation"
+      ]
+    },
+    "model-revision": {
+      "skill": "company-model",
+      "output": "company-model",
+      "requiredBefore": [
+        "revision-risk-review"
+      ]
+    },
+    "revision-audit": {
+      "skill": "financial-quality",
+      "output": "financial-quality",
+      "requiredBefore": [
+        "model-revision"
+      ]
+    },
+    "revision-valuation": {
+      "skill": "valuation-thesis",
+      "output": "valuation-thesis",
+      "requiredBefore": [
+        "revision-audit"
+      ]
+    },
+    "revision-challenge": {
+      "skill": "research-challenge",
+      "output": "challenge",
+      "requiredBefore": [
+        "revision-valuation"
+      ]
+    },
+    "revision-conviction": {
+      "skill": "investment-conviction",
+      "output": "investment-conclusion",
+      "requiredBefore": [
+        "revision-challenge"
+      ]
+    },
+    "revision-conclusion": {
+      "skill": "investment-conclusion",
+      "output": "investment-conclusion",
+      "requiredBefore": [
+        "revision-conviction"
+      ]
+    },
+    "regular-valuation": {
+      "skill": "valuation-thesis",
+      "output": "valuation-thesis",
+      "requiredBefore": [
+        "revision-impact"
+      ]
+    },
+    "regular-challenge": {
+      "skill": "research-challenge",
+      "output": "challenge",
+      "requiredBefore": [
+        "regular-valuation"
+      ]
+    },
+    "regular-conviction": {
+      "skill": "investment-conviction",
+      "output": "investment-conclusion",
+      "requiredBefore": [
+        "regular-challenge"
+      ]
+    },
+    "regular-conclusion": {
+      "skill": "investment-conclusion",
+      "output": "investment-conclusion",
+      "requiredBefore": [
+        "regular-conviction"
+      ]
+    },
+    "regular-brief": {
+      "skill": "research-brief",
+      "output": "brief",
+      "requiredBefore": [
+        "regular-conclusion"
+      ]
+    },
+    "revision-brief": {
+      "skill": "research-brief",
+      "output": "brief",
+      "requiredBefore": [
+        "revision-conclusion"
       ]
     }
   },
   "flows": {
     "new-company-research": [
       "scope",
+      "stock-initiation",
       "evidence",
       "company-model-setup",
       "company-actuals",
@@ -254,27 +444,38 @@
       "valuation",
       "thesis-validation",
       "challenge",
+      "conviction",
       "conclusion",
-      "brief"
+      "brief",
+      "company-follow-up"
+    ],
+    "company-regular-review": [
+      "scope",
+      "revision-baseline",
+      "revision-evidence",
+      "revision-impact",
+      "regular-valuation",
+      "regular-challenge",
+      "regular-conviction",
+      "regular-conclusion",
+      "regular-brief",
+      "regular-follow-up"
     ],
     "company-update": [
       "scope",
-      "evidence",
-      "company-model-setup",
-      "company-actuals",
-      "corporate-governance",
-      "financial-red-flags",
-      "operating-data",
-      "management-guidance",
-      "revenue-projection",
-      "cost-unit-economics",
-      "company-forecast",
-      "model-audit",
-      "valuation",
-      "thesis-validation",
-      "challenge",
-      "conclusion",
-      "brief"
+      "revision-baseline",
+      "revision-evidence",
+      "revision-impact",
+      "revision-forecast-evaluation",
+      "revision-risk-review",
+      "model-revision",
+      "revision-audit",
+      "revision-valuation",
+      "revision-challenge",
+      "revision-conviction",
+      "revision-conclusion",
+      "revision-brief",
+      "revision-follow-up"
     ],
     "corporate-governance-review": [
       "scope",
@@ -321,6 +522,8 @@
     ]
   },
   "routingNotes": [
+    "Investment conviction preserves one primary evidence-based economic or avoidance proposition across research vintages. Form it during initiation, test it after model/risk/challenge work, and retrieve it before updating existing coverage. Classify changes to belief, forecast/value, price-based rating, investment eligibility and portfolio action separately. Intended investment duration is at least a year under the current mandate, not a guaranteed convergence date or forced holding period after invalidation. Persistent evidenced shareholder-value diversion can maintain an avoid disposition regardless of cheapness; allegations and related-party labels alone do not establish abuse. Conviction does not override source truth, discovered errors, funding survival, rating rules or authorized portfolio constraints. Store issuer records outside reusable skills, preserve original conditions/deadlines and learn from dated outcomes rather than pretending to have a calibrated track record.",
+    "Governing company routing has two branches: initiation and existing research update. Initiation establishes the full baseline and initial view with relevant sector guidance. Existing updates select regular review or major earnings/catalyst update before specialist work. company-regular-review retains operating forecasts unless concrete evidence warrants a specific change; refresh price, justified valuation inputs and prospective returns separately. Price alone changes upside, not EPS or the target. Supported forecast changes reopen affected risk/model/audit dependencies; material changes escalate to company-update. That major route preserves the prior forecast, evaluates matched actuals and assumptions with a learning record or event-impact bridge, then recalibrates and audits affected economics before valuation and the decision. Reuse valid artifacts and preserve user edits. No material change is valid; broken foundations require repair. Catalog routes are authored guidance, not an integrated runtime dispatcher.",
     "Use current evidence and an internal earnings clock to contextualize latest results, next-period expectations, earlier peer calls and material catalysts. Whole-company economics, governance, funded growth, valuation and payoff still determine the investment decision. Do not require a freshness declaration or earnings-clock block in investor briefs. Select relevant provider families by decision value; endpoint/field access, content, vintage and source class must be verified. AlphaPai generally supplies Chinese material: retain originals and translate to the preferred language, English by default. Local retrieval is separate from worker integration.",
     "Full company research includes early governance and financial-red-flag screening before forecasts, then model audit and post-valuation thesis validation. One financial-quality skill performs three distinct passes with stable issue IDs and separate artifact versions. Severe threats to minority claims receive high-priority triage; reporting/fraud risk is another important lens that can independently be decisive. Ratios and absent private data are not proof of fraud, cheapness does not offset critical risks, and ordinary uncertainty is not a blanket blocker. Standalone red-flag work can use filings without a full forecast or stock call.",
     "Analytical importance follows the security, reference price, horizon and decision materiality, not conversation order or the date a skill was added. Integrate business economics, financial quality/funded growth, governance, valuation/expectations, macro/market context and probability/payoff without fixed weights or a default dominant lens. Stage ordering expresses dependencies rather than importance.",
@@ -328,20 +531,53 @@
     "Flows are dependency-aware working guides, not permissions or an active scheduler. Focused requests use the relevant subset and reuse current upstream artifacts.",
     "Company research is model-first: actuals, operating data and guidance feed forecasts; an audited model precedes valuation; validation and challenge precede the investment conclusion.",
     "Governance evidence collection starts during intake. The full company routes complete a distinct corporate-governance assessment before model audit/valuation; findings feed cash access, dilution, allocation and financing assumptions and the persistence or credible removal of a valuation discount. Focused governance reviews do not require a full company model.",
-    "Select valuation by business economics, not a universal DCF or multiple default. Full company research examines peers and own historical forward valuation, with honest coverage limits, and a justified rerating/derating bridge. Decision briefs lead with one key thesis sentence. Investor reports default to a 250-350-word brief and an 800-1,200-word main narrative with decision-relevant visuals and compact tables; detailed models/evidence remain linked support. Apply the Humanizer-adapted natural-writing guide without changing financial meaning or material uncertainty. Internal check counts, run metadata and billing information are not investment-report content.",
-    "The company model is executable agent-consumable economic state for scenarios, valuation and later forecast evaluation. Preserve applicable model economics; Excel is an optional backend/view. Setup, revenue/cost modules and integrated statements remain explicit stages; an inert data table or independent EPS forecast does not replace them.",
+    "Completed stock recommendations follow the decision contract: Buy above +10% primary-target price return, Hold within -10% to +10% inclusive, Sell below -10%, before rounding and excluding dividends. Investment attractiveness is separate: a Buy below 50% base-case price upside is unattractive under this mandate; at least 50% still needs a credible target and acceptable risk. Do not change the rating solely because the attractiveness hurdle is unmet, inflate a target or substitute the bull case. Retain primary target/date, quote/time and same-horizon bear/bull returns. Incomplete research and portfolio execution are separate from the rating.",
+    "Select valuation by business economics; examine peers and genuine historical forward evidence. Apply the issuer fiscal calendar: keep the selected current forward year in headline and target; a target twelve months away does not silently roll earnings another year. Communicate an evidence-backed stock pitch. The one-page decision brief is its gist; the fuller visual pitch develops the argument across material company angles. Explain headline valuation arithmetic nearby, round headline multiples naturally, distinguish adjusted profit from cash after investment, and preserve counterevidence. Technical model/evidence records remain linked support; internal checks, run metadata and billing stay outside investor content.",
+    "The company model is executable agent-consumable economic state for scenarios, valuation and later forecast evaluation. Company forecast builds and numerical revisions also require a formula-driven human-auditable Excel model reconciled with the machine interface. Preserve user edits and applicable economics. Setup, revenue/cost modules and integrated statements remain explicit stages; an inert data table, static output workbook or independent EPS forecast does not replace them.",
     "Valuations reference current model/engine/scenario/run identities and semantic output IDs. Preserve frozen forecasts; evidence revisions invalidate affected evaluations and matched actuals support learning. The local deterministic graph helper demonstrates calculations, not automatic live-agent updates.",
     "Company actuals, operating data and forecasts use distinct artifact IDs. Model audit and post-valuation thesis validation also use distinct IDs despite sharing a specialist/artifact kind.",
     "Guidance intake can finish as unavailable or not applicable with a reason; do not fabricate guidance or make every company wait for an IR response.",
-    "Indices, commodities, FX and crypto use the non-company branch; look-through company work is optional when relevant.",
     "Missing tests block an asserted tradable edge, not a legitimate rejection, partial brief or further research.",
     "Questions are an optional gap-resolution branch throughout the cycle, not compulsory outreach or a mandatory stop.",
     "Recurring reviews reopen any affected dependencies rather than rebuilding every artifact or allowing only one revision loop.",
-    "Theme screening and macro-event work are optional upstream branches. Short discovery routes do not qualify a company recommendation or sized trade; resume the relevant full sequence when needed.",
+    "Fundamental filters and quick peer triage reuse theme-discovery in theme-screening without inventing a theme: freeze universe/criteria, normalize relevant metrics, retain missing data and shortlist the next decisive research questions. Value-chain scans map constraints and economics. Sector leadership/rotation uses macro-event-review in current-regime mode with consistent multi-window returns and breadth; returns/volume are not measured fund flows. Historical replay reuses historical-narrative-review with a genuine as-of information set and executable entry assumptions. Recurring reviews use self-contained work items and verified scheduler/delivery state. Short discovery routes do not qualify a company recommendation or sized trade, install tools or activate monitoring.",
     "Current quantified narrative analysis is part of the existing valuation stage and feeds thesis validation/challenge. Historical and short-window work is a mode of that same specialist using point-in-time evidence without requiring a current company forecast.",
-    "Report chart construction uses pip-chart-visualization: AntV G2 for financial/statistical charts and AntV Infographic for suitable business/process diagrams, with shared theme tokens, consistent metric and actual/forecast encodings, source-linked data/specs and stable rendered exports. This is a communication subtask, not an extra research gate.",
-    "Standalone company-fundamental bundle. Theme/macro context and company follow-up are included; portfolio allocation, risk-budgeting and cross-asset trading routes are outside this repository."
+    "Report chart construction uses chart-visualization: AntV G2 for financial/statistical charts and AntV Infographic for suitable business/process diagrams, with shared theme tokens, consistent metric and actual/forecast encodings, source-linked data/specs and stable rendered exports. This is a communication subtask, not an extra research gate.",
+    "Identify the primary valuation driver before presenting the pitch. Dividend-led cases require adopted policy, earnings-year payout, annual DPS/yield, recurring cash coverage and headroom, higher-payout/cash stresses and a justified required yield. Separate annual forward yield from cash receivable in the target horizon. A dividend yield and P/E on the same payout are algebraically linked, not independent validation; do not use dividends as a vague reason for peer convergence."
   ],
+  "companyWorkflows": {
+    "initiation": {
+      "entrySkill": "stock-initiation",
+      "flow": "new-company-research"
+    },
+    "revision": {
+      "entrySkill": "model-revision",
+      "flow": "company-update",
+      "requiresModeSelection": true,
+      "routingReference": "research-cycle/references/request-routing.md",
+      "modes": {
+        "regular": {
+          "flow": "company-regular-review",
+          "forecastPolicy": "retain-unless-supported-change",
+          "trigger": "Existing coverage between major disclosures; check intervening concrete evidence and refresh valuation/return.",
+          "forecastChangeRequires": [
+            "concrete-evidence",
+            "affected-risk-review",
+            "model-recalculation",
+            "model-audit",
+            "downstream-refresh"
+          ],
+          "escalateTo": "major"
+        },
+        "major": {
+          "flow": "company-update",
+          "forecastPolicy": "evaluate-then-recalibrate",
+          "trigger": "Earnings or material catalyst evidence requiring substantial reassessment.",
+          "learningStage": "revision-forecast-evaluation"
+        }
+      }
+    }
+  },
   "variant": "fundamental-research-only",
-  "sourceBundleVersion": "1.20.0"
+  "sourceArchivesBundled": false
 }

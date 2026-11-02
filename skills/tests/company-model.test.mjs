@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { evaluateCompanyModel, compareModelScenario, evaluationMatchesModel } from '../lib/company-model.mjs';
-const load = () => JSON.parse(readFileSync(new URL('../pip-company-model/references/agent-model-example.json', import.meta.url), 'utf8'));
+const load = () => JSON.parse(readFileSync(new URL('../company-model/references/agent-model-example.json', import.meta.url), 'utf8'));
 
 describe('executable company model', () => {
   it('links operating drivers, cash flow, balance sheet and valuation without retyped outputs', () => {

@@ -1,9 +1,11 @@
-# Working with this skill bundle
+# Working with this research bundle
 
-This repository stores company fundamental-research skills and their necessary support files. Start at `skills/pip-research-cycle/SKILL.md`; use `skills/catalog.json` for stage dependencies and focused routes. Keep the complete sibling tree and relative imports intact.
+Start at `skills/research-cycle/SKILL.md`. Select initiation, regular review or major earnings/catalyst update before choosing specialist work. Use `skills/catalog.json` and the research coverage plan; account for every bundled skill as performed, validly reused or not applicable according to its requirement. A skill's presence in a plan does not mean its instructions were read or its work was done.
 
-Preserve model-before-valuation ordering, early governance/red-flag review, educated estimates under imperfect information, and the inclusive +/-10% primary-target price-return Hold rule. Reports should be concise, professional and visual, with English as the default output language. Chinese AlphaPai evidence retains its original/locator and is translated accurately.
+Preserve model-before-valuation ordering, early governance/reporting review, distinct financial-quality passes, sector-specific operating mechanisms, original forecasts and conviction conditions. Regular reviews retain operating forecasts unless concrete evidence warrants changes. Major updates compare matched prior assumptions with new evidence before replacing estimates and recalibrating. Numerical forecast changes require affected risk/calculation/audit/downstream work and a human-auditable Excel model.
 
-When updating methods, reconcile the coordinator, specialist references, catalog, tests and any affected handoff schema. Do not add company-specific assumptions, original company reports, live provider responses, credentials, application/execution code or raw historical imports. Portfolio sizing and cross-asset trading are separate workflows.
+Apply the included decision contract consistently unless the user specifies another mandate. Keep rating, attractiveness, eligibility and portfolio action distinct. An active governance exclusion is not cured by cheapness. English is the default; retain original evidence/locators and translate accurately. Preserve user-authored workbook edits.
 
-Run `npm run skills:check`, `npm test` and the Python unittest command in README after relevant changes. Source/metadata checks do not establish investment performance or forensic assurance. Research and proposed follow-up do not activate monitoring, contact anyone or authorize trading.
+Do not add issuer-specific assumptions, private models/reports, live provider responses, credentials or raw imported archives. Portfolio allocation, trading and non-company underwriting remain external. Research and proposed follow-up do not send messages, activate monitoring or authorize execution.
+
+After relevant changes run the structural check, JavaScript tests and Python unittest command in README. Keep names, references, catalog, coverage specification and tests coherent. Keep third-party licenses. Source/metadata checks are not evidence of investment performance or forensic assurance.

@@ -1,0 +1,52 @@
+{
+  "recordType": "investment-conviction",
+  "templateVersion": "1.0.0",
+  "recordId": null,
+  "security": null,
+  "createdAt": null,
+  "informationCutoff": null,
+  "baselineReferences": {
+    "research": [],
+    "modelAndForecast": [],
+    "valuation": [],
+    "decision": [],
+    "issueRegister": []
+  },
+  "intendedHorizon": {
+    "startDate": null,
+    "endDate": null,
+    "economicRationale": null
+  },
+  "originalAnchor": {
+    "direction": null,
+    "proposition": null,
+    "whyDecisive": null,
+    "economicAndShareholderMechanism": null,
+    "modelDriverReferences": [],
+    "observedVersusInferred": null,
+    "supportingEvidence": [],
+    "contraryEvidence": [],
+    "alternativeExplanation": null,
+    "essentialUnknowns": [],
+    "evidenceAssessment": null,
+    "assessmentReason": null,
+    "compatibleVariation": [],
+    "expectedMilestones": [],
+    "challengeConditions": [],
+    "breakConditions": [],
+    "reconsiderationConditions": [],
+    "independentDealBreakers": []
+  },
+  "originalEligibility": {
+    "status": "not-assessed",
+    "reason": null,
+    "activeExclusions": []
+  },
+  "reviewPlan": {
+    "nextReviewDate": null,
+    "eventTriggers": [],
+    "decisiveSourcesAndAvailability": [],
+    "missingEvidenceResponse": null
+  },
+  "reviews": []
+}

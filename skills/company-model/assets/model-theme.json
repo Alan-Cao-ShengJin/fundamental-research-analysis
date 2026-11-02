@@ -1,0 +1,25 @@
+{
+  "name": "human-review-model",
+  "font": { "name": "Arial", "size": 10 },
+  "colors": {
+    "calculation": "#000000",
+    "percentage": "#A6A6A6",
+    "actual_input": "#17365D",
+    "forecast_input": "#7030A0",
+    "forecast_fill": "#F2DDD5",
+    "section_fill": "#EDF0F3",
+    "border": "#A8AFB7",
+    "explanation": "#404040"
+  },
+  "layout": {
+    "gridlines": false,
+    "row_height": 19,
+    "label_width": 29,
+    "unit_width": 18,
+    "period_width": 13,
+    "explanation_width": 110,
+    "border_style": "thin",
+    "alignment": "right",
+    "explanation_alignment": "left"
+  }
+}

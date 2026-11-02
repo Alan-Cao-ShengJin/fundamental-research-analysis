@@ -1,0 +1,159 @@
+{
+  "version": "1.0.0",
+  "modes": {
+    "initiation": "new-company-research",
+    "regular": "company-regular-review",
+    "major": "company-update"
+  },
+  "skills": {
+    "research-cycle": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Scope, route, sequence dependencies and account for coverage."
+    },
+    "stock-initiation": {
+      "modes": {
+        "initiation": "required",
+        "regular": "outside-scope",
+        "major": "outside-scope"
+      },
+      "purpose": "Establish new coverage; existing coverage uses the revision entry."
+    },
+    "model-revision": {
+      "modes": {
+        "initiation": "outside-scope",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Preserve the prior baseline, classify evidence and attribute changes."
+    },
+    "evidence-intake": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Identity, cutoff, official sources, original observations, conflicts and data availability."
+    },
+    "company-model": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Business/competition and sector mechanism, history, foundational drivers, guidance, linked forecasts and Excel; regular reviews may reuse the valid forecast."
+    },
+    "corporate-governance": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Control, minority access, conduct, allocation and continuing issues; reuse unaffected dated findings after eligibility review."
+    },
+    "financial-quality": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Early red flags, pre-valuation model audit and post-valuation thesis validation; reuse unaffected passes, reopen invalidated ones."
+    },
+    "valuation-thesis": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Business-suited valuation, expectations, scenarios and justified calendar/market changes."
+    },
+    "research-challenge": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Counter-case, pivotal source/calculation checks and assumptions that can break the decision."
+    },
+    "investment-conviction": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Preserve and test the decisive belief or avoidance condition separately from value and price."
+    },
+    "investment-conclusion": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Target/date, price-based rating, attractiveness, eligibility and decision-changing evidence."
+    },
+    "research-brief": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Requested pitch or update, numerical/prose consistency and linked technical support."
+    },
+    "monitor-review": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Next decisive observations, milestones and learning; planning does not activate monitoring."
+    },
+    "company-change-tracking": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Comparable observation/change ledger and frozen forecast-to-actual learning.",
+      "trigger": "Existing-coverage review, or a historical change/surprise chain that materially informs initiation."
+    },
+    "macro-event-analysis": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Regime, sector, FX/rate/cost transmission and investor-base effects.",
+      "trigger": "The proportionate context scan finds a material exposure, scenario, access or repricing question; no standalone macro deep dive is required otherwise."
+    },
+    "theme-screening": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Universe discovery, financial/peer triage or value-chain candidate selection.",
+      "trigger": "The request needs discovery, a shortlist or candidate comparison; researching a named stock does not itself require a universe screen."
+    },
+    "management-questions": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Answerable questions linked to unresolved material assumptions, prior answers and verification.",
+      "trigger": "An unanswered issuer question can change the decision after checking available evidence; drafting does not authorize contact."
+    },
+    "chart-visualization": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Data-linked, consistently themed research charts and explanatory diagrams.",
+      "trigger": "The requested deliverable contains charts or diagrams; a concise text-only update need not manufacture a visual."
+    }
+  }
+}

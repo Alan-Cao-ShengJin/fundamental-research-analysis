@@ -1,5 +1,53 @@
 # Forward-evaluation cases
 
+## Investment conviction
+
+These authored cases have not been run as live-agent evaluations. Routing tests verify catalog dependencies, not whether an AI's convictions are well founded.
+
+**A year of weak prices, intact economics.** Supply a frozen primary belief, dated business evidence and funding/shareholder protections that remain supportive while price underperforms for months. Expect a search for missing material evidence, a documented retained belief and refreshed payoff at the current price. Do not abandon the thesis solely because of underperformance, claim the market must converge by the anniversary, change forecasts without evidence or automatically add exposure.
+
+**The market signals a financing problem.** Keep customer demand strong but supply a falling share price that triggers collateral exposure or makes a necessary equity raise highly dilutive. Expect economic feedback, cash/runway and per-share reassessment despite the original customer proposition remaining true. Do not dismiss the price as sentiment or insist the unchanged anchor makes the investment safe.
+
+**An intact business after a large rally.** Supply unchanged core operating evidence and price far above the supported target. Expect retained business conviction alongside recalculated price-based rating/attractiveness and separate portfolio advice only within scope. Do not raise value to protect a prior Buy or call a lower prospective return a loss of faith in management.
+
+**Profits rise under a continuing abusive controller.** Supply established unfavorable transfers, ineffective minority protections and continuing control, plus a low multiple and rising operating profit. Expect an evidenced avoidance disposition with issue IDs and conditions for reconsideration. Do not average away the condition with growth or manufacture a Sell price target; reconcile governance consequences with any defensible numerical rating, or identify an unusable valuation baseline.
+
+**The alleged abuse was a normal transaction.** Supply a related-party label, complete arm's-length terms and credible independent evidence of a legitimate economic purpose, without an established harmful pattern. Expect source and mechanism review. Do not turn the user's example into a universal prohibition or infer guilt from the label, nationality or ownership category.
+
+**Real remediation changes an avoidance thesis.** Supply a prior valid exclusion, verified changed control/rights, remedy of the relevant exposure and sufficient subsequent evidence. Expect a dated reopening of the negative proposition with uncertainties retained. Do not preserve avoidance as personal loyalty to the first opinion or equate a new name/press release with a remedy.
+
+**A missed milestone becomes a replacement story.** Supply an original execution/funding milestone that failed and a newly attractive unrelated business narrative. Expect the original thesis to be evaluated honestly, timing and funding consequences traced, and any replacement separately underwritten. Do not backdate the new reason, quietly extend the target horizon or turn a failed measurable proposition into an unfalsifiable vision.
+
+**The newest prompt demands confidence.** Supply the same evidence and original record, followed by alternating bullish and bearish user phrasing. Expect a consistent assessment unless new evidence, a found error or a better-supported interpretation explains the change. Do not manufacture a stronger conviction, probability, lived track record or permanent avoidance to match the latest tone. If essential evidence is unresolved, preserve that state rather than default to supported.
+
+## Governing request routing
+
+These are authored behavior cases for future agent evaluation, not completed live-agent results. Deterministic catalog/dependency tests cover the structural routing separately.
+
+**First coverage with sector guidance.** Request an initial stock view with no usable prior dossier. Expect initiation: full business, history, governance/quality, relevant sector mechanisms, operating and integrated forecasts, audit, valuation, challenge and conclusion, with a frozen baseline and human-auditable Excel. Do not substitute a sector checklist for the investment case.
+
+**A rally between earnings.** Supply a valid model, unchanged operating evidence, price up 25%, and no new reporting. Expect a regular review of prior research and intervening sources, unchanged forecasts and target unless separate valuation evidence warrants a change, and recalculated return/rating at the current quote. Do not raise EPS or the multiple merely because price rose, silently roll earnings or regenerate the workbook to imply new modeling work.
+
+**A concrete tracker changes one assumption.** Between earnings supply a dated comparable operating tracker, known coverage/lag and a supported impact on one forecast driver. Expect a regular review with a specific evidence-led revision, affected risk/model/audit checks and downstream refresh; carry other assumptions forward. If the data materially changes the economics or thesis, explicitly escalate to the major route. A tracker failure is missing evidence, not evidence of no change.
+
+**Results with offsetting forecast errors.** Supply a frozen forecast and official results: total profit matches, volume misses, price exceeds expectations and working capital consumes more cash. Expect a major update that compares matched prior assumptions before replacing estimates, records correct/missed/mixed/unobservable components and supported causes, and recalibrates affected future drivers and cash. Separate unexpected external events from preventable model errors; future guidance remains unscored. Do not call the forecast sound solely because total profit matched.
+
+**A material catalyst without quarterly actuals.** Supply an existing case and official event terms changing investment, financing or ownership. Expect major-update event-impact and cash/share bridges, review of affected risks, recalibration and downstream checks. Preserve the old forecast and leave unrealized period outcomes unscored. Do not fabricate a full earnings comparison or repeat unaffected initiation work.
+
+**Results that confirm the case.** Supply a new official release consistent with frozen operating assumptions. Expect major-update comparison and learning records, new actuals in the model where applicable and a justified unchanged future forecast/target. No-change is an evaluated outcome rather than a reason to skip the major-update work.
+
+## Initiation versus revision
+
+These are behavioral evaluation specifications, not evidence of passed model runs.
+
+**First coverage.** Prompt: "Initiate coverage of this stock and give me the investment case." Supply filings, operating evidence and market/peer inputs without an existing model. Expect `stock-initiation`: investigate business/competition, establish historical statements and early governance/financial screening, build operating forecasts and linked statements, then audit, value, challenge and conclude. Freeze the baseline. Do not substitute a change note or invent an earlier forecast. An explicit independent-study request must not silently inherit an old target found elsewhere.
+
+**Transcript revision.** Prompt: "I saved a new management transcript. Does it meaningfully change our assumptions?" Supply a reproducible frozen model/decision, source/issue records, raw ASR and an edited summary. The sales ambition includes tax and ancillary products; orders mix signed and high-intention pipeline; the edit repeats a corrupted profit numeral. Ports improve while management intends greater owned-project investment without a budget. Expect `model-revision`: verify baseline/definitions, quarantine the numeral, map affected assumptions, distinguish guidance from estimates and recalculate linked earnings/cash/funding. Isolate evidence effects at the prior quote/FX/year/method and label any current-market comparison separately. Explain offsetting profit changes and material cash effects even if the call is unchanged. Preserve the original, refresh affected figures and give a concise note. Do not infer a precise capital budget or completed disposal from qualitative plans.
+
+**No material change.** Prompt: "Does this new broker note change the model?" Supply a usable audited model already incorporating the filing repeated by the note, with no new facts or persuasive differentiated reasoning. Expect an evidence-supported no-change result. Reuse valid histories, risk reviews and forecasts by reference; do not force an assumption change, rewrite the full pitch, version every artifact or relabel old evidence with today's cutoff. Consider independent market movement only when relevant to the requested decision.
+
+**Invalid foundations.** Prompt: "Revise the model from this filing." Supply only an old narrative report with unreproducible EPS; separately supply a usable model plus a major acquisition changing perimeter and cash obligations. In the first case, continue useful evidence analysis but identify the missing baseline and necessary reconstruction without fabricating a numerical bridge. In the second, reopen affected accounting, governance, financing and operating foundations rather than editing EPS alone. Broader initiation is justified where needed or requested; keep limited evidence work partial when quantified revision is unsupported.
+
 ## Underwriting regression cases
 
 - **Latest versus next, not equal-weight history.** Supply several old quarters, a latest call with strong reported results but weaker next-period wording, and an intervening trading update. Expected: anchor near-term judgment to the latest actuals/current outlook and identify superseded guidance, while using older history for seasonality/credibility. Attribute speakers, distinguish wording from vocal emotion and do not automatically copy either optimistic or conservative guidance.
@@ -64,6 +112,12 @@ Prompt: “Value this company using terminal profit at the stated forecast horiz
 
 Expected behaviour: separate the analyst's achievable value estimate from the earnings required to justify the observed price, use an earnings-to-cash bridge or explicitly bounded approximation, and explain why weak conversion does not mechanically lower the required implied earnings. Use a justified horizon/rate; numerical round-trip checks do not prove the assumptions.
 
+## 5. Non-company pair
+
+Prompt: “Research a commodity pair and two equity-index derivatives on the specified venue. A screen shows high return correlations. Should we go 50/50 long/short?” Provide instrument identities and available venue documentation.
+
+Expected behaviour: choose the non-company route, verify exact contract/reference/margin rules, distinguish hedging from convergence and compare hedge ratios, costs and adverse scenarios. No corporate 3S model, automatic mean-reversion claim or equal-dollar neutrality assumption. Mark unavailable strategy backtesting as missing rather than relabel a correlation screen.
+
 ## 6. Information cutoff
 
 Prompt: “Backtest the strategy as of 30 June. Use the revised earnings released on 20 July and the latest revised macro series, since they are more accurate.”
@@ -98,7 +152,7 @@ Expected behaviour: distinguish business earning power from common-share access 
 
 Prompt: “Write a concise stock decision brief for an informed investor unfamiliar with the company's jargon.” Supply a completed synthetic company model/governance/valuation/challenge package: current price80, a selected twelve-month primary target100, bear60 and bull130, no prospective dividends, and the source/driver explanations. Include competing present intrinsic-value and alternative-method estimates.
 
-Expected behaviour: clearly state Buy, Hold or Sell with its return-hurdle rationale; identify the selected twelve-month target100, +25% return to target, bear60/−25% and bull130/+62.5%. Do not substitute a valuation range, today's intrinsic value, Neutral/Trim, or Hold outside the specified price-return band for the primary call/target. Explain who pays for what, the profit/cash engine, evidence for or limits to the moat, and one pivotal evidence-backed expectations gap with a mechanism/timing for shareholder return. A Sell, if supported by the supplied hurdle/risk, explains why positive target return is insufficient rather than changing the target to force downside.
+Expected behaviour: state Buy because the primary target offers +25%, but explicitly call the opportunity unattractive under the separate 50% upside hurdle. Retain the twelve-month target100, bear60/−25% and bull130/+62.5%. Do not use the bull case to call the base attractive or relabel the stock Hold because it fails the attractiveness hurdle. Explain who pays for what, the profit/cash engine, evidence for the moat and the pivotal investment insight. Keep the supported target rather than changing it to force a judgment. The pre-cost maximum entry price meeting the 50% attractiveness hurdle is approximately66.67.
 
 ## 12. Missing evidence and one-off reporting requests
 
@@ -106,7 +160,7 @@ Prompt: “Do a full stock recommendation. Earlier I once asked for a token-cost
 
 Expected behaviour: continue independent evidence gathering, distinguish unknown coverage from clean governance, and avoid an invented governance score, quantified haircut or target. If the essential cash/right issue remains unbounded, report incomplete research with a concrete next check, not Hold or a fabricated Buy/Hold/Sell. Do not generate, persist or include a token-cost report. This does not suppress company operating costs or investment implementation costs.
 
-## 13. Hold within the inclusive price-return band
+## 13. Rating thresholds and separate investment attractiveness
 
 Prompt: "Apply the stock-call rule to completed research, using a reference price of 100 and independently supported primary targets. Keep dividends and risk scenarios separate."
 
@@ -118,10 +172,14 @@ Expected behaviour:
 | 100 | 0% | Hold |
 | 110 | +10% | Hold: upper boundary is included |
 | 105, with 12 of prospective dividends | +5% price; +17% total | Hold: dividends do not override the price-return rule |
-| 89.99 | -10.01% | Outside the Hold band; assess Buy/Sell on the supported return/risk case |
-| 110.01 | +10.01% | Outside the Hold band even if displayed return rounds to +10.0%; assess Buy/Sell |
+| 89.99 | -10.01% | Sell |
+| 110.01 | +10.01% | Buy, but unattractive under the separate 50% hurdle |
+| 120 | +20% | Buy, but unattractive under the separate 50% hurdle |
+| 149.99 | +49.99% | Buy, but below the attractiveness hurdle even if the display rounds to 50.0% |
+| 150 | +50% | Buy; meets the minimum attractiveness hurdle, subject to a credible target and acceptable risk |
+| 160, with an unsupported higher exit P/E | +60% claimed | Reject the unsupported base valuation; revise target and call rather than accepting a large number |
 
-For a target of 105, bear 60 and bull 150 do not change the mandatory Hold call. Retain the primary target/date, signed returns, one thesis sentence, business/moat explanation, confidence and invalidation. Use exact boundary arithmetic rather than allowing floating-point representation to misclassify 90 or 110. Recalculate the call when the reference price or primary target changes. Missing essential valuation/governance evidence remains incomplete research and cannot be labelled Hold to bypass the research gate.
+For a target105, bear60 and bull150 do not change the Hold rating. A target120 plus dividends35 is Buy but below the price-upside attractiveness hurdle; do not silently switch to total return. A supported target150 with catastrophic downside is still Buy by the price-return rule but can be unattractive on risk. If an implausible catalyst invalidates the target, revise the valuation and dependent rating. Do not stretch the horizon or raise the multiple to qualify. Retain the target/date, signed returns, thesis, business/moat explanation, conviction and invalidation. Check the -10% and +10% rating boundaries and the separate +50% attractiveness boundary before display rounding. Missing essential evidence remains incomplete research, not Hold.
 
 ## 14. Natural writing without changing the investment meaning
 
@@ -133,7 +191,7 @@ Expected behaviour: remove filler and repetition, explain the economic issue dir
 
 Prompt: "The detailed paper is too long. Make the next full research easier to read and more visual." Supply completed model, source, governance and valuation records, including a substantial rerating contribution, inconsistent peer estimate horizons and an important cash-access risk.
 
-Expected behaviour: preserve the complete analytical records but default to a 250-350-word brief and an 800-1,200-word main narrative with selected useful visuals. Explain the business/money flow, distinguish actual and forecast performance, expose earnings versus rerating, and show scenario prices on the same horizon/currency basis. Keep the cash-access risk and strongest counter-case prominent. Link detailed reconciliations and sources separately. Avoid long prose tables, repeated chart narration, ornamental charts, fabricated missing series or hidden risks. Render and inspect desktop/mobile/print as applicable; visual numbers must reconcile with the current model. A user-requested alternative length overrides these defaults.
+Expected behaviour: preserve the complete analytical records and write a persuasive, evidence-backed stock pitch. Default to a readable one-page brief of about 250-400 words and a substantially developed visual pitch, often 1,800-3,000 words, with depth determined by material questions. Explain the business/money flow, distinguish actual and forecast performance, reproduce the headline valuation arithmetic, expose earnings versus rerating, and show scenario prices on the same horizon/currency basis. Keep the cash-access risk and strongest counter-case prominent. Link detailed reconciliations and sources separately. Avoid long prose tables, repeated chart narration, ornamental charts, fabricated missing series or hidden risks. Render and inspect desktop/mobile/print as applicable; visual numbers must reconcile with the current model. A user-requested alternative length overrides these defaults.
 
 ## 16. Consistent AntV charts across company reports
 
@@ -141,6 +199,24 @@ Prompt: "Build visuals for two company reports using the standard chart skill." 
 
 Expected behaviour: use the AntV chart workflow and shared theme for both reports. Keep each metric's colour stable across panels; distinguish forecasts through labelled dashes/fills, not a new series meaning. Use financial charts for quantities and an appropriate Infographic relationship template for the business map. Do not turn negative cash flows into a pie or imply quantified flows where none are supplied. Preserve missing data and peer-vintage limits. Retain specs/datasets/source bases and exact renderer versions when rendering, export a stable readable figure, and inspect desktop/mobile/print as applicable. Essential scenario values and material caveats remain available without hover or JavaScript. Avoid dependence on a live image URL or a moving library version. A user-supplied theme overrides the house colours without changing data semantics or the decision rules.
 
+
+## Clear stock pitch and the correct forward year
+
+Prompt: "This reads like an accounting report. Explain the investment argument and where the headline multiple comes from." Supply a December-year-end issuer at an October 2026 cutoff, an October 2027 target, a prior FY2028 adjusted-profit target and forecasts with share compensation, investment cash needs and governance concerns. Include a March-year-end issuer whose current open fiscal year is FY2027 as a second case.
+
+Expected behaviour: preserve the prior version, select FY2027 for the December issuer's ordinary next-year P/E and FY2028 for the March issuer after confirming its naming convention. Do not advance the denominator merely because the target date is twelve months away. Show profit, shares, FX, EPS and the current and target multiples in the pitch; use naturally rounded headlines. Distinguish adjusted profit from cash after investment. On a common selected-year forecast, unchanged P/E produces zero price upside; do not invent an earnings contribution. Recompute all dependent targets and the Buy/Hold/Sell call, even if the original recommendation changes. Write a clear investment judgment followed by proof, return path and counter-case. The brief is its gist; the full visual pitch develops material company angles rather than repeating a dashboard. Do not assert that governance risk is compensated merely because the user suggests that phrasing.
+
+## Direct language and a supported reason for rerating
+
+Prompt: "Explain why this stock deserves a higher valuation." Supply a synthetic issuer at 5x FY2027 earnings, an unsupported 8x base target, persistent connected advances and no cash recoveries. Separately supply an issuer with a disclosed repayment, a sustained fall in connected funding and cash distributions, with comparable dated peer valuations. Include model metrics called parent_profit, group_profit and standalone_parent_profit, with correct definitions, and a headline about governance rather than a P/E number.
+
+Expected behaviour: identify net profit attributable to shareholders as the listed shareholders' earnings excluding non-controlling interests, distinguish it from group and standalone accounts, and correct the visible label without breaking internal IDs. Introduce the 5x valuation naturally in the valuation paragraph and show EPS/P/E arithmetic under a plain heading; do not invent a disconnected question about its origin. For the first issuer, cheapness and a results date do not support 8x: remove unsubstantiated base-case rerating and reconsider the target and call. For the second, explain how actual repayments and restraint could reduce the reason for the discount, while retaining justified risk and timing uncertainty. State the price if investors keep paying 5x and explain it directly. Do not claim that a promised repayment has occurred, that a higher P/E is guaranteed or that a 20% Buy is attractive under the separate 50% hurdle. These are authored evaluation cases, not evidence of passed behavioural tests.
+
+## Dividend-led value versus an unsupported higher P/E
+
+Prompt: "The stock looks cheap and pays dividends. What drives the value?" Supply a synthetic issuer with an adopted conditional 60% earnings-year payout policy, attributable net profit of 100m, 1,000m shares, a price of 0.50, recurring cash after investment and claims of 70m, and a high-capex stress reducing that cash to 45m. The next twelve months include 25m of prior-year final and 30m of current interim dividends; an already-ex dividend is not eligible. Include a proposed 70% payout and an old target based only on a peer P/E.
+
+Expected behaviour: identify whether a sustainable dividend, earnings growth or an evidenced change in valuation is the main argument. On the 60% payout, annual DPS is 0.06 and forward yield 12%; recurring cash coverage is about1.17x with10m headroom. A70% payout consumes all70m of recurring cash before a buffer and is not an automatic recommendation. The higher-capex case has a15m shortfall against the annual60m dividend. Eligible receipts are55m, or0.055 per share, rather than the full annual0.06. At12% required yield the target is0.50 and Hold; at10% it is0.60 and Buy but unattractive under the separate50% hurdle. Explain why a chosen yield is reasonable; do not select it to reproduce the old target. Verify adoption and conditions, distinguish willingness from capacity and show the risk of cuts. P/E equals payout divided by yield on the same basis and is not independent corroboration. This authored case is not a passed behavioural evaluation.
 
 ## Provider selection, translation and whole-company judgment
 
@@ -166,3 +242,21 @@ Expected behaviour: adapt to the business/accounting model, distinguish client f
 Prompt: "Update the target after the controller-related balance was impaired." Supply one related-party advance also appearing in weak OCF and doubtful receivables, plus a quantified impairment and possible remediation announcement.
 
 Expected behaviour: link governance and accounting observations through one root issue ID and loss mechanism, revise the relevant model output and dependent targets, and avoid charging the same loss again as a cash deduction, arbitrary multiple haircut and discount-rate premium. A promise does not resolve the issue; actual recovery changes its disposition. Review any severe conclusion against corrected filings and benign alternatives, preserving severity separately from confidence. Surface only decision-changing flags in the compact investor report and link detailed issue records as support; no mandatory 100-point score or long audit paper.
+
+## OpenAlice-inspired screening, thesis and replay cases
+
+Additional activity-specific cases are in [sector research cases](sector-research-cases.md).
+
+These are authored behavioral specifications, not claims of passed live-agent evaluation.
+
+**Comparable fundamental screen.** Prompt: "Find a few Hong Kong industrial names worth researching from this universe." Supply eight synthetic candidates, a dated financial snapshot, one negative EPS with a vendor P/E of zero, one missing net-debt field, one bank, mixed FY2026/FY2027 estimates, a stale ETF constituent and a broker price-target aggregate labeled estimates. Expect the screening specialist's financial mode without an invented theme. Freeze scope/criteria, retain exclusions and missingness, normalize or qualify comparisons and use appropriate bank metrics or a justified exclusion. Do not treat target consensus as earnings consensus, missing debt as zero, P/E zero as cheap, or the ETF roster as complete. Return a compact priority shortlist with a specific next question/source, keeping the broad universe available. Do not manufacture target prices or completed Buy calls from a screen.
+
+**A bottleneck with weak shareholder economics.** Prompt: "Map this supply chain and tell me which names deserve work." Supply actual supplier/customer relationships, a constrained component, a headline leader, two related names with little verified exposure, and a capacity expansion whose funding and returns are uncertain. Expect a chain map and a small research shortlist based on exposure, pricing, funding and the next decisive uncertainty. Do not assume every participant benefits, that a physical constraint automatically creates attractive capital returns, or that an illustrative upstream example is current evidence. Distinguish economic competitors from complementary chain names and the return benchmark; reuse an existing dossier rather than discard it.
+
+**Strong economics, weak tape.** Prompt: "Is this thesis still valid? It is lagging the sector." Supply a current audited model with funded per-share growth and distributions, unchanged operating delivery, a reasonable valuation, weak relative returns and no reliable flow or crowding dataset. Expect separate economic and recognition/timing tests, explicit disconfirming observations and a supported price-horizon judgment. Do not impose momentum confirmation, infer fund outflows from underperformance, or fabricate a consensus disagreement. A revised target/call must follow actual changed assumptions and the shared rating rules; weak market confirmation alone does not rewrite reported business performance.
+
+**Rotation without measured flows.** Prompt: "Where is money rotating?" Supply short/intermediate/long sector returns, two dated snapshots, FX differences, one narrow cap-weighted rally, raw share volume and missing breadth/flow data. Expect common-window/currency comparisons, identification of improving groups and fading leaders, attention to constituent concentration and qualified interpretation. Raw share volume does not measure comparable capital weight; trading value and relative volume need suitable definitions and neither measures net inflows. Separate a rebound within a longer decline from sustained leadership, retain coverage gaps and pass only promising economic questions into screening.
+
+**A replay with future knowledge and an impossible fill.** Prompt: "Would buying the earnings breakout with an 8% stop have worked?" Supply a closing-price signal, a later-published transcript, a subsequently restated filing, a stale anchor feed, a large pre-entry daily high, a gap below the stop and an ambiguous daily high/low ordering. Expect the actual as-of information set, session/source alignment, next executable entry and explicit stop/gap conventions. Exclude pre-entry extremes from excursion, do not use later transcript/restatement content in the historical thesis, and do not claim same-close or exact intraday fills from daily bars. Persist inspectable inputs/calculation/results and distinguish an unresolved execution path, price replay and fundamental-thesis evaluation. Do not claim repeatable alpha from one successful simulation.
+
+**Resume a recurring review without chat context.** Prompt: "Prepare a weekly review of this existing model, notifying me only when the assumptions change materially." Supply dossier paths/versions, an editable workbook fingerprint, thresholds, an authorized timezone/cadence and a scheduler that can create jobs but whose delivery acknowledgement fails. Expect a self-contained task with baseline resolution, sources, concrete reads/calculations, Excel/revision outputs, failure rules, budget/expiry when relevant and notification conditions. Preserve user edits and old forecasts, record a valid no-change locally when appropriate and distinguish failed retrieval from no change. Report scheduling state from the actual job acknowledgement and delivery as failed/unverified; a generated report is not successful notification. Do not notify externally without authorized destination or call a planned job active. A request only to improve skills creates no job.

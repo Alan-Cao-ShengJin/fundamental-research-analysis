@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { assessReadiness, validateHandoff } from '../lib/handoffs.mjs';
 
-const original = JSON.parse(readFileSync(new URL('../pip-research-cycle/references/handoff-example.json', import.meta.url), 'utf8'));
+const original = JSON.parse(readFileSync(new URL('../research-cycle/references/handoff-example.json', import.meta.url), 'utf8'));
 const fixture = () => structuredClone(original);
 const context = { mandateId: 'synthetic-paper-mandate', mandateVersion: 1, nowMs: Date.parse('2026-10-27T09:10:00Z'),
   maxAgeMs: 1800000, upstreamVersions: {}, allowSynthetic: true, historical: false };

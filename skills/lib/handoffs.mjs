@@ -4,7 +4,7 @@ const id = z.string().min(1).max(160);
 const timestamp = z.iso.datetime({ offset: true });
 export const HandoffSchema = z.object({
   id, kind: z.enum(['research-brief', 'evidence-pack', 'hypothesis', 'company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion',
-    'challenge', 'management-questions', 'brief', 'monitor-review']),
+    'strategy-test', 'challenge', 'portfolio-decision', 'management-questions', 'brief', 'monitor-review']),
   version: z.number().int().positive(), status: z.enum(['complete', 'partial', 'blocked', 'not-applicable']),
   notApplicableReason: z.string().min(1).nullable(),
   mandateId: id, mandateVersion: z.number().int().positive(), scopeIds: z.array(id).min(1).max(100),
@@ -61,7 +61,7 @@ export function assessReadiness(value, context) {
   const age = c.nowMs - Date.parse(a.asOf);
   if (age < 0 || Date.parse(a.producedAt) > c.nowMs || age > c.maxAgeMs) issues.push('Artifact cutoff/production time is future or stale.');
   if (a.criticalUnknowns.length) issues.push('Critical unknowns remain unresolved.');
-  const assessedKinds = ['company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion', 'challenge', 'portfolio-decision'];
+  const assessedKinds = ['company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion', 'strategy-test', 'challenge', 'portfolio-decision'];
   if (assessedKinds.includes(a.kind) && !a.checks.some(check => check.blocking)) issues.push('No substantive blocking validation checks are recorded.');
   if (assessedKinds.includes(a.kind) && !a.claims.some(claim => claim.material)) issues.push('No decision-driving claims are recorded.');
   if (a.checks.some(check => check.blocking && check.result !== 'pass')) issues.push('A blocking check failed or was not run.');

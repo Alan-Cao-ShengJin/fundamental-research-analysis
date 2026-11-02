@@ -1,0 +1,1636 @@
+{
+  "synthetic": true,
+  "purpose": "Independently invented arithmetic miniatures, not full forecasts or empirical base rates. Replace every input and adapt the activity structure for real work.",
+  "cases": {
+    "saas": {
+      "scope": "One-year contractual recurring-value bridge. Average ARR is an illustrative linear recognition proxy, not an accounting identity.",
+      "inputs": [
+        {
+          "id": "arr_open",
+          "label": "Opening annual recurring revenue",
+          "unit": "currency/year",
+          "value": 100
+        },
+        {
+          "id": "arr_new",
+          "label": "Arr new",
+          "unit": "currency/year",
+          "value": 25
+        },
+        {
+          "id": "arr_expansion",
+          "label": "Arr expansion",
+          "unit": "currency/year",
+          "value": 15
+        },
+        {
+          "id": "arr_churn",
+          "label": "Arr churn",
+          "unit": "currency/year",
+          "value": 10
+        }
+      ],
+      "calculations": [
+        {
+          "id": "arr_close",
+          "label": "Closing annual recurring revenue",
+          "unit": "currency/year",
+          "formula": "arr_open + arr_new + arr_expansion - arr_churn"
+        },
+        {
+          "id": "net_retention",
+          "label": "Net revenue retention",
+          "unit": "ratio",
+          "formula": "(arr_open + arr_expansion - arr_churn) / arr_open"
+        },
+        {
+          "id": "linear_recognition_proxy",
+          "label": "Recognised revenue | linear timing proxy",
+          "unit": "currency",
+          "formula": "(arr_open + arr_close) / 2"
+        }
+      ],
+      "expected": {
+        "arr_close": 130,
+        "net_retention": 1.05,
+        "linear_recognition_proxy": 115
+      }
+    },
+    "semiconductors": {
+      "scope": "One-period capacity, yield and output-sales check; no full cost or node forecast.",
+      "inputs": [
+        {
+          "id": "wafer_capacity",
+          "label": "Wafer capacity",
+          "unit": "wafers/period",
+          "value": 1000
+        },
+        {
+          "id": "utilisation",
+          "label": "Utilisation",
+          "unit": "ratio",
+          "value": 0.8
+        },
+        {
+          "id": "dies_per_wafer",
+          "label": "Dies per wafer",
+          "unit": "dies/wafer",
+          "value": 100
+        },
+        {
+          "id": "yield_rate",
+          "label": "Yield rate",
+          "unit": "ratio",
+          "value": 0.9
+        },
+        {
+          "id": "opening_stock",
+          "label": "Opening stock",
+          "unit": "dies",
+          "value": 1000
+        },
+        {
+          "id": "sold_dies",
+          "label": "Sold dies",
+          "unit": "dies",
+          "value": 70000
+        },
+        {
+          "id": "die_net_price",
+          "label": "Die net price",
+          "unit": "currency/die",
+          "value": 2
+        }
+      ],
+      "calculations": [
+        {
+          "id": "wafer_starts",
+          "label": "Wafer starts",
+          "unit": "wafers",
+          "formula": "wafer_capacity * utilisation"
+        },
+        {
+          "id": "good_dies",
+          "label": "Good dies",
+          "unit": "dies",
+          "formula": "wafer_starts * dies_per_wafer * yield_rate"
+        },
+        {
+          "id": "closing_stock",
+          "label": "Closing stock",
+          "unit": "dies",
+          "formula": "opening_stock + good_dies - sold_dies"
+        },
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "sold_dies * die_net_price"
+        }
+      ],
+      "expected": {
+        "wafer_starts": 800,
+        "good_dies": 72000,
+        "closing_stock": 3000,
+        "revenue": 140000
+      }
+    },
+    "hardware": {
+      "scope": "Equipment resale contribution and installed-base service sales, with compatible annual units.",
+      "inputs": [
+        {
+          "id": "units",
+          "label": "Units",
+          "unit": "devices",
+          "value": 100
+        },
+        {
+          "id": "net_asp",
+          "label": "Net average selling price",
+          "unit": "currency/device",
+          "value": 20
+        },
+        {
+          "id": "material_cost",
+          "label": "Material cost",
+          "unit": "currency/device",
+          "value": 12
+        },
+        {
+          "id": "assembly_cost",
+          "label": "Assembly cost",
+          "unit": "currency/device",
+          "value": 4
+        },
+        {
+          "id": "freight",
+          "label": "Freight",
+          "unit": "currency/device",
+          "value": 1
+        },
+        {
+          "id": "warranty",
+          "label": "Warranty",
+          "unit": "currency/device",
+          "value": 0.5
+        },
+        {
+          "id": "average_active_base",
+          "label": "Average active base",
+          "unit": "devices",
+          "value": 1000
+        },
+        {
+          "id": "paid_attach",
+          "label": "Paid attach",
+          "unit": "ratio",
+          "value": 0.4
+        },
+        {
+          "id": "annual_service_price",
+          "label": "Annual service price",
+          "unit": "currency/device/year",
+          "value": 5
+        }
+      ],
+      "calculations": [
+        {
+          "id": "hardware_sales",
+          "label": "Hardware sales",
+          "unit": "currency",
+          "formula": "units * net_asp"
+        },
+        {
+          "id": "hardware_gp",
+          "label": "Hardware gp",
+          "unit": "currency",
+          "formula": "units * (net_asp - material_cost - assembly_cost - freight - warranty)"
+        },
+        {
+          "id": "service_sales",
+          "label": "Service sales",
+          "unit": "currency",
+          "formula": "average_active_base * paid_attach * annual_service_price"
+        }
+      ],
+      "expected": {
+        "hardware_sales": 2000,
+        "hardware_gp": 250,
+        "service_sales": 2000
+      }
+    },
+    "internet-platform": {
+      "scope": "Two distinct activity blocks. eCPM is per thousand impressions; GMV is not revenue.",
+      "inputs": [
+        {
+          "id": "active_users",
+          "label": "Active users",
+          "unit": "users",
+          "value": 100000
+        },
+        {
+          "id": "impressions_per_user",
+          "label": "Impressions per user",
+          "unit": "impressions/user/period",
+          "value": 20
+        },
+        {
+          "id": "ecpm",
+          "label": "Ecpm",
+          "unit": "currency/1000 impressions",
+          "value": 5
+        },
+        {
+          "id": "eligible_gmv",
+          "label": "Eligible gmv",
+          "unit": "currency",
+          "value": 1000000
+        },
+        {
+          "id": "net_take",
+          "label": "Net take",
+          "unit": "ratio",
+          "value": 0.08
+        },
+        {
+          "id": "fulfilment",
+          "label": "Fulfilment",
+          "unit": "currency",
+          "value": 50000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "ad_impressions",
+          "label": "Ad impressions",
+          "unit": "impressions",
+          "formula": "active_users * impressions_per_user"
+        },
+        {
+          "id": "ad_sales",
+          "label": "Ad sales",
+          "unit": "currency",
+          "formula": "ad_impressions / 1000 * ecpm"
+        },
+        {
+          "id": "marketplace_sales",
+          "label": "Marketplace sales",
+          "unit": "currency",
+          "formula": "eligible_gmv * net_take"
+        },
+        {
+          "id": "marketplace_contribution",
+          "label": "Marketplace contribution",
+          "unit": "currency",
+          "formula": "marketplace_sales - fulfilment"
+        }
+      ],
+      "expected": {
+        "ad_impressions": 2000000,
+        "ad_sales": 10000,
+        "marketplace_sales": 80000,
+        "marketplace_contribution": 30000
+      }
+    },
+    "media-gaming": {
+      "scope": "Quarterly payer monetisation and content asset/cash-amortisation bridge; no clinical or launch-risk judgement.",
+      "inputs": [
+        {
+          "id": "average_monthly_users",
+          "label": "Average monthly users",
+          "unit": "users",
+          "value": 10000
+        },
+        {
+          "id": "payer_share",
+          "label": "Payer share",
+          "unit": "ratio",
+          "value": 0.05
+        },
+        {
+          "id": "monthly_arppu",
+          "label": "Monthly revenue per paying user",
+          "unit": "currency/payer/month",
+          "value": 20
+        },
+        {
+          "id": "months",
+          "label": "Months",
+          "unit": "months",
+          "value": 3
+        },
+        {
+          "id": "content_open",
+          "label": "Content open",
+          "unit": "currency",
+          "value": 100
+        },
+        {
+          "id": "capitalised_spend",
+          "label": "Capitalised spend",
+          "unit": "currency",
+          "value": 60
+        },
+        {
+          "id": "amortisation",
+          "label": "Amortisation",
+          "unit": "currency",
+          "value": 40
+        }
+      ],
+      "calculations": [
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "average_monthly_users * payer_share * monthly_arppu * months"
+        },
+        {
+          "id": "content_close",
+          "label": "Content close",
+          "unit": "currency",
+          "formula": "content_open + capitalised_spend - amortisation"
+        },
+        {
+          "id": "cash_amortisation_gap",
+          "label": "Cash amortisation gap",
+          "unit": "currency",
+          "formula": "capitalised_spend - amortisation"
+        }
+      ],
+      "expected": {
+        "revenue": 30000,
+        "content_close": 120,
+        "cash_amortisation_gap": 20
+      }
+    },
+    "banks": {
+      "scope": "Annual NII, allowance and capital miniature. Charge-offs are gross; recoveries enter once. Regulatory requirements are not supplied.",
+      "inputs": [
+        {
+          "id": "average_earning_assets",
+          "label": "Average earning assets",
+          "unit": "currency",
+          "value": 1000
+        },
+        {
+          "id": "asset_yield",
+          "label": "Asset yield",
+          "unit": "ratio/year",
+          "value": 0.06
+        },
+        {
+          "id": "average_interest_funding",
+          "label": "Average interest funding",
+          "unit": "currency",
+          "value": 900
+        },
+        {
+          "id": "funding_cost",
+          "label": "Funding cost",
+          "unit": "ratio/year",
+          "value": 0.03
+        },
+        {
+          "id": "period_fraction",
+          "label": "Period fraction",
+          "unit": "year",
+          "value": 1
+        },
+        {
+          "id": "allowance_open",
+          "label": "Allowance open",
+          "unit": "currency",
+          "value": 20
+        },
+        {
+          "id": "provision",
+          "label": "Provision",
+          "unit": "currency",
+          "value": 4
+        },
+        {
+          "id": "gross_chargeoffs",
+          "label": "Gross chargeoffs",
+          "unit": "currency",
+          "value": 5
+        },
+        {
+          "id": "recoveries",
+          "label": "Recoveries",
+          "unit": "currency",
+          "value": 1
+        },
+        {
+          "id": "capital_open",
+          "label": "Capital open",
+          "unit": "currency",
+          "value": 70
+        },
+        {
+          "id": "retained_profit_before_dividend",
+          "label": "Retained profit before dividend",
+          "unit": "currency",
+          "value": 12
+        },
+        {
+          "id": "dividend",
+          "label": "Dividend",
+          "unit": "currency",
+          "value": 5
+        },
+        {
+          "id": "risk_weighted_assets",
+          "label": "Risk weighted assets",
+          "unit": "currency",
+          "value": 700
+        }
+      ],
+      "calculations": [
+        {
+          "id": "nii",
+          "label": "Net interest income",
+          "unit": "currency",
+          "formula": "(average_earning_assets * asset_yield - average_interest_funding * funding_cost) * period_fraction"
+        },
+        {
+          "id": "allowance_close",
+          "label": "Allowance close",
+          "unit": "currency",
+          "formula": "allowance_open + provision - gross_chargeoffs + recoveries"
+        },
+        {
+          "id": "capital_close",
+          "label": "Capital close",
+          "unit": "currency",
+          "formula": "capital_open + retained_profit_before_dividend - dividend"
+        },
+        {
+          "id": "capital_ratio",
+          "label": "Capital / risk-weighted assets",
+          "unit": "ratio",
+          "formula": "capital_close / risk_weighted_assets"
+        }
+      ],
+      "expected": {
+        "nii": 33,
+        "allowance_close": 20,
+        "capital_close": 77,
+        "capital_ratio": 0.11
+      }
+    },
+    "insurance": {
+      "scope": "P&C earned premium and current accident-year versus prior-development contribution. Release is not inside the current loss ratio.",
+      "inputs": [
+        {
+          "id": "earned_premium",
+          "label": "Earned premium",
+          "unit": "currency",
+          "value": 100
+        },
+        {
+          "id": "current_loss_ratio",
+          "label": "Current loss ratio",
+          "unit": "ratio",
+          "value": 0.6
+        },
+        {
+          "id": "expense_ratio",
+          "label": "Expense ratio",
+          "unit": "ratio",
+          "value": 0.25
+        },
+        {
+          "id": "prior_reserve_release",
+          "label": "Prior reserve release",
+          "unit": "currency",
+          "value": 5
+        }
+      ],
+      "calculations": [
+        {
+          "id": "current_underwriting",
+          "label": "Current underwriting",
+          "unit": "currency",
+          "formula": "earned_premium * (1 - current_loss_ratio - expense_ratio)"
+        },
+        {
+          "id": "reported_underwriting",
+          "label": "Reported underwriting",
+          "unit": "currency",
+          "formula": "current_underwriting + prior_reserve_release"
+        }
+      ],
+      "expected": {
+        "current_underwriting": 15,
+        "reported_underwriting": 20
+      }
+    },
+    "payments-fintech": {
+      "scope": "Net payment take rate. Rebates are outside the gross fee rate and therefore deducted once.",
+      "inputs": [
+        {
+          "id": "eligible_tpv",
+          "label": "Eligible tpv",
+          "unit": "currency",
+          "value": 1000000
+        },
+        {
+          "id": "gross_fee_rate",
+          "label": "Gross fee rate",
+          "unit": "ratio",
+          "value": 0.02
+        },
+        {
+          "id": "client_rebates",
+          "label": "Client rebates",
+          "unit": "currency",
+          "value": 3000
+        },
+        {
+          "id": "processing_cost",
+          "label": "Processing cost",
+          "unit": "currency",
+          "value": 5000
+        },
+        {
+          "id": "fraud_cost",
+          "label": "Fraud cost",
+          "unit": "currency",
+          "value": 1000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "gross_fees",
+          "label": "Gross fees",
+          "unit": "currency",
+          "formula": "eligible_tpv * gross_fee_rate"
+        },
+        {
+          "id": "net_revenue",
+          "label": "Net revenue",
+          "unit": "currency",
+          "formula": "gross_fees - client_rebates"
+        },
+        {
+          "id": "net_take_rate",
+          "label": "Net payment take rate",
+          "unit": "ratio",
+          "formula": "net_revenue / eligible_tpv"
+        },
+        {
+          "id": "contribution",
+          "label": "Contribution",
+          "unit": "currency",
+          "formula": "net_revenue - processing_cost - fraud_cost"
+        }
+      ],
+      "expected": {
+        "gross_fees": 20000,
+        "net_revenue": 17000,
+        "net_take_rate": 0.017,
+        "contribution": 11000
+      }
+    },
+    "capital-markets": {
+      "scope": "Annual AUM and fee bridge. Midpoint AUM assumes uniform movement and should be replaced by actual period averages.",
+      "inputs": [
+        {
+          "id": "aum_open",
+          "label": "Opening assets under management",
+          "unit": "currency",
+          "value": 1000
+        },
+        {
+          "id": "net_flows",
+          "label": "Net flows",
+          "unit": "currency",
+          "value": 50
+        },
+        {
+          "id": "market_move",
+          "label": "Market move",
+          "unit": "currency",
+          "value": 100
+        },
+        {
+          "id": "fx_move",
+          "label": "Fx move",
+          "unit": "currency",
+          "value": -20
+        },
+        {
+          "id": "fee_rate",
+          "label": "Fee rate",
+          "unit": "ratio/year",
+          "value": 0.01
+        },
+        {
+          "id": "performance_fee",
+          "label": "Performance fee",
+          "unit": "currency",
+          "value": 2
+        }
+      ],
+      "calculations": [
+        {
+          "id": "aum_close",
+          "label": "Closing assets under management",
+          "unit": "currency",
+          "formula": "aum_open + net_flows + market_move + fx_move"
+        },
+        {
+          "id": "average_aum_proxy",
+          "label": "Average fee-earning assets | timing proxy",
+          "unit": "currency",
+          "formula": "(aum_open + aum_close) / 2"
+        },
+        {
+          "id": "management_fee",
+          "label": "Management fee",
+          "unit": "currency",
+          "formula": "average_aum_proxy * fee_rate"
+        },
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "management_fee + performance_fee"
+        }
+      ],
+      "expected": {
+        "aum_close": 1130,
+        "average_aum_proxy": 1065,
+        "management_fee": 10.65,
+        "revenue": 12.65
+      }
+    },
+    "reits": {
+      "scope": "One-property NOI/NAV and a simplified reconciled AFFO coverage calculation; issuer adjustment definitions remain necessary.",
+      "inputs": [
+        {
+          "id": "lettable_area",
+          "label": "Lettable area",
+          "unit": "area",
+          "value": 1000
+        },
+        {
+          "id": "occupancy",
+          "label": "Occupancy",
+          "unit": "ratio",
+          "value": 0.9
+        },
+        {
+          "id": "net_annual_rent",
+          "label": "Net annual rent",
+          "unit": "currency/area/year",
+          "value": 20
+        },
+        {
+          "id": "property_cost",
+          "label": "Property cost",
+          "unit": "currency",
+          "value": 6000
+        },
+        {
+          "id": "cap_rate",
+          "label": "Cap rate",
+          "unit": "ratio",
+          "value": 0.06
+        },
+        {
+          "id": "debt",
+          "label": "Debt",
+          "unit": "currency",
+          "value": 100000
+        },
+        {
+          "id": "owned_cash",
+          "label": "Owned cash",
+          "unit": "currency",
+          "value": 10000
+        },
+        {
+          "id": "shares",
+          "label": "Shares",
+          "unit": "shares",
+          "value": 100
+        },
+        {
+          "id": "ffo",
+          "label": "Funds from operations",
+          "unit": "currency",
+          "value": 8000
+        },
+        {
+          "id": "maintenance",
+          "label": "Maintenance",
+          "unit": "currency",
+          "value": 2000
+        },
+        {
+          "id": "leasing_cash",
+          "label": "Leasing cash",
+          "unit": "currency",
+          "value": 500
+        },
+        {
+          "id": "noncash_rent",
+          "label": "Noncash rent",
+          "unit": "currency",
+          "value": 300
+        },
+        {
+          "id": "dividends",
+          "label": "Dividends",
+          "unit": "currency",
+          "value": 4000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "rent",
+          "label": "Rent",
+          "unit": "currency",
+          "formula": "lettable_area * occupancy * net_annual_rent"
+        },
+        {
+          "id": "noi",
+          "label": "Net operating income",
+          "unit": "currency",
+          "formula": "rent - property_cost"
+        },
+        {
+          "id": "equity_nav",
+          "label": "Equity net asset value",
+          "unit": "currency",
+          "formula": "noi / cap_rate - debt + owned_cash"
+        },
+        {
+          "id": "nav_per_share",
+          "label": "Nav per share",
+          "unit": "currency/share",
+          "formula": "equity_nav / shares"
+        },
+        {
+          "id": "affo_proxy",
+          "label": "Adjusted funds from operations | illustration",
+          "unit": "currency",
+          "formula": "ffo - maintenance - leasing_cash - noncash_rent"
+        },
+        {
+          "id": "cash_dividend_coverage",
+          "label": "Cash dividend coverage",
+          "unit": "times",
+          "formula": "affo_proxy / dividends"
+        }
+      ],
+      "expected": {
+        "rent": 18000,
+        "noi": 12000,
+        "equity_nav": 110000,
+        "nav_per_share": 1100,
+        "affo_proxy": 5200,
+        "cash_dividend_coverage": 1.3
+      }
+    },
+    "pharma": {
+      "scope": "Compatible patient funnel and a two-branch illustrative pipeline present-value calculation. Assumed commercial PV excludes trial costs; current committed trial cost is paid in both outcomes.",
+      "inputs": [
+        {
+          "id": "patient_pool",
+          "label": "Patient pool",
+          "unit": "patients",
+          "value": 100000
+        },
+        {
+          "id": "diagnosed_share",
+          "label": "Diagnosed share",
+          "unit": "ratio",
+          "value": 0.5
+        },
+        {
+          "id": "eligible_share",
+          "label": "Eligible share",
+          "unit": "ratio",
+          "value": 0.2
+        },
+        {
+          "id": "treated_share",
+          "label": "Treated share",
+          "unit": "ratio",
+          "value": 0.1
+        },
+        {
+          "id": "annual_net_price",
+          "label": "Annual net price",
+          "unit": "currency/patient/year",
+          "value": 1000
+        },
+        {
+          "id": "commercial_rights",
+          "label": "Commercial rights",
+          "unit": "ratio",
+          "value": 0.5
+        },
+        {
+          "id": "success_probability",
+          "label": "Success probability",
+          "unit": "ratio",
+          "value": 0.3
+        },
+        {
+          "id": "commercial_cash_pv_on_success",
+          "label": "Commercial cash pv on success",
+          "unit": "currency",
+          "value": 200
+        },
+        {
+          "id": "committed_trial_cash_pv",
+          "label": "Committed trial cash pv",
+          "unit": "currency",
+          "value": 10
+        }
+      ],
+      "calculations": [
+        {
+          "id": "treated_patients",
+          "label": "Treated patients",
+          "unit": "patients",
+          "formula": "patient_pool * diagnosed_share * eligible_share * treated_share"
+        },
+        {
+          "id": "rights_adjusted_sales",
+          "label": "Rights adjusted sales",
+          "unit": "currency",
+          "formula": "treated_patients * annual_net_price * commercial_rights"
+        },
+        {
+          "id": "asset_rnpv_proxy",
+          "label": "Asset risk-adjusted present value | illustration",
+          "unit": "currency",
+          "formula": "success_probability * commercial_cash_pv_on_success - committed_trial_cash_pv"
+        }
+      ],
+      "expected": {
+        "treated_patients": 1000,
+        "rights_adjusted_sales": 500000,
+        "asset_rnpv_proxy": 50
+      }
+    },
+    "healthcare-services": {
+      "scope": "One-year device install and procedure-consumable bridge with midpoint activity, not a full reimbursement forecast.",
+      "inputs": [
+        {
+          "id": "installed_open",
+          "label": "Installed open",
+          "unit": "devices",
+          "value": 100
+        },
+        {
+          "id": "new_placements",
+          "label": "New placements",
+          "unit": "devices",
+          "value": 20
+        },
+        {
+          "id": "retirements",
+          "label": "Retirements",
+          "unit": "devices",
+          "value": 10
+        },
+        {
+          "id": "procedures_per_device",
+          "label": "Procedures per device",
+          "unit": "procedures/device/year",
+          "value": 100
+        },
+        {
+          "id": "net_consumable_price",
+          "label": "Net consumable price",
+          "unit": "currency/procedure",
+          "value": 5
+        },
+        {
+          "id": "new_device_asp",
+          "label": "New device asp",
+          "unit": "currency/device",
+          "value": 1000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "installed_close",
+          "label": "Installed close",
+          "unit": "devices",
+          "formula": "installed_open + new_placements - retirements"
+        },
+        {
+          "id": "average_active_proxy",
+          "label": "Average active proxy",
+          "unit": "devices",
+          "formula": "(installed_open + installed_close) / 2"
+        },
+        {
+          "id": "consumable_sales",
+          "label": "Consumable sales",
+          "unit": "currency",
+          "formula": "average_active_proxy * procedures_per_device * net_consumable_price"
+        },
+        {
+          "id": "equipment_sales",
+          "label": "Equipment sales",
+          "unit": "currency",
+          "formula": "new_placements * new_device_asp"
+        },
+        {
+          "id": "total_revenue",
+          "label": "Total revenue",
+          "unit": "currency",
+          "formula": "consumable_sales + equipment_sales"
+        }
+      ],
+      "expected": {
+        "installed_close": 110,
+        "average_active_proxy": 105,
+        "consumable_sales": 52500,
+        "equipment_sales": 20000,
+        "total_revenue": 72500
+      }
+    },
+    "consumer": {
+      "scope": "Toy store roll-forward with evenly timed openings/closures. Real new-store cohorts need a maturity and cannibalisation schedule.",
+      "inputs": [
+        {
+          "id": "stores_open",
+          "label": "Stores open",
+          "unit": "stores",
+          "value": 10
+        },
+        {
+          "id": "openings",
+          "label": "Openings",
+          "unit": "stores",
+          "value": 2
+        },
+        {
+          "id": "closures",
+          "label": "Closures",
+          "unit": "stores",
+          "value": 1
+        },
+        {
+          "id": "monthly_productivity",
+          "label": "Monthly productivity",
+          "unit": "currency/store/month",
+          "value": 100
+        },
+        {
+          "id": "months",
+          "label": "Months",
+          "unit": "months",
+          "value": 12
+        }
+      ],
+      "calculations": [
+        {
+          "id": "stores_close",
+          "label": "Stores close",
+          "unit": "stores",
+          "formula": "stores_open + openings - closures"
+        },
+        {
+          "id": "average_stores_proxy",
+          "label": "Average stores proxy",
+          "unit": "stores",
+          "formula": "(stores_open + stores_close) / 2"
+        },
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "average_stores_proxy * monthly_productivity * months"
+        }
+      ],
+      "expected": {
+        "stores_close": 11,
+        "average_stores_proxy": 10.5,
+        "revenue": 12600
+      }
+    },
+    "industrials": {
+      "scope": "Firm order backlog and distinct installed-base service activity. Orders use the same net currency/recognition perimeter as deliveries.",
+      "inputs": [
+        {
+          "id": "backlog_open",
+          "label": "Backlog open",
+          "unit": "currency",
+          "value": 100
+        },
+        {
+          "id": "executable_orders",
+          "label": "Executable orders",
+          "unit": "currency",
+          "value": 50
+        },
+        {
+          "id": "recognised_equipment",
+          "label": "Recognised equipment",
+          "unit": "currency",
+          "value": 80
+        },
+        {
+          "id": "cancellations",
+          "label": "Cancellations",
+          "unit": "currency",
+          "value": 10
+        },
+        {
+          "id": "average_active_base",
+          "label": "Average active base",
+          "unit": "machines",
+          "value": 100
+        },
+        {
+          "id": "service_attach",
+          "label": "Service attach",
+          "unit": "ratio",
+          "value": 0.5
+        },
+        {
+          "id": "period_service_price",
+          "label": "Period service price",
+          "unit": "currency/machine",
+          "value": 0.2
+        }
+      ],
+      "calculations": [
+        {
+          "id": "backlog_close",
+          "label": "Backlog close",
+          "unit": "currency",
+          "formula": "backlog_open + executable_orders - recognised_equipment - cancellations"
+        },
+        {
+          "id": "service_sales",
+          "label": "Service sales",
+          "unit": "currency",
+          "formula": "average_active_base * service_attach * period_service_price"
+        },
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "recognised_equipment + service_sales"
+        }
+      ],
+      "expected": {
+        "backlog_close": 60,
+        "service_sales": 10,
+        "revenue": 90
+      }
+    },
+    "autos-ev": {
+      "scope": "Manufacturing break-even: variable unit contribution excludes fixed factory costs; credits and finance are absent.",
+      "inputs": [
+        {
+          "id": "units",
+          "label": "Units",
+          "unit": "vehicles",
+          "value": 100
+        },
+        {
+          "id": "net_vehicle_price",
+          "label": "Net vehicle price",
+          "unit": "currency/vehicle",
+          "value": 20
+        },
+        {
+          "id": "variable_unit_cost",
+          "label": "Variable unit cost",
+          "unit": "currency/vehicle",
+          "value": 15
+        },
+        {
+          "id": "period_fixed_cost",
+          "label": "Fixed costs for the period",
+          "unit": "currency",
+          "value": 400
+        }
+      ],
+      "calculations": [
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "units * net_vehicle_price"
+        },
+        {
+          "id": "unit_contribution",
+          "label": "Unit contribution",
+          "unit": "currency/vehicle",
+          "formula": "net_vehicle_price - variable_unit_cost"
+        },
+        {
+          "id": "breakeven_units",
+          "label": "Breakeven units",
+          "unit": "vehicles",
+          "formula": "period_fixed_cost / unit_contribution"
+        },
+        {
+          "id": "manufacturing_contribution",
+          "label": "Manufacturing contribution",
+          "unit": "currency",
+          "formula": "units * unit_contribution - period_fixed_cost"
+        }
+      ],
+      "expected": {
+        "revenue": 2000,
+        "unit_contribution": 5,
+        "breakeven_units": 80,
+        "manufacturing_contribution": 100
+      }
+    },
+    "energy": {
+      "scope": "One-year oil decline and pricing illustration. Cash proxy excludes tax, working capital, growth capex, debt and abandonment; it is not full FCF.",
+      "inputs": [
+        {
+          "id": "opening_daily_rate",
+          "label": "Opening daily rate",
+          "unit": "barrels/day",
+          "value": 100
+        },
+        {
+          "id": "decline_rate",
+          "label": "Decline rate",
+          "unit": "ratio",
+          "value": 0.1
+        },
+        {
+          "id": "new_daily_rate",
+          "label": "New daily rate",
+          "unit": "barrels/day",
+          "value": 20
+        },
+        {
+          "id": "days",
+          "label": "Days",
+          "unit": "days",
+          "value": 365
+        },
+        {
+          "id": "benchmark",
+          "label": "Benchmark",
+          "unit": "currency/barrel",
+          "value": 70
+        },
+        {
+          "id": "differential",
+          "label": "Differential",
+          "unit": "currency/barrel",
+          "value": 5
+        },
+        {
+          "id": "hedged_share",
+          "label": "Hedged share",
+          "unit": "ratio",
+          "value": 0.2
+        },
+        {
+          "id": "hedge_price",
+          "label": "Hedge price",
+          "unit": "currency/barrel",
+          "value": 60
+        },
+        {
+          "id": "cash_unit_cost",
+          "label": "Cash unit cost",
+          "unit": "currency/barrel",
+          "value": 20
+        },
+        {
+          "id": "sustaining_cash",
+          "label": "Sustaining cash",
+          "unit": "currency",
+          "value": 300000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "closing_daily_rate",
+          "label": "Closing daily rate",
+          "unit": "barrels/day",
+          "formula": "opening_daily_rate * (1 - decline_rate) + new_daily_rate"
+        },
+        {
+          "id": "sold_volume_proxy",
+          "label": "Sold volume proxy",
+          "unit": "barrels",
+          "formula": "(opening_daily_rate + closing_daily_rate) / 2 * days"
+        },
+        {
+          "id": "unhedged_realisation",
+          "label": "Unhedged realisation",
+          "unit": "currency/barrel",
+          "formula": "benchmark - differential"
+        },
+        {
+          "id": "realisation",
+          "label": "Realisation",
+          "unit": "currency/barrel",
+          "formula": "unhedged_realisation * (1 - hedged_share) + hedge_price * hedged_share"
+        },
+        {
+          "id": "cash_before_tax_growth_other",
+          "label": "Cash after sustaining investment | before tax and other costs",
+          "unit": "currency",
+          "formula": "sold_volume_proxy * (realisation - cash_unit_cost) - sustaining_cash"
+        }
+      ],
+      "expected": {
+        "closing_daily_rate": 110,
+        "sold_volume_proxy": 38325,
+        "realisation": 64,
+        "cash_before_tax_growth_other": 1386300
+      }
+    },
+    "utilities": {
+      "scope": "Eligible rate-base and earned-return miniature. Does not estimate complete regulated revenue or legal entitlement.",
+      "inputs": [
+        {
+          "id": "rate_base_open",
+          "label": "Rate base open",
+          "unit": "currency",
+          "value": 100
+        },
+        {
+          "id": "approved_additions",
+          "label": "Approved additions",
+          "unit": "currency",
+          "value": 20
+        },
+        {
+          "id": "depreciation",
+          "label": "Depreciation",
+          "unit": "currency",
+          "value": 5
+        },
+        {
+          "id": "retirements",
+          "label": "Retirements",
+          "unit": "currency",
+          "value": 2
+        },
+        {
+          "id": "equity_layer",
+          "label": "Equity layer",
+          "unit": "ratio",
+          "value": 0.5
+        },
+        {
+          "id": "allowed_roe",
+          "label": "Allowed roe",
+          "unit": "ratio",
+          "value": 0.1
+        },
+        {
+          "id": "earned_roe",
+          "label": "Earned roe",
+          "unit": "ratio",
+          "value": 0.09
+        }
+      ],
+      "calculations": [
+        {
+          "id": "rate_base_close",
+          "label": "Rate base close",
+          "unit": "currency",
+          "formula": "rate_base_open + approved_additions - depreciation - retirements"
+        },
+        {
+          "id": "average_rate_base_proxy",
+          "label": "Average rate base proxy",
+          "unit": "currency",
+          "formula": "(rate_base_open + rate_base_close) / 2"
+        },
+        {
+          "id": "allowed_equity_return",
+          "label": "Allowed equity return",
+          "unit": "currency",
+          "formula": "average_rate_base_proxy * equity_layer * allowed_roe"
+        },
+        {
+          "id": "earned_equity_return",
+          "label": "Earned equity return",
+          "unit": "currency",
+          "formula": "average_rate_base_proxy * equity_layer * earned_roe"
+        }
+      ],
+      "expected": {
+        "rate_base_close": 113,
+        "average_rate_base_proxy": 106.5,
+        "allowed_equity_return": 5.325,
+        "earned_equity_return": 4.7925
+      }
+    },
+    "metals-mining": {
+      "scope": "Ore-to-payable-metal and sales-stock reconciliation. Cash proxy is before tax, growth, corporate costs and financing; sustaining cash is not already in ore cost.",
+      "inputs": [
+        {
+          "id": "ore_processed",
+          "label": "Ore processed",
+          "unit": "tonnes ore",
+          "value": 100000
+        },
+        {
+          "id": "metal_grade",
+          "label": "Metal grade",
+          "unit": "tonnes metal/tonne ore",
+          "value": 0.02
+        },
+        {
+          "id": "recovery",
+          "label": "Recovery",
+          "unit": "ratio",
+          "value": 0.8
+        },
+        {
+          "id": "payable_share",
+          "label": "Payable share",
+          "unit": "ratio",
+          "value": 0.95
+        },
+        {
+          "id": "metal_stock_open",
+          "label": "Metal stock open",
+          "unit": "tonnes payable metal",
+          "value": 20
+        },
+        {
+          "id": "metal_sold",
+          "label": "Metal sold",
+          "unit": "tonnes payable metal",
+          "value": 1500
+        },
+        {
+          "id": "benchmark",
+          "label": "Benchmark",
+          "unit": "currency/tonne metal",
+          "value": 1000
+        },
+        {
+          "id": "realisation_deduction",
+          "label": "Realisation deduction",
+          "unit": "currency/tonne metal",
+          "value": 50
+        },
+        {
+          "id": "cost_per_ore_tonne",
+          "label": "Cost per ore tonne",
+          "unit": "currency/tonne ore",
+          "value": 4
+        },
+        {
+          "id": "royalty_rate",
+          "label": "Royalty rate",
+          "unit": "ratio",
+          "value": 0.03
+        },
+        {
+          "id": "sustaining_cash",
+          "label": "Sustaining cash",
+          "unit": "currency",
+          "value": 50000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "payable_production",
+          "label": "Payable production",
+          "unit": "tonnes payable metal",
+          "formula": "ore_processed * metal_grade * recovery * payable_share"
+        },
+        {
+          "id": "metal_stock_close",
+          "label": "Metal stock close",
+          "unit": "tonnes payable metal",
+          "formula": "metal_stock_open + payable_production - metal_sold"
+        },
+        {
+          "id": "revenue",
+          "label": "Revenue",
+          "unit": "currency",
+          "formula": "metal_sold * (benchmark - realisation_deduction)"
+        },
+        {
+          "id": "cash_before_tax_growth_other",
+          "label": "Cash after sustaining investment | before tax and other costs",
+          "unit": "currency",
+          "formula": "revenue * (1 - royalty_rate) - ore_processed * cost_per_ore_tonne - sustaining_cash"
+        }
+      ],
+      "expected": {
+        "payable_production": 1520,
+        "metal_stock_close": 40,
+        "revenue": 1425000,
+        "cash_before_tax_growth_other": 932250
+      }
+    },
+    "telecom": {
+      "scope": "Annual subscriber/service cash bridge. EBITDA is before cash leases; spectrum is outside network capex and all cash deductions occur once.",
+      "inputs": [
+        {
+          "id": "subscribers_open",
+          "label": "Subscribers open",
+          "unit": "subscribers",
+          "value": 1000
+        },
+        {
+          "id": "gross_adds",
+          "label": "Gross adds",
+          "unit": "subscribers",
+          "value": 200
+        },
+        {
+          "id": "churned",
+          "label": "Churned",
+          "unit": "subscribers",
+          "value": 100
+        },
+        {
+          "id": "monthly_arpu",
+          "label": "Monthly revenue per user",
+          "unit": "currency/subscriber/month",
+          "value": 10
+        },
+        {
+          "id": "months",
+          "label": "Months",
+          "unit": "months",
+          "value": 12
+        },
+        {
+          "id": "cash_operating_cost",
+          "label": "Cash operating cost",
+          "unit": "currency",
+          "value": 80000
+        },
+        {
+          "id": "network_capex",
+          "label": "Network capex",
+          "unit": "currency",
+          "value": 15000
+        },
+        {
+          "id": "spectrum_cash",
+          "label": "Spectrum cash",
+          "unit": "currency",
+          "value": 10000
+        },
+        {
+          "id": "cash_leases",
+          "label": "Cash leases",
+          "unit": "currency",
+          "value": 5000
+        },
+        {
+          "id": "cash_interest",
+          "label": "Cash interest",
+          "unit": "currency",
+          "value": 2000
+        },
+        {
+          "id": "cash_tax",
+          "label": "Cash tax",
+          "unit": "currency",
+          "value": 3000
+        },
+        {
+          "id": "dividends",
+          "label": "Dividends",
+          "unit": "currency",
+          "value": 10000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "subscribers_close",
+          "label": "Subscribers close",
+          "unit": "subscribers",
+          "formula": "subscribers_open + gross_adds - churned"
+        },
+        {
+          "id": "average_subscribers_proxy",
+          "label": "Average subscribers proxy",
+          "unit": "subscribers",
+          "formula": "(subscribers_open + subscribers_close) / 2"
+        },
+        {
+          "id": "service_revenue",
+          "label": "Service revenue",
+          "unit": "currency",
+          "formula": "average_subscribers_proxy * monthly_arpu * months"
+        },
+        {
+          "id": "cash_available",
+          "label": "Cash available",
+          "unit": "currency",
+          "formula": "service_revenue - cash_operating_cost - network_capex - spectrum_cash - cash_leases - cash_interest - cash_tax"
+        },
+        {
+          "id": "dividend_coverage",
+          "label": "Dividend coverage",
+          "unit": "times",
+          "formula": "cash_available / dividends"
+        }
+      ],
+      "expected": {
+        "subscribers_close": 1100,
+        "service_revenue": 126000,
+        "cash_available": 11000,
+        "dividend_coverage": 1.1
+      }
+    },
+    "transport": {
+      "scope": "Passenger aviation activity and cost bridge; load factor belongs in RPK conversion, not again after RASK. Contribution excludes tax and capex.",
+      "inputs": [
+        {
+          "id": "available_seat_km",
+          "label": "Available seat km",
+          "unit": "ASK",
+          "value": 100000000
+        },
+        {
+          "id": "load_factor",
+          "label": "Load factor",
+          "unit": "ratio",
+          "value": 0.8
+        },
+        {
+          "id": "yield_per_rpk",
+          "label": "Yield per rpk",
+          "unit": "currency/RPK",
+          "value": 0.1
+        },
+        {
+          "id": "nonfuel_unit_cost",
+          "label": "Nonfuel unit cost",
+          "unit": "currency/ASK",
+          "value": 0.04
+        },
+        {
+          "id": "fuel_cash",
+          "label": "Fuel cash",
+          "unit": "currency",
+          "value": 2000000
+        },
+        {
+          "id": "cash_leases",
+          "label": "Cash leases",
+          "unit": "currency",
+          "value": 500000
+        }
+      ],
+      "calculations": [
+        {
+          "id": "revenue_passenger_km",
+          "label": "Revenue passenger km",
+          "unit": "RPK",
+          "formula": "available_seat_km * load_factor"
+        },
+        {
+          "id": "passenger_revenue",
+          "label": "Passenger revenue",
+          "unit": "currency",
+          "formula": "revenue_passenger_km * yield_per_rpk"
+        },
+        {
+          "id": "passenger_rask",
+          "label": "Passenger revenue per available seat kilometre",
+          "unit": "currency/ASK",
+          "formula": "passenger_revenue / available_seat_km"
+        },
+        {
+          "id": "rask_revenue_check",
+          "label": "Revenue from available seat kilometres and RASK",
+          "unit": "currency",
+          "formula": "available_seat_km * passenger_rask"
+        },
+        {
+          "id": "operating_cash_contribution",
+          "label": "Operating cash contribution",
+          "unit": "currency",
+          "formula": "passenger_revenue - available_seat_km * nonfuel_unit_cost - fuel_cash - cash_leases"
+        }
+      ],
+      "expected": {
+        "revenue_passenger_km": 80000000,
+        "passenger_revenue": 8000000,
+        "passenger_rask": 0.08,
+        "rask_revenue_check": 8000000,
+        "operating_cash_contribution": 1500000
+      }
+    }
+  }
+}
