@@ -2,12 +2,12 @@
 name: chart-visualization
 description: Build consistent, data-linked charts and business diagrams using AntV G2 and AntV Infographic with a shared professional theme. Use for research-report visuals, chart selection, rendering and export; preserve model values and reporting bases.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Consistent charts and diagrams
 
-Use AntV as the default chart-building approach for research reports. This skill adapts [AntV Chart Visualization Skills](https://github.com/antvis/chart-visualization-skills), with financial-report conventions and a reusable house theme. It supports the communication stage; it does not replace analysis, valuation or the decision contract.
+Use AntV as the default chart-building approach for research reports. It adds financial-report conventions and a reusable house theme. It supports the communication stage; it does not replace analysis, valuation or the decision contract.
 
 Explicit user templates or style requirements override the default theme while preserving data integrity and consistent visual meaning.
 
@@ -37,7 +37,7 @@ Use the shared theme's font, colours, spacing and mark styles. Keep a metric's c
 
 Actual values are solid. Forecasts use dashed lines, lighter fills or another labelled pattern without changing what the series colour means. Mark the forecast boundary. Bear/base/bull and Buy/Hold/Sell use the named semantic colours in the theme, plus readable labels. A price reference is a neutral line, not another forecast.
 
-Label the period, unit, currency and basis once where easy to see. Add a short takeaway and a readable source note. Keep chart titles and captions within the report's writing budget. Preserve the [decision contract](../investment-conclusion/references/decision-contract.md#return-hurdle-and-calls): rating and investment attractiveness are separate. A Buy below the 50% attractiveness hurdle remains Buy, but is unattractive. Keep price returns and dividends separate.
+Label period, unit, currency and basis clearly, with a short takeaway and readable source. Charts consume the current decision record; they do not determine ratings or attractiveness.
 
 ## Render and verify
 

@@ -50,7 +50,15 @@ class CoverageTests(unittest.TestCase):
             elif mutation == 'skip':
                 next(e for e in plan['skills'] if e['id'] == 'corporate-governance')['disposition'] = 'not-applicable'
             else:
-                next(e for e in plan['skills'] if e['id'] == 'management-questions')['disposition'] = 'pending'
+                next(e for e in plan['skills'] if e['id'] == 'issuer-questions')['disposition'] = 'pending'
+            self.assertFalse(planner.check_plan(plan)['complete'])
+
+    def test_industry_work_cannot_be_skipped_in_any_company_mode(self):
+        for mode in ('initiation', 'regular', 'major'):
+            plan = accounted(mode)
+            self.assertTrue(planner.check_plan(plan)['complete'])
+            entry = next(e for e in plan['skills'] if e['id'] == 'industry-analysis')
+            entry.update(disposition='not-applicable', reason='Attempted omission.')
             self.assertFalse(planner.check_plan(plan)['complete'])
 
     def test_required_scope_cannot_be_reclassified_to_avoid_audit(self):

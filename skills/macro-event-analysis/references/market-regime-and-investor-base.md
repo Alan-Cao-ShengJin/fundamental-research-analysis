@@ -53,17 +53,7 @@ This is supporting analysis. Perform a proportionate check and deepen it when ac
 
 Map plausible capital pools by mandate and incentive, not by an unsupported list of named future buyers. Consider domestic/foreign active funds, global/regional specialists, small/mid/large-cap mandates, income/quality/growth/value strategies, passive/index trackers, retail and relevant strategic holders. Distinguish current known ownership, potential legal eligibility, practical capacity, investment attraction and actual allocation evidence.
 
-Use an evidence-linked investor-base record:
-
-| Field | Required distinction |
-| --- | --- |
-| Cohort and purpose | The relevant mandate, benchmark or economic reason to own the security |
-| Current access | Exact listing/share class, geography, investable channel, custody/settlement and material restrictions |
-| Capacity | Market cap and free-float cap, ownership headroom, liquidity, ticket size and realistic build/exit time |
-| Current stance | Disclosed holdings/changes, attributed views or explicitly unknown ownership/positioning |
-| Constraint or aversion | Formal ineligibility versus practical illiquidity, weak rights, lack of scale, disclosure or unattractive payoff |
-| Potential change | The threshold/event, rule and date, remaining conditions and when the cohort might reassess |
-| Evidence of demand | Confirmed allocation/rules-driven change versus estimated possibility; contrary evidence and uncertainty |
+Record free float, liquidity and access constraints; expand into ownership, buyer capacity or potential demand changes only where they could change the call. Distinguish current holdings, legal eligibility and demonstrated allocation.
 
 Check size, free float, turnover, seasoning, profitability, country/sector classification, governance/ESG exclusions, foreign ownership headroom and trading restrictions only as relevant. Restrictions differ by fund and share class; do not invent a universal institutional market-cap floor or assume every fund has the same mandate.
 

@@ -3,15 +3,16 @@ import { z } from 'zod';
 const id = z.string().min(1).max(160);
 const timestamp = z.iso.datetime({ offset: true });
 export const HandoffSchema = z.object({
-  id, kind: z.enum(['research-brief', 'evidence-pack', 'hypothesis', 'company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion',
-    'strategy-test', 'challenge', 'portfolio-decision', 'management-questions', 'brief', 'monitor-review']),
+  id, kind: z.enum(['research-brief', 'evidence-pack', 'hypothesis', 'company-model', 'financial-quality', 'corporate-governance', 'industry-analysis', 'valuation-thesis', 'investment-conclusion',
+    'strategy-test', 'challenge', 'portfolio-decision', 'issuer-questions', 'management-questions', 'brief', 'monitor-review']),
   version: z.number().int().positive(), status: z.enum(['complete', 'partial', 'blocked', 'not-applicable']),
   notApplicableReason: z.string().min(1).nullable(),
-  mandateId: id, mandateVersion: z.number().int().positive(), scopeIds: z.array(id).min(1).max(100),
+  mandateId: id.nullable(), mandateVersion: z.number().int().positive().nullable(), scopeIds: z.array(id).min(1).max(100),
   asOf: timestamp, producedAt: timestamp, summary: z.string().min(1).max(8000),
   sources: z.array(z.object({ id, location: z.string().min(1), locator: z.string().min(1),
     publishedAt: timestamp.nullable(), availableAt: timestamp.nullable(), retrievedAt: timestamp,
     accessStatus: z.enum(['available', 'partial', 'unavailable']), synthetic: z.boolean(),
+    availableClaimIds: z.array(id).optional(),
   }).strict()).max(200),
   claims: z.array(z.object({ id, text: z.string().min(1), material: z.boolean(),
     basis: z.enum(['reported', 'derived', 'guidance', 'estimate', 'assumption', 'inference']), sourceIds: z.array(id).max(30),
@@ -24,7 +25,7 @@ export const HandoffSchema = z.object({
   nextActions: z.array(z.object({ task: z.string().min(1), kind: z.enum(['read', 'calculate', 'challenge', 'user-input', 'review', 'watch']),
     completionCondition: z.string().min(1), dueAt: timestamp.nullable(), trigger: z.string().min(1).nullable(),
     activationStatus: z.enum(['planned', 'active']).nullable(), activationId: id.nullable(),
-  }).strict()).min(1).max(30),
+  }).strict()).min(0).max(30),
 }).strict();
 
 // Shape/schema are separate from readiness; neither proves truth or execution authority.
@@ -32,6 +33,7 @@ export function validateHandoff(value) {
   const a = HandoffSchema.parse(value);
   if (Date.parse(a.producedAt) < Date.parse(a.asOf)) throw new Error('Information cutoff cannot be after artifact production.');
   if (a.status === 'not-applicable' && !a.notApplicableReason) throw new Error('A not-applicable artifact needs a reason.');
+  if ((a.mandateId === null) !== (a.mandateVersion === null)) throw new Error('Mandate ID and version must both be supplied or both null.');
   const sources = new Set(a.sources.map(s => s.id));
   if (sources.size !== a.sources.length) throw new Error('Source IDs must be unique.');
   if (new Set(a.claims.map(c => c.id)).size !== a.claims.length) throw new Error('Claim IDs must be unique.');
@@ -50,19 +52,19 @@ export function validateHandoff(value) {
   return a;
 }
 
-const ReadinessContext = z.object({ mandateId: id, mandateVersion: z.number().int().positive(), nowMs: z.number().int().nonnegative(),
+const ReadinessContext = z.object({ mandateId: id.nullable(), mandateVersion: z.number().int().positive().nullable(), nowMs: z.number().int().nonnegative(),
   maxAgeMs: z.number().int().positive(), upstreamVersions: z.record(id, z.number().int().positive()),
   allowSynthetic: z.boolean().default(false), historical: z.boolean().default(false),
 }).strict();
 export function assessReadiness(value, context) {
   const a = validateHandoff(value), c = ReadinessContext.parse(context), issues = [];
   if (a.status !== 'complete') issues.push('Artifact is not complete.');
-  if (a.mandateId !== c.mandateId || a.mandateVersion !== c.mandateVersion) issues.push('Mandate version does not match.');
+  if (a.kind === 'portfolio-decision' && (a.mandateId === null || c.mandateId === null)) issues.push('A portfolio decision requires an explicit mandate.');
+  if ((a.mandateId !== null || a.mandateVersion !== null || a.kind === 'portfolio-decision') && (a.mandateId !== c.mandateId || a.mandateVersion !== c.mandateVersion)) issues.push('Mandate version does not match.');
   const age = c.nowMs - Date.parse(a.asOf);
   if (age < 0 || Date.parse(a.producedAt) > c.nowMs || age > c.maxAgeMs) issues.push('Artifact cutoff/production time is future or stale.');
   if (a.criticalUnknowns.length) issues.push('Critical unknowns remain unresolved.');
   const assessedKinds = ['company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion', 'strategy-test', 'challenge', 'portfolio-decision'];
-  if (assessedKinds.includes(a.kind) && !a.checks.some(check => check.blocking)) issues.push('No substantive blocking validation checks are recorded.');
   if (assessedKinds.includes(a.kind) && !a.claims.some(claim => claim.material)) issues.push('No decision-driving claims are recorded.');
   if (a.checks.some(check => check.blocking && check.result !== 'pass')) issues.push('A blocking check failed or was not run.');
   for (const dep of a.dependencies) if (dep.changed || c.upstreamVersions[dep.id] !== dep.version) issues.push(`Dependency ${dep.id} needs refresh or a current version.`);
@@ -72,7 +74,8 @@ export function assessReadiness(value, context) {
     if (['assumption', 'inference'].includes(claim.basis) && !claim.rationale) issues.push(`Material assumption/inference ${claim.id} needs a rationale.`);
     for (const sourceId of claim.sourceIds) {
       const source = sources.get(sourceId);
-      if (source.accessStatus !== 'available') issues.push(`Source ${sourceId} is incomplete or unavailable.`);
+      if (source.accessStatus === 'unavailable') issues.push(`Source ${sourceId} is unavailable.`);
+      if (source.accessStatus === 'partial' && !source.availableClaimIds?.includes(claim.id)) issues.push(`Partial source ${sourceId} does not identify claim ${claim.id} as supported by its available fields.`);
       if (!c.allowSynthetic && source.synthetic) issues.push(`Source ${sourceId} is synthetic.`);
       const available = source.availableAt ?? source.publishedAt;
       if ((c.historical && !available) || (available && Date.parse(available) > Date.parse(a.asOf))) issues.push(`Source ${sourceId} was not demonstrably available by the cutoff.`);

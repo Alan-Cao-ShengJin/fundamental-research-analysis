@@ -58,6 +58,15 @@ def references(tree, period):
     return []
 
 
+def basis_for(node, period_id):
+    """One row basis with optional per-period overrides; legacy keyed bases remain valid."""
+    basis = node.get('basis', {})
+    default = basis.get('default', {})
+    if not default:
+        default = {k:v for k,v in basis.items() if not isinstance(v, dict)}
+    return {**default, **basis.get('periods', {}).get(period_id, {}), **basis.get(period_id, {})}
+
+
 def compile_plan(plan):
     if plan.get('schema_version') != 1:
         raise ModelError('Expected schema_version 1')
@@ -103,14 +112,12 @@ def compile_plan(plan):
                 if node['role'] != 'foundation' and p['kind'] == 'forecast':
                     add('forecast_override', nid, p['id'], 'A derived forecast is overridden. Explain its basis and downstream dependencies.')
                 if node['role'] == 'foundation' or p['kind'] == 'forecast':
-                    basis = node.get('basis', {}).get(p['id'], {})
-                    for field in ('kind', 'source', 'rationale'):
-                        if not basis.get(field):
+                    basis = basis_for(node, p['id'])
+                    field = 'source' if p['kind'] == 'actual' else 'rationale'
+                    if not basis.get(field):
+                        # One row-level finding unless a period-specific override fails.
+                        if not any(f['code']=='missing_basis' and f['node']==nid and f['message']==f'Missing {field} beside independent input' for f in findings):
                             add('missing_basis', nid, p['id'], f'Missing {field} beside independent input')
-                    if basis.get('kind') and basis['kind'] != 'synthetic' and not basis.get('source_date'):
-                        add('missing_source_date', nid, p['id'], 'Record the evidence availability date and check the research cutoff')
-                    if p['kind'] == 'forecast' and not basis.get('uncertainty'):
-                        add('missing_uncertainty', nid, p['id'], 'State the range, alternative or uncertainty in the foundational estimate')
             deps = [] if explicit else references(trees[nid], i) if nid in trees else []
             if not explicit and nid not in trees:
                 add('missing_value', nid, p['id'], 'Input is missing; it will remain unavailable, not zero')
@@ -179,12 +186,8 @@ def compile_plan(plan):
             deps=dependency_map[(nid,i)]
             formula=None
             if not explicit and nid in trees:
-                refs=list(dict.fromkeys(f'{col(4+di)}{placement[dep]}' for dep,di in deps))
-                body=excel(trees[nid],i)
-                # Missing inputs propagate as #N/A in Excel; they never masquerade as zero.
-                checks=','.join(refs)
-                formula=f'=IF(COUNT({checks})={len(refs)},{body},NA())' if refs else '='+body
-            basis=node.get('basis',{}).get(p['id'],{})
+                formula='='+excel(trees[nid],i)
+            basis=basis_for(node,p['id'])
             cells.append({'period':p['id'],'address':f'{col(4+i)}{placement[nid]}','input':explicit,'value':node.get('values',{}).get(p['id']) if explicit else None,'formula':formula,'expected':values[(nid,i)],'basis':basis})
         compiled.append({'id':nid,'row':placement[nid],'label':node['label'],'unit':node['unit'],'role':node['role'],'subtotal':bool(node.get('subtotal')),'assumption':bool(node.get('assumption')),'format':node.get('format','number'),'cells':cells})
     default_theme=json.loads((Path(__file__).resolve().parents[1]/'assets/model-theme.json').read_text(encoding='utf-8'))

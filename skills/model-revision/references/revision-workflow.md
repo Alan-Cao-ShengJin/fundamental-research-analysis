@@ -16,13 +16,13 @@ If only a narrative report or unrecalculable workbook exists, identify missing c
 
 ## Map evidence to assumptions
 
-Use the [change ledger](../../company-change-tracking/SKILL.md). Retain each material new raw observation/locator, speaker/source type, period/availability, comparable prior observation or frozen expectation, affected model node/period, old/proposed values, rationale/uncertainty, and dependent outputs. Record a reason when no assumption changes.
+Use one table for each changed material assumption: old forecast, new forecast, matched actual where available, and reason/source. Record why a material observation leaves an assumption unchanged when useful.
 
 Distinguish actual-versus-forecast surprise, guidance-versus-aspiration, corrections versus economic change, and newly observed versus already known information. Reconcile units, taxes, scope, orders versus accepted deliveries, firm backlog versus intentions, component versus total revenue and reported versus adjusted profit. Raw transcripts and edited summaries remain separate; an AI edit is not independent confirmation or authority to silently repair numerals. Management explanations are attributed claims, not proven causation.
 
 When actuals replace forecasts, compare on the original basis before rolling the horizon. Keep restated-history errors distinct from what was knowable at the time. Preserve unsupported statements as uncertain or reject them; do not force a model change to match them.
 
-For a major update, retain a learning record alongside the change ledger: forecast vintage/cutoff, matched metric and period, prior assumption/estimate, actual, material variance, driver attribution, supported/missed/mixed/not-yet-observable assessment, information available then, and resulting recalibration or justified retention. Note offsetting errors and unresolved causes. Future guidance is not a realized outcome. An event without new results uses an event-impact bridge and leaves unobservable forecasts unscored. Keep company-specific calibration in the research artifacts; one miss alone does not establish a generic modeling rule.
+For major updates, compare actuals with the frozen forecast before recalibration. Explain offsetting errors and unresolved causes in the same assumption table; guidance is not an actual outcome. Unobservable event effects remain unscored.
 
 ## Recalculate affected economics and risk
 
@@ -34,7 +34,7 @@ Audit affected formulas, statement links, remaining-period implications, funding
 
 ## Attribute forecast and valuation changes
 
-For an evidence-only comparison, initially hold quote, FX, earnings year, target horizon and valuation method/multiple constant. Then give a current investment call using market inputs compatible with the task; retain the frozen reference clearly when the task is to isolate evidence effects. Show quote, FX, calendar-roll, method or multiple changes separately. Reassess valuation when evidence changes its rationale, without silently moving it or freezing it forever.
+For an evidence-only comparison, initially hold quote, FX, earnings year, target date and valuation method/multiple constant. Then give a current investment call on the rolled twelve-month target date and current market inputs; retain the frozen reference clearly when the task is to isolate evidence effects. Show quote, FX, target-date roll, calendar-roll, method or multiple changes separately. Reassess valuation when evidence changes its rationale, without silently moving it or freezing it forever.
 
 Bridge material drivers to attributable profit/EPS, cash after investment, funding/distributions and target/call. Explain offsetting changes. Sequential bridges disclose their order and reconcile; isolated sensitivities are not automatically additive. Preserve price/total return and ordinary/diluted share distinctions.
 
@@ -44,4 +44,8 @@ Challenge the new assumptions and inherited thesis where affected. New evidence 
 
 Retain baseline references, evidence/change records, the revised model or justified no-change result, audit/calculation record, attribution and affected decision versions. A numerical revision includes the [human-auditable Excel model](../../company-model/references/workbook-profile.md), preserving the original workbook and user edits. An evidence-only no-change review can link the existing valid workbook. Reference these through the existing [handoff envelope](../../research-cycle/references/handoffs.md); no new envelope fields or complete new initiation-artifact set is required.
 
-A quantified revision needs a usable baseline, supported changes, recalculated affected dependencies and a consistent scoped conclusion. Missing essentials can leave a useful partial evidence review. Refresh affected saved summaries or mark them stale; preserve unchanged prose and historical artifacts. Monitoring remains proposed until actually activated by the host.
+A quantified revision needs a usable baseline, supported changes, recalculated affected dependencies and a consistent scoped conclusion. Missing essentials can leave a useful partial evidence review. Refresh affected saved summaries or mark them stale; preserve unchanged prose and historical artifacts.
+
+## Valuation-only corrections
+
+For valuation-only changes, retain operating forecasts, attribute target changes to method, multiple or earnings-window alignment, and refresh affected decision outputs and current pointers.

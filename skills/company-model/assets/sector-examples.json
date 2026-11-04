@@ -1199,7 +1199,7 @@
         },
         {
           "id": "hedge_price",
-          "label": "Hedge price",
+          "label": "Benchmark hedge strike (differential still applies)",
           "unit": "currency/barrel",
           "value": 60
         },
@@ -1239,7 +1239,7 @@
           "id": "realisation",
           "label": "Realisation",
           "unit": "currency/barrel",
-          "formula": "unhedged_realisation * (1 - hedged_share) + hedge_price * hedged_share"
+          "formula": "unhedged_realisation + hedged_share * (hedge_price - benchmark)"
         },
         {
           "id": "cash_before_tax_growth_other",
@@ -1251,8 +1251,8 @@
       "expected": {
         "closing_daily_rate": 110,
         "sold_volume_proxy": 38325,
-        "realisation": 64,
-        "cash_before_tax_growth_other": 1386300
+        "realisation": 63,
+        "cash_before_tax_growth_other": 1347975
       }
     },
     "utilities": {
@@ -1277,8 +1277,8 @@
           "value": 5
         },
         {
-          "id": "retirements",
-          "label": "Retirements",
+          "id": "net_book_disposals",
+          "label": "Net book value of disposals, not gross retired cost",
           "unit": "currency",
           "value": 2
         },
@@ -1299,6 +1299,18 @@
           "label": "Earned roe",
           "unit": "ratio",
           "value": 0.09
+        },
+        {
+          "id": "disallowances",
+          "label": "Disallowances",
+          "unit": "currency",
+          "value": 0
+        },
+        {
+          "id": "jurisdiction_adjustment",
+          "label": "Signed net ADIT/CWIP adjustment",
+          "unit": "currency",
+          "value": 0
         }
       ],
       "calculations": [
@@ -1306,7 +1318,7 @@
           "id": "rate_base_close",
           "label": "Rate base close",
           "unit": "currency",
-          "formula": "rate_base_open + approved_additions - depreciation - retirements"
+          "formula": "rate_base_open + approved_additions - depreciation - net_book_disposals - disallowances + jurisdiction_adjustment"
         },
         {
           "id": "average_rate_base_proxy",

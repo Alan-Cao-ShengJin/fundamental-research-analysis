@@ -35,26 +35,11 @@
             "P2": 120
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative activity path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative activity path",
-              "uncertainty": "Activity could be 10% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative activity path",
-              "uncertainty": "Activity could be 10% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Activity could be 10% lower or higher"
             }
           }
         },
@@ -69,26 +54,11 @@
             "P2": 11
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative realisation path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative realisation path",
-              "uncertainty": "Realisation could be 5% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative realisation path",
-              "uncertainty": "Realisation could be 5% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Realisation could be 5% lower or higher"
             }
           }
         },
@@ -103,26 +73,11 @@
             "P2": 6.4
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative cost path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative cost path",
-              "uncertainty": "Unit cost could be 8% higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative cost path",
-              "uncertainty": "Unit cost could be 8% higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Unit cost could be 8% higher"
             }
           }
         },
@@ -166,26 +121,11 @@
             "P2": 60
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative activity path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative activity path",
-              "uncertainty": "Activity could be 10% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative activity path",
-              "uncertainty": "Activity could be 10% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Activity could be 10% lower or higher"
             }
           }
         },
@@ -200,26 +140,11 @@
             "P2": 21
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative realisation path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative realisation path",
-              "uncertainty": "Realisation could be 5% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative realisation path",
-              "uncertainty": "Realisation could be 5% lower or higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Realisation could be 5% lower or higher"
             }
           }
         },
@@ -234,26 +159,11 @@
             "P2": 13
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "synthetic",
               "source": "Invented demonstration data",
               "rationale": "Illustrative cost path",
-              "uncertainty": "",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P1": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative cost path",
-              "uncertainty": "Unit cost could be 8% higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
-            },
-            "P2": {
-              "kind": "synthetic",
-              "source": "Invented demonstration data",
-              "rationale": "Illustrative cost path",
-              "uncertainty": "Unit cost could be 8% higher",
-              "next_evidence": "Replace with task-specific evidence before real use"
+              "uncertainty": "Unit cost could be 8% higher"
             }
           }
         },

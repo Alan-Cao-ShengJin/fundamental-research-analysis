@@ -22,6 +22,16 @@ describe('company research risk dependencies', () => {
     }
   });
 
+  it('runs industry analysis before revenue projection in every full company route and refreshes it in reviews', () => {
+    for (const flow of Object.values(catalog.flows).filter(flow => flow.includes('company-forecast'))) {
+      expect(flow.indexOf('industry-analysis')).toBeGreaterThan(-1);
+      expect(flow.indexOf('industry-analysis')).toBeLessThan(flow.indexOf('revenue-projection'));
+    }
+    expect(dependencies('revenue-projection').has('industry-analysis')).toBe(true);
+    for (const name of ['company-regular-review', 'company-update']) expect(catalog.flows[name]).toContain('revision-industry');
+    expect(dependencies('revision-impact').has('revision-industry')).toBe(true);
+  });
+
   it('keeps one financial-quality skill across three passes with the audit upstream of valuation', () => {
     for (const stage of ['financial-red-flags', 'model-audit', 'thesis-validation']) {
       expect(catalog.stages[stage].skill).toBe('financial-quality');

@@ -56,9 +56,25 @@ describe('research handoff gates', () => {
     const a = fixture(); a.sources[0].accessStatus = 'unavailable';
     expect(assessReadiness(a, context).ready).toBe(false);
   });
+  it('allows a source with partial coverage when its locator supports the available field', () => {
+    const a=fixture();a.sources[0].accessStatus='partial';
+    a.sources[0].locator='Available reported-revenue table, row 2; forecast fields restricted';
+    expect(assessReadiness(a, context).ready).toBe(false);
+    a.sources[0].availableClaimIds=a.claims.map(claim=>claim.id);
+    expect(assessReadiness(a, context).ready).toBe(true);
+    a.sources[0].accessStatus='unavailable';
+    expect(assessReadiness(a, context).ready).toBe(false);
+  });
+  it('allows mandate-free company research but not a mandate-free portfolio decision', () => {
+    const a=fixture();a.mandateId=null;a.mandateVersion=null;
+    expect(assessReadiness(a, context).ready).toBe(true);
+    a.kind='portfolio-decision';expect(assessReadiness(a, context).ready).toBe(false);
+    expect(assessReadiness(a, {...context,mandateId:null,mandateVersion:null}).ready).toBe(false);
+  });
   it('blocks stale artifacts and changed mandates', () => {
     expect(assessReadiness(fixture(), { ...context, nowMs: context.nowMs + 3600000 }).ready).toBe(false);
-    expect(assessReadiness(fixture(), { ...context, mandateVersion: 2 }).ready).toBe(false);
+    const a=fixture();a.mandateId=context.mandateId;a.mandateVersion=context.mandateVersion;
+    expect(assessReadiness(a, { ...context, mandateVersion: 2 }).ready).toBe(false);
   });
   it('keeps a proposed watch planned until a host acknowledgement is present', () => {
     const a = fixture(); a.nextActions = [{ task: 'Observe a defined metric', kind: 'watch', completionCondition: 'Review the threshold',
@@ -66,19 +82,19 @@ describe('research handoff gates', () => {
     expect(validateHandoff(a).nextActions[0].activationStatus).toBe('planned');
     a.nextActions[0].activationStatus = 'active'; expect(() => validateHandoff(a)).toThrow(/acknowledgement/);
   });
-  it('rejects a handoff with no continuing task and distinguishes partial output from completion', () => {
-    const a = fixture(); a.nextActions = []; expect(() => validateHandoff(a)).toThrow();
+  it('allows completion with no continuing task and distinguishes partial output from completion', () => {
+    const a = fixture(); a.nextActions = []; expect(validateHandoff(a).nextActions).toEqual([]);
     const b = fixture(); b.status = 'partial'; expect(assessReadiness(b, context).ready).toBe(false);
   });
-  it('does not let an empty checklist or empty material claims pass a model handoff', () => {
-    const a = fixture(); a.checks = []; expect(assessReadiness(a, context).ready).toBe(false);
+  it('does not require ceremonial blocking checks but still needs material claims', () => {
+    const a = fixture(); a.checks = []; expect(assessReadiness(a, context).ready).toBe(true);
     const b = fixture(); b.claims = []; expect(assessReadiness(b, context).ready).toBe(false);
   });
   it('requires substantive governance checks and invalidates valuations when governance changes', () => {
     const governance = fixture(); governance.kind = 'corporate-governance';
     expect(assessReadiness(governance, context).ready).toBe(true);
     governance.checks = [];
-    expect(assessReadiness(governance, context).ready).toBe(false);
+    expect(assessReadiness(governance, context).ready).toBe(true);
     const valuation = fixture(); valuation.kind = 'valuation-thesis';
     valuation.dependencies = [{ id: 'corporate-governance', version: 1, changed: false }];
     expect(assessReadiness(valuation, { ...context, upstreamVersions: { 'corporate-governance': 1 } }).ready).toBe(true);

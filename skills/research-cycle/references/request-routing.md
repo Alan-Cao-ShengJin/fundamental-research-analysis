@@ -2,11 +2,11 @@
 
 Choose the research mode before selecting specialist work. This routing governs company research; sector guidance supplies relevant economic mechanisms within a mode, rather than creating another workflow. Record the mode, security, information cutoff, baseline model/research versions, trigger and requested outputs in the existing research brief. No new handoff schema is required.
 
-Use [investment conviction](../../investment-conviction/SKILL.md) across all three modes. Initiation establishes the decisive economic or avoidance proposition; updates retrieve its original record before interpreting new commentary. Review evidence, milestones and independent deal breakers, separating any change in the belief from forecast, valuation, price-based rating, eligibility and portfolio effects. Major updates compare the proposition's expected observations with actual outcomes alongside forecast learning. Price alone does not disprove it; a broken mechanism or credible threat warrants reassessment without waiting for scheduled results.
+Updates retrieve the original [conviction record](../../investment-conviction/SKILL.md) before interpreting new commentary, and separate a change in the decisive belief from changes in forecast, valuation, rating, eligibility and portfolio effects.
 
 ## Two branches, three working modes
 
-Use the selected mode to create the [coverage plan](research-coverage.md). It accounts for core and conditional specialists even when their work is embedded within another stage. Preserve valid upstream work without treating an absent branch as automatically reviewed.
+Follow the selected route and reuse valid upstream work. Reopen specialists where new evidence could change the call; do not force every specialist into a regular review.
 
 | Branch | Working mode | Trigger | Work and stopping point |
 | --- | --- | --- | --- |
@@ -14,14 +14,14 @@ Use the selected mode to create the [coverage plan](research-coverage.md). It ac
 | Existing research update | Regular review | Revisit an existing case between major disclosures, often because time or price has moved | Read the previous case and model; check intervening evidence; retain operating assumptions by default. Refresh justified valuation inputs, current price, prospective return and conclusion. Link the unchanged model when no forecast revision is warranted. |
 | Existing research update | Major earnings/catalyst update | Results or a material event provides new evidence requiring substantial reassessment | Preserve the pre-event forecast; reconcile official disclosures and calls; evaluate prior assumptions; replace relevant estimates with actuals and recalibrate subsequent forecasts. Audit affected dependencies and update valuation, thesis and conclusion. |
 
-Use [stock initiation](../../stock-initiation/SKILL.md) for the first branch and [model revision](../../model-revision/SKILL.md) for both update modes. The catalog's `company-update` remains the major-update flow; `company-regular-review` is the separate regular flow. The generic revision entry requires mode selection; its legacy flow mapping is not a default instruction to rebuild forecasts.
+Use [stock initiation](../../stock-initiation/SKILL.md) for the first branch and [model revision](../../model-revision/SKILL.md) for both update modes. In the catalog, `company-regular-review` is the regular flow and `company-update` the major-update flow; the revision entry requires mode selection.
 
 ## Regular review: preserve the forecast, test the evidence
 
 1. Load the latest valid research, assumptions, model, valuation, unresolved issues and next earnings/catalysts. Identify stale or defective dependencies; a previous approval does not make an error reusable.
 2. Check relevant new disclosures and defined data pipelines. Concrete evidence can include comparable operating statistics, dated management guidance, credible third-party demand/price/cost trackers or verified policy changes. Retain source, period, definitions, coverage, lag and the economic link to the affected assumption. A rumor, price move, peer rerating or general narrative alone does not justify a new operating forecast. An unavailable feed does not prove assumptions remain correct.
 3. Carry forward operating forecasts unless that evidence supports a specific revision. Small supported changes can remain a regular review with targeted recalculation/audit and a visible old/new bridge. Escalate to the major branch if evidence materially changes the economics, reporting perimeter or thesis; frequency or the title of a document does not decide the route.
-4. Refresh the quote and prospective price/total returns on the retained earnings/cash forecasts. Distinguish price movement from a changed target: price alone changes upside/downside, not EPS or the target. Explain any change to FX, valuation multiple, discount rate, target date or earnings reference year separately. Apply the existing fiscal-calendar rules; elapsed time or a higher share price is not sufficient reason to increase a multiple or roll earnings silently.
+4. Refresh the quote, prospective price return and dividend yield on the retained earnings/cash forecasts. Roll the target date to twelve months from the review date and re-derive the target from that day's forward earnings. Distinguish price movement from a changed target: price alone changes upside/downside, not EPS or the underlying value. Explain any change to FX, valuation multiple, discount rate or earnings reference year separately. Apply the existing fiscal-calendar rules; elapsed time or a higher share price is not sufficient reason to increase a multiple or roll earnings silently.
 5. Report what changed, what was checked, whether operating forecasts are unchanged and why, current valuation/decision, and the next decisive data. A regular review may change the rating because price changed while retaining the same target and forecast. Do not regenerate the full initiation or workbook solely to create a new dated artifact.
 
 ## Major update: evaluate, then recalibrate

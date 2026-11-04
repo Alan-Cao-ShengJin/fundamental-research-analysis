@@ -70,7 +70,7 @@ on a defensible business story; an input sensitivity measures exposure only.
 
 ## Review the conviction the model warrants
 
-Apply the [house theme and reporting detail](workbook-profile.md#house-theme-and-reporting-detail): gridlines off, black calculations, dark-blue actual inputs, purple forecast inputs with a nude fill, bold subtotals, thin section borders and compact right-aligned figures. Percentage rows are italic; actual/calculated percentages use light grey, while forecast percentage assumptions keep purple with nude fill. Keep longer explanations visible to the right. Choose supported quarters or half-years before settling for an annual-only view. The compiler accepts arbitrary period IDs/labels; the initializer's optional `--cadence quarter`, `--cadence half_year` or `--cadence annual` supplies relative labels to replace with the task's actual fiscal periods. It does not infer disclosure frequency or fabricate finer-period data.
+Apply the [workbook profile](workbook-profile.md#house-theme-and-reporting-detail) for the house theme, local assumption explanations and supported reporting cadence.
 
 Ask another analyst to identify the main assumptions, explain their bases, change
 an important one and describe the resulting component and aggregate changes.
@@ -90,9 +90,14 @@ attribute misses to changed evidence, assumptions and model structure.
 
 ## Generic tools and clean assets
 
-The following resources are authored from scratch with neutral labels and
-invented numbers. They contain no issuer extracts or sector assumptions.
+The following resources use neutral labels and invented numbers. They contain
+no issuer data or sector assumptions.
 
+- [Sample company model](../assets/company-model-example.xlsx), built from
+  [its specification](../assets/company-model-example.json) by
+  [model_example.py](../scripts/model_example.py): the full multi-sheet model
+  the [model standard](model-standard.md) requires, with invented figures. Start
+  every company model from this structure.
 - [Blank build plan](../assets/forecast-blocks-template.json): edit the periods,
   block definitions, foundations, formulas and selected outputs for the task.
   Null inputs and blank evidence fields intentionally mark unfinished work.
@@ -107,10 +112,8 @@ invented numbers. They contain no issuer extracts or sector assumptions.
   missing bases, dependencies, cycles, missing values and unused foundations;
   calculate the plan and compile local Excel formulas. Its findings direct
   analyst review, without certifying the evidence or economics.
-- [Workbook adapter](../scripts/build_forecast_workbook.mjs): author the compiled
-  blocks as editable formulas, put bases beside inputs, reconcile every cell with
-  the compiler, exercise an input change and restore it before export. Its
-  optional HTML review is a static snapshot; the Excel file is the live model.
+- [Company model builder](../scripts/model_workbook.py) and [Excel recalculation](../scripts/recalc_excel.ps1): build the full multi-sheet model required by the [model standard](model-standard.md) from one cell specification, calculate every case independently, recalculate in Excel and check that the two agree.
+- [Portable workbook writer and sync checker](../scripts/forecast_workbook.py), for a single-sheet annual operating scaffold only; it cannot hold a company model's statements: build formulas and named bindings from the same executable plan, recalculate its restricted arithmetic, and fail if any declared input/output, formula or saved value differs. See [portable build and sync](workbook-profile.md#portable-build-and-mechanical-sync).
 - [Read-only cell tracer](../scripts/trace_model.py): trace selected cells in an
   existing workbook, including saved formula caches, local/cross-sheet precedents,
   nearby row labels and cell notes. It does not recalculate or infer whether a
@@ -121,20 +124,21 @@ invented numbers. They contain no issuer extracts or sector assumptions.
 From the repository root, choose new output paths to preserve existing work:
 
 ```powershell
-python skills/company-model/scripts/init_forecast_plan.py output/plan.json
-python skills/company-model/scripts/forecast_blocks.py output/plan.json --output output/compiled.json
-node skills/company-model/scripts/build_forecast_workbook.mjs output/compiled.json output/model.xlsx output/review
+python skills/company-model/scripts/model_workbook.py build output/model_spec.json output/model.xlsx --outputs output/outputs.json
+powershell -NoProfile -ExecutionPolicy Bypass -File skills/company-model/scripts/recalc_excel.ps1 -Workbook output/model.xlsx -Selector "Revenue Projection!C2" -Cases 3 -Outputs "3S!G44" -Report output/excel.json
+python skills/company-model/scripts/model_workbook.py check output/model_spec.json output/model.xlsx --report output/model-sync.json
 ```
 
-Install the tracer/test dependencies from [requirements.txt](../requirements.txt) into the active Python environment before workbook tracing or running the complete test suite.
+For a single-sheet scaffold:
 
-The compiler uses Python's standard library. The read-only tracer needs
-`openpyxl`. The workbook adapter needs `@oai/artifact-tool` in the environment's
-supported Node dependency path. Use the spreadsheet authoring workflow and its
-runtime dependency setup; do not install or alter packages inside this skill.
-No helper refreshes external data or executes workbook macros. Existing workbook
-edits require the preservation and compatible-engine workflow in
-[workbook-profile.md](workbook-profile.md).
+```powershell
+python skills/company-model/scripts/init_forecast_plan.py output/plan.json
+python skills/company-model/scripts/forecast_blocks.py output/plan.json --output output/compiled.json
+python skills/company-model/scripts/forecast_workbook.py build output/plan.json output/model.xlsx --compiled output/compiled.json
+python skills/company-model/scripts/forecast_workbook.py check output/plan.json output/model.xlsx
+```
+
+The compiler uses the Python standard library; the portable writer/checker and tracer use the dependencies in [requirements.txt](../requirements.txt), without a proprietary runtime. The portable evaluator recalculates only the documented arithmetic grammar; it is not a general Excel engine. Existing complex workbooks require a compatible engine and the [preservation workflow](workbook-profile.md). No helper refreshes external data or runs macros.
 
 For a numerical sensitivity, set a forecast foundation in a separate run:
 
@@ -145,7 +149,7 @@ python skills/company-model/scripts/trace_model.py output/existing.xlsx --cell "
 
 Expressions support named rows, `+`, `-`, `*`, `/`, parentheses, unary signs and
 `lag(row_id)` for one prior period. They are parsed, never executed as Python.
-Declare an independent input under `values` by period. A `formula` supplies
+Declare an independent input under `values` by period. Put its basis once in `basis.default` (source for actuals, rationale for forecasts), with optional `basis.periods` overrides; a distinct source or assumption merits a distinct basis, not boilerplate for every cell. A `formula` supplies
 calculated periods; a historical value can anchor the first period of a
 roll-forward. An explicit forecast value on a calculated row is reported as an
 override needing explanation. Formulas can encode assumptions too; explain their

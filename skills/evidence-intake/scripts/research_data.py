@@ -13,7 +13,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode, urlsplit
+from urllib.parse import urlencode, urlsplit, quote, quote_plus
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -66,7 +66,7 @@ def catalog_request(args, key):
         endpoint = endpoint.replace("{" + name + "}", value)
     base = {"alphapai": "https://open-api.rabyte.cn", "alphavantage": "https://www.alphavantage.co",
             "api-ninjas": "https://api.api-ninjas.com", "massive": "https://api.massive.com"}[args.provider]
-    headers = {"User-Agent": "PipResearch/1.0", "Accept": "application/json"}
+    headers = {"User-Agent": "FundamentalResearch/1.0", "Accept": "application/json"}
     public_values = dict(values)
     for name in entry.get("path_parameters", []): values.pop(name, None)
     body = None
@@ -106,15 +106,16 @@ def credentials(path: Path) -> dict[str, str]:
 
 def redact(value, secrets):
     if isinstance(value, dict):
-        return {k: "[REDACTED]" if k.lower() in SECRET_FIELDS else redact(v, secrets)
+        return {k: "[REDACTED]" if k.lower() in SECRET_FIELDS - {"key", "token"} else redact(v, secrets)
                 for k, v in value.items()}
     if isinstance(value, list):
         return [redact(v, secrets) for v in value]
     if isinstance(value, str):
         for secret in secrets:
             if secret:
-                value = value.replace(secret, "[REDACTED]")
-        return re.sub(r"(?i)([?&](?:apikey|api_key|token)=)[^&\s\"<>]+", r"\1[REDACTED]", value)
+                for encoded in {secret, quote(secret, safe=''), quote_plus(secret)}:
+                    value = value.replace(encoded, "[REDACTED]")
+        return re.sub(r"(?i)([?&](?:apikey|api_key)=)[^&\s\"<>]+", r"\1[REDACTED]", value)
     return value
 
 
@@ -200,7 +201,7 @@ def build_request(args, key):
     catalog = catalog_request(args, key)
     if catalog is not None: return catalog
     provider, operation = args.provider, args.operation
-    headers = {"User-Agent": "PipResearch/1.0", "Accept": "application/json"}
+    headers = {"User-Agent": "FundamentalResearch/1.0", "Accept": "application/json"}
     params, body = {}, None
     symbol = args.symbol
     if provider == "alphapai":
@@ -278,7 +279,8 @@ def fetch(args):
         raw, status = error.read(MAX_BYTES + 1), error.code
     except (URLError, TimeoutError, OSError) as error:
         return {"provider": args.provider, "operation": args.operation, "status": "network_error", "error_type": type(error).__name__}
-    if len(raw) > MAX_BYTES: raise ValueError("Response exceeds the bounded retrieval size; narrow the query")
+    if len(raw) > MAX_BYTES:
+        return {"provider": args.provider, "operation": args.operation, "status": "response_too_large", "http_status": status, "message": "Response exceeds bounded retrieval size; narrow the query"}
     text = raw.decode("utf-8-sig", errors="replace")
     document_text = False
     try:

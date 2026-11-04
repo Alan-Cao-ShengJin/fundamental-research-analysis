@@ -124,16 +124,13 @@ completeness. A full company model still requires appropriate history, other
 material activities, statements/capital, cash, shares and valuation. No Excel
 files or source-collection jobs are created merely by reading a sector card.
 
-## Integration boundaries and attribution
+## Integration boundaries
 
-These condensed English references adapt selected ideas from
-[rollingSirius/equity-research-skill at the reviewed commit](https://github.com/rollingSirius/equity-research-skill/tree/3d94e64ff53b325d866ea4bff69ad81a5adca8f5).
-See [licence and adaptation notice](NOTICE.txt). Upstream issuer examples and
-forecast figures were not copied. Formula conventions were reviewed rather than
-assumed correct; ratios, units and double-counting still need task-specific checks.
+Formula conventions still need task-specific checks of ratios, units and double counting.
 
-Our existing specialists retain responsibility for source access, financial
+The other specialists retain responsibility for source access, financial
 quality/governance, valuation, decision thresholds, portfolio sizing, reports
 and monitoring. The house workbook, initiation/update distinction and user
-output preferences continue to apply. No upstream mandatory PDF/report length,
-valuation-method quota, rating band, score veto or Kelly sizing rule is adopted.
+output preferences continue to apply.
+
+Adaptation credit and licence: [notice](NOTICE.txt).

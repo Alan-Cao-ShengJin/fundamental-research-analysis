@@ -2,7 +2,7 @@
 name: macro-event-analysis
 description: Assess macro regimes and events, sector preferences, topical narratives and their effects on company economics and repricing. Use for policy/rate/geopolitical shocks and company market-context analysis; retain investor access and liquidity as supporting checks when material.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Macro event analysis
@@ -19,7 +19,7 @@ For a request about sector leadership or rotation, use the [multi-window rotatio
 2. **Transmission.** Trace shock → policy/business response → growth/inflation/cash flow or discount rate → asset pricing. Mark direction, horizon, lag, feedback and dampening/amplifying mechanisms. Consider how starting valuations and existing expectations alter the effect. Avoid mechanical claims such as every rate cut helping every equity market.
 3. **Historical analogues.** Select comparable episodes by mechanism and initial conditions, including contrary outcomes. Define event timestamp, return windows, instruments, currency, price versus total return and a benchmark. Report data availability and material differences; do not invent returns when historical data is absent.
 4. **Scenarios.** Describe a central path and plausible alternatives, using observable conditions and time horizons. Define what favourable/adverse means for the named assets. Probability weights are optional subjective assumptions unless calibrated; explain their basis, sum them to one when used and show sensitivity. Distinguish absolute asset direction from performance relative to a benchmark.
-5. **External implementation handoff.** If requested, retain the supported company transmission and scenario results for an external portfolio/instrument workflow. This bundle does not supply position sizing, strategy testing or execution; see [scope boundaries](../research-cycle/references/scope-boundary.md).
+5. **Trade expressions.** When implementation is requested, propose candidate instrument/direction, entry conditions, horizon, costs/carry, liquidity, sizing policy and exit rules. Verify instrument availability. Without a mandate, holdings and risk inputs, leave weights unsized. Use [strategy testing (external workflow)](../research-cycle/references/scope-boundary.md) and [portfolio review (external workflow)](../research-cycle/references/scope-boundary.md) before treating a macro view as an implementable candidate.
 6. **Invalidation.** State measurable observations that would break a causal link or change a scenario, with the next review action. Separate thesis invalidation, time expiry and a proposed price stop; a stop does not guarantee an execution price or cap loss through gaps.
 
 ## Deliverable and routing

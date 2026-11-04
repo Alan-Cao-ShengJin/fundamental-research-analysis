@@ -35,11 +35,7 @@ an assumption: test it against new products, backlog, capacity, customer wins an
 management's latest explanation of growth. Replace unsupported split precision
 with an explicit allocation range and a research question.
 
-Examine the cost leverage implied by the build. A fixed expense base plus wage
-inflation also assumes headcount, engineering workload, distribution/service
-capacity and restructuring requirements. Explain these alongside revenue growth,
-capacity investment and cost history. Do not switch automatically to a constant
-revenue ratio; choose the driver whose economics can be supported.
+Test implied cost leverage against the [statement-forecast guidance](statement-forecast.md); neither a fixed expense base nor a constant revenue ratio is automatically valid.
 
 Normalise cash-flow classifications before assessing conversion. Show gross debt
 and cash together, alongside a consistently defined net-debt measure. More
@@ -56,14 +52,7 @@ Separate validated policy applicability, timing and pass-through from a broker's
 illustrative sensitivity. A sensitivity shown next to unchanged forecasts is not
 proof that the effect was included in the active model.
 
-Before accepting a redesigned forecast, test whether its component economics
-explain the latest observed profit/loss and mix on a matching basis. A historical
-reconciliation is useful accounting disclosure, not evidence that forward margins
-or costs are calibrated. For a material loss-making operation, establish how gross
-profit and local expenses/stranded costs produce the available loss observation;
-if the observation is only net profit, do not compare it directly with gross profit.
-Label what remains unallocated. Forecast quarter-end step changes require an
-identifiable demand, margin or cost mechanism, not only clean arithmetic.
+Test changed component economics against comparable historical results and support any forecast step change with an operating mechanism.
 
 Use the findings to make narrow, general improvements. Keep issuer-specific
 numbers and source content in the research project. If a correction invalidates

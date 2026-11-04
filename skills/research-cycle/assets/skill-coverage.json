@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "modes": {
     "initiation": "new-company-research",
     "regular": "company-regular-review",
@@ -137,15 +137,6 @@
       "purpose": "Universe discovery, financial/peer triage or value-chain candidate selection.",
       "trigger": "The request needs discovery, a shortlist or candidate comparison; researching a named stock does not itself require a universe screen."
     },
-    "management-questions": {
-      "modes": {
-        "initiation": "conditional",
-        "regular": "conditional",
-        "major": "conditional"
-      },
-      "purpose": "Answerable questions linked to unresolved material assumptions, prior answers and verification.",
-      "trigger": "An unanswered issuer question can change the decision after checking available evidence; drafting does not authorize contact."
-    },
     "chart-visualization": {
       "modes": {
         "initiation": "conditional",
@@ -154,6 +145,23 @@
       },
       "purpose": "Data-linked, consistently themed research charts and explanatory diagrams.",
       "trigger": "The requested deliverable contains charts or diagrams; a concise text-only update need not manufacture a visual."
+    },
+    "issuer-questions": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Answerable questions linked to unresolved material assumptions, prior answers and verification.",
+      "trigger": "An unanswered issuer question can change the decision after checking available evidence; drafting does not authorize contact."
+    },
+    "industry-analysis": {
+      "modes": {
+        "initiation": "required",
+        "regular": "required",
+        "major": "required"
+      },
+      "purpose": "Establish industry economics before operating forecasts and refresh decision-relevant indicators in every review; reuse unaffected dated analysis with current evidence checks."
     }
   }
 }

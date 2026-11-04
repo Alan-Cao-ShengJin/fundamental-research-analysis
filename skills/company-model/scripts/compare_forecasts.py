@@ -63,8 +63,8 @@ def additive_bridge(left,right,total_id,components,period,tolerance=1e-6):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('left',type=Path);p.add_argument('right',type=Path);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-    result=compare_snapshots(json.loads(a.left.read_text()),json.loads(a.right.read_text()))
-    a.out.write_text(json.dumps(result,indent=2),encoding='utf-8')
+    result=compare_snapshots(json.loads(a.left.read_text(encoding="utf-8-sig")),json.loads(a.right.read_text(encoding="utf-8-sig")))
+    a.out.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({'out':str(a.out),'comparable':sum(r['status']=='comparable' for r in result['rows']),'excluded':sum(r['status']!='comparable' for r in result['rows'])}))
 
 if __name__=='__main__':main()

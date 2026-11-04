@@ -2,14 +2,14 @@
 name: investment-conviction
 description: Build and maintain an evidence-based reason to stay invested through price volatility or to avoid a company despite apparent cheapness. Use when establishing the pivotal investment belief, reviewing a wavering thesis, testing persistent governance exclusions or updating conviction against new evidence. This supports research conclusions, not automatic sizing or trading.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Investment conviction
 
 State the particular belief that makes this investment worth owning, or the particular reason it remains unacceptable. Preserve that belief across reviews while testing whether its evidence and economic consequences still hold. Conviction means consistency with the evidence and stated principles, not loyalty to the original forecast, target or recommendation.
 
-Use within the governing [research modes](../research-cycle/references/request-routing.md). The current mandate plans investments for at least one year unless the user specifies another scope. Record the actual intended horizon and milestone dates; a year is neither a promise of market convergence nor a minimum holding period after the case breaks.
+Use within the governing [research modes](../research-cycle/references/request-routing.md). The default investment horizon is at least one year unless the mandate specifies another. Record the actual intended horizon and milestone dates; a year is neither a promise of market convergence nor a minimum holding period after the case breaks.
 
 ## Establish the anchor
 
@@ -50,4 +50,4 @@ Return the primary anchor and consequence, evidence assessment, contrary case, c
 
 [Investment conclusion](../investment-conclusion/SKILL.md) retains ownership of the target, Buy/Hold/Sell and attractiveness rules. An investment exclusion is a separate **do-not-invest** disposition; it does not mechanically force Sell or authorize shorting. Revise a target that ignores material governance damage; where essentials cannot be valued, keep valuation incomplete rather than inventing a number. If a defensible numerical rating and an exclusion coexist, state both plainly so a mechanical Buy cannot be mistaken for permission to invest. Portfolio sizing and trading remain downstream; conviction never implies averaging down, leverage or an order.
 
-This skill supplies a disciplined process and durable case memory. It does not create lived investment experience or calibrated predictive skill. Learn through matched, dated cases over time, including mistakes, false exclusions and unobserved outcomes. See [research basis and limits](references/research-basis.md) for the sources informing the process and its limits.
+Use matched, dated outcomes, including mistakes and false exclusions, to improve calibration over time. Research context: [evidence-based conviction](references/research-basis.md).

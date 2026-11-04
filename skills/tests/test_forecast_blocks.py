@@ -30,7 +30,18 @@ class ForecastBlocksTests(unittest.TestCase):
         self.assertIn('missing_value',{f['code'] for f in compiled['findings']})
         self.assertIn('missing_basis',{f['code'] for f in compiled['findings']})
         formula=next(c['formula'] for r in compiled['rows'] if r['id']=='a_revenue' for c in r['cells'] if c['period']=='P1')
-        self.assertIn('COUNT(',formula);self.assertIn('NA()',formula)
+        self.assertEqual(formula,'=(E9*E10)') # readable arithmetic; export validates missing inputs
+
+    def test_row_level_basis_is_inherited_and_period_overrides_remain_local(self):
+        plan=initializer.make_plan(True)
+        n=plan['blocks'][0]['nodes'][0]
+        n['basis']={'default':{'source':'Synthetic historical source','rationale':'Synthetic calibrated activity'},
+                    'periods':{'P2':{'rationale':'Alternative late-period estimate'}}}
+        built=compiler.compile_plan(plan)
+        self.assertFalse(any(f['code']=='missing_basis' and f['node']==n['id'] for f in built['findings']))
+        cells=next(row['cells'] for row in built['rows'] if row['id']==n['id'])
+        self.assertEqual(cells[1]['basis']['rationale'],'Synthetic calibrated activity')
+        self.assertEqual(cells[2]['basis']['rationale'],'Alternative late-period estimate')
 
     def test_lagged_roll_forward_uses_prior_period_without_a_false_cycle(self):
         plan=initializer.make_plan(True)

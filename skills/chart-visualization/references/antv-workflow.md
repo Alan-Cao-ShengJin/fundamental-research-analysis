@@ -1,6 +1,6 @@
 # AntV implementation workflow
 
-Adapted from [AntV Chart Visualization Skills](https://github.com/antvis/chart-visualization-skills/tree/a105fa12a9fa41fccccc2eba7f4b34973628f5d3/skills), Copyright (c) 2025 AntV Visualization Team, [MIT licensed](https://github.com/antvis/chart-visualization-skills/blob/a105fa12a9fa41fccccc2eba7f4b34973628f5d3/LICENSE). Use the selected upstream library guidance with the house theme and financial-data rules in this skill. The upstream default palette and decorative templates do not override the report style.
+Use the AntV library guidance with the house theme and financial-data rules in this skill. AntV's default palette and decorative templates do not override the report style.
 
 ## Select the implementation
 
@@ -10,7 +10,7 @@ Adapted from [AntV Chart Visualization Skills](https://github.com/antvis/chart-v
 
 Check the project's available packages before adding a dependency. When a library is used, retain its exact version and any local bundle needed to reproduce the figure. Verify current APIs against the relevant official library documentation when implementing unfamiliar features. Do not rely on a moving `latest` CDN URL for a final report.
 
-Local G2 rendering is the normal report path. The upstream chart-image HTTP API is an optional hosted-image route, not a required service or a replacement for the shared theme. Do not make offline reports depend on an expiring returned URL.
+Local G2 rendering is the normal report path. The AntV chart-image HTTP API is an optional hosted-image route, not a required service or a replacement for the shared theme. Do not make offline reports depend on an expiring returned URL.
 
 ## Prepare a chart specification
 

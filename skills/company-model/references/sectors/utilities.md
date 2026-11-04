@@ -13,7 +13,7 @@ differ.
 ## Operating build
 
 The regulated asset base used to set allowed returns rolls approved eligible additions,
-depreciation, retirements and disallowances. Equity return uses the relevant average
+depreciation, disallowances and net book value of disposals, plus jurisdiction-specific ADIT/CWIP adjustments. Do not subtract gross retired cost again after its accumulated depreciation has been removed. Equity return uses the relevant average
 rate base × equity share × allowed return on equity (ROE), then earned-versus-allowed
 differences and lag.
 
@@ -42,10 +42,14 @@ Test project overruns, recovery, funding dilution and customer affordability tog
 Use cash-flow, dividend-capacity or sum-of-the-parts methods suited to each jurisdiction
 and project without treating merchant exposure as regulated earnings.
 
+Compare P/E against sustainable rate-base growth and funded EPS growth; use EV/RAB where the debt, regulatory and asset boundaries match.
+
+Rate-base accounting follows local regulation; see [FERC retirement accounting](https://www.ferc.gov/accounting-questions-and-answers).
+
 ## Worked example
 
 An opening regulated asset base of 100 plus 20 approved additions less 5 depreciation
-and 2 retirements closes at 113. An illustrative average of 106.5 with a 50% equity
+and 2 of net book disposals closes at 113. An illustrative average of 106.5 with a 50% equity
 share earns 5.325 at 10% allowed ROE, but only 4.7925 at 9% earned ROE.
 
 All figures are invented. They illustrate selected relationships, not an issuer

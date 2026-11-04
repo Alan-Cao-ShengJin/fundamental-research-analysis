@@ -1,4 +1,30 @@
-# Research skill coherence audit - 2 November 2026
+# Research skill verification - 4 November 2026
+
+This section records the version **2.1.0** export. The earlier 2.0.0 audit below is historical and its skill counts, invocation names and test totals do not describe the current release.
+
+## Current scope and changes
+
+The maintained workspace has 22 skills and 14 flows. This standalone company-research export has **19 skills and 11 flows**, including the new industry-analysis role and twenty sector activity guides. Portfolio allocation, risk-budget and cross-asset strategy extensions remain outside this repository. The issuer-question skill now uses the workspace's `issuer-questions` invocation; the former handoff kind remains accepted for compatibility.
+
+Imported the current instructions, references, generic scripts, original synthetic assets and deterministic tests. Updates cover industry economics before forecasts and during reviews; integrated workbook construction and synchronization; current-forward earnings and own-versus-consensus P/E comparisons; target underwriting; evidence handling and source access limits; investor judgment; and drivers-first, selective investment writing and calibration.
+
+Preserved the public repository's coverage planner/checker, CI, global data-planning documents, scope boundary and pinned third-party licences. Updated coverage for industry analysis and the renamed question skill. Removed an orphan dependency on an excluded strategy-testing stage. An additional regression verifies that industry work cannot be skipped in any of the three company modes. No issuer forecasts, private workbooks, broker reports, credentials or live provider responses are supplied.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Clean dependency installation | `npm ci --ignore-scripts` passed in an isolated publication checkout |
+| Skill entry validation | All 19 entry points passed `quick_validate.py` |
+| Bundle structure | 19 skills, 11 flows; local links, catalog, coverage and handoff schema checked |
+| JavaScript tests | 65 passed across five test files |
+| Python unittest suite | 80 passed, including coverage planning and workbook/forecast helpers |
+
+The file manifest records the supplied file set and hashes. Its own bytes are excluded from its hash list to avoid self-reference. Credential-pattern and private-path screening is a bounded publication check, not forensic assurance. Workbook test results refer to synthetic fixtures, not recalculated issuer forecasts.
+
+These checks establish structural consistency and tested deterministic behavior. No independent live-agent behavioral test, native Excel rendering run, forecast-accuracy study or investment-performance evaluation was performed for this export. Authored behavioral cases are evaluation material, not evidence of executed evaluation. No subscriptions, active monitors, dispatch service or trading capability are introduced.
+
+## Historical audit: version 2.0.0, 2 November 2026
 
 Version 2.0.0 removes the application-specific prefix from maintained skill identities, folders, sibling links, imports, catalog references, tests and visual-theme identity. Historical names remain only in migration documentation and unchanged provenance records. This audit concerns instruction and deterministic-tool coherence; it does not establish investment performance or source truth.
 

@@ -15,6 +15,8 @@ The optional weights preserve a consistent six-dimension comparison. Score each 
 | Shareholder returns | 10% | Sustainable distributions or well-supported reinvestment that increases per-share value | Unproductive cash retention, poorly funded payouts or buybacks overwhelmed by unexplained dilution |
 | Strategy and capital allocation | 15% | Disciplined investment, accountable acquisition outcomes and financing matched to returns | Repeated value-destructive expansion, unsupported rescue financing or controller-serving allocation |
 
+Score each event once in its primary dimension: reporting misstatement in Disclosure and conduct; a separately evidenced oversight failure in Board oversight; distribution policy in Shareholder returns; investment/acquisition decisions in Capital allocation; voting structure in Ownership and rights; discriminatory transactions in Treatment of outside shareholders. Cross-reference secondary effects without a second penalty for the same event. Distinct evidenced failures can be assessed separately.
+
 An insider sale, ownership category, low dividend, litigation allegation or volatile stock price does not determine a score. Consider context, materiality, remediation and alternative explanations. Retaining cash to satisfy regulated capital or fund attractive reinvestment can serve shareholders.
 
 ## Coverage and comparison

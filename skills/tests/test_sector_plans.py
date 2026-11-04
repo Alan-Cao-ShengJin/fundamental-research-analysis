@@ -23,6 +23,15 @@ class SectorPlansTests(unittest.TestCase):
         p=plans.make_plan('transport',True);changed=compiler.perturb(p,'load_factor','P1',.5)
         self.assertAlmostEqual(value(changed,'passenger_revenue'),5000000)
         self.assertAlmostEqual(value(changed,'passenger_revenue'),value(changed,'rask_revenue_check'))
+    def test_benchmark_hedges_preserve_location_differential_on_all_barrels(self):
+        plan=plans.make_plan('energy',True)
+        self.assertEqual(value(compiler.perturb(plan,'hedged_share','P1',0),'realisation'),65)
+        self.assertEqual(value(compiler.perturb(plan,'hedged_share','P1',1),'realisation'),55)
+        self.assertEqual(value(compiler.compile_plan(plan),'realisation'),63)
+    def test_rate_base_subtracts_net_book_disposals_not_gross_retired_cost(self):
+        plan=plans.make_plan('utilities',True)
+        self.assertEqual(value(compiler.perturb(plan,'net_book_disposals','P1',0),'rate_base_close'),115)
+        self.assertEqual(value(compiler.perturb(plan,'disallowances','P1',3),'rate_base_close'),110)
     def test_bank_gross_chargeoffs_and_recoveries_affect_allowance_once(self):
         p=plans.make_plan('banks',True);changed=compiler.perturb(p,'recoveries','P1',3)
         self.assertAlmostEqual(value(changed,'allowance_close'),22)

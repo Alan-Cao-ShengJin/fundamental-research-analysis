@@ -1,8 +1,8 @@
 ---
-name: management-questions
+name: issuer-questions
 description: Draft decision-sensitive issuer or IR questions from unresolved research assumptions, checked against available disclosures and prior answers. Use for meeting preparation or targeted follow-up gaps; drafting does not authorise outreach.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Management and issuer questions
@@ -24,5 +24,3 @@ Return a short table: unresolved issue; what is already known; question; current
 Preserve existing user-authored call notes and uncertainty. Replace a workbook tab only within the requested scope and with the [workbook preservation checks](../company-model/references/workbook-profile.md). The host's communication permissions apply: generating this list does not send it to anyone.
 
 Route answers back to evidence intake and the affected forecasts/valuation/portfolio artifacts. If contact is unavailable, research alternative sources or keep the dependent assumption unresolved while other work continues.
-
-Follow the [underwriting standard](../research-cycle/references/underwriting-standard.md) for a decision-and-delivery ledger: link each material question to an assumption ID, break-even/sensitivity, existing management commitment and public verification test. Preserve answer/date/source, follow-up milestone and subsequent delivery. A reassuring answer does not close an issue until evidence supports the model treatment; retain unanswered or untestable items and their readiness effect.

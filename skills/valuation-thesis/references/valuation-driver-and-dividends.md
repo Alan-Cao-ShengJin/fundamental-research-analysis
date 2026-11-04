@@ -19,7 +19,7 @@ Separate these measures:
 
 - **Earnings-year payout:** dividends attributable to the fiscal year divided by net profit attributable to shareholders for that year. Show special dividends separately. Do not divide calendar cash paid by the same year's earnings if payments include an earlier year's final dividend.
 - **Annual forward yield:** forecast annual dividend per share divided by the dated share price. State the earnings year, currency, share basis and gross/net-tax treatment.
-- **Next-twelve-month receipts:** only distributions a buyer at the reference date can still receive within the target window. Exclude already-ex dividends; do not add a future final dividend paid after the target date to that horizon's total return.
+- **Next-twelve-month receipts:** only distributions a buyer at the reference date can still receive within the target window. Exclude already-ex dividends. Show receipts separately; they are never added to the target, rating or attractiveness tier.
 
 Show the dividend if the payout ratio stays at its supported level, not merely a guessed cash amount. If the policy floor differs from the latest actual payout, show both as distinct scenarios. A higher payout is upside until management intent and cash capacity support it.
 

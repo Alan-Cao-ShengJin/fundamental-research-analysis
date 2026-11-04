@@ -13,3 +13,10 @@ reports/
 
 # Independently authored reusable workbook fixture
 !skills/company-model/assets/forecast-blocks-example.xlsx
+
+# Local caches and private source material
+.pytest_cache/
+data/
+
+# Independently authored integrated-model fixture
+!skills/company-model/assets/company-model-example.xlsx

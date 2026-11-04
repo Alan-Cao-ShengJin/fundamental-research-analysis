@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 
 // Local deterministic graph helper, not a data feed, complete financial-model
 // builder, live worker, or proof that the assumptions describe the business.
-export const COMPANY_MODEL_ENGINE_VERSION = '0.1.0';
+export const COMPANY_MODEL_ENGINE_VERSION = '0.2.0';
 const id = z.string().min(1).max(160);
 const timestamp = z.iso.datetime({ offset: true });
 const Unit = z.object({ label: id, scale: z.number().positive().finite(),
@@ -116,13 +116,12 @@ export function evaluateCompanyModel(value, { scenarioId = 'base', overrides = {
           case 'subtract': result = inputs[0] - inputs[1]; break;
           case 'multiply': result = inputs.reduce((a, b) => a * b, 1); break;
           case 'divide':
-            if (inputs[1] === 0) throw new Error(`Zero denominator at ${key}.`);
-            result = inputs[0] / inputs[1]; break;
+            result = inputs[1] === 0 ? null : inputs[0] / inputs[1]; break;
           case 'min': result = Math.min(...inputs); break;
           case 'max': result = Math.max(...inputs); break;
         }
-        result /= node.unit.scale;
-        if (!Number.isFinite(result)) throw new Error(`Nonfinite result at ${key}.`);
+        if (result !== null) result /= node.unit.scale;
+        if (result !== null && !Number.isFinite(result)) throw new Error(`Nonfinite result at ${key}.`);
       }
     }
     values.set(key, result); return result;

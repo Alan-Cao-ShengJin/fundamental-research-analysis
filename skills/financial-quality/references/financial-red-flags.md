@@ -1,10 +1,10 @@
 # Financial red flags and reporting reliability
 
-Use this procedure during the early financial-quality screen, deepen triggered issues in the model audit, and revisit them during thesis validation. A focused red-flag request can use filings directly without constructing a full forecast. Adapted from the [Financial Red Flag Auditor](https://github.com/noahnan-max/financial-red-flag-auditor-skill/tree/48468c515f4045de43d13da2333292da7630aaea); see its [MIT notice](financial-red-flags-LICENSE.txt). The host's research, uncertainty, decision and short-report contracts remain authoritative.
+Use this procedure during the early financial-quality screen, deepen triggered issues in the model audit, and revisit them during thesis validation. A focused red-flag request can use filings directly without constructing a full forecast.
 
 ## Priority and evidence
 
-Treat severe governance threats to minority rights, enforceable ownership and access to value as high-priority red flags. They can invalidate an apparent bargain even when reported operating performance is strong. Reporting reliability and potential fraud are another important risk lens, normally secondary to that governance emphasis; a material cash shortfall, false asset or solvency threat can independently be decisive. These are risk-triage priorities, not fixed portfolio weights or an instruction to make every report a fraud investigation.
+Treat any evidence-supported threat to minority value — governance abuse or unreliable accounts — as high priority; either can decide the case. Assess severity, materiality and confidence rather than assigning a fixed risk hierarchy.
 
 A flag is an observation requiring judgment, not a fraud verdict. Separate reporting error, aggressive but permitted estimates, business deterioration, cash restriction, governance abuse and established misconduct. Record severity independently of confidence: a potentially catastrophic issue may remain unverified. Prefer precise risk language; attribute any established finding to the regulator, court, exchange, auditor or other specific authoritative record and preserve its scope, date, appeal and remediation status. An investigation or short-seller allegation is not a finding. Do not presume issuer filings infallible when reporting reliability is the question.
 
@@ -48,10 +48,12 @@ Distinguish four questions: does the balance exist, does the issuer own it, can 
 
 ## Keep one issue record through the workflow
 
-For every material flag, retain a stable issue ID, owner (`corporate-governance` or `financial-quality`), priority, potential loss mechanism, affected accounts/entities/periods and source locators. Add evidence status and confidence separately; business/accounting explanations and counterevidence; tests actually performed and access limits; severity rationale; model/scenario treatment; essential unresolved dependencies; next observable check; and disposition (open, bounded, resolved or reopened). Link shared root causes instead of duplicating governance and accounting deductions. These are referenced research records, not new fields in the strict handoff envelope.
+Record each material issue with evidence, plausible explanations, forecast/value effect and status. Link the same root cause across governance and financial quality to avoid duplicate charges; retain useful source locators.
 
 Before a severe conclusion, reconstruct the pivotal source/calculation, check corrected filings and plausible benign explanations, and test whether alleged issues have actually been remediated. Record the review performed; self-review is not independent assurance and no extra agent is required. Do not erase a substantive risk simply by softening its wording.
 
-Resolved issues need evidence, not management promises alone. Ordinary uncertainty can coexist with a complete, reasoned call; missing essentials preventing meaningful valuation belong in `criticalUnknowns`. A robust adverse finding can justify rejecting a Buy case without proving legal fraud. Do not invent a target or change it to force a label: preserve the existing Buy/Hold/Sell contract, including mandatory Hold inside the inclusive +/-10% target-price band when valuation is complete.
+Resolved issues need evidence, not management promises alone. Ordinary uncertainty can coexist with a complete, reasoned call; missing essentials preventing meaningful valuation belong in `criticalUnknowns`. A robust adverse finding can justify rejecting a Buy case without proving legal fraud. Do not invent a target or change it to force a label: apply the [decision contract](../../investment-conclusion/references/decision-contract.md).
 
 In the investor brief, show only decision-changing flags, their shareholder consequence and what would change the assessment. Keep the account-level evidence and test log linked as support; no mandatory scorecards, long audit report, boilerplate disclaimers or internal check counts. Preserve the full-company investment judgment.
+
+Adaptation credit: [Financial Red Flag Auditor](https://github.com/noahnan-max/financial-red-flag-auditor-skill/tree/48468c515f4045de43d13da2333292da7630aaea); retained [MIT notice](financial-red-flags-LICENSE.txt).

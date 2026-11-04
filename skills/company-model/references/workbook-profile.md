@@ -4,13 +4,30 @@ Use this reference for company forecast builds and numerical revisions, workbook
 
 ## Human review delivery contract
 
-The user's workspace preference requires a formula-driven `.xlsx` whenever building or numerically revising company forecasts. Keep code/JSON for automation when useful, but do not offer it as the sole model deliverable or merely paste its calculated outputs into Excel. An evidence-only review can link the unchanged, valid existing workbook. A later explicit user format choice takes precedence.
+Deliver a formula-driven `.xlsx` whenever building or numerically revising company forecasts. Keep code/JSON for automation when useful, but do not offer it as the sole model deliverable or merely paste its calculated outputs into Excel. An evidence-only review can link the unchanged, valid existing workbook. An explicit request for another format takes precedence.
 
 Make forecast assumptions editable, visibly distinguish actuals/derived actuals/management claims/analyst estimates, and expose their sources and rationale. Build operating revenue/costs and integrated earnings, balance sheet and cash flow with inspectable formulas and schedules for material investment, financing, shares and distributions. Link the chosen valuation to calculated forecast outputs. Use supported reporting cadence rather than inventing quarterly disclosures.
 
 For revisions, preserve the original workbook/vintage and user edits. Show material old/new assumptions and earnings, cash, funding and valuation effects. Label frozen comparisons as snapshots; changing an active assumption must recompute the live model. Never maintain two unreconciled authoritative models.
 
 Recalculate, scan errors/cycles, inspect formula caches, reconcile material outputs to the versioned agent run, and test representative assumption/case changes and missing-input behavior. Render each new sheet or affected area and inspect readability. Record the engine and any native Excel behavior that was not verified. Include sources, numerical checks and material limitations where the user can find them. A calculation-on-open setting, successful export or zero balance residual alone is insufficient.
+
+## Portable build and mechanical sync
+
+The executable forecast plan is one supported machine model; the optional JavaScript node graph is another backend, not a second required set of assumptions. Generate the machine interface and Excel from the same specification or mechanically compare **every named input and output** against the recalculated workbook. Fail on any difference; do not silently choose one representation. Model, source and run versions remain part of the research package.
+
+For a company model, write one cell specification and use [model_workbook.py](../scripts/model_workbook.py): `build` writes the styled multi-sheet workbook with a named binding for every numeric cell, `calculate` runs every case independently, and `check` compares formulas, inputs, names and saved values after [recalc_excel.ps1](../scripts/recalc_excel.ps1) has recalculated the workbook in Excel. A workbook that has not been recalculated fails the check.
+
+For a single-sheet operating scaffold, [forecast_workbook.py](../scripts/forecast_workbook.py) runs with plain Python and openpyxl. Install [requirements.txt](../requirements.txt) into the interpreter actually used (or a virtual environment); a user-site install is not visible under `python -I`:
+
+```powershell
+python skills/company-model/scripts/forecast_workbook.py build output/plan.json output/model.xlsx --compiled output/model.json
+python skills/company-model/scripts/forecast_workbook.py check output/plan.json output/model.xlsx
+```
+
+The writer assigns a stable name to every row/period cell, emits readable local formulas and recalculates the saved arithmetic with a restricted AST evaluator before persisting numeric caches. The checker compares bindings, input values, formulas, period/unit labels, recomputed results and saved values for all declared cells. It is read-only and returns a failing exit code on drift, including manual workbook changes. If the human model is edited, deliberately reconcile those edits into a new machine-model version, then rebuild and check the pair. Do not overwrite user edits to make the test pass.
+
+This evaluator supports only the forecast-block grammar, not arbitrary Excel formulas, external links, macros or native Excel features. For existing or complex models use an actual compatible engine and equivalent complete named bindings; a manual spot-check or calculation-on-open setting does not establish sync. The portable output is recalculated in the stated evaluator, with native Excel/LibreOffice behaviour unverified. A synthetic asset demonstrates the mechanism, not full company economics.
 
 ## Inspect and preserve
 

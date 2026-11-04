@@ -1,6 +1,6 @@
 # Model as an executable investment research tool
 
-The model calculates and evaluates business outcomes over time. Stable economic definitions and executable relationships support agent queries. In this workspace, company forecast builds and numerical revisions also require a formula-driven Excel model for human review, under the [workbook contract](workbook-profile.md). The machine interface and human workbook must reconcile to the same versioned assumptions and results.
+The model calculates and evaluates business outcomes over time. Stable economic definitions and executable relationships support machine queries. The workbook and agent interface are equally required and mechanically synchronized under the [workbook contract](workbook-profile.md).
 
 ## What the agent must be able to do
 
@@ -59,6 +59,6 @@ The [example](agent-model-example.json) and [scenario](agent-model-scenario.json
 
 The helper evaluates a supplied graph; it does not import workbooks, retrieve evidence, persist runs or activate autonomous updates. Its `calculated` status means arithmetic ran, not that the model is financially complete or decision-ready. Supply issuer-specific statements, schedules, assumptions and appropriate valuation methods separately.
 
-## Communication
+## Backends
 
-Default user output is the decision, what changed, why it matters, material uncertainty and what the agent will review next. Keep the full model, evidence and explanations available for inspection. Human reading time is not a dependency for routine authorised model maintenance; external actions still follow the actual mandate and execution controls.
+The [forecast-block plan](foundational-builds.md#generic-tools-and-clean-assets) is a portable executable backend. Its writer/checker generates and validates the human and machine views from one specification; use the same principle for another chosen backend. Do not maintain both graph and forecast-plan assumptions independently.

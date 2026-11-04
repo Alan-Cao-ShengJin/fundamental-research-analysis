@@ -6,9 +6,7 @@ Establish model identity, reporting definitions and a calculation backend before
 
 Start with the [agent-model contract](agent-model.md): stable metric/period IDs, evidence and assumptions, executable dependencies, versioned runs and checks. Choose an available backend that can actually recalculate the issuer model. It can initially be Excel plus a semantic map; the agent need not navigate the human presentation to query inputs/outputs. A code-based economic model is also valid. Preserve an auditable mapping when importing a workbook.
 
-- Existing company: identify the user's working model, rather than a broker model, volume tracker, scratch file or a filename containing the company name. Keep the original and create a dated working version.
-- New company: choose a model structure appropriate to its economics and reporting. If using a template, review its account definitions, periods, currencies, formulas and external dependencies before populating it.
-- For company forecast builds and numerical revisions in this workspace, deliver both a usable executable economic model and a human-auditable formula-driven Excel workbook with linked IS/CF/BS and valuation inputs. They may be the same calculation backend or reconciled representations. A report, inert JSON table, static workbook output dump or standalone EPS forecast does not complete this stage. A scoped question can query a current model without rebuilding it.
+- Follow the [workbook contract](workbook-profile.md) for the synchronized human and machine interfaces. A scoped query can reuse a current model without rebuilding it.
 
 Resolve missing inputs and material formula errors before declaring a model ready. Do not suppress undefined ratios or missing data by returning zero.
 
@@ -46,4 +44,4 @@ The inspector samples formulas and numeric inputs across all sheets and reports 
 
 Read [workbook-profile.md](workbook-profile.md) before editing. Open/lock and fingerprint checks protect intervening user changes. Structural inspection does not require external-data refresh or macro execution. Choose a compatible writer and calculation engine based on actual workbook features.
 
-Setup is complete when the baseline/version, period/metric and dependency maps, operating-build pattern, backend/query interface and evidence/change records are established. For an imported workbook also record its working copy and preservation plan. Setup does not mean the model is populated, calculated or reconciled.
+Setup is complete when the model version, period/metric map, dependencies and calculation backend exist, and, for an imported workbook, its working copy and preservation plan. Setup does not mean the model is populated, calculated or reconciled.

@@ -17,6 +17,8 @@ contribution; show prior-year reserve development separately. Life: bridge new b
 expenses, guarantees and investment spread, and reconcile the contractual service margin
 (CSM) and embedded-value movements using the actual framework.
 
+P&C investment income = average invested assets × book yield; distinguish recurring yield from realised gains and asset revaluations. Report the combined ratio (matching loss and expense ratios) beside investment income so float economics are visible.
+
 Health: average members × net premium with utilisation/severity-driven claims. Brokerage
 uses eligible premium × commission plus fees.
 
@@ -40,6 +42,8 @@ valuation framework.
 Use earnings, book value, residual income or business-value methods on a consistent
 basis and stress asset/liability economics; group solvency does not prove subsidiary
 capital is distributable.
+
+Use P/B against sustainable ROE and cost of equity, checking reserve quality, capital adequacy and remittance constraints.
 
 ## Worked example
 

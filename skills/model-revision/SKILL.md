@@ -2,7 +2,7 @@
 name: model-revision
 description: Update existing stock research in regular-review or major earnings/catalyst mode. Regular reviews preserve operating forecasts unless concrete new evidence warrants revision; major updates compare prior assumptions with disclosures and recalibrate affected forecasts. Use stock-initiation for first coverage.
 metadata:
-  version: 2.0.0
+  version: 2.2.0
 ---
 
 # Revise an existing stock model
@@ -13,13 +13,11 @@ Read [revision workflow](references/revision-workflow.md) for baseline eligibili
 
 ## Choose the update mode first
 
-Use the chosen regular/major mode's [coverage plan](../research-cycle/references/research-coverage.md). Check whether inherited governance, financial-quality and model artifacts remain eligible; reference unaffected work and reopen invalidated dependencies. Explicitly consider change tracking, relevant context, management questions, visuals and follow-up. Numerical forecast changes in a regular review need the targeted risk/calculation/audit/downstream record even though the default regular route reuses the model.
-
 Follow the governing [request routing](../research-cycle/references/request-routing.md). Both modes start with the previous research/model, rather than another initiation.
 
 Retrieve the original/latest [conviction record](../investment-conviction/SKILL.md) with that baseline. In either mode, separate evidence about its decisive proposition from changed estimates, value, price-based rating and investment eligibility. In major updates, evaluate its expected observations alongside the frozen forecast before replacing estimates; retain original deadlines and the reason for any changed belief. A broken anchor requires prompt reassessment, even between earnings; an intact anchor does not freeze the numbers or waive another essential risk.
 
-- **Regular review:** retain operating assumptions by default; check intervening disclosures and concrete data pipelines. Refresh price, valuation and prospective return on the existing forecast. Price movement alone changes return to target, not operating estimates or fair value. Any supported assumption or valuation change needs its own evidence and attribution; targeted forecast changes reopen calculation and audit work.
+- **Regular review:** retain operating assumptions by default; check intervening disclosures, concrete data pipelines and the industry indicators from the last [industry analysis](../industry-analysis/SKILL.md). Refresh price, valuation and prospective return on the existing forecast. Price movement alone changes return to target, not operating estimates or fair value. Any supported assumption or valuation change needs its own evidence and attribution; targeted forecast changes reopen calculation and audit work.
 - **Major earnings/catalyst update:** preserve pre-event forecasts before entering new actuals, reconcile official disclosures/calls, evaluate which assumptions held or missed and why, then recalibrate affected subsequent forecasts and the decision. A catalyst may require an event-impact bridge without new period actuals. An unchanged future forecast is valid after this evaluation.
 
 Escalate a regular review when material evidence changes the economics or thesis. State the chosen mode and reason; the presence of a new transcript alone does not require a full rebuild.
@@ -29,6 +27,7 @@ Escalate a regular review when material evidence changes the economics or thesis
 | Work | Main specialist | Revision focus |
 | --- | --- | --- |
 | Compare evidence | [Evidence intake](../evidence-intake/SKILL.md), [change tracking](../company-change-tracking/SKILL.md) | Definitions, dates, restatements, guidance/actuals, conflicts and forecast surprises |
+| Refresh the industry view | [Industry analysis](../industry-analysis/SKILL.md) | Indicator changes, new entrants or barrier shifts, input-cost and customer-behaviour changes, and the assumptions they reopen |
 | Update economics | [Company model](../company-model/SKILL.md) | Affected drivers and linked statements; preserve useful structure, formulas and user edits |
 | Check changed risks | [Financial quality](../financial-quality/SKILL.md); [governance](../corporate-governance/SKILL.md) when affected | Carry reviewed issues forward; assess new exposures and invalid foundations |
 | Reassess decision | [Valuation](../valuation-thesis/SKILL.md), [challenge](../research-challenge/SKILL.md), [conclusion](../investment-conclusion/SKILL.md) | Explain target/payoff changes and test the new assumptions without defending the old call |

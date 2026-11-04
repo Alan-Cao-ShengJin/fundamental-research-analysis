@@ -1,0 +1,33 @@
+{
+  "synthetic": true,
+  "purpose": "Cross-sector reasoning and P/E-basis calibration; not an issuer forecast or required template",
+  "operatingInputs": {
+    "priorUnits": 100,
+    "forecastUnits": 110,
+    "pricePerUnit": 10,
+    "priorGrossMargin": 0.40,
+    "forecastGrossMargin": 0.36,
+    "forecastOperatingExpense": 83.5,
+    "taxRate": 0.20,
+    "dilutedShares": 50
+  },
+  "evidence": {
+    "costOutlook": "Synthetic supplier quotations support the forecast gross margin; contract repricing could offset part of the increase, but implementation remains uncertain.",
+    "competitivePosition": "Aggregate market share is stable. No customer-by-customer retention or contractual price-recovery evidence is supplied.",
+    "historicalAnchor": "Synthetic source reports a comparable current-forward P/E mean of24x in the relevant normal operating regime. This is a supplied benchmark, not a reconstructed series.",
+    "consensusScope": "A matched dated forecast snapshot supplies EPS6.25. Detailed broker driver models are unavailable, so precise driver-by-driver attribution of the forecast gap is unsupported."
+  },
+  "comparison": {
+    "price": 100,
+    "currency": "USD",
+    "targetPE": 24,
+    "ourForecast": {
+      "eps": 5,
+      "basis": {"currency": "USD", "periodStart": "2027-01-01", "periodEnd": "2027-12-31", "earningsDefinition": "reported_attributable_profit", "shareBasis": "diluted"}
+    },
+    "consensusForecast": {
+      "eps": 6.25,
+      "basis": {"currency": "USD", "periodStart": "2027-01-01", "periodEnd": "2027-12-31", "earningsDefinition": "reported_attributable_profit", "shareBasis": "diluted"}
+    }
+  }
+}

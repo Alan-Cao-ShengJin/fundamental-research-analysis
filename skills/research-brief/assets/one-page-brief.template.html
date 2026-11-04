@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@@TITLE@@</title>
+<style>
+@page{size:A4 portrait;margin:14mm}
+*{box-sizing:border-box}
+:root{--ink:#142B43;--text:#263646;--muted:#667381;--rule:#DCE3E8;--accent:#146B71;--soft:#f1f6f5}
+html,body{margin:0;padding:0}
+body{background:#e9eef0;color:var(--text);font-family:'Segoe UI',Arial,sans-serif;font-size:10.8pt;line-height:1.4;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.brief-page{width:210mm;min-height:297mm;margin:24px auto;padding:14mm;background:#fff;box-shadow:0 5px 26px #182f4210}
+.brief-content{width:100%}
+.masthead{display:flex;justify-content:space-between;align-items:start;gap:8mm;padding-bottom:4mm;border-bottom:.6pt solid var(--rule)}
+.eyebrow{font-size:8pt;font-weight:700;letter-spacing:1.5pt;text-transform:uppercase;color:var(--accent);margin-bottom:2mm}
+h1{font-size:25pt;line-height:1.08;letter-spacing:-.6pt;font-weight:700;color:var(--ink);margin:0 0 1.5mm}
+.identity,.dateline{font-size:8.5pt;line-height:1.35;color:var(--muted)}.dateline{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2mm}
+.rating{display:inline-block;color:@@RATING_COLOR@@;background:color-mix(in srgb,@@RATING_COLOR@@ 9%,white);padding:1.3mm 4mm;font-size:11pt;line-height:1.1;font-weight:700;letter-spacing:.3pt;border-left:2pt solid @@RATING_COLOR@@}
+.eligibility{font-size:8pt;color:var(--muted);max-width:75mm}
+.headline{font-family:'Segoe UI',Arial,sans-serif;font-size:23pt;line-height:1.16;font-weight:400;letter-spacing:-.35pt;color:var(--ink);max-width:170mm;margin:5mm 0 4mm}
+.decision-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;background:var(--soft);padding:3mm 4mm;border-top:1.3pt solid var(--accent)}
+.metric{font-variant-numeric:tabular-nums}.metric small{display:block;color:var(--muted);font-size:8.5pt;margin-bottom:1mm}.metric strong{display:block;font-size:21pt;line-height:1.08;font-weight:600;color:var(--ink);letter-spacing:-.4pt}.metric .return-value{color:@@RETURN_COLOR@@}
+.payoff{font-size:8.5pt;line-height:1.35;color:var(--muted);margin:1.8mm 0 5mm}
+.brief-section{margin:0 0 4mm;break-inside:avoid}.brief-section h2{font-size:10.2pt;line-height:1.2;letter-spacing:.3pt;font-weight:700;color:var(--accent);margin:0 0 1.6mm}.brief-section p{margin:0 0 2mm;orphans:2;widows:2;text-align:justify;hyphens:auto}.brief-section p:last-child{margin-bottom:0}
+table{width:100%;border-collapse:collapse;margin:2.5mm 0 0;font-size:9.5pt;line-height:1.25;font-variant-numeric:tabular-nums}caption{caption-side:top;font-size:8.5pt;line-height:1.3;color:var(--muted);text-align:left;padding-bottom:1.3mm}th,td{padding:1.5mm 2mm;border-bottom:.5pt solid var(--rule);text-align:right}th:first-child,td:first-child{text-align:left;padding-left:0}th:last-child,td:last-child{padding-right:0}thead th{font-weight:600;color:var(--muted);border-top:.5pt solid var(--rule)}tbody th{font-weight:400;color:var(--text);width:50%}tbody td{color:var(--ink);font-weight:600}
+.outcomes{margin:1mm 0 4mm;border-top:.6pt solid var(--rule);padding-top:2.5mm;break-inside:avoid}.outcomes-label{font-size:8.5pt;color:var(--muted);margin:0 0 2mm}.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;font-variant-numeric:tabular-nums}.scenario{display:flex;align-items:baseline;gap:2mm;flex-wrap:wrap}.case-name{font-size:8.5pt;color:var(--muted);width:100%}.scenario strong{font-size:12pt;color:var(--ink);font-weight:600}.case-return{font-size:9.5pt;color:var(--muted)}
+.case-basis{font-size:8.5pt;color:var(--muted);width:100%}.scenario.base strong,.scenario.base .case-return{color:var(--accent)}.scenario.bear .case-return{color:#993E42}
+sup{font-size:7.2pt;line-height:0;vertical-align:super;white-space:nowrap}a{color:var(--accent);text-decoration:none}
+.footer{margin-top:2mm;border-top:.6pt solid var(--rule);padding-top:2mm;font-size:8.5pt;line-height:1.35;color:var(--muted)}.footer p{margin:0 0 1.1mm}.sources a{margin-right:1.5mm}.support a{margin-right:3mm}
+@media print{body{background:#fff}.brief-page{width:182mm;min-height:0;margin:0;padding:0;box-shadow:none}.brief-content{width:182mm}a{color:inherit}}
+@media screen and (max-width:760px){body{background:#fff}.brief-page{width:auto;min-height:0;margin:0;padding:22px;box-shadow:none}.masthead{gap:16px}.eyebrow{font-size:10px;letter-spacing:1.1px}h1{font-size:30px}.dateline{font-size:10px;min-width:105px}.eligibility{font-size:10px;max-width:110px}.rating{font-size:14px}.identity{font-size:11px;max-width:180px}.headline{font-size:27px;margin:22px 0 18px;max-width:none}.decision-strip{gap:12px;padding:13px 12px}.metric small{font-size:10px}.metric strong{font-size:21px;letter-spacing:-.5px}.payoff{font-size:11px;line-height:1.4;margin:10px 0 23px}.brief-section{margin-bottom:22px}.brief-section h2{font-size:14px;margin-bottom:8px}.brief-section p{font-size:14px;line-height:1.5;margin-bottom:10px}table{font-size:12px}.outcomes{margin-bottom:20px}.scenarios{gap:12px}.scenario strong{font-size:15px}.case-return{font-size:12px}.case-name{font-size:11px}.outcomes-label{font-size:11px}.footer{font-size:11px}}
+</style>
+</head>
+<body><main class="brief-page"><div class="brief-content">
+<header class="masthead"><div><div class="eyebrow">Investment brief</div><h1>@@ISSUER@@</h1><div class="identity">@@IDENTITY@@</div></div><div class="dateline"><span>@@DATE@@</span><span class="rating">@@RATING@@</span></div></header>
+<div class="headline">@@HEADLINE@@</div>
+<div class="decision-strip" aria-label="Valuation and return"><!-- Same currency and horizon across all figures. -->@@METRICS@@</div>
+<p class="payoff">@@PAYOFF@@</p>
+<div class="sections">@@SECTIONS@@</div>
+<div class="outcomes"><p class="outcomes-label">Bear, base and bull 12-month targets</p><div class="scenarios">@@SCENARIOS@@</div></div>
+<footer class="footer"><p class="sources">@@SOURCES@@</p><p class="support">@@LINKS@@</p></footer>
+</div></main></body></html>

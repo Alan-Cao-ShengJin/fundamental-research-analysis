@@ -2,7 +2,7 @@
 name: financial-quality
 description: Analyse issuer financial statements, financial red flags and potential reporting manipulation; reconcile earnings, assets, cash and financing; and test research theses. Use for early reporting-reliability screens, full statement reviews, cash-authenticity questions, account investigations and model audits.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Financial quality and statement challenge
@@ -16,13 +16,13 @@ Use issuer statements and notes directly for a scoped review, and reconciled act
 - **Model audit, before valuation:** review the assembled actuals/forward model, its cash/financing consistency, assumptions and comparable consensus differences. Incorporate [governance findings](../corporate-governance/SKILL.md) affecting cash access, related-party transfers, issuance, compensation and allocation. Fix material errors before valuation.
 - **Thesis validation, after valuation:** test priced expectations and the provisional thesis against financial, operating, industry and governance evidence. Check whether minority shareholders can receive the cash and whether the assumed discount closure is credible. Reuse the audit and expand only decision-driving issues.
 
-Use distinct artifact IDs for these passes. Do not write two complete financial reports or require a finished valuation thesis merely to audit the model.
+Reuse evidence across the early screen, model audit and post-valuation thesis validation. Keep findings distinguishable without requiring separate complete reports or a finished valuation merely to audit the model.
 
 Compare financial delivery with priced expectations during post-valuation thesis validation. Keep the pre-valuation model audit independent so a desired valuation does not become an accounting assumption.
 
 ## Review material drivers and anomalies
 
-Anchor earnings reviews to the [latest-versus-next-period clock](../company-model/references/earnings-clock-and-peer-readthrough.md). Test the latest actuals, current outlook and implied remaining/next-period economics against seasonal/cycle history and comparable already-reported peers. Avoid giving old periods equal narrative weight, extrapolating one-off changes or confusing a peer signal with issuer evidence. Preserve pre-event estimates and source availability before labeling a surprise.
+Anchor earnings reviews on the [earnings clock](../company-model/references/earnings-clock-and-peer-readthrough.md): test the latest actuals and implied next-period economics against seasonal history and already-reported peers, and preserve pre-event estimates before labelling a surprise.
 
 Identify material changes in amount and business significance, not just a universal percentage threshold. Small bases can make a large percentage unimportant; a stable but large liability can matter greatly. For each important issue explain: observation and period, plausible causes, supporting/counterevidence, historical/peer context, decision impact and next verification.
 
@@ -41,7 +41,7 @@ Apply the relevant [sector activity checks](../company-model/references/sectors/
 
 ## Connect to the thesis without confirmation bias
 
-Carry the same [red-flag records](references/financial-red-flags.md) through the early screen, model audit and thesis validation, using separate pass artifact IDs/versions. Prioritize severe governance threats to minority claims; financial fraud/reliability signals are an additional risk lens that can independently become decisive. Separate potential severity, evidence confidence and resolution status. Investigate cash existence, ownership, usability and distributability rather than equating a large bank balance or high cash plus debt with fraud. Do not let a score or cheap multiple offset a critical issue, and do not require perfect information for ordinary forecast assumptions.
+Carry the same [red-flag records](references/financial-red-flags.md) through early screening, model audit and thesis validation. Prioritise evidence-supported threats by severity, materiality and confidence, whether account unreliability, solvency or governance abuse. Assess cash existence, ownership, usability and distributability. Do not infer fraud from a ratio or require perfect information for ordinary estimates.
 
 Use [source and economic validation](../research-cycle/references/empirical-research-and-validation.md) to verify pivotal claims and reproduce key calculations from original observations. Assess [returns on additional investment](../company-model/references/competition-and-capital-returns.md): acquisition/organic spending, maturation, capital definitions, financing and per-share effects. Distinguish profitable growth from expansion that fails to earn an adequate return. Record review scope and unresolved judgments; structural checks do not establish research quality.
 

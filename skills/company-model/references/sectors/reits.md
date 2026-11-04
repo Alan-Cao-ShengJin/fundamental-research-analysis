@@ -17,8 +17,7 @@ same-property pool; acquisitions, disposals and developments are separate.
 
 Net asset value (NAV) capitalises compatible forward NOI by appropriate capitalisation
 rates matched to each asset and location, then adjusts claims once. Reconcile reported
-profit to issuer-defined funds from operations (FFO) and adjusted funds from operations
-(AFFO) including recurring leasing/maintenance cash and noncash rent effects.
+profit to [Nareit-defined funds from operations (FFO)](https://www.reit.com/glossary/funds-operation-ffo), where applicable, and issuer-defined adjusted funds from operations (AFFO) including recurring leasing/maintenance cash and noncash rent effects.
 
 ## Evidence and calibration
 
@@ -39,6 +38,8 @@ duplicating dilution.
 Test refinancing and cap-rate stress together. NAV discount or an acquisition increasing
 earnings per share alone does not prove value creation or destruction; model funding
 terms and per-share economics.
+
+Cross-check equity REITs using P/AFFO and implied cap rates on consistently defined NOI and enterprise value. Mortgage REITs instead need P/book value against sustainable spread returns and asset/funding risks.
 
 ## Worked example
 

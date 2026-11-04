@@ -35,26 +35,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },
@@ -69,26 +54,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },
@@ -103,26 +73,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },
@@ -166,26 +121,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },
@@ -200,26 +140,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },
@@ -234,26 +159,11 @@
             "P2": null
           },
           "basis": {
-            "P0": {
+            "default": {
               "kind": "",
               "source": "",
               "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P1": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
-            },
-            "P2": {
-              "kind": "",
-              "source": "",
-              "rationale": "",
-              "uncertainty": "",
-              "next_evidence": ""
+              "uncertainty": ""
             }
           }
         },

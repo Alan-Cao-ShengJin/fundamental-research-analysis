@@ -1,31 +1,39 @@
 # Valuation calendar and earnings basis
 
-Read for a current stock valuation or a target revision. Establish the issuer's fiscal calendar before selecting an earnings denominator.
+Apply the [target definition](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis). Record the research cutoff, fiscal year-end, current open fiscal year, latest actual period, current forward earnings window, target date and target earnings window separately. Use explicit dates, profit definition, shares and currency; vendor FY1/FY2 labels are not reliable period identities.
 
-## Fix the basis before calculating
+Keep headline P/E on current forward earnings. The target applies the target multiple to the same forward earnings, a price the stock should reach within twelve months. Do not roll the earnings forward to the target date.
 
-Retain the research cutoff, fiscal year-end, current open fiscal period with start/end dates, latest reported period, selected forward earnings period with start/end dates, profit definition, share basis, and separate price-target date. Use explicit years; vendor FY1/FY2 labels can mean different things.
+For ordinary next-year fiscal P/E, establish the issuer's naming convention: a December-year-end issuer in October 2026 has open FY2026 and next FY2027; a March-year-end issuer may already be in FY2027 with next FY2028. NTM, mid-cycle or milestone earnings can be more informative; retain the current-forward comparison and explain the choice.
 
-For ordinary next-year forward P/E, use the fiscal year after the issuer's current open year. For a December year-end issuer studied in October 2026, FY2026 remains incomplete and the forward earnings year is FY2027. For a March year-end issuer whose current open year is FY2027, the following fiscal year is FY2028. Confirm the company's naming convention and dates rather than applying the calendar year to every issuer.
+Derive NTM weights from the fiscal calendar at the selected anchor date. Prefer supported quarterly detail for seasonal businesses; identify annual-weight approximations and test material seasonality. Align peers and historical observations to the same forward convention, accounting and share basis. Historical forward ratios require estimates available at those historical dates.
 
-Keep that selected earnings year consistent in the headline valuation, comparable table, primary target and scenarios. A twelve-month price-target horizon does not itself advance the denominator by another year. Do not quietly use FY2028 to make a December-year-end stock look cheaper when current research is anchored to FY2027.
+`current forward P/E = reference price / current forward EPS`
 
-NTM, mid-cycle, an explicitly requested period or a longer-dated milestone may be appropriate. Explain that choice and retain the ordinary current-forward comparison. Later-year forecasts remain legitimate inputs to durability and multi-year cash-flow valuation; they are not automatically the headline P/E year.
+`target price = our selected current-forward EPS * justified target multiple`
 
-## Show the calculation the reader needs
+Include currency conversion where required. Across dated reviews, separate changes in the current earnings window, forecast revisions and multiples. Within one fixed current-forward target calculation, there is no earnings-period roll; with identical EPS at both endpoints the earnings contribution is zero. Recompute targets, returns and ratings when a period error is corrected, preserving the prior dated decision. Profit terminology follows the [writing guide](../../research-brief/references/natural-writing.md#profit-labels-and-valuation-language).
 
-`forward EPS = selected-year profit attributable to common shareholders / relevant shares`
+## Own forecast and consensus P/E
 
-`current forward P/E = reference price / (forward EPS * required currency conversion)`
+Use the same price, period, earnings definition, currency and share basis before comparing forecasts. Keep each denominator explicit:
 
-`target price = the same selected-year EPS * justified target P/E * currency conversion`
+- Our current forward P/E = price / our forward EPS.
+- Consensus-based forward P/E = price / matched consensus forward EPS.
+- Target = target multiple * our forward EPS.
 
-Define adjustments explicitly. Adding back share compensation produces adjusted profit, not cash after working capital, investment, debt and other claims. A phrase such as cash earnings needs its reconciliation and cannot silently replace reported earnings.
+These are two ratios describing the same reference price. A higher P/E on our forecast can simply reflect lower forecast EPS, not a different observed market valuation. Use our ratio for the headline and target-return comparison; show the consensus-based ratio separately. A limited broker sample remains a sample.
 
-Keep full precision in records. A headline may say about 5x earnings while the valuation panel shows the exact result and inputs. Preserve the share class; do not add an award pool already included in issued/diluted shares twice.
+Holding our current P/E against the same own EPS reproduces the reference price. Applying the consensus-based P/E to our EPS instead resets the earnings estimate while retaining the multiple derived from consensus. Label that as an earnings downgrade or upgrade scenario, according to its direction; do not call it unchanged own P/E. Keep this secondary explanation in supporting research when it would confuse the brief.
 
-## Return decomposition without a hidden fiscal roll
+The two bridges reconcile to the same target:
 
-If current and target multiples use the same selected-year forecast, the price change is a multiple change. Do not manufacture an earnings-growth contribution by moving the target to a later year. Show dividends separately. If forecasts change, distinguish a revision from elapsed time or a genuine fiscal roll, and state the decomposition convention.
+`own-forecast bridge = our EPS * (target P/E - our current P/E)`
 
-On a correction, preserve the previous dated forecast/decision, identify the changed period or definition, rerun valuation and scenarios, reapply the Hold band and regenerate dependent charts/text. Desired wording or a previous call cannot preserve an invalid target.
+`consensus earnings effect = (our EPS - consensus EPS) * consensus-based P/E`
+
+`consensus multiple effect = our EPS * (target P/E - consensus-based P/E)`
+
+The latter two effects sum to the own-forecast bridge. They are alternative explanations, not additional gains. With fixed current-forward EPS, neither bridge adds target-date earnings growth. Dividends remain separate.
+
+Use [compare_forward_pe.mjs](../scripts/compare_forward_pe.mjs) with canonical period and earnings definitions to verify this arithmetic. It rejects mismatched comparison bases and nonpositive EPS; it cannot judge whether a historical mean is relevant, a commercial recovery is likely or a target is attainable.

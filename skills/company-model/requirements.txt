@@ -1,3 +1,3 @@
-# Read-only Excel tracing and workbook fixture verification.
+# Portable forecast workbook creation, synchronization and read-only tracing.
 openpyxl==3.1.5
 et_xmlfile==2.0.0

@@ -10,3 +10,5 @@ The maintained instructions adapt methods from these pinned sources. Their origi
 | [rollingSirius equity-research-skill](https://github.com/rollingSirius/equity-research-skill) | 3d94e64ff53b325d866ea4bff69ad81a5adca8f5 | [MIT and adaptation notice](skills/company-model/references/sectors/NOTICE.txt) |
 
 Raw upstream archives, worked company reports and private data are outside this repository. Provider endpoint documentation is linked in the endpoint registry; API access, retention and distribution rights are separate from these instructions.
+
+Current bundle attribution text also travels with the [skill-tree notices](skills/THIRD_PARTY_NOTICES.md). The original licence files and pinned adaptation credits remain included.

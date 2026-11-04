@@ -1,6 +1,6 @@
 # Competition, capital returns and the duration of advantage
 
-Read for full company forecasts and material changes to growth, margins or investment. Use public filings, competitor disclosures and industry observations to form a reasoned estimate; unavailable contract or unit data do not automatically prevent a call. Keep observations, inferred economics and scenario judgments distinct. Apply only material parts to a focused update.
+Read for full company forecasts and material changes to growth, margins or investment. It turns the [industry analysis](../../industry-analysis/SKILL.md) (market, niche, barriers, upstream and downstream) into competitor responses, returns and the duration of advantage in the forecast. Use public filings, competitor disclosures and industry observations to form a reasoned estimate; unavailable contract or unit data do not automatically prevent a call. Keep observations, inferred economics and scenario judgments distinct. Apply only material parts to a focused update.
 
 ## Forecast competitors' response
 

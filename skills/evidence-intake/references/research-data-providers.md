@@ -1,5 +1,17 @@
 # Research data providers and local retrieval
 
+## Approved sources
+
+Research uses only these sources:
+
+- Internet search, to find and read original issuer, exchange and regulator material (filings, announcements, IR material and earnings calls) on the issuer's or exchange's own site, and public information about the company and its industry.
+- The FactSet AI-Ready Data connector, for consensus and valuation bands only (below).
+- AlphaPai, Alpha Vantage, API Ninjas and Massive, through the [local adapter](#local-adapter-and-endpoint-catalog).
+
+Do not use any other connector, database, charting application, expert network or data service, even when one is connected to the session. Do not open local files outside the current research folder: no earlier research, other workbooks or models, or documents saved elsewhere on the machine. Download what the study needs into its own folder. Model structure comes from the skills' own [sample model](../../company-model/assets/company-model-example.xlsx). If a question cannot be answered from these sources, say what is missing rather than reaching for another.
+
+## Using the providers
+
 Use entitled provider data alongside original issuer/exchange material. Select a source by the question, universe, definitions and actual response, not provider branding. A configured key proves neither coverage nor product entitlement. Use only relevant families for each assignment; the catalog is not a mandatory research checklist.
 
 ## Route by research question
@@ -14,15 +26,25 @@ Use entitled provider data alongside original issuer/exchange material. Select a
 | Which outside conditions affect assumptions? | Massive economic series and FX/crypto bars; Alpha Vantage macro/commodity/FX series; API Ninjas yields, unemployment, commodity/metals/oil, mortgage rates and layoffs | Match geography, frequency, release vintage and lag to the business exposure. Layoff notices are local/covered notifications, not total employment losses. Revised macro history is not an unrevised backtest vintage. |
 | Which Chinese industry/channel evidence is worth pursuing? | AlphaPai announcement/report/comment search, source-class recall, chart search and natural-language data query | Retain source class, original locator and date. Generated answers/tables are leads: verify pivotal values and underlying sources before modeling. Empty search is query-specific, not proof that no evidence exists. |
 
+**FactSet: consensus and valuation bands only.** Use the FactSet connector for two things: the company's consensus forecasts (EPS, revenue, net profit, target price and ratings), and the monthly price and consensus forward-EPS history that builds its valuation band, which also gives the reference price. Take reported actuals, segment data, guidance and operating data from filings, calls and the sources above, not from FactSet fundamentals. Keep requests to what the model and band need. Request estimates with `currency='ESTIMATE'` (or the reporting currency): `LOCAL` converts into the listing currency but still reports the broker's currency in `estimateCurrency`, so a Hong Kong-listed RMB reporter comes back in HKD labelled CNY. This applies to the company, its band history and every peer.
+
 Keep key-specific test outcomes in project development records, outside generic research instructions. Access can change. A successful sample does not certify accuracy, universal coverage or sufficient history.
 
 ## Inspect the delivered fields, not the endpoint name
 
 For a quick screen, use an available finished board/preset or normalized source response before many primitives when it answers the question. Record the universe, filters, observation dates, provider and stale/fallback status; vendor discovery lists are leads, not an exhaustive exchange universe. Deeper research verifies pivotal figures against filings. A cache or fallback can keep a tool available while leaving the underlying observation stale.
 
-Keep analyst price-target consensus separate from fiscal-period earnings estimates, estimate revisions and historical estimate vintages. A route called `estimates` may supply only targets; inspect actual fields, periods and contributor coverage before stating what the market expects. Existing local earnings-estimate adapters remain distinct from any borrowed interface design.
+Keep analyst price-target consensus separate from fiscal-period earnings estimates, estimate revisions and historical estimate vintages. A route called `estimates` may supply only targets; inspect actual fields, periods and contributor coverage before stating what the market expects.
 
 Retain the exact discovered instrument and source identifiers, interval, currency, adjustment basis and first/last observations. Distinct feeds for one ticker remain distinct series; an empty search may mean disabled or missing coverage rather than a nonexistent security. Use available catalog/help surfaces, preserve provider-native symbols and document justified mappings; do not guess flags or silently enable/configure providers. Price/bar age does not by itself measure feed delay. See [historical replay](../../valuation-thesis/references/history-and-attribution.md) for session and availability alignment.
+
+## Evidence for forward valuation
+
+A historical forward P/E series requires prices and earnings forecasts available at each observation date on a consistent horizon and split/accounting basis. A latest TTM ratio, reported EPS history, announcement-date earnings surprise or recent estimate-revision fields do not supply that series. Check the actual endpoint specification and returned fields before requesting a five-year mean.
+
+A provider-reported mean can serve as a dated benchmark when its window, forward definition and source access are retained. Label it as reported; do not claim a reconstructed series, distribution or valid-observation count without the underlying records. Distinguish an indexed excerpt from a fully read document. See [valuation calibration](../../valuation-thesis/references/method-selection.md#internal-calibration-record).
+
+For peer comparisons, combine common-date prices with explicitly dated fiscal-period estimates; retain contributor counts and adjustment definitions when available. Fiscal year-end differences and unreturned estimate timestamps remain limitations. When a configured provider lacks entitlement or the required field/history, use a suitable accessible source for the missing component, document the fallback and its timing limits, and continue the authorized research. Do not reinterpret trailing data as forward, bypass access or purchase an expansion without authorization. Keep key-specific access results in project records.
 
 ## Local adapter and endpoint catalog
 
@@ -35,7 +57,7 @@ Run `python -B -X utf8 skills/evidence-intake/scripts/research_data.py PROVIDER 
 | `api-ninjas` | `transcript`, `transcript-search`, `calendar`; statements/earnings, insider/holdings/compensation, fund profiles, prices/actions, SEC links, macro/commodity data | Free responses can be partial or limited to the latest record. Inspect actual dates, field restrictions and statement period basis. |
 | `massive` | `ticker`, `earnings`, `guidance`; bars/snapshots, actions, float/short data, news, economy, cross-asset routes and partner products | Core, real-time and partner/add-on entitlements differ. No undocumented transcript route is assumed. |
 
-Credentials come from process environment or ignored `.env.research-data`; `.env.example` contains names only. Each invocation makes one request with fixed HTTPS endpoints, bounded time/response size, blocked cross-origin redirects and a redacted receipt. Full responses/provenance are saved under ignored `.data/research-data` by default; `--output` selects an appropriate research artifact path subject to data rights. The adapter is a local CLI, not a registered continuous worker or alert service.
+Credentials come from process environment or ignored `.env.research-data`; `.env.example` contains names only. Each invocation makes one request with fixed HTTPS endpoints, bounded time/response size, blocked cross-origin redirects and a redacted receipt. Full responses/provenance are saved under ignored `.data/research-data` by default; `--output` selects an appropriate research artifact path subject to data rights.
 
 Examples without credentials (replace sample identifiers/periods with the research subject):
 
@@ -66,4 +88,4 @@ AlphaPai generally supplies Chinese material. Search original Chinese issuer/ind
 
 Pair earnings evidence with the [earnings clock and peer read-through procedure](../../company-model/references/earnings-clock-and-peer-readthrough.md). Maintain the current information set internally; show timing in an investor brief only when it helps assess the thesis/catalyst. The whole company's economics, growth funding, governance, valuation and payoff determine the decision; one quarter or a provider popularity score does not replace that judgment.
 
-Official references: [AlphaPai installation/docs](https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md), [Alpha Vantage](https://www.alphavantage.co/documentation/), [API Ninjas](https://api-ninjas.com/api), [Massive REST](https://massive.com/docs/rest/stocks/overview). Consult the endpoint's linked documentation for specific parameters. AlphaPai 2.0.9 remains a pinned, separately installed data-source skill with an English entry point; it adds no mandatory analytical stage. Retrieval authorization does not authorize account writes, bookings, uploads, purchases, outreach or live monitoring.
+Official references: [AlphaPai installation/docs](https://open-api.rabyte.cn/alpha/open-api/v1/file/api-docs/alphapai-research/install.md), [Alpha Vantage](https://www.alphavantage.co/documentation/), [API Ninjas](https://api-ninjas.com/api), [Massive REST](https://massive.com/docs/rest/stocks/overview). Consult the endpoint's linked documentation for specific parameters. Retrieval authorization does not authorize account writes, bookings, uploads, purchases, outreach or live monitoring.

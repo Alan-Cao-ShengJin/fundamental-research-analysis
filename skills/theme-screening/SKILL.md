@@ -2,7 +2,7 @@
 name: theme-screening
 description: Screen a listed-company universe using fundamental criteria or a theme/value-chain map, normalize first-pass peer comparisons and prioritize names for deeper research. Use for idea generation and quick comparative triage before company modelling, not a completed stock recommendation.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Fundamental and theme screening
@@ -21,7 +21,7 @@ Map the value chain into useful primary and secondary segments. Explain who pays
 
 ## Verify each candidate
 
-Use [market regime and investor-base analysis](../macro-event-analysis/references/market-regime-and-investor-base.md) to locate the theme among global sector/style opportunities. Distinguish economic exposure, current attention/sentiment, positioning and documented flows. Note whether a candidate is crowded, overlooked, constrained or simply unverified, with evidence and alternative explanations. Check practical size/liquidity/access for plausible investor cohorts; theme popularity or low coverage alone does not establish attractive return or future discovery.
+Check normal and stressed liquidity and material access constraints for each candidate. Expand market positioning or investor-cohort analysis only where useful.
 
 Prefer filings, company announcements and attributable exchange Q&A for actual exposure. Research notes and commentary can generate leads; trace their material assertions to evidence and distinguish forecasts from realised business. Record disclosure date, evidence location and relevant business metric. Multiple articles repeating one announcement count as one underlying observation.
 

@@ -16,11 +16,13 @@
         "company-model",
         "financial-quality",
         "corporate-governance",
+        "industry-analysis",
         "valuation-thesis",
         "investment-conclusion",
         "strategy-test",
         "challenge",
         "portfolio-decision",
+        "issuer-questions",
         "management-questions",
         "brief",
         "monitor-review"
@@ -52,14 +54,28 @@
       ]
     },
     "mandateId": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 160
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
     "mandateVersion": {
-      "type": "integer",
-      "exclusiveMinimum": 0,
-      "maximum": 9007199254740991
+      "anyOf": [
+        {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
     "scopeIds": {
       "minItems": 1,
@@ -144,6 +160,14 @@
           },
           "synthetic": {
             "type": "boolean"
+          },
+          "availableClaimIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
           }
         },
         "required": [
@@ -323,7 +347,7 @@
       }
     },
     "nextActions": {
-      "minItems": 1,
+      "minItems": 0,
       "maxItems": 30,
       "type": "array",
       "items": {

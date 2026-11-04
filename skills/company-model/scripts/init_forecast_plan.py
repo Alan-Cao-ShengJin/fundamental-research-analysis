@@ -16,7 +16,7 @@ def make_plan(example=False,cadence='unspecified'):
             ('activity','Activity','activity',activity,'Illustrative activity path','Activity could be 10% lower or higher'),
             ('realisation','Value per activity','currency/activity',realisation,'Illustrative realisation path','Realisation could be 5% lower or higher'),
             ('unit_cost','Cost per activity','currency/activity',cost,'Illustrative cost path','Unit cost could be 8% higher')]:
-            basis={p['id']:{'kind':'synthetic' if example else '', 'source':'Invented demonstration data' if example else '', 'rationale':why if example else '', 'uncertainty':uncertainty if example and p['kind']=='forecast' else '', 'next_evidence':'Replace with task-specific evidence before real use' if example else ''} for p in periods}
+            basis={'default':{'kind':'synthetic' if example else '', 'source':'Invented demonstration data' if example else '', 'rationale':why if example else '', 'uncertainty':uncertainty if example else ''}}
             nodes.append({'id':f'{prefix}_{name}','label':label,'unit':unit,'role':'foundation','values':{p['id']:v if example else None for p,v in zip(periods,vals)},'basis':basis})
         for name,label,formula in [('revenue','Component revenue',f'{prefix}_activity * {prefix}_realisation'),('cost','Component cost',f'{prefix}_activity * {prefix}_unit_cost'),('contribution','Component contribution',f'{prefix}_revenue - {prefix}_cost')]:
             nodes.append({'id':f'{prefix}_{name}','label':label,'unit':'currency','role':'calculation','subtotal':name=='contribution','formula':formula})

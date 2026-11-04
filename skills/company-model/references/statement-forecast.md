@@ -8,6 +8,7 @@ This stage consumes the [revenue/cost projection](revenue-projection.md). A comp
 - Forecast selling, administration, R&D, other operating items and restructuring from supported drivers and cost timing. Examine same-quarter/half-year history, annual accruals, wage/bonus changes and disclosed investment; do not apply one flat ratio to everything.
 - A fixed expense base with wage inflation assumes the activity can scale without additional people, engineering or service capacity. Substantiate that capacity and any closure/stranded costs; compare implied expense ratios with observed run-rates. Do not replace that analysis automatically with flat percentages.
 - Build equity/associate income, finance expense/income, tax and minority interests separately where material. Avoid double-counting JV income embedded in an operating segment.
+- Tax the profit of the entities that pay it. Costs borne by holding companies in another jurisdiction are not deductible against the operating subsidiary's tax, and the tax base and the minority base should treat the same costs the same way. Check tax-loss balances and their expiry before carrying a low historical rate forward.
 - Schedule stock compensation and dilution from the relevant award terms and accounting basis. A vesting hurdle does not establish that management will meet it or justify capping expenses.
 - For the current incomplete year, annual flow = reported YTD + forecast remaining period(s). Ratios become outputs of the underlying amounts. When full-year actuals arrive, replace the forecast boundary with reported FY figures and retain the old forecast for attribution.
 - Compute basic/diluted EPS from the applicable weighted share count, not every period's closing common shares. Derive dividends from declared amounts or a labelled payout assumption; check cash affordability separately.
@@ -24,7 +25,7 @@ Apply [capital-return and investment tests](competition-and-capital-returns.md#t
 | Leases | Opening liability + new leases + interest/reassessments/FX - cash payments = closing liability; reconcile ROU assets and rent treatment |
 | Debt / finance | Opening debt + drawdowns/noncash changes - repayments = closing debt; maturities, borrowing cost and available funding explicit |
 | Tax | Book tax, cash tax and deferred effects distinguished; normalize exceptional items with a disclosed basis |
-| Equity / dividends | Opening equity + attributable profit + issuance/compensation/OCI - distributions/buybacks and other changes = closing equity |
+| Equity / dividends | Opening consolidated equity + consolidated profit including NCI + issuance/compensation/OCI - parent and NCI dividends - buybacks ± other changes = closing consolidated equity; separately roll parent equity if required |
 | Cash | Opening cash + operating + investing + financing + FX/reclassification = closing cash |
 
 Use the issuer's accounting framework and actual schedules. Simplifying assumptions are permitted when justified and labelled; omitted material funding or reinvestment is a model gap.
@@ -32,6 +33,8 @@ Use the issuer's accounting framework and actual schedules. Simplifying assumpti
 ## Cash flow and financing closure
 
 Start from the appropriate earnings subtotal and bridge noncash charges, equity-method income/distributions, working capital and cash tax/interest consistently. Add investing cash flows, then financing cash flows and distributions. Classify leases under the applicable framework and keep valuation treatment consistent.
+
+For IFRS 16, use a consistent cash/claim basis: deduct lease principal in owner cash with leases excluded from the debt deduction, or treat leases as debt with appropriately unlevered operating cash flows. Do not charge the same lease obligation in both cash and net debt. Count SBC once, as an economic cash-equivalent cost or through dilution; reconcile repurchases rather than charging them again. Buybacks use financing cash and assumed repurchase prices/timing to derive weighted retired shares and EPS, not simply year-end shares.
 
 Do not silently plug cash, debt, payables or Other assets to achieve a zero balance. An explicit cash sweep or financing plug can close a forecast only when its mechanics, debt/cash constraints and interest consequences are specified. A negative-cash result without available funding remains a liquidity gap, not a formatting issue.
 

@@ -2,7 +2,7 @@
 name: corporate-governance
 description: Analyse a listed company's ownership, control, minority-shareholder rights, management incentives, conduct, capital allocation and disclosure. Use for governance reviews and full company research, especially when governance may explain a persistent valuation discount or change the investment case.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Corporate governance and shareholder outcomes
@@ -15,7 +15,7 @@ For full research, start the ownership/conduct scan during [evidence intake](../
 
 Treat severe governance threats to minority ownership, rights and receipt of value as high-priority red flags, assessed early rather than left in an appendix. Controller benefit at outsiders' expense, unenforceable claims, destructive related-party transfers or persistent inability to receive value can break an otherwise attractive investment case. Cheapness, growth and a clean audit do not offset that exposure. This priority concerns serious risks, not a fixed weight for governance in every company or a presumption against controlling shareholders.
 
-Share overlapping issues with the [financial-red-flag review](../financial-quality/references/financial-red-flags.md): governance owns control/rights, beneficiary incentives and value diversion; financial quality owns statement reliability and cash/asset reconciliation. Preserve one root issue and distinguish evidence, severity, confidence and status. Fraud signals are normally a secondary red-flag lens to this governance emphasis, but a material reliability or solvency threat can be independently decisive. Never count the same loss twice.
+Share overlapping findings between governance (control, rights and value diversion) and financial quality (account reliability and cash/asset reconciliation). Apply the [red-flag standard](../financial-quality/references/financial-red-flags.md), using one root issue and no duplicate loss charge.
 
 ## Establish scope and evidence
 
@@ -43,7 +43,7 @@ Use [the assessment rubric](references/scoring-rubric.md) for a comparable quali
 
 Assess [capital-allocation economics](../company-model/references/competition-and-capital-returns.md#test-whether-additional-growth-creates-value) alongside incentives. Compare capital committed, actual purchase prices and subsequent returns/per-share outcomes for acquisitions, expansion, buybacks and distributions. Separate operational growth from value creation and changes in accounting capital from economic improvement; management activity or adjusted EPS growth alone does not prove sound allocation.
 
-Use the [management decision-and-delivery standard](../research-cycle/references/underwriting-standard.md) to trace stated purposes, capital committed, incentives, milestones and subsequent effects per common share. Reconcile buybacks with awards/net dilution, acquisition growth with returns after integration and financing, and reported cash with minority access. Keep clarification requests distinct from allegations; an arbitrary discount cannot substitute for unresolved critical cash-access evidence.
+Use the [underwriting standard](../research-cycle/references/underwriting-standard.md) to trace stated purposes, capital committed, incentives, milestones and subsequent effects per common share. Reconcile buybacks with awards/net dilution, acquisition growth with returns after integration and financing, and reported cash with minority access. Keep clarification requests distinct from allegations; an arbitrary discount cannot substitute for unresolved critical cash-access evidence.
 
 For each material finding, record:
 
@@ -51,7 +51,7 @@ For each material finding, record:
 2. **Economic consequence:** potential leakage, dilution, reinvestment returns, payout restrictions, financing cost, cash accessibility or inability to enforce rights. Quantify a supported range, or explain why it cannot be estimated.
 3. **Model treatment:** affected semantic metrics/scenarios and which assumptions change. Keep source facts distinct from the judgement applied to them.
 4. **Discount persistence:** why an apparent valuation gap could persist. Evidence of investor exclusion or avoidance needs actual ownership/flow data, mandate constraints or attributed investor statements; a low multiple alone does not prove avoidance.
-5. **Return path:** who can change the problem, their incentives and authority, an observable event/time horizon, and what would falsify improvement. Test common-share cash returns and per-share growth as well as possible repricing. A promised buyback or possible succession is not a completed catalyst.
+5. **Return path:** who can change the problem, their incentives and authority, a credible earnings, cash-return or reform path within the investment horizon; a discrete dated event is optional, and what would falsify improvement. Test common-share cash returns and per-share growth as well as possible repricing. A promised buyback or possible succession is not a completed catalyst.
 
 Pass this bridge to [valuation](../valuation-thesis/SKILL.md). Estimate common-share value and a realistically attainable target price under the current governance regime, alongside any conditional improved-governance case. Do not assume a peer multiple or full intrinsic value will be reached merely because a stock looks cheap. A justified, persistent discount can reverse a provisional Buy to Sell; credible reform can strengthen a Buy, but requires evidence.
 

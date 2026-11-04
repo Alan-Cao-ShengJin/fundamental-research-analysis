@@ -2,11 +2,11 @@
 
 The reader is deciding whether to own a stock at the stated price. Present an investment argument that can be understood, tested and challenged. The research workflow determines how evidence is gathered; it is not the pitch's table of contents. Keep the main investment reasoning in the pitch and technical reproduction in supporting records.
 
-Build charts and diagrams with [chart-visualization](../../chart-visualization/SKILL.md), adapted from AntV. It supplies the shared palette, typography, actual/forecast styling, library workflow and export conventions. Use that common theme across companies and figures; this guide determines what the report needs to explain.
+Build charts and diagrams with [chart-visualization](../../chart-visualization/SKILL.md). It supplies the shared palette, typography, actual/forecast styling, library workflow and export conventions. Use that common theme across companies and figures; this guide determines what the report needs to explain.
 
 ## Length and hierarchy
 
-- **Decision brief:** the gist of the stock pitch, normally one readable page and about 250-400 words. Lead with the call and one thesis sentence, then price/target/earnings year/return, the few reasons to believe it and the main way it fails. Give rounded headline figures with a compact valuation explanation and scenario strip. It must stand on its own.
+- **Decision brief:** exactly one readable A4 page following the [selective one-page guide](one-page-brief.md). Use its common minimalist template, institutional editorial review and export/page-count check. Select headings and figures by decision materiality; do not print an analytical checklist or force a word/section count. The rationale, valuation and strongest counter-case must stand on their own.
 - **Full visual pitch:** a developed investment case, often around 1,800-3,000 words plus selected figures and compact tables. Cover the company from enough angles for an investor to assess the argument. Length follows material questions, not a quota. Do not replace depth with unexplained labels, dense dashboards or a second brief.
 - **Supporting material:** complete statements, account reconciliations, detailed assumptions and source locations. The appendix enables inspection and reproduction; it cannot contain the only explanation of a headline valuation, the investment argument or a decisive risk.
 
@@ -26,13 +26,13 @@ Develop the argument across the material angles below. Use as many visuals as th
 
 Also explain competitive response and moat durability, the latest performance versus the next outlook, management delivery, evidence behind the important forecast assumptions, cash conversion and funded growth, minority access to value, peers and dated own-history valuation, market context and credible catalysts. Combine sections and choose emphasis by materiality; these are investor questions, not mandatory equal-sized chapters.
 
-The brief usually needs just the decision/scenario strip and, if useful, one small bridge. Do not pack the full report into a miniature dashboard.
+The brief uses the shared decision and same-horizon scenario strips. Include a financial table or chart only when it supports a material point. Selected qualifications and counterevidence remain readable; the full report develops the broader case.
 
-Give each visual a short takeaway supported by its data. Follow it with only the explanation needed to judge the claim. A table filled with long paragraphs does not replace prose. Preserve the central business, moat, governance and counter-case explanations even when a chart is used.
+Give each visual a short takeaway supported by its data. Metric tables need meaningful comparators and a decision implication, not only period columns of unanchored values. When contextual prose makes the inference clearer, omit the table. Follow it with only the explanation needed to judge the claim. A table filled with long paragraphs does not replace prose. Preserve the central business, moat, governance and counter-case explanations even when a chart is used.
 
 ## Write for someone outside the model
 
-Build each section from claim to evidence to explanation to investment consequence. Define unfamiliar terms before using them. Explain a number's denominator, period and meaning when they affect the conclusion. Growth rates and account movements alone do not make an argument.
+Build each substantive point through [point/data, derivation, significance and stock-view implication](natural-writing.md#argument-sequence). A chart or table supplies data, while its caption and accompanying prose explain the build, meaning and effect on the investment case. Define unfamiliar terms before using them. Explain a number's denominator, period and meaning when they affect the conclusion. Growth rates and account movements alone do not make an argument.
 
 Put the central conviction in the thesis sentence. When governance is the concern, explain whether the price compensates for it and why, rather than using a long string of conditions as the headline. Put qualifications and the strongest counter-case into the supporting argument. Do not assert attractive risk/reward simply to match suggested wording; the recalculated case must support it.
 
@@ -42,9 +42,9 @@ If a higher P/E drives the target, explain why investors would pay it using the 
 
 When dividends drive the valuation, use the [dividend guide](../../valuation-thesis/references/valuation-driver-and-dividends.md): put DPS, annual yield, payout ratio and funded coverage in the brief, with higher-payout and cash-stress detail in the full pitch. Show the price at alternative required yields. Explain whether a higher price comes from a higher sustainable dividend or investors accepting less yield; do not disguise the latter as unexplained peer-P/E convergence. Keep annual yield and horizon cash receipts distinct.
 
-Apply the [return hurdle and calls](../../investment-conclusion/references/decision-contract.md#return-hurdle-and-calls) separately: a +20% case is Buy by rating, but unattractive under the 50% attractiveness hurdle. State both clearly. Keep the supported target and show an entry price meeting the hurdle if useful; do not inflate valuations or rely on the bull case to make the opportunity look attractive.
+Apply the [decision contract](../../investment-conclusion/references/decision-contract.md), keeping rating, price return, dividend yield and the new-money judgment visible.
 
-Apply the [valuation calendar](../../valuation-thesis/references/valuation-calendar.md). A twelve-month target does not itself allow another forward-year roll. Later-year forecasts can inform durability and cash-flow valuation without becoming the headline P/E denominator.
+Follow the [target and earnings-basis contract](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis). Show the selected period and dated anchor supporting valuation.
 
 ## Data and chart integrity
 

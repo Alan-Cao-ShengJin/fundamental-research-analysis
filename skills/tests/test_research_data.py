@@ -32,6 +32,26 @@ class ProviderContractTests(unittest.TestCase):
         self.assertEqual(result["apiKey"], "[REDACTED]")
         self.assertEqual(value["apiKey"], "sensitive")
 
+    def test_legitimate_key_and_token_data_survive_but_credential_values_do_not(self):
+        original={'key':'revenue','token':{'symbol':'COIN','supply':100},'nested':{'key':'real-secret'},'authorization':'Bearer other-secret'}
+        result=mod.redact(original,['real-secret'])
+        self.assertEqual(result['key'],'revenue');self.assertEqual(result['token']['supply'],100)
+        self.assertEqual(result['nested']['key'],'[REDACTED]');self.assertEqual(result['authorization'],'[REDACTED]')
+        self.assertEqual(mod.redact('https://example.com?token=page2',[]),'https://example.com?token=page2')
+        self.assertNotIn('a%2Bb',mod.redact('https://example.com?apiKey=a%2Bb',['a+b']))
+
+    def test_oversized_provider_response_is_not_misreported_as_an_input_error(self):
+        class LargeResponse:
+            status=200
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            def read(self,maximum):return b'x'*maximum
+        args=Namespace(provider='alphavantage',operation='transcript',symbol='EXAMPLE',year=2026,quarter=2,secrets_file='missing',timeout=2)
+        with patch.object(mod,'credentials',return_value={'ALPHAVANTAGE_API_KEY':'private-key'}),patch.object(mod,'build_opener') as opener,patch.object(mod,'MAX_BYTES',10):
+            opener.return_value.open.return_value=LargeResponse()
+            result=mod.fetch(args)
+        self.assertEqual(result['status'],'response_too_large');self.assertNotIn('private-key',str(result))
+
     def test_credential_does_not_enter_public_request_metadata(self):
         args = Namespace(provider="alphavantage", operation="transcript", symbol="EXAMPLE", year=2026, quarter=2)
         request, endpoint, params = mod.build_request(args, "secret-key")

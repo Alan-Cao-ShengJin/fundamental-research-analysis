@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "2.0.0",
+  "meta": {
+    "issuer": "",
+    "security": "",
+    "currency": "",
+    "asOf": ""
+  },
+  "headline": "",
+  "decision": {
+    "rating": "",
+    "referencePrice": null,
+    "priceObservation": "",
+    "targetPrice": null,
+    "targetDate": "",
+    "attractiveness": "",
+    "attractivenessReason": "",
+    "bearTarget": null,
+    "bullTarget": null,
+    "keyMetrics": [],
+    "bearBasis": null,
+    "targetBasis": null,
+    "bullBasis": null,
+    "dividendYield": null
+  },
+  "sections": [
+    {
+      "id": "investment-case",
+      "title": "Investment case",
+      "paragraphs": [],
+      "sourceIds": []
+    },
+    {
+      "id": "valuation",
+      "title": "Valuation",
+      "paragraphs": [],
+      "sourceIds": []
+    },
+    {
+      "id": "counter-case",
+      "title": "Key risks",
+      "paragraphs": [],
+      "sourceIds": []
+    }
+  ],
+  "sources": [],
+  "links": []
+}

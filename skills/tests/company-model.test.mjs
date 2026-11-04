@@ -15,6 +15,17 @@ describe('executable company model', () => {
     expect(result.outputs['illustrative.value'].inputIds).toContain('price');
     expect(result.outputs['illustrative.value'].sourceIds).toContain('fixture');
   });
+  it('uses the working-capital stock, not its period change, with a nonzero opening balance', () => {
+    const model = load();
+    expect(model.nodes.find(n => n.id === 'opening.wc').value).toBe(50);
+    expect(evaluateCompanyModel(model).outputs['closing.wc'].value).toBe(60);
+    model.nodes.find(n => n.id === 'opening.wc').value += 25;
+    model.nodes.find(n => n.id === 'opening.equity').value += 25;
+    const result = evaluateCompanyModel(model);
+    expect(result.outputs['closing.wc'].value).toBe(85);
+    expect(result.outputs.ocf.value).toBe(295);
+    expect(result.checks[0].result).toBe('pass');
+  });
   it('reruns the downstream economics when a driver changes and preserves the base model', () => {
     const model = load(), before = structuredClone(model);
     const result = compareModelScenario(model, { scenarioId: 'lower-price', overrides: { price: 9 } });
@@ -39,10 +50,14 @@ describe('executable company model', () => {
     expect(result.outputs['illustrative.value'].value).toBeNull();
     expect(result.checks[0].result).toBe('not-run');
   });
-  it('rejects circular formulas, zero denominators and overrides of reported facts', () => {
+  it('rejects cycles and reported-fact overrides; propagates undefined division as partial', () => {
     const model = load(); model.nodes.find(n => n.id === 'cash.profit').inputs[0] = 'ebit';
     expect(() => evaluateCompanyModel(model)).toThrow(/Circular/);
-    expect(() => evaluateCompanyModel(load(), { overrides: { shares: 0 } })).toThrow(/Zero denominator/);
+    const partial = evaluateCompanyModel(load(), { overrides: { shares: 0 } });
+    expect(partial.calculationStatus).toBe('partial');
+    expect(partial.outputs.eps.value).toBeNull();
+    expect(partial.outputs['illustrative.value'].value).toBeNull();
+    expect(partial.outputs.revenue.value).toBe(1000);
     expect(() => evaluateCompanyModel(load(), { overrides: { 'opening.cash': 999 } })).toThrow(/cannot override/);
   });
   it('rejects future source availability and detects stale model-dependent evaluations', () => {
