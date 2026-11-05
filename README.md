@@ -73,10 +73,6 @@ This repository publishes the company-research subset. Portfolio allocation, ris
 
 `issuer-questions` replaces the earlier `management-questions` invocation. See [migration notes](MIGRATION.md) for compatibility details.
 
-## Data roadmap
-
-The [global data-planning brief](docs/data-planning/2026-11-02/README.md) and [source catalogue](docs/data-planning/2026-11-02/global_source_catalog.json) describe worldwide source requirements. They are a roadmap, not completed integrations or redistribution permissions. The [data-engineering prompt](docs/data-planning/2026-11-02/data_engineering_prompt.txt) supports implementation planning.
-
 ## Setup and checks
 
 Use Node.js 24.13+ and Python 3.11+. Provider credentials belong in `.env.research-data`, which is ignored by Git; [.env.example](.env.example) contains names only. The [provider guide](skills/evidence-intake/references/research-data-providers.md) documents optional adapters and access limits. Installing this bundle supplies no subscriptions or entitlements.
