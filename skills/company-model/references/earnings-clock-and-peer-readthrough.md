@@ -4,7 +4,7 @@ Use for full company research and earnings/forecast updates. Anchor the analysis
 
 ## Establish where the research sits in time
 
-Establish the current fiscal year and selected forward earnings period under the [valuation calendar](../../valuation-thesis/references/valuation-calendar.md). Preserve explicit period start/end dates. A target twelve months away does not itself change next-year earnings into the following year's earnings.
+Start from the [research date taken from the environment](../../research-cycle/SKILL.md#start-from-the-task), then establish the current fiscal year and selected forward earnings period under the [valuation calendar](../../valuation-thesis/references/valuation-calendar.md). Preserve explicit period start/end dates. A target twelve months away does not itself change next-year earnings into the following year's earnings.
 
 Note the latest reported period, call date, next period under forecast and expected report date. Label the date confirmed or estimated and preserve the relevant pre-event expectation.
 

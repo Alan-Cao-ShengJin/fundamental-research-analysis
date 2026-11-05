@@ -13,6 +13,8 @@ Complete the requested research scope, selecting the investigations that can cha
 
 Identify the question, decision horizon, information cutoff, deliverable and available evidence/tools. Include investment constraints, account scope and holdings when relevant to a portfolio or implementation request. Resolve observable facts through available sources; ask for missing intent or constraints only when they materially affect the task. [workflow.md](references/workflow.md) lists the research-brief fields.
 
+Take the research date from the environment, never from memory: the model's own knowledge ends before today and the world has moved since. Before writing anything dated, establish from sources what is true at that date: the latest reported period and price, consensus, the policy, trade and macro events that bear on the company, and the themes investors are paying for now. Treat anything remembered about "current" conditions as a hypothesis to verify. Name periods relative to that date (the latest quarter, the current and next fiscal year) and never copy a year, currency, market or regime from a skill example or an earlier study.
+
 Use the [underwriting standard](references/underwriting-standard.md) and [investor judgment](references/investor-judgment.md) to select decision-driving work. Conversation order and document position do not rank importance.
 
 ## Select the entry mode

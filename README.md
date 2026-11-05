@@ -1,6 +1,6 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.4.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.4.1** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
@@ -11,6 +11,8 @@ Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index
 | New initiation | Establish the business and historical baseline; review governance, reporting quality and industry economics; build and audit operating and integrated financial forecasts; value, challenge and reach an initial investment view. |
 | Existing coverage: regular review | Read the prior research, model and conviction record; check intervening evidence; preserve operating forecasts unless concrete evidence warrants revision; refresh price, justified valuation inputs and the decision. |
 | Existing coverage: major earnings/catalyst update | Freeze the prior forecast; reconcile new disclosures; compare matched actuals with prior assumptions before replacing estimates; recalibrate affected forecasts, audit and refresh dependent conclusions. |
+
+Establish the research date from the session/environment and verify market-sensitive facts against the chosen information cutoff. Derive fiscal-year labels, reporting periods, currency and market context from that date and the issuer, rather than copying an example or relying on remembered current conditions. Synthetic asset dates remain examples.
 
 A price move alone changes prospective return, not earnings or fair value. Recurrence sets the review cadence; the evidence determines the analytical mode. See [request routing](skills/research-cycle/references/request-routing.md).
 

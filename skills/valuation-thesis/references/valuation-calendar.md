@@ -4,7 +4,7 @@ Apply the [target definition](../../investment-conclusion/references/decision-co
 
 Keep headline P/E on current forward earnings. The target applies the target multiple to the same forward earnings, a price the stock should reach within twelve months. Do not roll the earnings forward to the target date.
 
-For ordinary next-year fiscal P/E, establish the issuer's naming convention: a December-year-end issuer in October 2026 has open FY2026 and next FY2027; a March-year-end issuer may already be in FY2027 with next FY2028. NTM, mid-cycle or milestone earnings can be more informative; retain the current-forward comparison and explain the choice.
+For ordinary next-year fiscal P/E, establish the issuer's naming convention from the research date: a December-year-end issuer researched in the fourth calendar quarter of year N has open FY N and next FY N+1; a March-year-end issuer researched then may already name its open year FY N+1, with next FY N+2. Take N from the [research date](../../research-cycle/SKILL.md#start-from-the-task), not from memory or a skill example. NTM, mid-cycle or milestone earnings can be more informative; retain the current-forward comparison and explain the choice.
 
 Derive NTM weights from the fiscal calendar at the selected anchor date. Prefer supported quarterly detail for seasonal businesses; identify annual-weight approximations and test material seasonality. Align peers and historical observations to the same forward convention, accounting and share basis. Historical forward ratios require estimates available at those historical dates.
 

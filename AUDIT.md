@@ -1,3 +1,24 @@
+# Research skill verification ? 5 November 2026, version 2.4.1
+
+This patch imports eight instruction/reference changes. Earlier records below are historical.
+
+## Changes
+
+Research scope now explicitly obtains its date from the environment and verifies current prices, reporting periods, consensus, relevant policy/trade/macro conditions and investment themes against dated sources. Earnings-clock and fiscal-calendar references point back to that rule. Examples use relative fiscal-year language, clarify that historical market regimes are illustrations rather than current facts, and describe the reporting currency generically. Model instructions explicitly require replacing synthetic dates, periods and currency labels with issuer-specific evidence.
+
+The standalone coverage planner and company-only scope remain intact: 20 skills and 11 flows. The removed data-planning directory stays excluded. A local workbook difference was verified as save-path metadata only; the already-clean public workbook was preserved. No runtime script, numerical model input, report template or calculation asset changed.
+
+## Executed verification
+
+- Structural checks passed for the catalog, links, coverage and handoff schema.
+- Five owning skill entries validated: research-cycle, company-model, investment-conclusion, macro-event-analysis and valuation-thesis.
+- JavaScript: 65 tests passed. Python: 93 tests passed.
+- Canonical file-manifest verification and bounded publication screening passed.
+
+No new PDF rendering, native Excel recalculation, live market-data retrieval, issuer study or independent behavioral evaluation was performed. The new instructions require date-aware research; this export does not establish that current market conditions or data access were checked for a particular issuer. Existing deterministic test results do not prove research quality or investment performance.
+
+## Historical record: version 2.4.0
+
 # Research skill verification ? 5 November 2026, version 2.4.0
 
 This section records the current export. Earlier records below apply to their own versions.
