@@ -22,13 +22,16 @@ Represent annual and interim periods explicitly. In a workbook, keep period colu
 
 | Component | Role |
 | --- | --- |
-| 3S | Historical and forecast IS/CF/BS, EPS/DPS, assumptions, roll-forwards and checks |
-| Revenue Projection or UE | Business-specific segment demand, price, revenue, costs, margins and unit economics |
+| Cover and Summary | Model details, case selector, colour legend, sheet index, check status; the call, target and key outputs |
+| Statements | Historical and forecast IS/CF/BS, EPS/DPS, assumptions, roll-forwards and checks |
+| Revenue Build or UE | Business-specific segment demand, price, revenue, costs, margins and unit economics |
 | Data and relevant price tabs | Source operating observations, tracker aggregation and matched benchmarks |
 | Guidance | Attributed and dated management statements; retain conflicting or unverified items |
 | Questions | Decision-sensitive gaps, model sensitivity and answer tracking |
-| Investment Thesis | Model-linked investment conclusion after valuation and validation |
-| Valuation Context | Historical valuation context when suitable dated inputs exist |
+| Valuation | Model-linked investment conclusion after valuation and validation |
+| Valuation Band | Historical valuation context when suitable dated inputs exist |
+| Scenarios | Bear/Base/Bull driver values with the active case chosen by the selector |
+| Checks | Every model check in one place, with the failing count shown on each sheet |
 
 These are functional components, not mandatory sheet names. Preserve valid existing names and check dependencies before replacing or retiring a component.
 

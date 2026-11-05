@@ -1,7 +1,7 @@
 {
-  "bundleVersion": "2.1.0",
+  "bundleVersion": "2.2.0",
   "variant": "fundamental-research-only",
-  "preparedOn": "2026-11-04",
+  "preparedOn": "2026-11-05",
   "skills": [
     "research-cycle",
     "evidence-intake",
@@ -14,6 +14,7 @@
     "issuer-questions",
     "research-brief",
     "chart-visualization",
+    "report-layout",
     "monitor-review",
     "theme-screening",
     "company-change-tracking",
@@ -26,17 +27,22 @@
   "flowCount": 11,
   "scopeAdaptations": [
     "Company fundamental research and proposed follow-up only",
-    "Current initiation, regular review and major earnings/catalyst workflows",
-    "Industry analysis before operating forecasts and refreshed in reviews",
-    "Explicit coverage planner retained and updated for current roles",
+    "Initiation plus regular and major existing-coverage updates",
+    "Industry economics and contested investor debates inform component forecasts and scenarios",
+    "Shared full-report renderer and licensed embedded fonts; separate one-page brief template",
+    "Coverage planner retained, with conditional report-layout applicability",
+    "Updated workbook theme and layout with preserved specification/formula bindings",
     "Portfolio/risk-budget/cross-asset extensions remain outside this repository",
-    "Clean synthetic examples and retained third-party notices; no private evidence or credentials"
+    "Synthetic examples and retained third-party notices; no private evidence or credentials"
   ],
   "verification": {
-    "entryPointsValidated": 19,
+    "entryPointsValidated": 20,
     "javascriptTestsPassed": 65,
-    "pythonTestsPassed": 80,
+    "pythonTestsPassed": 89,
     "bundleCheck": "passed",
+    "syntheticWorkbookNumericCellsSynchronized": 6765,
+    "portableScaffoldNamedCellsSynchronized": 48,
+    "syntheticPdfSmokePagesInspected": 2,
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Known local credential values, common token patterns, private-path rules and Excel XML metadata; not forensic assurance",
     "liveAgentBehaviorEvaluated": false,
@@ -72,23 +78,23 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 10330,
-      "sha256": "37c5f2b02cb6b561319bd0bb5475f712d0eb05671f94b8666c21f92bfcc95be5"
+      "bytes": 14447,
+      "sha256": "d72fc25ea6e6af5300cf4b204fd6b18d8ef13ddf90f953531e585c8eecb28b00"
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 2332,
-      "sha256": "476dd835b3db10ece3b2ab9ab18c7b6cd73160752c774f7931533adf4d129145"
+      "bytes": 3132,
+      "sha256": "6e479f02834c00d874d410f9667059dc81f217e63e0697cab2a8673c4b523a2f"
     },
     {
       "path": "README.md",
-      "bytes": 10011,
-      "sha256": "f7b4e81e7940058a4fe4a923685e979d8bf8afedc25081140c728395ec5c7b53"
+      "bytes": 10840,
+      "sha256": "e55022dbb8e5a42b2275ba9eb17528897f514e5626fb1b7ac658fad65acff133"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 1470,
-      "sha256": "0d2a8449cdaee2e13697a0cd162f5bbf04f46a8e802f07da07bd2cdf44aa112b"
+      "bytes": 1696,
+      "sha256": "e56a65bb4af87767b19111a78097fc5e9ab65458fd4d8a48b2f21b54cdb9a860"
     },
     {
       "path": "docs/data-planning/2026-11-02/Global_data_and_research_capabilities_brief_2026-11-02.html",
@@ -143,12 +149,12 @@
     {
       "path": "package-lock.json",
       "bytes": 36541,
-      "sha256": "2180708c340b4b85d3ff223c8dafb525ea9ce98c98034603919d2fbab4f95998"
+      "sha256": "bcad7040cd69e4514dfebd545ba4db528594b3c17206eebf76f7ad3075000f46"
     },
     {
       "path": "package.json",
       "bytes": 350,
-      "sha256": "f2baca2b13fe93bf4436a253b18a9677c6c9fae0eab034eb1d0e818cb36132f9"
+      "sha256": "d5d0ec94d32312ecf9700b85bec062a5214a44fd5ad84d721649251094613220"
     },
     {
       "path": "requirements.txt",
@@ -157,28 +163,28 @@
     },
     {
       "path": "skills/README.md",
-      "bytes": 13156,
-      "sha256": "bf118ea170ef1eb07dcb799bcc3c11c89e9adc3b183d5213099459eedd1a8fa8"
+      "bytes": 13323,
+      "sha256": "d3f2d5f0f998a734f45af63742e54579c205d2cdd1c40589d0702405c52ca239"
     },
     {
       "path": "skills/THIRD_PARTY_NOTICES.md",
-      "bytes": 1717,
-      "sha256": "9b496d05cec5bfd20aae0406a059f8109e4ba3e3b6286406241ec7d993b02ba7"
+      "bytes": 2027,
+      "sha256": "c95adfd18e53097c4f9f55799c8c895c41f132189cb3bcc39f1c0274662178e6"
     },
     {
       "path": "skills/catalog.json",
-      "bytes": 24524,
-      "sha256": "0f1df2c226519bc0c56404e2e40d293ed63e5ac94946c6db68381115848f81d1"
+      "bytes": 24631,
+      "sha256": "edec5c4830b402993735387d6ecbbbfbeaaf41f098f50c5e59c19ef0f1dd0fff"
     },
     {
       "path": "skills/chart-visualization/SKILL.md",
-      "bytes": 4001,
-      "sha256": "173077372a10c66abf8d55216e429691ddb1e7245eab8e861fe707eac618f2c6"
+      "bytes": 4183,
+      "sha256": "d2e1e70767d9366c13a307e16fb3f15ebe3b7f552e31c74b0363191e62ef252e"
     },
     {
       "path": "skills/chart-visualization/assets/chart-theme.json",
-      "bytes": 1705,
-      "sha256": "d0722348c2de23ff69902e919ab9b7803b956737561682db908d6c83b92a50df"
+      "bytes": 2514,
+      "sha256": "d9e9b4e961de1cacc762c1fbdbe37d79a59ae09ffce12ce21e66fbefc5c51351"
     },
     {
       "path": "skills/chart-visualization/references/antv-workflow.md",
@@ -192,18 +198,18 @@
     },
     {
       "path": "skills/company-model/SKILL.md",
-      "bytes": 8892,
-      "sha256": "138e96f981d0003efc5415af6ed1512363dd90004713bf0c8d1cfa9e1d09dc6f"
+      "bytes": 8903,
+      "sha256": "18d7ce86198742d09dbcd743caf65b891cd9d88cc5f46c415218ae430436b153"
     },
     {
       "path": "skills/company-model/assets/company-model-example.json",
-      "bytes": 660091,
-      "sha256": "b161871fda88193c529dbf38ab6434976f3f3ee8c6bbd4fdd2c908bfdde83892"
+      "bytes": 726497,
+      "sha256": "7db55afcd41e72a15f4ac76f21dfe262df009e8d216924291be5ddd9dca79bbf"
     },
     {
       "path": "skills/company-model/assets/company-model-example.xlsx",
-      "bytes": 172387,
-      "sha256": "efe1eec41922940ddc098df1ca38b639e46798b32d76ce979e24409eaee95d0c"
+      "bytes": 158573,
+      "sha256": "a7987f6c65632d3ac73630bb88ff7d523c6af749ab40284dedb59243088e81a4"
     },
     {
       "path": "skills/company-model/assets/forecast-blocks-example.json",
@@ -212,8 +218,8 @@
     },
     {
       "path": "skills/company-model/assets/forecast-blocks-example.xlsx",
-      "bytes": 7484,
-      "sha256": "c2644d059720ebe198b543737f62535f58bcd5a4aee6c619c56b9f782dfad5b7"
+      "bytes": 7473,
+      "sha256": "175730b48a577121010c7142c5a83ef7e2b8dc743fcb7ad8da9ab3fbbf524ef1"
     },
     {
       "path": "skills/company-model/assets/forecast-blocks-template.json",
@@ -227,8 +233,8 @@
     },
     {
       "path": "skills/company-model/assets/model-theme.json",
-      "bytes": 591,
-      "sha256": "2fbbcec49529c6bb2cb5467663140eec5a0265f1552b2b2f573bda46d721d911"
+      "bytes": 786,
+      "sha256": "9bc7e63ddc407f0db3535a9a03ba385f11bb6e6293c05fcb234377a6e7884350"
     },
     {
       "path": "skills/company-model/assets/sector-examples.json",
@@ -282,23 +288,23 @@
     },
     {
       "path": "skills/company-model/references/foundational-builds.md",
-      "bytes": 10960,
-      "sha256": "85458a9d5c299bd071646b1abd21b612ec049bb582d0600a113b9b5f6e4d06e1"
+      "bytes": 11176,
+      "sha256": "ed60b141e0f51a4d6dc3ed4ce186a75b0574c7e72968e166b3041969ae047bf6"
     },
     {
       "path": "skills/company-model/references/model-setup.md",
-      "bytes": 3903,
-      "sha256": "b1e0d30eca9d2bdb3391d08697d9747ae231bfb3981b481e5ae9a161ac412328"
+      "bytes": 4201,
+      "sha256": "501ef9c28549bd14218e5ccdf0f1e297038cc8587d71223be744f02e486d9cb0"
     },
     {
       "path": "skills/company-model/references/model-standard.md",
-      "bytes": 7728,
-      "sha256": "1486c9b8c2838d5063dd2d04e0a346a201f76d500b3259c8c043d6e6e6bfeed5"
+      "bytes": 12825,
+      "sha256": "d738cdd34a42e0a025dbed383ed7daf7f5d5a4b842d9cc04e48a70bf831284c6"
     },
     {
       "path": "skills/company-model/references/revenue-projection.md",
-      "bytes": 7786,
-      "sha256": "ef1131723b33488d9b83ed9c369329df1019614ec771ffed52e72fbbf6f3fbdf"
+      "bytes": 7802,
+      "sha256": "283f9148bdf440358f5b070366463a6496f75e2f4eb805deb4b938ea2d211a76"
     },
     {
       "path": "skills/company-model/references/sectors/NOTICE.txt",
@@ -412,13 +418,13 @@
     },
     {
       "path": "skills/company-model/references/statement-forecast.md",
-      "bytes": 6466,
-      "sha256": "12ed2fdf3e66741d6d318bfd1cd62894ed26e47f297d0221f6858589ed00be81"
+      "bytes": 6495,
+      "sha256": "3c6ec8ea22bef8bcf28dd7771986d982270c43cf088ff477f5ba8479b462e0e7"
     },
     {
       "path": "skills/company-model/references/workbook-profile.md",
-      "bytes": 10494,
-      "sha256": "fe6397246a201d5c15489d2eefb57d4ed15c9c2f3e4d1a6f7cf0900243dc06a4"
+      "bytes": 12618,
+      "sha256": "b0ece8845cd1b2af0eca079b7a3e3ac32b1ba9420215e147381ca2a6d8b9c50d"
     },
     {
       "path": "skills/company-model/requirements.txt",
@@ -442,8 +448,8 @@
     },
     {
       "path": "skills/company-model/scripts/forecast_workbook.py",
-      "bytes": 15211,
-      "sha256": "3b7ec851b62e6a26aea7a4258674c52c083cefe148944be7abbaa484862d2bfe"
+      "bytes": 15205,
+      "sha256": "925a7ac0f0dbf41ba3d68a1cd6dc3f33008bbaa1a748425818d00c05d1b03922"
     },
     {
       "path": "skills/company-model/scripts/init_forecast_plan.py",
@@ -457,18 +463,18 @@
     },
     {
       "path": "skills/company-model/scripts/model_example.py",
-      "bytes": 78972,
-      "sha256": "3d9510113e9938ff53eb1dc606bf05000b879515e2b2d34513929fe4595e69fe"
+      "bytes": 98706,
+      "sha256": "2ff5a4c3204f6a61dc66f9a63f2b22602b351e1f3f5ec24b804aa0428cb5d5e2"
     },
     {
       "path": "skills/company-model/scripts/model_workbook.py",
-      "bytes": 17076,
-      "sha256": "cf10f659b898bccc4985958a998c16d7d52b8c31153a161680543a2e4564c531"
+      "bytes": 41536,
+      "sha256": "d865e7e49efc72b01a9b3d7e0a2ee29cc81ebd97849dec6f874e2185124aa270"
     },
     {
       "path": "skills/company-model/scripts/recalc_excel.ps1",
-      "bytes": 3157,
-      "sha256": "d37cfef4f87e0df237f9b1920b642bcb21ab10a77a831c23e10e905ea9157979"
+      "bytes": 3152,
+      "sha256": "82bd13f8dc082447f3caadb56f0f5faf7c591df15d74ee7549bfdce5f3de17ef"
     },
     {
       "path": "skills/company-model/scripts/run_agent_model.mjs",
@@ -517,8 +523,8 @@
     },
     {
       "path": "skills/evidence-intake/references/research-data-providers.md",
-      "bytes": 15253,
-      "sha256": "af5f8309644ce5d7ba83207957553a32793e95aa1b3b341b76bbd887d985bd90"
+      "bytes": 15373,
+      "sha256": "4b886b91058486da6820720f8432e21ca38c646c2c4d1e98a65256e215566dd3"
     },
     {
       "path": "skills/evidence-intake/scripts/research_data.py",
@@ -626,9 +632,49 @@
       "sha256": "7af1ad8c13759f2adc31203a8f28bfba08d84935266e800c08e983cedcd9cc52"
     },
     {
+      "path": "skills/report-layout/SKILL.md",
+      "bytes": 5647,
+      "sha256": "6f8969f34362fbc6389f8c9f0d9bd68d1acee1b072f59e2175fedb3239cf84c1"
+    },
+    {
+      "path": "skills/report-layout/assets/fonts/OFL.txt",
+      "bytes": 4348,
+      "sha256": "b7281c58df5d3b75d98dfa9a6a598705042f4cd8f90b92d9edb1c2db1b8275b9"
+    },
+    {
+      "path": "skills/report-layout/assets/fonts/ibm-plex-sans-latin-400-italic.woff2",
+      "bytes": 20880,
+      "sha256": "b22694fa42d11b3f176084eeeedfd9331f7b5e56ec0cf2be2828301e74f4b24b"
+    },
+    {
+      "path": "skills/report-layout/assets/fonts/ibm-plex-sans-latin-400-normal.woff2",
+      "bytes": 19156,
+      "sha256": "db71f8a28ad8501544fb4e7668e3c6d0b731760b6f20de3525ebaeba597f1922"
+    },
+    {
+      "path": "skills/report-layout/assets/fonts/ibm-plex-sans-latin-600-normal.woff2",
+      "bytes": 20356,
+      "sha256": "31535a91ce3f6b8ed3ddedadab1e49957e2220263a640df1a3f14f6fdfe15eb6"
+    },
+    {
+      "path": "skills/report-layout/assets/fonts/ibm-plex-sans-latin-700-normal.woff2",
+      "bytes": 19440,
+      "sha256": "fff71a83690454ee6ea9014780a6797408918cb90cde1f0f3be65ea28a03c678"
+    },
+    {
+      "path": "skills/report-layout/requirements.txt",
+      "bytes": 113,
+      "sha256": "24dee7f71f7926483d7aeb78c6fd16ce0750f3b754ab51a70c97515fa88324ff"
+    },
+    {
+      "path": "skills/report-layout/scripts/report_layout.py",
+      "bytes": 44022,
+      "sha256": "f3b39bf29d6120a89e3d36195a165ddb9ad5d676edbc8f16966e33d6f114c68f"
+    },
+    {
       "path": "skills/research-brief/SKILL.md",
-      "bytes": 14306,
-      "sha256": "1c78925d516af6b92f0488602c88bc24e5569a8f419c95bd9e8d89ebe7a640e7"
+      "bytes": 14326,
+      "sha256": "67fa22a1ab19f5274a6575f0084c8e7e22314a3ac19e901817db71e1a650ae35"
     },
     {
       "path": "skills/research-brief/assets/calibration-case.json",
@@ -662,8 +708,8 @@
     },
     {
       "path": "skills/research-brief/references/visual-reports.md",
-      "bytes": 9578,
-      "sha256": "dbd11fd77f8950f458c01d628529c58b6a9e23c2c5aed471b957e874190cdc86"
+      "bytes": 9721,
+      "sha256": "d672114b1a356df75e638f5dbe8aa39c31c395e8ff315f85dc1a791b84237801"
     },
     {
       "path": "skills/research-brief/scripts/check_one_page.mjs",
@@ -677,8 +723,8 @@
     },
     {
       "path": "skills/research-challenge/SKILL.md",
-      "bytes": 9316,
-      "sha256": "e971afc58ab05f65fc0cc93c9e3ec7f40e4ecd25c7e112a5e89621e4f63e3e6f"
+      "bytes": 9888,
+      "sha256": "9d37cca3442b96f230b991efc5e8bc8a20d3c1f4f34a17325882c56955972d26"
     },
     {
       "path": "skills/research-cycle/SKILL.md",
@@ -687,13 +733,13 @@
     },
     {
       "path": "skills/research-cycle/assets/skill-coverage.json",
-      "bytes": 6046,
-      "sha256": "68806db4ffbb86d746cee9994b55852b8b60b57f3c237f2dc049d502063890c6"
+      "bytes": 6519,
+      "sha256": "b7910ea356e434f233269aaaebefa3a79ff39079061c25076647e2fdcf634056"
     },
     {
       "path": "skills/research-cycle/references/company-sequence.md",
-      "bytes": 9024,
-      "sha256": "5981aaaf2d6510e83ecbdbd3b1585dd758df4e2f11940963e5a2dd5c7089cbc8"
+      "bytes": 9597,
+      "sha256": "b35bdb9228081e0f4ed62ed4b86a6d1cfe2a4384d5897fe971df9065ea4d6a22"
     },
     {
       "path": "skills/research-cycle/references/empirical-research-and-validation.md",
@@ -767,8 +813,8 @@
     },
     {
       "path": "skills/stock-initiation/SKILL.md",
-      "bytes": 4392,
-      "sha256": "771d7d859adc3bc9150254aff7d25fc998028a736dcd3a27d2efbe6170aedec5"
+      "bytes": 4644,
+      "sha256": "84cb958e29bbfce33e7434bb2c6c7e95ea74e49d49c002b3ce76d44b936d2e26"
     },
     {
       "path": "skills/tests/company-model.test.mjs",
@@ -798,7 +844,7 @@
     {
       "path": "skills/tests/test_forecast_blocks.py",
       "bytes": 7977,
-      "sha256": "215b376900eb4bae87d0e2ff4b066401ee4ecc5b86c607a96afc1509b0a48509"
+      "sha256": "56ce6efd4b92c59ac3d9d3d876bfb5ca700daf38da85340e43dc13a52e05861e"
     },
     {
       "path": "skills/tests/test_forecast_workbook.py",
@@ -812,13 +858,18 @@
     },
     {
       "path": "skills/tests/test_model_workbook.py",
-      "bytes": 6215,
-      "sha256": "0d5f20b09916a6bec72551f609e6036039fca6f259598f7e62d30fbf5e59c656"
+      "bytes": 7358,
+      "sha256": "40d15c5019f1bc6221cc141c26788d363a4ef469391e1b6856670ef68f239c37"
     },
     {
       "path": "skills/tests/test_one_page_brief.py",
       "bytes": 6594,
       "sha256": "a054841fca28cba85f6d6c86a2a8100beb0dac8194bcd98aa48587917f0aadce"
+    },
+    {
+      "path": "skills/tests/test_report_layout.py",
+      "bytes": 5130,
+      "sha256": "897455e783543c6c5a412bdc72bd7a8948535ab42ef5dafab73eebecd4091c12"
     },
     {
       "path": "skills/tests/test_research_data.py",

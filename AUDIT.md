@@ -1,3 +1,38 @@
+# Research skill verification - 5 November 2026
+
+This section records version **2.2.0**. Earlier release records below are historical; their counts, names and test totals apply only to those releases.
+
+## Current changes and scope
+
+The workspace has 23 skills and 14 flows. The standalone company-research export now has **20 skills and 11 flows**, with twenty sector activity guides. Portfolio allocation, cross-asset strategy and risk budgeting remain external.
+
+- Added `report-layout`: a reusable A4 full-report renderer, front page and section rails, numbered sources/exhibits, chart helpers, embedded IBM Plex Sans fonts and the complete SIL Open Font License. The one-page brief retains its separate template. PDF printing requires Chrome; page inspection has optional declared PyMuPDF dependencies.
+- Expanded human-reviewable models with Cover, Summary, Scenarios and Checks, navigation, source tags, row-label comments, tab colours, grouping, print settings, chart controls and physical address translation for inserted source-tag columns. The supplied company example is synthetic.
+- Adopted the updated workbook theme (blue hardcodes and blue/yellow assumptions, black formulas, green cross-sheet links, grey italic memo ratios and bold black key outputs) and aligned the older portable scaffold with it. Clarified the different annotation layouts for a compact scaffold and the full company model.
+- Strengthened the research debate: identify the core contested investor questions, assemble the strongest claims on both sides, seek discriminating evidence, and build bear/bull outcomes from those questions rather than minor changes to every input.
+- Updated full-initiation delivery guidance to accompany the report with its brief and Excel model. Provider guidance now includes benchmark/stock price history for the front-page comparison; access remains host- and entitlement-dependent.
+
+Preserved the coverage planner, company-only scope, third-party notices and CI. Added the report-layout applicability rule. Removed a named-issuer example from the generic renderer, corrected stale scenario-selector examples, fixed displayed scenario-return arithmetic and a clipped final date label, and added regression coverage. Existing private research and provider responses are not part of the export.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Isolated dependency installation | `npm ci --ignore-scripts` passed |
+| Skill entry validation | All 20 entry points validated |
+| Structural check | 20 skills and 11 flows; catalog, coverage, schema and relative links checked |
+| JavaScript suite | 65 tests passed across five files |
+| Python suite | 89 tests passed, including eight new report-layout tests |
+| Supplied synthetic company workbook | Formula/input/cached-value synchronization passed for 6,765 numeric cells |
+| Portable operating scaffold | 48 named cells synchronized after the palette refresh |
+| PDF smoke render | A two-page synthetic report printed in Chrome and its page images inspected; the fixture is deliberately sparse and is not an issuer report or a production content-density test |
+
+The PDF smoke check confirms basic rendering and exposed a date-label clipping issue, which was corrected and re-rendered. It does not validate every chart type, every report length or every language. No new native Excel recalculation or native Excel visual review was performed; the supplied workbook's saved values were compared with its specification. No live-agent behavioral study, forecast-accuracy assessment or investment-performance evaluation was performed. Source truth and judgment are not established by these checks.
+
+The file manifest records canonical Git bytes, excluding itself to avoid self-reference. Publication screening compares known local credential values, common token patterns, private paths and workbook XML metadata; it is bounded screening, not forensic assurance. Local save-path metadata was removed from the synthetic company fixture. Fonts retain their own OFL licence and are not relicensed under MIT.
+
+## Historical record: version 2.1.0
+
 # Research skill verification - 4 November 2026
 
 This section records the version **2.1.0** export. The earlier 2.0.0 audit below is historical and its skill counts, invocation names and test totals do not describe the current release.

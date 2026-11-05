@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "modes": {
     "initiation": "new-company-research",
     "regular": "company-regular-review",
@@ -162,6 +162,15 @@
         "major": "required"
       },
       "purpose": "Establish industry economics before operating forecasts and refresh decision-relevant indicators in every review; reuse unaffected dated analysis with current evidence checks."
+    },
+    "report-layout": {
+      "modes": {
+        "initiation": "conditional",
+        "regular": "conditional",
+        "major": "conditional"
+      },
+      "purpose": "Apply the shared A4 full-report renderer, source/exhibit conventions and page review without replacing the brief template.",
+      "trigger": "A full visual stock report is requested or required by the chosen initiation deliverable; narrow notes and one-page-only requests use their own formats."
     }
   }
 }

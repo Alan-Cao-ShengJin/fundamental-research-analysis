@@ -48,9 +48,12 @@ when the relationship remains clear; no fixed tab name or universal row order is
 required.
 
 Place an editable assumption beside or immediately above/below the numbers it
-drives. Write the explanation and source in a long ordinary cell to the right,
-so neither depends on opening a cell comment or Note. Changing the assumption
-should leave its reasoning and consequences in view.
+drives. Keep a visible source beside the calculation. A small operating scaffold
+can show its full explanation in an ordinary cell to the right; the full company
+workbook uses the compact source tags and row-label comments in the
+[workbook profile](workbook-profile.md#house-theme-and-reporting-detail).
+Changing an assumption should leave its active value and consequences in view,
+with the supporting reasoning easy to retrieve.
 Forecast inputs can live in their owning operating block. A shared case selector
 or control panel can select them without hiding the active local assumptions.
 Do not create separate assumptions and calculation tabs for a small local chain.
@@ -125,7 +128,7 @@ From the repository root, choose new output paths to preserve existing work:
 
 ```powershell
 python skills/company-model/scripts/model_workbook.py build output/model_spec.json output/model.xlsx --outputs output/outputs.json
-powershell -NoProfile -ExecutionPolicy Bypass -File skills/company-model/scripts/recalc_excel.ps1 -Workbook output/model.xlsx -Selector "Revenue Projection!C2" -Cases 3 -Outputs "3S!G44" -Report output/excel.json
+powershell -NoProfile -ExecutionPolicy Bypass -File skills/company-model/scripts/recalc_excel.ps1 -Workbook output/model.xlsx -Selector "Cover!C9" -Cases 3 -Outputs "Statements!K50" -Report output/excel.json
 python skills/company-model/scripts/model_workbook.py check output/model_spec.json output/model.xlsx --report output/model-sync.json
 ```
 

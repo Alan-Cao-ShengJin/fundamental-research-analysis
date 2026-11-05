@@ -21,7 +21,7 @@ Use the [competition and capital-return framework](competition-and-capital-retur
 5. **Costs and gross profit.** Build material/unit costs, labour, freight, conversion costs and fixed-cost absorption at the economic level the evidence supports. Look for a cost-of-sales-by-nature table in the MD&A or notes and calibrate to it. Give each cost its own driver (input quantity, output, units sold, or fixed per period) so unit cost falls with volume only where the cost is fixed. Estimate an undisclosed item inside a reported line (a royalty, a processing fee) from its rule; the remainder of that line tests the estimates. Prefer management's own split of the line when one exists: a small remainder can also come from offsetting errors, such as a cost counted in the wrong line. Choose either costs or margin as the independent lever for a line, not inconsistent independent assumptions for both. Cost = revenue - GP; GP = revenue x margin when margin is the chosen driver.
 6. **Unit economics.** Show price, unit cost, unit GP and a clearly defined operating/after-tax contribution. Identify allocated overhead and unallocated financing/other items. Reconcile segment contributions to group earnings; a proxy is not reported company unit profit. A volume sensitivity saves only variable cost.
 7. **Period roll-up.** Quarter/half-year flows sum to annual flows. Annual ASP is volume-weighted; annual margin is total GP / total revenue. Apply the [remaining-period identity](statement-forecast.md#income-statement-and-the-next-forecast-period) without treating an implied remainder as evidence for the full-year premise.
-8. **Links into 3S.** Link revenue and costs/GP once into the matching fiscal period. Convert currency and scale explicitly from the documented units; do not infer them from a sheet name or prior model.
+8. **Links into Statements.** Link revenue and costs/GP once into the matching fiscal period. Convert currency and scale explicitly from the documented units; do not infer them from a sheet name or prior model.
 
 ## Choose the business engine
 
@@ -46,4 +46,4 @@ Build the base forecast from supported drivers. If target-implied calibration is
 
 Check implied remaining periods, capacity limits, changed mix, start dates, missing months and matching volume/price units. Rebuild affected costs when changing output. Do not assume a zero contribution means zero sales, or keep a run rate despite clear contrary evidence: resolve the definition and show scenarios.
 
-The projection is complete when historical calibration, forecast drivers, costs/margins, unit economics, annual/interim sums and links to 3S are explicit. A list of segment growth rates without those bridges is a partial projection.
+The projection is complete when historical calibration, forecast drivers, costs/margins, unit economics, annual/interim sums and links to Statements are explicit. A list of segment growth rates without those bridges is a partial projection.

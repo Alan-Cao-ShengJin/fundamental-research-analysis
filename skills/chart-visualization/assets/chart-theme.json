@@ -1,36 +1,97 @@
 {
   "id": "fundamental-research",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "design tokens; map these into the renderer, not a raw G2 theme object",
   "g2BaseTheme": "classic",
   "font": {
-    "family": "Segoe UI, Arial, sans-serif",
-    "titleSize": 15,
-    "labelSize": 12,
-    "sourceSize": 11,
-    "titleWeight": 600
+    "family": "IBM Plex Sans, Microsoft YaHei, Segoe UI, Arial, sans-serif",
+    "titleSize": 12,
+    "labelSize": 9,
+    "sourceSize": 7.5,
+    "titleWeight": 600,
+    "files": "skills/report-layout/assets/fonts (SIL Open Font License); embedded in report HTML"
   },
   "colours": {
     "background": "#FFFFFF",
-    "ink": "#142B43",
-    "body": "#263646",
-    "muted": "#667381",
-    "grid": "#DCE3E8",
-    "reference": "#667381",
-    "positive": "#166245",
-    "negative": "#993E42",
-    "caution": "#9B6F1E"
+    "ink": "#1B2A41",
+    "body": "#26303D",
+    "muted": "#6B7480",
+    "grid": "#DDE2E7",
+    "reference": "#6B7480",
+    "actual": "#1B2A41",
+    "forecast": "#9AA3AE",
+    "company": "#1F6F78",
+    "negative": "#A23B3B",
+    "positive": "#2E7D4F",
+    "caution": "#A23B3B"
   },
-  "series": ["#142B43", "#146B71", "#705A8D", "#9B6F1E", "#416B9A"],
-  "scenarios": {"bear": "#993E42", "base": "#146B71", "bull": "#166245"},
-  "ratings": {"Buy": "#166245", "Hold": "#9B6F1E", "Sell": "#993E42"},
+  "series": [
+    "#1B2A41",
+    "#1F6F78",
+    "#6E7F96",
+    "#8DBCC1",
+    "#B9C1CB"
+  ],
+  "scenarios": {
+    "bear": "#A23B3B",
+    "base": "#9AA3AE",
+    "bull": "#2E7D4F"
+  },
+  "ratings": {
+    "Buy": "#2E7D4F",
+    "Hold": "#1F6F78",
+    "Sell": "#A23B3B"
+  },
   "states": {
-    "actual": {"lineDash": [], "opacity": 1},
-    "forecast": {"lineDash": [5, 3], "opacity": 0.7},
-    "meaning": "Series colour stays fixed; status is also explicitly labelled. For bars, use lighter fill or a pattern and label the forecast boundary."
+    "actual": {
+      "lineDash": [],
+      "opacity": 1
+    },
+    "forecast": {
+      "lineDash": [
+        5,
+        3
+      ],
+      "opacity": 0.45
+    },
+    "estimatedHistory": {
+      "lineDash": [
+        1,
+        3
+      ],
+      "opacity": 0.6
+    },
+    "meaning": "Actuals solid; forecasts dashed lines or lighter bars; estimated history dotted. Label each state in the legend."
   },
-  "marks": {"lineWidth": 2, "pointRadius": 3, "barRadius": 2, "areaOpacity": 0.25, "gridLineWidth": 1},
-  "layout": {"desktopWidth": 720, "desktopHeight": 320, "mobileHeight": 280, "padding": "auto", "autoFit": true},
-  "format": {"moneyDecimals": 2, "returnDecimals": 1, "compactScale": "Explicit unit label; preserve source precision in the dataset", "negativeSign": "Always visible", "source": "Readable source title plus period/date; no opaque IDs"},
-  "defaults": {"backgroundEffects": false, "gradient": false, "shadow": false, "animation": false, "zeroBaselineForMagnitudeBars": true, "colourOnlyMeaning": false, "hoverOnlyEssentialData": false}
+  "marks": {
+    "lineWidth": 2,
+    "pointRadius": 3,
+    "barRadius": 2,
+    "areaOpacity": 0.25,
+    "gridLineWidth": 1
+  },
+  "layout": {
+    "desktopWidth": 720,
+    "desktopHeight": 320,
+    "mobileHeight": 280,
+    "padding": "auto",
+    "autoFit": true
+  },
+  "format": {
+    "moneyDecimals": 2,
+    "returnDecimals": 1,
+    "compactScale": "Explicit unit label; preserve source precision in the dataset",
+    "negativeSign": "Always visible",
+    "source": "Readable source title plus period/date; no opaque IDs"
+  },
+  "defaults": {
+    "backgroundEffects": false,
+    "gradient": false,
+    "shadow": false,
+    "animation": false,
+    "zeroBaselineForMagnitudeBars": true,
+    "colourOnlyMeaning": false,
+    "hoverOnlyEssentialData": false
+  },
+  "meaning": "One meaning per colour: navy = actuals or the primary series; grey = forecasts and the base case; teal = the covered company and headings; red = negatives and the bear case only; green = the bull case and positive changes only. Extra series use navy and teal tints, never new hues."
 }

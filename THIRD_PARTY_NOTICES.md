@@ -12,3 +12,7 @@ The maintained instructions adapt methods from these pinned sources. Their origi
 Raw upstream archives, worked company reports and private data are outside this repository. Provider endpoint documentation is linked in the endpoint registry; API access, retention and distribution rights are separate from these instructions.
 
 Current bundle attribution text also travels with the [skill-tree notices](skills/THIRD_PARTY_NOTICES.md). The original licence files and pinned adaptation credits remain included.
+
+## Embedded fonts
+
+IBM Plex Sans font files are Copyright 2018 IBM Corp. and licensed separately under [SIL Open Font License 1.1](skills/report-layout/assets/fonts/OFL.txt). The MIT notices above do not relicense the fonts.

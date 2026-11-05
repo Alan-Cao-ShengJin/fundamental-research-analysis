@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "entrySkill": "research-cycle",
   "runtimeIntegrated": false,
   "skills": [
@@ -56,6 +56,11 @@
     {
       "id": "chart-visualization",
       "path": "chart-visualization/SKILL.md",
+      "sourceSkills": []
+    },
+    {
+      "id": "report-layout",
+      "path": "report-layout/SKILL.md",
       "sourceSkills": []
     },
     {

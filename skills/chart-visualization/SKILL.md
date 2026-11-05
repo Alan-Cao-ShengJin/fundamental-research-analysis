@@ -33,7 +33,7 @@ Consume the current model outputs or dated observations directly. Preserve numer
 
 ## Apply one visual language
 
-Use the shared theme's font, colours, spacing and mark styles. Keep a metric's colour and legend order consistent across figures. Colours distinguish series or meaning; avoid a different colour for every bar in a single-series comparison.
+Use the shared theme's font, colours, spacing and mark styles. Each colour has one meaning across the whole report (the theme's `meaning` field): navy actuals, grey forecasts and the base case, teal the covered company, red negatives and the bear case only, green the bull case only. Keep a metric's colour and legend order consistent across figures; avoid a different colour for every bar in a single-series comparison.
 
 Actual values are solid. Forecasts use dashed lines, lighter fills or another labelled pattern without changing what the series colour means. Mark the forecast boundary. Bear/base/bull and Buy/Hold/Sell use the named semantic colours in the theme, plus readable labels. A price reference is a neutral line, not another forecast.
 

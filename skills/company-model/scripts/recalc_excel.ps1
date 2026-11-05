@@ -3,7 +3,7 @@
 # Optionally cycle the scenario selector and record named outputs for every case.
 #
 # powershell -NoProfile -ExecutionPolicy Bypass -File recalc_excel.ps1 -Workbook model.xlsx `
-#   [-Selector "Revenue Projection!C2" -Cases 3 -Outputs "3S!G44,Valuation!C16" -Report excel.json]
+#   [-Selector "Cover!C9" -Cases 3 -Outputs "Statements!K50,Valuation!D24" -Report excel.json]
 param(
     [Parameter(Mandatory = $true)][string]$Workbook,
     [string]$Selector = '',

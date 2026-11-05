@@ -1,6 +1,6 @@
 # Third-party notices
 
-Parts of this bundle are adapted from the following MIT-licensed works. The licence requires this notice to accompany copies or substantial portions.
+Parts of this bundle are adapted from the following works. The MIT works require their notices to accompany copies or substantial portions. IBM Plex Sans font files are separately licensed under SIL Open Font License 1.1, whose full notice is included with the fonts; the MIT text below does not relicense them.
 
 | Work | Copyright | Used in |
 | --- | --- | --- |
@@ -8,6 +8,7 @@ Parts of this bundle are adapted from the following MIT-licensed works. The lice
 | financial-red-flag-auditor-skill | Copyright (c) 2026 financial-red-flag-auditor-skill contributors | `financial-quality/references/financial-red-flags.md` |
 | AntV Chart Visualization Skills | Copyright (c) 2025 AntV Visualization Team | `chart-visualization/` |
 | Humanizer | Copyright (c) 2025 Siqi Chen | `research-brief/references/natural-writing.md` |
+| IBM Plex Sans (font files) | Copyright 2018 IBM Corp. | `report-layout/assets/fonts/` (SIL Open Font License 1.1, full text in `OFL.txt` there) |
 
 ## MIT License
 

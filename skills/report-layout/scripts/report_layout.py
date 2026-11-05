@@ -1,0 +1,821 @@
+"""House layout for full stock reports: A4 PDF from HTML through headless Chrome.
+
+    import report_layout as rl
+    r = rl.Report(company='Example Company (synthetic)', ticker='EXAMPLE', report='Initiation', date='Example date',
+                  pricing='Synthetic prices and estimates; no live market data')
+    r.front(headline, key_points=[...], summary=[...], rating=rl.rating_box(...), key_data=[(label, value)],
+            financials=rl.fin_table(...), chart=r.exhibit('px', 'Takeaway headline', svg, 'Source line'))
+    r.section('Valuation', 'One-line takeaway for the rail', 'Paragraph citing {{ex:band}} and a source{{src:example}}.',
+              r.exhibit('band', 'Synthetic valuation comparison', rl.band_chart(...), 'Synthetic example'))
+    r.sources([('example', 'Synthetic source', 'Invented estimates and prices', 'Example date', '')])
+    r.write(html_path); rl.print_pdf(html_path, pdf_path); rl.inspect_pdf(pdf_path)
+
+Text may use {{ex:key}} (becomes "Exhibit N", numbered in order of appearance) and {{src:key}} or {{src:a,b}}
+(becomes superscript source numbers, numbered in order of first citation). Colours and fonts come from the shared chart
+theme; the IBM Plex Sans files in ../assets/fonts are embedded so the PDF does not depend on system fonts.
+"""
+from __future__ import annotations
+import base64
+import html
+import json
+import math
+import os
+import re
+import shutil
+import subprocess
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+SKILLS = HERE.parents[1]
+THEME = json.loads((SKILLS / 'chart-visualization' / 'assets' / 'chart-theme.json').read_text(encoding='utf-8'))
+COL = THEME['colours']
+SER = THEME['series']
+SCEN = THEME['scenarios']
+RATING = THEME['ratings']
+FONT = THEME['font']['family']
+NAVY, GREY, TEAL, RED, GREEN = COL['actual'], COL['forecast'], COL['company'], COL['negative'], COL['positive']
+FC_OPACITY = THEME['states']['forecast']['opacity']
+RATING_DEFINITIONS = ('Ratings are set on the 12-month price return to our target: Buy above +10%, Hold from -10% to +10%, '
+                      'Sell below -10%. Dividend yield is shown separately and is not part of the target or the rating.')
+DISCLAIMER = 'Internal use only. Not investment advice.'
+
+
+def esc(s):
+    return html.escape(str(s))
+
+
+class Block(str):
+    """Pre-rendered HTML (exhibits, tables, lists) placed as-is in a section."""
+
+
+class Sub(str):
+    """A subsection heading inside a section."""
+
+
+def bullets(items):
+    return Block('<ul>' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>')
+
+
+# ---------------------------------------------------------------- fonts and CSS
+def _font_faces():
+    out = []
+    for f, weight, style in [('400-normal', 400, 'normal'), ('400-italic', 400, 'italic'), ('600-normal', 600, 'normal'),
+                             ('700-normal', 700, 'normal')]:
+        p = HERE.parent / 'assets' / 'fonts' / f'ibm-plex-sans-latin-{f}.woff2'
+        if p.exists():
+            b64 = base64.b64encode(p.read_bytes()).decode()
+            out.append(f"@font-face {{ font-family: 'IBM Plex Sans'; font-weight: {weight}; font-style: {style}; "
+                       f"src: url(data:font/woff2;base64,{b64}) format('woff2'); }}")
+    return '\n'.join(out)
+
+
+def _css(running, right):
+    q = lambda s: '"' + s.replace('\\', '\\\\').replace('"', '\\"') + '"'  # noqa: E731
+    box = f"font-family: {FONT}; font-size: 7.5pt; color: {COL['muted']};"
+    return f"""
+{_font_faces()}
+@page {{ size: A4; margin: 18mm 15mm 18mm 15mm;
+  @top-left {{ content: {q(running)}; {box} }}
+  @top-right {{ content: {q(right)}; {box} }}
+  @bottom-left {{ content: {q(DISCLAIMER)}; {box} }}
+  @bottom-right {{ content: "Page " counter(page) " of " counter(pages); {box} }} }}
+@page :first {{ @top-left {{ content: none; }} @top-right {{ content: none; }} @bottom-right {{ content: none; }} }}
+* {{ box-sizing: border-box; }}
+body {{ font-family: {FONT}; color: {COL['body']}; font-size: 9.5pt; line-height: 1.4; margin: 0; background: #fff;
+       font-variant-numeric: tabular-nums; }}
+main {{ max-width: 180mm; margin: 0 auto; }}
+a {{ color: {TEAL}; text-decoration: none; }}
+sup {{ font-size: 6.5pt; color: {TEAL}; line-height: 0; }}
+p {{ margin: 0 0 2.2mm; orphans: 3; widows: 3; }}
+ul {{ margin: 0 0 2mm; padding-left: 4.5mm; }} li {{ margin-bottom: 1.2mm; }}
+h1 {{ font-size: 20pt; font-weight: 600; color: {COL['ink']}; line-height: 1.2; margin: 2mm 0 3mm; }}
+h2 {{ font-size: 12pt; font-weight: 600; color: {TEAL}; margin: 0 0 1.5mm; line-height: 1.2; break-after: avoid; }}
+h3 {{ font-size: 10pt; font-weight: 600; color: {COL['ink']}; margin: 2mm 0 1mm; break-after: avoid; }}
+.byline {{ display: flex; justify-content: space-between; gap: 4mm; font-size: 8pt; color: {COL['muted']};
+          border-bottom: 1.5px solid {COL['ink']}; padding-bottom: 1.5mm; }}
+.front {{ display: grid; grid-template-columns: 63fr 37fr; column-gap: 6mm; break-after: page; }}
+.front .lead h3 {{ color: {TEAL}; margin-top: 0; }}
+.side {{ font-size: 8pt; line-height: 1.3; }}
+.side h4 {{ font-size: 8pt; text-transform: uppercase; letter-spacing: .04em; color: {TEAL}; margin: 3mm 0 1mm;
+           border-bottom: 1px solid {COL['grid']}; padding-bottom: .5mm; }}
+.rbox {{ background: #F3F5F7; border-top: 3px solid {TEAL}; padding: 2mm 2.5mm; }}
+.rbox .rating {{ font-size: 16pt; font-weight: 700; }}
+.kv {{ width: 100%; border-collapse: collapse; font-size: 8pt; }}
+.kv td {{ border-bottom: 1px solid {COL['grid']}; padding: .6mm 0; }} .kv td:last-child {{ text-align: right; }}
+.rbox .kv td {{ border: none; padding: .35mm 0; }}
+.sec {{ display: grid; grid-template-columns: 40mm 1fr; column-gap: 6mm; margin: 0 0 3mm; }}
+.sec > * {{ grid-column: 2; }}
+.sec > .rail {{ grid-column: 1; grid-row: 1 / span 2; border-top: 2px solid {TEAL}; padding-top: 1.2mm; break-inside: avoid; }}
+.sec > .rail + p {{ break-inside: avoid; }}
+.rail .take {{ font-size: 8pt; color: {COL['muted']}; line-height: 1.3; }}
+.sec > .wide {{ grid-column: 1 / -1; }}
+.sec > h3 {{ border-top: 1px solid {COL['grid']}; padding-top: 1mm; }}
+.exhibit {{ break-inside: avoid; margin: 1.5mm 0 3.5mm; }}
+.ex-head {{ font-size: 8.5pt; font-weight: 600; color: {COL['ink']}; border-top: 1px solid {COL['ink']}; padding-top: 1mm;
+           margin-bottom: 1mm; }}
+.ex-head b {{ color: {TEAL}; }}
+.ex-src {{ font-size: 7.5pt; color: {COL['muted']}; margin-top: .8mm; line-height: 1.3; }}
+svg {{ display: block; width: 100%; height: auto; }}
+table {{ border-collapse: collapse; width: 100%; font-size: 8.5pt; }}
+th {{ text-align: left; font-weight: 600; color: {COL['ink']}; border-bottom: 1px solid {COL['ink']}; padding: .8mm 1.2mm;
+      vertical-align: bottom; }}
+td {{ border-bottom: 1px solid {COL['grid']}; padding: .7mm 1.2mm; vertical-align: top; }}
+table.fin td:not(:first-child), table.fin th:not(:first-child) {{ text-align: right; white-space: nowrap; }}
+table.fin td.e, table.fin th.e {{ background: #EEF1F4; }}
+table.fin tr.grp td {{ font-weight: 600; color: {TEAL}; padding-top: 1.6mm; }}
+table.fin tr.bold td {{ font-weight: 600; }}
+table.fin tr.cons td {{ color: {COL['muted']}; font-style: italic; }}
+td.pos {{ color: {TEAL}; }} td.neg {{ color: {RED}; }}
+table.text td {{ font-size: 8pt; }}
+table.compact td, table.compact th {{ font-size: 7.8pt; padding-top: .35mm; padding-bottom: .35mm; }}
+.back {{ font-size: 7.5pt; color: {COL['body']}; columns: 2; column-gap: 6mm; margin-top: 2mm; }}
+.back h2 {{ column-span: all; border-top: 2px solid {TEAL}; padding-top: 1.2mm; }}
+.back ol {{ margin: 0 0 2mm; padding-left: 5mm; }} .back li {{ break-inside: avoid; margin-bottom: .8mm; }}
+.back p {{ break-inside: avoid; margin-bottom: 1.5mm; }}
+@media screen {{ main {{ padding: 6mm 4mm; }} }}
+@media (max-width: 640px) {{ .front, .sec {{ display: block; }} table {{ display: block; overflow-x: auto; }} }}
+"""
+
+
+# ---------------------------------------------------------------- page
+class Report:
+    def __init__(self, company, ticker, report, date, author='', email='', firm='', pricing=''):
+        self.company, self.ticker, self.report, self.date = company, ticker, report, date
+        self.author, self.email, self.firm, self.pricing = author, email, firm, pricing
+        self.parts, self.src, self.front_html, self.uncited_exhibits = [], [], '', []
+        self.companions = []   # [(label, file name)] delivered in the same folder, e.g. the Excel model
+
+    # exhibits, references and sources -------------------------------------------------
+    def exhibit(self, key, headline, body, source, note=''):
+        """A numbered exhibit: 'Exhibit N: headline' above (the point, not the topic), source line below."""
+        return Block(f'<figure class="exhibit"><div class="ex-head"><b>{{{{exn:{key}}}}}:</b> {headline}</div>{body}'
+                     f'<div class="ex-src">{note + " " if note else ""}Source: {source}</div></figure>')
+
+    @staticmethod
+    def ref(key):
+        return f'{{{{ex:{key}}}}}'
+
+    def sources(self, items):
+        """items: [(key, publisher, title, date, url)]; numbered by first citation, uncited ones last."""
+        self.src = items
+
+    # page parts -----------------------------------------------------------------------
+    def front(self, headline, key_points, summary, rating, key_data, financials='', chart=''):
+        kd = ''.join(f'<tr><td>{esc(a)}</td><td>{b}</td></tr>' for a, b in key_data)
+        by = (f'<div class="byline"><span>{esc(self.company)} | {esc(self.ticker)} | {esc(self.report)}</span>'
+              f'<span>{" | ".join(esc(x) for x in (self.author, self.email, self.date) if x)}</span></div>')
+        self.front_html = (
+            f'{by}<h1>{esc(headline)}</h1><div class="front"><div class="lead"><h3>Key points</h3>{bullets(key_points)}'
+            + ''.join(f'<p>{p}</p>' for p in summary) + f'{chart}</div><div class="side">{rating}<h4>Key data</h4>'
+            f'<table class="kv">{kd}</table>' + (f'<h4>Key financials</h4>{financials}' if financials else '')
+            + (f'<p class="ex-src">{esc(self.pricing)}.</p>' if self.pricing else '') + '</div></div>')
+
+    def section(self, title, takeaway, *items):
+        body = [f'<div class="rail"><h2>{esc(title)}</h2><div class="take">{takeaway}</div></div>']
+        for it in items:
+            if isinstance(it, Sub):
+                body.append(f'<h3>{esc(it)}</h3>')
+            elif isinstance(it, Block):
+                body.append(f'<div class="wide">{it}</div>' if it.startswith('<figure') else it)
+            else:
+                body.append(f'<p>{it}</p>')
+        self.parts.append('<section class="sec">' + ''.join(body) + '</section>')
+
+    def _back(self):
+        order, n = {}, 0
+        for k in re.findall(r'\{\{src:([^}]+)\}\}', self.front_html + ''.join(self.parts)):
+            for x in k.split(','):
+                if x.strip() not in order:
+                    n += 1
+                    order[x.strip()] = n
+        known = [s[0] for s in self.src]
+        for k in order:
+            if k not in known:
+                raise ValueError(f'Cited source {k} is not in the source list')
+        for k in known:
+            if k not in order:
+                n += 1
+                order[k] = n
+        items = sorted(self.src, key=lambda s: order[s[0]])
+        lis = ''.join(f'<li>{esc(pub)}, ' + (f'<a href="{esc(url)}">{esc(title)}</a>' if url else f'"{esc(title)}"')
+                      + f', {esc(date)}.</li>' for _, pub, title, date, url in items)
+        back = (f'<section class="back"><h2>Sources</h2><ol>{lis}</ol>'
+                + (f'<p><b>Author.</b> {", ".join(esc(x) for x in (self.author, self.email, self.firm) if x)}.</p>'
+                   if self.author or self.firm else '')
+                + (f'<p><b>Accompanying files.</b> ' + '; '.join(f'{esc(a)}: <a href="{esc(f)}">{esc(f)}</a>'
+                                                                   for a, f in self.companions) + '.</p>'
+                   if self.companions else '')
+                + f'<p><b>Ratings.</b> {RATING_DEFINITIONS}</p>'
+                + (f'<p><b>Pricing.</b> {esc(self.pricing)}.</p>' if self.pricing else '')
+                + f'<p><b>{DISCLAIMER}</b></p></section>')
+        return order, back
+
+    def html(self):
+        order, back = self._back()
+        body = self.front_html + ''.join(self.parts) + back
+        ex = {}
+        for k in re.findall(r'\{\{exn:([^}]+)\}\}', body):
+            if k in ex:
+                raise ValueError(f'Exhibit key {k} used twice')
+            ex[k] = len(ex) + 1
+        for k in re.findall(r'\{\{ex:([^}]+)\}\}', body):
+            if k not in ex:
+                raise ValueError(f'Text cites exhibit {k}, which is not placed')
+        cited = set(re.findall(r'\{\{ex:([^}]+)\}\}', body))
+        self.uncited_exhibits = [k for k in ex if k not in cited]
+        body = re.sub(r'\{\{exn?:([^}]+)\}\}', lambda m: f'Exhibit {ex[m[1]]}', body)
+        body = re.sub(r'\{\{src:([^}]+)\}\}', lambda m: '<sup>' + ','.join(str(order[x.strip()]) for x in m[1].split(','))
+                      + '</sup>', body)
+        running = f'{self.company} ({self.ticker}) | {self.report} | {self.date}'
+        return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,'
+                f'initial-scale=1"><title>{esc(self.company)} {esc(self.report)}</title><style>'
+                f'{_css(running, self.firm or self.author)}</style></head><body><main>{body}</main></body></html>')
+
+    def write(self, path):
+        Path(path).write_text(self.html(), encoding='utf-8')
+        return Path(path)
+
+
+def rating_box(rating, price_label, price, target, dividend, bear, base, bull, consensus_target, money, decimals=1):
+    """Front-page rating box. The price return is computed from the target as displayed (rounded to `decimals`), so the
+    box never shows a target next to a return worked from a different figure. bear/base/bull are (target, return);
+    supplied scenario returns are retained for API compatibility but recalculated from the displayed prices."""
+    c = RATING.get(rating, TEAL)
+    cd = decimals if price < 20 else 0   # case targets: whole units unless the share price is low
+    target = round(target, decimals)
+    price = round(price, 2)
+    if not math.isfinite(price) or price <= 0:
+        raise ValueError('The displayed reference price must be finite and positive.')
+    price_return = target / price - 1
+    cases = [round(case[0], cd) for case in (bear, base, bull)]
+    case_returns = [value / price - 1 for value in cases]
+    row = lambda a, b: f'<tr><td>{a}</td><td>{b}</td></tr>'  # noqa: E731
+    return (f'<div class="rbox"><div class="rating" style="color:{c}">{esc(rating)}</div><table class="kv">'
+            + row(esc(price_label), f'{money}{price:,.2f}') + row('12-month target', f'<b>{money}{target:,.{decimals}f}</b>')
+            + row('Price return', f'<b>{price_return * 100:+.1f}%</b>') + row('Dividend yield (separate)', dividend)
+            + row('Consensus target', consensus_target)
+            + row('Bear / base / bull', f'{money}{cases[0]:,.{cd}f} / {cases[1]:,.{cd}f} / {cases[2]:,.{cd}f}')
+            + row('', ' / '.join(f'{value * 100:+.0f}%' for value in case_returns)) + '</table></div>')
+
+
+# ---------------------------------------------------------------- number formats
+def num(x, d=0):
+    """Thousands separators; negatives in parentheses; None as n/a."""
+    if x is None:
+        return 'n/a'
+    s = f'{abs(x):,.{d}f}'
+    return f'({s})' if round(x, d) < 0 else s
+
+
+def pct(x, d=1, sign=False):
+    if x is None:
+        return 'n/a'
+    if sign:
+        return f'{x * 100:+.{d}f}%'
+    return f'({abs(x) * 100:.{d}f}%)' if round(x * 100, d) < 0 else f'{x * 100:.{d}f}%'
+
+
+def mult(x, d=1):
+    return 'n/a' if x is None else f'{x:.{d}f}x'
+
+
+def money(x, cur='US$', d=0):
+    """'-US$27' style."""
+    return f'{"-" if round(x, d) < 0 else ""}{cur}{abs(x):,.{d}f}'
+
+
+def f0(x):
+    return f'{x:,.0f}'
+
+
+def f1(x):
+    return f'{x:,.1f}'
+
+
+def table(head, rows, cls='text', compact=False):
+    h = ''.join(f'<th>{esc(x)}</th>' for x in head)
+    b = ''.join('<tr>' + ''.join(f'<td>{x}</td>' for x in r) + '</tr>' for r in rows)
+    return Block(f'<table class="{cls}{" compact" if compact else ""}"><thead><tr>{h}</tr></thead><tbody>{b}</tbody>'
+                 f'</table>')
+
+
+def fin_table(first, periods, est_from, groups, compact=False):
+    """Grouped financial table. periods: labels like 'FY2025A'; columns from index est_from are estimates (shaded).
+    groups: [(group label or None, [(label, [cells], style)])]; style '', 'bold', 'cons' or 'sign' (teal/red by sign);
+    cells are pre-formatted strings (use num/pct/mult/money)."""
+    e = lambda i: ' class="e"' if i >= est_from else ''  # noqa: E731
+    h = f'<th>{esc(first)}</th>' + ''.join(f'<th{e(i)}>{esc(p)}</th>' for i, p in enumerate(periods))
+    rows = []
+    for g, items in groups:
+        if g:
+            rows.append(f'<tr class="grp"><td colspan="{len(periods) + 1}">{esc(g)}</td></tr>')
+        for label, cells, style in items:
+            cls = f' class="{style}"' if style in ('bold', 'cons') else ''
+            tds = []
+            for i, x in enumerate(cells):
+                c = ['e'] if i >= est_from else []
+                if style == 'sign' and x not in ('', 'n/a'):
+                    c.append('neg' if x.startswith('(') or x.startswith('-') else 'pos')
+                tds.append(f'<td class="{" ".join(c)}">{x}</td>' if c else f'<td>{x}</td>')
+            rows.append(f'<tr{cls}><td>{label}</td>' + ''.join(tds) + '</tr>')
+    style = ' style="font-size:7.8pt"' if compact else ''
+    return Block(f'<table class="fin"{style}><thead><tr>{h}</tr></thead><tbody>{"".join(rows)}</tbody></table>')
+
+
+# ---------------------------------------------------------------- SVG primitives
+def scale(lo, hi, ticks=5, zero=True):
+    """Round axis: (min, max, step) with step 1, 2, 2.5 or 5 x 10^k."""
+    if zero:
+        lo, hi = min(0, lo), max(0, hi)
+    span = (hi - lo) or abs(hi) or 1
+    raw = span / (ticks - 1)
+    e = 10 ** math.floor(math.log10(raw))
+    step = next(m * e for m in (1, 2, 2.5, 5, 10) if m * e >= raw - 1e-12)
+    a, b = math.floor(lo / step + 1e-9) * step, math.ceil(hi / step - 1e-9) * step
+    return a, b, step
+
+
+def svg_open(w, h, title):
+    return (f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="{esc(title)}" xmlns="http://www.w3.org/2000/svg" '
+            f'style="font-family:{FONT};font-size:9px">')
+
+
+def txt(x, y, s, anchor='start', size=9, fill=None, weight=400):
+    return (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-size="{size}" fill="{fill or COL["body"]}" '
+            f'font-weight="{weight}">{esc(s)}</text>')
+
+
+def _tick_label(v, step, fmt):
+    if fmt:
+        return fmt(v)
+    if step >= 1 and float(step).is_integer():
+        return f'{v:,.0f}'
+    return f'{v:,.{max(1, -math.floor(math.log10(step)))}f}'   # e.g. a 2.5 step shows 2.5, 7.5
+
+
+def _axis(out, x0, x1, y_of, a, b, step, fmt, unit, side='left'):
+    v = a
+    while v <= b + step / 1e6:
+        y = y_of(v)
+        if side == 'left':
+            out.append(f'<line x1="{x0}" x2="{x1}" y1="{y:.1f}" y2="{y:.1f}" stroke="{COL["grid"]}"/>')
+            out.append(txt(x0 - 5, y + 3, _tick_label(v, step, fmt), 'end', 8.5, COL['muted']))
+        else:
+            out.append(txt(x1 + 5, y + 3, _tick_label(v, step, fmt), 'start', 8.5, COL['muted']))
+        v += step
+    if unit:
+        uy = y_of(b) - 10
+        out.append(txt(0 if side == 'left' else x1 + 46, uy, unit, 'start' if side == 'left' else 'end', 8.5, COL['muted']))
+
+
+def _legend(out, items, x, y):
+    """items: (name, colour, kind) with kind bar | bar-fc | line | dash | dot | hollow."""
+    for name, color, kind in items:
+        if kind in ('bar', 'bar-fc'):
+            out.append(f'<rect x="{x}" y="{y - 7}" width="9" height="9" fill="{color}" '
+                       f'fill-opacity="{FC_OPACITY if kind == "bar-fc" else 1}"/>')
+            x2 = x + 13
+        elif kind == 'hollow':
+            out.append(f'<circle cx="{x + 4}" cy="{y - 3}" r="4" fill="#fff" stroke="{color}" stroke-width="1.5"/>')
+            x2 = x + 12
+        else:
+            d = {'line': '', 'dash': ' stroke-dasharray="5 3"', 'dot': ' stroke-dasharray="1 3"'}[kind]
+            out.append(f'<line x1="{x}" x2="{x + 16}" y1="{y - 3}" y2="{y - 3}" stroke="{color}" stroke-width="2"{d}/>')
+            x2 = x + 20
+        out.append(txt(x2, y, name, 'start', 8.5))
+        x = x2 + 4.9 * len(name) + 14
+
+
+def _clip(out, cid, x, y, w, h):
+    out.append(f'<defs><clipPath id="{cid}"><rect x="{x}" y="{y}" width="{w}" height="{h}"/></clipPath></defs>')
+
+
+def _place_labels(ys, min_gap=11, lo=-1e9, hi=1e9):
+    """Label y positions without overlaps, in the input order."""
+    idx = sorted(range(len(ys)), key=lambda i: ys[i])
+    s = [ys[i] for i in idx]
+    for k in range(1, len(s)):
+        s[k] = max(s[k], s[k - 1] + min_gap)
+    if s and s[-1] > hi:
+        s[-1] = hi
+        for k in range(len(s) - 2, -1, -1):
+            s[k] = min(s[k], s[k + 1] - min_gap)
+    out = [0.0] * len(ys)
+    for k, i in enumerate(idx):
+        out[i] = max(s[k], lo)
+    return out
+
+
+_CID = [0]
+
+
+def _cid():
+    _CID[0] += 1
+    return f'c{_CID[0]}'
+
+
+# ---------------------------------------------------------------- charts
+def bars_chart(title, cats, series, unit, forecast_from, w=700, h=240, stacked=False, labels=True, fmt=f0, colors=None,
+               growth=None, line=None, line_unit='', line_fmt=None):
+    """Vertical bars (grouped or stacked); forecast columns lighter. series: [(name, values)].
+    growth: optional row of strings under the category labels (e.g. y/y growth).
+    line: optional (name, values) on a right-hand axis (line_unit), solid to forecast_from then dashed."""
+    colors = colors or ([NAVY] if len(series) == 1 else SER)
+    left, right, top = 52, (52 if line else 14), 26
+    bottom = 40 + (12 if growth else 0)
+    tot = [sum(s[i] for _, s in series) if stacked else max(s[i] for _, s in series) for i in range(len(cats))]
+    a, b, step = scale(min(0, min(min(s) for _, s in series)), max(tot) * 1.06)
+    pw, ph = w - left - right, h - top - bottom
+    Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
+    n, k = len(cats), 1 if stacked else len(series)
+    gw = pw / n
+    bw = gw * (0.62 if k == 1 else 0.72 / k)
+    out = [svg_open(w, h, title)]
+    _axis(out, left, w - right, Y, a, b, step, None, unit)
+    for i, cat in enumerate(cats):
+        op = FC_OPACITY if i >= forecast_from else 1
+        base = 0
+        for j, (name, s) in enumerate(series):
+            x = left + gw * i + (gw - bw * k) / 2 + (0 if stacked else bw * j)
+            v0, v1 = (base, base + s[i]) if stacked else (0, s[i])
+            y1, y2 = Y(max(v0, v1)), Y(min(v0, v1))
+            out.append(f'<rect x="{x:.1f}" y="{y1:.1f}" width="{bw:.1f}" height="{max(y2 - y1, .5):.1f}" '
+                       f'fill="{colors[j]}" fill-opacity="{op}"/>')
+            if labels and not stacked:
+                out.append(txt(x + bw / 2, (y1 - 3) if s[i] >= 0 else (y2 + 9), fmt(s[i]), 'middle', 8, COL['ink']))
+            if stacked:
+                base += s[i]
+        if labels and stacked:
+            out.append(txt(left + gw * i + gw / 2, Y(base) - 3, fmt(base), 'middle', 8, COL['ink'], 600))
+        out.append(txt(left + gw * i + gw / 2, top + ph + 12, cat, 'middle', 8.5, COL['muted']))
+        if growth:
+            out.append(txt(left + gw * i + gw / 2, top + ph + 24, growth[i], 'middle', 8, COL['body']))
+    if growth:
+        out.append(txt(left - 5, top + ph + 24, 'y/y', 'end', 8, COL['muted']))
+    if line:
+        la, lb, ls = scale(min(line[1]), max(line[1]) * 1.06)
+        YL = lambda v: top + ph - ph * (v - la) / (lb - la)  # noqa: E731
+        _axis(out, left, w - right, YL, la, lb, ls, line_fmt, line_unit, side='right')
+        pts = [(left + gw * i + gw / 2, YL(v)) for i, v in enumerate(line[1])]
+        sol = ' '.join(f'{x:.1f},{y:.1f}' for x, y in pts[:forecast_from])
+        das = ' '.join(f'{x:.1f},{y:.1f}' for x, y in pts[max(forecast_from - 1, 0):])
+        if sol:
+            out.append(f'<polyline points="{sol}" fill="none" stroke="{TEAL}" stroke-width="2"/>')
+        if forecast_from < n:
+            out.append(f'<polyline points="{das}" fill="none" stroke="{TEAL}" stroke-width="2" stroke-dasharray="5 3"/>')
+        for x, y in pts:
+            out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{TEAL}"/>')
+    if forecast_from < n:
+        xb = left + gw * forecast_from
+        out.append(f'<line x1="{xb:.1f}" x2="{xb:.1f}" y1="{top}" y2="{top + ph}" stroke="{COL["reference"]}" '
+                   f'stroke-dasharray="3 3"/>')
+    leg = [(name, colors[j], 'bar') for j, (name, _) in enumerate(series)]
+    if forecast_from < n:
+        leg.append(('Forecast (lighter)', colors[0], 'bar-fc'))
+    if line:
+        leg.append((line[0] + (f' (right axis, {line_unit})' if line_unit else ''), TEAL, 'line'))
+    _legend(out, leg, left, h - 3)
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def lines_chart(title, cats, series, unit, forecast_from, w=700, h=230, fmt=None, ymin=None, ymax=None, zero=False,
+                est_until=0, label_fmt=None):
+    """Lines: solid actuals, dashed from forecast_from, dotted before est_until (estimated history).
+    series: [(name, values or None, colour)]; end values labelled without overlaps (leader lines when moved)."""
+    left, right, top, bottom = 52, 46, 26, 40
+    vals = [x for _, s, _ in series for x in s if x is not None]
+    a, b, step = scale(min(vals) if ymin is None else ymin, max(vals) if ymax is None else ymax, zero=zero)
+    pw, ph = w - left - right, h - top - bottom
+    n = len(cats)
+    X = lambda i: left + pw * (i + 0.5) / n  # noqa: E731
+    Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    cid = _cid()
+    _clip(out, cid, left, top - 2, pw, ph + 4)
+    _axis(out, left, w - right, Y, a, b, step, fmt, unit)
+    for i, c in enumerate(cats):
+        if c:
+            out.append(txt(X(i), top + ph + 12, c, 'middle', 8.5, COL['muted']))
+    ends = []
+    for name, s, color in series:
+        pts = [(i, y) for i, y in enumerate(s) if y is not None]
+        segs = [('dot', [p for p in pts if p[0] < est_until]),
+                ('solid', [p for p in pts if max(est_until - 1, 0) <= p[0] < forecast_from]),
+                ('dash', [p for p in pts if p[0] >= forecast_from - 1])]
+        for kind, ps in segs:
+            if len(ps) < 2:
+                continue
+            d = {'dot': ' stroke-dasharray="1 3"', 'solid': '', 'dash': ' stroke-dasharray="5 3"'}[kind]
+            out.append(f'<polyline clip-path="url(#{cid})" points="{" ".join(f"{X(i):.1f},{Y(y):.1f}" for i, y in ps)}" '
+                       f'fill="none" stroke="{color}" stroke-width="2"{d}/>')
+        li, ly = pts[-1]
+        ends.append((X(li), Y(ly), ly, color))
+    ys = _place_labels([e[1] + 3 for e in ends], 10, top + 3, top + ph + 3)
+    for (x, yp, v, color), yl in zip(ends, ys):
+        if abs(yl - (yp + 3)) > 1:
+            out.append(f'<line x1="{x + 2:.1f}" x2="{x + 8:.1f}" y1="{yp:.1f}" y2="{yl - 3:.1f}" stroke="{color}"/>')
+        out.append(txt(x + 9, yl, (label_fmt or fmt or f0)(v), 'start', 8.5, color, 600))
+    if forecast_from < n:
+        xb = (X(forecast_from - 1) + X(forecast_from)) / 2
+        out.append(f'<line x1="{xb:.1f}" x2="{xb:.1f}" y1="{top}" y2="{top + ph}" stroke="{COL["reference"]}" '
+                   f'stroke-dasharray="3 3"/>')
+    leg = [(name, color, 'line') for name, _, color in series]
+    if forecast_from < n:
+        leg.append(('Forecast', COL['muted'], 'dash'))
+    if est_until:
+        leg.append(('Estimated history', COL['muted'], 'dot'))
+    _legend(out, leg, left, h - 3)
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def football_field(title, price, cases, money_fmt, w=700, h=None, price_label='Price'):
+    """Scenario bars from the current price to each target. cases: [(name, target, return)]."""
+    h = h or 44 + 26 * len(cases)
+    left, right, top = 60, 30, 26
+    vals = [price] + [c[1] for c in cases]
+    span = max(vals) - min(vals)
+    lo, hi, step = scale(min(vals) - span * 0.45, max(vals) + span * 0.25, zero=False)
+    lo = max(lo, 0)
+    X = lambda v: left + (w - left - right) * (v - lo) / (hi - lo)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    v = lo
+    while v <= hi + step / 1e6:
+        out.append(f'<line x1="{X(v):.1f}" x2="{X(v):.1f}" y1="{top - 4}" y2="{h - 16}" stroke="{COL["grid"]}"/>')
+        out.append(txt(X(v), h - 4, money_fmt(v), 'middle', 8.5, COL['muted']))
+        v += step
+    for i, (name, tgt, ret) in enumerate(cases):
+        y = top + 26 * i
+        color = SCEN.get(name.lower(), NAVY)
+        x1, x2 = sorted([X(price), X(tgt)])
+        out.append(f'<rect x="{x1:.1f}" y="{y:.1f}" width="{max(x2 - x1, 2):.1f}" height="14" fill="{color}"/>')
+        out.append(txt(4, y + 10.5, name, 'start', 9, COL['ink'], 600))
+        tx, anc = (x2 + 5, 'start') if tgt >= price else (x1 - 5, 'end')
+        out.append(txt(tx, y + 10.5, f'{money_fmt(tgt)} ({ret * 100:+.0f}%)', anc, 8.5, COL['ink'], 600))
+    out.append(f'<line x1="{X(price):.1f}" x2="{X(price):.1f}" y1="{top - 8}" y2="{h - 16}" stroke="{COL["ink"]}" '
+               f'stroke-width="1.5"/>')
+    out.append(txt(X(price), top - 11, f'{price_label} {money_fmt(price)}', 'middle', 8.5, COL['ink'], 600))
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def tornado(title, base, items, money_fmt, w=700, h=None, base_label='Base target'):
+    """Target price under one change at a time. items: [(label, target)], sorted by distance from the base."""
+    items = sorted(items, key=lambda x: -abs(x[1] - base))
+    h = h or 40 + 16 * len(items)
+    left, right, top = 230, 50, 22
+    vals = [t for _, t in items] + [base]
+    span = max(vals) - min(vals)
+    lo, hi, step = scale(min(vals) - span * 0.25, max(vals) + span * 0.15, zero=False)
+    X = lambda v: left + (w - left - right) * (v - lo) / (hi - lo)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    v = lo
+    while v <= hi + step / 1e6:
+        out.append(f'<line x1="{X(v):.1f}" x2="{X(v):.1f}" y1="{top - 4}" y2="{h - 16}" stroke="{COL["grid"]}"/>')
+        out.append(txt(X(v), h - 4, money_fmt(v), 'middle', 8.5, COL['muted']))
+        v += step
+    for i, (lab, t) in enumerate(items):
+        y = top + 16 * i
+        x1, x2 = sorted([X(base), X(t)])
+        out.append(f'<rect x="{x1:.1f}" y="{y:.1f}" width="{max(x2 - x1, 1):.1f}" height="11" '
+                   f'fill="{RED if t < base else GREEN}"/>')
+        out.append(txt(left - 6, y + 9.5, lab, 'end', 8.5))
+        out.append(txt((x1 - 4) if t < base else (x2 + 4), y + 9.5, money_fmt(t), 'end' if t < base else 'start', 8.5,
+                       COL['ink']))
+    out.append(f'<line x1="{X(base):.1f}" x2="{X(base):.1f}" y1="{top - 6}" y2="{h - 16}" stroke="{COL["ink"]}"/>')
+    out.append(txt(X(base), top - 9, f'{base_label} {money_fmt(base)}', 'middle', 8.5, COL['ink'], 600))
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def band_chart(title, cats, vals, refs, end_label, w=700, h=220, label_if=lambda c: c.endswith('-01'), ymin=None, ymax=None,
+               unit='x forward P/E'):
+    """Forward-multiple history with reference lines labelled in the right margin. refs: [(value, label, colour)]."""
+    left, right, top, bottom = 52, 100, 24, 26
+    a, b, step = scale(min(vals + [r[0] for r in refs]) if ymin is None else ymin, max(vals) if ymax is None else ymax,
+                       zero=False)
+    a = max(a, 0)
+    X = lambda i: left + (w - left - right) * i / (len(vals) - 1)  # noqa: E731
+    Y = lambda y: top + (h - top - bottom) * (1 - (y - a) / (b - a))  # noqa: E731
+    out = [svg_open(w, h, title)]
+    _axis(out, left, w - right, Y, a, b, step, lambda v: f'{v:g}x', unit)
+    out.append(f'<polyline points="{" ".join(f"{X(i):.1f},{Y(v):.1f}" for i, v in enumerate(vals))}" fill="none" '
+               f'stroke="{NAVY}" stroke-width="1.8"/>')
+    for i, c in enumerate(cats):
+        if label_if(c):
+            out.append(txt(X(i), h - bottom + 12, c[:4], 'middle', 8.5, COL['muted']))
+    ys = _place_labels([Y(v) + 3 for v, _, _ in refs] + [Y(vals[-1]) + 3], 10, top, h - bottom)
+    for (yv, lab, col), yl in zip(refs, ys):
+        out.append(f'<line x1="{left}" x2="{w - right}" y1="{Y(yv):.1f}" y2="{Y(yv):.1f}" stroke="{col}" '
+                   f'stroke-dasharray="5 3"/>')
+        out.append(txt(w - right + 6, yl, lab, 'start', 8.5, col, 600))
+    out.append(f'<circle cx="{X(len(vals) - 1):.1f}" cy="{Y(vals[-1]):.1f}" r="3" fill="{TEAL}"/>')
+    out.append(txt(w - right + 6, ys[-1], end_label, 'start', 8.5, TEAL, 600))
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def waterfall(title, items, unit, w=700, h=230, fmt=f1, scale_by=1.0):
+    """Bridge: items [(label, value, 'total' | 'step')]; '|' in a label starts a second line."""
+    left, right, top, bottom = 52, 14, 26, 32
+    run, levels = 0.0, []
+    for _, v, kind in items:
+        run = v if kind == 'total' else run + v
+        levels.append(run / scale_by)
+    a, b, step = scale(0, max(levels) * 1.1)
+    pw, ph = w - left - right, h - top - bottom
+    gw = pw / len(items)
+    bw = gw * 0.58
+    Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    _axis(out, left, w - right, Y, a, b, step, None, unit)
+    run = 0.0
+    for i, (lab, v, kind) in enumerate(items):
+        x = left + gw * i + (gw - bw) / 2
+        if kind == 'total':
+            lo_, hi_, col = 0, v / scale_by, NAVY
+            run = v / scale_by
+        else:
+            lo_, hi_ = sorted([run, run + v / scale_by])
+            col = GREEN if v >= 0 else RED
+            run += v / scale_by
+        out.append(f'<rect x="{x:.1f}" y="{Y(hi_):.1f}" width="{bw:.1f}" height="{max(Y(lo_) - Y(hi_), .5):.1f}" fill="{col}"/>')
+        lab_v = fmt(v / scale_by) if kind == 'total' else f'{"+" if v >= 0 else "-"}{fmt(abs(v) / scale_by)}'
+        out.append(txt(x + bw / 2, Y(hi_) - 3, lab_v, 'middle', 8.5, COL['ink'], 600 if kind == 'total' else 400))
+        for j, part in enumerate(lab.split('|')):
+            out.append(txt(x + bw / 2, top + ph + 12 + 10 * j, part, 'middle', 8.5, COL['muted']))
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def scatter(title, points, xlab, ylab, xfmt, yfmt, lines=(), w=700, h=260, xr=None, yr=None):
+    """points: [(label, x, y, colour, hollow)]; lines: [(slope, label, colour)] through the origin, clipped to the plot
+    and labelled at their right end. Labels sit right of their points; moved labels get leader lines."""
+    left, right, top, bottom = 52, 150, 24, 34
+    xa, xb, xs_ = xr or scale(0, max(p[1] for p in points) * 1.1)
+    ya, yb, ys_ = yr or scale(0, max(p[2] for p in points) * 1.1)
+    pw, ph = w - left - right, h - top - bottom
+    X = lambda v: left + pw * (v - xa) / (xb - xa)  # noqa: E731
+    Y = lambda v: top + ph - ph * (v - ya) / (yb - ya)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    cid = _cid()
+    _clip(out, cid, left, top, pw, ph)
+    _axis(out, left, left + pw, Y, ya, yb, ys_, yfmt, ylab)
+    v = xa
+    while v <= xb + xs_ / 1e6:
+        out.append(txt(X(v), top + ph + 12, xfmt(v), 'middle', 8.5, COL['muted']))
+        v += xs_
+    out.append(txt(left + pw, top + ph + 26, xlab, 'end', 8.5, COL['muted']))
+    line_y = []
+    for slope, lab, col in lines:
+        out.append(f'<line clip-path="url(#{cid})" x1="{X(0):.1f}" y1="{Y(0):.1f}" x2="{X(xb):.1f}" y2="{Y(slope * xb):.1f}" '
+                   f'stroke="{col}" stroke-dasharray="5 3"/>')
+        x_end = min(xb, yb / slope) if slope > 0 else xb
+        line_y.append((X(x_end), Y(slope * x_end), lab, col))
+    for x, y, lab, col in line_y:
+        out.append(txt(left + pw + 6, min(max(y, top + 8), top + ph), lab, 'start', 8.5, col, 600))
+    # point labels in the right margin when crowded, otherwise beside the point
+    lab_y = _place_labels([Y(p[2]) + 3 for p in points], 11, top + 3, top + ph + 3)
+    for (name, x, y, col, hollow), ly in zip(points, lab_y):
+        cx, cy = X(x), Y(y)
+        out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4.5" fill="{"#fff" if hollow else col}" stroke="{col}" '
+                   f'stroke-width="1.5"/>')
+        if abs(ly - (cy + 3)) > 1:
+            out.append(f'<line x1="{cx + 5:.1f}" x2="{cx + 12:.1f}" y1="{cy:.1f}" y2="{ly - 3:.1f}" stroke="{COL["muted"]}" '
+                       f'stroke-width=".7"/>')
+        out.append(txt(cx + 13, ly, name, 'start', 8.5, col, 600 if col != NAVY else 400))
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def _days(d):
+    return int(d[:4]) * 372 + int(d[5:7]) * 31 + int(d[8:10])
+
+
+def price_chart(title, dates, series, events=(), w=700, h=210, unit='Indexed, start = 100'):
+    """Indexed daily prices. series: [(name, values, colour)]; events: [(date, label)] marked on the first series."""
+    left, right, top, bottom = 40, 10, 26, 34
+    vals = [v for _, s, _ in series for v in s]
+    a, b, step = scale(min(vals) * 0.97, max(vals) * 1.03, zero=False)
+    n = len(dates)
+    pw, ph = w - left - right, h - top - bottom
+    X = lambda i: left + pw * i / (n - 1)  # noqa: E731
+    Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
+    out = [svg_open(w, h, title)]
+    _axis(out, left, w - right, Y, a, b, step, None, unit)
+    seen = set()
+    for i, d in enumerate(dates):
+        if d[:7] not in seen and int(d[5:7]) % 3 == 1:
+            seen.add(d[:7])
+            anchor = 'end' if X(i) > w - right - 45 else 'start'
+            out.append(txt(X(i), top + ph + 12, f'{["Jan", "Apr", "Jul", "Oct"][(int(d[5:7]) - 1) // 3]} {d[2:4]}', anchor,
+                           8.5, COL['muted']))
+    for name, s, col in series:
+        out.append(f'<polyline points="{" ".join(f"{X(i):.1f},{Y(v):.1f}" for i, v in enumerate(s))}" fill="none" '
+                   f'stroke="{col}" stroke-width="{1.8 if col == TEAL else 1.2}"/>')
+    s0 = series[0][1]
+    for k, (d, lab) in enumerate(events):
+        i = min(range(n), key=lambda j: abs(_days(dates[j]) - _days(d)))
+        cx, cy = X(i), Y(s0[i])
+        ly = top - 10 + 10 * (k % 2)
+        out.append(f'<line x1="{cx:.1f}" x2="{cx:.1f}" y1="{ly + 2:.1f}" y2="{cy - 4:.1f}" stroke="{COL["muted"]}" '
+                   f'stroke-dasharray="2 2"/>')
+        out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="2.8" fill="{TEAL}"/>')
+        anc = 'end' if cx > left + pw * 0.75 else ('start' if cx < left + pw * 0.25 else 'middle')
+        out.append(txt(cx, ly, lab, anc, 8, COL['ink']))
+    _legend(out, [(name, col, 'line') for name, _, col in series], left, h - 3)
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+def flow_diagram(title, nodes, edges, w=700, h=156):
+    """Business model. nodes: [(title, subtitle)] left to right; edges: [(i, j, kind, label)] between adjacent nodes,
+    kind 'goods' (solid navy, lower arrow, label below) or 'cash' (dashed teal, upper arrow, label above)."""
+    n = len(nodes)
+    gap = 40
+    bw = (w - gap * (n - 1)) / n
+    bx = lambda i: i * (bw + gap)  # noqa: E731
+    yb, hb = 40, 50
+    out = [svg_open(w, h, title)]
+    for kind, col in [('goods', NAVY), ('cash', TEAL)]:
+        out.append(f'<defs><marker id="m{kind}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">'
+                   f'<path d="M0,0 L7,3.5 L0,7 z" fill="{col}"/></marker></defs>')
+    for i, (t, sub) in enumerate(nodes):
+        out.append(f'<rect x="{bx(i) + 1:.1f}" y="{yb}" width="{bw - 2:.1f}" height="{hb}" rx="4" fill="#F3F5F7" '
+                   f'stroke="{COL["grid"]}"/>')
+        out.append(txt(bx(i) + bw / 2, yb + 21, t, 'middle', 9.5, COL['ink'], 600))
+        out.append(txt(bx(i) + bw / 2, yb + 35, sub, 'middle', 8, COL['muted']))
+    for i, j, kind, lab in edges:
+        col = NAVY if kind == 'goods' else TEAL
+        y = yb + hb - 12 if kind == 'goods' else yb + 12
+        x1 = bx(i) + bw - 1 if j > i else bx(i) + 1
+        x2 = bx(j) + 1 if j > i else bx(j) + bw - 1
+        d = '' if kind == 'goods' else ' stroke-dasharray="4 3"'
+        out.append(f'<line x1="{x1:.1f}" x2="{x2:.1f}" y1="{y}" y2="{y}" stroke="{col}" stroke-width="1.6"{d} '
+                   f'marker-end="url(#m{kind})"/>')
+        mx = (x1 + x2) / 2
+        ly = yb + hb + 16 if kind == 'goods' else yb - 9
+        out.append(f'<line x1="{mx:.1f}" x2="{mx:.1f}" y1="{y}" y2="{ly - 8 if kind == "goods" else ly + 3}" '
+                   f'stroke="{col}" stroke-width=".7"/>')
+        out.append(txt(mx, ly, lab, 'middle', 8, col))
+    _legend(out, [('Goods or power', NAVY, 'line'), ('Cash', TEAL, 'dash')], 2, h - 3)
+    out.append('</svg>')
+    return Block(''.join(out))
+
+
+# ---------------------------------------------------------------- print and inspect
+def print_pdf(html_path, pdf_path, chrome=None):
+    """Print the HTML to an A4 PDF with headless Chrome (list arguments, so paths with spaces work)."""
+    chrome = chrome or os.environ.get('CHROME_PATH') or next(
+        (p for p in [r'C:\Program Files\Google\Chrome\Application\chrome.exe',
+                     r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe',
+                     shutil.which('google-chrome'), shutil.which('chromium'), shutil.which('chrome')] if p and Path(p).exists()),
+        None)
+    if not chrome:
+        raise SystemExit('Chrome not found: set CHROME_PATH')
+    pdf_path = Path(pdf_path).resolve()
+    tmp = pdf_path.with_name(pdf_path.stem + '.printing.pdf')
+    tmp.unlink(missing_ok=True)
+    subprocess.run([chrome, '--headless=new', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={tmp}',
+                    Path(html_path).resolve().as_uri()], check=True, capture_output=True, timeout=180)
+    if not tmp.exists() or tmp.stat().st_size == 0:
+        raise SystemExit(f'PDF not written: {tmp}')
+    try:
+        os.replace(tmp, pdf_path)
+    except PermissionError:
+        # the existing file is open elsewhere: keep it and save a dated copy instead of failing silently
+        import time
+        alt = pdf_path.with_name(pdf_path.stem + time.strftime('_%Y%m%d-%H%M') + '.pdf')
+        os.replace(tmp, alt)
+        print(f'{pdf_path.name} is open elsewhere; saved {alt.name}')
+        return alt
+    return pdf_path
+
+
+def inspect_pdf(pdf_path, image_dir=None, dpi=100):
+    """Facts for the author's page-by-page look: share of the text area left blank below the content, and whether the
+    page ends on a heading. Optionally writes page images. It reports; it does not judge the report."""
+    import fitz  # PyMuPDF
+    doc = fitz.open(str(pdf_path))
+    mm = 72 / 25.4
+    out = []
+    for i, page in enumerate(doc):
+        area = fitz.Rect(15 * mm, 18 * mm, page.rect.width - 15 * mm, page.rect.height - 18 * mm)
+        blocks = [b for b in page.get_text('dict')['blocks'] if b.get('type') == 0 and fitz.Rect(b['bbox']).intersects(area)]
+        draws = [d['rect'] for d in page.get_drawings() if d['rect'].intersects(area)
+                 and d['rect'].height < area.height * 0.9]
+        bottom = max([b['bbox'][3] for b in blocks] + [r.y1 for r in draws] + [area.y0])
+        last = None
+        if blocks:
+            b = max(blocks, key=lambda b: b['bbox'][3])
+            spans = [s for ln in b['lines'] for s in ln['spans']]
+            last = spans[0] if spans else None
+        heading = bool(last and last['size'] >= 9.9 and ('SemiBold' in last['font'] or 'Bold' in last['font']
+                                                         or last['flags'] & 16))
+        out.append({'page': i + 1, 'blankBelowContent': round(max(0.0, area.y1 - bottom) / area.height, 2),
+                    'endsWithHeading': heading})
+        if image_dir:
+            Path(image_dir).mkdir(parents=True, exist_ok=True)
+            page.get_pixmap(dpi=dpi).save(str(Path(image_dir) / f'page_{i + 1}.png'))
+    return out

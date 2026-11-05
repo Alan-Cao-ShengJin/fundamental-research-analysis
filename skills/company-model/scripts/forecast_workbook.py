@@ -178,7 +178,7 @@ def build(value, destination):
     text('B2',spec['title']).font=Font(name=theme['font']['name'],size=17,bold=True)
     sheet['B2'].alignment=Alignment(horizontal='left')
     text('B4','Synthetic example; no company forecasts' if spec['synthetic'] else 'Forecast build')
-    text('B5','Dark blue: actual inputs. Purple/nude: forecast assumptions. Black: calculations. Italic grey: calculated %. Bold: totals.')
+    text('B5','Blue: actual inputs. Blue/yellow: forecast assumptions. Black: calculations. Italic grey: memo ratios. Bold: totals.')
     sheet['B4'].alignment=sheet['B5'].alignment=Alignment(horizontal='left')
     text('B7','Metric');text('C7','Unit');text(f'{get_column_letter(note_col)}7','Basis and uncertainty')
     for i,p in enumerate(spec['periods'],4):text(f'{get_column_letter(i)}7',p['label'])

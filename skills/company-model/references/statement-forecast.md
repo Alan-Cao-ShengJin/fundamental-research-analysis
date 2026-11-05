@@ -4,7 +4,7 @@ This stage consumes the [revenue/cost projection](revenue-projection.md). A comp
 
 ## Income statement and the next forecast period
 
-- Link revenue and costs/GP from the operating build for the correct currency, scale, scope and period. Prevent an RP -> 3S -> same RP driver loop.
+- Link revenue and costs/GP from the operating build for the correct currency, scale, scope and period. Prevent a Revenue Build -> Statements -> same Revenue Build driver loop.
 - Forecast selling, administration, R&D, other operating items and restructuring from supported drivers and cost timing. Examine same-quarter/half-year history, annual accruals, wage/bonus changes and disclosed investment; do not apply one flat ratio to everything.
 - A fixed expense base with wage inflation assumes the activity can scale without additional people, engineering or service capacity. Substantiate that capacity and any closure/stranded costs; compare implied expense ratios with observed run-rates. Do not replace that analysis automatically with flat percentages.
 - Build equity/associate income, finance expense/income, tax and minority interests separately where material. Avoid double-counting JV income embedded in an operating segment.

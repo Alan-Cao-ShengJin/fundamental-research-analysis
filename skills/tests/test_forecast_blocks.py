@@ -98,9 +98,9 @@ class ForecastBlocksTests(unittest.TestCase):
         book=load_workbook(path,data_only=False);sheet=book.active
         rgb=lambda cell:sheet[cell].font.color.rgb[-6:]
         self.assertFalse(sheet.sheet_view.showGridLines)
-        self.assertEqual(rgb('D9'),'17365D')
-        self.assertEqual(rgb('E9'),'7030A0')
-        self.assertEqual(sheet['E9'].fill.fgColor.rgb[-6:],'F2DDD5')
+        self.assertEqual(rgb('D9'),'0000FF')
+        self.assertEqual(rgb('E9'),'0000FF')
+        self.assertEqual(sheet['E9'].fill.fgColor.rgb[-6:],'FFF2CC')
         self.assertEqual(rgb('E12'),'000000')
         self.assertTrue(sheet['E14'].font.bold)
         self.assertTrue(sheet['E27'].font.bold)
@@ -113,7 +113,7 @@ class ForecastBlocksTests(unittest.TestCase):
         self.assertLessEqual(sheet.row_dimensions[12].height,20)
         for address in ('D30','E30','F30'):
             self.assertTrue(sheet[address].font.italic)
-            self.assertEqual(rgb(address),'A6A6A6')
+            self.assertEqual(rgb(address),'595959')
             self.assertTrue(sheet[address].font.bold)
         self.assertTrue(sheet['B30'].font.italic)
         book.close()

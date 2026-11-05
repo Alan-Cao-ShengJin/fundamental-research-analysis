@@ -64,6 +64,25 @@ class ModelWorkbookTests(unittest.TestCase):
             self.assertFalse(report['passed'])
             self.assertTrue(all(i.get('reason') == 'formula drift' for i in report['issues']))
 
+    def test_tag_column_shifts_physical_addresses_and_formulas(self):
+        from openpyxl import load_workbook
+        s = fixture()
+        s['sheets']['Revenue Projection']['tagColumn'] = 'D'
+        s['sheets']['Revenue Projection']['tags'] = {'5': 'AR25'}
+        with tempfile.TemporaryDirectory() as d:
+            book = Path(d) / 'model.xlsx'
+            m.build(s, book)
+            w = load_workbook(book)
+            rp = w['Revenue Projection']
+            self.assertEqual(rp['D5'].value, 'AR25')
+            self.assertEqual(rp['E5'].value, 100)
+            self.assertEqual(rp['F5'].value, '=E5*(1+F6)')
+            self.assertEqual(rp['F6'].value, '=CHOOSE($C$2,F7,F8,F9)')
+            self.assertEqual(w['3S']['E5'].value, "='Revenue Projection'!F11")
+            self.assertIsNotNone(rp['B11'].comment)
+            self.assertIn('CaseSelector', w.defined_names)
+            self.assertIn('profit_next', w.defined_names)
+
     def test_statistics_functions(self):
         s = {'sheets': {'S': {'cells': {'A1': {'value': 2}, 'A2': {'value': 4}, 'A3': {'value': '=IF(A1>5,A1,"")'},
                                         'B1': {'value': '=STDEV(A1:A3)'}, 'B2': {'value': '=COUNT(A1:A3)'},
@@ -92,18 +111,20 @@ class ModelExampleTests(unittest.TestCase):
         self.assertEqual(asset, json.loads(json.dumps(self.spec)))
 
     def test_every_tab_of_the_standard(self):
-        self.assertEqual(list(self.spec['sheets']), ['3S', 'Revenue Projection', 'Data', 'Input prices', 'Guidance',
-                                                     'Questions', 'Investment thesis', 'Valuation band'])
+        self.assertEqual(list(self.spec['sheets']), ['Cover', 'Summary', 'Valuation', 'Valuation Band', 'Scenarios',
+                                                     'Revenue Build', 'Statements', 'Data', 'Input Prices', 'Guidance',
+                                                     'Questions', 'Checks'])
 
     def test_checks_hold_in_every_column_and_case(self):
         R3, RR = self.x.S3SHEET.R, self.x.RPSHEET.R
         for case, r in self.result.items():
             for col in self.x.COLS:
-                for sheet, rows, key in [('3S', R3, 'check'), ('3S', R3, 'cash_chk'),
-                                         ('Revenue Projection', RR, 'rev_chk'), ('Revenue Projection', RR, 'gp_chk')]:
+                for sheet, rows, key in [('Statements', R3, 'check'), ('Statements', R3, 'cash_chk'),
+                                         ('Revenue Build', RR, 'rev_chk'), ('Revenue Build', RR, 'gp_chk')]:
                     v = r['cells'].get(f'{sheet}!{col}{rows[key]}')
                     if v is not None:
                         self.assertAlmostEqual(v, 0, places=6, msg=f'{case} {sheet} {key} {col}')
+            self.assertEqual(r['cells'][f'Checks!{self.x.CHECK_CELL}'], 0, msg=f'{case} checks failing')
         eps = [self.result[c]['outputs']['eps.FY2027E'] for c in ('Bear', 'Base', 'Bull')]
         self.assertTrue(eps[0] < eps[1] < eps[2])
 

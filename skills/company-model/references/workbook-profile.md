@@ -16,7 +16,7 @@ Recalculate, scan errors/cycles, inspect formula caches, reconcile material outp
 
 The executable forecast plan is one supported machine model; the optional JavaScript node graph is another backend, not a second required set of assumptions. Generate the machine interface and Excel from the same specification or mechanically compare **every named input and output** against the recalculated workbook. Fail on any difference; do not silently choose one representation. Model, source and run versions remain part of the research package.
 
-For a company model, write one cell specification and use [model_workbook.py](../scripts/model_workbook.py): `build` writes the styled multi-sheet workbook with a named binding for every numeric cell, `calculate` runs every case independently, and `check` compares formulas, inputs, names and saved values after [recalc_excel.ps1](../scripts/recalc_excel.ps1) has recalculated the workbook in Excel. A workbook that has not been recalculated fails the check.
+For a company model, write one cell specification and use [model_workbook.py](../scripts/model_workbook.py): `build` writes the styled multi-sheet workbook (named cells only for outputs and the case selector), `calculate` runs every case independently, and `check` compares every cell's formula, input and saved value with the specification after [recalc_excel.ps1](../scripts/recalc_excel.ps1) has recalculated the workbook in Excel. A workbook that has not been recalculated fails the check.
 
 For a single-sheet operating scaffold, [forecast_workbook.py](../scripts/forecast_workbook.py) runs with plain Python and openpyxl. Install [requirements.txt](../requirements.txt) into the interpreter actually used (or a virtual environment); a user-site install is not visible under `python -I`:
 
@@ -43,7 +43,7 @@ Map accounts, periods and dependencies by meaning rather than fixed coordinates 
 - Keep existing valid sheet names and reporting structure. Add components only when needed.
 - Label periods, currencies, scales, accounting basis and the actual/forecast boundary.
 - Distinguish reported data, derived data, formulas and editable assumptions through explicit classifications and a documented visual legend.
-- Write each forecast/assumption explanation and source in a long, visible ordinary cell to the right of the corresponding model row. Include the relevant source date and qualification where needed. Cell comments or Excel Notes do not substitute for that visible explanation. Preserve useful existing annotations during narrow updates.
+- Give every assumption and hardcoded figure a short visible source tag beside its units ("AR25", "3Q26 call", "Est.") and put the fuller explanation, with its source date and qualification, in a cell comment on the row label. Cite sources a reader can follow, never pipeline file paths. Preserve useful existing annotations during narrow updates.
 - Preserve readable existing fonts and styles. For a new view, use restrained formatting, consistent numeric formats and clear section hierarchy.
 - Use historical valuation charts only with suitable dated inputs. Identify realised earnings separately from historical forecast vintages and handle nonpositive denominators explicitly.
 
@@ -55,17 +55,27 @@ Use the clean [model theme](../assets/model-theme.json) for new models and autho
 
 | Element | Convention |
 | --- | --- |
-| Worksheet gridlines | Off |
-| Calculations, including calculated forecast outputs | Black |
-| Actual hardcoded data | Dark blue |
-| Forecast inputs and explicitly identified forecast judgements | Purple with a pale nude fill |
-| Percentages | Italic labels and figures; actual and calculated percentages are light grey, while forecast percentage inputs/judgements retain purple with nude fill |
-| Local sums, section subtotals and overall totals | Bold, with a thin separating rule |
-| Tables and operating blocks | Consistent thin borders defining sections; restrained header fills |
-| Cells | Compact row heights and column widths, enough precision and space for readable figures |
-| Alignment | Right-align the model table and figures; left-align explanatory prose in the long cells to its right |
+| Worksheet gridlines | Off; zoom 85% on calculation sheets, 100% on output sheets |
+| Tabs | Outputs navy `#1B2A41`, calculations grey `#BFC7D0`, inputs and data light blue `#BDD7EE`; title-case names without abbreviations |
+| Navigation | Hyperlinked sheet index on the Cover; "Back to Cover" at the top right of every other sheet |
+| Font | Arial: body 9pt, headers 10pt bold, sheet title 12pt bold navy |
+| Hardcoded historicals | Blue `#0000FF` |
+| Forecast assumptions, estimated splits and scenario levers | Blue on light yellow `#FFF2CC` |
+| Formulas | Black |
+| Formulas that link to another sheet | Green `#008000` |
+| Memo ratios (growth, margins, shares of revenue) | Dark grey `#595959` italic |
+| Key outputs (rating, target, EPS, price return) | Bold black 10pt, never grey or italic; they take precedence over the input, link and ratio styles |
+| Section headers | Bold uppercase navy on `#E7EBF0` across the used width |
+| Totals and subtotals | Bold with a thin top rule on the number cells |
+| Forecast columns | Header cells `#F2F2F2` and a medium rule down the left of the first forecast column; row 4 the basis (8pt grey), row 5 the period (bold, centred) |
+| Columns | Spacer 2; labels 46 (40 on output sheets, widened up to 60 rather than clipped); units 8, centred; source tag 11, 8pt grey, indented; periods 11; a spacer of 2 between annual and quarterly blocks |
+| Rows | Data rows 15 high, no wrap; text-heavy tables wrap, top-aligned, with rows sized to fit; sub-items indented with the cell indent |
+| Grouping | Quarterly columns; each schedule's detail rows, leaving its header and total visible; chart-only helper data grouped and greyed; `#N/A` chart gaps never visible |
+| Notes | A short source tag beside the units; the full reasoning in a cell comment on the row label |
+| Charts | Palette navy `#1B2A41`, teal `#1F6F78`, slate `#6E7F96`, light teal `#8DBCC1`, greys `#9AA3AE`, `#B9C1CB`; takeaway title 11pt bold; legend at the bottom; light grey horizontal gridlines only; no border; forecasts hatched (bars) or dashed (lines); clipped data noted on the chart; anchored inside the print area, aligned to column edges, off every table |
+| Print | A4 landscape, one page wide, centred, 0.5-inch margins; title rows (rows 1-5 and columns A-D on time-series sheets, rows 1-3 elsewhere) repeated; print area includes every chart and excludes helper data; breaks between sections; footer with file, sheet, page N of M and date |
 
-The default palette is black `#000000`, dark blue `#17365D`, purple `#7030A0`, nude `#F2DDD5`, and light grey `#A6A6A6` for actual/calculated percentages. The percentage rule takes precedence over the ordinary actual/calculation colour: percentages are italic, with forecast inputs/judgements retaining purple and nude fill. A formula can encode a forecast judgement, such as an assumed improvement or an unchanged margin. Identify that role explicitly; formula syntax or colour alone does not establish its meaning. Ordinary non-percentage calculated results remain black. Bold component subtotals as well as final output totals, including percentage totals.
+Number formats, one per unit: RMB m `#,##0.0;(#,##0.0);"–"`; per share `0.00;(0.00);"–"`; % `0.0%;(0.0%);"–"` (`0.00%` for ratios under 1%); change in points `0.0" pt"`; multiples `0.0"x"`; days `0`; FX `0.0000`; counts `#,##0`; dates `d mmm yyyy` as real dates. Negatives always in parentheses; the writer adds the parenthesised section to any format that lacks one. Use one currency label throughout. The writer picks the format from the unit in column C unless a cell sets its own. A formula can encode a forecast judgement, such as an assumed improvement; give the judgement its own input cell rather than writing it into the formula. Defined names exist only for the specification's outputs and the case selector; the specification itself is the map of every cell.
 
 Use quarterly operating forecasts where reliable quarterly history and matching drivers are available. Use half-years when quarterly evidence is thin or only interim disclosure supports the build. Annual-only presentation is appropriate when finer detail cannot be supported. Choose cadence by schedule: quarterly earnings data do not imply quarterly balance-sheet or cash-flow disclosures. Keep matching actual/forecast periods aligned, derive quarters only from compatible cumulative flows, and reconcile period totals. Add annual roll-ups where useful, using flow sums, closing balances and recomputed/weighted ratios as appropriate.
 
@@ -73,6 +83,6 @@ Use quarterly operating forecasts where reliable quarterly history and matching 
 
 Recalculate with a compatible engine and inspect formulas and outputs, including statement identities, intended links, circular references and error cells. A calculation-on-open flag or unchanged cached values do not prove recalculation occurred.
 
-Compare changed cells/sheets and preservation-sensitive package parts with the baseline. Record unsupported or unverified features. For material presentation changes, render the relevant areas and inspect readability with an available tool.
+Compare changed cells/sheets and preservation-sensitive package parts with the baseline. Record unsupported or unverified features. For material presentation changes, export each sheet to PDF from Excel and look at every page: page count against the one-page targets, clipped or cut-off text, visible `#N/A`, charts outside the print area or over a table, legend overlap, wrapped titles and minus-sign negatives. The PDF is only for inspection; the deliverable stays the workbook. A formatting pass must leave every computed value unchanged.
 
 Retire or replace sheets only within the requested scope after checking references. Deliver the output path, backup/version, calculation status and any unresolved verification gaps.

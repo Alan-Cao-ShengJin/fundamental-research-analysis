@@ -1,0 +1,109 @@
+"""Synthetic checks for report provenance, financial display math and portable charts."""
+import importlib.util
+from pathlib import Path
+import re
+import unittest
+import xml.etree.ElementTree as ET
+
+SCRIPT = Path(__file__).resolve().parents[1] / 'report-layout/scripts/report_layout.py'
+spec = importlib.util.spec_from_file_location('report_layout', SCRIPT)
+rl = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(rl)
+
+
+def report():
+    return rl.Report(company='Example <synthetic>', ticker='EXAMPLE', report='Test', date='Example date')
+
+
+class ReportLayoutTests(unittest.TestCase):
+    def test_reference_order_and_embedded_fonts(self):
+        r = report()
+        r.section('Evidence', 'Synthetic only', 'Second source first{{src:b}}; then first{{src:a}}.')
+        r.sources([('a', 'Publisher A', 'Title A', 'Example date', ''),
+                   ('b', 'Publisher B', 'Title B', 'Example date', '')])
+        document = r.html()
+        self.assertLess(document.index('Title B'), document.index('Title A'))
+        self.assertIn('first<sup>1</sup>', document)
+        self.assertIn('first<sup>2</sup>', document)
+        self.assertEqual(document.count('data:font/woff2;base64,'), 4)
+        self.assertIn('Example &lt;synthetic&gt;', document)
+        self.assertNotIn('{{src:', document)
+
+    def test_unknown_source_is_rejected(self):
+        r = report()
+        r.section('Evidence', 'Synthetic only', 'Unregistered claim{{src:missing}}.')
+        with self.assertRaises(ValueError):
+            r.html()
+
+    def test_exhibits_follow_placement_and_missing_or_duplicate_keys_fail(self):
+        r = report()
+        r.section('Case', 'Synthetic only', 'See {{ex:b}} and {{ex:a}}.',
+                  r.exhibit('a', 'First placed', '<svg/>', 'Synthetic'),
+                  r.exhibit('b', 'Second placed', '<svg/>', 'Synthetic'))
+        self.assertIn('See Exhibit 2 and Exhibit 1.', r.html())
+        self.assertEqual(r.uncited_exhibits, [])
+        r.section('Missing', '', 'See {{ex:missing}}.')
+        with self.assertRaises(ValueError):
+            r.html()
+        r = report()
+        r.section('Duplicate', '', r.exhibit('a', 'One', '<svg/>', 'Synthetic'),
+                  r.exhibit('a', 'Two', '<svg/>', 'Synthetic'))
+        with self.assertRaises(ValueError):
+            r.html()
+
+    def test_uncited_exhibits_are_reported(self):
+        r = report()
+        r.section('Case', '', r.exhibit('unused', 'Synthetic exhibit', '<svg/>', 'Synthetic'))
+        r.html()
+        self.assertEqual(r.uncited_exhibits, ['unused'])
+
+    def test_displayed_returns_use_displayed_prices_and_ignore_stale_scenario_returns(self):
+        result = rl.rating_box('Buy', 'Price', 100.004, 120.049, '2.0%',
+                               (70.4, 9), (120.049, 9), (149.6, 9), 'n/a', '$')
+        self.assertIn('$100.00', result)
+        self.assertIn('$120.0', result)
+        self.assertIn('+20.0%', result)
+        self.assertIn('$70 / 120 / 150', result)
+        self.assertIn('-30% / +20% / +50%', result)
+        self.assertNotIn('+900%', result)
+        for value in (0, -1, float('nan'), float('inf')):
+            with self.assertRaises(ValueError):
+                rl.rating_box('Hold', 'Price', value, 100, 'n/a',
+                              (70, 0), (100, 0), (150, 0), 'n/a', '$')
+
+    def test_number_formats_preserve_missing_and_negative_values(self):
+        self.assertEqual(rl.num(None), 'n/a')
+        self.assertEqual(rl.num(-1234.5, 1), '(1,234.5)')
+        self.assertEqual(rl.pct(-0.125), '(12.5%)')
+        self.assertEqual(rl.mult(None), 'n/a')
+        self.assertEqual(rl.money(-27), '-US$27')
+
+    def test_charts_are_well_formed_with_finite_coordinates_and_unique_clip_ids(self):
+        charts = [rl.bars_chart('Synthetic output', ['Actual', 'Forecast'],
+                                [('Units', [10, 12])], 'Units', 1),
+                  rl.lines_chart('Synthetic trend', ['A', 'E'], [('Units', [10, 12], rl.NAVY)], 'Units', 1),
+                  rl.football_field('Synthetic cases', 100,
+                                    [('Bear', 70, -.3), ('Base', 120, .2), ('Bull', 150, .5)],
+                                    lambda x: f'${x:.0f}')]
+        ids = []
+        for chart in charts:
+            ET.fromstring(chart)
+            self.assertNotRegex(chart, r'(?i)\b(?:nan|inf)\b')
+            ids.extend(re.findall(r'<clipPath id="([^"]+)"', chart))
+        self.assertEqual(len(ids), len(set(ids)))
+        prices = rl.price_chart('Synthetic prices', ['2026-01-01', '2026-10-01'],
+                                [('Example', [100, 110], rl.TEAL)])
+        tree = ET.fromstring(prices)
+        last_date = next(node for node in tree.iter() if node.text == 'Oct 26')
+        self.assertEqual(last_date.attrib['text-anchor'], 'end')
+
+    def test_companion_links_are_escaped(self):
+        r = report()
+        r.companions = [('Model & assumptions', 'synthetic model.xlsx')]
+        document = r.html()
+        self.assertIn('Model &amp; assumptions', document)
+        self.assertIn('href="synthetic model.xlsx"', document)
+
+
+if __name__ == '__main__':
+    unittest.main()

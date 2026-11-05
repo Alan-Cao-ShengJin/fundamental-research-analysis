@@ -4,7 +4,7 @@ Use [research-cycle](research-cycle/SKILL.md) for end-to-end work, or select a s
 
 Investment briefs follow the [one-page house format](research-brief/references/one-page-brief.md): selective decision-useful content, flexible headings and the shared issuer-neutral minimalist template, an institutional editorial review and one verified A4 page. Each substantive point follows [data, derivation, significance and stock-view implication](research-brief/references/natural-writing.md#argument-sequence) in connected prose. The full investment report remains separate. Reusable payload/render/check assets live with research-brief; formatting changes preserve the current model and decision.
 
-The governing [request routing](research-cycle/references/request-routing.md) distinguishes **new initiation** from **existing research updates**. Initiation establishes the full baseline and initial view with relevant sector guidance. Existing updates use [model revision](model-revision/SKILL.md) in **regular-review mode**, retaining operating forecasts unless concrete evidence supports a change, or **major earnings/catalyst mode**, evaluating prior assumptions against disclosures before recalibrating forecasts. The two workflow entry skills are `stock-initiation` and `model-revision`. The catalog flows `company-regular-review` and `company-update` describe the regular and major branches of model-revision, alongside seventeen analytical specialists. Both retain shared modeling, risk and decision standards; cadence alone does not select a mode.
+The governing [request routing](research-cycle/references/request-routing.md) distinguishes **new initiation** from **existing research updates**. Initiation establishes the full baseline and initial view with relevant sector guidance. Existing updates use [model revision](model-revision/SKILL.md) in **regular-review mode**, retaining operating forecasts unless concrete evidence supports a change, or **major earnings/catalyst mode**, evaluating prior assumptions against disclosures before recalibrating forecasts. The two workflow entry skills are `stock-initiation` and `model-revision`. The catalog flows `company-regular-review` and `company-update` describe the regular and major branches of model-revision, alongside eighteen analytical and presentation specialists. Both retain shared modeling, risk and decision standards; cadence alone does not select a mode.
 
 ## Research principles and sequence
 
@@ -56,6 +56,7 @@ For early research use [fundamental/peer triage](theme-screening/references/scre
 | [Management questions](issuer-questions/SKILL.md) | Decision-sensitive issuer questions and answer tracking |
 | [Research brief](research-brief/SKILL.md) | Concise, sourced decisions and updates |
 | [Chart visualization](chart-visualization/SKILL.md) | AntV charts/diagrams, shared theme, financial-data encodings, rendering and export |
+| [Report layout](report-layout/SKILL.md) | House page, decision strip, sections, captions, charts and PDF printing for full reports |
 | [Monitor and review](monitor-review/SKILL.md) | Review plans, change propagation and outcome evaluation |
 
 ## Coverage and scope
@@ -64,7 +65,7 @@ Account for all bundled roles with the [coverage plan](research-cycle/references
 
 ## Handoffs and tools
 
-Use the [earnings clock and peer read-through procedure](company-model/references/earnings-clock-and-peer-readthrough.md) to relate latest-period results, subsequent-period expectations, earlier peer calls and upcoming catalysts to the research cutoff. [Provider retrieval](evidence-intake/references/research-data-providers.md) supports bounded requests to the configured data providers for fundamentals/expectations, market/actions/ownership, macro and meeting evidence, with explicit access/field limits. Non-English originals are retained and translated to the requested output language, English by default. The methodology has seventeen analytical specialists, with initiation and revision as two workflow entry skills.
+Use the [earnings clock and peer read-through procedure](company-model/references/earnings-clock-and-peer-readthrough.md) to relate latest-period results, subsequent-period expectations, earlier peer calls and upcoming catalysts to the research cutoff. [Provider retrieval](evidence-intake/references/research-data-providers.md) supports bounded requests to the configured data providers for fundamentals/expectations, market/actions/ownership, macro and meeting evidence, with explicit access/field limits. Non-English originals are retained and translated to the requested output language, English by default. The methodology has eighteen analytical and presentation specialists, with initiation and revision as two workflow entry skills.
 
 Use the [shared handoff contract](research-cycle/references/handoffs.md) for identity, sources, claims, dependency versions, checks and next actions. Numerical helpers are optional and have documented input assumptions. Their examples are synthetic; passing structural or arithmetic checks does not establish financial completeness, source truth or investment performance.
 
