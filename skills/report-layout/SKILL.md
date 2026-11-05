@@ -7,7 +7,7 @@ metadata:
 
 # Full report layout
 
-Content follows [visual pitch design](../research-brief/references/visual-reports.md) and the [writing standard](../research-brief/references/natural-writing.md); this skill fixes how the report looks. Build every report with [report_layout.py](scripts/report_layout.py). It carries the page grid, fonts (IBM Plex Sans with tabular figures, embedded from [assets/fonts](assets/fonts), SIL Open Font License), running header and footer, exhibit numbering, tables, source markers, back matter and charts, with colours from the shared [chart theme](../chart-visualization/assets/chart-theme.json). Do not write company-specific CSS or copy layout code from an earlier study; extend the module instead.
+Content follows [visual pitch design](../research-brief/references/visual-reports.md) and the [writing standard](../research-brief/references/natural-writing.md); this skill fixes how the report looks. Build every report with [report_layout.py](scripts/report_layout.py). It carries the page grid, fonts (IBM Plex Sans with tabular figures, embedded from [assets/fonts](assets/fonts), SIL Open Font License), running header and footer, exhibit numbering, tables, source markers, back matter and charts, with colours from the shared [chart theme](../chart-visualization/assets/chart-theme.json). Do not write company-specific CSS or copy layout code from an earlier study; extend the module instead. In the study's builder, write every figure in text, tables and charts from the calculated model and saved source data rather than typing it, and rebuild the report and brief after any model change so no stale figure survives.
 
 ## Page 1 is the front page
 

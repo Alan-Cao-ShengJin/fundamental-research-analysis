@@ -19,6 +19,8 @@ Challenge [target underwriting](../valuation-thesis/references/target-underwriti
 
 Test each contested question from the stage-1 debate on its merits. State the strongest case for the side the thesis rejects, including the non-linear outcome if the question resolves its way (for example, growth that lasts for years rather than a window). Split that case into the claims that must hold, mark each supported, contradicted or untested, and name the evidence and timing that would settle it. Build the bear and bull scenarios from these debates resolving, with their effect on growth duration and the multiple, rather than from small moves in every input.
 
+Check that the reasons given for the call are the ones the target depends on. For each, compare how far the target moves if it fails under a defensible alternative (dependence) with how far our assumption differs from consensus (differentiation), holding the multiple and interacting drivers together. A reason that barely moves the target is support, not the case; a driver in line with consensus can still be the one the call depends on. When the stated reasons and the drivers that matter disagree, rewrite the argument, not the model.
+
 ## Challenge in five dimensions
 
 1. **Evidence:** trace the decision-driving claims to accessible source locations and publication/availability dates. Check whether multiple sources are independent, quotations retain their qualifications and contrary evidence was considered. Missing or synthetic evidence cannot silently support a real-account claim.

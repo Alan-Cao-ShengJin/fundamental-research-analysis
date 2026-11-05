@@ -1,3 +1,26 @@
+# Research skill verification ? 5 November 2026, version 2.2.1
+
+This patch imports six changed instruction/reference files from the maintained workspace. Earlier release records below are historical.
+
+## Changes
+
+- Research challenge now distinguishes the economic dependence of the target on each investment reason from the assumption's difference versus comparable consensus. The model standard and company sequence carry this into valuation presentation and the challenge stage.
+- Investment conviction now checks each numerical thesis breaker against the matching base-case metric and period and identifies shared causes behind multiple conditions. Conflicts require investigation; thresholds must not simply be moved to defend the thesis. Investment conclusion references this check.
+- Full-report layout now directs study builders to draw figures in prose, tables and charts from calculated model outputs and saved source data, and rebuild both the report and brief after a model change.
+
+These are instruction refinements. No new calculation helper, threshold evaluator, report-claim registry or automated claim-validation engine is introduced, and no real-company study was rerun. The existing scripts and assets remain unchanged. The public bundle still contains 20 skills and 11 flows; its coverage planner, scope boundaries and licence notices are preserved. Method inspirations discussed in the review include [GeniusTrader-Harry's pillar audit](https://github.com/GeniusTrader-Harry/equity-research-skill/blob/main/references/phase10-pillar-audit.md) and [Evilhill's report pipeline](https://github.com/evilhill/equity-research-skill).
+
+## Executed verification
+
+- Structural/catalog/link/schema/coverage checks passed.
+- The six affected skill entry points passed the skill-entry validator (company-model, investment-conclusion, investment-conviction, report-layout, research-challenge and research-cycle).
+- JavaScript: 65 tests passed. Python: 89 tests passed.
+- Publication file/credential screening and canonical file-manifest checks passed.
+
+The tests exercise existing deterministic behavior and structural integrity. No independent behavioral evaluation, new PDF render, native Excel recalculation or investment-performance assessment was performed for this wording patch. No private research, broker material, live responses or credentials are included. The refreshed manifest describes this supplied file set.
+
+## Historical record: version 2.2.0
+
 # Research skill verification - 5 November 2026
 
 This section records version **2.2.0**. Earlier release records below are historical; their counts, names and test totals apply only to those releases.
