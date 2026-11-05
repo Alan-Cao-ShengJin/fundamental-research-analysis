@@ -1,3 +1,35 @@
+# Research skill verification ? 5 November 2026, version 2.4.0
+
+This section records the current export. Earlier records below apply to their own versions.
+
+## Changes
+
+- Added early mapping of actual revenue/volume exposure by region, channel and material customers before interpreting demand or trade risks. Market-share analysis now compares absolute growth and like-for-like business/geographic segments before drawing a negative conclusion.
+- Expanded term-level employee-incentive review and tests against forecast hurdles. Below-hurdle estimates need an explanation; the existing prohibition on forcing costs or earnings to meet a KPI remains. Incentive motivation is not a guarantee of reported delivery.
+- Required valuation triangulation across relevant own history, close same-market business peers and current sector investment conditions. Short or single-regime histories cannot determine the multiple alone.
+- Aligned annual dividend yield with the selected forward EPS fiscal year and changed the synthetic model's yield reference from FY2026 to FY2027 DPS. Added an all-scenario regression for the earnings/dividend-year alignment.
+- Strengthened writing guidance: trace facts and interpretations to evidence, avoid false causal links and unsupported generic claims, and develop analysis rather than description.
+
+The bundle still has 20 skills and 11 flows. The dated data-planning directory remains removed. Public scope adaptations, coverage planning and licence notices are preserved. Only the original synthetic company-model assets are supplied; no issuer study, private workbook, entitled source material or live provider response was imported.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Installation | Isolated `npm ci --ignore-scripts` passed |
+| Structural check | Catalog, skill links, coverage and handoff schema passed |
+| Skill-entry validation | Eight owning skill entries passed |
+| JavaScript suite | 65 tests passed |
+| Python suite | 93 tests passed |
+| Synthetic asset | JSON matches its generator; workbook formula/input/cached-value synchronization passed for 6,765 numeric cells |
+| Dividend-year regression | Selected forward EPS and dividend yield use FY2027 in Bear, Base and Bull |
+
+Removed local save-path metadata from the supplied synthetic workbook while retaining its other members and calculated caches. No new native Excel recalculation, spreadsheet visual review, PDF render, live-agent behavioral study, issuer forecast review or investment-performance evaluation was performed for this export. Instruction changes and mathematical reconciliation are not independent evidence of sound investment judgment.
+
+The canonical file manifest and bounded publication scan were refreshed. The scan checks known local credential values, common token patterns, private paths and Excel XML metadata; it is not forensic assurance.
+
+## Historical record: version 2.3.0
+
 # Research skill verification ? 5 November 2026, version 2.3.0
 
 This section records the current release. Earlier records below describe their own versions.

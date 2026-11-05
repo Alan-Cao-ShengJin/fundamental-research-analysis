@@ -10,6 +10,8 @@ Select the macro variables that matter to the issuer and its likely capital prov
 
 Explain where the opportunity sits among competing countries, sectors, styles and assets. Compare relevant sector/market relative returns, earnings revisions, valuation dispersion, market breadth and documented fund flows or positioning where accessible. Align currency, benchmark, windows and information vintages; an apparent sector rally can be currency exposure or a few large constituents. Distinguish an observed trend from its inferred cause. State which facts support favorable, unfavorable or mixed conditions for this opportunity, and which risks are already priced.
 
+Think as an investor confined to the stock's own market, for example one who can only buy China A shares: what would they own today, which themes are the hot spots drawing capital (AI and semiconductors in the LLM boom, healthcare during Covid), and where does this stock sit relative to them? Favoured sectors earn a premium that can last while the theme does, and neglected ones trade at a discount. Use this to judge whether the stock's band and its peers' multiples carry a theme premium that may build or fade, and say so where the target multiple is set.
+
 Map economic effects to model volume, prices, margins, FX and funding. Map discount-rate, attention and investor-demand effects separately to valuation/realization. Avoid counting one macro concern repeatedly through unrelated cash-flow, rate and multiple penalties. Use plausible regime alternatives without pretending to forecast every global variable.
 
 ## Sector leadership and rotation

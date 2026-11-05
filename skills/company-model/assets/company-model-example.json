@@ -348,7 +348,7 @@
      "bold": true
     },
     "B10": {
-     "value": "Dividend yield (FY2026E DPS)",
+     "value": "Dividend yield (FY2027E DPS)",
      "kind": "calculation"
     },
     "C10": {
@@ -1321,7 +1321,7 @@
      "bold": true
     },
     "B26": {
-     "value": "DPS FY2026E",
+     "value": "DPS FY2027E (same year as the forward EPS)",
      "kind": "calculation"
     },
     "C26": {
@@ -1329,7 +1329,7 @@
      "kind": "calculation"
     },
     "D26": {
-     "value": "=Statements!I53",
+     "value": "=Statements!J53",
      "kind": "calculation"
     },
     "B27": {

@@ -315,7 +315,7 @@ _div div_paid mino_div min_payout .12
 _chk cash_chk rev_chk attr_chk"""
 
 TH_ORDER = """_why why1 why2 why3 why4 .1
-_tgt rating price_hkd ref_date fx price_rmb eps26 eps27 eps28 fwd_eps mult tgt_rmb tgt_hkd ret dps26 yld tot pe26 pe27 own_pe
+_tgt rating price_hkd ref_date fx price_rmb eps26 eps27 eps28 fwd_eps mult tgt_rmb tgt_hkd ret dps27 yld tot pe26 pe27 own_pe
 rerate .2
 _km pb roic roic_op .3
 _cons cons_eps26 cons_eps27 cons_ni26 cons_ni27 vs26 vs27 cons_tp cons_pe26 cons_pe27 .4
@@ -962,8 +962,8 @@ def build_thesis():
     row('tgt_rmb', '12-month target', f'={D("mult")}*{D("fwd_eps")}', 'RMB')
     row('tgt_hkd', '12-month target', f'={D("tgt_rmb")}/{D("fx")}', 'HKD', bold=True)
     row('ret', 'Price return', f'={D("tgt_hkd")}/{D("price_hkd")}-1', '%', pct=True, bold=True)
-    row('dps26', 'DPS FY2026E', f'={t3("dps", "I")}', 'RMB')
-    row('yld', 'Dividend yield (shown separately from price return)', f'={D("dps26")}/{D("price_rmb")}', '%', pct=True)
+    row('dps27', 'DPS FY2027E (same year as the forward EPS)', f'={t3("dps", "J")}', 'RMB')
+    row('yld', 'Dividend yield (shown separately from price return)', f'={D("dps27")}/{D("price_rmb")}', '%', pct=True)
     row('tot', 'Total return (price return plus dividend yield)', f'={D("ret")}+{D("yld")}', '%', pct=True, bold=True)
     row('pe26', 'P/E FY2026E', f'={D("price_rmb")}/{D("eps26")}', 'x')
     row('pe27', 'P/E FY2027E', f'={D("price_rmb")}/{D("eps27")}', 'x')
@@ -1252,7 +1252,7 @@ def build_summary():
     row('v_price', f'Price ({PRICE_DATE})', t('price_hkd'), 'HKD')
     row('v_tgt', '12-month target', t('tgt_hkd'), 'HKD', bold=True)
     row('v_ret', 'Price return to target', t('ret'), '%', pct=True, bold=True)
-    row('v_yld', 'Dividend yield (FY2026E DPS)', t('yld'), '%', pct=True)
+    row('v_yld', 'Dividend yield (FY2027E DPS)', t('yld'), '%', pct=True)
     row('v_tot', 'Total return', t('tot'), '%', pct=True, bold=True)
     sh.put(f'D{R["v_head"]}', 'Target', bold=True)
     sh.put(f'E{R["v_head"]}', 'Return', bold=True)

@@ -2,6 +2,8 @@
 
 Write for a portfolio manager or investment analyst. Use a formal, measured and concise research voice, with precise financial terminology and explicit attribution. This standard governs the brief and full report.
 
+This is serious research that people invest on: write nothing you cannot support. Every fact traces to a filing, data series, attributed comment or the model; every interpretation is ours and has been tested against the data that could contradict it. If we do not know something, say so or leave it out; never fill a gap with a plausible-sounding sentence, an unsourced comparison or a generic industry belief. Do not place unrelated facts side by side so they read as cause and effect. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold.
+
 Apply the [selective brief guide](one-page-brief.md), preserving substantive qualifications and source references. Professional tone does not require ornate vocabulary, passive constructions or longer sentences. Prefer the shortest wording that states the economic mechanism accurately.
 
 ## Argument sequence

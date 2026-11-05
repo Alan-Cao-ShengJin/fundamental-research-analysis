@@ -55,7 +55,7 @@ In this order, named in plain words:
 - Carry history beside the forecast, quarterly where disclosed.
 - Give gross margin and gross profit for each segment, and reconcile revenue, cost of sales and gross profit to the group.
 - For the businesses that drive profit, build unit economics: price, cost and profit per unit, and a segment P&L with its share of group profit.
-- Test guidance targets, incentive hurdles and the quarter the forecast implies, as their own rows.
+- Test guidance targets, incentive hurdles and the quarter the forecast implies, as their own rows. A forecast below an incentive hurdle needs a stated reason ([corporate governance](../../corporate-governance/SKILL.md)).
 
 **Data.** Monthly or quarterly operating data in one clean table:
 
@@ -77,10 +77,10 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 **Valuation.**
 
 - Why we invest, in a few numbered points, each a driver the target depends on ([research challenge](../../research-challenge/SKILL.md)).
-- The target price table, linked live to model EPS and DPS and the current price: target multiple, target, upside, dividend yield, and current P/E on two fiscal years.
+- The target price table, linked live to model EPS and DPS and the current price: target multiple, target, upside, dividend yield on the same forward year as the target EPS, and current P/E on two fiscal years.
 - Consensus comparison: profit, EPS and target.
 - One sensitivity table: thesis risk, shock size (an input), EPS change, EPS change % and target change, sorted by impact; inputs the shocks need sit in their own block above it.
-- Peers: P/E for two years, EPS growth, P/E per growth point and market value, each average labelled with its sample.
+- Peers: P/E for two years, EPS growth, P/E per growth point and market value, each average labelled with its sample, the closest same-market peers doing the same business first.
 - Scenario outcomes recalculated on every build, with the build date and a check that the active case matches the live model.
 - A summary of the valuation band.
 

@@ -13,7 +13,7 @@ Build an explicit waterfall from industry/company drivers to segment revenue, gr
 
 ## Incentives, shares and accounting
 
-Read grant/vesting terms, settlement type, performance/service/market conditions, forfeiture assumptions and the applicable accounting framework. Distinguish disclosed expense schedules from analyst estimates; avoid double counting costs already in opex. An incentive hurdle is not a floor under earnings. Never trim costs or reverse an expense simply to make the KPI pass. Analyse multiple outcomes and recognise that different vesting conditions have different accounting effects.
+Read grant/vesting terms, settlement type, performance/service/market conditions, forfeiture assumptions and the applicable accounting framework. Distinguish disclosed expense schedules from analyst estimates; avoid double counting costs already in opex. An incentive hurdle is not a floor under reported earnings: never trim costs or reverse an expense simply to make the KPI pass. But management usually works to meet it, so a forecast below the hurdle needs a stated reason ([corporate governance](../../corporate-governance/SKILL.md)). Analyse multiple outcomes and recognise that different vesting conditions have different accounting effects.
 
 Map share issuance, buybacks, treasury shares and awards into basic/diluted EPS using the issuer's actual treatment. Preserve the timing of changes rather than dividing every period's profit by the latest outstanding shares.
 

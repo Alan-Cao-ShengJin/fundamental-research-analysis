@@ -1,6 +1,6 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.3.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.4.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
@@ -39,6 +39,8 @@ The [company-model standard](skills/company-model/references/model-standard.md) 
 [Industry analysis](skills/industry-analysis/SKILL.md) connects growth, competitive position, barriers, upstream costs and downstream behavior to forecast assumptions, valuation and tracking indicators. [Investment conviction](skills/investment-conviction/SKILL.md) preserves the decisive economic or avoidance proposition and the evidence that would change it. Conviction can survive price volatility; it does not excuse errors or a broken thesis.
 
 Before concluding, check both a thesis driver's contribution versus comparable consensus and the target's dependence on that driver. Test numerical thesis breakers against the matching base-case metric and period; resolve conflicts rather than moving thresholds to defend the call. Report builders should obtain figures from calculated model outputs and saved source data, and rebuild the report and brief after model changes. These are analyst/builder requirements, not a claim that a new automated report-claim validator is supplied.
+
+Map actual geographic, channel and customer exposure before researching trade or demand risks. Interpret share changes alongside absolute growth and comparable segments. Test forecasts against the exact incentive-plan terms without forcing earnings to meet a hurdle. Triangulate valuation with relevant own history, close same-market peers and sector investment conditions; a short or single-regime history cannot set the multiple alone. Dividend yield uses the same forward fiscal year as the selected target EPS, with the current-year yield alongside it where useful.
 
 The [decision contract](skills/investment-conclusion/references/decision-contract.md) keeps rating, attractiveness, eligibility and portfolio action distinct. Its thresholds are house mandate defaults, not universal investment standards; an explicit user mandate takes precedence.
 

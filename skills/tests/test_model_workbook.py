@@ -115,6 +115,17 @@ class ModelExampleTests(unittest.TestCase):
                                                      'Revenue Build', 'Statements', 'Data', 'Input Prices', 'Guidance',
                                                      'Questions', 'Checks'])
 
+    def test_dividend_yield_uses_the_selected_forward_earnings_year(self):
+        valuation_rows, statement_rows = self.x.THSHEET.R, self.x.S3SHEET.R
+        for case, result in self.result.items():
+            cells = result['cells']
+            forward_eps = cells[f"Valuation!D{valuation_rows['fwd_eps']}"]
+            forward_dps = cells[f"Statements!J{statement_rows['dps']}"]
+            price = cells[f"Valuation!D{valuation_rows['price_rmb']}"]
+            dividend_yield = cells[f"Valuation!D{valuation_rows['yld']}"]
+            self.assertAlmostEqual(forward_eps, cells[f"Statements!J{statement_rows['eps']}"], msg=case)
+            self.assertAlmostEqual(dividend_yield, forward_dps / price, msg=case)
+
     def test_checks_hold_in_every_column_and_case(self):
         R3, RR = self.x.S3SHEET.R, self.x.RPSHEET.R
         for case, r in self.result.items():
