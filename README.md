@@ -1,6 +1,6 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.2.1** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.3.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
@@ -28,7 +28,9 @@ Frame the two or three contested investor questions early, state the strongest c
 - Match earnings periods, accounting basis, currency, share basis and estimate vintages. Explain the earnings and multiple contributions to the target. Distinguish our forecast P/E from a consensus-based comparison; a multiple implied by our own valuation is not independent confirmation.
 - Anchor the target to an appropriate method, relevant history or peers and a defensible path to realization. Current-forward earnings and the target horizon are separate; do not silently roll the earnings denominator to the target date. See the [valuation calendar](skills/valuation-thesis/references/valuation-calendar.md).
 
-The [full-report layout skill](skills/report-layout/SKILL.md) supplies a reusable A4 renderer, embedded licensed fonts, numbered exhibits and source references, and chart helpers. It is separate from the one-page brief template. Full initiations package the report, brief and model together.
+The [full-report layout skill](skills/report-layout/SKILL.md) supplies a reusable A4 renderer, embedded licensed fonts, numbered exhibits and source references, and chart helpers. It is separate from the one-page brief template. Full-report sections now declare the investor questions they cover through `section(..., covers=(...))`; each remaining question needs an explicit `omit(question, reason)`. One section can cover several questions. This checks declared coverage, not whether the analysis is correct. Full initiations package the report, brief and model together.
+
+The historical forward P/E band remains the primary comparison for a forward-EPS target. A separate trailing band uses earnings already reported at each price date, updating at announcement dates. Compare each band with today's matching P/E; subsequently realised forward earnings belong to forecast-bias analysis, not historical market expectations. Never merge trailing and forward series into one band.
 
 The [company-model standard](skills/company-model/references/model-standard.md) and generic workbook builders support construction and verification. Supplied examples are synthetic, not issuer forecasts or recommended assumptions.
 

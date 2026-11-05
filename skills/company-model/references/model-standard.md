@@ -91,6 +91,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 - Today's P/E on consensus EPS and on our EPS, each with its position in SD.
 - The prices implied at the mean and ±1 SD on both earnings bases.
 - A chart that draws the mean and SD lines only inside the chosen window, shows excluded history in grey, and scales the axis to the window rather than past peaks.
+- Where a trailing band helps, put it beside the forward band with its own label, on reported EPS from the filings at their announcement dates.
 - Use P/B bands for cyclicals and yield bands for dividend payers in the same way ([own historical valuation](../../valuation-thesis/references/method-selection.md#the-companys-own-historical-forward-valuation)).
 
 **Scenarios.** The bear/base/bull drivers with their own header row (driver, unit, bear, base, bull, active, rationale); nothing above them labels columns as years.

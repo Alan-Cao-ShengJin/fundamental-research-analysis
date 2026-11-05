@@ -1,5 +1,5 @@
 {
-  "bundleVersion": "2.2.1",
+  "bundleVersion": "2.3.0",
   "variant": "fundamental-research-only",
   "preparedOn": "2026-11-05",
   "skills": [
@@ -36,16 +36,17 @@
     "Synthetic examples and retained third-party notices; no private evidence or credentials"
   ],
   "verification": {
-    "entryPointsValidated": 6,
-    "entryPointScope": "Owners of changed instructions/references: company-model, investment-conclusion, investment-conviction, report-layout, research-challenge and research-cycle",
+    "entryPointsValidated": 4,
+    "entryPointScope": "Owners of changed instructions/references: company-model, valuation-thesis, research-brief and report-layout",
     "javascriptTestsPassed": 65,
-    "pythonTestsPassed": 89,
+    "pythonTestsPassed": 92,
     "bundleCheck": "passed",
+    "syntheticPdfSmokePagesInspected": 2,
+    "reportCoverageScope": "Declared questions and reasoned omissions; not substantive research verification",
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Known local credential values, common token patterns, private-path rules and Excel XML metadata; not forensic assurance",
     "liveAgentBehaviorEvaluated": false,
-    "pdfRenderingPerformedForThisPatch": false,
-    "nativeExcelRecalculationPerformedForThisPatch": false,
+    "nativeExcelRecalculationPerformedForThisRelease": false,
     "investmentPerformanceEvaluated": false
   },
   "hashBasis": "Canonical Git index bytes; bundle-manifest.json excluded to avoid self-reference",
@@ -77,18 +78,18 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 16918,
-      "sha256": "509ab6151c152a905a68080a205e34103d665c1d72270c5923a1886872be27ad"
+      "bytes": 19883,
+      "sha256": "7579b7f9abd55d52eddc1bb7ab9a2c3c3a694c1d9e617d8a536630140d94b31a"
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 3132,
-      "sha256": "6e479f02834c00d874d410f9667059dc81f217e63e0697cab2a8673c4b523a2f"
+      "bytes": 3955,
+      "sha256": "a53f68ce80bdf665ef1822f01c07582a86c2fdf389e226bddbaf1292455fad6b"
     },
     {
       "path": "README.md",
-      "bytes": 11377,
-      "sha256": "7588a8810b7a899bcb39c83215c9f1377c95f60fe406c29a2bc944a1f1ced342"
+      "bytes": 12066,
+      "sha256": "f72e9d74662df7f0d4575eb7f541193b858cb4f8e6330d80b50d89eb044427a6"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -148,12 +149,12 @@
     {
       "path": "package-lock.json",
       "bytes": 36541,
-      "sha256": "f8e3d260fb17142dbbaa31f1dabd37492b1be12982988b23bd4d655200870c43"
+      "sha256": "5f363e5906d456f6157066278352932684bfa9bd4f1478c0817c8813811737a2"
     },
     {
       "path": "package.json",
       "bytes": 350,
-      "sha256": "ffc191aeb8a74adb2aebc42097c6bf4a453285e5dc4626655bcabdce42523769"
+      "sha256": "7f691cb84a047926d8ed846490cb60319af193c900c3798746c41250d5e962e8"
     },
     {
       "path": "requirements.txt",
@@ -173,7 +174,7 @@
     {
       "path": "skills/catalog.json",
       "bytes": 24631,
-      "sha256": "797e61e7392379db9c8a96d20d7f44f7ae27a0884a1265b0b1ec70e56febc89c"
+      "sha256": "68b7a4639864236b71561ebff2d0f0137cecb93fa62445b89923df14444b7df8"
     },
     {
       "path": "skills/chart-visualization/SKILL.md",
@@ -297,8 +298,8 @@
     },
     {
       "path": "skills/company-model/references/model-standard.md",
-      "bytes": 12920,
-      "sha256": "12da20f26d26c1751e672488b5bd6dfb43234ac7ac0dd08993feb5537b9472be"
+      "bytes": 13064,
+      "sha256": "2c947e9276646ffa412f459347f4e02e9a094397a42aad1bc0ae492dc518bc01"
     },
     {
       "path": "skills/company-model/references/revenue-projection.md",
@@ -632,8 +633,8 @@
     },
     {
       "path": "skills/report-layout/SKILL.md",
-      "bytes": 5873,
-      "sha256": "0d4b0e2de5d25c6fd67dea77fc0dbb4451805a2b7c14a35fbcf17b4561ba8cbb"
+      "bytes": 6104,
+      "sha256": "733128e63e0ffe572967be774a7f181876bdb41a0099172a98e3b4d9ef19e700"
     },
     {
       "path": "skills/report-layout/assets/fonts/OFL.txt",
@@ -667,8 +668,8 @@
     },
     {
       "path": "skills/report-layout/scripts/report_layout.py",
-      "bytes": 44022,
-      "sha256": "f3b39bf29d6120a89e3d36195a165ddb9ad5d676edbc8f16966e33d6f114c68f"
+      "bytes": 46323,
+      "sha256": "ed05e58c80c4eda7186b1509ddc5c02ea9bc1047ec1c8b4c1c7a203b6af5902f"
     },
     {
       "path": "skills/research-brief/SKILL.md",
@@ -707,8 +708,8 @@
     },
     {
       "path": "skills/research-brief/references/visual-reports.md",
-      "bytes": 9721,
-      "sha256": "d672114b1a356df75e638f5dbe8aa39c31c395e8ff315f85dc1a791b84237801"
+      "bytes": 9756,
+      "sha256": "a58b7e0260966255c5c844e3b71bfba8e9c316da04792d095276e0163f89c24b"
     },
     {
       "path": "skills/research-brief/scripts/check_one_page.mjs",
@@ -867,8 +868,8 @@
     },
     {
       "path": "skills/tests/test_report_layout.py",
-      "bytes": 5130,
-      "sha256": "897455e783543c6c5a412bdc72bd7a8948535ab42ef5dafab73eebecd4091c12"
+      "bytes": 6978,
+      "sha256": "fb06d7446f84771d849522f2c658f3122c7152891afe3a73b0302864c86d380b"
     },
     {
       "path": "skills/tests/test_research_data.py",
@@ -922,8 +923,8 @@
     },
     {
       "path": "skills/valuation-thesis/references/method-selection.md",
-      "bytes": 14112,
-      "sha256": "dc3bb9dfca7ae3147a49bdfb2461ed959f348b940fddcc7838e2d53533f52e6f"
+      "bytes": 15059,
+      "sha256": "e69ad711622060c743b8060fb2702fa72bf5f54b7401e6e9d5d3ef2f3bb9cdce"
     },
     {
       "path": "skills/valuation-thesis/references/target-underwriting.md",

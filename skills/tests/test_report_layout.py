@@ -11,11 +11,42 @@ rl = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rl)
 
 
-def report():
-    return rl.Report(company='Example <synthetic>', ticker='EXAMPLE', report='Test', date='Example date')
+def report(account_for_questions=True):
+    r = rl.Report(company='Example <synthetic>', ticker='EXAMPLE', report='Test', date='Example date')
+    if account_for_questions:
+        for question in rl.QUESTIONS:
+            r.omit(question, 'This isolated synthetic renderer test does not perform company research.')
+    return r
 
 
 class ReportLayoutTests(unittest.TestCase):
+    def test_unaccounted_investor_questions_prevent_rendering(self):
+        r = report(account_for_questions=False)
+        r.section('Synthetic business', 'Fixture only', 'Invented business.', covers=('business',))
+        with self.assertRaisesRegex(ValueError, 'No section answers:'):
+            r.html()
+        for question in rl.QUESTIONS:
+            if question != 'business':
+                r.omit(question, 'Explicitly outside this synthetic test scope.')
+        self.assertIn('Invented business.', r.html())
+
+    def test_combined_section_can_account_for_multiple_questions(self):
+        r = report(account_for_questions=False)
+        r.section('Synthetic combined section', 'Fixture only', 'Synthetic content.', covers=tuple(rl.QUESTIONS))
+        self.assertEqual(r.covered, set(rl.QUESTIONS))
+        self.assertEqual(r.omitted, {})
+        self.assertIn('Synthetic content.', r.html())
+
+    def test_unknown_questions_and_empty_omission_reasons_are_rejected(self):
+        r = report(account_for_questions=False)
+        with self.assertRaises(ValueError):
+            r.section('Mistyped question', '', covers=('busines',))
+        with self.assertRaises(ValueError):
+            r.omit('busines', 'Typo must not bypass coverage.')
+        for reason in ('', '  ', None):
+            with self.assertRaises(ValueError):
+                r.omit('business', reason)
+
     def test_reference_order_and_embedded_fonts(self):
         r = report()
         r.section('Evidence', 'Synthetic only', 'Second source first{{src:b}}; then first{{src:a}}.')
@@ -66,6 +97,10 @@ class ReportLayoutTests(unittest.TestCase):
         self.assertIn('$70 / 120 / 150', result)
         self.assertIn('-30% / +20% / +50%', result)
         self.assertNotIn('+900%', result)
+        lower_price = rl.rating_box('Buy', 'Price', 50, 60.4, 'n/a',
+                                    (35.4, 9), (60.4, 9), (75.4, 9), 'n/a', '$')
+        self.assertIn('$35.4 / 60.4 / 75.4', lower_price)
+        self.assertIn('+20.8%', lower_price)
         for value in (0, -1, float('nan'), float('inf')):
             with self.assertRaises(ValueError):
                 rl.rating_box('Hold', 'Price', value, 100, 'n/a',

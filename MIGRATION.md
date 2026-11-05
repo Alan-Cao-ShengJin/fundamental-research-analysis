@@ -36,3 +36,9 @@ Portfolio allocation, risk-budgeting and cross-asset trading remain outside this
 The bundle adds `report-layout` for full A4 reports; the one-page brief remains under `research-brief`. Update coverage plans to the 2.2.0 catalog and decide whether the full-report layout applies. Chrome and optional PDF-inspection dependencies are separate host capabilities.
 
 New full company workbooks use the updated theme, Cover/Summary/Checks structure and compact source tags with row-label comments. A compact operating scaffold may retain visible full explanations to the right. Preserve valid existing user workbook names and edits during a narrow revision. Source-tag insertion changes physical addresses; use the model builder's address translation rather than manually shifting isolated formulas. The supplied example's case selector is `Cover!C9`.
+
+## Version 2.3 report-coverage API
+
+Existing full-report builders must now account for the renderer's `QUESTIONS`: pass question IDs through `section(..., covers=(...))`, or call `omit(question, reason)` for a genuinely inapplicable question. Unknown IDs and empty omission reasons fail. A section can answer several questions; this does not require twelve separate chapters. The check covers declarations, not the quality or truth of the analysis. The standalone one-page brief API is unchanged.
+
+Historical trailing P/E is an optional, separately labelled cross-check using announcement-date-aware reported earnings. It must not replace or be merged with historical forward P/E, and later realised forward earnings remain a forecast-bias diagnostic. A multiple's earnings basis alone does not determine the target date.

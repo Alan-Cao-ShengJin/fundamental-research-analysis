@@ -1,3 +1,33 @@
+# Research skill verification ? 5 November 2026, version 2.3.0
+
+This section records the current release. Earlier records below describe their own versions.
+
+## Changes
+
+- Historical forward P/E remains the primary comparison for a forward-EPS target. A separate trailing band uses actual earnings already published at each price date, updated on announcement dates. Subsequent realised forward earnings are a forecast-bias diagnostic, not historical investor knowledge. The bands must remain distinct. Historical context does not guarantee twelve-month price convergence.
+- Corrected a sentence implying that applying a trailing multiple to forecast EPS automatically sets a one-year target date. It changes the earnings basis and requires justification; the target horizon remains a separate choice.
+- Full-report sections declare investor questions through `covers=(...)`. Every remaining question needs `omit(question, reason)`. One section can cover multiple questions. Unknown question IDs and blank omission reasons fail; the renderer checks declarations, not whether the substantive analysis is correct.
+- Updated the module example and migration guidance for that API. Added three coverage regression tests and extended scenario-price precision coverage for prices below 100. Back matter now avoids internal page breaks where feasible.
+
+The standalone scope remains 20 skills and 11 flows, with existing coverage planning, licences and private-data exclusions preserved. The one-page brief API is unchanged. No new trailing-band data connector/calculator or automated financial-claim validator is introduced, and no issuer forecast or valuation target was changed.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Installation | Isolated `npm ci --ignore-scripts` passed |
+| Bundle structure | Catalog, 20 skills, 11 flows, handoff schema, coverage and relative links checked |
+| Entry validation | company-model, valuation-thesis, research-brief and report-layout passed |
+| JavaScript tests | 65 passed |
+| Python tests | 92 passed, including 11 report-layout tests |
+| PDF smoke render | Two-page synthetic fixture printed in Chrome and both page images inspected; covers and reasoned omissions exercised |
+
+The PDF fixture is deliberately sparse and is not a production content-density or complete research-quality test. No independent live-agent evaluation, native Excel recalculation, real issuer study rerun, forecast-accuracy assessment or investment-performance evaluation was performed. Trailing-band guidance is not proof that release-aware historical data have been retrieved.
+
+The canonical file manifest and bounded publication scan were refreshed. The scan checks known local credential values, common token patterns, private paths and workbook XML metadata; it is not forensic assurance. Private research, entitled broker material, live provider responses and credentials remain excluded.
+
+## Historical record: version 2.2.1
+
 # Research skill verification ? 5 November 2026, version 2.2.1
 
 This patch imports six changed instruction/reference files from the maintained workspace. Earlier release records below are historical.

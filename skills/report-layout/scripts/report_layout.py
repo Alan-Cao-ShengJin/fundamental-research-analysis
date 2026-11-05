@@ -6,7 +6,9 @@
     r.front(headline, key_points=[...], summary=[...], rating=rl.rating_box(...), key_data=[(label, value)],
             financials=rl.fin_table(...), chart=r.exhibit('px', 'Takeaway headline', svg, 'Source line'))
     r.section('Valuation', 'One-line takeaway for the rail', 'Paragraph citing {{ex:band}} and a source{{src:example}}.',
-              r.exhibit('band', 'Synthetic valuation comparison', rl.band_chart(...), 'Synthetic example'))
+              r.exhibit('band', 'Synthetic valuation comparison', rl.band_chart(...), 'Synthetic example'),
+              covers=('valuation',))
+    # Add sections covering the other QUESTIONS, or omit an inapplicable question with its reason.
     r.sources([('example', 'Synthetic source', 'Invented estimates and prices', 'Example date', '')])
     r.write(html_path); rl.print_pdf(html_path, pdf_path); rl.inspect_pdf(pdf_path)
 
@@ -128,13 +130,31 @@ table.fin tr.cons td {{ color: {COL['muted']}; font-style: italic; }}
 td.pos {{ color: {TEAL}; }} td.neg {{ color: {RED}; }}
 table.text td {{ font-size: 8pt; }}
 table.compact td, table.compact th {{ font-size: 7.8pt; padding-top: .35mm; padding-bottom: .35mm; }}
-.back {{ font-size: 7.5pt; color: {COL['body']}; columns: 2; column-gap: 6mm; margin-top: 2mm; }}
+.back {{ font-size: 7.5pt; color: {COL['body']}; columns: 2; column-gap: 6mm; margin-top: 2mm; break-inside: avoid; }}
 .back h2 {{ column-span: all; border-top: 2px solid {TEAL}; padding-top: 1.2mm; }}
 .back ol {{ margin: 0 0 2mm; padding-left: 5mm; }} .back li {{ break-inside: avoid; margin-bottom: .8mm; }}
 .back p {{ break-inside: avoid; margin-bottom: 1.5mm; }}
 @media screen {{ main {{ padding: 6mm 4mm; }} }}
 @media (max-width: 640px) {{ .front, .sec {{ display: block; }} table {{ display: block; overflow-x: auto; }} }}
 """
+
+
+# The investor questions a full report answers (research-brief/references/visual-reports.md). Each section names the
+# questions it answers with covers=(...); a question that does not matter for this company is dropped with omit().
+QUESTIONS = {
+    'business': 'how the company makes money',
+    'debate': 'the core investor debates, each side argued',
+    'industry': 'industry growth, niche, barriers, upstream costs and customers',
+    'competition': 'competitive response and how long the advantage lasts',
+    'outlook': 'latest results against the next outlook',
+    'delivery': 'management delivery against its own plans',
+    'forecast': 'the evidence behind the forecast and the gap to consensus',
+    'cash': 'cash conversion and funded growth',
+    'governance': 'whether outside shareholders can get the value',
+    'valuation': 'valuation against peers and dated own history',
+    'market': 'market context: holders, flows and recent price moves',
+    'risks': 'bear and bull cases, catalysts and what would change the view',
+}
 
 
 # ---------------------------------------------------------------- page
@@ -144,6 +164,7 @@ class Report:
         self.author, self.email, self.firm, self.pricing = author, email, firm, pricing
         self.parts, self.src, self.front_html, self.uncited_exhibits = [], [], '', []
         self.companions = []   # [(label, file name)] delivered in the same folder, e.g. the Excel model
+        self.covered, self.omitted = set(), {}
 
     # exhibits, references and sources -------------------------------------------------
     def exhibit(self, key, headline, body, source, note=''):
@@ -170,7 +191,19 @@ class Report:
             f'<table class="kv">{kd}</table>' + (f'<h4>Key financials</h4>{financials}' if financials else '')
             + (f'<p class="ex-src">{esc(self.pricing)}.</p>' if self.pricing else '') + '</div></div>')
 
-    def section(self, title, takeaway, *items):
+    def omit(self, question, reason):
+        """Drop an investor question that does not matter for this company; the reason is kept for the record."""
+        if question not in QUESTIONS:
+            raise ValueError(f'Unknown investor question {question!r}; use {sorted(QUESTIONS)}')
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError('An omitted investor question requires a nonempty reason.')
+        self.omitted[question] = reason
+
+    def section(self, title, takeaway, *items, covers=()):
+        unknown = set(covers) - set(QUESTIONS)
+        if unknown:
+            raise ValueError(f'Unknown investor questions {sorted(unknown)}; use {sorted(QUESTIONS)}')
+        self.covered |= set(covers)
         body = [f'<div class="rail"><h2>{esc(title)}</h2><div class="take">{takeaway}</div></div>']
         for it in items:
             if isinstance(it, Sub):
@@ -211,6 +244,10 @@ class Report:
         return order, back
 
     def html(self):
+        missing = [f'{k} ({v})' for k, v in QUESTIONS.items() if k not in self.covered and k not in self.omitted]
+        if missing:
+            raise ValueError('No section answers: ' + '; '.join(missing) + '. Cover each in a section (covers=) or '
+                             'drop it with omit(question, reason).')
         order, back = self._back()
         body = self.front_html + ''.join(self.parts) + back
         ex = {}
@@ -241,7 +278,7 @@ def rating_box(rating, price_label, price, target, dividend, bear, base, bull, c
     box never shows a target next to a return worked from a different figure. bear/base/bull are (target, return);
     supplied scenario returns are retained for API compatibility but recalculated from the displayed prices."""
     c = RATING.get(rating, TEAL)
-    cd = decimals if price < 20 else 0   # case targets: whole units unless the share price is low
+    cd = decimals if price < 100 else 0   # whole units from 100, as in the one-page brief; below that the base case matches the target
     target = round(target, decimals)
     price = round(price, 2)
     if not math.isfinite(price) or price <= 0:
