@@ -1,3 +1,35 @@
+# Research skill verification ? 6 November 2026, version 2.5.0
+
+This section records the current export. Earlier records below describe their own releases.
+
+## Changes
+
+- Added `world-state.md`: a dated exposure map and scan of developments since the last filing/call, materiality triage, transmission into forecasts/valuation, unresolved resolution dates and a release-cutoff refresh.
+- Added `what-the-market-trades.md`: research guidance for inferring the variable, period or asset that appears to drive price, using dated consensus/revisions, surprises, guidance comparisons, price reactions and investor questions. Model the later debate year or value an asset outside current earnings where relevant, while preserving the current-forward target denominator.
+- Linked the new work into initiation, regular and major updates, intake, industry analysis, forecasts, valuation, challenge, conclusions, writing and proposed monitoring. Evidence-pack handoffs retain referenced records; no new envelope kind was added.
+- Added a competitive-position procedure for clinical pipeline assets under the existing pharma guide, with stage/population/scale qualifications and scenario/funding consequences.
+- Expanded provider retrieval guidance for dated three-year/segment consensus and price-reaction evidence, and documented the AlphaPai roadshow recall route. These are requested reads, not a new connector, tested entitlement or guarantee of fields/history.
+- Added three authored evaluation prompts: a forward year covered by backlog, price expectations ahead of a public plan, and a substantial unlaunched asset. They are not completed agent evaluations.
+
+Preserved the standalone coverage planner and updated relevant role purposes. The public scope remains 20 skills and 11 flows, with portfolio/strategy extensions outside the bundle. The dated data-planning directory remains excluded. The only local workbook difference was save-path metadata, so the clean public asset was retained unchanged. Existing licences and pinned adaptation notices are preserved.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Installation | Isolated `npm ci --ignore-scripts` passed |
+| Bundle structure | Catalog, coverage, handoff schema and relative links passed |
+| Skill entry validation | All 20 entries passed |
+| New reference anchors | 13 fragment links checked |
+| JavaScript suite | 65 tests passed |
+| Python suite | 93 tests passed |
+
+No numerical helper, market-expectations detection engine or automated world-state retrieval service was introduced. The newly authored market-reading heuristics are analytical inferences, not observed investor beliefs or independently validated explanatory models. No live provider/data-entitlement test, native Excel recalculation, PDF render, issuer study, independent behavioral assessment or investment-performance evaluation was performed for this export. Structural checks cannot establish source truth, completeness, causal interpretation or investment quality.
+
+The canonical file manifest and bounded publication scan were refreshed. The scan checks known local credential values, common token patterns, private paths and workbook XML metadata; it is not forensic assurance. Private evidence, broker material and credentials are excluded.
+
+## Historical record: version 2.4.1
+
 # Research skill verification ? 5 November 2026, version 2.4.1
 
 This patch imports eight instruction/reference changes. Earlier records below are historical.

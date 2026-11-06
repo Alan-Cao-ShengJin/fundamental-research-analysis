@@ -8,6 +8,8 @@ The governing [request routing](research-cycle/references/request-routing.md) di
 
 ## Research principles and sequence
 
+At intake, run the [world-state scan](research-cycle/references/world-state.md) and infer [what the market is trading](research-cycle/references/what-the-market-trades.md). Carry the dated evidence into the operating build, valuation, challenge and updates; refresh it at the release cutoff. A later debate period informs analysis without silently rolling the target EPS denominator.
+
 Use [investment conviction](investment-conviction/SKILL.md) across research vintages: preserve one primary economic or avoidance proposition, supporting/contrary evidence, original milestones and conditions for reconsideration. An intact belief can survive price volatility while valuation and attractiveness change. A supported ongoing value-diversion condition can keep a company excluded despite cheapness. The default investment horizon is at least a year unless the mandate specifies another; it does not require retaining a broken thesis. Completed records belong in company research, using the clean blank scaffold; no live track record or automatic position action is implied.
 
 Use the [underwriting standard](research-cycle/references/underwriting-standard.md) and [investor judgment](research-cycle/references/investor-judgment.md) as the shared analytical foundation. Integrate business economics/competition, financial quality and funded growth, governance/shareholder access, valuation/expectations, macro/market context and probability/payoff. Choose emphasis by the security, price, horizon and decision sensitivity; conversation order and document position do not determine importance. No dimension has a fixed weight or automatic precedence.

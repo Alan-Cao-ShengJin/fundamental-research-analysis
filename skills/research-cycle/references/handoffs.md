@@ -38,7 +38,7 @@ For earnings/event work, keep the [earnings clock](../../company-model/reference
 | Kind | Required substantive content |
 | --- | --- |
 | `research-brief` | Decision, horizon/deadline, mandate, capital scope, baseline, capabilities and budget |
-| `evidence-pack` | Source register, reconciled observations, conflicts and freshness/coverage gaps |
+| `evidence-pack` | Source register, reconciled observations, conflicts, freshness/coverage gaps and, for company research, the dated [world-state record](world-state.md#7-record-the-world-state) and the inferred statement of [what the market is trading](what-the-market-trades.md#5-output-and-use) with its supporting reads |
 | `hypothesis` | Economic return source, baseline, support/counterevidence and falsifiable failure conditions |
 | `company-model` | Executable model/backend reference and fingerprint, scenario/run, semantic period/metric/unit map, current calculated outputs and lineage, statement/driver maps, assumptions, checks, frozen forecasts and downstream valuation dependencies |
 | `financial-quality` | Earnings-to-cash, balance-sheet and financing bridges, material anomalies, alternatives and follow-up tests |

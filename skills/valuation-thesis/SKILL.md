@@ -30,7 +30,7 @@ For current valuation, query the [agent model's](../company-model/references/age
 
 ## Establish the valuation basis
 
-Start by comparing our EPS and the valuation it implies with consensus, and explain the gap, using [target-underwriting check 1](references/target-underwriting.md). Do this before choosing the primary method, so the method answers the actual disagreement.
+Start by comparing our EPS and the valuation it implies with consensus, and explain the gap, using [target-underwriting check 1](references/target-underwriting.md). Do this before choosing the primary method, so the method answers the actual disagreement. State which variable and period set the price ([what the market trades](../research-cycle/references/what-the-market-trades.md)): when the market trades a year beyond the forward year, compare that year too and explain the multiple by it; when it trades an asset outside current earnings, value that asset explicitly against what the price places on it. Date the consensus and say where the live buy-side view appears to sit above or below it.
 
 Follow the [target and earnings-basis contract](../investment-conclusion/references/decision-contract.md#target-and-earnings-basis) and [calendar guide](references/valuation-calendar.md). Show the headline multiple's arithmetic and selected earnings period in the pitch.
 

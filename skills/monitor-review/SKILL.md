@@ -17,6 +17,8 @@ Use [durable recurring research](references/recurring-research.md) when retainin
 
 For earnings-related reviews, maintain the [earnings and peer-event clock](../company-model/references/earnings-clock-and-peer-readthrough.md): issuer release/call/transcript availability, earlier peer calls, intervening updates and next catalysts. Keep confirmed versus estimated dates, timezones, postponements and data freshness separate. Freeze pre-event expectations and schedule a proposed recheck when new information can change the thesis; this does not itself activate a monitor.
 
+Carry the open items of the [world-state record](../research-cycle/references/world-state.md#7-record-the-world-state) and the observation that settles [what the market is trading](../research-cycle/references/what-the-market-trades.md#5-output-and-use) as watches, with their dates and the reading that would change the view.
+
 Where material, specify [market-context and investor-base triggers](../macro-event-analysis/references/market-regime-and-investor-base.md): macro/sector rotation, documented flow/ownership change, normal and stressed turnover, eligibility/review/effective dates, float/lockup/issuance supply and buyer-capacity changes. Distinguish a rules threshold approached, an announced change and completed buying; record lag/coverage and what reopens valuation versus operating assumptions.
 
 For each watch, state the metric, threshold, source, review date and what a change would affect. Check data health before interpreting silence.

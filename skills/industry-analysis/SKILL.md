@@ -12,7 +12,7 @@ A company's reports show what has happened to it. The industry explains why, and
 ## Define the market and the value chain
 
 - Define the market the company actually sells into: product, price band, channel, customer type and geography. Do not use the stock-market sector label. Where several markets matter, analyse each one that drives profit.
-- Before researching trade, policy or demand risks, map where the company actually sells: revenue and volume by region, channel and largest customers, from filings, calls and customer or customs data. Research the markets that matter, not the most familiar ones. Where the split is not disclosed, piece it together and say how confident the map is; write with no more certainty than the map supports.
+- Before researching trade, policy or demand risks, map where the company actually sells: revenue and volume by region, channel and largest customers, from filings, calls and customer or customs data. Research the markets that matter, not the most familiar ones. Where the split is not disclosed, piece it together and say how confident the map is; write with no more certainty than the map supports. The [world-state scan](../research-cycle/references/world-state.md) uses the same map; build it once.
 - Map the value chain from inputs to end users: who supplies, who sells, who buys, who pays, and where the profit pool sits today. Mark where the company sits and who could take its margin: suppliers, customers, platforms or competitors.
 
 ## The five lenses

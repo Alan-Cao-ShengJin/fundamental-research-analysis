@@ -31,6 +31,18 @@ Distinguish the probability of passing the next stage from the cumulative probab
 of reaching commercialisation. Start with relevant, dated stage and indication base
 rates, then explain asset-specific adjustments using clinical and regulatory evidence.
 
+## Competitive position of a pipeline asset
+
+When a clinical asset carries a large share of the market value, apply the general [asset competitive-position procedure](../../../research-cycle/references/what-the-market-trades.md#4-when-the-price-is-an-asset-not-the-earnings) in its drug form, against the rivals for the same target and indication:
+
+- **Mechanism and target.** What the drug does, the mutations or populations it covers, and what the rivals cover. A broader mutation set, a different binding mode or resistance coverage is only an advantage if the clinical data bear it out.
+- **Data against rivals.** Response rates, durability, safety and dosing from each programme's latest disclosed data, with trial stage, population, line of therapy and sample size beside each number. A Phase I signal in a small cohort is not a Phase III result; say what the comparison can and cannot show.
+- **Timing.** Each rival's stage, next readout and likely approval date in each market. Second to market with better data can win; first with similar data usually keeps share.
+- **Commercial frame.** Addressable patients by mutation and line, the price regime and the partnering or licensing deals comparable assets have drawn, which price the asset before approval.
+- **What it is worth under each outcome.** Best in class, one of several, or failed, each with its probability and the cash the company needs to get there. Compare with the residual the price places on it.
+
+Conclude with a stated view: best in class, competitive, or behind, with the data that would change it and the date it is due.
+
 ## Checks and valuation
 
 A filing is not approval; a secondary endpoint is not a successful primary endpoint. Do

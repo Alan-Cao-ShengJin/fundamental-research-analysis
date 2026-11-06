@@ -1,6 +1,6 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.4.1** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.5.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
@@ -21,6 +21,14 @@ A price move alone changes prospective return, not earnings or fair value. Recur
 Scope and evidence → historical statements → early governance and financial-red-flag review → industry analysis → operating drivers and component revenue/cost forecasts → integrated statements → model audit → valuation and expectations → thesis validation and challenge → conviction → investment conclusion → communication and follow-up.
 
 Frame the two or three contested investor questions early, state the strongest case on each side, and use the evidence that would settle them to construct meaningful bear and bull outcomes. The sequence expresses dependencies, not fixed analytical weights. Use [investor judgment](skills/research-cycle/references/investor-judgment.md) and the [underwriting standard](skills/research-cycle/references/underwriting-standard.md) to concentrate on what can change the decision. Reuse valid dated work; new evidence reopens affected stages. Financial quality has three distinct passes: early screening, pre-valuation model audit and post-valuation thesis validation.
+
+## Current conditions and market expectations
+
+Use the [world-state procedure](skills/research-cycle/references/world-state.md) to map company exposures, investigate developments since the last filing/call, retain their status and economic effects, and refresh decision-relevant evidence at release. Reuse the same exposure map in industry analysis and carry unresolved resolution dates into follow-up.
+
+Use [what the market is trading](skills/research-cycle/references/what-the-market-trades.md) to identify the variable, period or undeveloped asset that appears to drive the price. Compare dated estimates/revisions, price reactions, guidance, investor questions and implied scenarios. Retain the conclusion as an inference with its evidence and alternatives. A later forecast year can inform the selected multiple without silently rolling the target's earnings denominator. Where a pipeline or new asset explains a large share of value, analyse its competitive position and outcomes explicitly while retaining the established business model.
+
+The new references specify research work, not an automatic market-expectations detector or guaranteed provider coverage. The catalog and coverage checker do not execute the reads or validate their conclusions. The added [evaluation cases](skills/evals/research-cases.md#what-the-market-is-trading) are authored prompts, not completed independent behavioral tests.
 
 ## Modeling and valuation
 

@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "modes": {
     "initiation": "new-company-research",
     "regular": "company-regular-review",
@@ -12,7 +12,7 @@
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Scope, route, sequence dependencies and account for coverage."
+      "purpose": "Scope, date, route, sequence dependencies and account for coverage, including world-state work and the inferred current market question."
     },
     "stock-initiation": {
       "modes": {
@@ -36,7 +36,7 @@
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Identity, cutoff, official sources, original observations, conflicts and data availability."
+      "purpose": "Identity, cutoff, official observations, conflicts and availability; retain the dated exposure/world-state record and evidence supporting the inferred market variable and period."
     },
     "company-model": {
       "modes": {
@@ -44,7 +44,7 @@
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Business/competition and sector mechanism, history, foundational drivers, guidance, linked forecasts and Excel; regular reviews may reuse the valid forecast."
+      "purpose": "History, supported foundational drivers, guidance, linked statements and Excel; extend the component build through the relevant market-debate year or asset where needed; regular reviews may reuse valid forecasts."
     },
     "corporate-governance": {
       "modes": {
@@ -76,7 +76,7 @@
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Counter-case, pivotal source/calculation checks and assumptions that can break the decision."
+      "purpose": "Test whether the debate addresses the inferred current market question, challenge the strongest counter-case and reproduce pivotal source/calculation and target-dependence checks."
     },
     "investment-conviction": {
       "modes": {
