@@ -95,6 +95,11 @@ describe('initiation and revision workflow boundaries', () => {
     expect(dependencies('regular-valuation').has('model-revision')).toBe(false);
     expect(dependencies('regular-conclusion').has('regular-challenge')).toBe(true);
     expect(regular.forecastChangeRequires).toEqual(expect.arrayContaining(['concrete-evidence', 'affected-risk-review', 'model-recalculation', 'model-audit', 'downstream-refresh']));
+    // A supported forecast change inserts the model stages the flow list omits; they are catalog stages, not prose.
+    expect(regular.forecastChangeStages).toEqual(['revision-risk-review', 'model-revision', 'revision-audit']);
+    for (const stage of regular.forecastChangeStages) expect(catalog.stages[stage]).toBeDefined();
+    expect(catalog.stages['model-revision'].skill).toBe('company-model');
+    expect(catalog.stages['revision-audit'].skill).toBe('financial-quality');
     expect(revision.modes[regular.escalateTo].flow).toBe('company-update');
   });
 
@@ -106,6 +111,27 @@ describe('initiation and revision workflow boundaries', () => {
     expect(flow.indexOf(major.learningStage)).toBeLessThan(flow.indexOf('model-revision'));
     expect(dependencies('model-revision').has(major.learningStage)).toBe(true);
     expect(catalog.stages[major.learningStage].skill).toBe('model-revision');
+  });
+});
+
+describe('publication within research modes', () => {
+  it('publishes a stock brief only after the conclusion, while evidence summaries need no stock call', () => {
+    expect(dependencies('investment-brief').has('conclusion')).toBe(true);
+    expect(dependencies('brief').has('conclusion')).toBe(false);
+    for (const name of ['new-company-research', 'company-to-portfolio'].filter(name => catalog.flows[name])) expect(catalog.flows[name]).toContain('investment-brief');
+    for (const name of ['industry-review', 'corporate-governance-review', 'financial-red-flag-review']) expect(catalog.flows[name]).toContain('brief');
+  });
+  it('renders and release-checks deliverables after the brief in every company mode', () => {
+    for (const [flowName, brief, render] of [
+      ['new-company-research', 'investment-brief', 'report-render'],
+      ['company-regular-review', 'regular-brief', 'regular-report-render'],
+      ['company-update', 'revision-brief', 'revision-report-render']
+    ]) {
+      expect(catalog.flows[flowName].indexOf(render)).toBeGreaterThan(catalog.flows[flowName].indexOf(brief));
+      expect(catalog.stages[render].skill).toBe('report-layout');
+      expect(dependencies(render).has(brief)).toBe(true);
+    }
+    expect(catalog.stages['report-exhibits'].skill).toBe('chart-visualization');
   });
 });
 

@@ -1,3 +1,37 @@
+# Research skill verification - 6 November 2026, version 2.6.0
+
+This section records the current standalone export. Earlier sections describe their own releases.
+
+## Changes
+
+- Added the report-layout release checker and shared `package()` build path: supported valuation-method reconciliation, annual/NTM period bindings, fiscal-calendar interpolation, current-year disclosure checks, model/brief/rendered decision agreement, age checks, approved contacts and house wording regressions.
+- Added release fingerprints, existing-file comparison, PDF printing from the supplied HTML, atomic package/record completion and failed-attempt handling. These controls apply to builders invoking `package()`; older studies are not automatically migrated.
+- Preserved generic summaries while adding investment-publication dependencies and conditional render stages. Regular-review metadata identifies forecast-change recalculation/audit stages. Catalog metadata is not an automatic scheduler.
+- Revised market-expectations instructions to qualify public-information incorporation, price/year/multiple inference, high estimates, attribution and guidance/run-rate assumptions.
+- Added two original synthetic evaluation packs and an arithmetic grader, with answer notes separate from evidence packs. No fresh-agent behavioral trial was performed for this release.
+- Declared PDF inspection and date-parsing dependencies so fresh installations can execute the release regressions.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Installation | Isolated npm ci --ignore-scripts passed |
+| Bundle structure | 20 skills, 11 flows; catalog, coverage, links and handoff schema passed |
+| JavaScript | 67 tests passed |
+| Python | 110 tests passed, including standalone coverage tests |
+| Skill metadata | All 20 entry points validated |
+| Export scan | Known local credential values, token patterns, personal paths and workbook XML metadata checked |
+
+The local review separately verified a copied ANTA model with its real calculation checker: 37 saved-release checks passed, and the reported period/hash/render/package-failure regressions were exercised. Issuer artifacts and review logs are excluded from this public bundle. Packaging fault tests in that review reused PDFs through a printer stub; this export did not independently run native Excel, Chrome or visual PDF inspection.
+
+## Limits and scope
+
+The validation record explicitly leaves source truth, economic judgment, prose figures, share class/scale, substantive question coverage, estimate vintages, exchange-session lookup and visual quality with analyst review. A reported operating update is permitted by the current house period convention; the local message board records that convention as still available for the user's confirmation/change. Passing code tests does not establish reliable research behavior or investment performance. No controller, live data entitlement, automated judge or recurring monitor was added.
+
+The standalone coverage planner, scope adaptations, licensed fonts and third-party notices are retained. Public scope stays company-only: 20 skills and 11 flows. Private issuer work, entitled evidence, credentials, internal discussion archives and the previously removed dated data-planning directory remain excluded. The synthetic workbook was retained because the local difference was only save-path metadata.
+
+---
+
 # Research skill verification ? 6 November 2026, version 2.5.0
 
 This section records the current export. Earlier records below describe their own releases.

@@ -82,3 +82,5 @@ python -B -m unittest discover -s skills/tests
 ```
 
 The catalog describes local skills and routes; live runtime integration remains separate. Required third-party licence notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Release validation is available through `report_layout.package()` in [report layout](report-layout/SKILL.md). The [synthetic evaluation fixtures](evals/fixtures/README.md) are prepared cases, not completed behavioral evaluations.

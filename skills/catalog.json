@@ -1,5 +1,5 @@
 {
-  "version": "2.5.0",
+  "version": "2.6.0",
   "entrySkill": "research-cycle",
   "runtimeIntegrated": false,
   "skills": [
@@ -257,7 +257,7 @@
       "skill": "monitor-review",
       "output": "monitor-review",
       "requiredBefore": [
-        "brief",
+        "investment-brief",
         "conclusion"
       ]
     },
@@ -450,6 +450,45 @@
       "requiredBefore": [
         "revision-conclusion"
       ]
+    },
+    "investment-brief": {
+      "skill": "research-brief",
+      "output": "brief",
+      "requiredBefore": [
+        "conclusion"
+      ]
+    },
+    "report-exhibits": {
+      "skill": "chart-visualization",
+      "output": "brief",
+      "requiredBefore": [
+        "conclusion"
+      ],
+      "when": "a full report or charts are requested"
+    },
+    "report-render": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "investment-brief"
+      ],
+      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
+    },
+    "regular-report-render": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "regular-brief"
+      ],
+      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
+    },
+    "revision-report-render": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "revision-brief"
+      ],
+      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
     }
   },
   "flows": {
@@ -473,7 +512,9 @@
       "challenge",
       "conviction",
       "conclusion",
-      "brief",
+      "report-exhibits",
+      "investment-brief",
+      "report-render",
       "company-follow-up"
     ],
     "company-regular-review": [
@@ -487,6 +528,7 @@
       "regular-conviction",
       "regular-conclusion",
       "regular-brief",
+      "regular-report-render",
       "regular-follow-up"
     ],
     "company-update": [
@@ -504,6 +546,7 @@
       "revision-conviction",
       "revision-conclusion",
       "revision-brief",
+      "revision-report-render",
       "revision-follow-up"
     ],
     "corporate-governance-review": [
@@ -607,7 +650,12 @@
             "model-audit",
             "downstream-refresh"
           ],
-          "escalateTo": "major"
+          "escalateTo": "major",
+          "forecastChangeStages": [
+            "revision-risk-review",
+            "model-revision",
+            "revision-audit"
+          ]
         },
         "major": {
           "flow": "company-update",

@@ -69,7 +69,7 @@ Distinguish adjusted earnings from cash after investment, price return from divi
 
 1. Establish the current numerical decision, model outputs, evidence and qualifications before drafting.
 2. Draft each main point through data, derivation, significance and stock-view implication in the professional register above. Check the causal connection before polishing the wording.
-3. Edit for precision, concision and attribution. Remove repetition and informal phrases without stripping out the industry or financial language that carries the analysis.
+3. Edit for precision, concision and attribution. Remove repetition and informal phrases without stripping out the industry or financial language that carries the analysis. Do not carry wording from the skill instructions into the report; restate it in this register.
 4. Compare the final text with the numerical and evidence records. Preserve prices, dates, signs, units, forecast periods, source links, uncertainty and the strongest counter-case. A wording revision does not authorize changing forecasts or the call.
 5. Render the document and inspect the final reading order, financial labels and page fit. Shorten low-value prose rather than reducing type size or deleting a material qualification. Deliver the final prose, without an editorial transcript or an AI-detector score.
 

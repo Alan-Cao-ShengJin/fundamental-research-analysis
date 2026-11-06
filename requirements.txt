@@ -1,1 +1,2 @@
 -r skills/company-model/requirements.txt
+-r skills/report-layout/requirements.txt

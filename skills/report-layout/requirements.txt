@@ -1,2 +1,3 @@
-# Optional page-image rendering and PDF inspection; HTML generation uses the standard library.
+# Release date parsing and PDF packaging/inspection; standalone HTML generation uses the standard library.
 PyMuPDF==1.27.2.3
+python-dateutil==2.9.0.post0

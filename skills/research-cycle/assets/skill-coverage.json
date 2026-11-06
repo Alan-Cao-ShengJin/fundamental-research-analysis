@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "modes": {
     "initiation": "new-company-research",
     "regular": "company-regular-review",
@@ -169,7 +169,7 @@
         "regular": "conditional",
         "major": "conditional"
       },
-      "purpose": "Apply the shared A4 full-report renderer, source/exhibit conventions and page review without replacing the brief template.",
+      "purpose": "Requested full-report/PDF presentation and package release checks with explicit validation limits.",
       "trigger": "A full visual stock report is requested or required by the chosen initiation deliverable; narrow notes and one-page-only requests use their own formats."
     }
   }

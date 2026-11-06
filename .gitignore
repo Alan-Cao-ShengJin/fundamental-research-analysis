@@ -20,3 +20,5 @@ data/
 
 # Independently authored integrated-model fixture
 !skills/company-model/assets/company-model-example.xlsx
+
+.pytest_cache/

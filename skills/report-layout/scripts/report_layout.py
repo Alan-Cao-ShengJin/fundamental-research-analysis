@@ -856,3 +856,84 @@ def inspect_pdf(pdf_path, image_dir=None, dpi=100):
             Path(image_dir).mkdir(parents=True, exist_ok=True)
             page.get_pixmap(dpi=dpi).save(str(Path(image_dir) / f'page_{i + 1}.png'))
     return out
+
+
+def package(study, zip_path, report_html, brief_html, files, **record):
+    """Validate the rendered HTML against the calculated model, print the PDFs from those exact files, and write
+    deliverables/release.json and the zip only when every release check passes.
+
+    package(ROOT, OUT / 'Company_initiation_2026-11-06.zip', OUT / 'Company_initiation.html', OUT / 'Company_brief.html',
+            [OUT / 'Company_model.xlsx'],
+            cutoff='2026-11-06', fiscalYearEnd=12, priceDate='2026-11-05', consensusDate='2026-11-06',
+            security='2020.HK', currency='HKD', method='P/E', epsPeriod='FY2027E',
+            latestPublished={'period': '3Q26', 'kind': 'operating update', 'date': '2026-10-21', 'coversThirdQuarter': True},
+            spec='model/spec.json', workbook='deliverables/Company_model.xlsx', brief='deliverables/brief.json',
+            bindings={'referencePrice': 'Valuation!D20', 'target': 'Valuation!D37', 'targetMultiple': 'Valuation!D35',
+                      'forwardEps': 'Valuation!D27', 'forwardEpsSource': 'Statements!I43', 'forwardEpsHeader': 'Statements!I5',
+                      'fx': 'Valuation!D21', 'dividendYield': 'Valuation!D40', 'rating': 'Valuation!D42',
+                      'bearTarget': 'Valuation!F50', 'bullTarget': 'Valuation!F52'},
+            contacts=[], byline=None)
+
+    For an NTM basis pass epsPeriod='NTM' and ntm={'start', 'end', 'components': [{'period', 'weight', 'eps', 'header'}]}.
+    Paths in the record are relative to the study folder; bindings are logical addresses as in the specification.
+    The PDFs take the HTML file names with .pdf. The attempt starts by removing the previous zip and marking the record
+    in progress; on any failure or error, in validation or in packaging, the record says failed with the reason, no zip
+    or partial zip exists, and SystemExit is raised. The validated record is written last, atomically. Draft files stay
+    on disk; they are not a validated release. Distribution outside this call is not checked."""
+    import traceback, zipfile
+    import release_check as rc
+    study, zip_path = Path(study), Path(zip_path)
+    out_dir = study / 'deliverables'
+    out_dir.mkdir(exist_ok=True)
+    rel = lambda p: Path(p).resolve().relative_to(study.resolve()).as_posix()  # noqa: E731
+    record_path = out_dir / 'release.json'
+    tmp_zip = zip_path.with_suffix('.partial.zip')
+
+    def write_record(payload):
+        tmp = record_path.with_suffix('.json.tmp')
+        tmp.write_text(json.dumps(payload, indent=1, ensure_ascii=False, default=str) + '\n', encoding='utf-8')
+        tmp.replace(record_path)
+
+    def fail(reason, checks=None):
+        for p in (zip_path, tmp_zip):
+            p.unlink(missing_ok=True)
+        try:
+            write_record(dict(record, checks=checks or [], status='failed', error=reason, scope=rc.SCOPE))
+        except OSError as exc:
+            reason += f'\n  (failure record could not be written: {exc})'
+        raise SystemExit('Release check failed; no package written:\n  ' + reason)
+
+    # Supersede the previous attempt before anything that can fail.
+    zip_path.unlink(missing_ok=True)
+    tmp_zip.unlink(missing_ok=True)
+    try:
+        write_record(dict(record, status='in-progress', scope=rc.SCOPE))
+    except OSError as exc:
+        raise SystemExit(f'Release attempt could not start: {exc}')
+
+    checks, fails, deliverables = [], [], []
+    try:
+        report_pdf = print_pdf(report_html, Path(report_html).with_suffix('.pdf'))
+        brief_pdf = print_pdf(brief_html, Path(brief_html).with_suffix('.pdf'))
+        deliverables = [Path(report_pdf), Path(brief_pdf)] + [Path(f) for f in files]
+        record = dict(record, deliverables=[rel(p) for p in deliverables], briefPdf=rel(brief_pdf),
+                      renders={'report': {'html': rel(report_html), 'pdf': rel(report_pdf)},
+                               'brief': {'html': rel(brief_html), 'pdf': rel(brief_pdf)}})
+        for key in ('spec', 'workbook', 'brief'):
+            record[key] = rel(study / record[key]) if not Path(record[key]).is_absolute() else rel(record[key])
+        record.pop('fingerprints', None)   # a new build is checked on its own files, then fingerprinted
+        checks, fails = rc.run(study, record)
+        if fails:
+            fail('\n  '.join(fails), checks)
+        out = dict(record, checks=checks, fingerprints=rc.fingerprints(study, record), status='validated', scope=rc.SCOPE)
+        with zipfile.ZipFile(tmp_zip, 'w', zipfile.ZIP_DEFLATED) as z:
+            for p in deliverables:
+                z.write(p, p.name)
+        tmp_zip.replace(zip_path)
+        write_record(out)
+    except SystemExit:
+        raise
+    except Exception as exc:  # noqa: BLE001 - any error anywhere in the attempt is a failed attempt, never a silent pass
+        fail(f'{type(exc).__name__}: {exc}\n' + traceback.format_exc(limit=3), checks)
+    print(f'release validated: {len(checks)} checks passed; {zip_path.name} written')
+    return out

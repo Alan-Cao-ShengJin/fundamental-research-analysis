@@ -1,5 +1,5 @@
 {
-  "bundleVersion": "2.5.0",
+  "bundleVersion": "2.6.0",
   "variant": "fundamental-research-only",
   "preparedOn": "2026-11-06",
   "skills": [
@@ -33,23 +33,24 @@
     "Coverage planner retained, with conditional report-layout applicability",
     "Updated workbook theme and layout with preserved specification/formula bindings",
     "Portfolio/risk-budget/cross-asset extensions remain outside this repository",
-    "Synthetic examples and retained third-party notices; no private evidence or credentials"
+    "Synthetic examples and retained third-party notices; no private evidence or credentials",
+    "Shared release-check package path, existing-release hash verification and scoped limitations; no runtime controller"
   ],
   "verification": {
     "entryPointsValidated": 20,
-    "javascriptTestsPassed": 65,
-    "pythonTestsPassed": 93,
-    "newReferenceAnchorsChecked": 13,
+    "javascriptTestsPassed": 67,
+    "pythonTestsPassed": 110,
     "bundleCheck": "passed",
     "workbookPreservation": "Only local save-path metadata differed; clean public asset retained unchanged",
     "suppliedFileAndCredentialPatternScan": "passed",
-    "scanLimit": "Known local credential values, common token patterns, private-path rules and Excel XML metadata; not forensic assurance",
+    "scanLimit": "Known local credential values, common token patterns, private paths and Excel XML metadata; not forensic assurance",
     "liveAgentBehaviorEvaluated": false,
     "newEvaluationCasesExecuted": false,
     "liveProviderCoverageVerified": false,
     "pdfRenderingPerformedForThisRelease": false,
     "nativeExcelRecalculationPerformedForThisRelease": false,
-    "investmentPerformanceEvaluated": false
+    "investmentPerformanceEvaluated": false,
+    "localRegressionReview": "Real copied issuer calculation checked; period/binding/hash/render and simulated package-failure cases recorded privately; publication contains synthetic cases only"
   },
   "hashBasis": "Canonical Git index bytes; bundle-manifest.json excluded to avoid self-reference",
   "files": [
@@ -70,8 +71,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 394,
-      "sha256": "4d047b26509aea23591b94ae218e0911ea09c1213e75f2a5e076181cf114976c"
+      "bytes": 410,
+      "sha256": "40f02a6933b35cf322929799123f60355494f5c3a86eae27913905ce59676928"
     },
     {
       "path": "AGENTS.md",
@@ -80,8 +81,8 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 28070,
-      "sha256": "c977fc763bb24abc32750cca999be755cea3e197b68572e5db7a95599917441c"
+      "bytes": 31472,
+      "sha256": "877728fbf75461bc778bf3315b3e43f1490bec41558c15e1bd128dc9d300b1cf"
     },
     {
       "path": "MIGRATION.md",
@@ -90,8 +91,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13985,
-      "sha256": "b1683c9244e290adb226f462973c05db5e36170722df451da3248af668469f94"
+      "bytes": 14977,
+      "sha256": "a88ce1a456c675159ab9498faba550cbf97961cc1e091b7ddd0efaf70c18e23f"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -111,22 +112,22 @@
     {
       "path": "package-lock.json",
       "bytes": 36541,
-      "sha256": "784b5d8f6cd908f7d541dc494d7a10821dbc30e4b667119cf91106efd339d457"
+      "sha256": "b124634cc964569b9c4a7ca8eccbb769ec33050a3b45548dd7557c6482e6a1b0"
     },
     {
       "path": "package.json",
       "bytes": 350,
-      "sha256": "f3e82466f1550b7c8afd842112547440ff171623d1135647dcb994b161bdb0ba"
+      "sha256": "55bcf4ecfbddcf5ffb1bd1082855490e8b07f45f1af4bfcd0bd59323bbf0185f"
     },
     {
       "path": "requirements.txt",
-      "bytes": 41,
-      "sha256": "7c2478249456aadb0f58597003eb25d2e631c67260c4b6adf57fd7f10e349b6c"
+      "bytes": 82,
+      "sha256": "1017f6a5eff9baddb3a1a333c00779be2710db46b4bb765b43eb285b2488a272"
     },
     {
       "path": "skills/README.md",
-      "bytes": 13708,
-      "sha256": "6adc5ae59f7b0f1a81fe2220a30543d310252f571e55757a3e52c86672c6f290"
+      "bytes": 13939,
+      "sha256": "203795364b05fdf1ea7e32716cf7c80e997f4d66d4c1b92d460e80662747c9e9"
     },
     {
       "path": "skills/THIRD_PARTY_NOTICES.md",
@@ -135,8 +136,8 @@
     },
     {
       "path": "skills/catalog.json",
-      "bytes": 24631,
-      "sha256": "262cc2a5ca2f1fbea356e3e2c8edafa58c2c65c648e5f6cf477f2f272f8028e7"
+      "bytes": 26093,
+      "sha256": "8365fd6c0b1d7f86127a29a4f81f81b290d7fce790bb33491fcc8e9782d0968d"
     },
     {
       "path": "skills/chart-visualization/SKILL.md",
@@ -160,8 +161,8 @@
     },
     {
       "path": "skills/company-model/SKILL.md",
-      "bytes": 9250,
-      "sha256": "724863c57752aa09b9f12363e99d7a2cd6a11d3ef61e1e661948b8bc91800f67"
+      "bytes": 9387,
+      "sha256": "ba24e80b3ca441ce35a86c5c659710952b0f346364908c51c51cea894f032beb"
     },
     {
       "path": "skills/company-model/assets/company-model-example.json",
@@ -464,9 +465,39 @@
       "sha256": "f15e0fdb3d972c0f9ce59914a3849454443ff05c581b25fb1f75fb9cd83d7ee9"
     },
     {
+      "path": "skills/evals/fixtures/README.md",
+      "bytes": 1501,
+      "sha256": "435fe459d80e761c85a373ed9f0d907257850ec0b7d38e813ea41fe0b0a340cd"
+    },
+    {
+      "path": "skills/evals/fixtures/answers/fiscal-calendar.md",
+      "bytes": 1845,
+      "sha256": "37764b05c770bff1377c482f1d6e54e7d652af2a93d926825e3f5bbe239c148f"
+    },
+    {
+      "path": "skills/evals/fixtures/answers/grade_fiscal_calendar.py",
+      "bytes": 1632,
+      "sha256": "864d03a7e0a94c8cf969f5ea03e78a20169138ae9b3bc4d911b86a0565f94657"
+    },
+    {
+      "path": "skills/evals/fixtures/answers/price-above-band.md",
+      "bytes": 2444,
+      "sha256": "e9114ed33d9892b6832f481a053272468073021a39f8184ffbc032b1ffeab575"
+    },
+    {
+      "path": "skills/evals/fixtures/fiscal-calendar/pack.md",
+      "bytes": 2211,
+      "sha256": "45ac8a3d72a1af4f7f89599beb75c22317d37aeda9a510c532ddabecda352b45"
+    },
+    {
+      "path": "skills/evals/fixtures/price-above-band/pack.md",
+      "bytes": 2458,
+      "sha256": "8238633915c9754a45371c6faf338f090b370b1b76c22b6f9c3162270df83844"
+    },
+    {
       "path": "skills/evals/research-cases.md",
-      "bytes": 63368,
-      "sha256": "e4eea06f5f9ce27aa01e7d0e623491da033b874b7c725b640097633588877e13"
+      "bytes": 63624,
+      "sha256": "78f47bd3d7ecb38e3a73832bd82dda2c98e5d59605525a77ca3acd2008b8e13a"
     },
     {
       "path": "skills/evals/sector-research-cases.md",
@@ -525,8 +556,8 @@
     },
     {
       "path": "skills/investment-conclusion/references/decision-contract.md",
-      "bytes": 11156,
-      "sha256": "1b224f799b1764782d6f34db64633e10545ea949f2b574c07f86a83da295b013"
+      "bytes": 11225,
+      "sha256": "17cee37f5af46a30ad802538e1b3c8cbca555f2e7f0ed01522489f50d9054f71"
     },
     {
       "path": "skills/investment-conviction/SKILL.md",
@@ -595,8 +626,8 @@
     },
     {
       "path": "skills/report-layout/SKILL.md",
-      "bytes": 6104,
-      "sha256": "733128e63e0ffe572967be774a7f181876bdb41a0099172a98e3b4d9ef19e700"
+      "bytes": 7154,
+      "sha256": "1824c31505c71000d7a150892ec052fd81a7b28f750939a7da10b2a4737e989a"
     },
     {
       "path": "skills/report-layout/assets/fonts/OFL.txt",
@@ -625,13 +656,18 @@
     },
     {
       "path": "skills/report-layout/requirements.txt",
-      "bytes": 113,
-      "sha256": "24dee7f71f7926483d7aeb78c6fd16ce0750f3b754ab51a70c97515fa88324ff"
+      "bytes": 154,
+      "sha256": "46eb8921c35efb16e3ab905e3e3868d68a766ad09b3337d95acae1e100b1baa2"
+    },
+    {
+      "path": "skills/report-layout/scripts/release_check.py",
+      "bytes": 24557,
+      "sha256": "978ca1e12a34dba507535df500c4005dfb0faf9e04643f0ed86cb7f947012d6a"
     },
     {
       "path": "skills/report-layout/scripts/report_layout.py",
-      "bytes": 46323,
-      "sha256": "ed05e58c80c4eda7186b1509ddc5c02ea9bc1047ec1c8b4c1c7a203b6af5902f"
+      "bytes": 51320,
+      "sha256": "0d10a397ee1a6fbe9139f030f601d51dc891f8a73a6d6a35a5d54a922bc2c445"
     },
     {
       "path": "skills/research-brief/SKILL.md",
@@ -660,8 +696,8 @@
     },
     {
       "path": "skills/research-brief/references/natural-writing.md",
-      "bytes": 11002,
-      "sha256": "906d812cb42e062a8a6d1c4eb838698986bfce510d88be38b84ed7e2f251c978"
+      "bytes": 11097,
+      "sha256": "d046b0919288dc263be5222c2fddb5d704ab1526ca4ee268e13f4566b6bdbde8"
     },
     {
       "path": "skills/research-brief/references/one-page-brief.md",
@@ -690,13 +726,13 @@
     },
     {
       "path": "skills/research-cycle/SKILL.md",
-      "bytes": 9009,
-      "sha256": "0072fd2901e21c13bbdc29b901ff0bf4ccc4ec9fb408ff79dd78a8c12c19116a"
+      "bytes": 9010,
+      "sha256": "ac5ee0067fd768c236370d99cab366386846878c89ac8414b98bfc41aaf04edd"
     },
     {
       "path": "skills/research-cycle/assets/skill-coverage.json",
-      "bytes": 6823,
-      "sha256": "2276c50a0439fa4eb51e56ed1e5ad4919aed61da8ed952001d6f5807da676d06"
+      "bytes": 6799,
+      "sha256": "8767160996e9ffb165d198c2df5b1c449e164e1dd7abdee2921e70126b46c5d4"
     },
     {
       "path": "skills/research-cycle/references/company-sequence.md",
@@ -760,8 +796,8 @@
     },
     {
       "path": "skills/research-cycle/references/what-the-market-trades.md",
-      "bytes": 8893,
-      "sha256": "b224b475ccaa8f0011966a90d0c0664f3d0ed77a71a8735c542f2de6bd3218a1"
+      "bytes": 10332,
+      "sha256": "c88cf81ca6f74bf83be2a78be8c39382054ba164a1c0bfb9a238f3a187b6c4d0"
     },
     {
       "path": "skills/research-cycle/references/workflow.md",
@@ -780,13 +816,13 @@
     },
     {
       "path": "skills/scripts/check-bundle.mjs",
-      "bytes": 9634,
-      "sha256": "35c8b4feaa0d683762625b534d05fd0fca3f5c368548cd8de2f5814eb102555c"
+      "bytes": 9797,
+      "sha256": "8efa21596424429597113dcb0a16a3fa6398e2277b9991d61cba6f7f6e3e1af2"
     },
     {
       "path": "skills/stock-initiation/SKILL.md",
-      "bytes": 5285,
-      "sha256": "638e92f347eaf805808ffb7605f973a6d54f7d5eda388df57d9dede4bf16e358"
+      "bytes": 5458,
+      "sha256": "d28a015d5bf0eec130d1a33e2c8b17bca123843b53851fe458f399e06ac8c027"
     },
     {
       "path": "skills/tests/company-model.test.mjs",
@@ -805,8 +841,8 @@
     },
     {
       "path": "skills/tests/research-routing.test.mjs",
-      "bytes": 9002,
-      "sha256": "99b5fd00544143e47c4b3737f15be7cc9a0289f5a0ca9f53fd9e3d3e66394004"
+      "bytes": 10809,
+      "sha256": "54c82c7cdc4dbedcd3b59ed1c056cc19e8c874fa998b88f93d51fa72a49110ae"
     },
     {
       "path": "skills/tests/test_compare_forecasts.py",
@@ -837,6 +873,11 @@
       "path": "skills/tests/test_one_page_brief.py",
       "bytes": 6594,
       "sha256": "a054841fca28cba85f6d6c86a2a8100beb0dac8194bcd98aa48587917f0aadce"
+    },
+    {
+      "path": "skills/tests/test_release_check.py",
+      "bytes": 21592,
+      "sha256": "ddcf7435d6ab45e934c455ee158cff5c315e2d7107847553e7861ef8bbe2c27c"
     },
     {
       "path": "skills/tests/test_report_layout.py",

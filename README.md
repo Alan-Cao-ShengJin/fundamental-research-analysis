@@ -1,6 +1,6 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.5.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.6.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
@@ -28,7 +28,7 @@ Use the [world-state procedure](skills/research-cycle/references/world-state.md)
 
 Use [what the market is trading](skills/research-cycle/references/what-the-market-trades.md) to identify the variable, period or undeveloped asset that appears to drive the price. Compare dated estimates/revisions, price reactions, guidance, investor questions and implied scenarios. Retain the conclusion as an inference with its evidence and alternatives. A later forecast year can inform the selected multiple without silently rolling the target's earnings denominator. Where a pipeline or new asset explains a large share of value, analyse its competitive position and outcomes explicitly while retaining the established business model.
 
-The new references specify research work, not an automatic market-expectations detector or guaranteed provider coverage. The catalog and coverage checker do not execute the reads or validate their conclusions. The added [evaluation cases](skills/evals/research-cases.md#what-the-market-is-trading) are authored prompts, not completed independent behavioral tests.
+The new references specify research work, not an automatic market-expectations detector or guaranteed provider coverage. The catalog and coverage checker do not execute the reads or validate their conclusions. The [evaluation cases](skills/evals/research-cases.md#what-the-market-is-trading) are authored prompts, not completed independent behavioral tests.
 
 ## Modeling and valuation
 
@@ -43,6 +43,16 @@ The [full-report layout skill](skills/report-layout/SKILL.md) supplies a reusabl
 The historical forward P/E band remains the primary comparison for a forward-EPS target. A separate trailing band uses earnings already reported at each price date, updating at announcement dates. Compare each band with today's matching P/E; subsequently realised forward earnings belong to forecast-bias analysis, not historical market expectations. Never merge trailing and forward series into one band.
 
 The [company-model standard](skills/company-model/references/model-standard.md) and generic workbook builders support construction and verification. Supplied examples are synthetic, not issuer forecasts or recommended assumptions.
+
+## Release checks
+
+[Report layout](skills/report-layout/SKILL.md) provides `package()` to print the report and one-page brief, run the [release checks](skills/report-layout/scripts/release_check.py), and create the ZIP only after checks pass. It records model/source bindings, calculated output comparisons, period checks, rendered decision figures and file hashes in the study's `deliverables/release.json`. Existing records can be rechecked with:
+
+```text
+python -B -X utf8 skills/report-layout/scripts/release_check.py <study-folder>
+```
+
+This path detects the tested calculation, period, rendered-decision and package-integrity failures. It applies to builders that call `package()`; older studies are not automatically migrated. Source truth, economic judgment, prose figures, estimate vintages and visual quality still require review. [Synthetic evaluation packs](skills/evals/fixtures/README.md) support further calibration; their existence is not evidence of passed behavioral evaluation.
 
 ## Judgment, conviction and communication
 

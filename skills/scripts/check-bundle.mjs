@@ -35,6 +35,7 @@ for (const [mode, workflow] of Object.entries(catalog.companyWorkflows ?? {})) {
     if (!flow || !flow.some(name => catalog.stages[name]?.skill === workflow.entrySkill)) errors.push(`Invalid company workflow mode ${mode}.${submode}`);
     if (route.learningStage && !flow?.includes(route.learningStage)) errors.push(`Missing learning stage in ${mode}.${submode}`);
     if (route.escalateTo && !workflow.modes[route.escalateTo]) errors.push(`Unknown escalation mode in ${mode}.${submode}`);
+    for (const stage of route.forecastChangeStages ?? []) if (!catalog.stages[stage]) errors.push(`Unknown forecast-change stage ${stage} in ${mode}.${submode}`);
   }
   if (workflow.routingReference) {
     const path = resolve(root, workflow.routingReference);
