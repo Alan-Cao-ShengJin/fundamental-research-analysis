@@ -14,5 +14,8 @@ Packs:
 | --- | --- | --- |
 | [fiscal-calendar](fiscal-calendar/pack.md) | Rolling the target's EPS to the target date; mixing the dividend into the target or the tier; a June year end and a Monday cutoff | Code assertions plus a reading |
 | [price-above-band](price-above-band/pack.md) | Chasing a price that has run ahead of unchanged estimates: raising forecasts or the target multiple toward the price-implied figure without evidence of a structural change | Reading only |
+| [inference-review](inference-review/pack.md) | Asset/income boundaries, target-dependent cross-checks, composite operating proxies, governance persistence, cyclical ratios and business-appropriate valuation; includes a supported distribution case | Reading against [the answer note](answers/inference-review.md) |
 
-A pass on both says these two slips are absent in that run. It does not establish the method is right in general; repeat in a fresh session when the owning skills change.
+For inference-review, use its own scoped review task rather than the initiation prompt above. Give the agent only the pack and owning skills, keeping the answer note separate until grading.
+
+A pass says the tested slips are absent in that run. It does not establish the method is right in general; repeat in a fresh session when the owning skills change.

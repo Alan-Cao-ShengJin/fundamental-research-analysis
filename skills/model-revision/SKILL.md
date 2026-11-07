@@ -2,7 +2,7 @@
 name: model-revision
 description: Update existing stock research in regular-review or major earnings/catalyst mode. Regular reviews preserve operating forecasts unless concrete new evidence warrants revision; major updates compare prior assumptions with disclosures and recalibrate affected forecasts. Use stock-initiation for first coverage.
 metadata:
-  version: 2.2.0
+  version: 2.2.1
 ---
 
 # Revise an existing stock model
@@ -44,3 +44,5 @@ Default to a concise revision note. Refresh affected figures and decision blocks
 For a numerical forecast revision, deliver an updated [formula-driven Excel model](../company-model/references/workbook-profile.md) with the material old/new assumptions and results visible. Preserve the original workbook and user edits, reconcile with the machine model, and verify affected formulas and input changes. A no-numerical-change review may link the existing valid workbook instead of reissuing it.
 
 Use the same [rating and attractiveness rules](../investment-conclusion/references/decision-contract.md) as initiation. Revision changes emphasis and evidence scope, not numerical/source standards. It does not activate monitoring or authorize implementation.
+
+When publishing rendered reports or briefs, use the [bounded publication workflow](../report-layout/references/publication-review.md). Reuse valid upstream analysis, but review the actual changed output against its current model and evidence. A previous initiation's review does not certify a new draft; changed frozen inputs invalidate the affected review. A narrow conversational update does not require generating a full report.

@@ -31,6 +31,8 @@ For full company research, examine relevant peers as a distinct default angle. S
 
 Align valuation dates, currencies, fiscal/forward periods, dilution, accounting, leases and adjusted/reported earnings. Retain sources and estimate vintages. Explain an issuer premium or discount through sustainable economics and governance. Neither the highest peer multiple nor the median is automatically fair value.
 
+Match the asset and income boundary as well as the ratio's name. A residual operating-business P/E after removing cash and listed stakes is not directly comparable with a peer's whole-equity P/E. Show reported and comparable ratios with the asset/liability adjustments and the matching attributable income removed or retained; use the same treatment for each company. Likewise match consolidated versus attributable profit, regional versus group margins, and lease treatment. If a material adjustment cannot be supported, keep the comparison directional rather than using it to quantify a discount. Do not strip operating cash/debt or required regulatory capital from banks and insurers as if they were industrial surplus assets.
+
 A peer earnings table needs a common price date, explicit fiscal-period end, estimate basis and available coverage/vintage information. A shared label such as FY1 or FY2028 does not make different fiscal years the same window. Calendarize when support permits; otherwise identify the comparison as directional and do not infer a precision premium from it. Business-model and capital-intensity differences still require economic interpretation.
 
 ## The company's own historical forward valuation
@@ -41,6 +43,8 @@ Build the band from monthly month-end prices over the consensus forward EPS curr
 
 Reconcile splits, share counts, enterprise-value claims, accounting and perimeter changes. Choose a window relevant to the business and financing regime; distinguish changes in mix, growth, profitability, rates, leverage and governance. Exclude or explain near-zero/negative-earnings multiples and exceptional events. A past peak is not an entitlement to rerate.
 
+Similar forecast growth to the historical window is one comparison, not proof that the old multiple remains appropriate. Test whether growth duration, reinvestment and returns, cash conversion, financing/rates, business mix and shareholder rights still support that regime. Explain the material differences and the strongest case for today's premium or discount persisting. A supported temporary dislocation retains the house mean-reversion default without requiring a new named catalyst; neither a statistical distance from the mean nor an unresolved regime question establishes that premise.
+
 If estimate vintages are unavailable or listing history is short, state the limitation. Do not relabel trailing multiples, pre-IPO funding valuations or a current-forecast backfill as listed historical forward valuation. Use the supported peer/operating evidence instead.
 
 A short or single-regime history (under about three years, or one controller, product cycle or market mood) cannot carry the target multiple alone. Cross-check it against the closest peers listed in the same market and doing the same business (same products, customers and listing venue before overseas or adjacent names): their forward P/E, growth and returns, where they sit in their own bands, and why this stock deserves a premium or discount to them. Show the longer history too and explain what changed. Say which anchor sets the target and how the others confirm or qualify it.
@@ -50,6 +54,12 @@ A trailing band is a separate cross-check: month-end price over the latest twelv
 A provider-reported historical mean is a dated benchmark, not a reconstructed time series. Retain its publisher, report date, observation window, forward convention and access scope. For a calculated historical mean, retain the dated price/estimate observations, sampling frequency, valid/excluded counts and treatment of splits, missing or nonpositive earnings. Never manufacture a point-in-time forward history from trailing ratios or later-revised forecasts. A few valid annual observations are an annual sample, not a reconstructed monthly or daily series or a distribution. An indexed excerpt is not a full PDF read.
 
 Before citing mean reversion, understand why the stock was valued higher or lower before and whether changes in growth, mix, cash conversion, capital returns, rates or governance make the old regime irrelevant. If the change is structural, use closely related peers instead of the stock's own history. A stock that is temporarily oversold or overbought should return to its historical mean forward P/E eventually, so use the mean as the default target multiple. The band is context, not a guarantee that the price gets there within twelve months. Pushing above the mean requires a significant catalyst; a bull-case multiple above the mean uses the top of the stock's normal band (about one standard deviation above the mean), not a period whose valuation was structural. A stock that looks cheap against peers or the market but already trades at its own historical mean can stay cheap for a long time.
+
+### Mixed or partial valuation changes
+
+Partial recognition is already allowed by the decision contract; it needs calibration, not a new rating convention. Where part of a discount is temporary and part reflects changed economics, select a relevant regime/subsample or a normalized comparable anchor, explain the adjustment for durability, returns, cash, funding and rights, and test nearby alternatives. A fraction of historical standard deviation describes the selected distance; it does not independently justify its size. Do not fit a P/E-to-growth relationship merely to reproduce a preferred target: matched point-in-time observations, regime differences and predictive uncertainty matter, and correlation is not a pricing law.
+
+If reasonable single-driver changes cross a rating threshold, state that sensitivity and why the central judgment remains preferable; reflect the margin for error in the separate new-money assessment. An adverse case changing the rating is normal and does not mechanically invalidate the central call. Preserve one supported primary target and its current-forward earnings basis.
 
 ### Align the forward convention before calculating a target
 
@@ -90,5 +100,7 @@ Apply the four [target-underwriting checks](target-underwriting.md) before selec
 ## Select the primary target
 
 Reconcile primary-method, peer-implied and own-history/rerating values on the same date/claim basis. Investigate disagreements in cash conversion, capital retention, normalisation, finite lives, rates and regime. Select the most suitable anchor and explain its weight; do not automatically average methods or choose whichever supports a preferred call.
+
+Identify what a cross-check tests independently and what it shares with the primary valuation. Establish a parts multiple or other secondary anchor from its own evidence before comparing the answers; a target-implied input is a diagnostic, not independent confirmation. Agreement between methods using the same forecast, comparable multiple or risk assumption does not provide several independent proofs. Where the methods share an unsupported assumption, test that assumption rather than describing the similar prices as validation.
 
 The full research retains method selection, peer comparison, historical forward evidence/gaps and the rerating bridge. The decision brief shows the selected target, pivotal valuation reason and material risks. All calculations consume current model outputs and dated comparable observations.

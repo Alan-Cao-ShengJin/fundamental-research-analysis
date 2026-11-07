@@ -25,6 +25,7 @@ import os
 import re
 import shutil
 import subprocess
+import textwrap
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -56,6 +57,15 @@ class Sub(str):
 
 def bullets(items):
     return Block('<ul>' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>')
+
+
+def bound_value(claim_id, value, period, unit, fmt=None):
+    """An explicitly identified financial figure; publication review checks its model binding and visible value."""
+    if not all(isinstance(x, str) and x.strip() for x in (claim_id, period, unit)) or not math.isfinite(value):
+        raise ValueError('A bound figure needs an ID, period, unit and finite value')
+    shown = fmt(value) if fmt else f'{value:,.2f}'
+    return (f'<span data-model-claim="{esc(claim_id)}" data-value="{value:.15g}" '
+            f'data-period="{esc(period)}" data-unit="{esc(unit)}">{esc(shown)}</span>')
 
 
 # Judgement wording that belongs in an Argument, with its evidence, not in a plain paragraph.
@@ -110,7 +120,8 @@ class Debate(Block):
         if not re.search(r'\d', settles):
             raise ValueError(f'Debate {question[:60]!r}: name the observation and its date that would settle the question')
         tab = table(['Claim that must hold', 'Evidence', 'Status'], rows, cls='text', compact=True)
-        html_ = f'<h3>{esc(question)}</h3>{tab}<p><b>Our answer.</b> {answer} {moves} {settles}</p>'
+        # Keep the heading, paginated table and answer in one normal-flow grid item.
+        html_ = f'<div class="debate"><h3>{esc(question)}</h3>{tab}<p><b>Our answer.</b> {answer} {moves} {settles}</p></div>'
         self = super().__new__(cls, html_)
         self.question = question
         return self
@@ -163,15 +174,21 @@ h3 {{ font-size: 10pt; font-weight: 600; color: {COL['ink']}; margin: 2mm 0 1mm;
 .kv {{ width: 100%; border-collapse: collapse; font-size: 8pt; }}
 .kv td {{ border-bottom: 1px solid {COL['grid']}; padding: .6mm 0; }} .kv td:last-child {{ text-align: right; }}
 .rbox .kv td {{ border: none; padding: .35mm 0; }}
-.sec {{ display: grid; grid-template-columns: 40mm 1fr; column-gap: 6mm; margin: 0 0 3mm; }}
-.sec > * {{ grid-column: 2; }}
+.sec {{ display: block; margin: 0 0 3mm; }}
+.sec::after {{ content: ""; display: block; clear: both; }}
+.sec > :not(.rail):not(.wide) {{ margin-left: 46mm; }}
 .sec > p {{ margin-bottom: 0; padding-bottom: 2.2mm; }}  /* padding survives a page break; a grid item's margin does not */
-.sec > .rail {{ grid-column: 1; grid-row: 1; border-top: 2px solid {TEAL}; padding-top: 1.2mm; break-inside: avoid; }}
-.sec > .rail + p {{ break-inside: avoid; }}
+.sec > .rail {{ float: left; width: 40mm; margin-right: 6mm; border-top: 2px solid {TEAL}; padding-top: 1.2mm; break-inside: avoid; }}
+.sec p {{ orphans: 3; widows: 3; }}
 .rail .take {{ font-size: 8pt; color: {COL['muted']}; line-height: 1.3; }}
-.sec > .wide {{ grid-column: 1 / -1; }}
+.sec > .wide {{ clear: both; margin-left: 0; }}
 .sec > h3 {{ border-top: 1px solid {COL['grid']}; padding-top: 1mm; }}
 .exhibit {{ break-inside: avoid; margin: 1.5mm 0 3.5mm; }}
+.exhibit.splittable {{ break-inside: auto; }}
+.debate {{ min-width: 0; }}
+.debate table {{ margin-bottom: 2mm; }}
+thead {{ display: table-header-group; }}
+tr {{ break-inside: avoid; }}
 .ex-head {{ font-size: 8.5pt; font-weight: 600; color: {COL['ink']}; border-top: 1px solid {COL['ink']}; padding-top: 1mm;
            margin-bottom: 1mm; }}
 .ex-head b {{ color: {TEAL}; }}
@@ -182,6 +199,7 @@ th {{ text-align: left; font-weight: 600; color: {COL['ink']}; border-bottom: 1p
       vertical-align: bottom; }}
 td {{ border-bottom: 1px solid {COL['grid']}; padding: .7mm 1.2mm; vertical-align: top; }}
 table.fin td:not(:first-child), table.fin th:not(:first-child) {{ text-align: right; white-space: nowrap; }}
+table.num td:not(:first-child), table.num th:not(:first-child), td.numeric, th.numeric {{ text-align: right; }}
 table.fin td.e, table.fin th.e {{ background: #EEF1F4; }}
 table.fin tr.grp td {{ font-weight: 600; color: {TEAL}; padding-top: 1.6mm; }}
 table.fin tr.bold td {{ font-weight: 600; }}
@@ -194,7 +212,9 @@ table.compact td, table.compact th {{ font-size: 7.8pt; padding-top: .35mm; padd
 .back ol {{ margin: 0 0 2mm; padding-left: 5mm; }} .back li {{ break-inside: avoid; margin-bottom: .8mm; }}
 .back p {{ break-inside: avoid; margin-bottom: 1.5mm; }}
 @media screen {{ main {{ padding: 6mm 4mm; }} }}
-@media (max-width: 640px) {{ .front, .sec {{ display: block; }} table {{ display: block; overflow-x: auto; }} }}
+@media screen and (max-width: 640px) {{ .front, .sec {{ display: block; }}
+  .sec > :not(.rail):not(.wide) {{ margin-left: 0; }} .sec > .rail {{ float: none; width: auto; margin-right: 0; }}
+  table {{ display: block; overflow-x: auto; }} }}
 """
 
 
@@ -225,6 +245,15 @@ class Report:
         self.companions = []   # [(label, file name)] delivered in the same folder, e.g. the Excel model
         self.covered, self.omitted = set(), {}
         self.required_segments, self.argued_segments = [], set()
+        self.summary_html = ''
+
+    def financial_summary(self, first, periods, est_from, groups, source, note=''):
+        """Compact model-linked IS/BS/CF appendix; rows and periods follow the company's accounting and available history."""
+        if len(periods) < 2 or len(groups) < 3 or any(not rows for _, rows in groups) or not source:
+            raise ValueError('Financial summary needs periods, three nonempty statement groups and a source')
+        self.summary_html = '<div data-financial-summary="true">' + str(self.exhibit(
+            'financial-summary', 'Summary financial statements', fin_table(first, periods, est_from, groups),
+            source, note, splittable=True)) + '</div>'
 
     def segments(self, names):
         """Declare the business units the report must analyse (each above about 15% of segment profit, or one a debate
@@ -235,10 +264,14 @@ class Report:
         self.required_segments = names
 
     # exhibits, references and sources -------------------------------------------------
-    def exhibit(self, key, headline, body, source, note=''):
+    def exhibit(self, key, headline, body, source, note='', splittable=None):
         """A numbered exhibit: 'Exhibit N: headline' above (the point, not the topic), source line below."""
-        return Block(f'<figure class="exhibit"><div class="ex-head"><b>{{{{exn:{key}}}}}:</b> {headline}</div>{body}'
-                     f'<div class="ex-src">{note + " " if note else ""}Source: {source}</div></figure>')
+        split = '<table' in str(body) if splittable is None else splittable
+        result = Block(f'<figure class="exhibit{" splittable" if split else ""}"><div class="ex-head"><b>{{{{exn:{key}}}}}:</b> {headline}</div>{body}'
+                       f'<div class="ex-src">{note + " " if note else ""}Source: {source}</div></figure>')
+        if hasattr(body, 'narrow'):
+            result.narrow = lambda: self.exhibit(key, headline, body.narrow(), source, note, splittable)
+        return result
 
     @staticmethod
     def ref(key):
@@ -250,6 +283,7 @@ class Report:
 
     # page parts -----------------------------------------------------------------------
     def front(self, headline, key_points, summary, rating, key_data, financials='', chart=''):
+        chart = chart.narrow() if hasattr(chart, 'narrow') else chart
         kd = ''.join(f'<tr><td>{esc(a)}</td><td>{b}</td></tr>' for a, b in key_data)
         by = (f'<div class="byline"><span>{esc(self.company)} | {esc(self.ticker)} | {esc(self.report)}</span>'
               f'<span>{" | ".join(esc(x) for x in (self.author, self.email, self.date) if x)}</span></div>')
@@ -299,7 +333,7 @@ class Report:
 
     def _back(self):
         order, n = {}, 0
-        for k in re.findall(r'\{\{src:([^}]+)\}\}', self.front_html + ''.join(self.parts)):
+        for k in re.findall(r'\{\{src:([^}]+)\}\}', self.front_html + ''.join(self.parts) + self.summary_html):
             for x in k.split(','):
                 if x.strip() not in order:
                     n += 1
@@ -327,6 +361,8 @@ class Report:
         return order, back
 
     def html(self):
+        if 'initiat' in self.report.lower() and not self.summary_html:
+            raise ValueError('An initiation requires financial_summary() with model-linked summary statements')
         missing = [f'{k} ({v})' for k, v in QUESTIONS.items() if k not in self.covered and k not in self.omitted]
         if missing:
             raise ValueError('No section answers: ' + '; '.join(missing) + '. Cover each in a section (covers=) or '
@@ -336,7 +372,7 @@ class Report:
             raise ValueError('No Argument analyses these business units: ' + ', '.join(unargued)
                              + '. Each declared segment needs an Argument(segment=...) citing its driver-build exhibit.')
         order, back = self._back()
-        body = self.front_html + ''.join(self.parts) + back
+        body = self.front_html + ''.join(self.parts) + self.summary_html + back
         ex = {}
         for k in re.findall(r'\{\{exn:([^}]+)\}\}', body):
             if k in ex:
@@ -346,7 +382,8 @@ class Report:
             if k not in ex:
                 raise ValueError(f'Text cites exhibit {k}, which is not placed')
         cited = set(re.findall(r'\{\{ex:([^}]+)\}\}', body))
-        self.uncited_exhibits = [k for k in ex if k not in cited]
+        # A self-contained statement appendix is reference material, not an uncited argumentative exhibit.
+        self.uncited_exhibits = [k for k in ex if k not in cited and k != 'financial-summary']
         body = re.sub(r'\{\{exn?:([^}]+)\}\}', lambda m: f'Exhibit {ex[m[1]]}', body)
         body = re.sub(r'\{\{src:([^}]+)\}\}', lambda m: '<sup>' + ','.join(str(order[x.strip()]) for x in m[1].split(','))
                       + '</sup>', body)
@@ -417,8 +454,14 @@ def f1(x):
 
 
 def table(head, rows, cls='text', compact=False):
+    if cls not in ('text', 'num', 'fin'):
+        raise ValueError(f'Unknown table class {cls!r}; use text, num or fin')
+    if any(len(row) != len(head) for row in rows):
+        raise ValueError('Each table row must match the header width')
+    numeric = lambda x: bool(re.fullmatch(r'[+\-\u2212(]?(?:[$\u20ac\u00a3\u00a5]|HK\$|US\$|RMB)?\s*\d[\d,.]*(?:%|x|pt)?\)?', re.sub('<[^>]+>', '', str(x)).strip()))
     h = ''.join(f'<th>{esc(x)}</th>' for x in head)
-    b = ''.join('<tr>' + ''.join(f'<td>{x}</td>' for x in r) + '</tr>' for r in rows)
+    b = ''.join('<tr>' + ''.join('<td{}>{}</td>'.format(' class="numeric"' if numeric(x) and i else '', x)
+                                for i, x in enumerate(r)) + '</tr>' for r in rows)
     return Block(f'<table class="{cls}{" compact" if compact else ""}"><thead><tr>{h}</tr></thead><tbody>{b}</tbody>'
                  f'</table>')
 
@@ -427,6 +470,10 @@ def fin_table(first, periods, est_from, groups, compact=False):
     """Grouped financial table. periods: labels like 'FY2025A'; columns from index est_from are estimates (shaded).
     groups: [(group label or None, [(label, [cells], style)])]; style '', 'bold', 'cons' or 'sign' (teal/red by sign);
     cells are pre-formatted strings (use num/pct/mult/money)."""
+    if not periods or not isinstance(est_from, int) or not 0 <= est_from <= len(periods):
+        raise ValueError('Financial table needs periods and a valid first-estimate index')
+    if any(len(cells) != len(periods) for _, items in groups for _, cells, _ in items):
+        raise ValueError('Each financial row must match the declared periods')
     e = lambda i: ' class="e"' if i >= est_from else ''  # noqa: E731
     h = f'<th>{esc(first)}</th>' + ''.join(f'<th{e(i)}>{esc(p)}</th>' for i, p in enumerate(periods))
     rows = []
@@ -740,20 +787,29 @@ def band_chart(title, cats, vals, refs, end_label, w=700, h=220, label_if=lambda
     return Block(''.join(out))
 
 
-def waterfall(title, items, unit, w=700, h=230, fmt=f1, scale_by=1.0):
-    """Bridge: items [(label, value, 'total' | 'step')]; '|' in a label starts a second line."""
+def waterfall(title, items, unit, w=700, h=230, fmt=f1, scale_by=1.0, yr=None):
+    """Bridge; optional explicit (min, max, tick) range marks a nonzero axis. A table is also a valid small-step view."""
+    if not items or scale_by <= 0:
+        raise ValueError('A waterfall needs items and a positive scale')
     left, right, top, bottom = 52, 14, 26, 32
     run, levels = 0.0, []
     for _, v, kind in items:
         run = v if kind == 'total' else run + v
         levels.append(run / scale_by)
-    a, b, step = scale(0, max(levels) * 1.1)
+    a, b, step = yr or scale(min(0, min(levels)), max(0, max(levels)) * 1.1)
+    if not all(math.isfinite(x) for x in (a, b, step)) or b <= a or step <= 0:
+        raise ValueError('Invalid waterfall axis range')
     pw, ph = w - left - right, h - top - bottom
     gw = pw / len(items)
     bw = gw * 0.58
     Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
     out = [svg_open(w, h, title)]
+    cid = _cid()
+    _clip(out, cid, left, top, pw, ph)
     _axis(out, left, w - right, Y, a, b, step, None, unit)
+    if a != 0:
+        out.append(txt(w - right, 12, f'Axis starts at {fmt(a)}; totals truncated', 'end', 9, COL['muted']))
+        out.append(f'<path d="M{left-4},{top+ph-8} l8,-4 l-8,-4 l8,-4" fill="none" stroke="{GREY}"/>')
     run = 0.0
     for i, (lab, v, kind) in enumerate(items):
         x = left + gw * i + (gw - bw) / 2
@@ -764,7 +820,7 @@ def waterfall(title, items, unit, w=700, h=230, fmt=f1, scale_by=1.0):
             lo_, hi_ = sorted([run, run + v / scale_by])
             col = GREEN if v >= 0 else RED
             run += v / scale_by
-        out.append(f'<rect x="{x:.1f}" y="{Y(hi_):.1f}" width="{bw:.1f}" height="{max(Y(lo_) - Y(hi_), .5):.1f}" fill="{col}"/>')
+        out.append(f'<rect clip-path="url(#{cid})" x="{x:.1f}" y="{Y(hi_):.1f}" width="{bw:.1f}" height="{max(Y(lo_) - Y(hi_), .5):.1f}" fill="{col}"/>')
         lab_v = fmt(v / scale_by) if kind == 'total' else f'{"+" if v >= 0 else "-"}{fmt(abs(v) / scale_by)}'
         out.append(txt(x + bw / 2, Y(hi_) - 3, lab_v, 'middle', 8.5, COL['ink'], 600 if kind == 'total' else 400))
         for j, part in enumerate(lab.split('|')):
@@ -817,40 +873,81 @@ def _days(d):
     return int(d[:4]) * 372 + int(d[5:7]) * 31 + int(d[8:10])
 
 
-def price_chart(title, dates, series, events=(), w=700, h=210, unit='Indexed, start = 100'):
-    """Indexed daily prices. series: [(name, values, colour)]; events: [(date, label)] marked on the first series."""
-    left, right, top, bottom = 40, 10, 26, 34
+def price_chart(title, dates, series, events=(), w=700, h=210, unit='Indexed, start = 100', print_width_mm=180):
+    """Indexed prices with collision-placed event labels and a readable print size. Front placement adapts to 110mm."""
+    if len(dates) < 2 or not series or any(len(s) != len(dates) for _, s, _ in series):
+        raise ValueError('Price series must match at least two dates')
+    if print_width_mm <= 0:
+        raise ValueError('Print width must be positive')
+    fs = max(9, 7.2 * w / (print_width_mm * 72 / 25.4))
+    left, right = fs * 3.5, 12
+    pw = w - left - right
+    n = len(dates)
+    X = lambda i: left + pw * i / (n - 1)  # noqa: E731
+    # Each row is a set of nonoverlapping horizontal intervals, not odd/even staggering.
+    rows, placed, row_heights = [], [], []
+    for d, lab in sorted(events):
+        i = min(range(n), key=lambda j: abs(_days(dates[j]) - _days(d)))
+        lines = textwrap.wrap(lab, width=max(1, int((pw - 8) / (fs * .62)))) or ['']
+        width = min(pw, fs * .62 * max(map(len, lines)) + 4)
+        x = min(max(X(i) - width / 2, left), w - right - width)
+        row = next((j for j, intervals in enumerate(rows)
+                    if all(x + width + 8 <= a or x >= b + 8 for a, b in intervals)), len(rows))
+        if row == len(rows):
+            rows.append([]); row_heights.append(0)
+        row_heights[row] = max(row_heights[row], len(lines) * (fs + 5))
+        rows[row].append((x, x + width))
+        placed.append((i, lines, x + width / 2, row))
+    label_top = 2 * fs + 5
+    top = label_top + sum(row_heights) + 6
+    legend, lx, lr = [], left, 0
+    for name, _, col in series:
+        width = 22 + fs * .55 * len(name)
+        if lx > left and lx + width > w - right:
+            lx, lr = left, lr + 1
+        legend.append((name, col, lx, lr))
+        lx += width + 14
+    bottom = fs * 2 + (lr + 1) * (fs + 5) + 6
+    h = max(h, top + bottom + 105)
     vals = [v for _, s, _ in series for v in s]
     a, b, step = scale(min(vals) * 0.97, max(vals) * 1.03, zero=False)
-    n = len(dates)
-    pw, ph = w - left - right, h - top - bottom
-    X = lambda i: left + pw * i / (n - 1)  # noqa: E731
+    ph = h - top - bottom
     Y = lambda v: top + ph - ph * (v - a) / (b - a)  # noqa: E731
     out = [svg_open(w, h, title)]
-    _axis(out, left, w - right, Y, a, b, step, None, unit)
+    v = a
+    while v <= b + step / 1e6:
+        out.append(f'<line x1="{left}" x2="{w-right}" y1="{Y(v)}" y2="{Y(v)}" stroke="{COL["grid"]}"/>')
+        out.append(txt(left - 6, Y(v) + fs / 3, _tick_label(v, step, None), 'end', fs, COL['muted']))
+        v += step
+    out.append(txt(0, fs, unit, 'start', fs, COL['muted']))
     seen = set()
     for i, d in enumerate(dates):
         if d[:7] not in seen and int(d[5:7]) % 3 == 1:
             seen.add(d[:7])
             anchor = 'end' if X(i) > w - right - 45 else 'start'
-            out.append(txt(X(i), top + ph + 12, f'{["Jan", "Apr", "Jul", "Oct"][(int(d[5:7]) - 1) // 3]} {d[2:4]}', anchor,
-                           8.5, COL['muted']))
+            out.append(txt(X(i), top + ph + fs + 3, f'{["Jan", "Apr", "Jul", "Oct"][(int(d[5:7]) - 1) // 3]} {d[2:4]}', anchor,
+                           fs, COL['muted']))
     for name, s, col in series:
         out.append(f'<polyline points="{" ".join(f"{X(i):.1f},{Y(v):.1f}" for i, v in enumerate(s))}" fill="none" '
                    f'stroke="{col}" stroke-width="{1.8 if col == TEAL else 1.2}"/>')
     s0 = series[0][1]
-    for k, (d, lab) in enumerate(events):
-        i = min(range(n), key=lambda j: abs(_days(dates[j]) - _days(d)))
+    for i, lines, label_x, row in placed:
         cx, cy = X(i), Y(s0[i])
-        ly = top - 10 + 10 * (k % 2)
-        out.append(f'<line x1="{cx:.1f}" x2="{cx:.1f}" y1="{ly + 2:.1f}" y2="{cy - 4:.1f}" stroke="{COL["muted"]}" '
+        ly = label_top + sum(row_heights[:row])
+        last_y = ly + (len(lines) - 1) * (fs + 5)
+        out.append(f'<line x1="{label_x:.1f}" x2="{cx:.1f}" y1="{last_y + 2:.1f}" y2="{cy - 4:.1f}" stroke="{COL["muted"]}" '
                    f'stroke-dasharray="2 2"/>')
         out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="2.8" fill="{TEAL}"/>')
-        anc = 'end' if cx > left + pw * 0.75 else ('start' if cx < left + pw * 0.25 else 'middle')
-        out.append(txt(cx, ly, lab, anc, 8, COL['ink']))
-    _legend(out, [(name, col, 'line') for name, _, col in series], left, h - 3)
+        for j, line in enumerate(lines):
+            out.append(txt(label_x, ly + j * (fs + 5), line, 'middle', fs, COL['ink']))
+    for name, col, x, row in legend:
+        y = top + ph + 2 * fs + 8 + row * (fs + 5)
+        out.append(f'<line x1="{x}" x2="{x+16}" y1="{y-fs/3}" y2="{y-fs/3}" stroke="{col}" stroke-width="2"/>')
+        out.append(txt(x + 22, y, name, 'start', fs))
     out.append('</svg>')
-    return Block(''.join(out))
+    result = Block(''.join(out))
+    result.narrow = lambda: price_chart(title, dates, series, events, w, h, unit, 110)
+    return result
 
 
 def flow_diagram(title, nodes, edges, w=700, h=156):
@@ -963,16 +1060,23 @@ def package(study, zip_path, report_html, brief_html, files, **record):
 
     For an NTM basis pass epsPeriod='NTM' and ntm={'start', 'end', 'components': [{'period', 'weight', 'eps', 'header'}]}.
     Paths in the record are relative to the study folder; bindings are logical addresses as in the specification.
+    First call without a review prints drafts, performs integrity checks and creates a partial review packet;
+    it exits awaiting-review with no ZIP. After an actual fresh-reader review, finalization verifies the exact
+    reviewed PDF bytes without reprinting. Revisions use publication_review.py prepare --revise.
     The PDFs take the HTML file names with .pdf. The attempt starts by removing the previous zip and marking the record
     in progress; on any failure or error, in validation or in packaging, the record says failed with the reason, no zip
     or partial zip exists, and SystemExit is raised. The validated record is written last, atomically. Draft files stay
     on disk; they are not a validated release. Distribution outside this call is not checked."""
     import traceback, zipfile
     import release_check as rc
+    import publication_review as pr
     study, zip_path = Path(study), Path(zip_path)
     out_dir = study / 'deliverables'
+    if zip_path.suffix.lower() != '.zip' or not zip_path.resolve().is_relative_to(out_dir.resolve()):
+        raise ValueError('The release ZIP must be inside the study deliverables folder')
     out_dir.mkdir(exist_ok=True)
     rel = lambda p: Path(p).resolve().relative_to(study.resolve()).as_posix()  # noqa: E731
+    record = dict(record, review=record.get('review', pr.DEFAULT_PATH), zipPath=rel(zip_path), reviewPolicyVersion='1.0')
     record_path = out_dir / 'release.json'
     tmp_zip = zip_path.with_suffix('.partial.zip')
 
@@ -1000,8 +1104,15 @@ def package(study, zip_path, report_html, brief_html, files, **record):
 
     checks, fails, deliverables = [], [], []
     try:
-        report_pdf = print_pdf(report_html, Path(report_html).with_suffix('.pdf'))
-        brief_pdf = print_pdf(brief_html, Path(brief_html).with_suffix('.pdf'))
+        review_exists = pr.local(study, record['review']).is_file()
+        # Render once before the fresh review. Finalization publishes those exact reviewed PDFs;
+        # reprinting would change bytes and invalidate the visual review's provenance.
+        report_pdf, brief_pdf = Path(report_html).with_suffix('.pdf'), Path(brief_html).with_suffix('.pdf')
+        if not review_exists:
+            for source, expected in ((report_html, report_pdf), (brief_html, brief_pdf)):
+                actual = print_pdf(source, expected)
+                if actual is not None and Path(actual).resolve() != expected.resolve():
+                    raise ValueError('Requested PDF is locked; close it and reprint before preparing review: ' + str(expected))
         deliverables = [Path(report_pdf), Path(brief_pdf)] + [Path(f) for f in files]
         record = dict(record, deliverables=[rel(p) for p in deliverables], briefPdf=rel(brief_pdf),
                       renders={'report': {'html': rel(report_html), 'pdf': rel(report_pdf)},
@@ -1009,6 +1120,14 @@ def package(study, zip_path, report_html, brief_html, files, **record):
         for key in ('spec', 'workbook', 'brief'):
             record[key] = rel(study / record[key]) if not Path(record[key]).is_absolute() else rel(record[key])
         record.pop('fingerprints', None)   # a new build is checked on its own files, then fingerprinted
+        if not review_exists:
+            checks, fails = rc.run(study, record, legacy=True)
+            if fails:
+                fail('\n  '.join(fails), checks)
+            review_path = pr.prepare(study, record)
+            write_record(dict(record, checks=checks, status='awaiting-review', scope=rc.SCOPE))
+            raise SystemExit(f'Draft PDFs ready; no release ZIP. A fresh reviewer must complete {review_path}, then run '
+                             f'publication_review.py finalize "{study}". Do not fabricate review completion.')
         checks, fails = rc.run(study, record)
         if fails:
             fail('\n  '.join(fails), checks)

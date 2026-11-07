@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Full report layout
@@ -17,13 +17,17 @@ The report is built from arguments, not paragraphs. Write each substantive point
 
 The build stops when a section that covers a question holds no Argument or Debate, when a section covering the debate holds no Debate, when a plain paragraph carries a judgement ("we forecast", "we assume", "we expect", "we think", "we believe", "our view", "our reading", "we side") outside an Argument, or when a declared business unit has no argument. Plain paragraphs remain for context and definitions.
 
+These are structure and reference checks. Claim statuses are analyst judgments, and a cited exhibit may not support the inference attached to it. Before release, apply the [inference review](../research-challenge/references/inference-quality.md) to the actual arguments; passing the build does not mark them supported.
+
+Give each developed argument one main home. The front page and standalone brief summarize it; elsewhere refer back briefly. An implication can concern earnings, cash or risk without repeating the rating or target. Quantify a debate's effect with its answer rather than repeating its valuation argument in every section.
+
 ## Page 1 is the front page
 
 A portfolio manager who reads only page 1 should get the call, the thesis, the key data and the price action.
 
 - Byline: company, ticker, report type and date. Add an author, contact or firm only when the user supplies one.
 - Headline: the thesis in plain words, per the [brief guide](../research-brief/references/one-page-brief.md).
-- Main column: **Key points**, three or four bullets of at most 25 words (the call and the reason for it, stated as the variant view: what the price implies, what we think instead and the number between them; the valuation and target logic, where we differ from consensus and why, what would change the view), then a summary of at most two short paragraphs, then a 12-month indexed price chart against the local index or a peer basket, with the dated events that moved the stock marked. The rating and the new-money judgment are separate: the key points and summary do not tell the reader to wait for a lower price.
+- Main column: **Key points**, three or four bullets of at most 25 words (the call and its economic rationale, stating an expectations gap and its size where the analysis establishes one; the valuation and target logic, any comparable consensus difference and why, what would change the view), then a summary of at most two short paragraphs, then a 12-month indexed price chart against the local index or a peer basket, with the dated events that moved the stock marked. Do not invent a variant view or unique market belief to fill a bullet. The rating and the new-money judgment are separate: the key points and summary do not tell the reader to wait for a lower price.
 - Sidebar: rating box (rating, price and date, 12-month target, price return computed from the displayed target, dividend yield shown separately, consensus target, bear / base / bull, and the new-money judgment with, when it is no, the decent and attractive entry prices, in the [decision contract's](../investment-conclusion/references/decision-contract.md#return-hurdle-and-calls) words); key data (ticker and exchange, 52-week range, market value, enterprise value, net cash or debt, shares outstanding with dilution, free float, average daily trading value, next catalyst with its date or "not confirmed"); key financials for the last actual and three forecast years (revenue, EPS, P/E, FCF yield or dividend yield).
 
 ## Later pages
@@ -33,14 +37,17 @@ A portfolio manager who reads only page 1 should get the call, the thesis, the k
 - Every chart, diagram and table is an exhibit: "Exhibit N: [the point, not the topic]" above, "Source: ..." below, and the text refers to it as (Exhibit N). Use `{{ex:key}}` in text; numbering follows placement.
 - An exhibit sits in the section whose argument it supports, on the page of its first citation or the next.
 - Every claim from an external source carries a superscript number (`{{src:key}}`) matching the source list.
+- The self-contained summary-statement appendix need not be cited from an investment argument; its model/source basis still appears below the table.
 - Do not say the same thing in prose and in a table; keep one.
 
 ## Exhibits and tables
 
 - Charts: round axis ticks, units at the top left of the axis, a legend entry for every series and state (actual, forecast, estimated history), no label overlaps (moved labels get leader lines), nothing drawn outside the plot, values on bars where they carry the point. Actuals solid; forecasts grey, lighter or dashed; estimated history dotted. One meaning per colour (the theme's `meaning`).
 - Scenarios: a football field (bear, base, bull bars from the current price) with a table of the assumptions behind each case in the same format, base case included.
-- Sensitivities: a tornado of the resulting target price that includes the valuation input the method rests on (the target multiple, required yield, asset discount or equivalent), each shock sized to a comparable likelihood (about one standard deviation of that input's history, or its guided range) before the bars are ranked, plus a two-way grid when the two largest risks move together; when the return comes mainly from that input, the grid is earnings against the input with the current price marked.
+- Sensitivities: a tornado of the resulting target price that includes the valuation input the method rests on (the target multiple, required yield, asset discount or equivalent). Justify shock sizes and describe whether their severity is comparable before ranking; one historical standard deviation or a guided range is a possible calibration, not proof of equal likelihood across inputs, especially with short samples or changed regimes. Add a two-way grid when material risks move together, using the selected method's operating/value driver against its valuation input and marking the current price. Isolated shocks do not replace the coherent adverse scenario.
 - Financial tables: rows grouped under bold labels (volume, P&L, per share, cash flow, valuation); explicit row names; actual columns marked A and estimate columns E and shaded; consensus rows grey italic; negatives in parentheses; percentages and multiples to one decimal; currency as US$1,234m and -US$27; n/a, not blank. A peer table states each average's sample and shows the reference row that sets the target and the company at the target.
+
+Full initiations include model-linked income, balance-sheet and cash-flow summaries through `Report.financial_summary(...)`, with sector-appropriate rows, available history and forecasts. Label unavailable periods rather than inventing them. Long tables can split with repeated headers and intact rows; charts remain intact. A small earnings bridge may work better as a table. Any deliberately truncated waterfall axis must be explicitly labeled; a broken axis is not a default requirement.
 
 ## Back matter
 
@@ -50,4 +57,8 @@ Numbered sources (publisher, title as a link, date; no raw URLs; primary documen
 
 HTML generation uses the Python standard library. PDF printing needs Chrome (set `CHROME_PATH` if it is not found). Page inspection and page-image rendering need the optional dependencies in [requirements.txt](requirements.txt). These host capabilities are separate from installing the skill.
 
-Print with `print_pdf` (headless Chrome), then use `inspect_pdf` to write page images and look at every page before release. Make the package with `package(study, zip, report_html, brief_html, [workbook], ...)`: it prints both PDFs from those exact HTML files, runs [release_check.py](scripts/release_check.py) against the calculated workbook, the brief payload and the rendered decision blocks (target basis and the earnings period tied to the bound EPS column, rating and tier from the unrounded return, brief and rendered figures against the bound model cells, observation and retrieval ages at the cutoff, one-page brief, no unapproved email or byline, the wording regression list), writes `deliverables/release.json` with the checks, file hashes and print provenance, and writes the zip only when every check passes. Any failure or error leaves a failed record and no zip; fix the cause, never the check. The record's `scope` states what is not checked (prose figures, share class and scale, question coverage, estimate vintages, visual quality): those stay with the analyst's reread. Rerun `release_check.py <study>` later to confirm the files still match the release. Fix and re-render when a page ends on a heading, an exhibit splits, a page other than the last is more than about 15% blank, labels overlap or clip, an exhibit lacks its number, headline or source, an exhibit is not cited, or the same figure appears with two values (target and return, current P/E, peer averages, unit prices). Recompute displayed returns from the displayed target and price.
+Use the [bounded publication workflow](references/publication-review.md). `package(study, zip, report_html, brief_html, [workbook], ...)` first prints drafts, checks integrity and prepares a **partial** review; it stops with `awaiting-review` and no ZIP. A named fresh reader must actually review the PDFs, model and evidence, record findings in the existing challenge handoff and assess applicable financial assertions. The host launches that context; a packet does not perform the work. Use `inspect_pdf` to render and look at every page.
+
+Correct material findings within the recorded review budget and refresh the draft/review after changes. Finalization checks the completed review, current file and skill fingerprints, applicable cash-coverage, normalized-ratio and financing bindings, plus existing model, decision, period, freshness and wording checks. It packages the **exact reviewed PDFs** without reprinting. Failure leaves no ZIP. An unresolved review remains a draft; do not manufacture a pass. Recheck with `release_check.py <study>`.
+
+Fix page-end headings, label collisions/clipping and conflicting figures. About 15% blank space is an inspection prompt; intact charts or rows may justify a gap. Tables may split correctly with repeated headers. The checks verify declared definitions and arithmetic, completion and provenance; they do not certify source truth, reviewer independence, unbound prose or sound judgment. Historical integrity-only checks use the explicitly labeled `--legacy` mode, not a publication bypass.

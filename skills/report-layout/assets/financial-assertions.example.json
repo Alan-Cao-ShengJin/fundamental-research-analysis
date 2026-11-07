@@ -1,0 +1,71 @@
+{
+  "description": "Fictional cell references and accounting choices, for adapting the publication-review wrapper. Not a completed review or recommended assumptions.",
+  "financialAssertions": [
+    {
+      "id": "cash-cover-example",
+      "kind": "cash-coverage",
+      "period": "FY2027E",
+      "unit": "x",
+      "rationale": "Test cash available to ordinary shareholders after required cash obligations.",
+      "beforeOutflows": "Cash!H10",
+      "remainingOutflows": ["Cash!H11"],
+      "availableCash": "Cash!H12",
+      "distributions": "Cash!H19",
+      "coverage": "Cash!H20",
+      "accountingTreatment": "In this fictional presentation lease principal has not yet been deducted at H10; H11 is that remaining positive outflow.",
+      "displays": [{"id": "cash-cover", "ref": "Cash!H20", "period": "FY2027E", "unit": "x"}]
+    },
+    {
+      "id": "normalized-ratio-example",
+      "kind": "normalized-ratio",
+      "period": "FY2027E",
+      "unit": "x",
+      "rationale": "Remove genuinely surplus cash and its related income from a fictional nonfinancial business.",
+      "baseValue": "Value!H10",
+      "baseIncome": "Value!H11",
+      "removedComponents": [{"value": "Value!H12", "income": "Value!H13", "rationale": "Surplus cash and associated attributable after-tax interest income, on the same scale."}],
+      "normalizedValue": "Value!H14",
+      "normalizedIncome": "Value!H15",
+      "ratio": "Value!H16",
+      "basis": {
+        "claimBoundary": "ordinary operating equity excluding surplus cash",
+        "incomeDefinition": "recurring attributable profit excluding related cash income",
+        "ownership": "ordinary shareholders",
+        "currency": "USD",
+        "scale": "million",
+        "leaseTreatment": "leases expensed, not separately removed as debt",
+        "periodConvention": "current FY2027E"
+      },
+      "peerBases": [],
+      "displays": [{"id": "core-ratio", "ref": "Value!H16", "period": "FY2027E", "unit": "x"}]
+    },
+    {
+      "id": "financing-example",
+      "kind": "financing",
+      "period": "FY2027E",
+      "unit": "million shares",
+      "rationale": "Fictional fixed-FX convertible with a full-period if-converted upside case and explicit non-exercise cases.",
+      "asOf": "2026-11-07",
+      "terms": [
+        {"source": "sources/fictional-original-terms.txt", "locator": "Section 2", "publishedAt": "2026-01-01", "effectiveFrom": "2026-01-01", "principal": 1000, "contractualFx": 2, "conversionPrice": 55},
+        {"source": "sources/fictional-amendment.txt", "locator": "Section 1", "publishedAt": "2026-08-01", "effectiveFrom": "2026-09-01", "principal": 1000, "contractualFx": 2, "conversionPrice": 50}
+      ],
+      "principal": "Funding!H10",
+      "contractualFx": "Funding!H11",
+      "conversionPrice": "Funding!H12",
+      "conversionShares": "Funding!H13",
+      "scenarios": [
+        {"role": "bear", "target": "Funding!F20", "baseShares": "Funding!F21", "shares": "Funding!F22", "profit": "Funding!F23", "afterTaxAddback": "Funding!F24", "eps": "Funding!F25", "conversionWeight": 0, "rationale": "Debt remains outstanding; cash and interest follow the non-conversion model state.", "nonConversionReason": "Chosen holder non-exercise scenario."},
+        {"role": "base", "target": "Funding!G20", "baseShares": "Funding!G21", "shares": "Funding!G22", "profit": "Funding!G23", "afterTaxAddback": "Funding!G24", "eps": "Funding!G25", "conversionWeight": 0, "rationale": "Explicit non-exercise state, including repayment funding and ongoing interest.", "nonConversionReason": "Chosen holder non-exercise scenario."},
+        {"role": "bull", "target": "Funding!H20", "baseShares": "Funding!H21", "shares": "Funding!H22", "profit": "Funding!H23", "afterTaxAddback": "Funding!H24", "eps": "Funding!H25", "conversionWeight": 1, "rationale": "Full-period if-converted EPS sensitivity with modeled debt retirement and matched after-tax interest addback."}
+      ],
+      "displays": [
+        {"id": "conversion-price", "ref": "Funding!H12", "period": "effective 2026-09-01", "unit": "local currency/share"},
+        {"id": "conversion-shares", "ref": "Funding!H13", "period": "effective 2026-09-01", "unit": "million shares"},
+        {"id": "bear-eps", "ref": "Funding!F25", "period": "FY2027E", "unit": "local currency/share"},
+        {"id": "base-eps", "ref": "Funding!G25", "period": "FY2027E", "unit": "local currency/share"},
+        {"id": "bull-eps", "ref": "Funding!H25", "period": "FY2027E", "unit": "local currency/share"}
+      ]
+    }
+  ]
+}

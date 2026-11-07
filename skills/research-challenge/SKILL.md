@@ -2,7 +2,7 @@
 name: research-challenge
 description: Fact-check and challenge an investment opinion, research thesis, valuation or strategy. Use for standalone devil's-advocate reviews or pre-decision scrutiny of unsupported claims, causal gaps, fragile assumptions and implementation risks.
 metadata:
-  version: 2.2.0
+  version: 2.3.0
 ---
 
 # Research challenge
@@ -20,6 +20,10 @@ Challenge [target underwriting](../valuation-thesis/references/target-underwriti
 First test whether the debate is the one [the market is trading](../research-cycle/references/what-the-market-trades.md): check it against the price-reaction log, the call Q&A and the revisions. A debate built from the filings can argue a year the backlog has settled, or model a legacy business while the price sits on a pipeline asset. Where our forecast for the live variable is below the price-implied figure, check that it starts from the latest run rate and capacity rather than from management's public plan, and that the report says why the live view is wrong. Then test each contested question from the stage-1 debate on its merits. State the strongest case for the side the thesis rejects, including the non-linear outcome if the question resolves its way (for example, growth that lasts for years rather than a window). Split that case into the claims that must hold, mark each supported, contradicted or untested, and name the evidence and timing that would settle it. Build the bear and bull scenarios from these debates resolving, with their effect on growth duration and the multiple, rather than from small moves in every input.
 
 After the report and brief are drafted, read them as a second pass: test the material reasons for the call, each causal assertion, the valuation premise and the contrary evidence against the model and the study's evidence record, and send corrections back through the affected calculations before packaging. This pass adds to the earlier challenge of the thesis and model; it does not replace it.
+
+For publication, perform that pass as the named fresh reader under the [bounded publication workflow](../report-layout/references/publication-review.md). Read the frozen files and original pivotal evidence, not only the author's summaries or defense. Assess the six writing dimensions, review the advisory number inventory, and complete the existing challenge handoff inside the publication packet with actual findings and applicable financial checks. Never auto-complete a review because the build passes. Recheck corrections; exhausted unresolved material findings leave a draft rather than an endless rewrite loop.
+
+Apply the [inference review](references/inference-quality.md) to the claims on which the decision depends. Check what the cited observation actually measures, the assumptions connecting it to the conclusion, the strongest alternative explanation, and whether the proposed test distinguishes them. A source citation, completed Argument block or reproduced calculation does not establish that the inference follows. Record the pivotal links actually tested and their disposition in the existing challenge handoff; preserve a supported central judgment with its material uncertainty rather than forcing bullishness, pessimism or agreement with consensus.
 
 Check that the reasons given for the call are the ones the target depends on. For each, compare how far the target moves if it fails under a defensible alternative (dependence) with how far our assumption differs from consensus (differentiation), holding the multiple and interacting drivers together. A reason that barely moves the target is support, not the case; a driver in line with consensus can still be the one the call depends on. When the stated reasons and the drivers that matter disagree, rewrite the argument, not the model.
 

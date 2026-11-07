@@ -78,6 +78,23 @@ def passing_check(s, path):
     return {'passed': True, 'issues': [], 'workbookSHA256': rc.sha256(path)}
 
 
+def complete_review(study):
+    """A synthetic reviewer test double, not an automated judgment or a production completion shortcut."""
+    path = Path(study) / 'evidence/draft-review.json'
+    packet = json.loads(path.read_text(encoding='utf-8'))
+    packet['reviewer'] = {'id': 'synthetic-test-reviewer', 'mode': 'independent-agent', 'context': 'fresh'}
+    packet['handoff']['status'] = 'complete'
+    packet['handoff']['summary'] = 'Synthetic fixture reviewed for this isolated regression.'
+    packet['handoff']['claims'] = [{'id': 'fixture', 'text': 'The fixture assumes its stated target.', 'material': True,
+        'basis': 'assumption', 'sourceIds': [], 'calculation': None, 'rationale': 'Stipulated synthetic fixture, not investment evidence.'}]
+    for check in packet['handoff']['checks']:
+        check.update(result='pass', detail='Synthetic reviewer test double: isolated fixture verified.')
+    for kind in packet['coverage']:
+        packet['coverage'][kind] = {'status': 'not-applicable', 'reason': 'This isolated fixture has no such financial claim.', 'assertionIds': []}
+    path.write_text(json.dumps(packet), encoding='utf-8')
+    return packet
+
+
 class ReleaseCheckTests(unittest.TestCase):
     def setUp(self):
         self.dir = Path(tempfile.mkdtemp()); self.addCleanup(shutil.rmtree, self.dir, True)
@@ -101,7 +118,8 @@ class ReleaseCheckTests(unittest.TestCase):
         self.write('deliverables/brief.json', json.dumps(payload))
 
     def fails(self, rec=None):
-        return rc.run(self.dir, rec or record(), model_check=passing_check)[1]
+        # These cases isolate the original integrity checks. Review/freshness policy has dedicated regressions.
+        return rc.run(self.dir, rec or record(), model_check=passing_check, legacy=True)[1]
 
     def assert_fails(self, prefix, rec=None):
         f = self.fails(rec)
@@ -232,15 +250,24 @@ class ReleaseCheckTests(unittest.TestCase):
     # ---- package: print, bind, zip, and failure handling
     def package(self, **over):
         rec = {k: v for k, v in record(**over).items() if k not in ('deliverables', 'renders')}
-        return rl.package(self.dir, self.dir / 'deliverables/pkg.zip', self.dir / 'deliverables/report.html', self.dir / 'deliverables/brief.html',
-                          [self.dir / 'deliverables/model.xlsx'], **rec)
+        args = (self.dir, self.dir / 'deliverables/pkg.zip', self.dir / 'deliverables/report.html', self.dir / 'deliverables/brief.html',
+                [self.dir / 'deliverables/model.xlsx'])
+        try:
+            return rl.package(*args, **rec)
+        except SystemExit:
+            saved = json.loads((self.dir / 'deliverables/release.json').read_text())
+            if saved['status'] != 'awaiting-review':
+                raise
+            # Synthetic test double for an actual completed fresh review; never used by production packaging.
+            complete_review(self.dir)
+            return rl.package(*args, **rec)
 
     def test_package_prints_binds_and_fails_safely(self):
         saved = (rl.print_pdf, rc.page_count, rc.text_of, rc.run)
         rl.print_pdf = lambda h, p: (Path(p).write_bytes(b'%PDF-fake ' + Path(h).read_bytes()), Path(p))[1]   # no Chrome in tests
         rc.page_count = lambda p: 1
         rc.text_of = lambda p: Path(p).read_text(encoding='utf-8', errors='replace')
-        rc.run = lambda study, rec, model_check=None: saved[3](study, rec, model_check=passing_check)
+        rc.run = lambda study, rec, model_check=None, **kw: saved[3](study, rec, model_check=passing_check, **kw)
         try:
             out = self.package()
             self.assertEqual(out['status'], 'validated')
@@ -249,9 +276,11 @@ class ReleaseCheckTests(unittest.TestCase):
             self.assertIn('deliverables/report.pdf', files); self.assertIn('deliverables/report.html', files); self.assertIn('deliverables/model.xlsx', files)
             self.assertEqual(out['renders']['brief'], {'html': 'deliverables/brief.html', 'pdf': 'deliverables/brief.pdf'})
             # an existing release: a changed PDF (or a prior PDF beside current HTML) no longer matches the record
+            reviewed_pdf = (self.dir / 'deliverables/report.pdf').read_bytes()
             (self.dir / 'deliverables/report.pdf').write_bytes(b'%PDF-prior')
             f = rc.run(self.dir, json.loads((self.dir / 'deliverables/release.json').read_text(encoding='utf-8')))[1]
             self.assertTrue(any(x.startswith('files-match-release-record:report.pdf') for x in f), f)
+            (self.dir / 'deliverables/report.pdf').write_bytes(reviewed_pdf)
             # a failing check after an earlier success: no zip, failed record
             self.write_brief(brief(targetPrice=95.0))
             with self.assertRaises(SystemExit): self.package()

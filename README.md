@@ -1,16 +1,16 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.6.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.8.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
-## Latest update: evidence-backed arguments and draft review
+## Latest update: reviewed publication and financial-claim checks
 
-Version 2.7.0 adds structured `Argument` and `Debate` blocks to the shared report renderer. Substantive sections need an argument or debate, evidence must reference a source or exhibit, debates need an answer and quantified implications, and declared material business units need an argument linked to their driver-build exhibit. Recognized judgment phrases in plain paragraphs are rejected. These are structural build checks: a citation or completed field does not establish that the evidence supports the conclusion.
+Version 2.8.0 separates analysis, fresh writing, draft rendering, fresh review and checked publication. The supported package path now stops with a partial review and no ZIP, then requires current reviewed files, completed challenge checks and applicable financial assertions before finalization. Correction rounds are bounded; finalization preserves the exact reviewed PDF bytes.
 
-The skills now require a second challenge of the drafted report and brief against the model and evidence, while retaining the earlier analytical challenge. Forecast instructions require disclosed operating drivers to feed material segment forecasts. Updated guidance clarifies earnings definitions, consensus comparisons, material listed stakes and cash, event risk, headlines, and the separate rating/new-money judgment. The consumer-sector guide adds branded-apparel and sportswear driver construction; other sectors retain their own economic mechanisms.
+Added generic cash-coverage, normalized valuation and convertible/share-state checks; model-bound displayed figures; a shorter institutional writing standard; inference-quality guidance and a synthetic transfer pack. The shared renderer fixes debate pagination, numeric alignment and price-event labeling, permits explicitly marked truncated waterfall axes, and requires summary statements for full initiations. Partial valuation changes require calibrated evidence rather than an arbitrary statistical haircut.
 
-The release checker still does not require a current challenge handoff or judge inference quality. No runtime controller or new automated semantic reviewer is included. Company cases and private review discussions are excluded from this release.
+The host still launches fresh writer/reviewer contexts. Completion and provenance checks do not authenticate reviewer independence or establish source truth, sound reasoning or consistent research scores. Older builders must migrate; historical integrity inspection is explicitly labeled `--legacy`. No runtime research controller or automatic semantic judge is included.
 
 ## Choose the research mode
 
@@ -26,7 +26,7 @@ A price move alone changes prospective return, not earnings or fair value. Recur
 
 ## Research dependencies
 
-Scope and evidence → historical statements → early governance and financial-red-flag review → industry analysis → operating drivers and component revenue/cost forecasts → integrated statements → model audit → valuation and expectations → thesis validation and challenge → conviction → investment conclusion → communication and follow-up.
+Scope and evidence → historical statements → early governance and financial-red-flag review → industry analysis → operating drivers and component revenue/cost forecasts → integrated statements → model audit → valuation and expectations → thesis validation and challenge → conviction → investment conclusion → fresh writing and draft rendering → fresh review → checked publication and follow-up.
 
 Frame the two or three contested investor questions early, state the strongest case on each side, and use the evidence that would settle them to construct meaningful bear and bull outcomes. The sequence expresses dependencies, not fixed analytical weights. Use [investor judgment](skills/research-cycle/references/investor-judgment.md) and the [underwriting standard](skills/research-cycle/references/underwriting-standard.md) to concentrate on what can change the decision. Reuse valid dated work; new evidence reopens affected stages. Financial quality has three distinct passes: early screening, pre-valuation model audit and post-valuation thesis validation.
 
@@ -54,13 +54,15 @@ The [company-model standard](skills/company-model/references/model-standard.md) 
 
 ## Release checks
 
-[Report layout](skills/report-layout/SKILL.md) provides `package()` to print the report and one-page brief, run the [release checks](skills/report-layout/scripts/release_check.py), and create the ZIP only after checks pass. It records model/source bindings, calculated output comparisons, period checks, rendered decision figures and file hashes in the study's `deliverables/release.json`. Existing records can be rechecked with:
+[Report layout](skills/report-layout/SKILL.md) separates draft rendering from publication. `package()` first prints the report and brief, checks integrity and prepares a partial review; it leaves `awaiting-review` and no ZIP. A host-launched fresh reader reviews the exact PDFs against the model and original evidence, records actual findings and completes the existing challenge handoff. Correction rounds are bounded. Finalization requires current file/skill fingerprints, completed review checks and applicable model-linked cash-coverage, normalized-ratio and financing assertions; it packages the exact reviewed PDFs without reprinting.
+
+Follow the [publication workflow](skills/report-layout/references/publication-review.md), including model-linked summary financial statements for full initiations. Recheck an existing release with:
 
 ```text
 python -B -X utf8 skills/report-layout/scripts/release_check.py <study-folder>
 ```
 
-This path detects the tested calculation, period, rendered-decision and package-integrity failures. It applies to builders that call `package()`; older studies are not automatically migrated. Source truth, economic judgment, prose figures, estimate vintages and visual quality still require review. [Synthetic evaluation packs](skills/evals/fixtures/README.md) support further calibration; their existence is not evidence of passed behavioral evaluation.
+These checks apply to the supported package path. Older builders need migration. Historical integrity-only inspection explicitly uses `--legacy` and reports `legacy-verified`; that does not establish a current reviewed release. The scripts do not launch fresh contexts or authenticate reviewer independence. Source truth, financial definitions, unbound prose and reasoning still need substantive review. [Synthetic evaluation packs](skills/evals/fixtures/README.md) support calibration; passing unit tests or recording a review does not establish consistently good research.
 
 ## Judgment, conviction and communication
 

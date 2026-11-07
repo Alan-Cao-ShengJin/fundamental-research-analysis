@@ -34,6 +34,49 @@ def debate():
 
 
 class ReportLayoutTests(unittest.TestCase):
+    def test_debate_is_one_normal_flow_item_and_numeric_tables_have_a_supported_class(self):
+        root = ET.fromstring(str(debate()))
+        self.assertEqual(root.tag, 'div')
+        self.assertEqual([child.tag for child in root], ['h3', 'table', 'p'])
+        self.assertIn('class="num', str(rl.table(['Metric', 'Value'], [['EPS', '5.2']], cls='num')))
+        self.assertIn('class="numeric"', str(rl.table(['Metric', 'Value'], [['EPS', '5.2']])))
+        with self.assertRaisesRegex(ValueError, 'Unknown table class'):
+            rl.table(['A'], [['B']], cls='silently-unstyled')
+
+    def test_initiation_has_model_linked_summary_statements(self):
+        r = report(); r.report = 'Initiation of coverage'
+        with self.assertRaisesRegex(ValueError, 'financial_summary'):
+            r.html()
+        r.financial_summary('USD m', ['FY2025A', 'FY2026E'], 1,
+                            [('Income statement', [('Revenue', ['100', '110'], '')]),
+                             ('Balance sheet', [('Assets', ['200', '215'], '')]),
+                             ('Cash flow', [('Operating cash', ['20', '22'], '')])], 'Synthetic fixture')
+        self.assertIn('data-financial-summary="true"', r.html())
+        self.assertIn('splittable', r.summary_html)
+        self.assertNotIn('financial-summary', r.uncited_exhibits)
+        with self.assertRaisesRegex(ValueError, 'three nonempty'):
+            r.financial_summary('USD m', ['FY2025A', 'FY2026E'], 1,
+                                [('Income statement', [('Revenue', ['100', '110'], '')])], 'Synthetic fixture')
+        with self.assertRaisesRegex(ValueError, 'match the declared periods'):
+            rl.fin_table('USD m', ['FY2025A', 'FY2026E'], 1, [('Cash', [('CFO', ['100'], '')])])
+
+    def test_close_price_events_are_separated_and_front_chart_adapts_font_size(self):
+        dates = [f'2026-01-{i:02d}' for i in range(1, 29)]
+        chart = rl.price_chart('Synthetic price', dates, [('Company', [100+i for i in range(28)], rl.TEAL)],
+                               [('2026-01-20', 'Event A'), ('2026-01-21', 'Event B'), ('2026-01-22', 'Event C')])
+        def labels(svg):
+            return {e.text: e.attrib for e in ET.fromstring(str(svg)).iter() if e.tag.endswith('text') and e.text in ('Event A', 'Event B', 'Event C')}
+        normal, narrow = labels(chart), labels(chart.narrow())
+        self.assertEqual(len(set(a['y'] for a in narrow.values())), 3)
+        self.assertGreater(float(narrow['Event A']['font-size']), float(normal['Event A']['font-size']))
+
+    def test_nonzero_waterfall_axis_is_explicit_and_never_automatic(self):
+        items = [('Start', 5.15, 'total'), ('Change', .33, 'step'), ('End', 5.48, 'total')]
+        self.assertNotIn('totals truncated', str(rl.waterfall('EPS', items, 'USD')))
+        chart = str(rl.waterfall('EPS', items, 'USD', yr=(5, 5.6, .2)))
+        self.assertIn('totals truncated', chart)
+        self.assertIn('clip-path', chart)
+
     def test_unaccounted_investor_questions_prevent_rendering(self):
         r = report(account_for_questions=False)
         r.section('Synthetic business', 'Fixture only', arg('Invented business.'), covers=('business',))

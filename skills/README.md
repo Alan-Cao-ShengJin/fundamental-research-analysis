@@ -83,4 +83,4 @@ python -B -m unittest discover -s skills/tests
 
 The catalog describes local skills and routes; live runtime integration remains separate. Required third-party licence notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-Release validation is available through `report_layout.package()` in [report layout](report-layout/SKILL.md). The [synthetic evaluation fixtures](evals/fixtures/README.md) are prepared cases, not completed behavioral evaluations.
+Full-report publication follows [frozen drafts, fresh review and bounded correction](report-layout/references/publication-review.md). The catalog separates draft rendering, draft review and publication in initiation, regular-review and major-update routes. The package path enforces review records and defined financial bindings; a host still launches fresh contexts and judges the substantive findings. Historical integrity-only checks explicitly use `--legacy` and do not establish a current reviewed release.

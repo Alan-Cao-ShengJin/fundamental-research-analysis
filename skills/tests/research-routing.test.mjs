@@ -54,6 +54,20 @@ describe('company research risk dependencies', () => {
 });
 
 describe('initiation and revision workflow boundaries', () => {
+  it('separates frozen draft rendering, fresh review and checked publication in company report flows', () => {
+    for (const flow of Object.values(catalog.flows)) {
+      for (const prefix of ['', 'regular-', 'revision-']) {
+        const render = prefix + 'report-render', review = prefix + 'draft-review', publish = prefix + 'report-publish';
+        if (!flow.includes(render)) continue;
+        expect(flow.indexOf(review)).toBeGreaterThan(flow.indexOf(render));
+        expect(flow.indexOf(publish)).toBeGreaterThan(flow.indexOf(review));
+        expect(dependencies(publish).has(review)).toBe(true);
+        expect(dependencies(review).has(render)).toBe(true);
+        expect(catalog.stages[review].skill).toBe('research-challenge');
+      }
+    }
+    expect(catalog.runtimeIntegrated).toBe(false);
+  });
   it('routes first coverage through a full baseline and existing coverage through baseline review', () => {
     const initiation = catalog.companyWorkflows.initiation;
     const revision = catalog.companyWorkflows.revision;

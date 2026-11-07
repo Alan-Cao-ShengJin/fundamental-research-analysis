@@ -10,6 +10,12 @@ For a new workbook view, keep related calculations in a clear sequence on one wo
 
 Use [foundational builds](foundational-builds.md) to decompose material financial items into the smallest useful forecastable components. Investigate breakdowns available only in management calls or external series before settling for aggregate growth/margin assumptions. Forecast the foundational estimates from history, assessed guidance and matched third-party observations, with the remaining judgement explicit. Aggregate component forecasts upward. The evidence and reasoning behind the pieces determine how much conviction the segment forecast warrants.
 
+## Test what a driver actually measures
+
+Before forecasting from a derived unit ratio, align its numerator and denominator by activity, ownership, channel, cohort and period. Total revenue divided by stores can include online revenue, acquisitions and wholesale; it is not automatically store productivity or same-store growth. Revenue per customer can rise through churn of small customers, and output per asset through disposals. Separate these effects where supported, retain a composite proxy's actual label otherwise, and do not infer demand, pricing power or margins that the proxy cannot identify. Match average active units to period flows and test seasonality before annualising an interim result.
+
+Distinguish an explanatory driver from a ratio back-solved to reproduce a growth assumption. Show what independently supports the forecast change in units, price, utilization, retention or other relevant components. Greater detail adds confidence only when those components are predictive and substantiated; do not invent undisclosed splits or a numerical elasticity to make the model look granular. Where a coarser forecast is the best supported approach, state its basis, limits and decision-sensitive range in the assumption note.
+
 ## Build the operating waterfall
 
 Use the [competition and capital-return framework](competition-and-capital-returns.md) to test demand, price and margin assumptions against competitor capacity, product/pricing responses and customer/supplier bargaining. Link observed or inferred responses to the affected metrics and timing; a static peer list or qualitative risk paragraph is not a forecast of their economic effects.

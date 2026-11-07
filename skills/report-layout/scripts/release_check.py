@@ -8,8 +8,9 @@ zip only when every check passes. To verify an existing release later:
 
 which reruns the checks and compares every file with the hashes saved at release. Checks are classed `integrity`
 (numbers, periods, dates, bindings, files) or `wording` (the regression list of phrasing that has reached a report).
-A pass says these slips are absent. It does not verify prose figures, share class or scale, question coverage or visual
-quality; those stay with the analyst's reread, and the record says so under `scope`.
+A current release also requires a completed fresh-reader declaration bound to the actual draft files and applicable
+financial assertions. This checks completion, provenance and defined arithmetic, not source truth or reviewer identity.
+Use --legacy only for explicitly labeled historical integrity inspection, not for current publication.
 """
 from __future__ import annotations
 import hashlib, html as html_lib, json, re, subprocess, sys
@@ -33,9 +34,12 @@ BYLINE = re.compile(r'\b(prepared by|analyst:|author:|contact:)', re.I)
 EMAIL = re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]*\w')
 SCOPE = ('Checked: calculation caches, target basis and period, rating and tier, the decision block in the brief payload '
          'and in the rendered report and brief, observation and retrieval ages, currency and security, one-page brief, '
-         'file hashes and print provenance, and the wording regression list. Not checked: figures quoted in prose, '
-         'share class and scale beyond currency and ticker, whether each investor question is answered, contributor '
-         'estimate vintages, the last exchange session, and visual quality. Those are analyst-reviewed.')
+         'file hashes and print provenance, and the wording regression list. Current publication additionally checks '
+         'completed review declarations bound to current files and skills, and applicable declared financial assertions '
+         'and displayed bindings. Legacy inspection explicitly omits the review requirement. Not certified: source '
+         'truth or extraction, review quality or independent identity, unbound prose figures, undeclared financial '
+         'claims, share class/scale beyond declared bindings, contributor vintages, last exchange session or visual '
+         'quality. Those require substantive review.')
 
 
 def sha256(path):
@@ -191,7 +195,7 @@ def near(a, b, rel=0.005, abs_=0.0):
     return isinstance(a, (int, float)) and isinstance(b, (int, float)) and abs(a - b) <= max(abs(b) * rel, abs_)
 
 
-def run(study, record, model_check=None):
+def run(study, record, model_check=None, legacy=False):
     """Return (checks, fails) for a study folder and its release record. Fails name the cell, field or file."""
     study = Path(study)
     checks, fails = [], []
@@ -385,6 +389,14 @@ def run(study, record, model_check=None):
         check(f'authorship-clean:{path.name}', not (emails or bylines),
               'no unapproved email address or byline marker' if not (emails or bylines) else f'emails {emails[:3]}; byline markers {bylines[:3]}')
         check(f'wording-clean:{path.name}', not hits, 'none of the banned phrases' if not hits else f'banned {hits}', cls='wording')
+    if legacy:
+        check('legacy-review-scope', True, 'Historical integrity verification only; no current publication-review assurance', cls='scope')
+    else:
+        import publication_review as pr
+        for result in pr.check(study, record, spec, workbook):
+            checks.append(result)
+            if result['result'] != 'pass':
+                fails.append(result['name'] + ': ' + result['detail'])
     return checks, fails
 
 
@@ -393,16 +405,21 @@ def fingerprints(study, record):
     files = [record['workbook'], record['spec'], record['brief']] + list(record.get('deliverables', []))
     for paths in (record.get('renders') or {}).values():
         files += [paths['html'], paths['pdf']] if isinstance(paths, dict) else [paths]
+    review = record.get('review', 'evidence/draft-review.json')
+    if (study / review).is_file():
+        files.append(review)
     out = {rel: sha256(study / rel) for rel in dict.fromkeys(files) if (study / rel).exists()}
     return {'files': out, 'skills': skills_fingerprint(), 'git': git_state(SKILLS.parent)}
 
 
 def main(argv=None):
-    study = Path((argv or sys.argv[1:])[0])
+    args = argv or sys.argv[1:]
+    legacy = '--legacy' in args
+    study = Path(next(a for a in args if a != '--legacy'))
     try:
         record = json.loads((study / 'deliverables' / 'release.json').read_text(encoding='utf-8'))
-        checks, fails = run(study, record)
-        out = {'status': 'failed' if fails else 'validated', 'scope': SCOPE, 'checks': checks}
+        checks, fails = run(study, record, legacy=legacy)
+        out = {'status': 'failed' if fails else 'legacy-verified' if legacy else 'validated', 'scope': SCOPE, 'checks': checks}
     except Exception as exc:  # noqa: BLE001 - a crash is a failed verification, reported as such
         out = {'status': 'failed', 'error': f'{type(exc).__name__}: {exc}', 'checks': []}
         fails = [out['error']]

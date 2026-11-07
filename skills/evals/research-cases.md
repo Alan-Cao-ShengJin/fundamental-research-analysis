@@ -4,6 +4,10 @@ These are authored research exercises, not evidence of passed behavioural evalua
 
 # Forward-evaluation cases
 
+## Inference quality across economic mechanisms
+
+Use the self-contained [synthetic review pack](fixtures/inference-review/pack.md), giving only its evidence and task to a fresh analyst session. Review against the separate [answer note](fixtures/answers/inference-review.md). The case tests matched valuation boundaries, independent cross-checks, operating-proxy composition, governance persistence, adverse-case ratio behavior, a supported yield case and banking cash. It asks for a scoped opinion review, not an initiation. Record the actual response and misses rather than treating the existence of this case as a pass.
+
 ## One-page investment brief
 
 Prompt: "Write a one-page investment brief using the selective house format and institutional research writing standard." Supply a completed decision, a current forecast, a materially different intrinsic-value cross-check, a Buy below the total-return hurdle, issuer evidence, a noisy prior draft, routine governance/background paragraphs and an overlong risk paragraph.

@@ -2,7 +2,7 @@
 name: research-cycle
 description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Also coordinate portfolio and non-company research; route narrow tasks to the relevant specialist.
 metadata:
-  version: 2.3.0
+  version: 2.4.0
 ---
 
 # Research cycle
@@ -43,6 +43,8 @@ Carry one [conviction record](../investment-conviction/SKILL.md) through the cyc
 The model specialist delivers the [human-auditable Excel forecast](../company-model/references/workbook-profile.md) and the machine [agent model](../company-model/references/agent-model.md), mechanically synchronised, whenever forecasts are built or numerically revised. A narrative report, inert data table or independent EPS projection does not replace the operating build and linked statements. Narrow requests reuse current model state and its valid workbook.
 
 A completed stock report follows the [decision contract](../investment-conclusion/references/decision-contract.md) for target, rating, price return and new-money judgment, and is communicated as an evidence-backed stock pitch under [research brief](../research-brief/SKILL.md). Portfolio action remains separate.
+
+For publication, freeze the supported analysis for a fresh writing context, then obtain a separate fresh review of the actual rendered files under the [bounded publication workflow](../report-layout/references/publication-review.md). The host launches those contexts. The supported package path blocks missing, incomplete or stale reviews and tested financial-binding errors; it does not authenticate reviewer independence or certify research quality. Unresolved material findings remain a draft.
 
 Read [handoffs.md](references/handoffs.md) before handing work between specialists or declaring an output decision-ready.
 

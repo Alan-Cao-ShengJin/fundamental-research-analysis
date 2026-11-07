@@ -1,3 +1,37 @@
+# Research skill verification - 7 November 2026, version 2.8.0
+
+This section records the current standalone export. Earlier sections describe their own releases.
+
+## Changes
+
+- Added a publication boundary around the existing strict challenge handoff: frozen draft/model/source fingerprints, a named fresh-reader declaration, six editorial dimensions plus source/financial and visual review, bounded correction rounds, and exact reviewed-PDF finalization. The first package attempt produces a partial review and no ZIP. Missing, incomplete or stale reviews block the supported release path. A host launches contexts; no dispatcher or authentication of reviewer identity was added.
+- Added applicable financial assertions for after-obligation distribution coverage, paired asset/income normalization and effective-dated convertible/share states, with displayed value and period checks. These test declared financial definitions and arithmetic, not original-source interpretation or every material claim.
+- Shortened the main writing standard and moved detailed examples to an optional reference. Added portable inference guidance, driver-proxy measurement tests, calibrated partial recognition, non-circular valuation cross-checks and original synthetic transfer material. Removed wording that encouraged defending an unchanged target by relocating contrary evidence.
+- Fixed debate/table pagination, numeric alignment, adjacent price-event labels and print sizing; added optional explicit waterfall truncation and summary financial statements for initiations. Long tables can split with repeated headers and intact rows.
+- Retained the public-only coverage planner, 20-skill/11-flow scope, source adaptations, licenses and clean synthetic workbooks. No private issuer artifacts, raw entitled research, credentials or internal correspondence are included.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Standalone structure | 20 skills, 11 flows; 762 relative links, coverage and shared handoff schema passed |
+| Standalone JavaScript | 68 tests passed |
+| Standalone Python | 135 tests passed, including public coverage and 16 publication-review regressions |
+| Local native print probe | Shared renderer printed and visually inspected on a synthetic five-page document; continued debate and statement headers repeat without answer/header overlap |
+| Local independent control trial | Real Chrome/model-check/CLI draft-to-finalize cycle exercised on synthetic inputs, preserving reviewed PDF bytes; three discovered defects corrected and independently rechecked |
+| Export scan | Known local credential values, token patterns, personal paths and workbook XML metadata checked before commit |
+| Manifest | Updated from canonical staged Git bytes, excluding the manifest itself |
+
+The independent control trial used an explicitly synthetic review-completion test double to test transitions. It was not a completed substantive investment review. A separate earlier six-case fresh-agent inference test and follow-up reviewed synthetic reasoning only; it did not evaluate complete research execution. Neither private trial artifacts nor private studies are exported.
+
+## Limits and migration
+
+The current supported release path enforces review records and defined bindings; it does not establish review quality, source truth, independent identity, correctness of unbound prose, complete material-claim coverage or consistent research scores. No full research controller, automatic semantic judge, live provider entitlement test, native Excel recalculation or investment-performance evaluation is included. The native print/control trials above ran in the local workspace on the copied shared implementation, not as an additional full issuer run in this export checkout.
+
+Older builders must adopt the new summary/assertion/review workflow before making a current release. Historical integrity-only inspection uses explicitly labeled `--legacy` and is not a publication shortcut. Partial-multiple calibration, aggregate-to-segment attribution and other causal judgments still require substantive review and repeated end-to-end research trials. Passing these code checks is not evidence of a consistent 9/10 research process.
+
+---
+
 # Research skill verification - 7 November 2026, version 2.7.0
 
 This section records the current standalone export. Earlier records below describe their own releases.

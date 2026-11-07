@@ -1,5 +1,5 @@
 {
-  "version": "2.6.0",
+  "version": "2.8.0",
   "entrySkill": "research-cycle",
   "runtimeIntegrated": false,
   "skills": [
@@ -472,7 +472,7 @@
       "requiredBefore": [
         "investment-brief"
       ],
-      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
+      "when": "a full report or release package is requested; build and inspect frozen drafts"
     },
     "regular-report-render": {
       "skill": "report-layout",
@@ -480,7 +480,7 @@
       "requiredBefore": [
         "regular-brief"
       ],
-      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
+      "when": "a full report or release package is requested; build and inspect frozen drafts"
     },
     "revision-report-render": {
       "skill": "report-layout",
@@ -488,7 +488,55 @@
       "requiredBefore": [
         "revision-brief"
       ],
-      "when": "a full report, one-page brief or package is requested; renders, inspects and release-checks the deliverables"
+      "when": "a full report or release package is requested; build and inspect frozen drafts"
+    },
+    "draft-review": {
+      "skill": "research-challenge",
+      "output": "challenge",
+      "requiredBefore": [
+        "report-render"
+      ],
+      "when": "a rendered report or brief is to be published; fresh review of frozen files"
+    },
+    "report-publish": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "draft-review"
+      ],
+      "when": "publish the exact reviewed files through checked packaging"
+    },
+    "regular-draft-review": {
+      "skill": "research-challenge",
+      "output": "challenge",
+      "requiredBefore": [
+        "regular-report-render"
+      ],
+      "when": "a rendered report or brief is to be published; fresh review of frozen files"
+    },
+    "regular-report-publish": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "regular-draft-review"
+      ],
+      "when": "publish the exact reviewed files through checked packaging"
+    },
+    "revision-draft-review": {
+      "skill": "research-challenge",
+      "output": "challenge",
+      "requiredBefore": [
+        "revision-report-render"
+      ],
+      "when": "a rendered report or brief is to be published; fresh review of frozen files"
+    },
+    "revision-report-publish": {
+      "skill": "report-layout",
+      "output": "brief",
+      "requiredBefore": [
+        "revision-draft-review"
+      ],
+      "when": "publish the exact reviewed files through checked packaging"
     }
   },
   "flows": {
@@ -515,6 +563,8 @@
       "report-exhibits",
       "investment-brief",
       "report-render",
+      "draft-review",
+      "report-publish",
       "company-follow-up"
     ],
     "company-regular-review": [
@@ -529,6 +579,8 @@
       "regular-conclusion",
       "regular-brief",
       "regular-report-render",
+      "regular-draft-review",
+      "regular-report-publish",
       "regular-follow-up"
     ],
     "company-update": [
@@ -547,6 +599,8 @@
       "revision-conclusion",
       "revision-brief",
       "revision-report-render",
+      "revision-draft-review",
+      "revision-report-publish",
       "revision-follow-up"
     ],
     "corporate-governance-review": [

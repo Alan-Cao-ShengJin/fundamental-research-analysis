@@ -2,7 +2,7 @@
 name: corporate-governance
 description: Analyse a listed company's ownership, control, minority-shareholder rights, management incentives, conduct, capital allocation and disclosure. Use for governance reviews and full company research, especially when governance may explain a persistent valuation discount or change the investment case.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Corporate governance and shareholder outcomes
@@ -42,6 +42,8 @@ Use [the assessment rubric](references/scoring-rubric.md) for a comparable quali
 ## Connect governance to value and the narrative
 
 Assess [capital-allocation economics](../company-model/references/competition-and-capital-returns.md#test-whether-additional-growth-creates-value) alongside incentives. Compare capital committed, actual purchase prices and subsequent returns/per-share outcomes for acquisitions, expansion, buybacks and distributions. Separate operational growth from value creation and changes in accounting capital from economic improvement; management activity or adjusted EPS growth alone does not prove sound allocation.
+
+Separate the measured damage from an individual transaction from what it reveals about future allocation, minority rights and access to cash. An overpayment or impairment does not cap the possible governance effect at that amount; nor does one poor outcome establish a permanent discount. Assess the decision process, incentives, repeatability, constraints and demonstrated remediation. Use these findings to support current and alternative governance assumptions without requiring another bad transaction before reconsidering the risk, and count the realized loss and any distinct forward risk once each.
 
 Use the [underwriting standard](../research-cycle/references/underwriting-standard.md) to trace stated purposes, capital committed, incentives, milestones and subsequent effects per common share. Reconcile buybacks with awards/net dilution, acquisition growth with returns after integration and financing, and reported cash with minority access. Keep clarification requests distinct from allegations; an arbitrary discount cannot substitute for unresolved critical cash-access evidence.
 

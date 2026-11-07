@@ -2,7 +2,7 @@
 name: research-brief
 description: Write a selective, decision-focused investment brief on one readable page using the shared minimalist template and institutional research writing standard. Also write developed stock pitches, results notes and decision updates at the requested depth.
 metadata:
-  version: 3.7.0
+  version: 3.8.0
 ---
 
 # Stock pitch, decision brief and research update
@@ -34,6 +34,8 @@ A full company recommendation is a stock pitch: make a defensible investment arg
 Include competitive response, marginal returns, advantage duration, narrative association or investor-access detail when it changes the decision. Distinguish current economic exposure from a possible market association. Investor-demand analysis normally remains supporting detail; material liquidity, funding or rights concerns remain visible. Explain estimates, decisive evidence and revision conditions without generic commentary about source motives.
 
 Complete essential company, forecast and valuation work before writing the brief. Use the four [target-underwriting checks](../valuation-thesis/references/target-underwriting.md) to support a qualified central judgment, rather than publishing a process memo about missing work.
+
+For a full report, begin writing in a fresh context from the frozen analysis checkpoint. Load the short [writing standard](references/natural-writing.md), the selected output template and the relevant financial definitions, retaining access to original pivotal evidence. Develop each conclusion in one main location; a summary may repeat the takeaway, while later sections refer back briefly. The separate fresh review and finalization follow the [publication workflow](../report-layout/references/publication-review.md).
 
 ## Decision and risk block
 

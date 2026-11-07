@@ -62,3 +62,7 @@ Governance has its own artifact and dependency version. A changed control/right,
 Valuations and reviews bind to the model version/fingerprint, engine version, scenario/run, selected output IDs and their own market-data cutoff. A model change makes dependent evaluations stale; recompute and recheck them before presenting a current conclusion. Preserve earlier forecasts and decisions for evaluation against later matched actuals. A package that passes graph arithmetic is not automatically financially complete or decision-ready.
 
 If a source or necessary tool is unavailable, return a useful partial handoff and a concrete next task. Do not fabricate a successful download, recalculation, broker comparison, market fill or alert activation.
+
+## Publication review wrapper
+
+The [publication workflow](../../report-layout/references/publication-review.md) nests the existing strict `challenge` handoff under `handoff` in a draft-review packet. Its outer fields record the reader declaration, bounded rounds, exact reviewed-file and skill fingerprints, applicability coverage and financial assertions. Do not add these fields to the common envelope. Shared Node validation checks the nested handoff; the publication checker checks the additional release conditions. A generated partial packet is not a performed review. Missing, stale or unresolved required review blocks the supported publication path, while a justified uncertain forecast remains permissible. The host must actually launch fresh contexts; these records do not dispatch them or prove review quality.

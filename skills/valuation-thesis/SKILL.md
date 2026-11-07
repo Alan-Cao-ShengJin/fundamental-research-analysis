@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.5.0
+  version: 2.5.1
 ---
 
 # Valuation, expectations and provisional thesis
@@ -49,6 +49,8 @@ Read [target underwriting](references/target-underwriting.md) before setting a d
 Establish the next-period outlook, already-reported peers and upcoming events on the [earnings clock](../company-model/references/earnings-clock-and-peer-readthrough.md). A known event is not a guaranteed positive catalyst; connect any differentiated next-period expectation to its cash or multiple effect within the target horizon.
 
 Show the forecast drivers implied by today's price and compare them with the analyst model under comparable assumptions. When usable consensus exists, record its vintage/contributor coverage and run a separate comparison. Do not relabel an old broker forecast as current consensus or fabricate coverage to satisfy a fixed broker count.
+
+A residual valuation identifies a conditional combination, not a unique market belief: state the asset values, accessible cash, ownership and values assigned to other activities that produce it, then test plausible alternatives. A low implied value for one unit does not by itself prove that investors misunderstand that unit; the discount may sit in the other assets, cash access, growth duration or allocation risk. Keep target-implied unit values distinct from independently supported estimates of what those units are worth.
 
 For P/E comparisons, use the [own-versus-consensus basis rules](references/valuation-calendar.md#own-forecast-and-consensus-pe). The [comparison helper](scripts/compare_forward_pe.mjs) computes both ratios and distinguishes unchanged own P/E from an earnings reset at the consensus-based multiple; it does not select the target multiple or validate the investment case.
 
