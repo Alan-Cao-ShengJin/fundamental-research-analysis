@@ -74,7 +74,7 @@ For a target that relies materially on a higher P/E, answer:
 
 State this causal argument in the pitch. If support is weak, keep rerating as an upside scenario rather than the central target. A bull-case multiple still needs these answers: analyse how the bull case could become reality rather than picking a number. Recalculate the base target and call; a footnote saying rerating is uncertain does not justify making it the whole Buy case. Do not change the target merely to meet the attractiveness hurdle.
 
-Also calculate the price **if investors still pay today's P/E for the forecast earnings**, and a case where they pay less. Use that wording in investor prose instead of unexplained unchanged-multiple jargon. Show how much return survives without a higher valuation, including prospective distributions separately.
+Also show what investors earn **if they keep paying today's P/E**: the following fiscal year's EPS at today's multiple, labelled as an earnings-progression illustration with its dates and basis, with the dividend shown separately, and a case where they pay less. Use that wording in investor prose instead of unexplained unchanged-multiple jargon. Today's P/E on the same current-forward EPS is the reference price by construction and is not a finding.
 
 On an explicitly selected comparable basis, `target price = selected forward EPS * justified target multiple`. State the earnings period and follow the [calendar guide](valuation-calendar.md). Separate:
 

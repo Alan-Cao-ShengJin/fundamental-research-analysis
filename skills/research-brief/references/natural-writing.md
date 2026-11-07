@@ -15,7 +15,7 @@ Use this sequence for each substantive investment point in briefs, full reports 
 3. **Explain its significance.** Interpret the result against a relevant comparison or economic requirement. Explain the mechanism and materiality for earnings, cash generation, value, shareholder access or risk. State why the difference matters rather than leaving the reader to infer it.
 4. **Tie it back to the stock view.** Explain how that consequence supports, weakens or changes the investment case at the stated price. Separate better business performance from an attractive stock payoff; retain the strongest contrary explanation and material uncertainty.
 
-Write this as a natural argument in concise, connected prose. Do not print four mechanical labels, force exactly four sentences, or append a recommendation slogan after every figure. Related evidence can share one derivation and implication. Put detailed calculations in linked support, but keep the assumptions and causal bridge needed to judge the main point on the page.
+Write this as a natural argument in concise, connected prose. Do not print four mechanical labels, force exactly four sentences, or append a recommendation slogan after every figure. In the full report the layout module's `Argument` block takes the four parts and renders them as one paragraph, so every substantive point is written with its evidence attached ([report layout](../../report-layout/SKILL.md#arguments-debates-and-business-units)). Related evidence can share one derivation and implication. Put detailed calculations in linked support, but keep the assumptions and causal bridge needed to judge the main point on the page.
 
 Synthetic illustration, with invented units and assumptions:
 
@@ -32,6 +32,8 @@ Use **we forecast**, **we estimate** and **we assume** to own the analysis. Repl
 Make compressed technical language understandable on first reading. Translate a cohort into the comparable group of stores, customers or contracts being discussed; explain what costs a cash measure includes and why a valuation input matters. A derived P/E restates a cash valuation and is not independent evidence for it.
 
 - Use the argument sequence above. Explain unfamiliar terms within the reasoning; definitions and comparisons support the derivation and interpretation rather than replacing them. Match periods, currencies, earnings definitions and entity scope. Compare EPS with the issuer's own history/guidance or relate it to the share price; raw EPS levels across different companies are not a valuation benchmark. Do not invent a peer benchmark or describe management guidance as consensus.
+- Use one EPS basis, one net cash or debt figure, one per-share currency and one horizon throughout; label any second basis where it appears.
+- Lead each sentence with its claim and carry at most two facts in it. State each fact once and refer back to it afterwards.
 - Select before polishing. Keep a point only if it changes the investment assessment or supplies evidence needed to judge it. Omit routine checklist findings and familiar background; combine overlapping arguments. Preserve material contrary evidence and forecast-critical qualifications.
 - Lead with the investment conclusion and its economic basis. Develop the argument through evidence, forecasts, valuation and the strongest counter-case.
 - Use normal analyst language: "we forecast," "we estimate," "management guides," "operating leverage," "cash reserves," "capital expenditure" and "valuation multiple." Attribute the judgment rather than implying certainty.

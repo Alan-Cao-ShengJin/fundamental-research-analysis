@@ -52,6 +52,7 @@ In this order, named in plain words:
 **Revenue Build.**
 
 - Break revenue into segment → product → region, down to the smallest unit that can be forecast. Use the driver the business actually runs on, taken from the [sector card](sectors/index.md): volume × price, market size × share, capacity × utilisation, customers × spend, or contract backlog × conversion.
+- Where the company discloses a driver's history (stores, units, customers, capacity, channel split), the forecast runs through it: stores × sales per store, units × price, channel × growth. A segment above about 15% of profit forecast as a bare growth rate is not finished, even when its store or unit counts sit in the same sheet; a growth rate is acceptable only for a small segment, with the reason in the note.
 - Carry history beside the forecast, quarterly where disclosed.
 - Give gross margin and gross profit for each segment, and reconcile revenue, cost of sales and gross profit to the group.
 - For the businesses that drive profit, build unit economics: price, cost and profit per unit, and a segment P&L with its share of group profit.

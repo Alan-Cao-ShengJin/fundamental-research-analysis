@@ -19,6 +19,14 @@ reflect ramp-up, closures, maturity and sales diverted from existing stores.
 Same-store growth applies only to its matching eligible pool. Franchise revenue uses
 contract royalties/fees; franchisee economics constrain sustainable opening.
 
+For a branded apparel or sportswear group, build each brand separately: stores by
+format (own retail, franchise, kids, outlet) × sales per store, plus online as its own
+line with its share of sales, and reconcile the retail sell-through the company reports
+(all channels, at retail value) to recognised revenue through the wholesale discount,
+franchise take and channel inventory. Carry discount depth, channel inventory months
+and gross margin by channel as drivers, because they set margin before volume does; a
+brand forecast as one growth rate with its store counts unused is not a build.
+
 ## Evidence and calibration
 
 Gather customer traffic, purchase conversion and average transaction value,

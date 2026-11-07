@@ -1,3 +1,31 @@
+# Research skill verification - 7 November 2026, version 2.7.0
+
+This section records the current standalone export. Earlier records below describe their own releases.
+
+## Changes
+
+- Added the shared report renderer's Argument and Debate blocks, declared-business-unit checks, and focused regression tests. Arguments require a point, cited evidence, inference and implication; debates require cited claims/statuses, an answer, quantified implications and a dated test. These checks validate structure, not whether a claim is true or the inference follows.
+- Added a second review of the actual drafted report and brief, retaining the pre-conclusion analytical challenge. This remains a research instruction; release packaging does not enforce challenge-handoff completion.
+- Updated earnings-basis reconciliation, material asset/claim valuation, event expectations, rating/new-money presentation and thesis-led writing guidance. The current-forward target convention and house rating bands are preserved.
+- Required disclosed operating drivers to feed material segment forecasts and expanded the consumer-sector guide for branded apparel/sportswear. Company-specific data, models, reports and review correspondence remain excluded.
+- Retained public-only coverage planning, scope adaptations, licensed assets, existing release checks and clean synthetic workbook fixtures.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Bundle structure | 20 skills, 11 flows; catalog, coverage, links and handoff schema passed |
+| JavaScript suite | 67 tests passed |
+| Python suite | 115 tests passed, including standalone coverage and new report-block regressions |
+| Export scan | Known local credential values, token patterns, personal paths and workbook XML metadata checked |
+| Manifest | Updated from canonical staged Git bytes |
+
+## Limits
+
+No fresh-agent transfer evaluation, native Excel recalculation, live data-provider test or visual PDF review was performed for this release. Source truth, inference quality, scenario calibration and investment performance are not established by passing the code checks. Plain-language judgment detection is a limited phrase check and can miss paraphrases. Existing studies require adapter changes to use the new blocks. Review-record enforcement and a runtime controller remain unimplemented. The public bundle remains 20 company-research skills and 11 flows.
+
+---
+
 # Research skill verification - 6 November 2026, version 2.6.0
 
 This section records the current standalone export. Earlier sections describe their own releases.

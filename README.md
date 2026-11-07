@@ -4,6 +4,14 @@ An English-language equity-research skill system for forming an investment view 
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
+## Latest update: evidence-backed arguments and draft review
+
+Version 2.7.0 adds structured `Argument` and `Debate` blocks to the shared report renderer. Substantive sections need an argument or debate, evidence must reference a source or exhibit, debates need an answer and quantified implications, and declared material business units need an argument linked to their driver-build exhibit. Recognized judgment phrases in plain paragraphs are rejected. These are structural build checks: a citation or completed field does not establish that the evidence supports the conclusion.
+
+The skills now require a second challenge of the drafted report and brief against the model and evidence, while retaining the earlier analytical challenge. Forecast instructions require disclosed operating drivers to feed material segment forecasts. Updated guidance clarifies earnings definitions, consensus comparisons, material listed stakes and cash, event risk, headlines, and the separate rating/new-money judgment. The consumer-sector guide adds branded-apparel and sportswear driver construction; other sectors retain their own economic mechanisms.
+
+The release checker still does not require a current challenge handoff or judge inference quality. No runtime controller or new automated semantic reviewer is included. Company cases and private review discussions are excluded from this release.
+
 ## Choose the research mode
 
 | Request | Work |

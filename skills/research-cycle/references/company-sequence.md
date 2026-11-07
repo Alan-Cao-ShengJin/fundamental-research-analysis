@@ -20,7 +20,7 @@ This is the single statement of the stages that establish new coverage. [Request
 | 14 | Thesis validation and challenge | Financial quality, validation; [research challenge](../../research-challenge/SKILL.md) | Support/refutation, whether cheapness can persist, the strongest counter-case, and whether the stated reasons for the call are the drivers the target depends on |
 | 15 | Conviction | [Investment conviction](../../investment-conviction/SKILL.md) | Decisive proposition, supporting/contrary evidence, milestones, exclusion and reconsideration conditions |
 | 16 | Conclusion | [Investment conclusion](../../investment-conclusion/SKILL.md) | Buy/Hold/Sell, primary target/date, price return, dividend yield shown separately, bear/bull cases, pivotal insight and invalidation |
-| 17 | Communication and follow-up | [Research brief](../../research-brief/SKILL.md); [monitor review](../../monitor-review/SKILL.md) | World state, price and consensus [refreshed to the release cutoff](world-state.md#8-refresh-at-the-cutoff); stock pitch and sourced decision block; unresolved questions, lessons and next review |
+| 17 | Communication and follow-up | [Research brief](../../research-brief/SKILL.md); [monitor review](../../monitor-review/SKILL.md) | World state, price and consensus [refreshed to the release cutoff](world-state.md#8-refresh-at-the-cutoff); stock pitch and sourced decision block; the drafted report and brief read by [research challenge](../../research-challenge/SKILL.md) against the model and evidence before packaging; unresolved questions, lessons and next review |
 
 [Issuer questions](../../issuer-questions/SKILL.md) branch from a material gap at any stage; available evidence can often answer them without contact.
 

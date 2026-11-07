@@ -58,6 +58,64 @@ def bullets(items):
     return Block('<ul>' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>')
 
 
+# Judgement wording that belongs in an Argument, with its evidence, not in a plain paragraph.
+JUDGEMENT = ('we forecast', 'we assume', 'we expect', 'we think', 'we believe', 'our view', 'our reading', 'we side')
+CLAIM_STATUS = ('supported', 'contradicted', 'untested')
+_CITES = re.compile(r'\{\{(src|ex):')
+
+
+def _nonempty(name, text, where):
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError(f'{where} needs a nonempty {name}')
+
+
+class Argument(Block):
+    """One substantive investment point, written through the argument sequence and rendered as one paragraph without
+    labels: the point and its data; how the data was derived, citing its source ({{src:key}}) or exhibit ({{ex:key}});
+    what it means against a comparison; and what it does to EPS, the multiple or the target. `segment` tags the business
+    unit the argument analyses; a segment argument must cite the exhibit that shows the unit's driver build."""
+
+    def __new__(cls, point, evidence, inference, implication, segment=None):
+        for name, text in (('point', point), ('evidence', evidence), ('inference', inference), ('implication', implication)):
+            _nonempty(name, text, 'Argument')
+        if not _CITES.search(evidence):
+            raise ValueError('Argument evidence must cite a source ({{src:key}}) or an exhibit ({{ex:key}}): ' + point[:80])
+        if segment and '{{ex:' not in evidence + inference:
+            raise ValueError(f'The {segment} argument must cite the exhibit that shows its driver build')
+        self = super().__new__(cls, f'<p class="arg">{point} {evidence} {inference} {implication}</p>')
+        self.segment = segment
+        return self
+
+
+class Debate(Block):
+    """One contested question the stock turns on, answered: the claims each side rests on, each with its evidence and
+    status (supported, contradicted, untested); our answer; the number it moves (a forecast, margin or multiple,
+    quantified); and the observation and date that would settle it. Bull and bear appear once, as priced scenarios."""
+
+    def __new__(cls, question, claims, answer, moves, settles):
+        for name, text in (('question', question), ('answer', answer), ('moves', moves), ('settles', settles)):
+            _nonempty(name, text, f'Debate {question[:60]!r}')
+        if len(claims) < 2:
+            raise ValueError(f'Debate {question[:60]!r} needs at least two claims that must hold, with their evidence')
+        rows = []
+        for claim, evidence, status in claims:
+            _nonempty('claim', claim, 'Debate claim')
+            if status not in CLAIM_STATUS:
+                raise ValueError(f'Claim status must be one of {CLAIM_STATUS}, not {status!r}')
+            if not _CITES.search(evidence):
+                raise ValueError('Each debate claim cites the source or exhibit that tests it: ' + claim[:80])
+            rows.append([claim, evidence, status.capitalize()])
+        if not re.search(r'\d', moves):
+            raise ValueError(f'Debate {question[:60]!r}: say what the answer moves, with the number (a forecast, margin or multiple)')
+        if not re.search(r'\d', settles):
+            raise ValueError(f'Debate {question[:60]!r}: name the observation and its date that would settle the question')
+        tab = table(['Claim that must hold', 'Evidence', 'Status'], rows, cls='text', compact=True)
+        html_ = f'<h3>{esc(question)}</h3>{tab}<p><b>Our answer.</b> {answer} {moves} {settles}</p>'
+        self = super().__new__(cls, html_)
+        self.question = question
+        return self
+
+
 # ---------------------------------------------------------------- fonts and CSS
 def _font_faces():
     out = []
@@ -107,7 +165,8 @@ h3 {{ font-size: 10pt; font-weight: 600; color: {COL['ink']}; margin: 2mm 0 1mm;
 .rbox .kv td {{ border: none; padding: .35mm 0; }}
 .sec {{ display: grid; grid-template-columns: 40mm 1fr; column-gap: 6mm; margin: 0 0 3mm; }}
 .sec > * {{ grid-column: 2; }}
-.sec > .rail {{ grid-column: 1; grid-row: 1 / span 2; border-top: 2px solid {TEAL}; padding-top: 1.2mm; break-inside: avoid; }}
+.sec > p {{ margin-bottom: 0; padding-bottom: 2.2mm; }}  /* padding survives a page break; a grid item's margin does not */
+.sec > .rail {{ grid-column: 1; grid-row: 1; border-top: 2px solid {TEAL}; padding-top: 1.2mm; break-inside: avoid; }}
 .sec > .rail + p {{ break-inside: avoid; }}
 .rail .take {{ font-size: 8pt; color: {COL['muted']}; line-height: 1.3; }}
 .sec > .wide {{ grid-column: 1 / -1; }}
@@ -165,6 +224,15 @@ class Report:
         self.parts, self.src, self.front_html, self.uncited_exhibits = [], [], '', []
         self.companions = []   # [(label, file name)] delivered in the same folder, e.g. the Excel model
         self.covered, self.omitted = set(), {}
+        self.required_segments, self.argued_segments = [], set()
+
+    def segments(self, names):
+        """Declare the business units the report must analyse (each above about 15% of segment profit, or one a debate
+        turns on). Each needs an Argument tagged segment=name that cites its driver-build exhibit."""
+        names = [n for n in names if isinstance(n, str) and n.strip()]
+        if not names:
+            raise ValueError('segments() needs at least one business unit name')
+        self.required_segments = names
 
     # exhibits, references and sources -------------------------------------------------
     def exhibit(self, key, headline, body, source, note=''):
@@ -204,13 +272,28 @@ class Report:
         if unknown:
             raise ValueError(f'Unknown investor questions {sorted(unknown)}; use {sorted(QUESTIONS)}')
         self.covered |= set(covers)
+        if covers and not any(isinstance(it, (Argument, Debate)) for it in items):
+            raise ValueError(f'Section {title!r} answers {sorted(covers)} but holds no Argument or Debate: it describes, '
+                             f'it does not analyse. Write each substantive point as an Argument with its evidence.')
+        if 'debate' in covers and not any(isinstance(it, Debate) for it in items):
+            raise ValueError(f'Section {title!r} covers the debate but holds no Debate block: each contested question '
+                             f'needs both cases, the claims tested, our answer, what it moves and what settles it.')
         body = [f'<div class="rail"><h2>{esc(title)}</h2><div class="take">{takeaway}</div></div>']
         for it in items:
             if isinstance(it, Sub):
                 body.append(f'<h3>{esc(it)}</h3>')
+            elif isinstance(it, Argument):
+                if it.segment:
+                    self.argued_segments.add(it.segment)
+                body.append(it)
             elif isinstance(it, Block):
                 body.append(f'<div class="wide">{it}</div>' if it.startswith('<figure') else it)
             else:
+                low = str(it).lower()
+                hit = next((w for w in JUDGEMENT if w in low), None)
+                if hit:
+                    raise ValueError(f'Section {title!r}: "{hit}" sits in a plain paragraph. A judgement belongs in an '
+                                     f'Argument with the evidence behind it: ' + str(it)[:80])
                 body.append(f'<p>{it}</p>')
         self.parts.append('<section class="sec">' + ''.join(body) + '</section>')
 
@@ -248,6 +331,10 @@ class Report:
         if missing:
             raise ValueError('No section answers: ' + '; '.join(missing) + '. Cover each in a section (covers=) or '
                              'drop it with omit(question, reason).')
+        unargued = [s for s in self.required_segments if s not in self.argued_segments]
+        if unargued:
+            raise ValueError('No Argument analyses these business units: ' + ', '.join(unargued)
+                             + '. Each declared segment needs an Argument(segment=...) citing its driver-build exhibit.')
         order, back = self._back()
         body = self.front_html + ''.join(self.parts) + back
         ex = {}

@@ -11,18 +11,32 @@ rl = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rl)
 
 
+SOURCES = [('syn', 'Synthetic publisher', 'Synthetic title', 'Example date', '')]
+
+
 def report(account_for_questions=True):
     r = rl.Report(company='Example <synthetic>', ticker='EXAMPLE', report='Test', date='Example date')
+    r.sources(SOURCES)
     if account_for_questions:
         for question in rl.QUESTIONS:
             r.omit(question, 'This isolated synthetic renderer test does not perform company research.')
     return r
 
 
+def arg(point='Invented point.', segment=None, evidence='Invented evidence{{src:syn}}.'):
+    return rl.Argument(point, evidence, 'Invented inference.', 'Invented implication.', segment=segment)
+
+
+def debate():
+    return rl.Debate('Synthetic question?',
+                     [('Claim one', 'Evidence one{{src:syn}}', 'supported'), ('Claim two', 'Evidence two{{src:syn}}', 'untested')],
+                     'Our invented answer.', 'It moves margin by 1 point.', 'Settled by the 1Q update in April 2027.')
+
+
 class ReportLayoutTests(unittest.TestCase):
     def test_unaccounted_investor_questions_prevent_rendering(self):
         r = report(account_for_questions=False)
-        r.section('Synthetic business', 'Fixture only', 'Invented business.', covers=('business',))
+        r.section('Synthetic business', 'Fixture only', arg('Invented business.'), covers=('business',))
         with self.assertRaisesRegex(ValueError, 'No section answers:'):
             r.html()
         for question in rl.QUESTIONS:
@@ -32,10 +46,69 @@ class ReportLayoutTests(unittest.TestCase):
 
     def test_combined_section_can_account_for_multiple_questions(self):
         r = report(account_for_questions=False)
-        r.section('Synthetic combined section', 'Fixture only', 'Synthetic content.', covers=tuple(rl.QUESTIONS))
+        r.section('Synthetic combined section', 'Fixture only', 'Synthetic content.', arg(), debate(),
+                  covers=tuple(rl.QUESTIONS))
         self.assertEqual(r.covered, set(rl.QUESTIONS))
         self.assertEqual(r.omitted, {})
         self.assertIn('Synthetic content.', r.html())
+
+    def test_covering_section_needs_an_argument_and_the_debate_needs_a_debate(self):
+        r = report()
+        with self.assertRaisesRegex(ValueError, 'no Argument or Debate'):
+            r.section('Described only', '', 'A paragraph that describes.', covers=('business',))
+        with self.assertRaisesRegex(ValueError, 'no Debate block'):
+            r.section('Debate without a verdict', '', arg(), covers=('debate',))
+        r.section('Context only, no coverage claimed', '', 'Plain context is allowed here.')
+
+    def test_argument_requires_cited_evidence_and_segment_arguments_cite_their_build(self):
+        with self.assertRaisesRegex(ValueError, 'must cite a source'):
+            rl.Argument('Point.', 'Evidence with no citation.', 'Inference.', 'Implication.')
+        with self.assertRaisesRegex(ValueError, 'nonempty inference'):
+            rl.Argument('Point.', 'Evidence{{src:syn}}.', '', 'Implication.')
+        with self.assertRaisesRegex(ValueError, 'driver build'):
+            arg(segment='Brand A')
+        built = arg(segment='Brand A', evidence='Stores and sales per store ({{ex:build}}).')
+        self.assertEqual(built.segment, 'Brand A')
+        self.assertNotIn('<b>', str(arg()))   # rendered as prose, without labels
+
+    def test_judgement_in_a_plain_paragraph_is_rejected(self):
+        r = report()
+        for text in ('We forecast growth of 5%.', 'Our view is that margins hold.', 'We side with the bulls.'):
+            with self.assertRaisesRegex(ValueError, 'belongs in an Argument'):
+                r.section('Loose judgement', '', text)
+        r.section('Judgement with evidence', '', arg('We forecast growth of 5%.'))
+        self.assertIn('We forecast growth of 5%.', r.html())
+
+    def test_debate_requires_claims_answer_quantified_effect_and_dated_test(self):
+        claims = [('Claim one', 'Evidence{{src:syn}}', 'supported'), ('Claim two', 'Evidence{{src:syn}}', 'contradicted')]
+        with self.assertRaisesRegex(ValueError, 'at least two claims'):
+            rl.Debate('Q?', claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027 update.')
+        with self.assertRaisesRegex(ValueError, 'cites the source or exhibit'):
+            rl.Debate('Q?', [('Claim', 'No citation', 'supported')] + claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027.')
+        with self.assertRaisesRegex(ValueError, 'Claim status'):
+            rl.Debate('Q?', [('Claim', 'Evidence{{src:syn}}', 'likely')] + claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027.')
+        with self.assertRaisesRegex(ValueError, 'with the number'):
+            rl.Debate('Q?', claims, 'Answer.', 'It moves the forecast.', 'April 2027.')
+        with self.assertRaisesRegex(ValueError, 'its date'):
+            rl.Debate('Q?', claims, 'Answer.', 'Moves 1 point.', 'The next update.')
+        with self.assertRaisesRegex(ValueError, 'nonempty answer'):
+            rl.Debate('Q?', claims, ' ', 'Moves 1 point.', 'April 2027.')
+        document = str(debate())
+        self.assertIn('Our answer.', document)
+        self.assertNotIn('The bear case.', document)   # bull and bear appear once, as priced scenarios
+        self.assertIn('Contradicted', str(rl.Debate('Q?', claims, 'A.', 'Moves 1 point.', 'April 2027.')))
+
+    def test_declared_business_units_each_need_an_argument(self):
+        r = report()
+        r.segments(['Brand A', 'Brand B'])
+        r.section('Units', '', arg(segment='Brand A', evidence='Stores x sales per store ({{ex:build}}).'),
+                  r.exhibit('build', 'Synthetic build', '<svg/>', 'Synthetic'))
+        with self.assertRaisesRegex(ValueError, 'Brand B'):
+            r.html()
+        r.section('Units B', '', arg(segment='Brand B', evidence='Units x price ({{ex:build}}).'))
+        self.assertIn('Stores x sales per store', r.html())
+        with self.assertRaises(ValueError):
+            report().segments([])
 
     def test_unknown_questions_and_empty_omission_reasons_are_rejected(self):
         r = report(account_for_questions=False)
