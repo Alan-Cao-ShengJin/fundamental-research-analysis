@@ -2,7 +2,7 @@
 name: research-challenge
 description: Fact-check and challenge an investment opinion, research thesis, valuation or strategy. Use for standalone devil's-advocate reviews or pre-decision scrutiny of unsupported claims, causal gaps, fragile assumptions and implementation risks.
 metadata:
-  version: 2.3.0
+  version: 2.5.0
 ---
 
 # Research challenge

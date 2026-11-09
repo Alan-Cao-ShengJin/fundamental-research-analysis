@@ -1,14 +1,16 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.8.0** contains **20 skills**, **11 research flows** and **20 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.9.0** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
-## Latest update: reviewed publication and financial-claim checks
+## Latest update: consistent periods, reasoning and decision artifacts
 
-Version 2.8.0 separates analysis, fresh writing, draft rendering, fresh review and checked publication. The supported package path now stops with a partial review and no ZIP, then requires current reviewed files, completed challenge checks and applicable financial assertions before finalization. Correction rounds are bounded; finalization preserves the exact reviewed PDF bytes.
+Version 2.9.0 adds dated NTM calculations over quarters, halves or irregular periods; changing-share profit/EPS bridges; definition-aware comparisons and incremental-flow coverage; and separate draft versions and actual started review attempts. Prior blocking findings survive revisions and failed/interrupted reviews retain their budget. Justified annual interpolation and contextual comparisons remain supported.
 
-Added generic cash-coverage, normalized valuation and convertible/share-state checks; model-bound displayed figures; a shorter institutional writing standard; inference-quality guidance and a synthetic transfer pack. The shared renderer fixes debate pagination, numeric alignment and price-event labeling, permits explicitly marked truncated waterfall axes, and requires summary statements for full initiations. Partial valuation changes require calibrated evidence rather than an arbitrary statistical haircut.
+Current publication also requires a [synchronized decision checkpoint](skills/report-layout/references/decision-record.md), with current spec/workbook hashes and model-bound trigger text. [Rendered measure bindings](skills/report-layout/references/claim-support.md#feasible-bridges-and-actual-displayed-figures) check actual printed signs and range endpoints against calculations. A [bounded bridge helper](skills/company-model/scripts/bounded_bridge.py) tests feasibility over stated independent linear ranges; it does not infer consensus components. Modeling guidance separates observed facts, inferred classifications, recognition/payment states and binding versus assumed deadlines. These controls prescribe no conservative forecast or matching target across analysts.
+
+Added an optical-networking activity guide, calendar-year comparison tooling where relevant, and original synthetic acceptance packs with clean-workspace preparation helpers. `AGENTS.md` and `CLAUDE.md` route ordinary requests such as “initiation on X” and “update view on X”; the user need not supply a checklist. The public coverage planner and research-only scope remain intact.
 
 The host still launches fresh writer/reviewer contexts. Completion and provenance checks do not authenticate reviewer independence or establish source truth, sound reasoning or consistent research scores. Older builders must migrate; historical integrity inspection is explicitly labeled `--legacy`. No runtime research controller or automatic semantic judge is included.
 

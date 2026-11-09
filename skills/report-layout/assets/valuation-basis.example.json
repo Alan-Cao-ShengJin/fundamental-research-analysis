@@ -1,0 +1,28 @@
+{
+  "status": "checked",
+  "reason": "",
+  "cases": [
+    {
+      "id": "bear", "selector": 1,
+      "period": "NTM", "benchmarkPeriod": "NTM",
+      "metricRef": "Valuation!D10", "multipleRef": "Valuation!D11", "targetRef": "Valuation!D12",
+      "sourceIds": ["matched-benchmark-source"],
+      "rationale": "Replace with the evidence for this scenario's anchor and adjustments."
+    },
+    {
+      "id": "base", "selector": 2,
+      "period": "NTM", "benchmarkPeriod": "NTM",
+      "metricRef": "Valuation!D10", "multipleRef": "Valuation!D11", "targetRef": "Valuation!D12",
+      "sourceIds": ["matched-benchmark-source"],
+      "rationale": "Replace with the primary anchor, comparable evidence and adjustments.",
+      "sensitivityPricing": [{"id": "material-input-shock", "period": "NTM"}]
+    },
+    {
+      "id": "bull", "selector": 3,
+      "period": "NTM", "benchmarkPeriod": "NTM",
+      "metricRef": "Valuation!D10", "multipleRef": "Valuation!D11", "targetRef": "Valuation!D12",
+      "sourceIds": ["matched-benchmark-source"],
+      "rationale": "Replace with evidence for the upside anchor and any financing/share effects."
+    }
+  ]
+}

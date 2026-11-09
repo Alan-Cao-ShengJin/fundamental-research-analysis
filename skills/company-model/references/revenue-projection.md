@@ -44,6 +44,10 @@ For a more specific activity, select an applicable [sector reference](sectors/in
 
 Product recipes or engineering ratios can cross-check the build; they do not override reconciled company actuals or establish undisclosed costs.
 
+## Emerging earnings streams
+
+A new product, architecture or customer program that drives the debate or a material share of out-year EPS needs its own bridge, however small its revenue today: adoption (customers, deployments, units or ports, with the evidence and dates behind its timing) → the company's content and share → revenue → gross and operating profit after its own ramp costs → after-tax, attributable EPS contribution, year by year. Where the new stream replaces an existing product, take the units from one shared total and let substitution lower the old line, so no unit is counted twice. Reconcile each year with dated management targets, capacity, contracted commitments and the customer spend it depends on, and show the bridge's EPS contribution beside the core business so the reader can see what the out-year forecast and the target rest on. A stream too uncertain to forecast stays out of the base case and is valued or argued separately, not hidden in another line's growth rate.
+
 ## Assumptions and revisions
 
 Classify editable judgements explicitly, including formulas that encode an assumption such as holding the prior year's margin. Record historical basis, forecast rationale, source/date, output sensitivity and uncertainty. Preserve user-authored notes. Workbook colours may reflect an existing legend but do not determine a value's classification.

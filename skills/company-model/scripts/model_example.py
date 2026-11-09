@@ -107,6 +107,7 @@ class Sheet:
 
 FREEZE = []   # (sheet, row, mode, derive, estimated columns)
 TAGS = {}     # (sheet, row) -> source tag that replaces the automatic one
+SENS = []    # declared sensitivities: model inputs shocked and recalculated when the model is built
 
 
 def prow(sh, k, label, unit, fn, note=None, pct=False, fmt=None, bold=False, mode='total', derive=None, est=(), cols=COLS,
@@ -319,10 +320,9 @@ _tgt rating price_hkd ref_date fx price_rmb eps26 eps27 eps28 fwd_eps mult tgt_r
 rerate .2
 _km pb roic roic_op .3
 _cons cons_eps26 cons_eps27 cons_ni26 cons_ni27 vs26 vs27 cons_tp cons_pe26 cons_pe27 .4
-_sin si_domrev si_domgp si_exprev si_expgp si_lightgp si_steel si_keep .5
-_sens s_head s1 s2 s3 s4 s5 .6
-_scen sc_head sc_bear sc_base sc_bull sc_built sc_chk .7
-_band bd_win bd_mean bd_sd bd_cons bd_conspos bd_own bd_ownpos .8
+_sens s_head s1 s2 s3 s4 s5 .5
+_scen sc_head sc_bear sc_base sc_bull sc_built sc_chk .6
+_band bd_win bd_mean bd_sd bd_cons bd_conspos bd_own bd_ownpos .7
 _peer p_head p1 p2 p3 p4 p_avg"""
 
 
@@ -990,40 +990,29 @@ def build_thesis():
     row('cons_pe26', 'P/E on consensus FY2026E', f'={D("price_rmb")}/{D("cons_eps26")}', 'x')
     row('cons_pe27', 'P/E on consensus FY2027E', f'={D("price_rmb")}/{D("cons_eps27")}', 'x')
 
-    sh.section('_sin', 'SENSITIVITY INPUTS, FY2027E (linked)')
-    rp = lambda k: f"={q(RP)}J{RR[k]}"  # noqa: E731
-    row('si_domrev', 'Domestic heavy-unit revenue', rp('r_dom'), 'RMB m')
-    row('si_domgp', 'Domestic heavy-unit gross profit', rp('g_dom'), 'RMB m')
-    row('si_exprev', 'Export heavy-unit revenue', rp('r_exp'), 'RMB m')
-    row('si_expgp', 'Export heavy-unit gross profit', rp('g_exp'), 'RMB m')
-    row('si_lightgp', 'Light-unit gross profit', rp('g_light'), 'RMB m')
-    row('si_steel', 'Steel share of heavy-unit cost of sales', f"={q(PRICES)}J{PR['share']}", '%', pct=True)
-    row('si_keep', 'EPS per RMB m of gross profit (after tax and minorities)',
-        f'=(1-{t3("tax_rate", "J")})*(1-{t3("mino_p", "J")})/{t3("shares", "J")}', 'RMB per RMB m', fmt='0.00000',
-        note='Operating costs held fixed, so a gross-profit change flows through tax and minorities to EPS.')
-    sh.section('_sens', 'SENSITIVITIES: FY2027E EPS (one shock at a time; largest first)')
+    sh.section('_sens', 'SENSITIVITIES: FY2027E EPS (one shock at a time, recalculated through the whole model)')
     for c, h in zip('BCDEFG', ['Thesis risk', 'Unit', 'Shock', 'EPS change, RMB', 'EPS change, %', 'Target change, HKD']):
         sh.put(f'{c}{R["s_head"]}', h, bold=True)
-    keep = D('si_keep')
-    for k, label, unit, shock, f in [
-            ('s1', 'Export price cut (competition from other exporters)', '%', -.05,
-             lambda r: f'={D("si_exprev")}*D{r}*{keep}'),
-            ('s2', 'Steel price rebounds without pass-through', '%', .10,
-             lambda r: f'=-({D("si_domrev")}-{D("si_domgp")}+{D("si_exprev")}-{D("si_expgp")})*{D("si_steel")}*D{r}*{keep}'),
-            ('s3', 'Export growth stalls (tariffs or credit): export units', '%', -.10,
-             lambda r: f'={D("si_expgp")}*D{r}*{keep}'),
-            ('s4', 'Domestic downturn deepens: industry volume', '%', -.10,
-             lambda r: f'=({D("si_domgp")}+{D("si_lightgp")})*D{r}*{keep}'),
-            ('s5', 'Domestic price war returns: domestic heavy margin', 'pt', -1,
-             lambda r: f'={D("si_domrev")}*D{r}/100*{keep}')]:
+    fy27 = lambda sheet, rows, k: [f'{sheet}!{c}{rows[k]}' for c in 'UVWX']  # noqa: E731
+    SENS.clear()
+    for k, label, unit, shock, inputs, mode in [
+            ('s1', 'Export competition: export heavy gross margin', 'pt', -.02, fy27(RP, RR, 'm_exp'), 'add'),
+            ('s2', 'Steel price rebounds without pass-through', '%', .10, fy27(PRICES, PR, 'steel'), 'scale'),
+            ('s3', 'Export growth stalls (tariffs or credit): export unit growth', 'pt', -.10, fy27(RP, RR, 'gr_exp'), 'add'),
+            ('s4', 'Domestic price war returns: domestic heavy margin', 'pt', -.01, fy27(RP, RR, 'gm_base'), 'add'),
+            ('s5', 'Domestic downturn deepens: industry volume growth', 'pt', -.10, fy27(RP, RR, 'gr_ind'), 'add')]:
         r = R[k]
         sh.put(f'B{r}', label)
         sh.put(f'C{r}', unit)
-        sh.put(f'D{r}', shock, 'input', pct=unit == '%')
-        sh.put(f'E{r}', f(r), fmt='0.000;(0.000);"–"')
+        sh.put(f'D{r}', shock, 'input', pct=True)
+        sh.put(f'E{r}', 0, 'actual', fmt='0.000;(0.000);"–"')   # the build writes the recalculated change here
         sh.put(f'F{r}', f'=E{r}/{D("eps27")}', pct=True)
         sh.put(f'G{r}', f'=E{r}*{D("mult")}/{D("fx")}', fmt='0.00;(0.00);"–"')
-    sh.note(R['s_head'], 'Shock sizes are inputs; each row moves one driver with operating costs fixed.')
+        SENS.append({'id': k, 'inputs': inputs, 'shock': f'{THESIS}!D{r}', 'mode': mode,
+                     'eps': f'{S3}!J{R3["eps"]}', 'shown': f'{THESIS}!E{r}'})
+    sh.note(R['s_head'], 'Each shock moves the named FY2027E model inputs and recalculates the whole model when it is built, '
+                         'so tax, minorities, financing and shares act as they do in the forecast. Rebuild after changing '
+                         'a shock or a driver; the model check fails on a stale row.')
 
     sh.section('_scen', 'SCENARIO OUTCOMES (each case recalculated when the model is built)')
     for c, h in zip('BCDEFG', ['Case', 'Multiple basis', 'FY2027E EPS, RMB', 'Target multiple', 'Target, HKD', 'Price return']):
@@ -1070,7 +1059,7 @@ def build_thesis():
 
 # ---------------------------------------------------------------- Valuation Band
 BAND_ORDER = """_stats cutoff obs mean sd p1 m1 p2 m2 avg10 avg5 avg3 .1 _today eps_cons price fx pe_cons pos_cons eps_own pe_own
-pos_own .2 _impl impl_head impl_mean impl_p1 impl_m1"""
+pos_own .2 _impl impl_head impl_mean impl_p1 impl_m1 .3 _alt alt_head alt1 alt2 alt3 alt4"""
 BAND_COLORS = ['1B2A41', 'A6A6A6', '1F6F78', '6E7F96', '6E7F96', '8DBCC1', '8DBCC1']
 BAND_DASH = ['solid', 'solid', 'solid', 'dash', 'dash', 'sysDot', 'sysDot']
 
@@ -1125,6 +1114,23 @@ def build_band():
         sh.put(f'C{r}', 'HKD')
         sh.put(f'D{r}', f'={V(ref)}*{V("eps_cons")}/{V("fx")}')
         sh.put(f'E{r}', f'={V(ref)}*{V("eps_own")}/{V("fx")}')
+    sh.section('_alt', 'WINDOW ALTERNATIVES (each start is a dated economic event or a conventional lookback)')
+    for c, h in zip('BCDEFG', ['Window', 'Months', 'Mean P/E', 'Target on our EPS, HKD', 'Price return', 'Rating']):
+        sh.put(f'{c}{R["alt_head"]}', h, bold=True)
+    for k, lab, months in [('alt1', 'Chosen: since the export-led shape settled (Nov 2021)', None),
+                           ('alt2', 'Ten years, including the earlier domestic-led mix', n),
+                           ('alt3', 'Three years', 36),
+                           ('alt4', 'Since the domestic downturn began (Jul 2026)', 4)]:
+        r = R[k]
+        sh.put(f'B{r}', lab)
+        sh.put(f'C{r}', f'={V("cutoff")}*12' if months is None else months, fmt='0')
+        sh.put(f'D{r}', f'={V("mean")}' if months is None else f'=AVERAGE(F{last - months + 1}:F{last})', fmt='0.0')
+        sh.put(f'E{r}', f'=D{r}*{V("eps_own")}/{V("fx")}', fmt='0.00')
+        sh.put(f'F{r}', f'=E{r}/{V("price")}-1', pct=True)
+        sh.put(f'G{r}', f'=IF(F{r}>0.1,"Buy",IF(F{r}<-0.1,"Sell","Hold"))', text=True)
+    sh.note(R['alt_head'], 'The chosen window starts at the event its rationale names. Alternatives show what each defensible '
+                           'start would give; when one crosses a rating threshold, the valuation text says so and argues '
+                           'the choice. The downturn window fits only if the evidence shows a lasting new regime; here it is temporary.')
     for c, h in zip('BCDEFGHIJKLMNOP', ['Month', 'Price, HKD', 'RMB per HKD', 'Forward EPS, RMB', 'Forward P/E',
                                         'Months before latest', 'In window', 'P/E in window', 'Window P/E', 'Excluded history',
                                         'Mean', '+1 SD', '-1 SD', '+2 SD', '-2 SD']):
@@ -1460,6 +1466,10 @@ def spec():
                     'target.HKD': f'{THESIS}!D{TR["tgt_hkd"]}', 'priceReturn': f'{THESIS}!D{TR["ret"]}',
                     'check.FY2027E': f'{S3}!J{R3["check"]}', 'check.4Q27E': f'{S3}!X{R3["check"]}'}
     freeze(s)
+    s['sensitivities'] = [dict(d) for d in SENS]
+    for d in s['sensitivities']:
+        sheet, address = d['shown'].split('!')
+        s['sheets'][sheet]['cells'][address]['value'] = mw.recalculated(s, d)[1]
     result = mw.calculate(s)
     for k, case in [('sc_bear', 'Bear'), ('sc_base', 'Base'), ('sc_bull', 'Bull')]:
         THSHEET.d['cells'][f'D{TR[k]}']['value'] = result[case]['outputs']['eps.FY2027E']

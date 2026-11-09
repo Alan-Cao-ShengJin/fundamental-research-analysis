@@ -8,11 +8,13 @@ Apply [request routing](../../research-cycle/references/request-routing.md) befo
 
 Retrieve the original/latest [conviction record](../../investment-conviction/SKILL.md) along with the model. Preserve its decisive proposition, supporting/contrary evidence, original milestones and any active avoidance conditions. Evaluate new observations against that record in the major-update learning pass; price, forecast and belief changes need separate explanations. Revise a mistaken belief openly rather than substitute another story and label it unchanged.
 
-Identify the security/perimeter, model version and executable backend, sources/assumptions, frozen forecast, calculation checks, valuation inputs and prior decision. Preserve the pre-update state before editing; reliable immutable versions or version history can satisfy this without copying the entire research directory.
+Take the latest usable components, not simply the latest folder: a study that was never released, or whose review left material findings open, contributes its valid evidence and checked components, while its open findings carry forward as unresolved and its conclusion is not reused. Identify the security/perimeter, model version and executable backend, sources/assumptions, frozen forecast, calculation checks, valuation inputs and prior decision. Preserve the pre-update state before editing; reliable immutable versions or version history can satisfy this without copying the entire research directory.
 
 Reproduce material baseline outputs where possible. Check accounting definitions, model structure, share rights, period mapping and risk assumptions. Reuse unchanged artifacts with their real evidence dates; version changed or explicitly revalidated work rather than stamping every stage as newly completed. Do not retrieve all historical sources again just to refresh timestamps.
 
 If only a narrative report or unrecalculable workbook exists, identify missing calculation/source support. Continue useful source analysis, but do not fabricate an EPS/target bridge. Reconstruct the necessary baseline explicitly, or use [stock initiation](../../stock-initiation/SKILL.md) when a new investment case is needed. Major acquisitions, accounting/perimeter changes, an unusable baseline or a broken thesis can reopen broader stages. Age alone does not require starting over.
+
+For behavioral calibration of the short update entrypoint, the [Alder fixtures](../../evals/fixtures/README.md) separate a price-only review from an official earnings update using a genuinely checked prior model. Their host-only staging and grading are not additional user prompt requirements or a production issuer template.
 
 ## Map evidence to assumptions
 
@@ -23,6 +25,10 @@ Distinguish actual-versus-forecast surprise, guidance-versus-aspiration, correct
 When actuals replace forecasts, compare on the original basis before rolling the horizon. Keep restated-history errors distinct from what was knowable at the time. Preserve unsupported statements as uncertain or reject them; do not force a model change to match them.
 
 For major updates, compare actuals with the frozen forecast before recalibration. Explain offsetting errors and unresolved causes in the same assumption table; guidance is not an actual outcome. Unobservable event effects remain unscored.
+
+For earnings updates, keep a short inventory of material newly reported flows and the comparable earlier disclosures. When both are cumulative from the same start, derive the latest non-overlapping period by subtraction and reconcile it to the cumulative total. Include cash, operating profit or other flows when they can change the interpretation; do not limit the pass to EPS. Use the saved forecast for the same period where it exists; absence of a matched forecast is not permission to invent one. Identify reversals, restocking, advance collections, tax timing or other explanations with their actual source status. Quantify a contribution before calling it most of a cash result.
+
+Only additive amounts subtract directly. For changing shares, derive incremental attributable profit and use the period's appropriate weighted shares; subtracting cumulative EPS is not generally valid. Ratios need numerator/denominator bridges, balances need stock movements, and changed currency, perimeter or restated history needs an explicit comparable-basis reconciliation. Record unavailability or noncomparability with the relevant sources. For publication, populate `coverage.incremental-flows.candidates` and applicable `incremental-flow` assertions under the [claim controls](../../report-layout/references/claim-support.md); the reader checks that material candidates were not omitted. Keep this analytical inventory out of the brief, which selects only decision-relevant findings.
 
 ## Recalculate affected economics and risk
 

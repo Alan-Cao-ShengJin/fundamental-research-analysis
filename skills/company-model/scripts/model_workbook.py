@@ -10,7 +10,11 @@ SPEC.json:
   "cells": {"B7": {"value": "Revenue"}, "D7": {"value": 1200, "kind": "actual"},
             "G7": {"value": "=F7*(1+G8)"}, "G8": {"value": 0.1, "kind": "input", "pct": true}}}},
  "scenario": {"cell": "Cover!D9", "cases": ["Bear", "Base", "Bull"]},
- "outputs": {"eps.FY2027": "Statements!G44"}}
+ "outputs": {"eps.FY2027": "Statements!G44"},
+ "sensitivities": [{"id": "s1", "inputs": ["Statements!G8"], "shock": -0.02, "mode": "add",
+                    "eps": "Statements!G44", "shown": "Valuation!E60"}]}
+Each declared sensitivity is recalculated through the whole model; `check` fails when the EPS change a table
+shows differs from that recalculation (see sensitivities()).
 
 Cell kinds: actual (blue), input/judgment (blue on light yellow), calculation (black; green when it
 links to another sheet; dark grey italic for ratios; bold black for spec outputs).
@@ -739,6 +743,55 @@ def same_formula(a, b):
     return norm(a) == norm(b)
 
 
+def shocked(spec, inputs, shock, mode):
+    """A copy of the specification with each input cell moved by the shock: 'add' adds it, 'scale' multiplies by 1+shock."""
+    s = copy.deepcopy(spec)
+    for ref in inputs:
+        sheet, address = target(ref, '')
+        cell = s['sheets'][sheet]['cells'].get(address)
+        if cell is None or not numeric(cell.get('value')):
+            raise ModelError(f'Sensitivity input {ref} is not a numeric cell')
+        v = cell['value']
+        if is_formula(v):
+            cell['value'] = f'=({v[1:]})+{shock!r}' if mode == 'add' else f'=({v[1:]})*(1+{shock!r})'
+        else:
+            cell['value'] = v + shock if mode == 'add' else v * (1 + shock)
+    return s
+
+
+def recalculated(spec, d, base=None):
+    """(EPS, EPS change) for one declared sensitivity, recalculated through the whole model."""
+    base = base or Engine(spec)
+    shock = d['shock']
+    if isinstance(shock, str):
+        shock = base.value(*target(shock, ''))
+    eps = base.value(*target(d['eps'], ''))
+    moved = Engine(shocked(spec, d['inputs'], shock, d.get('mode', 'add'))).value(*target(d['eps'], ''))
+    return eps, moved - eps
+
+
+def sensitivities(spec):
+    """Recalculate the whole model for each declared sensitivity and compare the EPS change it shows.
+
+    spec["sensitivities"] = [{"id": "s1", "inputs": ["Revenue Build!J20"], "shock": "Valuation!D60" or 0.05,
+                              "mode": "add" or "scale", "eps": "Statements!J45", "shown": "Valuation!E60"}]
+    A shortcut formula or a stale snapshot passes only when it reproduces the model's own tax, ownership, financing and
+    share mechanics; the tolerance is 5% of the recalculated change or 0.1% of EPS, whichever is larger."""
+    issues, base = [], Engine(spec)
+    for d in spec.get('sensitivities', []):
+        sid = d.get('id', '?')
+        try:
+            eps, delta = recalculated(spec, d, base)
+            shown = base.value(*target(d['shown'], ''))
+        except (KeyError, TypeError) as exc:
+            issues.append({'sensitivity': sid, 'reason': f'declaration needs inputs, shock, eps and shown ({exc})'})
+            continue
+        if abs(shown - delta) > max(0.05 * abs(delta), 0.001 * abs(eps), 1e-9):
+            issues.append({'sensitivity': sid, 'reason': 'shown EPS change differs from full-model recalculation',
+                           'shown': shown, 'recalculated': delta, 'eps': eps})
+    return issues
+
+
 def check(spec, path):
     """Compare formulas, inputs, output names and recalculated caches with the specification."""
     from openpyxl import load_workbook
@@ -792,6 +845,7 @@ def check(spec, path):
             for c in row:
                 if c.data_type == 'e' and f'{ws.title}!{c.coordinate}' not in na_cells:
                     issues.append({'cell': f'{ws.title}!{c.coordinate}', 'reason': str(c.value)})
+    issues += sensitivities(spec)
     return {'passed': not issues, 'numericCellsChecked': count, 'issues': issues[:200],
             'workbookSHA256': hashlib.sha256(Path(path).read_bytes()).hexdigest()}
 

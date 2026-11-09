@@ -34,6 +34,25 @@ class ModelWorkbookTests(unittest.TestCase):
         self.assertAlmostEqual(r['Base']['outputs']['profit.next'], 66.0)
         self.assertAlmostEqual(r['Bull']['outputs']['profit.next'], 72.0)
 
+    def test_sensitivity_must_reproduce_the_models_own_ownership_mechanics(self):
+        cells = {'D2': 100, 'D3': 0.2, 'D4': 100, 'D5': 0.3, 'D8': 0.25, 'D9': 0.4, 'D11': 10, 'D14': -0.05}
+        cells = {a: {'value': v, 'kind': 'input'} for a, v in cells.items()}
+        cells.update({a: {'value': f} for a, f in {
+            'D6': '=D2*D3', 'D7': '=D4*D5', 'D10': '=(D6+D7*(1-D9))*(1-D8)', 'D12': '=D10/D11',
+            'D13': '=D7*D9/(D6+D7)',                       # group-wide minority share
+            'D15': '=D2*D14*(1-D8)*(1-D13)/D11',          # shortcut: group minority applied to a wholly owned unit
+            'D16': '=D2*D14*(1-D8)/D11'}.items()})        # the unit's own ownership
+        spec = {'sheets': {'M': {'lastColumn': 'D', 'cells': cells}},
+                'sensitivities': [{'id': 'margin', 'inputs': ['M!D3'], 'shock': 'M!D14', 'mode': 'add',
+                                   'eps': 'M!D12', 'shown': 'M!D15'}]}
+        issues = m.sensitivities(spec)
+        self.assertEqual(len(issues), 1)
+        self.assertAlmostEqual(issues[0]['recalculated'], -0.375); self.assertAlmostEqual(issues[0]['shown'], -0.285)
+        spec['sensitivities'][0]['shown'] = 'M!D16'
+        self.assertEqual(m.sensitivities(spec), [])
+        spec['sensitivities'][0].update(inputs=['M!D2'], mode='scale', shock=-0.1)   # a scaled formula-free input
+        self.assertEqual(len(m.sensitivities(spec)), 1)
+
     def test_missing_input_and_circular_reference_fail(self):
         s = fixture(); s['sheets']['Revenue Projection']['cells']['E10']['value'] = None
         with self.assertRaisesRegex(m.ModelError, 'Missing input'):m.calculate(s)
@@ -114,6 +133,15 @@ class ModelExampleTests(unittest.TestCase):
         self.assertEqual(list(self.spec['sheets']), ['Cover', 'Summary', 'Valuation', 'Valuation Band', 'Scenarios',
                                                      'Revenue Build', 'Statements', 'Data', 'Input Prices', 'Guidance',
                                                      'Questions', 'Checks'])
+
+    def test_sample_sensitivities_are_full_model_recalculations(self):
+        self.assertEqual(len(self.spec['sensitivities']), 5)
+        self.assertEqual(m.sensitivities(self.spec), [])
+        stale = copy.deepcopy(self.spec)
+        first = stale['sensitivities'][0]
+        sheet, address = first['shown'].split('!')
+        stale['sheets'][sheet]['cells'][address]['value'] *= 0.7       # a snapshot left from an earlier model
+        self.assertEqual([i['sensitivity'] for i in m.sensitivities(stale)], [first['id']])
 
     def test_dividend_yield_uses_the_selected_forward_earnings_year(self):
         valuation_rows, statement_rows = self.x.THSHEET.R, self.x.S3SHEET.R

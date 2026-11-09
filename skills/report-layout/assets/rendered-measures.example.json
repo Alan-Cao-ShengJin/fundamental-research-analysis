@@ -1,0 +1,24 @@
+{
+  "id": "payout-display",
+  "kind": "rendered-measure",
+  "claimId": "historical-payout",
+  "location": "Historical payout comparison in the report",
+  "sourceIds": ["original-cash-disclosures"],
+  "rationale": "Signed cash outflows divided by matched profits are displayed as positive payout magnitudes, not attributed earnings-year entitlements.",
+  "values": [
+    {"modelFormula": "=History!D8/History!C6"},
+    {"modelFormula": "=History!E8/History!D6"}
+  ],
+  "displays": [
+    {
+      "document": "deliverables/report.html",
+      "id": "cash-paid-profit-range",
+      "period": "FY2030A-FY2031A",
+      "unit": "ratio",
+      "style": "percent",
+      "decimals": 0,
+      "transform": "magnitude",
+      "order": "ascending"
+    }
+  ]
+}

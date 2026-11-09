@@ -1,0 +1,49 @@
+{
+  "reportedHalf": {
+    "period": "1H FY2027",
+    "coreRevenue": 720,
+    "coreOrders000": 680,
+    "coreGrossProfit": 187.2,
+    "coreOpex": 120,
+    "jointRevenue": 250,
+    "jointGrossProfit": 55.0,
+    "jointOpex": 29,
+    "corporateCost": 10.3,
+    "netFinanceCost": 2,
+    "preTax": 80.89999999999999,
+    "tax": 16.18,
+    "groupProfit": 64.72,
+    "minorityProfit": 8.32,
+    "attributableProfit": 56.4,
+    "shares": 100,
+    "eps": 0.564
+  },
+  "balanceSheet": {
+    "cash": 139.52,
+    "receivables": 205,
+    "inventory": 238,
+    "ppe": 164,
+    "rou": 30,
+    "otherAssets": 30,
+    "payables": 162,
+    "accruals": 66,
+    "debt": 161.352,
+    "leases": 30,
+    "parentEquity": 353.344,
+    "minorityEquity": 33.824
+  },
+  "cashFlow": {
+    "operating": 87.72,
+    "capex": 15,
+    "leasePrincipal": 5,
+    "parentDividends": 30,
+    "minorityDividends": 3.2,
+    "netBorrowing": 5,
+    "openingCash": 100,
+    "closingCash": 139.52,
+    "jointAfterInvestment": 14,
+    "jointDividends": 8
+  },
+  "price": 18.1,
+  "priceDate": "2027-02-09"
+}

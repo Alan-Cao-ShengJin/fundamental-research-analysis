@@ -30,7 +30,19 @@ Apply [capital-return and investment tests](competition-and-capital-returns.md#t
 
 Use the issuer's accounting framework and actual schedules. Simplifying assumptions are permitted when justified and labelled; omitted material funding or reinvestment is a model gap.
 
+## Classification, recognition and payment states
+
+For a material item whose classification or timing affects the decision, put the observed fact and each inferred state beside its schedule. Record: source amount and covered dates; economic/earnings attribution; recognition in profit, equity, assets or liabilities; cash settlement; and any distinct covenant, regulatory or other constraint treatment. Use only the states relevant to the business. A date or classification can be unknown without the amount itself being unknown.
+
+Assign each transition its source locator or an explicit analyst assumption and reason. A payment before a results publication does not establish the earnings year it belongs to. A policy or intent is not a declaration, an accounting liability or a cash payment. A legal or regulatory rule needs issuer-specific applicability and a reconciliation to amounts already included; do not import a generic rule as a disclosed company adjustment. Roll the relevant opening/closing states and recognize an effect once in each applicable schedule. The same event can properly affect both cash and equity, but not at an unsupported date or twice in the same state.
+
+Separate mandatory minima and contractual dates from management objectives and analyst-selected restoration schedules. Show coverage against the constraint actually being discussed; a goal with no deadline does not create an immediate funding obligation. State any assumed catch-up date in both the calculation and its conclusion. A minimum-only calculation does not establish legal access, management willingness or prudent distribution capacity.
+
+Choose a supported central convention when the evidence is incomplete. Quantify a plausible alternative when it changes the call or the pivotal conclusion, carrying the condition into the brief. These tests also apply to receivables, contract revenue, restructuring, tax, grants, buybacks and financing; they do not impose a dividend calendar or sector-wide accounting treatment.
+
 ## Cash flow and financing closure
+
+Name whose cash each metric measures. Group cash after investment is not automatically cash belonging or available to parent shareholders: distinguish non-owner economic claims, actual partner distributions and restrictions on retained subsidiary/JV cash. Reconcile those boundaries to the capital denominator before presenting an owner cash yield or payout cover. Do not subtract both economic minority cash and the same partner dividend, or impose a haircut when the cash is wholly owned and accessible. A consolidated proxy may be shown with its limitation; banks and insurers need their appropriate capital/distribution measures. The [claim-support checks](../../report-layout/references/claim-support.md) verify declared arithmetic, not legal access or extraction.
 
 Start from the appropriate earnings subtotal and bridge noncash charges, equity-method income/distributions, working capital and cash tax/interest consistently. Add investing cash flows, then financing cash flows and distributions. Classify leases under the applicable framework and keep valuation treatment consistent.
 

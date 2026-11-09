@@ -4,15 +4,23 @@ Apply the [target definition](../../investment-conclusion/references/decision-co
 
 Keep headline P/E on current forward earnings. The target applies the target multiple to the same forward earnings, a price the stock should reach within twelve months. Do not roll the earnings forward to the target date.
 
+Keep the economic anchor on that period too. Multiplying another period's EPS by its peer multiple, then dividing the result by current-forward EPS to print a forward multiple, is a restatement of a different target basis. It does not satisfy this convention. A comparison on another calendar/fiscal period may inform a supported multiple judgment, with the bridge and its limitations stated; it does not silently replace the target denominator. Bear, base, bull and material sensitivity prices retain the selected target convention. The publication [economic-basis contract](../../report-layout/references/publication-review.md#review-packet-and-financial-assertions) records their actual anchors and tests exact inverse-EPS cancellation. It does not decide which company deserves a premium.
+
 For ordinary next-year fiscal P/E, establish the issuer's naming convention from the research date: a December-year-end issuer researched in the fourth calendar quarter of year N has open FY N and next FY N+1; a March-year-end issuer researched then may already name its open year FY N+1, with next FY N+2. Take N from the [research date](../../research-cycle/SKILL.md#start-from-the-task), not from memory or a skill example. NTM, mid-cycle or milestone earnings can be more informative; retain the current-forward comparison and explain the choice.
 
 Derive NTM weights from the fiscal calendar at the selected anchor date. Prefer supported quarterly detail for seasonal businesses; identify annual-weight approximations and test material seasonality. Align peers and historical observations to the same forward convention, accounting and share basis. Historical forward ratios require estimates available at those historical dates.
+
+For publication, [dated NTM controls](../../report-layout/references/dated-ntm.md) support explicit quarter/half/irregular-period coverage as well as annual interpolation. Choose the forecast profile on economic support, not because one method is accepted by a checker or gives a preferred call. If a credible alternative changes the target or rating materially, show it and explain the primary choice. Within-period allocation is still approximate; finer rows without evidence do not create a better forecast. Do not add EPS across changing weighted-share counts; use attributable profit and time-weighted shares on a common scale.
 
 `current forward P/E = reference price / current forward EPS`
 
 `target price = our selected current-forward EPS * justified target multiple`
 
 Include currency conversion where required. Across dated reviews, separate changes in the current earnings window, forecast revisions and multiples. Within one fixed current-forward target calculation, there is no earnings-period roll; with identical EPS at both endpoints the earnings contribution is zero. Recompute targets, returns and ratings when a period error is corrected, preserving the prior dated decision. Profit terminology follows the [writing guide](../../research-brief/references/natural-writing.md#profit-labels-and-valuation-language).
+
+## Calendar-year comparisons
+
+Show calendar-year EPS beside the fiscal figures when the investors, the valuation convention or the comparison set work in calendar years; a non-December fiscal year alone does not require it, and the fiscal or NTM basis stays when that is how the stock is compared. Build it from the quarterly forecast, mapping each fiscal quarter by its actual end date ([calendarize.py](../../company-model/scripts/calendarize.py)): a comparison convention, not a day-by-day reallocation of earnings. Use calendar profit over time-weighted shares; an equal-quarter weighting, or interpolation of annual figures where quarterly detail is missing, is an approximation to label. Fiscal statements stay the reporting basis. Compare our calendar EPS only with consensus, peer and band figures on the same calendar window, and keep the target on the forward period the house rule names: a calendar year shown for comparison is not the target's earnings period, and neither is the target date.
 
 ## Own forecast and consensus P/E
 

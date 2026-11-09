@@ -56,7 +56,8 @@ In this order, named in plain words:
 - Carry history beside the forecast, quarterly where disclosed.
 - Give gross margin and gross profit for each segment, and reconcile revenue, cost of sales and gross profit to the group.
 - For the businesses that drive profit, build unit economics: price, cost and profit per unit, and a segment P&L with its share of group profit.
-- Test guidance targets, incentive hurdles and the quarter the forecast implies, as their own rows. A forecast below an incentive hurdle needs a stated reason ([corporate governance](../../corporate-governance/SKILL.md)).
+- An earnings stream that drives the debate or out-year EPS gets its own [adoption-to-EPS bridge](revenue-projection.md#emerging-earnings-streams), even while it is small.
+- Test guidance targets, multi-period outlooks, capacity plans, backlog and purchase commitments, incentive hurdles and the quarter the forecast implies, as their own rows: the dated statement, the model value in the matching period, the gap and the constraint that binds. A forecast below an incentive hurdle needs a stated reason ([corporate governance](../../corporate-governance/SKILL.md)).
 
 **Data.** Monthly or quarterly operating data in one clean table:
 
@@ -80,7 +81,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 - Why we invest, in a few numbered points, each a driver the target depends on ([research challenge](../../research-challenge/SKILL.md)).
 - The target price table, linked live to model EPS and DPS and the current price: target multiple, target, upside, dividend yield on the same forward year as the target EPS, and current P/E on two fiscal years.
 - Consensus comparison: profit, EPS and target.
-- One sensitivity table: thesis risk, shock size (an input), EPS change, EPS change % and target change, sorted by impact; inputs the shocks need sit in their own block above it.
+- One sensitivity table: thesis risk, shock size, EPS change, EPS change % and target change, sorted by impact. Each shock moves named model inputs and is recalculated through the whole model when it is built, declared under `sensitivities` in the specification, so tax, each unit's minority share, financing and the target EPS's share basis act as they do in the forecast; `model_workbook.py check` fails a row that does not reproduce. One tax rate × one group minority share ÷ one share count is a shortcut, not a sensitivity.
 - Peers: P/E for two years, EPS growth, P/E per growth point and market value, each average labelled with its sample, the closest same-market peers doing the same business first.
 - Scenario outcomes recalculated on every build, with the build date and a check that the active case matches the live model.
 - A summary of the valuation band.
@@ -92,6 +93,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 - Today's P/E on consensus EPS and on our EPS, each with its position in SD.
 - The prices implied at the mean and ±1 SD on both earnings bases.
 - A chart that draws the mean and SD lines only inside the chosen window, shows excluded history in grey, and scales the axis to the window rather than past peaks.
+- Window alternatives: each defensible start (a dated event or a conventional lookback) with its mean, observations, target and rating, the chosen window first.
 - Where a trailing band helps, put it beside the forward band with its own label, on reported EPS from the filings at their announcement dates.
 - Use P/B bands for cyclicals and yield bands for dividend payers in the same way ([own historical valuation](../../valuation-thesis/references/method-selection.md#the-companys-own-historical-forward-valuation)).
 
@@ -105,6 +107,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 
 - One bear/base/bull selector that drives every case, with each case's driver values shown side by side.
 - Key metric rows: our forward P/E, P/B, dividend yield and next-year ROIC.
+- Where the investors, the valuation convention or the comparison set work in calendar years, calendar-year rows built from the quarters by their end dates with time-weighted shares ([calendarize.py](../scripts/calendarize.py)); fiscal rows stay the reporting basis.
 - Consensus comparison rows next to our forecasts.
 - Decision rows: rating, target multiple, target, price return, dividend yield and total return.
 - Dividend schedule where distributions matter.

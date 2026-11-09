@@ -1,0 +1,22 @@
+{
+  "valuationBasis": {
+    "method": "Synthetic asset-based example",
+    "assetPeriod": "FY2031E",
+    "sustainableMetricPeriod": "FY2032E",
+    "sustainableMetric": null,
+    "rationale": "Illustrative normalization after a transition, to be justified with this project's evidence."
+  },
+  "invalidation": {"condition": ""},
+  "bindings": [
+    {"pointer": "/valuationBasis/sustainableMetric", "model": "Economics!D8"}
+  ],
+  "boundText": [
+    {
+      "pointer": "/invalidation/condition",
+      "template": "Reassess if the measured return falls below {return_floor}.",
+      "inputs": {
+        "return_floor": {"model": "Thresholds!D9", "style": "percent", "decimals": 2}
+      }
+    }
+  ]
+}

@@ -26,6 +26,7 @@ mechanism and record what remains uncovered; do not force an unrelated template.
 | Subscription/usage software | Retention and expansion, recognition, sales capacity and hosting cost | [Software](saas.md) |
 | Chips, fabrication, memory, tools and IP | End demand/content, capacity/yield, inventory and capital cycle | [Semiconductors](semiconductors.md) |
 | Devices, servers and contract manufacturing | Units, selling prices, material costs, channel inventory and services | [Hardware](hardware.md) |
+| Lasers, optical modules and optical switching | Ports by network tier and architecture, content per port, capacity and emerging-line bridges | [Optical networking](optical-networking.md) |
 | Ads, marketplaces and platforms | Impressions/price or GMV/net take, subsidies and segment cash | [Platforms](internet-platform.md) |
 | Games, media and content rights | Payer/release cohorts, rights, content cash and amortisation | [Media](media-gaming.md) |
 | Deposit-funded lending | Average balances/spreads, credit migration, liquidity and capital | [Banks](banks.md) |

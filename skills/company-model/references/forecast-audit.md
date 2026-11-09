@@ -35,6 +35,8 @@ For each assumption that can change the call, the model shows its value, basis, 
 
 Decompose a consensus gap into starting base, volume, price/mix, margins, costs, tax, shares and omitted items. Do not calibrate the model to consensus or decide a broker is wrong solely because it differs. If no comparable consensus exists, say so and continue using clearly attributed scenarios.
 
+Where component estimates are absent, audit the bridge as a conditional reconciliation, not an identified contributor forecast. Apply the [counterexample/feasibility test](benchmark-comparison.md#a-conditional-bridge-is-not-a-unique-explanation) before asserting that an aggregate target requires particular driver assumptions. Review material [classification and timing states](statement-forecast.md#classification-recognition-and-payment-states), including unsourced attribution and assumed target-restoration deadlines, separately from the arithmetic.
+
 For a broker/model comparison, apply [benchmark comparison](benchmark-comparison.md), including source-period mapping, opposing component bets, exact profit bridges and cash-definition differences. Reconcile material operating allocations to the latest observed economics: a disclosed historical residual or a passing formula check does not validate forecast margins, product mix or expense leverage. Retain the distinction between benchmark differences and errors subsequently observed against actuals.
 
 Validate downside cases and operational constraints. Mark sensitivity arithmetic as calculation rather than causal proof. Update all dependent valuation/thesis/question/brief artifacts and fixed prose after model revisions.

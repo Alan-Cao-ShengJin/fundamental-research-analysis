@@ -2,7 +2,7 @@
 name: research-brief
 description: Write a selective, decision-focused investment brief on one readable page using the shared minimalist template and institutional research writing standard. Also write developed stock pitches, results notes and decision updates at the requested depth.
 metadata:
-  version: 3.8.0
+  version: 3.9.1
 ---
 
 # Stock pitch, decision brief and research update
@@ -62,6 +62,8 @@ For a material number, make the source or forecast build visible before interpre
 Use [chart visualization](../chart-visualization/SKILL.md) for AntV construction and the shared professional theme. Each figure should replace explanation, use current model/evidence data, distinguish actual/forecast values and preserve essential information without hover or JavaScript. Inspect the rendered desktop/mobile/export result as applicable; text inspection alone does not verify layout. Avoid decorative charts and tables filled with paragraph-length text.
 
 ## Evidence and final verification
+
+Write from the synchronized [decision checkpoint](../report-layout/references/decision-record.md) and bind material prose calculations/ranges using the [shared display contract](../report-layout/references/claim-support.md#feasible-bridges-and-actual-displayed-figures). Keep a negative cash-flow sign distinct from a positive payout magnitude, and preserve the relevant payment/earnings year and constraint deadline. A conditional bridge to aggregate earnings must not become a claim about the only possible contributor assumptions when shortened for the brief.
 
 Recompute quoted values from current artifacts. Check period/YTD, reported/adjusted basis, currency/scale, basic/diluted shares, quote status/date and same-horizon scenario returns. Preserve management qualifiers. Separate prospective dividends from price upside, avoid counting past distributions or buybacks twice, and keep rounding consistent. Use the applicable rendering workflow for requested document/spreadsheet formats.
 

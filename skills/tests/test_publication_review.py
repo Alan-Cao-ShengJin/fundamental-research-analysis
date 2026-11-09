@@ -1,5 +1,6 @@
 """Real release-boundary and financial-definition regressions; no LLM quality scores are asserted."""
 import copy
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import sys
@@ -42,6 +43,36 @@ class PublicationReviewTests(unittest.TestCase):
         self.f.write('deliverables/report.html', 'Changed investment argument')
         self.assertIn('draft-review-files-current', self.failures())
 
+    def test_formatted_prose_span_needs_a_source_or_calculation_binding(self):
+        html=fixtures.report_html()+rl.bound_measure('unbound',.12,'FY2031E','ratio',style='percent')
+        self.f.write('deliverables/report.html',html)
+        self.prepared()
+        self.assertIn('rendered-measures-covered:deliverables/report.html',self.failures())
+
+    def test_decision_is_automatically_frozen_and_cannot_change_after_review(self):
+        p=self.prepared()
+        self.assertIn('evidence/decision.json',p['reviewedFiles'])
+        self.f.write('evidence/decision.json','{"changed":"trigger"}')
+        self.assertIn('draft-review-files-current',self.failures())
+
+    def test_general_bound_prose_passes_the_full_review_check_and_wrong_text_fails(self):
+        html=fixtures.report_html()+rl.bound_measure('yield',.0355,'FY2027E','ratio',style='percent',decimals=1)
+        self.f.write('deliverables/report.html',html)
+        p=self.prepared()
+        p['claimAssertions']=[{'id':'yield-display','kind':'rendered-measure','claimId':'fixture',
+            'location':'Report yield paragraph','sourceIds':['file-0'],'rationale':'Synthetic model ratio on the declared period.',
+            'values':[{'model':'Valuation!D7'}], 'displays':[{'document':'deliverables/report.html','id':'yield',
+                'period':'FY2027E','unit':'ratio','style':'percent','decimals':1}]}]
+        p['coverage']['claim-support']={'status':'checked','assertionIds':['yield-display']}
+        self.write_packet(p)
+        self.assertEqual(self.failures(),[])
+        tampered=html.replace('data-order="input">','data-order="input">-')
+        self.assertNotEqual(tampered,html)
+        self.f.write('deliverables/report.html',tampered)
+        failures=self.failures()
+        self.assertIn('claim-assertion:yield-display',failures)
+        self.assertIn('draft-review-files-current',failures)
+
     def test_changed_model_and_omitted_dependencies_do_not_silently_pass(self):
         p = self.prepared()
         del p['reviewedFiles'][self.rec['spec']]
@@ -63,14 +94,184 @@ class PublicationReviewTests(unittest.TestCase):
         self.assertIn('financial-coverage:cash-coverage', self.failures())
         pr.prepare(self.dir, self.rec, revise=True)
         self.assertTrue(list((self.dir / 'evidence').glob('draft-review.round1.*.json')))
+        p2 = json.loads((self.dir / pr.DEFAULT_PATH).read_text())
+        self.assertEqual((p2['round'], p2['draftVersion']), (1, 2))
+        complete_review(self.dir)
+        pr.prepare(self.dir, self.rec, revise=True)
+        complete_review(self.dir)
         with self.assertRaisesRegex(ValueError, 'budget exhausted'):
             pr.prepare(self.dir, self.rec, revise=True)
+
+    def test_review_snapshots_preserve_overwritten_inputs_builder_and_rules(self):
+        (self.dir / 'build').mkdir()
+        self.f.write('build/build_report.py', '# first builder')
+        p = self.prepared(False)
+        root = self.dir / p['snapshot']['path']
+        original = (root / 'files/deliverables/report.html').read_bytes()
+        self.f.write('deliverables/report.html', 'second draft')
+        self.f.write('build/build_report.py', '# changed builder')
+        pr.prepare(self.dir, self.rec, revise=True)
+        self.assertEqual((root / 'files/deliverables/report.html').read_bytes(), original)
+        self.assertEqual((root / 'files/build/build_report.py').read_text(), '# first builder')
+        self.assertTrue((root / 'rules.tar').is_file())
+        self.assertTrue(list(root.glob('archived-review.*.json')))
+        p2 = json.loads((self.dir / pr.DEFAULT_PATH).read_text())
+        self.assertFalse(any('review-snapshots' in name for name in p2['reviewedFiles']))
+        pr.check_snapshot(self.dir, p)
+        (root / 'files/deliverables/report.html').write_text('tampered archive')
+        with self.assertRaisesRegex(ValueError, 'Archived reviewed input changed'):
+            pr.check_snapshot(self.dir, p)
+
+    def test_started_failed_or_interrupted_reviews_count_even_if_findings_are_cleared(self):
+        from review_attempts import begin
+        p = self.prepared(False)
+        begin(self.dir, self.rec, reviewer='reader-one')
+        self.assertIn('draft-review-complete', self.failures())
+        with self.assertRaisesRegex(ValueError, 'review path'):
+            pr.prepare(self.dir, dict(self.rec, review='evidence/renamed-review.json'))
+        pr.prepare(self.dir, self.rec, revise=True)
+        p2 = json.loads((self.dir / pr.DEFAULT_PATH).read_text())
+        self.assertEqual((p2['round'], p2['draftVersion']), (2, 2))
+        begin(self.dir, self.rec, reviewer='reader-two')
+        # Editing the current declaration or changing its filename cannot erase the two frozen start receipts.
+        p2['round'], p2['maxRounds'] = 1, 99
+        self.write_packet(p2)
+        self.assertIn('draft-review-budget', self.failures())
+        with self.assertRaisesRegex(ValueError, 'budget exhausted'):
+            pr.prepare(self.dir, dict(self.rec, review='evidence/renamed-review.json'))
+
+    def test_begin_is_required_idempotent_and_bound_to_the_reader_and_frozen_draft(self):
+        from review_attempts import begin, state
+        self.prepared(False)
+        with self.assertRaisesRegex(ValueError, 'named'): begin(self.dir, self.rec)
+        first = begin(self.dir, self.rec, reviewer='fresh-reader')
+        self.assertEqual(begin(self.dir, self.rec, reviewer='fresh-reader'), first)
+        self.assertEqual(state(self.dir)['used'], 1)
+        with self.assertRaisesRegex(ValueError, 'replace'): begin(self.dir, self.rec, reviewer='different-reader')
+        first.with_name('prepared-review.json').write_text('{}')
+        with self.assertRaises(ValueError): state(self.dir)
+
+    def test_comparison_incremental_and_brief_coverage_are_required_not_inferred_from_arithmetic(self):
+        p = self.prepared()
+        for name in ('comparisons', 'incremental-flows', 'brief-fidelity'):
+            old = p['coverage'].pop(name)
+            self.write_packet(p)
+            self.assertIn(name + '-coverage', self.failures())
+            p['coverage'][name] = old
+        self.write_packet(p)
+        self.assertEqual(self.failures(), [])
+
+    def test_completed_declaration_without_start_receipt_cannot_publish(self):
+        self.prepared(False)
+        with patch('review_attempts.begin'):
+            complete_review(self.dir)
+        self.assertIn('draft-review-budget', self.failures())
+
+    def test_prior_failed_checks_and_unknowns_need_dispositions_not_erasure(self):
+        packet = self.prepared()
+        packet['handoff']['checks'][0]['result'] = 'fail'
+        packet['handoff']['criticalUnknowns'] = ['A material cash boundary remains unsupported.']
+        self.write_packet(packet)
+        pr.prepare(self.dir, self.rec, revise=True)
+        pr.prepare(self.dir, self.rec, revise=True)  # unreviewed re-render must not erase the earlier failed review
+        current = complete_review(self.dir)
+        self.assertEqual((current['round'], current['draftVersion']), (2, 3))
+        self.assertIn('prior-review-dispositions', self.failures())
+        current['priorDispositions'] = [
+            {'id': 'draft-1/'+packet['handoff']['checks'][0]['name'], 'status': 'resolved', 'reason': 'Checked revised fixture.', 'sourceIds': ['file-0']},
+            {'id': 'draft-1/unknown-0', 'status': 'disagreed', 'reason': 'Synthetic fixture has no ownership exposure; checked the actual model.', 'sourceIds': ['file-0']}]
+        self.write_packet(current)
+        self.assertEqual(self.failures(), [])
+
+    def test_future_fixture_cutoff_preserves_actual_production_time(self):
+        now = datetime.now(timezone.utc)
+        future = (now + timedelta(days=3)).date().isoformat()
+        self.rec['cutoff'] = future
+        with self.assertRaisesRegex(ValueError, 'future'):
+            pr.prepare(self.dir, self.rec)
+        self.rec['evaluation'] = {'mode': 'synthetic-fixture', 'now': future + 'T12:00:00Z', 'reason': 'Fixed synthetic pack date'}
+        p = self.prepared(False)
+        self.assertLess(datetime.fromisoformat(p['handoff']['producedAt']), datetime.fromisoformat(p['handoff']['asOf']))
+        self.assertTrue(all(s['synthetic'] for s in p['handoff']['sources']))
+        pr.validate_handoff(p['handoff'], p['evaluation'])
+        with self.assertRaisesRegex(ValueError, 'cutoff'):
+            pr.validate_handoff(p['handoff'])
+        p['handoff']['sources'][0]['synthetic'] = False
+        with self.assertRaisesRegex(ValueError, 'synthetic-only'):
+            pr.validate_handoff(p['handoff'], p['evaluation'])
+
+    def test_uncertain_assumption_passes_but_reclassifying_as_essential_blocks(self):
+        p = self.prepared()
+        p['handoff']['claims'].append({'id': 'ramp', 'text': 'The product ramp is uncertain and adverse outcomes are modeled.',
+            'material': True, 'basis': 'assumption', 'sourceIds': [], 'calculation': None,
+            'rationale': 'Central case from qualified capacity; scenario and dated revision trigger retained.'})
+        self.write_packet(p)
+        self.assertEqual(self.failures(), [])
+        p['handoff']['criticalUnknowns'] = ['An unresolved essential ownership boundary prevents a defensible target.']
+        self.write_packet(p)
+        self.assertIn('draft-review-complete', self.failures())
+
+    def test_economic_anchor_rejects_cy_restatement_and_accepts_supported_adjustments(self):
+        p = self.prepared()
+        basis = p['valuationBasis']
+        assess = lambda s, b=basis: pr.valuation_basis(s, self.rec, b, p['handoff'])
+        self.assertTrue(assess(spec())[0])
+        for case in basis['cases']:
+            case['benchmarkPeriod'] = 'CY2027'
+        self.assertFalse(assess(spec())[0])
+        for case in basis['cases']:
+            case['benchmarkPeriod'] = self.rec['epsPeriod']
+        changed = copy.deepcopy(spec())
+        cells = changed['sheets']['Valuation']['cells']
+        cells['D5']['value'] = '=20*D19/D4'  # CY or another earnings period disguised as a forward multiple
+        ok, detail = assess(changed)
+        self.assertFalse(ok)
+        self.assertIn('cancels', detail)
+        cells['D5']['value'] = '=14.9*(D4/5.55)^0.5'  # supported growth/quality adjustments need not be constant
+        self.assertTrue(assess(changed)[0])
+        pb = dict(self.rec, method='P/B')
+        self.assertTrue(pr.valuation_basis(changed, pb,
+            {'status': 'not-applicable', 'reason': 'Capital value is the anchor, not EPS.', 'cases': []}, p['handoff'])[0])
+        self.assertFalse(pr.valuation_basis(changed, self.rec,
+            {'status': 'not-applicable', 'reason': 'Skip period checks', 'cases': []}, p['handoff'])[0])
+        basis['cases'][1]['sensitivityPricing'] = [{'id': 'pricing', 'period': 'CY2027'}]
+        self.assertFalse(pr.valuation_basis(spec(), self.rec, basis, p['handoff'], ['pricing'])[0])
+
+    def test_sensitivity_coverage_maps_to_reproducing_model_checks_or_a_reason(self):
+        cells = {'D2': {'value': 100, 'kind': 'input'}, 'D3': {'value': 0.2, 'kind': 'input'},
+                 'D4': {'value': 10, 'kind': 'input'}, 'D5': {'value': -0.05, 'kind': 'input'},
+                 'D6': {'value': '=D2*D3*0.75/D4'},
+                 'D7': {'value': '=D2*D5*0.75/D4'}, 'D8': {'value': '=D2*D5/D4'}}
+        model = {'sheets': {'M': {'cells': cells}}, 'sensitivities': [
+            {'id': 'margin', 'inputs': ['M!D3'], 'shock': 'M!D5', 'eps': 'M!D6', 'shown': 'M!D7'},
+            {'id': 'pre-tax', 'inputs': ['M!D3'], 'shock': 'M!D5', 'eps': 'M!D6', 'shown': 'M!D8'}]}
+        cover = lambda **c: pr.sensitivity_coverage(model, c)[0]  # noqa: E731
+        self.assertFalse(cover(status='undecided'))
+        self.assertFalse(cover(status='checked', sensitivityIds=[]))
+        self.assertFalse(cover(status='checked', sensitivityIds=['volume']))          # published but never declared
+        self.assertFalse(cover(status='checked', sensitivityIds=['margin', 'pre-tax']))  # one row skips tax
+        self.assertTrue(cover(status='checked', sensitivityIds=['margin']))
+        self.assertTrue(cover(status='not-applicable', reason='The decisive output is net asset value, not EPS.'))
+        self.assertFalse(cover(status='not-applicable', reason=' '))
+        packet = self.prepared()
+        packet['coverage']['sensitivity'] = {'status': 'undecided', 'reason': '', 'sensitivityIds': []}
+        self.write_packet(packet)
+        self.assertIn('sensitivity-coverage', self.failures())
 
     def test_inventory_is_advisory_and_excludes_styles(self):
         self.f.write('deliverables/report.html', '<style>p {width:999px}</style><p>Annual productivity 0.8%; input 0.5%.</p>')
         items = pr.inventory(self.dir, self.rec)
         self.assertTrue(any('0.8%' in i['numbers'] for i in items))
         self.assertFalse(any('999' in i['numbers'] for i in items))
+
+    def test_claim_support_disposition_is_required_at_publication(self):
+        packet = self.prepared()
+        packet['coverage']['claim-support'] = {'status': 'undecided', 'assertionIds': []}
+        self.write_packet(packet)
+        self.assertIn('claim-support-coverage', self.failures())
+        packet['coverage']['claim-support'] = {'status': 'checked', 'assertionIds': ['missing-assertion']}
+        self.write_packet(packet)
+        self.assertIn('claim-support-coverage', self.failures())
 
     def test_failed_revision_invalidates_old_publication_before_printing(self):
         self.prepared()
@@ -103,6 +304,7 @@ class PublicationReviewTests(unittest.TestCase):
 
     def test_exhausted_revision_budget_does_not_leave_a_stale_release_zip(self):
         self.prepared(); pr.prepare(self.dir, self.rec, revise=True)
+        complete_review(self.dir)
         rec = dict(self.rec, zipPath='deliverables/old.zip', status='validated', fingerprints={'old': 'hash'})
         record_path = self.dir / 'deliverables/release.json'; record_path.write_text(json.dumps(rec))
         zipped = self.dir / 'deliverables/old.zip'; zipped.write_bytes(b'old')

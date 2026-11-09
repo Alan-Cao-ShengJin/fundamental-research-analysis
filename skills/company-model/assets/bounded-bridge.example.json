@@ -1,0 +1,8 @@
+{
+  "offset": 10,
+  "target": 42,
+  "drivers": [
+    {"id": "activity", "coefficient": 0.3, "low": 100, "high": 120},
+    {"id": "fixed-cost", "coefficient": -1, "low": 1, "high": 5}
+  ]
+}

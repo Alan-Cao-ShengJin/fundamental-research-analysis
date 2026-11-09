@@ -1,0 +1,22 @@
+{
+  "claimAssertions": [
+    {"id":"shown-comparisons","claimId":"comparison-claim","kind":"quantified-set",
+     "location":"Comparison exhibit and summary","sourceIds":["model-evidence"],"rationale":"Test the two comparisons shown.",
+     "scope":"listed","quantifier":"any","predicate":{"op":">","threshold":0.1},
+     "members":[{"id":"case-a","value":{"model":"Comparisons!D10"}},{"id":"case-b","value":{"model":"Comparisons!D11"}}]},
+    {"id":"population","claimId":"demand-hypothesis","kind":"evidence-scope",
+     "location":"Demand argument","sourceIds":["issuer-evidence"],"rationale":"A wider hypothesis, not a reported industry fact.",
+     "sourceScopes":{"issuer-evidence":"company"},"conclusionScope":"industry",
+     "limitations":"The handoff claim must be a reasoned inference; category evidence is unavailable."},
+    {"id":"owner-cash","claimId":"cash-yield","kind":"cash-boundary",
+     "location":"Decision metric","sourceIds":["model-evidence"],"rationale":"Reconcile cash to the claim valued.",
+     "numerator":{"model":"Cash!D20"},"denominator":{"model":"Cash!D21"},"ratio":{"model":"Cash!D22"},
+     "nonControllingInterests":"present","numeratorBoundary":"parent-economic","denominatorBoundary":"parent-equity","interpretation":"owner-return",
+     "reconciliation":{"baseCash":{"model":"Cash!D10"},"nonOwnerEconomicCash":{"model":"Cash!D11"},"unavailableCash":{"model":"Cash!D12"},
+       "rightsBasis":"Explain sourced economic ownership and access assumptions, distinguishing dividends from entitlement."}},
+    {"id":"replacement","claimId":"review-finding","kind":"calculation","role":"reviewer",
+     "location":"Proposed corrected target","sourceIds":["model-evidence"],"rationale":"Field example: replace shown with the computed result.",
+     "inputs":{"multiple":{"model":"Comparisons!D30"},"earnings":{"model":"Forecast!D10"}},
+     "expression":"multiple * earnings","shown":21.25,"decimals":2}
+  ]
+}

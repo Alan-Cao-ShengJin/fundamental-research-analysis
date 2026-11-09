@@ -25,6 +25,8 @@ Show the dividend if the payout ratio stays at its supported level, not merely a
 
 ## Cash coverage and room for more payout
 
+Use the [classification/recognition/payment bridge](../../company-model/references/statement-forecast.md#classification-recognition-and-payment-states) where distribution timing matters. An observed cash payment does not identify its earnings year. Separate declared entitlements, forecast policy payouts, settlement and any applicable prudential deduction, reconciling amounts already included. A management capital goal without a deadline is not a mandatory immediate restoration. State the constraint and assumed timing behind each coverage conclusion; preserve a rating-sensitive alternative rather than choosing the most restrictive convention automatically.
+
 Reconcile operating cash to cash available for common shareholders after working capital, investment, leases, interest, taxes, debt movements and other claims, on a consistent accounting basis. Do not deduct an item twice. Exclude one-off loan/advance recoveries, asset sales and new borrowing when assessing recurring capacity; show them separately as liquidity sources.
 
 Compare the proposed dividend with recurring cash capacity, statutory/distributable reserves, parent-company access, regulatory/covenant constraints and minimum operating liquidity. Include competing buybacks and dilution. High bank cash or a low accounting payout ratio alone does not prove room for more dividends.

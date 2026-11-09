@@ -29,9 +29,15 @@ export const HandoffSchema = z.object({
 }).strict();
 
 // Shape/schema are separate from readiness; neither proves truth or execution authority.
-export function validateHandoff(value) {
+const FixtureClock = z.object({ mode: z.literal('synthetic-fixture'), now: timestamp, reason: z.string().trim().min(1) }).strict();
+export function validateHandoff(value, options = {}) {
   const a = HandoffSchema.parse(value);
-  if (Date.parse(a.producedAt) < Date.parse(a.asOf)) throw new Error('Information cutoff cannot be after artifact production.');
+  const { fixtureClock } = z.object({ fixtureClock: FixtureClock.optional() }).strict().parse(options);
+  if (fixtureClock && (a.kind === 'portfolio-decision' || !a.sources.length || a.sources.some(s => !s.synthetic))) {
+    throw new Error('A fixture clock applies only to synthetic-only research, never a live source or portfolio decision.');
+  }
+  if (fixtureClock && Date.parse(a.asOf) > Date.parse(fixtureClock.now)) throw new Error('Synthetic cutoff exceeds the declared fixture clock.');
+  if (!fixtureClock && Date.parse(a.producedAt) < Date.parse(a.asOf)) throw new Error('Information cutoff cannot be after artifact production.');
   if (a.status === 'not-applicable' && !a.notApplicableReason) throw new Error('A not-applicable artifact needs a reason.');
   if ((a.mandateId === null) !== (a.mandateVersion === null)) throw new Error('Mandate ID and version must both be supplied or both null.');
   const sources = new Set(a.sources.map(s => s.id));
@@ -55,13 +61,15 @@ export function validateHandoff(value) {
 const ReadinessContext = z.object({ mandateId: id.nullable(), mandateVersion: z.number().int().positive().nullable(), nowMs: z.number().int().nonnegative(),
   maxAgeMs: z.number().int().positive(), upstreamVersions: z.record(id, z.number().int().positive()),
   allowSynthetic: z.boolean().default(false), historical: z.boolean().default(false),
+  fixtureClock: FixtureClock.optional(),
 }).strict();
 export function assessReadiness(value, context) {
-  const a = validateHandoff(value), c = ReadinessContext.parse(context), issues = [];
+  const c = ReadinessContext.parse(context), a = validateHandoff(value, { fixtureClock: c.fixtureClock }), issues = [];
+  if (c.fixtureClock && !c.allowSynthetic) issues.push('Fixture clocks require an explicitly synthetic evaluation.');
   if (a.status !== 'complete') issues.push('Artifact is not complete.');
   if (a.kind === 'portfolio-decision' && (a.mandateId === null || c.mandateId === null)) issues.push('A portfolio decision requires an explicit mandate.');
   if ((a.mandateId !== null || a.mandateVersion !== null || a.kind === 'portfolio-decision') && (a.mandateId !== c.mandateId || a.mandateVersion !== c.mandateVersion)) issues.push('Mandate version does not match.');
-  const age = c.nowMs - Date.parse(a.asOf);
+  const age = (c.fixtureClock ? Date.parse(c.fixtureClock.now) : c.nowMs) - Date.parse(a.asOf);
   if (age < 0 || Date.parse(a.producedAt) > c.nowMs || age > c.maxAgeMs) issues.push('Artifact cutoff/production time is future or stale.');
   if (a.criticalUnknowns.length) issues.push('Critical unknowns remain unresolved.');
   const assessedKinds = ['company-model', 'financial-quality', 'corporate-governance', 'valuation-thesis', 'investment-conclusion', 'strategy-test', 'challenge', 'portfolio-decision'];

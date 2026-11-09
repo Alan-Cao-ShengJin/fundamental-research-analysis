@@ -36,7 +36,8 @@ SCOPE = ('Checked: calculation caches, target basis and period, rating and tier,
          'and in the rendered report and brief, observation and retrieval ages, currency and security, one-page brief, '
          'file hashes and print provenance, and the wording regression list. Current publication additionally checks '
          'completed review declarations bound to current files and skills, and applicable declared financial assertions '
-         'and displayed bindings. Legacy inspection explicitly omits the review requirement. Not certified: source '
+         'and displayed bindings, plus current decision-record lineage and declared trigger text. Legacy inspection '
+         'explicitly omits the review requirement and may omit the decision contract. Not certified: source '
          'truth or extraction, review quality or independent identity, unbound prose figures, undeclared financial '
          'claims, share class/scale beyond declared bindings, contributor vintages, last exchange session or visual '
          'quality. Those require substantive review.')
@@ -191,8 +192,55 @@ def column_of(ref):
     return re.sub(r'\d+$', '', ref.rsplit('!', 1)[-1].replace('$', ''))
 
 
+def dependencies(spec, ref, seen=None):
+    """Follow model formulas, including ranges and intermediate schedules, without executing them."""
+    import model_workbook as mw
+    seen = set() if seen is None else seen
+    sheet, address = mw.target(ref, '')
+    key = (sheet, address)
+    if key in seen:
+        return seen
+    seen.add(key)
+    formula = spec_value(spec, f"'{sheet}'!{address}")
+    if not isinstance(formula, str) or not formula.startswith('='):
+        return seen
+    for match in mw.REF.finditer(formula[1:]):
+        source = match[1] or match[2] or sheet
+        first, last = match[3].replace('$', ''), (match[4] or match[3]).replace('$', '')
+        fc, fr = mw.split(first); lc, lr = mw.split(last)
+        for col in range(mw.colnum(fc), mw.colnum(lc)+1):
+            for row in range(fr, lr+1):
+                dependencies(spec, f"'{source}'!{mw.colname(col)}{row}", seen)
+    return seen
+
+
 def near(a, b, rel=0.005, abs_=0.0):
     return isinstance(a, (int, float)) and isinstance(b, (int, float)) and abs(a - b) <= max(abs(b) * rel, abs_)
+
+
+def check_annual_ntm(n, comps, start, fye, spec, workbook, values, check):
+    """Historical whole-month annual interpolation remains a supported approximation."""
+    periods = [str(c.get('period')) for c in comps]
+    weights = [c.get('weight') for c in comps]
+    finite = bool(comps) and all(type(w) in (int, float) and 0 <= w <= 1 for w in weights)
+    check('ntm-components-well-formed', finite and len(set(periods)) == len(periods) and all(c.get('eps') and c.get('header') for c in comps),
+          f'periods {periods}, weights {weights}; use distinct periods, finite weights and EPS/header cells')
+    if not finite or not all(c.get('eps') and c.get('header') for c in comps):
+        return
+    want, got = ntm_weights(start, fye), dict(zip(periods, weights))
+    weights_ok = abs(sum(weights) - 1) <= 0.005 and set(got) == set(want) and all(abs(got[k] - w) <= 0.005 for k, w in want.items())
+    check('ntm-weights-follow-fiscal-calendar', weights_ok,
+          f'declared {got}; whole-month annual weights {want} (tolerance 0.005, below one month)')
+    heads = cell_values(spec, workbook, {f'h{i}': c['header'] for i, c in enumerate(comps)})
+    cells = [c['eps'] for c in comps]
+    tied = len(set(cells)) == len(cells) and all(
+        period_year(heads.get(f'h{i}')) == period_year(c['period']) and column_of(c['header']) == column_of(c['eps'])
+        and c['header'].split('!')[0] == c['eps'].split('!')[0] for i, c in enumerate(comps))
+    check('ntm-components-bound-to-their-periods', tied, f'headers {[heads.get(f"h{i}") for i in range(len(comps))]}; earnings cells {cells}')
+    eps = cell_values(spec, workbook, {c['period']: c['eps'] for c in comps})
+    bridge = sum(c['weight'] * eps[c['period']] for c in comps)
+    check('ntm-bridge-equals-forward-eps', near(values.get('forwardEps'), bridge, 1e-6, 1e-8),
+          f'weighted components {bridge} against forward EPS {values.get("forwardEps")} (annual interpolation, an approximation)')
 
 
 def run(study, record, model_check=None, legacy=False):
@@ -225,6 +273,13 @@ def run(study, record, model_check=None, legacy=False):
 
     b = record['bindings']
     v = cell_values(spec, workbook, b)
+    # Historical inspection may omit the new contract. A current publication may not.
+    if not legacy or record.get('decisionRecord'):
+        try:
+            import decision_record
+            check('decision-record-current', True, decision_record.check(study,record,spec))
+        except (ValueError,KeyError,TypeError,OSError,IndexError) as exc:
+            check('decision-record-current', False, str(exc))
     fx = v.get('fx') or 1.0
     price, target = v.get('referencePrice'), v.get('target')
     cutoff = parse_date(record['cutoff'])
@@ -249,28 +304,32 @@ def run(study, record, model_check=None, legacy=False):
                 span_ok = abs((end - (start + timedelta(days=365))).days) <= 3 and abs((start - cutoff).days) <= 31
                 check('ntm-window-is-twelve-months-from-cutoff', span_ok,
                       f'window {start} to {end}; must start within a month of the cutoff {cutoff} and run twelve months; no roll to the target date')
-                periods = [str(c.get('period')) for c in comps]
-                weights = [c.get('weight') for c in comps]
-                finite = all(isinstance(w, (int, float)) and w == w and 0 <= w <= 1 for w in weights)
-                check('ntm-components-well-formed', finite and len(set(periods)) == len(periods) and all(c.get('eps') and c.get('header') for c in comps),
-                      f'periods {periods}, weights {weights}; each component needs a distinct period, a finite weight in [0, 1], an eps cell and a header cell')
-                want = ntm_weights(start, fye)
-                got = dict(zip(periods, weights))
-                weights_ok = finite and abs(sum(weights) - 1) <= 0.005 and set(got) == set(want) and all(abs(got[k] - w) <= 0.005 for k, w in want.items())
-                check('ntm-weights-follow-fiscal-calendar', weights_ok,
-                      f'declared { {k: round(w, 4) for k, w in got.items()} }; whole-month weights from the fiscal calendar are { {k: round(w, 4) for k, w in want.items()} } (tolerance 0.005, below one month)')
-                heads = cell_values(spec, workbook, {f'h{i}': c['header'] for i, c in enumerate(comps) if c.get('header')})
-                cells = [str(c.get('eps')) for c in comps]
-                tied = len(set(cells)) == len(cells) and all(
-                    period_year(heads.get(f'h{i}')) == period_year(c['period']) and column_of(c['header']) == column_of(c['eps']) and c['header'].split('!')[0] == c['eps'].split('!')[0]
-                    for i, c in enumerate(comps) if c.get('header'))
-                check('ntm-components-bound-to-their-periods', tied,
-                      'each component EPS cell sits under a header naming its period, and no cell serves two periods' if tied else
-                      f'headers {[heads.get(f"h{i}") for i in range(len(comps))]} for periods {periods}; cells {cells}')
-                eps = cell_values(spec, workbook, {c['period']: c['eps'] for c in comps})
-                bridge = sum((c['weight'] or 0) * (eps.get(c['period']) or 0) for c in comps)
-                check('ntm-bridge-equals-forward-eps', near(v.get('forwardEps'), bridge, 0.005),
-                      f'weighted components {bridge} against the bound forward EPS {v.get("forwardEps")} (annual interpolation, an approximation)')
+                if n.get('mode') == 'dated-periods':
+                    try:
+                        import dated_ntm
+                        try:
+                            anniversary = start.replace(year=start.year + 1)
+                        except ValueError:  # leap-day anniversary
+                            anniversary = start.replace(year=start.year + 1, day=28)
+                        check('ntm-dated-window-exact', end == anniversary,
+                              'Dated intervals have an exclusive end on the twelve-month anniversary')
+                        refs = {ref: ref for c in comps for key in ('header', 'eps', 'profit', 'shares') if (ref := c.get(key))}
+                        values = cell_values(spec, workbook, refs)
+                        dated = dated_ntm.calculate(n, values.__getitem__)
+                        check('ntm-dated-components', True, json.dumps(dated))
+                        import model_workbook as mw
+                        required = [c['eps'] for c in comps] if n['metric'] == 'eps-sum' else [c[k] for c in comps for k in ('profit', 'shares')]
+                        lineage = dependencies(spec, b['forwardEps'])
+                        check('ntm-dated-lineage', all(mw.target(ref, '') in lineage for ref in required),
+                              'Forward EPS must consume the declared period earnings and, when applicable, share schedule')
+                        check('ntm-bridge-equals-forward-eps', near(v.get('forwardEps'), dated['eps'], 1e-6, 1e-8),
+                              f'dated components {dated["eps"]} against forward EPS {v.get("forwardEps")}; uniform within-period allocation is approximate')
+                    except (ValueError, KeyError, TypeError, ZeroDivisionError) as exc:
+                        check('ntm-dated-components', False, str(exc))
+                else:
+                    check('ntm-mode-supported', n.get('mode', 'annual-interpolation') == 'annual-interpolation',
+                          'Use annual-interpolation or dated-periods; an omitted mode retains the historical annual approximation')
+                    check_annual_ntm(n, comps, start, fye, spec, workbook, v, check)
         else:
             fy = fiscal_year_of(cutoff, fye)
             lp = record.get('latestPublished') or {}
@@ -403,6 +462,9 @@ def run(study, record, model_check=None, legacy=False):
 def fingerprints(study, record):
     study = Path(study)
     files = [record['workbook'], record['spec'], record['brief']] + list(record.get('deliverables', []))
+    decision = record.get('decisionRecord','evidence/decision.json')
+    if (study / decision).is_file():
+        files.append(decision)
     for paths in (record.get('renders') or {}).values():
         files += [paths['html'], paths['pdf']] if isinstance(paths, dict) else [paths]
     review = record.get('review', 'evidence/draft-review.json')

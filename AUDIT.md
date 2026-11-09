@@ -1,3 +1,35 @@
+# Research skill verification - 9 November 2026, version 2.9.0
+
+This section records this standalone export. Earlier sections retain their original release results.
+
+## Changes
+
+- Added dated NTM coverage for quarterly, half-year and irregular periods, with changing-share profit/share treatment and retained annual interpolation. Added quantity/date/unit/currency/perimeter/basis-aware comparisons, explicit contextual comparisons, incremental-flow candidates for earnings updates and report-to-brief fidelity review.
+- Separated prepared draft versions from named started review attempts, including failed/interrupted attempts. Prior blocking findings and their evidence-backed dispositions survive subsequent drafts; paths cannot silently reset the review budget. No authenticated reviewer identity or hostile-tampering guarantee is claimed.
+- Added an affine bounded-bridge helper and claim assertions for feasible counterexamples to aggregate-earnings necessity claims. Added guidance for observed facts versus inferred classification, recognition, settlement and assumed constraint deadlines. These do not identify contributor models or prescribe a conservative forecast.
+- Added general source/calculation-to-render bindings for scalars and ranges, explicit sign/magnitude transformations and ordering. Required current decision checkpoints validate spec/workbook hashes, model-bound fields and trigger text; decision artifacts are frozen with the draft. Qualitative judgments and omitted/unbound claims remain subject to substantive review.
+- Added the optical-networking activity guide, conditional calendar-year comparisons and original synthetic acceptance packs/setup helpers. Ordinary short requests route through AGENTS.md and CLAUDE.md. Public-only coverage planning, 20-skill/11-flow boundaries, source notices and licenses remain preserved.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Standalone structure | 20 skills, 11 flows; 847 relative links, shared schema and retained source mappings passed |
+| Standalone JavaScript | 69 tests passed |
+| Standalone Python | 223 tests passed, including the public coverage planner and new period/review/claim/decision regressions |
+| Skill entrypoints | All 20 validations passed |
+| Synthetic workbook | Removed one local save-path extension from workbook.xml; every other archive member remained identical; 6,778 numeric cells checked against the specification with no issues |
+| Export scan | Common token/private-key patterns and private machine paths checked, including workbook XML; no private credential file read |
+| Manifest | Canonical staged Git bytes, excluding the manifest itself |
+
+## Limits and migration
+
+No new fresh-agent company research, native Excel recalculation, PDF print/visual trial, live data-provider test or investment-performance test was performed for this export. Passing these checks establishes the supported deterministic controls, not complete source truth, material-claim coverage, reviewer independence or reliably good future reports. The affine helper assumes independent linear ranges; real feasibility and omitted constraints remain economic judgments. Rendered bindings verify declared spans, not all unbound PDF prose or hidden styling.
+
+Current builders must adopt the decision checkpoint and updated publication wrapper/coverage before release. The decision schema 1.0 and publication wrapper 1.1 are distinct. Frozen prior studies retain their real outcomes and original rule snapshots; legacy inspection is not publication. Preserve review budgets and findings rather than obtaining a pass through another unbudgeted correction.
+
+---
+
 # Research skill verification - 7 November 2026, version 2.8.0
 
 This section records the current standalone export. Earlier sections describe their own releases.

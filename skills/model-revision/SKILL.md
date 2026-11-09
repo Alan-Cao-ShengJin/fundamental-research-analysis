@@ -2,7 +2,7 @@
 name: model-revision
 description: Update existing stock research in regular-review or major earnings/catalyst mode. Regular reviews preserve operating forecasts unless concrete new evidence warrants revision; major updates compare prior assumptions with disclosures and recalibrate affected forecasts. Use stock-initiation for first coverage.
 metadata:
-  version: 2.2.1
+  version: 2.3.0
 ---
 
 # Revise an existing stock model
@@ -18,7 +18,7 @@ Follow the governing [request routing](../research-cycle/references/request-rout
 Retrieve the original/latest [conviction record](../investment-conviction/SKILL.md) with that baseline. In either mode, separate evidence about its decisive proposition from changed estimates, value, price-based rating and investment eligibility. In major updates, evaluate its expected observations alongside the frozen forecast before replacing estimates; retain original deadlines and the reason for any changed belief. A broken anchor requires prompt reassessment, even between earnings; an intact anchor does not freeze the numbers or waive another essential risk.
 
 - **Regular review:** retain operating assumptions by default; rerun the [world-state scan](../research-cycle/references/world-state.md) for the period since the last review and re-establish [what the market is trading](../research-cycle/references/what-the-market-trades.md); check intervening disclosures, concrete data pipelines and the industry indicators from the last [industry analysis](../industry-analysis/SKILL.md). Refresh price, valuation and prospective return on the existing forecast. Price movement alone changes return to target, not operating estimates or fair value. Any supported assumption or valuation change needs its own evidence and attribution; targeted forecast changes reopen calculation and audit work.
-- **Major earnings/catalyst update:** preserve pre-event forecasts before entering new actuals, reconcile official disclosures/calls, evaluate which assumptions held or missed and why, then recalibrate affected subsequent forecasts and the decision. A catalyst may require an event-impact bridge without new period actuals. An unchanged future forecast is valid after this evaluation.
+- **Major earnings/catalyst update:** preserve pre-event forecasts before entering new actuals, reconcile official disclosures/calls, evaluate which assumptions held or missed and why, then recalibrate affected subsequent forecasts and the decision. For material cumulative flow disclosures, derive the latest non-overlapping period where comparable earlier cumulative figures exist; distinguish a cash reversal from an earnings miss. Document unavailable or noncomparable inputs rather than inventing quarters. A catalyst may require an event-impact bridge without new period actuals. An unchanged future forecast is valid after this evaluation.
 
 Escalate a regular review when material evidence changes the economics or thesis. State the chosen mode and reason; the presence of a new transcript alone does not require a full rebuild.
 

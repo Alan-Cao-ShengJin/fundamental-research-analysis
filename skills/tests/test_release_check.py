@@ -50,7 +50,7 @@ def brief(**over):
 
 
 def record(**over):
-    r = {'cutoff': '2026-11-06', 'fiscalYearEnd': 12, 'priceDate': '2026-11-05', 'consensusDate': '2026-11-06', 'security': '2020.HK',
+    r = {'cutoff': '2026-11-06', 'researchMode': 'initiation', 'fiscalYearEnd': 12, 'priceDate': '2026-11-05', 'consensusDate': '2026-11-06', 'security': '2020.HK',
          'currency': 'HKD', 'method': 'P/E', 'epsPeriod': 'FY2027E',
          'latestPublished': {'period': '3Q26', 'kind': 'operating update', 'date': '2026-10-21', 'coversThirdQuarter': True},
          'spec': 'model/spec.json', 'workbook': 'deliverables/model.xlsx', 'brief': 'deliverables/brief.json',
@@ -91,6 +91,22 @@ def complete_review(study):
         check.update(result='pass', detail='Synthetic reviewer test double: isolated fixture verified.')
     for kind in packet['coverage']:
         packet['coverage'][kind] = {'status': 'not-applicable', 'reason': 'This isolated fixture has no such financial claim.', 'assertionIds': []}
+    frozen = json.loads((Path(study) / packet['snapshot']['path'] / 'manifest.json').read_text())['releaseRecord']
+    if frozen['method'] == 'P/E':
+        b = frozen['bindings']
+        packet['valuationBasis'] = {'status': 'checked', 'reason': '', 'cases': [
+            {'id': name, 'period': frozen['epsPeriod'], 'benchmarkPeriod': frozen['epsPeriod'],
+             'metricRef': b['forwardEps'], 'multipleRef': b['targetMultiple'], 'targetRef': b['target'], 'fxRef': b.get('fx'),
+             'sourceIds': [packet['handoff']['sources'][0]['id']], 'rationale': 'Stipulated same-period synthetic fixture.'}
+            for name in ('bear', 'base', 'bull')]}
+    else:
+        packet['valuationBasis'] = {'status': 'not-applicable', 'reason': 'The primary method does not use P/E.', 'cases': []}
+    packet['coverage']['brief-fidelity'] = {'status': 'checked', 'items': [{
+        'claimId': 'fixture', 'reportLocation': 'Synthetic report decision', 'briefLocation': 'Synthetic brief decision',
+        'qualification': 'Stipulated same-period target only; this is not a real research review.',
+        'assessment': 'Both decision blocks agree on the fixture assumptions.'}]}
+    from review_attempts import begin
+    begin(study, frozen, reviewer=packet['reviewer']['id'])
     path.write_text(json.dumps(packet), encoding='utf-8')
     return packet
 
@@ -110,6 +126,10 @@ class ReleaseCheckTests(unittest.TestCase):
         self.write_brief(brief())
         self.write('deliverables/report.html', report_html())
         self.write('deliverables/brief.html', brief_html())
+        # A current publication also needs the reusable decision checkpoint.
+        import decision_record
+        (self.dir / 'evidence').mkdir(exist_ok=True)
+        self.write('evidence/decision.json',json.dumps(decision_record.synchronize(self.dir,record(),spec())))
 
     def write(self, rel, text):
         (self.dir / rel).write_text(text, encoding='utf-8')
@@ -261,6 +281,40 @@ class ReleaseCheckTests(unittest.TestCase):
             # Synthetic test double for an actual completed fresh review; never used by production packaging.
             complete_review(self.dir)
             return rl.package(*args, **rec)
+
+    def test_revision_rechecks_with_current_bindings_not_the_saved_record(self):
+        import publication_review as pr
+        from unittest.mock import patch
+        saved = (rl.print_pdf, rc.page_count, rc.text_of, rc.run)
+        rl.print_pdf = lambda h, p: (Path(p).write_bytes(b'%PDF-fake ' + Path(h).read_bytes()), Path(p))[1]
+        rc.page_count = lambda p: 1
+        rc.text_of = lambda p: Path(p).read_text(encoding='utf-8', errors='replace')
+        rc.run = lambda study, rec, model_check=None, **kw: saved[3](study, rec, model_check=passing_check, **kw)
+        try:
+            rec = {k: v for k, v in record().items() if k not in ('deliverables', 'renders')}
+            args = (self.dir, self.dir / 'deliverables/pkg.zip', self.dir / 'deliverables/report.html',
+                    self.dir / 'deliverables/brief.html', [self.dir / 'deliverables/model.xlsx'])
+            with self.assertRaises(SystemExit): rl.package(*args, **rec)          # round 1 draft
+            path = self.dir / 'deliverables/release.json'
+            stale = json.loads(path.read_text(encoding='utf-8'))
+            stale['bindings']['forwardEpsSource'] = 'Statements!H43'          # a binding left from an earlier draft
+            path.write_text(json.dumps(stale), encoding='utf-8')
+            with patch.object(sys, 'argv', ['publication_review.py', 'prepare', str(self.dir), '--revise']):
+                with self.assertRaisesRegex(ValueError, 'integrity checks'):
+                    pr.main()
+            self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['status'], 'failed')
+            with self.assertRaises(SystemExit) as cm: rl.package(*args, revise=True, **rec)   # adapter, current bindings
+            self.assertIn('Draft PDFs ready', str(cm.exception))
+            current = json.loads(path.read_text(encoding='utf-8'))
+            self.assertEqual(current['status'], 'awaiting-review')
+            self.assertEqual(current['bindings']['forwardEpsSource'], 'Statements!I43')
+            self.assertTrue(current['checks'])
+            packet = json.loads((self.dir / pr.DEFAULT_PATH).read_text(encoding='utf-8'))
+            self.assertEqual((packet['round'], packet['draftVersion']), (1, 2))
+            with self.assertRaises(SystemExit): rl.package(*args, revise=True, **rec)  # another draft, still no review started
+            self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['status'], 'awaiting-review')
+        finally:
+            rl.print_pdf, rc.page_count, rc.text_of, rc.run = saved
 
     def test_package_prints_binds_and_fails_safely(self):
         saved = (rl.print_pdf, rc.page_count, rc.text_of, rc.run)

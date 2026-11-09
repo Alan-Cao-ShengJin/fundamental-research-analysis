@@ -13,6 +13,8 @@ Give each developed argument one main home. The front page and standalone brief 
 - Lead with a clear claim, use short connected sentences, and keep each sentence focused. Choose concrete financial language over slogans, informal imagery and compressed jargon.
 - Own judgments with "we estimate", "we forecast" or "we assume". Distinguish reported data, guidance, consensus and our interpretation. Do not invent a variant view, consensus composition or unique market belief.
 - Give figures their period, unit, accounting/share basis and relevant comparison. Use model-bound values for material derived claims. Different valid bases may coexist when each is labeled and reconciled.
+
+Keep the claim within the evidence: a company mix change is not a reported industry demand shift; an illustrative bridge to consensus is not what analysts necessarily assume; selected comparisons are not every possible comparison. Use computed counts and the exact tested scope for numerical generalisations. A reviewer correction follows the same source, calculation and rounding standard as an author figure.
 - Select the evidence that changes earnings, cash, value or risk. Preserve the strongest counter-case and decisive qualifications. Omit routine background and procedural narration; do not bury a headline limitation in an appendix.
 - Explain why the selected valuation is appropriate, including its calibrated anchor and material alternatives. Similar answers from dependent methods do not independently validate it.
 - Use headings, restrained color and emphasis for navigation. Tables and charts must earn their space; a compact table can communicate a small earnings bridge better than a chart.
@@ -27,6 +29,8 @@ Use net profit attributable to shareholders for earnings after minorities; defin
 2. Draft the argument, then edit once for reasoning and once for concision, precise language and repetition. Resolve factual defects through the owning analysis rather than polishing them away.
 3. Render both the report and brief. A fresh reader checks them against the model and original evidence using the six dimensions: conciseness, critical thinking, professional language, sharp writing, argument support and a defensible viewpoint. Record findings and distinguish a self-review from independent review.
 4. Correct material findings, regenerate affected outputs and refresh the review. Use the [bounded publication workflow](../../report-layout/references/publication-review.md); release only the exact reviewed files. No numeric writing score guarantees sound research or mandates an endless rewrite loop.
+
+The publication reader records `coverage.brief-fidelity` for the decisive brief claims, locating them in both outputs and checking retained conditions. Preserve the denominator (our versus consensus earnings), source vintage, measurement period, ownership/access boundary and uncertainty that matter to the decision. A concise summary may omit peripheral detail; it must not turn an illustrative bridge into the market's unique assumption or a conditional conclusion into an unconditional one. Keep the review ledger outside the investor-facing page.
 
 ## Further detail
 

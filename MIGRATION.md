@@ -1,5 +1,15 @@
 # Version 2.0 name migration
 
+## Version 2.9 publication contracts
+
+Current builders must generate a synchronized decision record before writing/review, including spec/workbook hashes and declared trigger-text bindings. The package defaults to `evidence/decision.json`; see [decision migration](skills/report-layout/references/decision-record.md). New scalar/range prose bindings use `bound_measure` and matching source/calculation assertions; existing financial-family `bound_value` bindings remain supported.
+
+The publication wrapper is now 1.1: `draftVersion` counts preparations, while a named reader starts an attempt with `publication_review.py begin STUDY --reviewer NAME`. Failed/interrupted attempts retain their budget and prior findings survive intervening drafts. Routed research mode, comparison/incremental-flow coverage and brief fidelity are required. Preserve historical outcomes and rule snapshots; do not relabel old reviews or reset their budget. `--legacy` is explicitly historical inspection, not publication. Full details: [publication workflow](skills/report-layout/references/publication-review.md).
+
+The decision schema 1.0 is distinct from the publication wrapper 1.1. Refresh genuine old model/evidence components in a new versioned study rather than treating an old decision as reviewed under the new contracts. Existing coverage plans need regeneration or a reconciled migration to the new catalog version; changing the label alone does not perform missing work.
+
+## Generic skill names
+
 All maintained skills use generic names. Update copied skill directories, explicit invocation names, import paths and relative links together. Keep the complete sibling tree. Old names below are historical identifiers, not compatibility folders or current invocations.
 
 | Previous name | Current name |

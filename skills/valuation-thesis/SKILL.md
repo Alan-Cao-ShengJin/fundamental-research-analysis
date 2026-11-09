@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.5.1
+  version: 2.7.1
 ---
 
 # Valuation, expectations and provisional thesis

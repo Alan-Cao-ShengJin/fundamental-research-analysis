@@ -2,7 +2,7 @@
 name: research-cycle
 description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Also coordinate portfolio and non-company research; route narrow tasks to the relevant specialist.
 metadata:
-  version: 2.4.0
+  version: 2.4.3
 ---
 
 # Research cycle
@@ -32,9 +32,9 @@ For stock research, apply [request routing](references/request-routing.md) first
 
 [Research branches](references/research-branches.md) cover theme screening, macro scenarios, narrative comparisons, statement questions, company-change chains, opinion challenges and portfolio risk budgets. They can inform or reopen a stage without requiring a full company cycle. Use [issuer questions](../issuer-questions/SKILL.md) whenever an unanswered issuer question could change the decision; drafting questions does not authorise contacting anyone.
 
-## Company research
-
 For a completed initiation or coverage update, account for every bundled role with the [coverage plan](references/research-coverage.md). Perform required work or reference eligible dated work; decide conditional applicability explicitly. Listing a skill does not perform its analysis.
+
+## Company research
 
 [company-sequence.md](references/company-sequence.md) is the single statement of the initiation stages, their dependencies and readiness gates. Run [industry analysis](../industry-analysis/SKILL.md) before the operating forecasts and refresh its indicators in every review. Build and audit the financial model before valuation; use valuation to form a provisional expectations gap; test it against the evidence and the strongest counter-case; then reach the conclusion. Before concluding an initiation, confirm governance, financial-quality and valuation work was done; use other specialists when they could change the call. Specialists are sibling folders in this bundle; open their files as needed rather than loading the whole collection.
 

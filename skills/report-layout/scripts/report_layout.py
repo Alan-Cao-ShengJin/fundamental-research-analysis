@@ -68,6 +68,10 @@ def bound_value(claim_id, value, period, unit, fmt=None):
             f'data-period="{esc(period)}" data-unit="{esc(unit)}">{esc(shown)}</span>')
 
 
+# One shared formatter for arbitrary calculated/source measures and ranges.
+from display_bindings import bound_measure
+
+
 # Judgement wording that belongs in an Argument, with its evidence, not in a plain paragraph.
 JUDGEMENT = ('we forecast', 'we assume', 'we expect', 'we think', 'we believe', 'our view', 'our reading', 'we side')
 CLAIM_STATUS = ('supported', 'contradicted', 'untested')
@@ -1042,7 +1046,7 @@ def inspect_pdf(pdf_path, image_dir=None, dpi=100):
     return out
 
 
-def package(study, zip_path, report_html, brief_html, files, **record):
+def package(study, zip_path, report_html, brief_html, files, revise=False, **record):
     """Validate the rendered HTML against the calculated model, print the PDFs from those exact files, and write
     deliverables/release.json and the zip only when every release check passes.
 
@@ -1062,7 +1066,11 @@ def package(study, zip_path, report_html, brief_html, files, **record):
     Paths in the record are relative to the study folder; bindings are logical addresses as in the specification.
     First call without a review prints drafts, performs integrity checks and creates a partial review packet;
     it exits awaiting-review with no ZIP. After an actual fresh-reader review, finalization verifies the exact
-    reviewed PDF bytes without reprinting. Revisions use publication_review.py prepare --revise.
+    reviewed PDF bytes without reprinting. After a correction, call the same adapter with revise=True: it reprints,
+    reruns every integrity check with the bindings passed now (never the saved record's), archives the review and
+    opens the next draft version. The reader starts a bounded attempt with publication_review.py begin;
+    re-rendering an unreviewed draft alone does not consume an attempt. Pass the routed researchMode
+    (initiation, regular-review, earnings-update or catalyst-update) in the release record.
     The PDFs take the HTML file names with .pdf. The attempt starts by removing the previous zip and marking the record
     in progress; on any failure or error, in validation or in packaging, the record says failed with the reason, no zip
     or partial zip exists, and SystemExit is raised. The validated record is written last, atomically. Draft files stay
@@ -1076,7 +1084,8 @@ def package(study, zip_path, report_html, brief_html, files, **record):
         raise ValueError('The release ZIP must be inside the study deliverables folder')
     out_dir.mkdir(exist_ok=True)
     rel = lambda p: Path(p).resolve().relative_to(study.resolve()).as_posix()  # noqa: E731
-    record = dict(record, review=record.get('review', pr.DEFAULT_PATH), zipPath=rel(zip_path), reviewPolicyVersion='1.0')
+    record = dict(record, review=record.get('review', pr.DEFAULT_PATH), zipPath=rel(zip_path), reviewPolicyVersion='1.0',
+                  decisionRecord=record.get('decisionRecord','evidence/decision.json'))
     record_path = out_dir / 'release.json'
     tmp_zip = zip_path.with_suffix('.partial.zip')
 
@@ -1108,7 +1117,10 @@ def package(study, zip_path, report_html, brief_html, files, **record):
         # Render once before the fresh review. Finalization publishes those exact reviewed PDFs;
         # reprinting would change bytes and invalidate the visual review's provenance.
         report_pdf, brief_pdf = Path(report_html).with_suffix('.pdf'), Path(brief_html).with_suffix('.pdf')
-        if not review_exists:
+        if revise and not review_exists:
+            raise ValueError('revise=True needs an existing review to archive; make the first call without it')
+        draft = revise or not review_exists
+        if draft:
             for source, expected in ((report_html, report_pdf), (brief_html, brief_pdf)):
                 actual = print_pdf(source, expected)
                 if actual is not None and Path(actual).resolve() != expected.resolve():
@@ -1120,11 +1132,11 @@ def package(study, zip_path, report_html, brief_html, files, **record):
         for key in ('spec', 'workbook', 'brief'):
             record[key] = rel(study / record[key]) if not Path(record[key]).is_absolute() else rel(record[key])
         record.pop('fingerprints', None)   # a new build is checked on its own files, then fingerprinted
-        if not review_exists:
+        if draft:
             checks, fails = rc.run(study, record, legacy=True)
             if fails:
                 fail('\n  '.join(fails), checks)
-            review_path = pr.prepare(study, record)
+            review_path = pr.prepare(study, record, revise=revise)
             write_record(dict(record, checks=checks, status='awaiting-review', scope=rc.SCOPE))
             raise SystemExit(f'Draft PDFs ready; no release ZIP. A fresh reviewer must complete {review_path}, then run '
                              f'publication_review.py finalize "{study}". Do not fabricate review completion.')

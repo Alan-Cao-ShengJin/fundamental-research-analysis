@@ -42,6 +42,14 @@ and cash together, alongside a consistently defined net-debt measure. More
 borrowing can explain more cash. Receivable/payable days are comparable only with
 matched balances, activity bases and closing-versus-average conventions.
 
+## A conditional bridge is not a unique explanation
+
+When only aggregate earnings are supplied, a reconciliation holding our other drivers fixed shows **one route** to the number. It does not reveal the contributors' margins, costs, tax or share assumptions. State what is held fixed and distinguish “would imply under these assumptions” from “requires.” A sentence saying contributor detail is unavailable does not cure a preceding necessity claim.
+
+Before claiming the target requires a particular component, try a feasible counterexample with that component outside the claimed necessary condition and other components inside their supported ranges. One valid counterexample disproves necessity; failing to find one manually does not prove it. Test conjunctive claims component by component. Preserve reporting periods, cumulative/remaining-period bridges and units before applying ranges. Do not treat independent extremes as a coherent joint case when drivers are coupled.
+
+[bounded_bridge.py](../scripts/bounded_bridge.py) tests one affine equality over independent closed ranges and returns the achievable interval and a witness. Use the original [generic input](../assets/bounded-bridge.example.json), or register a bound `bounded-bridge` assertion under the [claim contract](../../report-layout/references/claim-support.md). For a necessity test, restrict the domain to the proposed counterexample condition, then test whether the target remains feasible. Nonlinear products, shared capacity constraints and changing denominators need the actual model or another appropriate solver. The helper does not identify consensus inputs, certify economic feasibility or make the midpoint the correct forecast.
+
 ## Revisit the model, then the method
 
 For each material gap distinguish a source correction, different information

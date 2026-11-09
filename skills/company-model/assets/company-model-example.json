@@ -394,11 +394,11 @@
      "kind": "calculation"
     },
     "D13": {
-     "value": "=Valuation!$F$69",
+     "value": "=Valuation!$F$60",
      "kind": "calculation"
     },
     "E13": {
-     "value": "=Valuation!$G$69",
+     "value": "=Valuation!$G$60",
      "kind": "calculation",
      "pct": true
     },
@@ -411,11 +411,11 @@
      "kind": "calculation"
     },
     "D14": {
-     "value": "=Valuation!$F$70",
+     "value": "=Valuation!$F$61",
      "kind": "calculation"
     },
     "E14": {
-     "value": "=Valuation!$G$70",
+     "value": "=Valuation!$G$61",
      "kind": "calculation",
      "pct": true
     },
@@ -428,11 +428,11 @@
      "kind": "calculation"
     },
     "D15": {
-     "value": "=Valuation!$F$71",
+     "value": "=Valuation!$F$62",
      "kind": "calculation"
     },
     "E15": {
-     "value": "=Valuation!$G$71",
+     "value": "=Valuation!$G$62",
      "kind": "calculation",
      "pct": true
     },
@@ -805,7 +805,7 @@
      "kind": "calculation"
     },
     "D37": {
-     "value": "=Valuation!$D$77",
+     "value": "=Valuation!$D$68",
      "kind": "calculation"
     },
     "B38": {
@@ -817,7 +817,7 @@
      "kind": "calculation"
     },
     "D38": {
-     "value": "=Valuation!$D$80",
+     "value": "=Valuation!$D$71",
      "kind": "calculation",
      "format": "0.0"
     },
@@ -830,7 +830,7 @@
      "kind": "calculation"
     },
     "D39": {
-     "value": "=Valuation!$D$82",
+     "value": "=Valuation!$D$73",
      "kind": "calculation",
      "format": "0.0"
     },
@@ -1054,13 +1054,13 @@
     {
      "title": "Forward P/E band (navy: window used; grey: excluded)",
      "range": "I27:P47",
-     "categories": "'Valuation Band'!B36:B155",
+     "categories": "'Valuation Band'!B43:B162",
      "series": [
-      "'Valuation Band'!J35:J155",
-      "'Valuation Band'!K35:K155",
-      "'Valuation Band'!L35:L155",
-      "'Valuation Band'!M35:M155",
-      "'Valuation Band'!N35:N155"
+      "'Valuation Band'!J42:J162",
+      "'Valuation Band'!K42:K162",
+      "'Valuation Band'!L42:L162",
+      "'Valuation Band'!M42:M162",
+      "'Valuation Band'!N42:N162"
      ],
      "colors": [
       "1B2A41",
@@ -1097,10 +1097,9 @@
     34,
     39,
     50,
-    59,
-    67,
-    75,
-    84
+    58,
+    66,
+    75
    ],
    "cells": {
     "B1": {
@@ -1576,219 +1575,307 @@
      "kind": "calculation"
     },
     "B50": {
-     "value": "SENSITIVITY INPUTS, FY2027E (linked)",
+     "value": "SENSITIVITIES: FY2027E EPS (one shock at a time, recalculated through the whole model)",
      "kind": "calculation"
     },
     "B51": {
-     "value": "Domestic heavy-unit revenue",
-     "kind": "calculation"
-    },
-    "C51": {
-     "value": "RMB m",
-     "kind": "calculation"
-    },
-    "D51": {
-     "value": "='Revenue Build'!J41",
-     "kind": "calculation"
-    },
-    "B52": {
-     "value": "Domestic heavy-unit gross profit",
-     "kind": "calculation"
-    },
-    "C52": {
-     "value": "RMB m",
-     "kind": "calculation"
-    },
-    "D52": {
-     "value": "='Revenue Build'!J62",
-     "kind": "calculation"
-    },
-    "B53": {
-     "value": "Export heavy-unit revenue",
-     "kind": "calculation"
-    },
-    "C53": {
-     "value": "RMB m",
-     "kind": "calculation"
-    },
-    "D53": {
-     "value": "='Revenue Build'!J42",
-     "kind": "calculation"
-    },
-    "B54": {
-     "value": "Export heavy-unit gross profit",
-     "kind": "calculation"
-    },
-    "C54": {
-     "value": "RMB m",
-     "kind": "calculation"
-    },
-    "D54": {
-     "value": "='Revenue Build'!J63",
-     "kind": "calculation"
-    },
-    "B55": {
-     "value": "Light-unit gross profit",
-     "kind": "calculation"
-    },
-    "C55": {
-     "value": "RMB m",
-     "kind": "calculation"
-    },
-    "D55": {
-     "value": "='Revenue Build'!J64",
-     "kind": "calculation"
-    },
-    "B56": {
-     "value": "Steel share of heavy-unit cost of sales",
-     "kind": "calculation"
-    },
-    "C56": {
-     "value": "%",
-     "kind": "calculation"
-    },
-    "D56": {
-     "value": "='Input Prices'!J9",
-     "kind": "calculation",
-     "pct": true
-    },
-    "B57": {
-     "value": "EPS per RMB m of gross profit (after tax and minorities)",
-     "kind": "calculation"
-    },
-    "C57": {
-     "value": "RMB per RMB m",
-     "kind": "calculation"
-    },
-    "D57": {
-     "value": "=(1-Statements!J37)*(1-Statements!J40)/Statements!J49",
-     "kind": "calculation",
-     "format": "0.00000"
-    },
-    "H57": {
-     "value": "Operating costs held fixed, so a gross-profit change flows through tax and minorities to EPS.",
-     "kind": "calculation"
-    },
-    "B59": {
-     "value": "SENSITIVITIES: FY2027E EPS (one shock at a time; largest first)",
-     "kind": "calculation"
-    },
-    "B60": {
      "value": "Thesis risk",
      "kind": "calculation",
      "bold": true
     },
-    "C60": {
+    "C51": {
      "value": "Unit",
      "kind": "calculation",
      "bold": true
     },
-    "D60": {
+    "D51": {
      "value": "Shock",
      "kind": "calculation",
      "bold": true
     },
-    "E60": {
+    "E51": {
      "value": "EPS change, RMB",
      "kind": "calculation",
      "bold": true
     },
-    "F60": {
+    "F51": {
      "value": "EPS change, %",
      "kind": "calculation",
      "bold": true
     },
-    "G60": {
+    "G51": {
      "value": "Target change, HKD",
      "kind": "calculation",
      "bold": true
     },
-    "B61": {
-     "value": "Export price cut (competition from other exporters)",
+    "B52": {
+     "value": "Export competition: export heavy gross margin",
      "kind": "calculation"
     },
-    "C61": {
-     "value": "%",
+    "C52": {
+     "value": "pt",
      "kind": "calculation"
     },
-    "D61": {
-     "value": -0.05,
+    "D52": {
+     "value": -0.02,
      "kind": "input",
      "pct": true
     },
-    "E61": {
-     "value": "=$D$53*D61*$D$57",
-     "kind": "calculation",
+    "E52": {
+     "value": -0.1261185937496816,
+     "kind": "actual",
      "format": "0.000;(0.000);\"–\""
     },
-    "F61": {
-     "value": "=E61/$D$19",
+    "F52": {
+     "value": "=E52/$D$19",
      "kind": "calculation",
      "pct": true
     },
-    "G61": {
-     "value": "=E61*$D$22/$D$16",
+    "G52": {
+     "value": "=E52*$D$22/$D$16",
      "kind": "calculation",
      "format": "0.00;(0.00);\"–\""
     },
-    "B62": {
+    "B53": {
      "value": "Steel price rebounds without pass-through",
      "kind": "calculation"
     },
-    "C62": {
+    "C53": {
      "value": "%",
      "kind": "calculation"
     },
-    "D62": {
+    "D53": {
      "value": 0.1,
      "kind": "input",
      "pct": true
     },
-    "E62": {
-     "value": "=-($D$51-$D$52+$D$53-$D$54)*$D$56*D62*$D$57",
-     "kind": "calculation",
+    "E53": {
+     "value": -0.11534373312091506,
+     "kind": "actual",
      "format": "0.000;(0.000);\"–\""
     },
-    "F62": {
-     "value": "=E62/$D$19",
+    "F53": {
+     "value": "=E53/$D$19",
      "kind": "calculation",
      "pct": true
     },
-    "G62": {
-     "value": "=E62*$D$22/$D$16",
+    "G53": {
+     "value": "=E53*$D$22/$D$16",
      "kind": "calculation",
      "format": "0.00;(0.00);\"–\""
     },
-    "B63": {
-     "value": "Export growth stalls (tariffs or credit): export units",
+    "B54": {
+     "value": "Export growth stalls (tariffs or credit): export unit growth",
      "kind": "calculation"
     },
-    "C63": {
-     "value": "%",
+    "C54": {
+     "value": "pt",
      "kind": "calculation"
     },
-    "D63": {
+    "D54": {
      "value": -0.1,
      "kind": "input",
      "pct": true
     },
-    "E63": {
-     "value": "=$D$54*D63*$D$57",
-     "kind": "calculation",
+    "E54": {
+     "value": -0.0942808219101321,
+     "kind": "actual",
      "format": "0.000;(0.000);\"–\""
     },
-    "F63": {
-     "value": "=E63/$D$19",
+    "F54": {
+     "value": "=E54/$D$19",
      "kind": "calculation",
      "pct": true
     },
-    "G63": {
-     "value": "=E63*$D$22/$D$16",
+    "G54": {
+     "value": "=E54*$D$22/$D$16",
      "kind": "calculation",
      "format": "0.00;(0.00);\"–\""
     },
+    "B55": {
+     "value": "Domestic price war returns: domestic heavy margin",
+     "kind": "calculation"
+    },
+    "C55": {
+     "value": "pt",
+     "kind": "calculation"
+    },
+    "D55": {
+     "value": -0.01,
+     "kind": "input",
+     "pct": true
+    },
+    "E55": {
+     "value": -0.060372665138094694,
+     "kind": "actual",
+     "format": "0.000;(0.000);\"–\""
+    },
+    "F55": {
+     "value": "=E55/$D$19",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G55": {
+     "value": "=E55*$D$22/$D$16",
+     "kind": "calculation",
+     "format": "0.00;(0.00);\"–\""
+    },
+    "B56": {
+     "value": "Domestic downturn deepens: industry volume growth",
+     "kind": "calculation"
+    },
+    "C56": {
+     "value": "pt",
+     "kind": "calculation"
+    },
+    "D56": {
+     "value": -0.1,
+     "kind": "input",
+     "pct": true
+    },
+    "E56": {
+     "value": -0.04119242886428198,
+     "kind": "actual",
+     "format": "0.000;(0.000);\"–\""
+    },
+    "F56": {
+     "value": "=E56/$D$19",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G56": {
+     "value": "=E56*$D$22/$D$16",
+     "kind": "calculation",
+     "format": "0.00;(0.00);\"–\""
+    },
+    "H51": {
+     "value": "Each shock moves the named FY2027E model inputs and recalculates the whole model when it is built, so tax, minorities, financing and shares act as they do in the forecast. Rebuild after changing a shock or a driver; the model check fails on a stale row.",
+     "kind": "calculation"
+    },
+    "B58": {
+     "value": "SCENARIO OUTCOMES (each case recalculated when the model is built)",
+     "kind": "calculation"
+    },
+    "B59": {
+     "value": "Case",
+     "kind": "calculation",
+     "bold": true
+    },
+    "C59": {
+     "value": "Multiple basis",
+     "kind": "calculation",
+     "bold": true
+    },
+    "D59": {
+     "value": "FY2027E EPS, RMB",
+     "kind": "calculation",
+     "bold": true
+    },
+    "E59": {
+     "value": "Target multiple",
+     "kind": "calculation",
+     "bold": true
+    },
+    "F59": {
+     "value": "Target, HKD",
+     "kind": "calculation",
+     "bold": true
+    },
+    "G59": {
+     "value": "Price return",
+     "kind": "calculation",
+     "bold": true
+    },
+    "B60": {
+     "value": "Bear",
+     "kind": "calculation"
+    },
+    "C60": {
+     "value": "Band mean -1 SD",
+     "kind": "calculation"
+    },
+    "D60": {
+     "value": 1.2307805660882183,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "E60": {
+     "value": "='Valuation Band'!$D$12",
+     "kind": "calculation",
+     "format": "0.0\"x\""
+    },
+    "F60": {
+     "value": "=D60*E60/$D$16",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "G60": {
+     "value": "=F60/$D$14-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "B61": {
+     "value": "Base",
+     "kind": "calculation"
+    },
+    "C61": {
+     "value": "Band mean",
+     "kind": "calculation"
+    },
+    "D61": {
+     "value": 1.5573288593198102,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "E61": {
+     "value": "='Valuation Band'!$D$9",
+     "kind": "calculation",
+     "format": "0.0\"x\""
+    },
+    "F61": {
+     "value": "=D61*E61/$D$16",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "G61": {
+     "value": "=F61/$D$14-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "B62": {
+     "value": "Bull",
+     "kind": "calculation"
+    },
+    "C62": {
+     "value": "Band mean +1 SD",
+     "kind": "calculation"
+    },
+    "D62": {
+     "value": 1.8099826388682285,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "E62": {
+     "value": "='Valuation Band'!$D$11",
+     "kind": "calculation",
+     "format": "0.0\"x\""
+    },
+    "F62": {
+     "value": "=D62*E62/$D$16",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "G62": {
+     "value": "=F62/$D$14-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "B63": {
+     "value": "Snapshot taken when the model was built (3 Nov 2026); rebuild it after changing any driver.",
+     "kind": "calculation"
+    },
     "B64": {
-     "value": "Domestic downturn deepens: industry volume",
+     "value": "Snapshot check: active-case EPS against live FY2027E EPS",
      "kind": "calculation"
     },
     "C64": {
@@ -1796,214 +1883,131 @@
      "kind": "calculation"
     },
     "D64": {
-     "value": -0.1,
-     "kind": "input",
-     "pct": true
-    },
-    "E64": {
-     "value": "=($D$52+$D$55)*D64*$D$57",
-     "kind": "calculation",
-     "format": "0.000;(0.000);\"–\""
-    },
-    "F64": {
-     "value": "=E64/$D$19",
+     "value": "=ABS(CHOOSE(Cover!$C$9,D60,D61,D62)/$D$19-1)",
      "kind": "calculation",
      "pct": true
     },
-    "G64": {
-     "value": "=E64*$D$22/$D$16",
-     "kind": "calculation",
-     "format": "0.00;(0.00);\"–\""
-    },
-    "B65": {
-     "value": "Domestic price war returns: domestic heavy margin",
-     "kind": "calculation"
-    },
-    "C65": {
-     "value": "pt",
-     "kind": "calculation"
-    },
-    "D65": {
-     "value": -1,
-     "kind": "input"
-    },
-    "E65": {
-     "value": "=$D$51*D65/100*$D$57",
-     "kind": "calculation",
-     "format": "0.000;(0.000);\"–\""
-    },
-    "F65": {
-     "value": "=E65/$D$19",
-     "kind": "calculation",
-     "pct": true
-    },
-    "G65": {
-     "value": "=E65*$D$22/$D$16",
-     "kind": "calculation",
-     "format": "0.00;(0.00);\"–\""
-    },
-    "H60": {
-     "value": "Shock sizes are inputs; each row moves one driver with operating costs fixed.",
-     "kind": "calculation"
-    },
-    "B67": {
-     "value": "SCENARIO OUTCOMES (each case recalculated when the model is built)",
-     "kind": "calculation"
-    },
-    "B68": {
-     "value": "Case",
-     "kind": "calculation",
-     "bold": true
-    },
-    "C68": {
-     "value": "Multiple basis",
-     "kind": "calculation",
-     "bold": true
-    },
-    "D68": {
-     "value": "FY2027E EPS, RMB",
-     "kind": "calculation",
-     "bold": true
-    },
-    "E68": {
-     "value": "Target multiple",
-     "kind": "calculation",
-     "bold": true
-    },
-    "F68": {
-     "value": "Target, HKD",
-     "kind": "calculation",
-     "bold": true
-    },
-    "G68": {
-     "value": "Price return",
-     "kind": "calculation",
-     "bold": true
-    },
-    "B69": {
-     "value": "Bear",
-     "kind": "calculation"
-    },
-    "C69": {
-     "value": "Band mean -1 SD",
-     "kind": "calculation"
-    },
-    "D69": {
-     "value": 1.2307805660882183,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "E69": {
-     "value": "='Valuation Band'!$D$12",
-     "kind": "calculation",
-     "format": "0.0\"x\""
-    },
-    "F69": {
-     "value": "=D69*E69/$D$16",
-     "kind": "calculation",
-     "format": "0.00"
-    },
-    "G69": {
-     "value": "=F69/$D$14-1",
-     "kind": "calculation",
-     "pct": true
-    },
-    "B70": {
-     "value": "Base",
-     "kind": "calculation"
-    },
-    "C70": {
-     "value": "Band mean",
-     "kind": "calculation"
-    },
-    "D70": {
-     "value": 1.5573288593198102,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "E70": {
-     "value": "='Valuation Band'!$D$9",
-     "kind": "calculation",
-     "format": "0.0\"x\""
-    },
-    "F70": {
-     "value": "=D70*E70/$D$16",
-     "kind": "calculation",
-     "format": "0.00"
-    },
-    "G70": {
-     "value": "=F70/$D$14-1",
-     "kind": "calculation",
-     "pct": true
-    },
-    "B71": {
-     "value": "Bull",
-     "kind": "calculation"
-    },
-    "C71": {
-     "value": "Band mean +1 SD",
-     "kind": "calculation"
-    },
-    "D71": {
-     "value": 1.8099826388682285,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "E71": {
-     "value": "='Valuation Band'!$D$11",
-     "kind": "calculation",
-     "format": "0.0\"x\""
-    },
-    "F71": {
-     "value": "=D71*E71/$D$16",
-     "kind": "calculation",
-     "format": "0.00"
-    },
-    "G71": {
-     "value": "=F71/$D$14-1",
-     "kind": "calculation",
-     "pct": true
-    },
-    "B72": {
-     "value": "Snapshot taken when the model was built (3 Nov 2026); rebuild it after changing any driver.",
-     "kind": "calculation"
-    },
-    "B73": {
-     "value": "Snapshot check: active-case EPS against live FY2027E EPS",
-     "kind": "calculation"
-    },
-    "C73": {
-     "value": "%",
-     "kind": "calculation"
-    },
-    "D73": {
-     "value": "=ABS(CHOOSE(Cover!$C$9,D69,D70,D71)/$D$19-1)",
-     "kind": "calculation",
-     "pct": true
-    },
-    "H73": {
+    "H64": {
      "value": "Zero when the snapshot matches the live model; a stale snapshot shows on the Checks sheet.",
      "kind": "calculation"
     },
-    "B75": {
+    "B66": {
      "value": "VALUATION BAND SUMMARY",
      "kind": "calculation"
     },
-    "B76": {
+    "B67": {
      "value": "Window used",
      "kind": "calculation"
     },
-    "C76": {
+    "C67": {
      "value": "years",
      "kind": "calculation"
     },
-    "D76": {
+    "D67": {
      "value": "='Valuation Band'!$D$7",
      "kind": "calculation",
      "format": "0"
     },
-    "B77": {
+    "B68": {
      "value": "Mean forward P/E",
+     "kind": "calculation"
+    },
+    "C68": {
+     "value": "x",
+     "kind": "calculation"
+    },
+    "D68": {
+     "value": "='Valuation Band'!$D$9",
+     "kind": "calculation"
+    },
+    "B69": {
+     "value": "Standard deviation",
+     "kind": "calculation"
+    },
+    "C69": {
+     "value": "x",
+     "kind": "calculation"
+    },
+    "D69": {
+     "value": "='Valuation Band'!$D$10",
+     "kind": "calculation"
+    },
+    "B70": {
+     "value": "Today on consensus EPS",
+     "kind": "calculation"
+    },
+    "C70": {
+     "value": "x",
+     "kind": "calculation"
+    },
+    "D70": {
+     "value": "='Valuation Band'!$D$23",
+     "kind": "calculation"
+    },
+    "B71": {
+     "value": "  SD from the mean",
+     "kind": "calculation"
+    },
+    "C71": {
+     "value": "SD",
+     "kind": "calculation"
+    },
+    "D71": {
+     "value": "='Valuation Band'!$D$24",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B72": {
+     "value": "Today on our EPS",
+     "kind": "calculation"
+    },
+    "C72": {
+     "value": "x",
+     "kind": "calculation"
+    },
+    "D72": {
+     "value": "='Valuation Band'!$D$26",
+     "kind": "calculation"
+    },
+    "B73": {
+     "value": "  SD from the mean",
+     "kind": "calculation"
+    },
+    "C73": {
+     "value": "SD",
+     "kind": "calculation"
+    },
+    "D73": {
+     "value": "='Valuation Band'!$D$27",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B75": {
+     "value": "PEER P/E",
+     "kind": "calculation"
+    },
+    "B76": {
+     "value": "Peer",
+     "kind": "calculation",
+     "bold": true
+    },
+    "C76": {
+     "value": "Unit",
+     "kind": "calculation",
+     "bold": true
+    },
+    "D76": {
+     "value": "FY2026E",
+     "kind": "calculation",
+     "bold": true
+    },
+    "E76": {
+     "value": "FY2027E",
+     "kind": "calculation",
+     "bold": true
+    },
+    "B77": {
+     "value": "Peer A",
      "kind": "calculation"
     },
     "C77": {
@@ -2011,11 +2015,15 @@
      "kind": "calculation"
     },
     "D77": {
-     "value": "='Valuation Band'!$D$9",
-     "kind": "calculation"
+     "value": 9.8,
+     "kind": "actual"
+    },
+    "E77": {
+     "value": 8.9,
+     "kind": "actual"
     },
     "B78": {
-     "value": "Standard deviation",
+     "value": "Peer B",
      "kind": "calculation"
     },
     "C78": {
@@ -2023,11 +2031,15 @@
      "kind": "calculation"
     },
     "D78": {
-     "value": "='Valuation Band'!$D$10",
-     "kind": "calculation"
+     "value": 11.5,
+     "kind": "actual"
+    },
+    "E78": {
+     "value": 10.2,
+     "kind": "actual"
     },
     "B79": {
-     "value": "Today on consensus EPS",
+     "value": "Peer C",
      "kind": "calculation"
     },
     "C79": {
@@ -2035,155 +2047,49 @@
      "kind": "calculation"
     },
     "D79": {
-     "value": "='Valuation Band'!$D$23",
-     "kind": "calculation"
+     "value": 8.4,
+     "kind": "actual"
+    },
+    "E79": {
+     "value": 7.9,
+     "kind": "actual"
     },
     "B80": {
-     "value": "  SD from the mean",
+     "value": "Peer D",
      "kind": "calculation"
     },
     "C80": {
-     "value": "SD",
+     "value": "x",
      "kind": "calculation"
     },
     "D80": {
-     "value": "='Valuation Band'!$D$24",
-     "kind": "calculation",
-     "format": "0.0"
+     "value": 12.6,
+     "kind": "actual"
+    },
+    "E80": {
+     "value": 11.0,
+     "kind": "actual"
     },
     "B81": {
-     "value": "Today on our EPS",
-     "kind": "calculation"
+     "value": "Peer average (Peers A-D)",
+     "kind": "calculation",
+     "bold": true
     },
     "C81": {
      "value": "x",
      "kind": "calculation"
     },
     "D81": {
-     "value": "='Valuation Band'!$D$26",
-     "kind": "calculation"
-    },
-    "B82": {
-     "value": "  SD from the mean",
-     "kind": "calculation"
-    },
-    "C82": {
-     "value": "SD",
-     "kind": "calculation"
-    },
-    "D82": {
-     "value": "='Valuation Band'!$D$27",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B84": {
-     "value": "PEER P/E",
-     "kind": "calculation"
-    },
-    "B85": {
-     "value": "Peer",
+     "value": "=AVERAGE(D77:D80)",
      "kind": "calculation",
      "bold": true
     },
-    "C85": {
-     "value": "Unit",
+    "E81": {
+     "value": "=AVERAGE(E77:E80)",
      "kind": "calculation",
      "bold": true
     },
-    "D85": {
-     "value": "FY2026E",
-     "kind": "calculation",
-     "bold": true
-    },
-    "E85": {
-     "value": "FY2027E",
-     "kind": "calculation",
-     "bold": true
-    },
-    "B86": {
-     "value": "Peer A",
-     "kind": "calculation"
-    },
-    "C86": {
-     "value": "x",
-     "kind": "calculation"
-    },
-    "D86": {
-     "value": 9.8,
-     "kind": "actual"
-    },
-    "E86": {
-     "value": 8.9,
-     "kind": "actual"
-    },
-    "B87": {
-     "value": "Peer B",
-     "kind": "calculation"
-    },
-    "C87": {
-     "value": "x",
-     "kind": "calculation"
-    },
-    "D87": {
-     "value": 11.5,
-     "kind": "actual"
-    },
-    "E87": {
-     "value": 10.2,
-     "kind": "actual"
-    },
-    "B88": {
-     "value": "Peer C",
-     "kind": "calculation"
-    },
-    "C88": {
-     "value": "x",
-     "kind": "calculation"
-    },
-    "D88": {
-     "value": 8.4,
-     "kind": "actual"
-    },
-    "E88": {
-     "value": 7.9,
-     "kind": "actual"
-    },
-    "B89": {
-     "value": "Peer D",
-     "kind": "calculation"
-    },
-    "C89": {
-     "value": "x",
-     "kind": "calculation"
-    },
-    "D89": {
-     "value": 12.6,
-     "kind": "actual"
-    },
-    "E89": {
-     "value": 11.0,
-     "kind": "actual"
-    },
-    "B90": {
-     "value": "Peer average (Peers A-D)",
-     "kind": "calculation",
-     "bold": true
-    },
-    "C90": {
-     "value": "x",
-     "kind": "calculation"
-    },
-    "D90": {
-     "value": "=AVERAGE(D86:D89)",
-     "kind": "calculation",
-     "bold": true
-    },
-    "E90": {
-     "value": "=AVERAGE(E86:E89)",
-     "kind": "calculation",
-     "bold": true
-    },
-    "H85": {
+    "H76": {
      "value": "Same-date prices over consensus EPS for the same fiscal years.",
      "kind": "calculation"
     }
@@ -2201,7 +2107,8 @@
    "sections": [
     6,
     19,
-    29
+    29,
+    35
    ],
    "cells": {
     "B1": {
@@ -2256,7 +2163,7 @@
      "kind": "calculation"
     },
     "D8": {
-     "value": "=COUNT(I36:I155)",
+     "value": "=COUNT(I43:I162)",
      "kind": "calculation",
      "format": "0"
     },
@@ -2269,7 +2176,7 @@
      "kind": "calculation"
     },
     "D9": {
-     "value": "=AVERAGE(I36:I155)",
+     "value": "=AVERAGE(I43:I162)",
      "kind": "calculation"
     },
     "B10": {
@@ -2281,7 +2188,7 @@
      "kind": "calculation"
     },
     "D10": {
-     "value": "=STDEV(I36:I155)",
+     "value": "=STDEV(I43:I162)",
      "kind": "calculation"
     },
     "B11": {
@@ -2341,7 +2248,7 @@
      "kind": "calculation"
     },
     "D15": {
-     "value": "=AVERAGE(F36:F155)",
+     "value": "=AVERAGE(F43:F162)",
      "kind": "calculation"
     },
     "B16": {
@@ -2353,7 +2260,7 @@
      "kind": "calculation"
     },
     "D16": {
-     "value": "=AVERAGE(F96:F155)",
+     "value": "=AVERAGE(F103:F162)",
      "kind": "calculation"
     },
     "B17": {
@@ -2365,7 +2272,7 @@
      "kind": "calculation"
     },
     "D17": {
-     "value": "=AVERAGE(F120:F155)",
+     "value": "=AVERAGE(F127:F162)",
      "kind": "calculation"
     },
     "B19": {
@@ -2381,7 +2288,7 @@
      "kind": "calculation"
     },
     "D20": {
-     "value": "=E155",
+     "value": "=E162",
      "kind": "calculation"
     },
     "B21": {
@@ -2544,614 +2451,250 @@
      "kind": "calculation"
     },
     "B35": {
+     "value": "WINDOW ALTERNATIVES (each start is a dated economic event or a conventional lookback)",
+     "kind": "calculation"
+    },
+    "B36": {
+     "value": "Window",
+     "kind": "calculation",
+     "bold": true
+    },
+    "C36": {
+     "value": "Months",
+     "kind": "calculation",
+     "bold": true
+    },
+    "D36": {
+     "value": "Mean P/E",
+     "kind": "calculation",
+     "bold": true
+    },
+    "E36": {
+     "value": "Target on our EPS, HKD",
+     "kind": "calculation",
+     "bold": true
+    },
+    "F36": {
+     "value": "Price return",
+     "kind": "calculation",
+     "bold": true
+    },
+    "G36": {
+     "value": "Rating",
+     "kind": "calculation",
+     "bold": true
+    },
+    "B37": {
+     "value": "Chosen: since the export-led shape settled (Nov 2021)",
+     "kind": "calculation"
+    },
+    "C37": {
+     "value": "=$D$7*12",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "D37": {
+     "value": "=$D$9",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "E37": {
+     "value": "=D37*$D$25/$D$22",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "F37": {
+     "value": "=E37/$D$21-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G37": {
+     "value": "=IF(F37>0.1,\"Buy\",IF(F37<-0.1,\"Sell\",\"Hold\"))",
+     "kind": "calculation",
+     "text": true
+    },
+    "B38": {
+     "value": "Ten years, including the earlier domestic-led mix",
+     "kind": "calculation"
+    },
+    "C38": {
+     "value": 120,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "D38": {
+     "value": "=AVERAGE(F43:F162)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "E38": {
+     "value": "=D38*$D$25/$D$22",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "F38": {
+     "value": "=E38/$D$21-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G38": {
+     "value": "=IF(F38>0.1,\"Buy\",IF(F38<-0.1,\"Sell\",\"Hold\"))",
+     "kind": "calculation",
+     "text": true
+    },
+    "B39": {
+     "value": "Three years",
+     "kind": "calculation"
+    },
+    "C39": {
+     "value": 36,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "D39": {
+     "value": "=AVERAGE(F127:F162)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "E39": {
+     "value": "=D39*$D$25/$D$22",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "F39": {
+     "value": "=E39/$D$21-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G39": {
+     "value": "=IF(F39>0.1,\"Buy\",IF(F39<-0.1,\"Sell\",\"Hold\"))",
+     "kind": "calculation",
+     "text": true
+    },
+    "B40": {
+     "value": "Since the domestic downturn began (Jul 2026)",
+     "kind": "calculation"
+    },
+    "C40": {
+     "value": 4,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "D40": {
+     "value": "=AVERAGE(F159:F162)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "E40": {
+     "value": "=D40*$D$25/$D$22",
+     "kind": "calculation",
+     "format": "0.00"
+    },
+    "F40": {
+     "value": "=E40/$D$21-1",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G40": {
+     "value": "=IF(F40>0.1,\"Buy\",IF(F40<-0.1,\"Sell\",\"Hold\"))",
+     "kind": "calculation",
+     "text": true
+    },
+    "R36": {
+     "value": "The chosen window starts at the event its rationale names. Alternatives show what each defensible start would give; when one crosses a rating threshold, the valuation text says so and argues the choice. The downturn window fits only if the evidence shows a lasting new regime; here it is temporary.",
+     "kind": "calculation"
+    },
+    "B42": {
      "value": "Month",
      "kind": "calculation",
      "bold": true
     },
-    "C35": {
+    "C42": {
      "value": "Price, HKD",
      "kind": "calculation",
      "bold": true
     },
-    "D35": {
+    "D42": {
      "value": "RMB per HKD",
      "kind": "calculation",
      "bold": true
     },
-    "E35": {
+    "E42": {
      "value": "Forward EPS, RMB",
      "kind": "calculation",
      "bold": true
     },
-    "F35": {
+    "F42": {
      "value": "Forward P/E",
      "kind": "calculation",
      "bold": true
     },
-    "G35": {
+    "G42": {
      "value": "Months before latest",
      "kind": "calculation",
      "bold": true
     },
-    "H35": {
+    "H42": {
      "value": "In window",
      "kind": "calculation",
      "bold": true
     },
-    "I35": {
+    "I42": {
      "value": "P/E in window",
      "kind": "calculation",
      "bold": true
     },
-    "J35": {
+    "J42": {
      "value": "Window P/E",
      "kind": "calculation",
      "bold": true
     },
-    "K35": {
+    "K42": {
      "value": "Excluded history",
      "kind": "calculation",
      "bold": true
     },
-    "L35": {
+    "L42": {
      "value": "Mean",
      "kind": "calculation",
      "bold": true
     },
-    "M35": {
+    "M42": {
      "value": "+1 SD",
      "kind": "calculation",
      "bold": true
     },
-    "N35": {
+    "N42": {
      "value": "-1 SD",
      "kind": "calculation",
      "bold": true
     },
-    "O35": {
+    "O42": {
      "value": "+2 SD",
      "kind": "calculation",
      "bold": true
     },
-    "P35": {
+    "P42": {
      "value": "-2 SD",
      "kind": "calculation",
      "bold": true
     },
-    "B36": {
+    "B43": {
      "value": "2016-11",
      "kind": "calculation"
     },
-    "C36": {
+    "C43": {
      "value": 9.9,
      "kind": "actual",
      "format": "0.00"
     },
-    "D36": {
+    "D43": {
      "value": 0.91,
      "kind": "actual",
      "format": "0.0000"
     },
-    "E36": {
-     "value": 0.9,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F36": {
-     "value": "=C36*D36/E36",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G36": {
-     "value": 119,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H36": {
-     "value": "=IF(G36<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I36": {
-     "value": "=IF(H36=1,F36,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J36": {
-     "value": "=IF(H36=1,F36,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K36": {
-     "value": "=IF(H36=1,NA(),F36)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L36": {
-     "value": "=IF(H36=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M36": {
-     "value": "=IF(H36=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N36": {
-     "value": "=IF(H36=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O36": {
-     "value": "=IF(H36=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P36": {
-     "value": "=IF(H36=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B37": {
-     "value": "2016-12",
-     "kind": "calculation"
-    },
-    "C37": {
-     "value": 10.69,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D37": {
-     "value": 0.911,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E37": {
-     "value": 0.925,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F37": {
-     "value": "=C37*D37/E37",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G37": {
-     "value": 118,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H37": {
-     "value": "=IF(G37<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I37": {
-     "value": "=IF(H37=1,F37,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J37": {
-     "value": "=IF(H37=1,F37,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K37": {
-     "value": "=IF(H37=1,NA(),F37)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L37": {
-     "value": "=IF(H37=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M37": {
-     "value": "=IF(H37=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N37": {
-     "value": "=IF(H37=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O37": {
-     "value": "=IF(H37=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P37": {
-     "value": "=IF(H37=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B38": {
-     "value": "2017-01",
-     "kind": "calculation"
-    },
-    "C38": {
-     "value": 11.26,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D38": {
-     "value": 0.911,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E38": {
-     "value": 0.95,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F38": {
-     "value": "=C38*D38/E38",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G38": {
-     "value": 117,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H38": {
-     "value": "=IF(G38<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I38": {
-     "value": "=IF(H38=1,F38,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J38": {
-     "value": "=IF(H38=1,F38,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K38": {
-     "value": "=IF(H38=1,NA(),F38)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L38": {
-     "value": "=IF(H38=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M38": {
-     "value": "=IF(H38=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N38": {
-     "value": "=IF(H38=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O38": {
-     "value": "=IF(H38=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P38": {
-     "value": "=IF(H38=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B39": {
-     "value": "2017-02",
-     "kind": "calculation"
-    },
-    "C39": {
-     "value": 11.51,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D39": {
-     "value": 0.912,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E39": {
-     "value": 0.974,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F39": {
-     "value": "=C39*D39/E39",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G39": {
-     "value": 116,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H39": {
-     "value": "=IF(G39<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I39": {
-     "value": "=IF(H39=1,F39,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J39": {
-     "value": "=IF(H39=1,F39,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K39": {
-     "value": "=IF(H39=1,NA(),F39)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L39": {
-     "value": "=IF(H39=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M39": {
-     "value": "=IF(H39=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N39": {
-     "value": "=IF(H39=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O39": {
-     "value": "=IF(H39=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P39": {
-     "value": "=IF(H39=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B40": {
-     "value": "2017-03",
-     "kind": "calculation"
-    },
-    "C40": {
-     "value": 11.6,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D40": {
-     "value": 0.912,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E40": {
-     "value": 0.997,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F40": {
-     "value": "=C40*D40/E40",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G40": {
-     "value": 115,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H40": {
-     "value": "=IF(G40<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I40": {
-     "value": "=IF(H40=1,F40,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J40": {
-     "value": "=IF(H40=1,F40,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K40": {
-     "value": "=IF(H40=1,NA(),F40)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L40": {
-     "value": "=IF(H40=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M40": {
-     "value": "=IF(H40=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N40": {
-     "value": "=IF(H40=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O40": {
-     "value": "=IF(H40=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P40": {
-     "value": "=IF(H40=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B41": {
-     "value": "2017-04",
-     "kind": "calculation"
-    },
-    "C41": {
-     "value": 11.73,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D41": {
-     "value": 0.913,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E41": {
-     "value": 1.019,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F41": {
-     "value": "=C41*D41/E41",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G41": {
-     "value": 114,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H41": {
-     "value": "=IF(G41<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I41": {
-     "value": "=IF(H41=1,F41,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J41": {
-     "value": "=IF(H41=1,F41,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K41": {
-     "value": "=IF(H41=1,NA(),F41)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L41": {
-     "value": "=IF(H41=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M41": {
-     "value": "=IF(H41=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N41": {
-     "value": "=IF(H41=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O41": {
-     "value": "=IF(H41=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P41": {
-     "value": "=IF(H41=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B42": {
-     "value": "2017-05",
-     "kind": "calculation"
-    },
-    "C42": {
-     "value": 12.07,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D42": {
-     "value": 0.914,
-     "kind": "actual",
-     "format": "0.0000"
-    },
-    "E42": {
-     "value": 1.039,
-     "kind": "actual",
-     "format": "0.000"
-    },
-    "F42": {
-     "value": "=C42*D42/E42",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "G42": {
-     "value": 113,
-     "kind": "calculation",
-     "format": "0"
-    },
-    "H42": {
-     "value": "=IF(G42<$D$7*12,1,0)",
-     "kind": "calculation",
-     "format": "0"
-    },
-    "I42": {
-     "value": "=IF(H42=1,F42,\"\")",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "J42": {
-     "value": "=IF(H42=1,F42,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "K42": {
-     "value": "=IF(H42=1,NA(),F42)",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "L42": {
-     "value": "=IF(H42=1,$D$9,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "M42": {
-     "value": "=IF(H42=1,$D$11,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "N42": {
-     "value": "=IF(H42=1,$D$12,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "O42": {
-     "value": "=IF(H42=1,$D$13,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "P42": {
-     "value": "=IF(H42=1,$D$14,NA())",
-     "kind": "calculation",
-     "format": "0.0"
-    },
-    "B43": {
-     "value": "2017-06",
-     "kind": "calculation"
-    },
-    "C43": {
-     "value": 12.6,
-     "kind": "actual",
-     "format": "0.00"
-    },
-    "D43": {
-     "value": 0.914,
-     "kind": "actual",
-     "format": "0.0000"
-    },
     "E43": {
-     "value": 1.058,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3161,7 +2704,7 @@
      "format": "0.0"
     },
     "G43": {
-     "value": 112,
+     "value": 119,
      "kind": "calculation",
      "format": "0"
     },
@@ -3211,21 +2754,21 @@
      "format": "0.0"
     },
     "B44": {
-     "value": "2017-07",
+     "value": "2016-12",
      "kind": "calculation"
     },
     "C44": {
-     "value": 13.05,
+     "value": 10.69,
      "kind": "actual",
      "format": "0.00"
     },
     "D44": {
-     "value": 0.915,
+     "value": 0.911,
      "kind": "actual",
      "format": "0.0000"
     },
     "E44": {
-     "value": 1.074,
+     "value": 0.925,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3235,7 +2778,7 @@
      "format": "0.0"
     },
     "G44": {
-     "value": 111,
+     "value": 118,
      "kind": "calculation",
      "format": "0"
     },
@@ -3285,21 +2828,21 @@
      "format": "0.0"
     },
     "B45": {
-     "value": "2017-08",
+     "value": "2017-01",
      "kind": "calculation"
     },
     "C45": {
-     "value": 13.19,
+     "value": 11.26,
      "kind": "actual",
      "format": "0.00"
     },
     "D45": {
-     "value": 0.915,
+     "value": 0.911,
      "kind": "actual",
      "format": "0.0000"
     },
     "E45": {
-     "value": 1.088,
+     "value": 0.95,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3309,7 +2852,7 @@
      "format": "0.0"
     },
     "G45": {
-     "value": 110,
+     "value": 117,
      "kind": "calculation",
      "format": "0"
     },
@@ -3359,21 +2902,21 @@
      "format": "0.0"
     },
     "B46": {
-     "value": "2017-09",
+     "value": "2017-02",
      "kind": "calculation"
     },
     "C46": {
-     "value": 12.93,
+     "value": 11.51,
      "kind": "actual",
      "format": "0.00"
     },
     "D46": {
-     "value": 0.916,
+     "value": 0.912,
      "kind": "actual",
      "format": "0.0000"
     },
     "E46": {
-     "value": 1.1,
+     "value": 0.974,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3383,7 +2926,7 @@
      "format": "0.0"
     },
     "G46": {
-     "value": 109,
+     "value": 116,
      "kind": "calculation",
      "format": "0"
     },
@@ -3433,21 +2976,21 @@
      "format": "0.0"
     },
     "B47": {
-     "value": "2017-10",
+     "value": "2017-03",
      "kind": "calculation"
     },
     "C47": {
-     "value": 12.47,
+     "value": 11.6,
      "kind": "actual",
      "format": "0.00"
     },
     "D47": {
-     "value": 0.916,
+     "value": 0.912,
      "kind": "actual",
      "format": "0.0000"
     },
     "E47": {
-     "value": 1.109,
+     "value": 0.997,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3457,7 +3000,7 @@
      "format": "0.0"
     },
     "G47": {
-     "value": 108,
+     "value": 115,
      "kind": "calculation",
      "format": "0"
     },
@@ -3507,21 +3050,21 @@
      "format": "0.0"
     },
     "B48": {
-     "value": "2017-11",
+     "value": "2017-04",
      "kind": "calculation"
     },
     "C48": {
-     "value": 12.05,
+     "value": 11.73,
      "kind": "actual",
      "format": "0.00"
     },
     "D48": {
-     "value": 0.917,
+     "value": 0.913,
      "kind": "actual",
      "format": "0.0000"
     },
     "E48": {
-     "value": 1.116,
+     "value": 1.019,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3531,7 +3074,7 @@
      "format": "0.0"
     },
     "G48": {
-     "value": 107,
+     "value": 114,
      "kind": "calculation",
      "format": "0"
     },
@@ -3581,21 +3124,21 @@
      "format": "0.0"
     },
     "B49": {
-     "value": "2017-12",
+     "value": "2017-05",
      "kind": "calculation"
     },
     "C49": {
-     "value": 11.89,
+     "value": 12.07,
      "kind": "actual",
      "format": "0.00"
     },
     "D49": {
-     "value": 0.917,
+     "value": 0.914,
      "kind": "actual",
      "format": "0.0000"
     },
     "E49": {
-     "value": 1.12,
+     "value": 1.039,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3605,7 +3148,7 @@
      "format": "0.0"
     },
     "G49": {
-     "value": 106,
+     "value": 113,
      "kind": "calculation",
      "format": "0"
     },
@@ -3655,21 +3198,21 @@
      "format": "0.0"
     },
     "B50": {
-     "value": "2018-01",
+     "value": "2017-06",
      "kind": "calculation"
     },
     "C50": {
-     "value": 11.91,
+     "value": 12.6,
      "kind": "actual",
      "format": "0.00"
     },
     "D50": {
-     "value": 0.918,
+     "value": 0.914,
      "kind": "actual",
      "format": "0.0000"
     },
     "E50": {
-     "value": 1.122,
+     "value": 1.058,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3679,7 +3222,7 @@
      "format": "0.0"
     },
     "G50": {
-     "value": 105,
+     "value": 112,
      "kind": "calculation",
      "format": "0"
     },
@@ -3729,21 +3272,21 @@
      "format": "0.0"
     },
     "B51": {
-     "value": "2018-02",
+     "value": "2017-07",
      "kind": "calculation"
     },
     "C51": {
-     "value": 11.9,
+     "value": 13.05,
      "kind": "actual",
      "format": "0.00"
     },
     "D51": {
-     "value": 0.918,
+     "value": 0.915,
      "kind": "actual",
      "format": "0.0000"
     },
     "E51": {
-     "value": 1.121,
+     "value": 1.074,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3753,7 +3296,7 @@
      "format": "0.0"
     },
     "G51": {
-     "value": 104,
+     "value": 111,
      "kind": "calculation",
      "format": "0"
     },
@@ -3803,21 +3346,21 @@
      "format": "0.0"
     },
     "B52": {
-     "value": "2018-03",
+     "value": "2017-08",
      "kind": "calculation"
     },
     "C52": {
-     "value": 11.6,
+     "value": 13.19,
      "kind": "actual",
      "format": "0.00"
     },
     "D52": {
-     "value": 0.919,
+     "value": 0.915,
      "kind": "actual",
      "format": "0.0000"
     },
     "E52": {
-     "value": 1.118,
+     "value": 1.088,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3827,7 +3370,7 @@
      "format": "0.0"
     },
     "G52": {
-     "value": 103,
+     "value": 110,
      "kind": "calculation",
      "format": "0"
     },
@@ -3877,21 +3420,21 @@
      "format": "0.0"
     },
     "B53": {
-     "value": "2018-04",
+     "value": "2017-09",
      "kind": "calculation"
     },
     "C53": {
-     "value": 10.97,
+     "value": 12.93,
      "kind": "actual",
      "format": "0.00"
     },
     "D53": {
-     "value": 0.919,
+     "value": 0.916,
      "kind": "actual",
      "format": "0.0000"
     },
     "E53": {
-     "value": 1.113,
+     "value": 1.1,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3901,7 +3444,7 @@
      "format": "0.0"
     },
     "G53": {
-     "value": 102,
+     "value": 109,
      "kind": "calculation",
      "format": "0"
     },
@@ -3951,21 +3494,21 @@
      "format": "0.0"
     },
     "B54": {
-     "value": "2018-05",
+     "value": "2017-10",
      "kind": "calculation"
     },
     "C54": {
-     "value": 10.21,
+     "value": 12.47,
      "kind": "actual",
      "format": "0.00"
     },
     "D54": {
-     "value": 0.919,
+     "value": 0.916,
      "kind": "actual",
      "format": "0.0000"
     },
     "E54": {
-     "value": 1.105,
+     "value": 1.109,
      "kind": "actual",
      "format": "0.000"
     },
@@ -3975,7 +3518,7 @@
      "format": "0.0"
     },
     "G54": {
-     "value": 101,
+     "value": 108,
      "kind": "calculation",
      "format": "0"
     },
@@ -4025,21 +3568,21 @@
      "format": "0.0"
     },
     "B55": {
-     "value": "2018-06",
+     "value": "2017-11",
      "kind": "calculation"
     },
     "C55": {
-     "value": 9.58,
+     "value": 12.05,
      "kind": "actual",
      "format": "0.00"
     },
     "D55": {
-     "value": 0.92,
+     "value": 0.917,
      "kind": "actual",
      "format": "0.0000"
     },
     "E55": {
-     "value": 1.096,
+     "value": 1.116,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4049,7 +3592,7 @@
      "format": "0.0"
     },
     "G55": {
-     "value": 100,
+     "value": 107,
      "kind": "calculation",
      "format": "0"
     },
@@ -4099,21 +3642,21 @@
      "format": "0.0"
     },
     "B56": {
-     "value": "2018-07",
+     "value": "2017-12",
      "kind": "calculation"
     },
     "C56": {
-     "value": 9.29,
+     "value": 11.89,
      "kind": "actual",
      "format": "0.00"
     },
     "D56": {
-     "value": 0.92,
+     "value": 0.917,
      "kind": "actual",
      "format": "0.0000"
     },
     "E56": {
-     "value": 1.085,
+     "value": 1.12,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4123,7 +3666,7 @@
      "format": "0.0"
     },
     "G56": {
-     "value": 99,
+     "value": 106,
      "kind": "calculation",
      "format": "0"
     },
@@ -4173,21 +3716,21 @@
      "format": "0.0"
     },
     "B57": {
-     "value": "2018-08",
+     "value": "2018-01",
      "kind": "calculation"
     },
     "C57": {
-     "value": 9.27,
+     "value": 11.91,
      "kind": "actual",
      "format": "0.00"
     },
     "D57": {
-     "value": 0.92,
+     "value": 0.918,
      "kind": "actual",
      "format": "0.0000"
     },
     "E57": {
-     "value": 1.073,
+     "value": 1.122,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4197,7 +3740,7 @@
      "format": "0.0"
     },
     "G57": {
-     "value": 98,
+     "value": 105,
      "kind": "calculation",
      "format": "0"
     },
@@ -4247,21 +3790,21 @@
      "format": "0.0"
     },
     "B58": {
-     "value": "2018-09",
+     "value": "2018-02",
      "kind": "calculation"
     },
     "C58": {
-     "value": 9.26,
+     "value": 11.9,
      "kind": "actual",
      "format": "0.00"
     },
     "D58": {
-     "value": 0.921,
+     "value": 0.918,
      "kind": "actual",
      "format": "0.0000"
     },
     "E58": {
-     "value": 1.06,
+     "value": 1.121,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4271,7 +3814,7 @@
      "format": "0.0"
     },
     "G58": {
-     "value": 97,
+     "value": 104,
      "kind": "calculation",
      "format": "0"
     },
@@ -4321,21 +3864,21 @@
      "format": "0.0"
     },
     "B59": {
-     "value": "2018-10",
+     "value": "2018-03",
      "kind": "calculation"
     },
     "C59": {
-     "value": 9.07,
+     "value": 11.6,
      "kind": "actual",
      "format": "0.00"
     },
     "D59": {
-     "value": 0.921,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E59": {
-     "value": 1.046,
+     "value": 1.118,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4345,7 +3888,7 @@
      "format": "0.0"
     },
     "G59": {
-     "value": 96,
+     "value": 103,
      "kind": "calculation",
      "format": "0"
     },
@@ -4395,21 +3938,21 @@
      "format": "0.0"
     },
     "B60": {
-     "value": "2018-11",
+     "value": "2018-04",
      "kind": "calculation"
     },
     "C60": {
-     "value": 8.63,
+     "value": 10.97,
      "kind": "actual",
      "format": "0.00"
     },
     "D60": {
-     "value": 0.921,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E60": {
-     "value": 1.032,
+     "value": 1.113,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4419,7 +3962,7 @@
      "format": "0.0"
     },
     "G60": {
-     "value": 95,
+     "value": 102,
      "kind": "calculation",
      "format": "0"
     },
@@ -4469,21 +4012,21 @@
      "format": "0.0"
     },
     "B61": {
-     "value": "2018-12",
+     "value": "2018-05",
      "kind": "calculation"
     },
     "C61": {
-     "value": 8.13,
+     "value": 10.21,
      "kind": "actual",
      "format": "0.00"
     },
     "D61": {
-     "value": 0.921,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E61": {
-     "value": 1.018,
+     "value": 1.105,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4493,7 +4036,7 @@
      "format": "0.0"
     },
     "G61": {
-     "value": 94,
+     "value": 101,
      "kind": "calculation",
      "format": "0"
     },
@@ -4543,21 +4086,21 @@
      "format": "0.0"
     },
     "B62": {
-     "value": "2019-01",
+     "value": "2018-06",
      "kind": "calculation"
     },
     "C62": {
-     "value": 7.8,
+     "value": 9.58,
      "kind": "actual",
      "format": "0.00"
     },
     "D62": {
-     "value": 0.922,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E62": {
-     "value": 1.004,
+     "value": 1.096,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4567,7 +4110,7 @@
      "format": "0.0"
     },
     "G62": {
-     "value": 93,
+     "value": 100,
      "kind": "calculation",
      "format": "0"
     },
@@ -4617,21 +4160,21 @@
      "format": "0.0"
     },
     "B63": {
-     "value": "2019-02",
+     "value": "2018-07",
      "kind": "calculation"
     },
     "C63": {
-     "value": 7.83,
+     "value": 9.29,
      "kind": "actual",
      "format": "0.00"
     },
     "D63": {
-     "value": 0.922,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E63": {
-     "value": 0.991,
+     "value": 1.085,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4641,7 +4184,7 @@
      "format": "0.0"
     },
     "G63": {
-     "value": 92,
+     "value": 99,
      "kind": "calculation",
      "format": "0"
     },
@@ -4691,21 +4234,21 @@
      "format": "0.0"
     },
     "B64": {
-     "value": "2019-03",
+     "value": "2018-08",
      "kind": "calculation"
     },
     "C64": {
-     "value": 8.12,
+     "value": 9.27,
      "kind": "actual",
      "format": "0.00"
     },
     "D64": {
-     "value": 0.922,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E64": {
-     "value": 0.979,
+     "value": 1.073,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4715,7 +4258,7 @@
      "format": "0.0"
     },
     "G64": {
-     "value": 91,
+     "value": 98,
      "kind": "calculation",
      "format": "0"
     },
@@ -4765,21 +4308,21 @@
      "format": "0.0"
     },
     "B65": {
-     "value": "2019-04",
+     "value": "2018-09",
      "kind": "calculation"
     },
     "C65": {
-     "value": 8.46,
+     "value": 9.26,
      "kind": "actual",
      "format": "0.00"
     },
     "D65": {
-     "value": 0.922,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E65": {
-     "value": 0.968,
+     "value": 1.06,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4789,7 +4332,7 @@
      "format": "0.0"
     },
     "G65": {
-     "value": 90,
+     "value": 97,
      "kind": "calculation",
      "format": "0"
     },
@@ -4839,21 +4382,21 @@
      "format": "0.0"
     },
     "B66": {
-     "value": "2019-05",
+     "value": "2018-10",
      "kind": "calculation"
     },
     "C66": {
-     "value": 8.63,
+     "value": 9.07,
      "kind": "actual",
      "format": "0.00"
     },
     "D66": {
-     "value": 0.922,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E66": {
-     "value": 0.959,
+     "value": 1.046,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4863,7 +4406,7 @@
      "format": "0.0"
     },
     "G66": {
-     "value": 89,
+     "value": 96,
      "kind": "calculation",
      "format": "0"
     },
@@ -4913,21 +4456,21 @@
      "format": "0.0"
     },
     "B67": {
-     "value": "2019-06",
+     "value": "2018-11",
      "kind": "calculation"
     },
     "C67": {
-     "value": 8.58,
+     "value": 8.63,
      "kind": "actual",
      "format": "0.00"
     },
     "D67": {
-     "value": 0.922,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E67": {
-     "value": 0.951,
+     "value": 1.032,
      "kind": "actual",
      "format": "0.000"
     },
@@ -4937,7 +4480,7 @@
      "format": "0.0"
     },
     "G67": {
-     "value": 88,
+     "value": 95,
      "kind": "calculation",
      "format": "0"
     },
@@ -4987,21 +4530,21 @@
      "format": "0.0"
     },
     "B68": {
-     "value": "2019-07",
+     "value": "2018-12",
      "kind": "calculation"
     },
     "C68": {
-     "value": 8.46,
+     "value": 8.13,
      "kind": "actual",
      "format": "0.00"
     },
     "D68": {
-     "value": 0.922,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E68": {
-     "value": 0.946,
+     "value": 1.018,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5011,7 +4554,7 @@
      "format": "0.0"
     },
     "G68": {
-     "value": 87,
+     "value": 94,
      "kind": "calculation",
      "format": "0"
     },
@@ -5061,11 +4604,11 @@
      "format": "0.0"
     },
     "B69": {
-     "value": "2019-08",
+     "value": "2019-01",
      "kind": "calculation"
     },
     "C69": {
-     "value": 8.5,
+     "value": 7.8,
      "kind": "actual",
      "format": "0.00"
     },
@@ -5075,7 +4618,7 @@
      "format": "0.0000"
     },
     "E69": {
-     "value": 0.943,
+     "value": 1.004,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5085,7 +4628,7 @@
      "format": "0.0"
     },
     "G69": {
-     "value": 86,
+     "value": 93,
      "kind": "calculation",
      "format": "0"
     },
@@ -5135,11 +4678,11 @@
      "format": "0.0"
     },
     "B70": {
-     "value": "2019-09",
+     "value": "2019-02",
      "kind": "calculation"
     },
     "C70": {
-     "value": 8.84,
+     "value": 7.83,
      "kind": "actual",
      "format": "0.00"
     },
@@ -5149,7 +4692,7 @@
      "format": "0.0000"
     },
     "E70": {
-     "value": 0.942,
+     "value": 0.991,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5159,7 +4702,7 @@
      "format": "0.0"
     },
     "G70": {
-     "value": 85,
+     "value": 92,
      "kind": "calculation",
      "format": "0"
     },
@@ -5209,11 +4752,11 @@
      "format": "0.0"
     },
     "B71": {
-     "value": "2019-10",
+     "value": "2019-03",
      "kind": "calculation"
     },
     "C71": {
-     "value": 9.42,
+     "value": 8.12,
      "kind": "actual",
      "format": "0.00"
     },
@@ -5223,7 +4766,7 @@
      "format": "0.0000"
     },
     "E71": {
-     "value": 0.944,
+     "value": 0.979,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5233,7 +4776,7 @@
      "format": "0.0"
     },
     "G71": {
-     "value": 84,
+     "value": 91,
      "kind": "calculation",
      "format": "0"
     },
@@ -5283,11 +4826,11 @@
      "format": "0.0"
     },
     "B72": {
-     "value": "2019-11",
+     "value": "2019-04",
      "kind": "calculation"
     },
     "C72": {
-     "value": 10.04,
+     "value": 8.46,
      "kind": "actual",
      "format": "0.00"
     },
@@ -5297,7 +4840,7 @@
      "format": "0.0000"
     },
     "E72": {
-     "value": 0.948,
+     "value": 0.968,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5307,7 +4850,7 @@
      "format": "0.0"
     },
     "G72": {
-     "value": 83,
+     "value": 90,
      "kind": "calculation",
      "format": "0"
     },
@@ -5357,11 +4900,11 @@
      "format": "0.0"
     },
     "B73": {
-     "value": "2019-12",
+     "value": "2019-05",
      "kind": "calculation"
     },
     "C73": {
-     "value": 10.46,
+     "value": 8.63,
      "kind": "actual",
      "format": "0.00"
     },
@@ -5371,7 +4914,7 @@
      "format": "0.0000"
     },
     "E73": {
-     "value": 0.955,
+     "value": 0.959,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5381,7 +4924,7 @@
      "format": "0.0"
     },
     "G73": {
-     "value": 82,
+     "value": 89,
      "kind": "calculation",
      "format": "0"
     },
@@ -5431,21 +4974,21 @@
      "format": "0.0"
     },
     "B74": {
-     "value": "2020-01",
+     "value": "2019-06",
      "kind": "calculation"
     },
     "C74": {
-     "value": 10.64,
+     "value": 8.58,
      "kind": "actual",
      "format": "0.00"
     },
     "D74": {
-     "value": 0.921,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E74": {
-     "value": 0.964,
+     "value": 0.951,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5455,7 +4998,7 @@
      "format": "0.0"
     },
     "G74": {
-     "value": 81,
+     "value": 88,
      "kind": "calculation",
      "format": "0"
     },
@@ -5505,21 +5048,21 @@
      "format": "0.0"
     },
     "B75": {
-     "value": "2020-02",
+     "value": "2019-07",
      "kind": "calculation"
     },
     "C75": {
-     "value": 10.7,
+     "value": 8.46,
      "kind": "actual",
      "format": "0.00"
     },
     "D75": {
-     "value": 0.921,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E75": {
-     "value": 0.976,
+     "value": 0.946,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5529,7 +5072,7 @@
      "format": "0.0"
     },
     "G75": {
-     "value": 80,
+     "value": 87,
      "kind": "calculation",
      "format": "0"
     },
@@ -5579,21 +5122,21 @@
      "format": "0.0"
     },
     "B76": {
-     "value": "2020-03",
+     "value": "2019-08",
      "kind": "calculation"
     },
     "C76": {
-     "value": 10.87,
+     "value": 8.5,
      "kind": "actual",
      "format": "0.00"
     },
     "D76": {
-     "value": 0.921,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E76": {
-     "value": 0.99,
+     "value": 0.943,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5603,7 +5146,7 @@
      "format": "0.0"
     },
     "G76": {
-     "value": 79,
+     "value": 86,
      "kind": "calculation",
      "format": "0"
     },
@@ -5653,21 +5196,21 @@
      "format": "0.0"
     },
     "B77": {
-     "value": "2020-04",
+     "value": "2019-09",
      "kind": "calculation"
     },
     "C77": {
-     "value": 11.31,
+     "value": 8.84,
      "kind": "actual",
      "format": "0.00"
     },
     "D77": {
-     "value": 0.921,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E77": {
-     "value": 1.006,
+     "value": 0.942,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5677,7 +5220,7 @@
      "format": "0.0"
     },
     "G77": {
-     "value": 78,
+     "value": 85,
      "kind": "calculation",
      "format": "0"
     },
@@ -5727,21 +5270,21 @@
      "format": "0.0"
     },
     "B78": {
-     "value": "2020-05",
+     "value": "2019-10",
      "kind": "calculation"
     },
     "C78": {
-     "value": 11.99,
+     "value": 9.42,
      "kind": "actual",
      "format": "0.00"
     },
     "D78": {
-     "value": 0.92,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E78": {
-     "value": 1.025,
+     "value": 0.944,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5751,7 +5294,7 @@
      "format": "0.0"
     },
     "G78": {
-     "value": 77,
+     "value": 84,
      "kind": "calculation",
      "format": "0"
     },
@@ -5801,21 +5344,21 @@
      "format": "0.0"
     },
     "B79": {
-     "value": "2020-06",
+     "value": "2019-11",
      "kind": "calculation"
     },
     "C79": {
-     "value": 12.64,
+     "value": 10.04,
      "kind": "actual",
      "format": "0.00"
     },
     "D79": {
-     "value": 0.92,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E79": {
-     "value": 1.045,
+     "value": 0.948,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5825,7 +5368,7 @@
      "format": "0.0"
     },
     "G79": {
-     "value": 76,
+     "value": 83,
      "kind": "calculation",
      "format": "0"
     },
@@ -5875,21 +5418,21 @@
      "format": "0.0"
     },
     "B80": {
-     "value": "2020-07",
+     "value": "2019-12",
      "kind": "calculation"
     },
     "C80": {
-     "value": 13.03,
+     "value": 10.46,
      "kind": "actual",
      "format": "0.00"
     },
     "D80": {
-     "value": 0.92,
+     "value": 0.922,
      "kind": "actual",
      "format": "0.0000"
     },
     "E80": {
-     "value": 1.067,
+     "value": 0.955,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5899,7 +5442,7 @@
      "format": "0.0"
     },
     "G80": {
-     "value": 75,
+     "value": 82,
      "kind": "calculation",
      "format": "0"
     },
@@ -5949,21 +5492,21 @@
      "format": "0.0"
     },
     "B81": {
-     "value": "2020-08",
+     "value": "2020-01",
      "kind": "calculation"
     },
     "C81": {
-     "value": 13.1,
+     "value": 10.64,
      "kind": "actual",
      "format": "0.00"
     },
     "D81": {
-     "value": 0.919,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E81": {
-     "value": 1.09,
+     "value": 0.964,
      "kind": "actual",
      "format": "0.000"
     },
@@ -5973,7 +5516,7 @@
      "format": "0.0"
     },
     "G81": {
-     "value": 74,
+     "value": 81,
      "kind": "calculation",
      "format": "0"
     },
@@ -6023,21 +5566,21 @@
      "format": "0.0"
     },
     "B82": {
-     "value": "2020-09",
+     "value": "2020-02",
      "kind": "calculation"
     },
     "C82": {
-     "value": 12.97,
+     "value": 10.7,
      "kind": "actual",
      "format": "0.00"
     },
     "D82": {
-     "value": 0.919,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E82": {
-     "value": 1.114,
+     "value": 0.976,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6047,7 +5590,7 @@
      "format": "0.0"
     },
     "G82": {
-     "value": 73,
+     "value": 80,
      "kind": "calculation",
      "format": "0"
     },
@@ -6097,21 +5640,21 @@
      "format": "0.0"
     },
     "B83": {
-     "value": "2020-10",
+     "value": "2020-03",
      "kind": "calculation"
     },
     "C83": {
-     "value": 12.9,
+     "value": 10.87,
      "kind": "actual",
      "format": "0.00"
     },
     "D83": {
-     "value": 0.919,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E83": {
-     "value": 1.139,
+     "value": 0.99,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6121,7 +5664,7 @@
      "format": "0.0"
     },
     "G83": {
-     "value": 72,
+     "value": 79,
      "kind": "calculation",
      "format": "0"
     },
@@ -6171,21 +5714,21 @@
      "format": "0.0"
     },
     "B84": {
-     "value": "2020-11",
+     "value": "2020-04",
      "kind": "calculation"
     },
     "C84": {
-     "value": 13.12,
+     "value": 11.31,
      "kind": "actual",
      "format": "0.00"
     },
     "D84": {
-     "value": 0.918,
+     "value": 0.921,
      "kind": "actual",
      "format": "0.0000"
     },
     "E84": {
-     "value": 1.164,
+     "value": 1.006,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6195,7 +5738,7 @@
      "format": "0.0"
     },
     "G84": {
-     "value": 71,
+     "value": 78,
      "kind": "calculation",
      "format": "0"
     },
@@ -6245,21 +5788,21 @@
      "format": "0.0"
     },
     "B85": {
-     "value": "2020-12",
+     "value": "2020-05",
      "kind": "calculation"
     },
     "C85": {
-     "value": 13.53,
+     "value": 11.99,
      "kind": "actual",
      "format": "0.00"
     },
     "D85": {
-     "value": 0.918,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E85": {
-     "value": 1.189,
+     "value": 1.025,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6269,7 +5812,7 @@
      "format": "0.0"
     },
     "G85": {
-     "value": 70,
+     "value": 77,
      "kind": "calculation",
      "format": "0"
     },
@@ -6319,21 +5862,21 @@
      "format": "0.0"
     },
     "B86": {
-     "value": "2021-01",
+     "value": "2020-06",
      "kind": "calculation"
     },
     "C86": {
-     "value": 13.92,
+     "value": 12.64,
      "kind": "actual",
      "format": "0.00"
     },
     "D86": {
-     "value": 0.917,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E86": {
-     "value": 1.214,
+     "value": 1.045,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6343,7 +5886,7 @@
      "format": "0.0"
     },
     "G86": {
-     "value": 69,
+     "value": 76,
      "kind": "calculation",
      "format": "0"
     },
@@ -6393,21 +5936,21 @@
      "format": "0.0"
     },
     "B87": {
-     "value": "2021-02",
+     "value": "2020-07",
      "kind": "calculation"
     },
     "C87": {
-     "value": 13.96,
+     "value": 13.03,
      "kind": "actual",
      "format": "0.00"
     },
     "D87": {
-     "value": 0.917,
+     "value": 0.92,
      "kind": "actual",
      "format": "0.0000"
     },
     "E87": {
-     "value": 1.238,
+     "value": 1.067,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6417,7 +5960,7 @@
      "format": "0.0"
     },
     "G87": {
-     "value": 68,
+     "value": 75,
      "kind": "calculation",
      "format": "0"
     },
@@ -6467,21 +6010,21 @@
      "format": "0.0"
     },
     "B88": {
-     "value": "2021-03",
+     "value": "2020-08",
      "kind": "calculation"
     },
     "C88": {
-     "value": 13.63,
+     "value": 13.1,
      "kind": "actual",
      "format": "0.00"
     },
     "D88": {
-     "value": 0.916,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E88": {
-     "value": 1.261,
+     "value": 1.09,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6491,7 +6034,7 @@
      "format": "0.0"
     },
     "G88": {
-     "value": 67,
+     "value": 74,
      "kind": "calculation",
      "format": "0"
     },
@@ -6541,21 +6084,21 @@
      "format": "0.0"
     },
     "B89": {
-     "value": "2021-04",
+     "value": "2020-09",
      "kind": "calculation"
     },
     "C89": {
-     "value": 13.05,
+     "value": 12.97,
      "kind": "actual",
      "format": "0.00"
     },
     "D89": {
-     "value": 0.916,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E89": {
-     "value": 1.283,
+     "value": 1.114,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6565,7 +6108,7 @@
      "format": "0.0"
     },
     "G89": {
-     "value": 66,
+     "value": 73,
      "kind": "calculation",
      "format": "0"
     },
@@ -6615,21 +6158,21 @@
      "format": "0.0"
     },
     "B90": {
-     "value": "2021-05",
+     "value": "2020-10",
      "kind": "calculation"
     },
     "C90": {
-     "value": 12.61,
+     "value": 12.9,
      "kind": "actual",
      "format": "0.00"
     },
     "D90": {
-     "value": 0.915,
+     "value": 0.919,
      "kind": "actual",
      "format": "0.0000"
     },
     "E90": {
-     "value": 1.303,
+     "value": 1.139,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6639,7 +6182,7 @@
      "format": "0.0"
     },
     "G90": {
-     "value": 65,
+     "value": 72,
      "kind": "calculation",
      "format": "0"
     },
@@ -6689,21 +6232,21 @@
      "format": "0.0"
     },
     "B91": {
-     "value": "2021-06",
+     "value": "2020-11",
      "kind": "calculation"
     },
     "C91": {
-     "value": 12.48,
+     "value": 13.12,
      "kind": "actual",
      "format": "0.00"
     },
     "D91": {
-     "value": 0.915,
+     "value": 0.918,
      "kind": "actual",
      "format": "0.0000"
     },
     "E91": {
-     "value": 1.322,
+     "value": 1.164,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6713,7 +6256,7 @@
      "format": "0.0"
     },
     "G91": {
-     "value": 64,
+     "value": 71,
      "kind": "calculation",
      "format": "0"
     },
@@ -6763,21 +6306,21 @@
      "format": "0.0"
     },
     "B92": {
-     "value": "2021-07",
+     "value": "2020-12",
      "kind": "calculation"
     },
     "C92": {
-     "value": 12.65,
+     "value": 13.53,
      "kind": "actual",
      "format": "0.00"
     },
     "D92": {
-     "value": 0.914,
+     "value": 0.918,
      "kind": "actual",
      "format": "0.0000"
     },
     "E92": {
-     "value": 1.338,
+     "value": 1.189,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6787,7 +6330,7 @@
      "format": "0.0"
     },
     "G92": {
-     "value": 63,
+     "value": 70,
      "kind": "calculation",
      "format": "0"
     },
@@ -6837,21 +6380,21 @@
      "format": "0.0"
     },
     "B93": {
-     "value": "2021-08",
+     "value": "2021-01",
      "kind": "calculation"
     },
     "C93": {
-     "value": 12.82,
+     "value": 13.92,
      "kind": "actual",
      "format": "0.00"
     },
     "D93": {
-     "value": 0.913,
+     "value": 0.917,
      "kind": "actual",
      "format": "0.0000"
     },
     "E93": {
-     "value": 1.352,
+     "value": 1.214,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6861,7 +6404,7 @@
      "format": "0.0"
     },
     "G93": {
-     "value": 62,
+     "value": 69,
      "kind": "calculation",
      "format": "0"
     },
@@ -6911,21 +6454,21 @@
      "format": "0.0"
     },
     "B94": {
-     "value": "2021-09",
+     "value": "2021-02",
      "kind": "calculation"
     },
     "C94": {
-     "value": 12.69,
+     "value": 13.96,
      "kind": "actual",
      "format": "0.00"
     },
     "D94": {
-     "value": 0.913,
+     "value": 0.917,
      "kind": "actual",
      "format": "0.0000"
     },
     "E94": {
-     "value": 1.364,
+     "value": 1.238,
      "kind": "actual",
      "format": "0.000"
     },
@@ -6935,7 +6478,7 @@
      "format": "0.0"
     },
     "G94": {
-     "value": 61,
+     "value": 68,
      "kind": "calculation",
      "format": "0"
     },
@@ -6985,21 +6528,21 @@
      "format": "0.0"
     },
     "B95": {
-     "value": "2021-10",
+     "value": "2021-03",
      "kind": "calculation"
     },
     "C95": {
-     "value": 12.19,
+     "value": 13.63,
      "kind": "actual",
      "format": "0.00"
     },
     "D95": {
-     "value": 0.912,
+     "value": 0.916,
      "kind": "actual",
      "format": "0.0000"
     },
     "E95": {
-     "value": 1.373,
+     "value": 1.261,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7009,7 +6552,7 @@
      "format": "0.0"
     },
     "G95": {
-     "value": 60,
+     "value": 67,
      "kind": "calculation",
      "format": "0"
     },
@@ -7059,21 +6602,21 @@
      "format": "0.0"
     },
     "B96": {
-     "value": "2021-11",
+     "value": "2021-04",
      "kind": "calculation"
     },
     "C96": {
-     "value": 11.53,
+     "value": 13.05,
      "kind": "actual",
      "format": "0.00"
     },
     "D96": {
-     "value": 0.912,
+     "value": 0.916,
      "kind": "actual",
      "format": "0.0000"
     },
     "E96": {
-     "value": 1.38,
+     "value": 1.283,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7083,7 +6626,7 @@
      "format": "0.0"
     },
     "G96": {
-     "value": 59,
+     "value": 66,
      "kind": "calculation",
      "format": "0"
     },
@@ -7133,21 +6676,21 @@
      "format": "0.0"
     },
     "B97": {
-     "value": "2021-12",
+     "value": "2021-05",
      "kind": "calculation"
     },
     "C97": {
-     "value": 11.09,
+     "value": 12.61,
      "kind": "actual",
      "format": "0.00"
     },
     "D97": {
-     "value": 0.911,
+     "value": 0.915,
      "kind": "actual",
      "format": "0.0000"
     },
     "E97": {
-     "value": 1.384,
+     "value": 1.303,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7157,7 +6700,7 @@
      "format": "0.0"
     },
     "G97": {
-     "value": 58,
+     "value": 65,
      "kind": "calculation",
      "format": "0"
     },
@@ -7207,21 +6750,21 @@
      "format": "0.0"
     },
     "B98": {
-     "value": "2022-01",
+     "value": "2021-06",
      "kind": "calculation"
     },
     "C98": {
-     "value": 11.08,
+     "value": 12.48,
      "kind": "actual",
      "format": "0.00"
     },
     "D98": {
-     "value": 0.91,
+     "value": 0.915,
      "kind": "actual",
      "format": "0.0000"
     },
     "E98": {
-     "value": 1.386,
+     "value": 1.322,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7231,7 +6774,7 @@
      "format": "0.0"
     },
     "G98": {
-     "value": 57,
+     "value": 64,
      "kind": "calculation",
      "format": "0"
     },
@@ -7281,21 +6824,21 @@
      "format": "0.0"
     },
     "B99": {
-     "value": "2022-02",
+     "value": "2021-07",
      "kind": "calculation"
     },
     "C99": {
-     "value": 11.42,
+     "value": 12.65,
      "kind": "actual",
      "format": "0.00"
     },
     "D99": {
-     "value": 0.91,
+     "value": 0.914,
      "kind": "actual",
      "format": "0.0000"
     },
     "E99": {
-     "value": 1.385,
+     "value": 1.338,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7305,7 +6848,7 @@
      "format": "0.0"
     },
     "G99": {
-     "value": 56,
+     "value": 63,
      "kind": "calculation",
      "format": "0"
     },
@@ -7355,21 +6898,21 @@
      "format": "0.0"
     },
     "B100": {
-     "value": "2022-03",
+     "value": "2021-08",
      "kind": "calculation"
     },
     "C100": {
-     "value": 11.83,
+     "value": 12.82,
      "kind": "actual",
      "format": "0.00"
     },
     "D100": {
-     "value": 0.909,
+     "value": 0.913,
      "kind": "actual",
      "format": "0.0000"
     },
     "E100": {
-     "value": 1.382,
+     "value": 1.352,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7379,7 +6922,7 @@
      "format": "0.0"
     },
     "G100": {
-     "value": 55,
+     "value": 62,
      "kind": "calculation",
      "format": "0"
     },
@@ -7429,21 +6972,21 @@
      "format": "0.0"
     },
     "B101": {
-     "value": "2022-04",
+     "value": "2021-09",
      "kind": "calculation"
     },
     "C101": {
-     "value": 11.96,
+     "value": 12.69,
      "kind": "actual",
      "format": "0.00"
     },
     "D101": {
-     "value": 0.909,
+     "value": 0.913,
      "kind": "actual",
      "format": "0.0000"
     },
     "E101": {
-     "value": 1.377,
+     "value": 1.364,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7453,7 +6996,7 @@
      "format": "0.0"
     },
     "G101": {
-     "value": 54,
+     "value": 61,
      "kind": "calculation",
      "format": "0"
     },
@@ -7503,21 +7046,21 @@
      "format": "0.0"
     },
     "B102": {
-     "value": "2022-05",
+     "value": "2021-10",
      "kind": "calculation"
     },
     "C102": {
-     "value": 11.76,
+     "value": 12.19,
      "kind": "actual",
      "format": "0.00"
     },
     "D102": {
-     "value": 0.908,
+     "value": 0.912,
      "kind": "actual",
      "format": "0.0000"
     },
     "E102": {
-     "value": 1.369,
+     "value": 1.373,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7527,7 +7070,7 @@
      "format": "0.0"
     },
     "G102": {
-     "value": 53,
+     "value": 60,
      "kind": "calculation",
      "format": "0"
     },
@@ -7577,21 +7120,21 @@
      "format": "0.0"
     },
     "B103": {
-     "value": "2022-06",
+     "value": "2021-11",
      "kind": "calculation"
     },
     "C103": {
-     "value": 11.42,
+     "value": 11.53,
      "kind": "actual",
      "format": "0.00"
     },
     "D103": {
-     "value": 0.908,
+     "value": 0.912,
      "kind": "actual",
      "format": "0.0000"
     },
     "E103": {
-     "value": 1.36,
+     "value": 1.38,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7601,7 +7144,7 @@
      "format": "0.0"
     },
     "G103": {
-     "value": 52,
+     "value": 59,
      "kind": "calculation",
      "format": "0"
     },
@@ -7651,21 +7194,21 @@
      "format": "0.0"
     },
     "B104": {
-     "value": "2022-07",
+     "value": "2021-12",
      "kind": "calculation"
     },
     "C104": {
-     "value": 11.32,
+     "value": 11.09,
      "kind": "actual",
      "format": "0.00"
     },
     "D104": {
-     "value": 0.907,
+     "value": 0.911,
      "kind": "actual",
      "format": "0.0000"
     },
     "E104": {
-     "value": 1.349,
+     "value": 1.384,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7675,7 +7218,7 @@
      "format": "0.0"
     },
     "G104": {
-     "value": 51,
+     "value": 58,
      "kind": "calculation",
      "format": "0"
     },
@@ -7725,21 +7268,21 @@
      "format": "0.0"
     },
     "B105": {
-     "value": "2022-08",
+     "value": "2022-01",
      "kind": "calculation"
     },
     "C105": {
-     "value": 11.64,
+     "value": 11.08,
      "kind": "actual",
      "format": "0.00"
     },
     "D105": {
-     "value": 0.906,
+     "value": 0.91,
      "kind": "actual",
      "format": "0.0000"
     },
     "E105": {
-     "value": 1.337,
+     "value": 1.386,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7749,7 +7292,7 @@
      "format": "0.0"
     },
     "G105": {
-     "value": 50,
+     "value": 57,
      "kind": "calculation",
      "format": "0"
     },
@@ -7799,21 +7342,21 @@
      "format": "0.0"
     },
     "B106": {
-     "value": "2022-09",
+     "value": "2022-02",
      "kind": "calculation"
     },
     "C106": {
-     "value": 12.27,
+     "value": 11.42,
      "kind": "actual",
      "format": "0.00"
     },
     "D106": {
-     "value": 0.906,
+     "value": 0.91,
      "kind": "actual",
      "format": "0.0000"
     },
     "E106": {
-     "value": 1.324,
+     "value": 1.385,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7823,7 +7366,7 @@
      "format": "0.0"
     },
     "G106": {
-     "value": 49,
+     "value": 56,
      "kind": "calculation",
      "format": "0"
     },
@@ -7873,21 +7416,21 @@
      "format": "0.0"
     },
     "B107": {
-     "value": "2022-10",
+     "value": "2022-03",
      "kind": "calculation"
     },
     "C107": {
-     "value": 12.92,
+     "value": 11.83,
      "kind": "actual",
      "format": "0.00"
     },
     "D107": {
-     "value": 0.905,
+     "value": 0.909,
      "kind": "actual",
      "format": "0.0000"
     },
     "E107": {
-     "value": 1.31,
+     "value": 1.382,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7897,7 +7440,7 @@
      "format": "0.0"
     },
     "G107": {
-     "value": 48,
+     "value": 55,
      "kind": "calculation",
      "format": "0"
     },
@@ -7947,21 +7490,21 @@
      "format": "0.0"
     },
     "B108": {
-     "value": "2022-11",
+     "value": "2022-04",
      "kind": "calculation"
     },
     "C108": {
-     "value": 13.27,
+     "value": 11.96,
      "kind": "actual",
      "format": "0.00"
     },
     "D108": {
-     "value": 0.905,
+     "value": 0.909,
      "kind": "actual",
      "format": "0.0000"
     },
     "E108": {
-     "value": 1.296,
+     "value": 1.377,
      "kind": "actual",
      "format": "0.000"
     },
@@ -7971,7 +7514,7 @@
      "format": "0.0"
     },
     "G108": {
-     "value": 47,
+     "value": 54,
      "kind": "calculation",
      "format": "0"
     },
@@ -8021,21 +7564,21 @@
      "format": "0.0"
     },
     "B109": {
-     "value": "2022-12",
+     "value": "2022-05",
      "kind": "calculation"
     },
     "C109": {
-     "value": 13.27,
+     "value": 11.76,
      "kind": "actual",
      "format": "0.00"
     },
     "D109": {
-     "value": 0.904,
+     "value": 0.908,
      "kind": "actual",
      "format": "0.0000"
     },
     "E109": {
-     "value": 1.282,
+     "value": 1.369,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8045,7 +7588,7 @@
      "format": "0.0"
     },
     "G109": {
-     "value": 46,
+     "value": 53,
      "kind": "calculation",
      "format": "0"
     },
@@ -8095,21 +7638,21 @@
      "format": "0.0"
     },
     "B110": {
-     "value": "2023-01",
+     "value": "2022-06",
      "kind": "calculation"
     },
     "C110": {
-     "value": 13.1,
+     "value": 11.42,
      "kind": "actual",
      "format": "0.00"
     },
     "D110": {
-     "value": 0.904,
+     "value": 0.908,
      "kind": "actual",
      "format": "0.0000"
     },
     "E110": {
-     "value": 1.268,
+     "value": 1.36,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8119,7 +7662,7 @@
      "format": "0.0"
     },
     "G110": {
-     "value": 45,
+     "value": 52,
      "kind": "calculation",
      "format": "0"
     },
@@ -8169,21 +7712,21 @@
      "format": "0.0"
     },
     "B111": {
-     "value": "2023-02",
+     "value": "2022-07",
      "kind": "calculation"
     },
     "C111": {
-     "value": 13.09,
+     "value": 11.32,
      "kind": "actual",
      "format": "0.00"
     },
     "D111": {
-     "value": 0.903,
+     "value": 0.907,
      "kind": "actual",
      "format": "0.0000"
     },
     "E111": {
-     "value": 1.255,
+     "value": 1.349,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8193,7 +7736,7 @@
      "format": "0.0"
     },
     "G111": {
-     "value": 44,
+     "value": 51,
      "kind": "calculation",
      "format": "0"
     },
@@ -8243,21 +7786,21 @@
      "format": "0.0"
     },
     "B112": {
-     "value": "2023-03",
+     "value": "2022-08",
      "kind": "calculation"
     },
     "C112": {
-     "value": 13.41,
+     "value": 11.64,
      "kind": "actual",
      "format": "0.00"
     },
     "D112": {
-     "value": 0.903,
+     "value": 0.906,
      "kind": "actual",
      "format": "0.0000"
     },
     "E112": {
-     "value": 1.243,
+     "value": 1.337,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8267,7 +7810,7 @@
      "format": "0.0"
     },
     "G112": {
-     "value": 43,
+     "value": 50,
      "kind": "calculation",
      "format": "0"
     },
@@ -8317,21 +7860,21 @@
      "format": "0.0"
     },
     "B113": {
-     "value": "2023-04",
+     "value": "2022-09",
      "kind": "calculation"
     },
     "C113": {
-     "value": 14.0,
+     "value": 12.27,
      "kind": "actual",
      "format": "0.00"
     },
     "D113": {
-     "value": 0.902,
+     "value": 0.906,
      "kind": "actual",
      "format": "0.0000"
     },
     "E113": {
-     "value": 1.232,
+     "value": 1.324,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8341,7 +7884,7 @@
      "format": "0.0"
     },
     "G113": {
-     "value": 42,
+     "value": 49,
      "kind": "calculation",
      "format": "0"
     },
@@ -8391,21 +7934,21 @@
      "format": "0.0"
     },
     "B114": {
-     "value": "2023-05",
+     "value": "2022-10",
      "kind": "calculation"
     },
     "C114": {
-     "value": 14.55,
+     "value": 12.92,
      "kind": "actual",
      "format": "0.00"
     },
     "D114": {
-     "value": 0.902,
+     "value": 0.905,
      "kind": "actual",
      "format": "0.0000"
     },
     "E114": {
-     "value": 1.223,
+     "value": 1.31,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8415,7 +7958,7 @@
      "format": "0.0"
     },
     "G114": {
-     "value": 41,
+     "value": 48,
      "kind": "calculation",
      "format": "0"
     },
@@ -8465,21 +8008,21 @@
      "format": "0.0"
     },
     "B115": {
-     "value": "2023-06",
+     "value": "2022-11",
      "kind": "calculation"
     },
     "C115": {
-     "value": 14.8,
+     "value": 13.27,
      "kind": "actual",
      "format": "0.00"
     },
     "D115": {
-     "value": 0.901,
+     "value": 0.905,
      "kind": "actual",
      "format": "0.0000"
     },
     "E115": {
-     "value": 1.215,
+     "value": 1.296,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8489,7 +8032,7 @@
      "format": "0.0"
     },
     "G115": {
-     "value": 40,
+     "value": 47,
      "kind": "calculation",
      "format": "0"
     },
@@ -8539,21 +8082,21 @@
      "format": "0.0"
     },
     "B116": {
-     "value": "2023-07",
+     "value": "2022-12",
      "kind": "calculation"
     },
     "C116": {
-     "value": 14.65,
+     "value": 13.27,
      "kind": "actual",
      "format": "0.00"
     },
     "D116": {
-     "value": 0.901,
+     "value": 0.904,
      "kind": "actual",
      "format": "0.0000"
     },
     "E116": {
-     "value": 1.21,
+     "value": 1.282,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8563,7 +8106,7 @@
      "format": "0.0"
     },
     "G116": {
-     "value": 39,
+     "value": 46,
      "kind": "calculation",
      "format": "0"
     },
@@ -8613,21 +8156,21 @@
      "format": "0.0"
     },
     "B117": {
-     "value": "2023-08",
+     "value": "2023-01",
      "kind": "calculation"
     },
     "C117": {
-     "value": 14.33,
+     "value": 13.1,
      "kind": "actual",
      "format": "0.00"
     },
     "D117": {
-     "value": 0.901,
+     "value": 0.904,
      "kind": "actual",
      "format": "0.0000"
     },
     "E117": {
-     "value": 1.207,
+     "value": 1.268,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8637,7 +8180,7 @@
      "format": "0.0"
     },
     "G117": {
-     "value": 38,
+     "value": 45,
      "kind": "calculation",
      "format": "0"
     },
@@ -8687,21 +8230,21 @@
      "format": "0.0"
     },
     "B118": {
-     "value": "2023-09",
+     "value": "2023-02",
      "kind": "calculation"
     },
     "C118": {
-     "value": 14.14,
+     "value": 13.09,
      "kind": "actual",
      "format": "0.00"
     },
     "D118": {
-     "value": 0.9,
+     "value": 0.903,
      "kind": "actual",
      "format": "0.0000"
     },
     "E118": {
-     "value": 1.206,
+     "value": 1.255,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8711,7 +8254,7 @@
      "format": "0.0"
     },
     "G118": {
-     "value": 37,
+     "value": 44,
      "kind": "calculation",
      "format": "0"
     },
@@ -8761,21 +8304,21 @@
      "format": "0.0"
     },
     "B119": {
-     "value": "2023-10",
+     "value": "2023-03",
      "kind": "calculation"
     },
     "C119": {
-     "value": 14.25,
+     "value": 13.41,
      "kind": "actual",
      "format": "0.00"
     },
     "D119": {
-     "value": 0.9,
+     "value": 0.903,
      "kind": "actual",
      "format": "0.0000"
     },
     "E119": {
-     "value": 1.208,
+     "value": 1.243,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8785,7 +8328,7 @@
      "format": "0.0"
     },
     "G119": {
-     "value": 36,
+     "value": 43,
      "kind": "calculation",
      "format": "0"
     },
@@ -8835,21 +8378,21 @@
      "format": "0.0"
     },
     "B120": {
-     "value": "2023-11",
+     "value": "2023-04",
      "kind": "calculation"
     },
     "C120": {
-     "value": 14.61,
+     "value": 14.0,
      "kind": "actual",
      "format": "0.00"
     },
     "D120": {
-     "value": 0.9,
+     "value": 0.902,
      "kind": "actual",
      "format": "0.0000"
     },
     "E120": {
-     "value": 1.212,
+     "value": 1.232,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8859,7 +8402,7 @@
      "format": "0.0"
     },
     "G120": {
-     "value": 35,
+     "value": 42,
      "kind": "calculation",
      "format": "0"
     },
@@ -8909,21 +8452,21 @@
      "format": "0.0"
     },
     "B121": {
-     "value": "2023-12",
+     "value": "2023-05",
      "kind": "calculation"
     },
     "C121": {
-     "value": 14.95,
+     "value": 14.55,
      "kind": "actual",
      "format": "0.00"
     },
     "D121": {
-     "value": 0.899,
+     "value": 0.902,
      "kind": "actual",
      "format": "0.0000"
     },
     "E121": {
-     "value": 1.219,
+     "value": 1.223,
      "kind": "actual",
      "format": "0.000"
     },
@@ -8933,7 +8476,7 @@
      "format": "0.0"
     },
     "G121": {
-     "value": 34,
+     "value": 41,
      "kind": "calculation",
      "format": "0"
     },
@@ -8983,21 +8526,21 @@
      "format": "0.0"
     },
     "B122": {
-     "value": "2024-01",
+     "value": "2023-06",
      "kind": "calculation"
     },
     "C122": {
-     "value": 14.97,
+     "value": 14.8,
      "kind": "actual",
      "format": "0.00"
     },
     "D122": {
-     "value": 0.899,
+     "value": 0.901,
      "kind": "actual",
      "format": "0.0000"
     },
     "E122": {
-     "value": 1.228,
+     "value": 1.215,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9007,7 +8550,7 @@
      "format": "0.0"
     },
     "G122": {
-     "value": 33,
+     "value": 40,
      "kind": "calculation",
      "format": "0"
     },
@@ -9057,21 +8600,21 @@
      "format": "0.0"
     },
     "B123": {
-     "value": "2024-02",
+     "value": "2023-07",
      "kind": "calculation"
     },
     "C123": {
-     "value": 14.62,
+     "value": 14.65,
      "kind": "actual",
      "format": "0.00"
     },
     "D123": {
-     "value": 0.899,
+     "value": 0.901,
      "kind": "actual",
      "format": "0.0000"
     },
     "E123": {
-     "value": 1.24,
+     "value": 1.21,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9081,7 +8624,7 @@
      "format": "0.0"
     },
     "G123": {
-     "value": 32,
+     "value": 39,
      "kind": "calculation",
      "format": "0"
     },
@@ -9131,21 +8674,21 @@
      "format": "0.0"
     },
     "B124": {
-     "value": "2024-03",
+     "value": "2023-08",
      "kind": "calculation"
     },
     "C124": {
-     "value": 14.07,
+     "value": 14.33,
      "kind": "actual",
      "format": "0.00"
     },
     "D124": {
-     "value": 0.899,
+     "value": 0.901,
      "kind": "actual",
      "format": "0.0000"
     },
     "E124": {
-     "value": 1.254,
+     "value": 1.207,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9155,7 +8698,7 @@
      "format": "0.0"
     },
     "G124": {
-     "value": 31,
+     "value": 38,
      "kind": "calculation",
      "format": "0"
     },
@@ -9205,21 +8748,21 @@
      "format": "0.0"
     },
     "B125": {
-     "value": "2024-04",
+     "value": "2023-09",
      "kind": "calculation"
     },
     "C125": {
-     "value": 13.67,
+     "value": 14.14,
      "kind": "actual",
      "format": "0.00"
     },
     "D125": {
-     "value": 0.898,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E125": {
-     "value": 1.27,
+     "value": 1.206,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9229,7 +8772,7 @@
      "format": "0.0"
     },
     "G125": {
-     "value": 30,
+     "value": 37,
      "kind": "calculation",
      "format": "0"
     },
@@ -9279,21 +8822,21 @@
      "format": "0.0"
     },
     "B126": {
-     "value": "2024-05",
+     "value": "2023-10",
      "kind": "calculation"
     },
     "C126": {
-     "value": 13.6,
+     "value": 14.25,
      "kind": "actual",
      "format": "0.00"
     },
     "D126": {
-     "value": 0.898,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E126": {
-     "value": 1.289,
+     "value": 1.208,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9303,7 +8846,7 @@
      "format": "0.0"
     },
     "G126": {
-     "value": 29,
+     "value": 36,
      "kind": "calculation",
      "format": "0"
     },
@@ -9353,21 +8896,21 @@
      "format": "0.0"
     },
     "B127": {
-     "value": "2024-06",
+     "value": "2023-11",
      "kind": "calculation"
     },
     "C127": {
-     "value": 13.81,
+     "value": 14.61,
      "kind": "actual",
      "format": "0.00"
     },
     "D127": {
-     "value": 0.898,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E127": {
-     "value": 1.309,
+     "value": 1.212,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9377,7 +8920,7 @@
      "format": "0.0"
     },
     "G127": {
-     "value": 28,
+     "value": 35,
      "kind": "calculation",
      "format": "0"
     },
@@ -9427,21 +8970,21 @@
      "format": "0.0"
     },
     "B128": {
-     "value": "2024-07",
+     "value": "2023-12",
      "kind": "calculation"
     },
     "C128": {
-     "value": 14.03,
+     "value": 14.95,
      "kind": "actual",
      "format": "0.00"
     },
     "D128": {
-     "value": 0.898,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E128": {
-     "value": 1.331,
+     "value": 1.219,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9451,7 +8994,7 @@
      "format": "0.0"
     },
     "G128": {
-     "value": 27,
+     "value": 34,
      "kind": "calculation",
      "format": "0"
     },
@@ -9501,21 +9044,21 @@
      "format": "0.0"
     },
     "B129": {
-     "value": "2024-08",
+     "value": "2024-01",
      "kind": "calculation"
     },
     "C129": {
-     "value": 13.96,
+     "value": 14.97,
      "kind": "actual",
      "format": "0.00"
     },
     "D129": {
-     "value": 0.898,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E129": {
-     "value": 1.354,
+     "value": 1.228,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9525,7 +9068,7 @@
      "format": "0.0"
     },
     "G129": {
-     "value": 26,
+     "value": 33,
      "kind": "calculation",
      "format": "0"
     },
@@ -9575,21 +9118,21 @@
      "format": "0.0"
     },
     "B130": {
-     "value": "2024-09",
+     "value": "2024-02",
      "kind": "calculation"
     },
     "C130": {
-     "value": 13.5,
+     "value": 14.62,
      "kind": "actual",
      "format": "0.00"
     },
     "D130": {
-     "value": 0.898,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E130": {
-     "value": 1.378,
+     "value": 1.24,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9599,7 +9142,7 @@
      "format": "0.0"
     },
     "G130": {
-     "value": 25,
+     "value": 32,
      "kind": "calculation",
      "format": "0"
     },
@@ -9649,21 +9192,21 @@
      "format": "0.0"
     },
     "B131": {
-     "value": "2024-10",
+     "value": "2024-03",
      "kind": "calculation"
     },
     "C131": {
-     "value": 12.86,
+     "value": 14.07,
      "kind": "actual",
      "format": "0.00"
     },
     "D131": {
-     "value": 0.898,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E131": {
-     "value": 1.403,
+     "value": 1.254,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9673,7 +9216,7 @@
      "format": "0.0"
     },
     "G131": {
-     "value": 24,
+     "value": 31,
      "kind": "calculation",
      "format": "0"
     },
@@ -9723,11 +9266,11 @@
      "format": "0.0"
     },
     "B132": {
-     "value": "2024-11",
+     "value": "2024-04",
      "kind": "calculation"
     },
     "C132": {
-     "value": 12.42,
+     "value": 13.67,
      "kind": "actual",
      "format": "0.00"
     },
@@ -9737,7 +9280,7 @@
      "format": "0.0000"
     },
     "E132": {
-     "value": 1.428,
+     "value": 1.27,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9747,7 +9290,7 @@
      "format": "0.0"
     },
     "G132": {
-     "value": 23,
+     "value": 30,
      "kind": "calculation",
      "format": "0"
     },
@@ -9797,11 +9340,11 @@
      "format": "0.0"
     },
     "B133": {
-     "value": "2024-12",
+     "value": "2024-05",
      "kind": "calculation"
     },
     "C133": {
-     "value": 12.41,
+     "value": 13.6,
      "kind": "actual",
      "format": "0.00"
     },
@@ -9811,7 +9354,7 @@
      "format": "0.0000"
     },
     "E133": {
-     "value": 1.453,
+     "value": 1.289,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9821,7 +9364,7 @@
      "format": "0.0"
     },
     "G133": {
-     "value": 22,
+     "value": 29,
      "kind": "calculation",
      "format": "0"
     },
@@ -9871,11 +9414,11 @@
      "format": "0.0"
     },
     "B134": {
-     "value": "2025-01",
+     "value": "2024-06",
      "kind": "calculation"
     },
     "C134": {
-     "value": 12.79,
+     "value": 13.81,
      "kind": "actual",
      "format": "0.00"
     },
@@ -9885,7 +9428,7 @@
      "format": "0.0000"
     },
     "E134": {
-     "value": 1.478,
+     "value": 1.309,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9895,7 +9438,7 @@
      "format": "0.0"
     },
     "G134": {
-     "value": 21,
+     "value": 28,
      "kind": "calculation",
      "format": "0"
     },
@@ -9945,11 +9488,11 @@
      "format": "0.0"
     },
     "B135": {
-     "value": "2025-02",
+     "value": "2024-07",
      "kind": "calculation"
     },
     "C135": {
-     "value": 13.24,
+     "value": 14.03,
      "kind": "actual",
      "format": "0.00"
     },
@@ -9959,7 +9502,7 @@
      "format": "0.0000"
     },
     "E135": {
-     "value": 1.502,
+     "value": 1.331,
      "kind": "actual",
      "format": "0.000"
     },
@@ -9969,7 +9512,7 @@
      "format": "0.0"
     },
     "G135": {
-     "value": 20,
+     "value": 27,
      "kind": "calculation",
      "format": "0"
     },
@@ -10019,11 +9562,11 @@
      "format": "0.0"
     },
     "B136": {
-     "value": "2025-03",
+     "value": "2024-08",
      "kind": "calculation"
     },
     "C136": {
-     "value": 13.4,
+     "value": 13.96,
      "kind": "actual",
      "format": "0.00"
     },
@@ -10033,7 +9576,7 @@
      "format": "0.0000"
     },
     "E136": {
-     "value": 1.525,
+     "value": 1.354,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10043,7 +9586,7 @@
      "format": "0.0"
     },
     "G136": {
-     "value": 19,
+     "value": 26,
      "kind": "calculation",
      "format": "0"
     },
@@ -10093,21 +9636,21 @@
      "format": "0.0"
     },
     "B137": {
-     "value": "2025-04",
+     "value": "2024-09",
      "kind": "calculation"
     },
     "C137": {
-     "value": 13.17,
+     "value": 13.5,
      "kind": "actual",
      "format": "0.00"
     },
     "D137": {
-     "value": 0.899,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E137": {
-     "value": 1.547,
+     "value": 1.378,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10117,7 +9660,7 @@
      "format": "0.0"
     },
     "G137": {
-     "value": 18,
+     "value": 25,
      "kind": "calculation",
      "format": "0"
     },
@@ -10167,21 +9710,21 @@
      "format": "0.0"
     },
     "B138": {
-     "value": "2025-05",
+     "value": "2024-10",
      "kind": "calculation"
     },
     "C138": {
-     "value": 12.82,
+     "value": 12.86,
      "kind": "actual",
      "format": "0.00"
     },
     "D138": {
-     "value": 0.899,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E138": {
-     "value": 1.567,
+     "value": 1.403,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10191,7 +9734,7 @@
      "format": "0.0"
     },
     "G138": {
-     "value": 17,
+     "value": 24,
      "kind": "calculation",
      "format": "0"
     },
@@ -10241,21 +9784,21 @@
      "format": "0.0"
     },
     "B139": {
-     "value": "2025-06",
+     "value": "2024-11",
      "kind": "calculation"
     },
     "C139": {
-     "value": 12.72,
+     "value": 12.42,
      "kind": "actual",
      "format": "0.00"
     },
     "D139": {
-     "value": 0.899,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E139": {
-     "value": 1.586,
+     "value": 1.428,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10265,7 +9808,7 @@
      "format": "0.0"
     },
     "G139": {
-     "value": 16,
+     "value": 23,
      "kind": "calculation",
      "format": "0"
     },
@@ -10315,21 +9858,21 @@
      "format": "0.0"
     },
     "B140": {
-     "value": "2025-07",
+     "value": "2024-12",
      "kind": "calculation"
     },
     "C140": {
-     "value": 13.14,
+     "value": 12.41,
      "kind": "actual",
      "format": "0.00"
     },
     "D140": {
-     "value": 0.899,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E140": {
-     "value": 1.602,
+     "value": 1.453,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10339,7 +9882,7 @@
      "format": "0.0"
     },
     "G140": {
-     "value": 15,
+     "value": 22,
      "kind": "calculation",
      "format": "0"
     },
@@ -10389,21 +9932,21 @@
      "format": "0.0"
     },
     "B141": {
-     "value": "2025-08",
+     "value": "2025-01",
      "kind": "calculation"
     },
     "C141": {
-     "value": 13.97,
+     "value": 12.79,
      "kind": "actual",
      "format": "0.00"
     },
     "D141": {
-     "value": 0.9,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E141": {
-     "value": 1.616,
+     "value": 1.478,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10413,7 +9956,7 @@
      "format": "0.0"
     },
     "G141": {
-     "value": 14,
+     "value": 21,
      "kind": "calculation",
      "format": "0"
     },
@@ -10463,21 +10006,21 @@
      "format": "0.0"
     },
     "B142": {
-     "value": "2025-09",
+     "value": "2025-02",
      "kind": "calculation"
     },
     "C142": {
-     "value": 14.88,
+     "value": 13.24,
      "kind": "actual",
      "format": "0.00"
     },
     "D142": {
-     "value": 0.9,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E142": {
-     "value": 1.628,
+     "value": 1.502,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10487,7 +10030,7 @@
      "format": "0.0"
     },
     "G142": {
-     "value": 13,
+     "value": 20,
      "kind": "calculation",
      "format": "0"
     },
@@ -10537,21 +10080,21 @@
      "format": "0.0"
     },
     "B143": {
-     "value": "2025-10",
+     "value": "2025-03",
      "kind": "calculation"
     },
     "C143": {
-     "value": 15.47,
+     "value": 13.4,
      "kind": "actual",
      "format": "0.00"
     },
     "D143": {
-     "value": 0.9,
+     "value": 0.898,
      "kind": "actual",
      "format": "0.0000"
     },
     "E143": {
-     "value": 1.637,
+     "value": 1.525,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10561,7 +10104,7 @@
      "format": "0.0"
     },
     "G143": {
-     "value": 12,
+     "value": 19,
      "kind": "calculation",
      "format": "0"
     },
@@ -10611,21 +10154,21 @@
      "format": "0.0"
     },
     "B144": {
-     "value": "2025-11",
+     "value": "2025-04",
      "kind": "calculation"
     },
     "C144": {
-     "value": 15.6,
+     "value": 13.17,
      "kind": "actual",
      "format": "0.00"
     },
     "D144": {
-     "value": 0.901,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E144": {
-     "value": 1.644,
+     "value": 1.547,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10635,7 +10178,7 @@
      "format": "0.0"
     },
     "G144": {
-     "value": 11,
+     "value": 18,
      "kind": "calculation",
      "format": "0"
     },
@@ -10685,21 +10228,21 @@
      "format": "0.0"
     },
     "B145": {
-     "value": "2025-12",
+     "value": "2025-05",
      "kind": "calculation"
     },
     "C145": {
-     "value": 15.55,
+     "value": 12.82,
      "kind": "actual",
      "format": "0.00"
     },
     "D145": {
-     "value": 0.901,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E145": {
-     "value": 1.648,
+     "value": 1.567,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10709,7 +10252,7 @@
      "format": "0.0"
     },
     "G145": {
-     "value": 10,
+     "value": 17,
      "kind": "calculation",
      "format": "0"
     },
@@ -10759,21 +10302,21 @@
      "format": "0.0"
     },
     "B146": {
-     "value": "2026-01",
+     "value": "2025-06",
      "kind": "calculation"
     },
     "C146": {
-     "value": 15.7,
+     "value": 12.72,
      "kind": "actual",
      "format": "0.00"
     },
     "D146": {
-     "value": 0.902,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E146": {
-     "value": 1.65,
+     "value": 1.586,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10783,7 +10326,7 @@
      "format": "0.0"
     },
     "G146": {
-     "value": 9,
+     "value": 16,
      "kind": "calculation",
      "format": "0"
     },
@@ -10833,21 +10376,21 @@
      "format": "0.0"
     },
     "B147": {
-     "value": "2026-02",
+     "value": "2025-07",
      "kind": "calculation"
     },
     "C147": {
-     "value": 16.33,
+     "value": 13.14,
      "kind": "actual",
      "format": "0.00"
     },
     "D147": {
-     "value": 0.902,
+     "value": 0.899,
      "kind": "actual",
      "format": "0.0000"
     },
     "E147": {
-     "value": 1.649,
+     "value": 1.602,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10857,7 +10400,7 @@
      "format": "0.0"
     },
     "G147": {
-     "value": 8,
+     "value": 15,
      "kind": "calculation",
      "format": "0"
     },
@@ -10907,21 +10450,21 @@
      "format": "0.0"
     },
     "B148": {
-     "value": "2026-03",
+     "value": "2025-08",
      "kind": "calculation"
     },
     "C148": {
-     "value": 17.31,
+     "value": 13.97,
      "kind": "actual",
      "format": "0.00"
     },
     "D148": {
-     "value": 0.902,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E148": {
-     "value": 1.646,
+     "value": 1.616,
      "kind": "actual",
      "format": "0.000"
     },
@@ -10931,7 +10474,7 @@
      "format": "0.0"
     },
     "G148": {
-     "value": 7,
+     "value": 14,
      "kind": "calculation",
      "format": "0"
     },
@@ -10981,21 +10524,21 @@
      "format": "0.0"
     },
     "B149": {
-     "value": "2026-04",
+     "value": "2025-09",
      "kind": "calculation"
     },
     "C149": {
-     "value": 18.23,
+     "value": 14.88,
      "kind": "actual",
      "format": "0.00"
     },
     "D149": {
-     "value": 0.903,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E149": {
-     "value": 1.641,
+     "value": 1.628,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11005,7 +10548,7 @@
      "format": "0.0"
     },
     "G149": {
-     "value": 6,
+     "value": 13,
      "kind": "calculation",
      "format": "0"
     },
@@ -11055,21 +10598,21 @@
      "format": "0.0"
     },
     "B150": {
-     "value": "2026-05",
+     "value": "2025-10",
      "kind": "calculation"
     },
     "C150": {
-     "value": 18.73,
+     "value": 15.47,
      "kind": "actual",
      "format": "0.00"
     },
     "D150": {
-     "value": 0.903,
+     "value": 0.9,
      "kind": "actual",
      "format": "0.0000"
     },
     "E150": {
-     "value": 1.633,
+     "value": 1.637,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11079,7 +10622,7 @@
      "format": "0.0"
     },
     "G150": {
-     "value": 5,
+     "value": 12,
      "kind": "calculation",
      "format": "0"
     },
@@ -11129,21 +10672,21 @@
      "format": "0.0"
     },
     "B151": {
-     "value": "2026-06",
+     "value": "2025-11",
      "kind": "calculation"
     },
     "C151": {
-     "value": 18.68,
+     "value": 15.6,
      "kind": "actual",
      "format": "0.00"
     },
     "D151": {
-     "value": 0.904,
+     "value": 0.901,
      "kind": "actual",
      "format": "0.0000"
     },
     "E151": {
-     "value": 1.624,
+     "value": 1.644,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11153,7 +10696,7 @@
      "format": "0.0"
     },
     "G151": {
-     "value": 4,
+     "value": 11,
      "kind": "calculation",
      "format": "0"
     },
@@ -11203,21 +10746,21 @@
      "format": "0.0"
     },
     "B152": {
-     "value": "2026-07",
+     "value": "2025-12",
      "kind": "calculation"
     },
     "C152": {
-     "value": 14.1,
+     "value": 15.55,
      "kind": "actual",
      "format": "0.00"
     },
     "D152": {
-     "value": 0.904,
+     "value": 0.901,
      "kind": "actual",
      "format": "0.0000"
     },
     "E152": {
-     "value": 1.613,
+     "value": 1.648,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11227,7 +10770,7 @@
      "format": "0.0"
     },
     "G152": {
-     "value": 3,
+     "value": 10,
      "kind": "calculation",
      "format": "0"
     },
@@ -11277,21 +10820,21 @@
      "format": "0.0"
     },
     "B153": {
-     "value": "2026-08",
+     "value": "2026-01",
      "kind": "calculation"
     },
     "C153": {
-     "value": 13.44,
+     "value": 15.7,
      "kind": "actual",
      "format": "0.00"
     },
     "D153": {
-     "value": 0.905,
+     "value": 0.902,
      "kind": "actual",
      "format": "0.0000"
     },
     "E153": {
-     "value": 1.601,
+     "value": 1.65,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11301,7 +10844,7 @@
      "format": "0.0"
     },
     "G153": {
-     "value": 2,
+     "value": 9,
      "kind": "calculation",
      "format": "0"
     },
@@ -11351,21 +10894,21 @@
      "format": "0.0"
     },
     "B154": {
-     "value": "2026-09",
+     "value": "2026-02",
      "kind": "calculation"
     },
     "C154": {
-     "value": 12.97,
+     "value": 16.33,
      "kind": "actual",
      "format": "0.00"
     },
     "D154": {
-     "value": 0.906,
+     "value": 0.902,
      "kind": "actual",
      "format": "0.0000"
     },
     "E154": {
-     "value": 1.588,
+     "value": 1.649,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11375,7 +10918,7 @@
      "format": "0.0"
     },
     "G154": {
-     "value": 1,
+     "value": 8,
      "kind": "calculation",
      "format": "0"
     },
@@ -11425,21 +10968,21 @@
      "format": "0.0"
     },
     "B155": {
-     "value": "2026-10",
+     "value": "2026-03",
      "kind": "calculation"
     },
     "C155": {
-     "value": 12.68,
+     "value": 17.31,
      "kind": "actual",
      "format": "0.00"
     },
     "D155": {
-     "value": 0.906,
+     "value": 0.902,
      "kind": "actual",
      "format": "0.0000"
     },
     "E155": {
-     "value": 1.574,
+     "value": 1.646,
      "kind": "actual",
      "format": "0.000"
     },
@@ -11449,7 +10992,7 @@
      "format": "0.0"
     },
     "G155": {
-     "value": 0,
+     "value": 7,
      "kind": "calculation",
      "format": "0"
     },
@@ -11498,7 +11041,525 @@
      "kind": "calculation",
      "format": "0.0"
     },
-    "R35": {
+    "B156": {
+     "value": "2026-04",
+     "kind": "calculation"
+    },
+    "C156": {
+     "value": 18.23,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D156": {
+     "value": 0.903,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E156": {
+     "value": 1.641,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F156": {
+     "value": "=C156*D156/E156",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G156": {
+     "value": 6,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H156": {
+     "value": "=IF(G156<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I156": {
+     "value": "=IF(H156=1,F156,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J156": {
+     "value": "=IF(H156=1,F156,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K156": {
+     "value": "=IF(H156=1,NA(),F156)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L156": {
+     "value": "=IF(H156=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M156": {
+     "value": "=IF(H156=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N156": {
+     "value": "=IF(H156=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O156": {
+     "value": "=IF(H156=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P156": {
+     "value": "=IF(H156=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B157": {
+     "value": "2026-05",
+     "kind": "calculation"
+    },
+    "C157": {
+     "value": 18.73,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D157": {
+     "value": 0.903,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E157": {
+     "value": 1.633,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F157": {
+     "value": "=C157*D157/E157",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G157": {
+     "value": 5,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H157": {
+     "value": "=IF(G157<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I157": {
+     "value": "=IF(H157=1,F157,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J157": {
+     "value": "=IF(H157=1,F157,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K157": {
+     "value": "=IF(H157=1,NA(),F157)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L157": {
+     "value": "=IF(H157=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M157": {
+     "value": "=IF(H157=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N157": {
+     "value": "=IF(H157=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O157": {
+     "value": "=IF(H157=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P157": {
+     "value": "=IF(H157=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B158": {
+     "value": "2026-06",
+     "kind": "calculation"
+    },
+    "C158": {
+     "value": 18.68,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D158": {
+     "value": 0.904,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E158": {
+     "value": 1.624,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F158": {
+     "value": "=C158*D158/E158",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G158": {
+     "value": 4,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H158": {
+     "value": "=IF(G158<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I158": {
+     "value": "=IF(H158=1,F158,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J158": {
+     "value": "=IF(H158=1,F158,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K158": {
+     "value": "=IF(H158=1,NA(),F158)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L158": {
+     "value": "=IF(H158=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M158": {
+     "value": "=IF(H158=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N158": {
+     "value": "=IF(H158=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O158": {
+     "value": "=IF(H158=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P158": {
+     "value": "=IF(H158=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B159": {
+     "value": "2026-07",
+     "kind": "calculation"
+    },
+    "C159": {
+     "value": 14.1,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D159": {
+     "value": 0.904,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E159": {
+     "value": 1.613,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F159": {
+     "value": "=C159*D159/E159",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G159": {
+     "value": 3,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H159": {
+     "value": "=IF(G159<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I159": {
+     "value": "=IF(H159=1,F159,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J159": {
+     "value": "=IF(H159=1,F159,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K159": {
+     "value": "=IF(H159=1,NA(),F159)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L159": {
+     "value": "=IF(H159=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M159": {
+     "value": "=IF(H159=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N159": {
+     "value": "=IF(H159=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O159": {
+     "value": "=IF(H159=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P159": {
+     "value": "=IF(H159=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B160": {
+     "value": "2026-08",
+     "kind": "calculation"
+    },
+    "C160": {
+     "value": 13.44,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D160": {
+     "value": 0.905,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E160": {
+     "value": 1.601,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F160": {
+     "value": "=C160*D160/E160",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G160": {
+     "value": 2,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H160": {
+     "value": "=IF(G160<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I160": {
+     "value": "=IF(H160=1,F160,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J160": {
+     "value": "=IF(H160=1,F160,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K160": {
+     "value": "=IF(H160=1,NA(),F160)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L160": {
+     "value": "=IF(H160=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M160": {
+     "value": "=IF(H160=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N160": {
+     "value": "=IF(H160=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O160": {
+     "value": "=IF(H160=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P160": {
+     "value": "=IF(H160=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B161": {
+     "value": "2026-09",
+     "kind": "calculation"
+    },
+    "C161": {
+     "value": 12.97,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D161": {
+     "value": 0.906,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E161": {
+     "value": 1.588,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F161": {
+     "value": "=C161*D161/E161",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G161": {
+     "value": 1,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H161": {
+     "value": "=IF(G161<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I161": {
+     "value": "=IF(H161=1,F161,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J161": {
+     "value": "=IF(H161=1,F161,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K161": {
+     "value": "=IF(H161=1,NA(),F161)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L161": {
+     "value": "=IF(H161=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M161": {
+     "value": "=IF(H161=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N161": {
+     "value": "=IF(H161=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O161": {
+     "value": "=IF(H161=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P161": {
+     "value": "=IF(H161=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "B162": {
+     "value": "2026-10",
+     "kind": "calculation"
+    },
+    "C162": {
+     "value": 12.68,
+     "kind": "actual",
+     "format": "0.00"
+    },
+    "D162": {
+     "value": 0.906,
+     "kind": "actual",
+     "format": "0.0000"
+    },
+    "E162": {
+     "value": 1.574,
+     "kind": "actual",
+     "format": "0.000"
+    },
+    "F162": {
+     "value": "=C162*D162/E162",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "G162": {
+     "value": 0,
+     "kind": "calculation",
+     "format": "0"
+    },
+    "H162": {
+     "value": "=IF(G162<$D$7*12,1,0)",
+     "kind": "calculation",
+     "format": "0"
+    },
+    "I162": {
+     "value": "=IF(H162=1,F162,\"\")",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "J162": {
+     "value": "=IF(H162=1,F162,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "K162": {
+     "value": "=IF(H162=1,NA(),F162)",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "L162": {
+     "value": "=IF(H162=1,$D$9,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "M162": {
+     "value": "=IF(H162=1,$D$11,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "N162": {
+     "value": "=IF(H162=1,$D$12,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "O162": {
+     "value": "=IF(H162=1,$D$13,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "P162": {
+     "value": "=IF(H162=1,$D$14,NA())",
+     "kind": "calculation",
+     "format": "0.0"
+    },
+    "R42": {
      "value": "Column I feeds the statistics. Columns J to P feed the chart: #N/A leaves a gap, so the mean and SD lines show only inside the window and excluded history is drawn in grey.",
      "kind": "calculation"
     }
@@ -11510,16 +11571,16 @@
    "charts": [
     {
      "title": "On consensus EPS the shares trade 1.9 SD below their five-year mean forward P/E",
-     "range": "F6:P33",
-     "categories": "B36:B155",
+     "range": "F6:P40",
+     "categories": "B43:B162",
      "series": [
-      "J35:J155",
-      "K35:K155",
-      "L35:L155",
-      "M35:M155",
-      "N35:N155",
-      "O35:O155",
-      "P35:P155"
+      "J42:J162",
+      "K42:K162",
+      "L42:L162",
+      "M42:M162",
+      "N42:N162",
+      "O42:O162",
+      "P42:P162"
      ],
      "colors": [
       "1B2A41",
@@ -37464,7 +37525,7 @@
      "kind": "calculation"
     },
     "C16": {
-     "value": "=Valuation!$D$73",
+     "value": "=Valuation!$D$64",
      "kind": "calculation",
      "pct": true
     },
@@ -37501,5 +37562,72 @@
   "priceReturn": "Valuation!D25",
   "check.FY2027E": "Statements!J121",
   "check.4Q27E": "Statements!X121"
- }
+ },
+ "sensitivities": [
+  {
+   "id": "s1",
+   "inputs": [
+    "Revenue Build!U59",
+    "Revenue Build!V59",
+    "Revenue Build!W59",
+    "Revenue Build!X59"
+   ],
+   "shock": "Valuation!D52",
+   "mode": "add",
+   "eps": "Statements!J50",
+   "shown": "Valuation!E52"
+  },
+  {
+   "id": "s2",
+   "inputs": [
+    "Input Prices!U7",
+    "Input Prices!V7",
+    "Input Prices!W7",
+    "Input Prices!X7"
+   ],
+   "shock": "Valuation!D53",
+   "mode": "scale",
+   "eps": "Statements!J50",
+   "shown": "Valuation!E53"
+  },
+  {
+   "id": "s3",
+   "inputs": [
+    "Revenue Build!U18",
+    "Revenue Build!V18",
+    "Revenue Build!W18",
+    "Revenue Build!X18"
+   ],
+   "shock": "Valuation!D54",
+   "mode": "add",
+   "eps": "Statements!J50",
+   "shown": "Valuation!E54"
+  },
+  {
+   "id": "s4",
+   "inputs": [
+    "Revenue Build!U56",
+    "Revenue Build!V56",
+    "Revenue Build!W56",
+    "Revenue Build!X56"
+   ],
+   "shock": "Valuation!D55",
+   "mode": "add",
+   "eps": "Statements!J50",
+   "shown": "Valuation!E55"
+  },
+  {
+   "id": "s5",
+   "inputs": [
+    "Revenue Build!U11",
+    "Revenue Build!V11",
+    "Revenue Build!W11",
+    "Revenue Build!X11"
+   ],
+   "shock": "Valuation!D56",
+   "mode": "add",
+   "eps": "Statements!J50",
+   "shown": "Valuation!E56"
+  }
+ ]
 }

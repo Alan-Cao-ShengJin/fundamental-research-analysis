@@ -1,0 +1,51 @@
+{
+  "purpose": "Original fictional field examples; not a company model, required forecast or completed review.",
+  "claimAssertions": [
+    {
+      "id": "annual-guide-comparison", "kind": "comparison", "claimId": "annual-guide-claim",
+      "role": "reviewer", "location": "Report guide comparison or reviewer finding", "sourceIds": ["dated-outlook"],
+      "rationale": "Reconcile the remaining-period ratio to the annual definition before comparing.",
+      "relation": "same-period", "op": "<=",
+      "left": {
+        "value": {"model": "Periods!G20"},
+        "definition": {"quantity": "recurring margin", "unit": "fraction", "currency": "none", "scale": "1", "perimeter": "reviewed operation", "basis": "recurring", "measure": "ratio", "start": "2029-04-01", "end": "2030-01-01"},
+        "reconcile": {
+          "inputs": {"remainingRevenue": {"model": "Periods!G10"}, "knownProfit": {"model": "Periods!F21"}, "annualRevenue": {"model": "Periods!H10"}},
+          "expression": "(original * remainingRevenue + knownProfit) / annualRevenue",
+          "result": {"model": "Periods!H20"},
+          "definition": {"quantity": "recurring margin", "unit": "fraction", "currency": "none", "scale": "1", "perimeter": "reviewed operation", "basis": "recurring", "measure": "ratio", "start": "2029-01-01", "end": "2030-01-01"},
+          "rationale": "Known-period profit plus remaining-period profit divided by annual revenue."
+        }
+      },
+      "right": {
+        "value": {"model": "Outlook!D12"},
+        "definition": {"quantity": "recurring margin", "unit": "fraction", "currency": "none", "scale": "1", "perimeter": "reviewed operation", "basis": "recurring", "measure": "ratio", "start": "2029-01-01", "end": "2030-01-01"}
+      }
+    },
+    {
+      "id": "latest-quarter-flow", "kind": "incremental-flow", "claimId": "cash-period-claim",
+      "role": "author", "location": "Matched-period cash bridge", "sourceIds": ["interim-results", "first-quarter-results"],
+      "rationale": "Isolate the latest quarter from overlapping cumulative disclosures on the same accounting/perimeter basis.",
+      "current": {
+        "value": {"model": "Cash!F15"},
+        "definition": {"quantity": "operating cash flow", "unit": "currency", "currency": "USD", "scale": "millions", "perimeter": "consolidated", "basis": "reported", "measure": "flow", "start": "2029-01-01", "end": "2029-07-01"}
+      },
+      "prior": {
+        "value": {"model": "Cash!E15"},
+        "definition": {"quantity": "operating cash flow", "unit": "currency", "currency": "USD", "scale": "millions", "perimeter": "consolidated", "basis": "reported", "measure": "flow", "start": "2029-01-01", "end": "2029-04-01"}
+      },
+      "incremental": {
+        "value": {"model": "Cash!G15"},
+        "definition": {"quantity": "operating cash flow", "unit": "currency", "currency": "USD", "scale": "millions", "perimeter": "consolidated", "basis": "reported", "measure": "flow", "start": "2029-04-01", "end": "2029-07-01"}
+      }
+    }
+  ],
+  "coverage": {
+    "comparisons": {"status": "checked", "assertionIds": ["annual-guide-comparison"]},
+    "incremental-flows": {
+      "status": "checked", "assertionIds": ["latest-quarter-flow"],
+      "candidates": [{"id": "operating-cash", "material": true, "sourceIds": ["interim-results", "first-quarter-results"], "status": "checked", "assertionId": "latest-quarter-flow", "reason": "The latest cash period materially changes interpretation of the cumulative result."}]
+    },
+    "brief-fidelity": {"status": "undecided", "items": []}
+  }
+}

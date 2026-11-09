@@ -1,0 +1,436 @@
+{
+  "reported": [
+    {
+      "period": "FY2023",
+      "months": 12,
+      "averageInterestEarningAssets": 7800,
+      "interestIncome": 397.8,
+      "averageInterestBearingFunding": 6800,
+      "interestExpense": 157.8,
+      "netInterestIncome": 240.0,
+      "fees": 40,
+      "operatingCosts": 153,
+      "impairment": 36,
+      "preTax": 91.0,
+      "tax": 22.75,
+      "attributableProfit": 68.25,
+      "weightedShares": 200,
+      "eps": 0.34125,
+      "averageGrossLoans": 6500
+    },
+    {
+      "period": "FY2024",
+      "months": 12,
+      "averageInterestEarningAssets": 8000,
+      "interestIncome": 400,
+      "averageInterestBearingFunding": 7000,
+      "interestExpense": 140,
+      "netInterestIncome": 260,
+      "fees": 40,
+      "operatingCosts": 160,
+      "impairment": 40,
+      "preTax": 100,
+      "tax": 25.0,
+      "attributableProfit": 75.0,
+      "weightedShares": 200,
+      "eps": 0.375,
+      "averageGrossLoans": 6800
+    },
+    {
+      "period": "FY2025",
+      "months": 12,
+      "averageInterestEarningAssets": 8500,
+      "interestIncome": 442,
+      "averageInterestBearingFunding": 7500,
+      "interestExpense": 172.5,
+      "netInterestIncome": 269.5,
+      "fees": 42,
+      "operatingCosts": 168,
+      "impairment": 48,
+      "preTax": 95.5,
+      "tax": 23.875,
+      "attributableProfit": 71.625,
+      "weightedShares": 200,
+      "eps": 0.358125,
+      "averageGrossLoans": 7100
+    },
+    {
+      "period": "1H2026",
+      "months": 6,
+      "averageInterestEarningAssets": 9000,
+      "interestIncome": 234,
+      "averageInterestBearingFunding": 8000,
+      "interestExpense": 92,
+      "netInterestIncome": 142,
+      "fees": 22,
+      "operatingCosts": 87,
+      "impairment": 25,
+      "preTax": 52,
+      "tax": 13.0,
+      "attributableProfit": 39.0,
+      "weightedShares": 200,
+      "eps": 0.195,
+      "averageGrossLoans": 7400
+    },
+    {
+      "period": "9M2026",
+      "months": 9,
+      "averageInterestEarningAssets": 9066.666666666666,
+      "averageInterestBearingFunding": 8066.666666666667,
+      "weightedShares": 196.66666666666666,
+      "interestIncome": 346.7,
+      "interestExpense": 137.1,
+      "netInterestIncome": 209.6,
+      "fees": 33,
+      "operatingCosts": 131,
+      "impairment": 42,
+      "preTax": 69.6,
+      "tax": 17.4,
+      "attributableProfit": 52.199999999999996,
+      "eps": 0.2654237288135593,
+      "averageGrossLoans": 7450
+    }
+  ],
+  "balanceSheets": {
+    "2023-12-31": {
+      "cash": 550,
+      "grossLoans": 6640,
+      "allowance": 240,
+      "securities": 1700,
+      "otherAssets": 350,
+      "deposits": 7700,
+      "wholesaleFunding": 400,
+      "otherLiabilities": 180,
+      "equity": 720,
+      "intangibles": 60,
+      "shares": 200,
+      "cet1": 620,
+      "rwa": 5000,
+      "netLoans": 6400,
+      "assets": 9000,
+      "tangibleEquity": 660,
+      "tangibleBookPerShare": 3.3,
+      "cet1Ratio": 0.124,
+      "otherPrudentialDeductions": 40
+    },
+    "2024-12-31": {
+      "cash": 600,
+      "grossLoans": 6900,
+      "allowance": 250,
+      "securities": 1800,
+      "otherAssets": 350,
+      "deposits": 8000,
+      "wholesaleFunding": 450,
+      "otherLiabilities": 190,
+      "equity": 760,
+      "intangibles": 60,
+      "shares": 200,
+      "cet1": 645,
+      "rwa": 5200,
+      "netLoans": 6650,
+      "assets": 9400,
+      "tangibleEquity": 700,
+      "tangibleBookPerShare": 3.5,
+      "cet1Ratio": 0.12403846153846154,
+      "otherPrudentialDeductions": 55
+    },
+    "2025-12-31": {
+      "cash": 650,
+      "grossLoans": 7260,
+      "allowance": 260,
+      "securities": 1900,
+      "otherAssets": 450,
+      "deposits": 8500,
+      "wholesaleFunding": 500,
+      "otherLiabilities": 220,
+      "equity": 780,
+      "intangibles": 60,
+      "shares": 200,
+      "cet1": 660,
+      "rwa": 5500,
+      "netLoans": 7000,
+      "assets": 10000,
+      "tangibleEquity": 720,
+      "tangibleBookPerShare": 3.6,
+      "cet1Ratio": 0.12,
+      "otherPrudentialDeductions": 60
+    },
+    "2026-06-30": {
+      "cash": 687,
+      "grossLoans": 7470,
+      "allowance": 270,
+      "securities": 1930,
+      "otherAssets": 443,
+      "deposits": 8700,
+      "wholesaleFunding": 540,
+      "otherLiabilities": 229,
+      "equity": 791,
+      "intangibles": 60,
+      "shares": 200,
+      "cet1": 670,
+      "rwa": 5650,
+      "netLoans": 7200,
+      "assets": 10260,
+      "tangibleEquity": 731,
+      "tangibleBookPerShare": 3.655,
+      "cet1Ratio": 0.11858407079646018,
+      "otherPrudentialDeductions": 61
+    },
+    "2026-09-30": {
+      "cash": 628,
+      "grossLoans": 7580,
+      "allowance": 280,
+      "securities": 1920,
+      "otherAssets": 451.2,
+      "deposits": 8750,
+      "wholesaleFunding": 550,
+      "otherLiabilities": 232,
+      "equity": 767.2,
+      "intangibles": 60,
+      "shares": 190,
+      "cet1": 638,
+      "rwa": 5800,
+      "netLoans": 7300,
+      "assets": 10299.2,
+      "tangibleEquity": 707.2,
+      "tangibleBookPerShare": 3.722105263157895,
+      "cet1Ratio": 0.11,
+      "otherPrudentialDeductions": 69.20000000000005
+    }
+  },
+  "cashFlows": {
+    "FY2024": {
+      "opening": 550,
+      "operating": 90,
+      "investing": -5,
+      "dividends": -35,
+      "repurchases": 0,
+      "closing": 600
+    },
+    "FY2025": {
+      "opening": 600,
+      "operating": 95,
+      "investing": -5,
+      "dividends": -40,
+      "repurchases": 0,
+      "closing": 650
+    },
+    "1H2026": {
+      "opening": 650,
+      "operating": 60,
+      "investing": -3,
+      "dividends": -20,
+      "repurchases": 0,
+      "closing": 687
+    },
+    "9M2026": {
+      "opening": 650,
+      "operating": 35,
+      "investing": -5,
+      "dividends": -20,
+      "repurchases": -32,
+      "closing": 628
+    }
+  },
+  "equityBridges": {
+    "FY2024": {
+      "opening": 720,
+      "profit": 75,
+      "dividends": 35,
+      "repurchases": 0,
+      "oci": 0,
+      "closing": 760
+    },
+    "FY2025": {
+      "opening": 760,
+      "profit": 71.625,
+      "dividends": 40,
+      "repurchases": 0,
+      "oci": -11.625,
+      "closing": 780
+    },
+    "1H2026": {
+      "opening": 780,
+      "profit": 39,
+      "dividends": 20,
+      "repurchases": 0,
+      "oci": -8,
+      "closing": 791
+    },
+    "9M2026": {
+      "opening": 780,
+      "profit": 52.2,
+      "dividends": 20,
+      "repurchases": 32,
+      "oci": -13,
+      "closing": 767.2
+    }
+  },
+  "historicalPtBV": [
+    {
+      "month": "2023-01",
+      "ptbv": 0.9
+    },
+    {
+      "month": "2023-02",
+      "ptbv": 1.005
+    },
+    {
+      "month": "2023-03",
+      "ptbv": 0.915
+    },
+    {
+      "month": "2023-04",
+      "ptbv": 1.02
+    },
+    {
+      "month": "2023-05",
+      "ptbv": 0.93
+    },
+    {
+      "month": "2023-06",
+      "ptbv": 1.035
+    },
+    {
+      "month": "2023-07",
+      "ptbv": 0.945
+    },
+    {
+      "month": "2023-08",
+      "ptbv": 1.05
+    },
+    {
+      "month": "2023-09",
+      "ptbv": 0.96
+    },
+    {
+      "month": "2023-10",
+      "ptbv": 1.065
+    },
+    {
+      "month": "2023-11",
+      "ptbv": 0.975
+    },
+    {
+      "month": "2023-12",
+      "ptbv": 1.08
+    },
+    {
+      "month": "2024-01",
+      "ptbv": 0.99
+    },
+    {
+      "month": "2024-02",
+      "ptbv": 0.9
+    },
+    {
+      "month": "2024-03",
+      "ptbv": 1.005
+    },
+    {
+      "month": "2024-04",
+      "ptbv": 0.915
+    },
+    {
+      "month": "2024-05",
+      "ptbv": 1.02
+    },
+    {
+      "month": "2024-06",
+      "ptbv": 0.93
+    },
+    {
+      "month": "2024-07",
+      "ptbv": 1.035
+    },
+    {
+      "month": "2024-08",
+      "ptbv": 0.945
+    },
+    {
+      "month": "2024-09",
+      "ptbv": 1.05
+    },
+    {
+      "month": "2024-10",
+      "ptbv": 0.96
+    },
+    {
+      "month": "2024-11",
+      "ptbv": 1.065
+    },
+    {
+      "month": "2024-12",
+      "ptbv": 0.975
+    },
+    {
+      "month": "2025-01",
+      "ptbv": 1.08
+    },
+    {
+      "month": "2025-02",
+      "ptbv": 0.99
+    },
+    {
+      "month": "2025-03",
+      "ptbv": 0.9
+    },
+    {
+      "month": "2025-04",
+      "ptbv": 1.005
+    },
+    {
+      "month": "2025-05",
+      "ptbv": 0.915
+    },
+    {
+      "month": "2025-06",
+      "ptbv": 1.02
+    },
+    {
+      "month": "2025-07",
+      "ptbv": 0.93
+    },
+    {
+      "month": "2025-08",
+      "ptbv": 1.035
+    },
+    {
+      "month": "2025-09",
+      "ptbv": 0.945
+    },
+    {
+      "month": "2025-10",
+      "ptbv": 1.05
+    },
+    {
+      "month": "2025-11",
+      "ptbv": 0.96
+    },
+    {
+      "month": "2025-12",
+      "ptbv": 1.065
+    }
+  ],
+  "quote": {
+    "price": 3.2,
+    "currency": "GBP",
+    "date": "2026-11-06",
+    "shares": 190
+  },
+  "consensus": {
+    "date": "2026-11-06",
+    "contributors": 8,
+    "eps": {
+      "FY2026": 0.37,
+      "FY2027": 0.42,
+      "FY2028": 0.46
+    },
+    "weightedShares": {
+      "FY2026": 195,
+      "FY2027": 190,
+      "FY2028": 190
+    },
+    "target": 3.85
+  }
+}

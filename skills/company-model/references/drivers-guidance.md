@@ -1,5 +1,7 @@
 # Operating drivers and management guidance
 
+Match the quantity, measurement dates, unit, currency/scale, perimeter and accounting definition before comparing a forecast with guidance or another company. Translate full-year guidance into the remaining period using known actuals and the appropriate additive numerator/denominator; do not compare a remaining-period margin directly with an annual range. Preserve that definition in the human model and report. The [comparison controls](../../report-layout/references/claim-support.md#comparable-definitions-and-incremental-flows) reproduce declared reconciliations for author and reviewer claims; they do not authenticate source extraction or mandate a point within the range.
+
 ## Operating data
 
 Inventory source trackers, definitions and publication dates. Distinguish production, shipments, retail sales, customs declarations, bookings, recognised revenue and capacity. Match each series to the model segment and its likely timing lag before comparing growth.
@@ -18,7 +20,9 @@ Compare a meaningful matched pair after results, such as a relevant shipment buc
 
 Apply the [earnings clock and peer read-through procedure](earnings-clock-and-peer-readthrough.md): establish the latest reported period and call and the next forecast period before interpreting guidance, compare current wording with prior comparable statements and subsequent updates, and record a peer read-through as an inference rather than the target's own guidance.
 
-Apply [investor judgment](../../research-cycle/references/investor-judgment.md): guidance is an interested forecast to assess alongside operating evidence, rather than a model target to copy or uniformly discount. Track original guidance, revisions and matched actuals by metric and regime. Distinguish repeated overpromising, conservative guidance with delivery, execution quality and insufficient history. Adjust assumptions only when the pattern and current conditions warrant it; a beat can reflect an easy target, a miss an external shock. Preserve the issuer's words separately from the analyst's estimate and avoid personality-based judgments.
+Apply [investor judgment](../../research-cycle/references/investor-judgment.md): guidance is an interested forecast to assess alongside operating evidence, rather than a model target to copy or uniformly discount. Track original guidance, revisions and matched actuals by metric and regime. Distinguish repeated overpromising, conservative guidance with delivery, execution quality and insufficient history. Adjust assumptions only when the pattern and current conditions warrant it; a beat can reflect an easy target, a miss an external shock. A beat record can place the base case in the upper part of a guided range; it does not make the guide a floor, so keep a below-guide outcome in the adverse case where a named driver (supply, customer timing, pricing) could produce it.
+
+Reconcile the forecast with every dated forward statement that covers it, beyond the next quarter: multi-year targets, capacity additions and their start dates, backlog, purchase commitments and prepayments. For each, show the period it covers, the model value in that period, the gap and its explanation; a forecast above stated capacity, or a commitment larger than the revenue modelled for it, needs a reason. Preserve the issuer's words separately from the analyst's estimate and avoid personality-based judgments.
 
 Read prepared remarks and relevant Q&A plus other notes of the same meeting. Resolve apparent transcription errors against official material; multiple derivative notes do not count as independent evidence. Keep unverified original wording alongside a proposed correction.
 

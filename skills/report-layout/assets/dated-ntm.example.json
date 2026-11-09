@@ -1,0 +1,13 @@
+{
+  "mode": "dated-periods",
+  "start": "2028-12-01",
+  "end": "2029-12-01",
+  "allocation": "uniform-days",
+  "metric": "profit-over-shares",
+  "rationale": "Fictional field example: use supported period profit and time-weighted shares on compatible scales. Replace these dates, labels, references and rationale.",
+  "components": [
+    {"period": "2Q FY2029E", "start": "2028-10-01", "end": "2029-01-01", "profit": "Periods!F70", "shares": "Periods!F71", "header": "Periods!F5"},
+    {"period": "2H FY2029E", "start": "2029-01-01", "end": "2029-07-01", "profit": "Periods!G70", "shares": "Periods!G71", "header": "Periods!G5"},
+    {"period": "1H FY2030E", "start": "2029-07-01", "end": "2030-01-01", "profit": "Periods!H70", "shares": "Periods!H71", "header": "Periods!H5"}
+  ]
+}

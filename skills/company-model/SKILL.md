@@ -2,7 +2,7 @@
 name: company-model
 description: Build and maintain executable company financial models with operating drivers and linked income statements, cash flows and balance sheets. Use for new issuer models, historical updates, forecast revisions, scenarios and forecast evaluation; preserve existing workbook models when requested.
 metadata:
-  version: 2.2.1
+  version: 2.4.0
 ---
 
 # Company model building and updates
@@ -43,6 +43,7 @@ Modes:
 - Anchor near-term forecasts on the latest reported period, its call and peers already reported ([earnings clock](references/earnings-clock-and-peer-readthrough.md)). History supplies seasonality, cycle context and calibration. Carry the component build through the year [the market is trading](../research-cycle/references/what-the-market-trades.md#2-which-period-the-market-trades) when that is beyond the forward year. For a fast-growing line, build from the latest run rate and the capacity ramp with seasonality, channel inventory and demand tested, then set the result against management's plan and its guidance record; forecast above or below the plan when the evidence supports it.
 - Choose drivers that explain the economics: units/price/mix, capacity/utilisation, users/monetisation or another suitable decomposition. Reconcile segment totals and cash requirements; do not impose a volume model where it misleads.
 - Treat reported actuals, derived actuals, guidance, broker estimates and analyst assumptions as distinct, and preserve provenance when derived quarters are displayed as hard values. A guide is an input to assess, not a total to reach.
+- Keep an observed amount separate from inferred classification, recognition and payment timing; distinguish binding constraints from management targets and our assumed deadlines. Use the [state and timing bridge](references/statement-forecast.md#classification-recognition-and-payment-states) when those choices can change the view.
 - Forecast competitor, customer and supplier responses, fund growth through explicit investment and working capital, and carry a supported transition to mature economics into valuation ([competition and capital returns](references/competition-and-capital-returns.md)). Translate material [macro conditions](../macro-event-analysis/references/market-regime-and-investor-base.md) into dated volume, price, cost, currency and financing scenarios; a sector rally does not raise operating forecasts without an economic channel.
 - Show break-even inputs, competing cases and room for error ([underwriting standard](../research-cycle/references/underwriting-standard.md)). A downside case that reverses the call does not invalidate the central estimate; reserve blockers for missing essentials.
 - Carry the brief's key metrics as model rows: our forward P/E (price over our NTM EPS), P/B on the latest book value, dividend yield, and next-year ROIC (after-tax operating profit over average equity plus debt; an operating version excluding cash and supplier financing can sit beside it).

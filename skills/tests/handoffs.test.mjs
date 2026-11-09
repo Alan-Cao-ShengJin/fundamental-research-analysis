@@ -104,6 +104,21 @@ describe('research handoff gates', () => {
     const a = fixture(); const before = structuredClone(a); assessReadiness(a, context); expect(a).toEqual(before);
     a.sources[0].retrievedAt = '2026-10-27T09:06:00Z'; expect(() => validateHandoff(a)).toThrow(/after artifact/);
   });
+  it('separates a synthetic evaluation clock from true production and retrieval times', () => {
+    const a = fixture(); a.asOf = '2026-11-09T00:00:00Z';
+    const fixtureClock = { mode: 'synthetic-fixture', now: '2026-11-09T12:00:00Z', reason: 'Fixed invented pack date' };
+    expect(() => validateHandoff(a)).toThrow(/cutoff/);
+    expect(validateHandoff(a, { fixtureClock }).producedAt).toBe(a.producedAt);
+    expect(assessReadiness(a, { ...context, fixtureClock, maxAgeMs: 86400000 }).ready).toBe(true);
+    expect(assessReadiness(a, { ...context, fixtureClock, allowSynthetic: false }).ready).toBe(false);
+    const futureProduction = fixture(); futureProduction.asOf = a.asOf; futureProduction.producedAt = fixtureClock.now;
+    expect(assessReadiness(futureProduction, { ...context, fixtureClock, maxAgeMs: 86400000 }).ready).toBe(false);
+    a.sources[0].synthetic = false;
+    expect(() => validateHandoff(a, { fixtureClock })).toThrow(/synthetic-only/);
+    a.sources[0].synthetic = true; a.kind = 'portfolio-decision';
+    expect(() => validateHandoff(a, { fixtureClock })).toThrow(/portfolio/);
+    expect(() => validateHandoff(fixture(), { fixtureClock: { ...fixtureClock, reason: ' ' } })).toThrow();
+  });
   it('requires a stated reason to skip a branch', () => {
     const a = fixture(); a.status = 'not-applicable'; expect(() => validateHandoff(a)).toThrow(/needs a reason/);
   });
