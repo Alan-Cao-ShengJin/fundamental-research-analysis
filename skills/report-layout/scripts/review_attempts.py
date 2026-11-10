@@ -12,7 +12,7 @@ def state(study):
     drafts = []
     for path in root.glob('*/prepared-review.json'):
         packet = json.loads(path.read_text(encoding='utf-8'))
-        if packet.get('schemaVersion') != '1.1':
+        if packet.get('schemaVersion') != '1.2':
             raise ValueError('Legacy review history needs explicit migration; keep its original outcome and budget')
         drafts.append(packet)
     budgets = {p['maxRounds'] for p in drafts}
@@ -45,7 +45,7 @@ def begin(study, record, reviewer=None, mode='independent-agent'):
     from publication_review import local, digest, check_snapshot, DEFAULT_PATH
     path = local(study, record.get('review', DEFAULT_PATH))
     packet = json.loads(path.read_text(encoding='utf-8'))
-    if packet.get('schemaVersion') != '1.1':
+    if packet.get('schemaVersion') != '1.2':
         raise ValueError('Prepare a current review packet before starting an attempt')
     check_snapshot(study, packet)
     prepared = json.loads((local(study, packet['snapshot']['path']) / 'prepared-review.json').read_text(encoding='utf-8'))

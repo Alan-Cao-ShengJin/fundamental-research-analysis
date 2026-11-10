@@ -2,7 +2,7 @@
 name: research-brief
 description: Write a selective, decision-focused investment brief on one readable page using the shared minimalist template and institutional research writing standard. Also write developed stock pitches, results notes and decision updates at the requested depth.
 metadata:
-  version: 3.9.1
+  version: 3.10.0
 ---
 
 # Stock pitch, decision brief and research update

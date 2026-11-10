@@ -16,6 +16,8 @@ class DecisionRecordTests(unittest.TestCase):
         self.fixture=f.ReleaseCheckTests('test_clean_study_passes'); self.fixture.setUp(); self.addCleanup(self.fixture.doCleanups)
         self.root=self.fixture.dir; self.record=f.record(decisionRecord='evidence/decision.json'); self.spec=f.spec()
         self.decision=dr.synchronize(self.root,self.record,self.spec,{
+            'triggerCoverage':{'status':'not-applicable','reason':'The bound text is a research test, not an automatic rating condition.','testIds':[]},
+            'triggerTests':[],
             'invalidation':{'toSell':''},
             'boundText':[{'pointer':'/invalidation/toSell','template':'Test margin below {margin}.',
                           'inputs':{'margin':{'model':'Valuation!D7','style':'percent','decimals':2}}}],

@@ -4,6 +4,10 @@ This is the common editing standard for the writer and reviewer. Write a selecti
 
 ## Argument sequence
 
+For a full initiation, the compact opening can show the call and target. Develop business/industry drivers and their earnings/cash consequences before multi-page band analysis, peer valuation or the detailed target calculation. A short early statement of what investors debate is useful; it should not become the detailed valuation section before the business is explained. Focused valuation-only requests can stay narrow.
+
+Separate cash yield from capital gain when explaining the payoff. “The return is the yield” requires support from the price scenario; a substantial modeled price decline can offset the cash. Combined illustrations need the same horizon and eligible receipts, with gross/net assumptions stated; do not add dividends into the house rating or target. Prefer a useful explanation over another mandatory table. Quantified automatic triggers must remain true after display rounding; say “reassess around” for approximate watch levels.
+
 For each material conclusion, connect the point and data, its derivation, its economic significance and its implication for the investment view. Related paragraphs may share that chain. A citation establishes traceability; test the inference against a plausible competing explanation. State material assumptions where the reader needs them. A completed Argument block does not establish support.
 
 Give each developed argument one main home. The front page and standalone brief summarize it; elsewhere refer back in a clause instead of re-proving the target or repeating the same facts. An implication may concern margin, cash or risk without repeating the recommendation. A debate's quantified effect belongs with its answer, not in every later paragraph.

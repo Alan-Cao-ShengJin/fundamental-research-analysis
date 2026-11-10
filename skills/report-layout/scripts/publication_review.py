@@ -36,6 +36,11 @@ def writing_packet(study, paths):
               'read': ['research-brief/SKILL.md', 'research-brief/references/natural-writing.md', 'report-layout/SKILL.md'],
               'task': 'Start in a fresh context. Write from the frozen model and decision/evidence record, with access to '
                       'original pivotal sources. Apply the short writing standard; return discrepancies to analysis. '
+                      'Develop business drivers before detailed valuation, beyond the compact header. When describing '
+                      'the overall payoff, reconcile price movement and eligible cash on the same dated horizon; '
+                      'cash yield is separate from the price-target rating. Compare matched periods before attributing '
+                      'a change to peers or a common regime, and qualify causal inferences. Rounded watch levels invite '
+                      'reassessment; automatic numeric rating conditions require tested displayed thresholds. '
                       'Do not change the forecast or target just to improve the prose. A brief conclusion keeps the conditions '
                       'the report attaches: alternatives that change the rating, partial answers, management-only evidence. '
                       'Render drafts, not a release.',
@@ -235,7 +240,7 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
              {'name': name, 'result': 'not-run', 'blocking': True, 'detail': 'Review the actual draft and underlying evidence.'}
              for name in CHECKS], 'criticalUnknowns': [], 'nextActions': []}
     from review_attempts import prior_requirements
-    packet = {'schemaVersion': '1.1', 'draftVersion': usage['draftVersion'] + 1,
+    packet = {'schemaVersion': '1.2', 'draftVersion': usage['draftVersion'] + 1,
               'researchMode': record.get('researchMode', 'unspecified'),
               'reviewPath': path.relative_to(study).as_posix(),
               'priorReview': prior_review, 'priorRequirements': prior_requirements(study, prior_review), 'priorDispositions': [],
@@ -243,15 +248,24 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
               'round': round_number, 'maxRounds': max_rounds, 'reviewedFiles': hashes, 'skillsFingerprint': fingerprint,
               'snapshot': snapshot, 'evaluation': evaluation,
               'valuationBasis': {'status': 'undecided', 'reason': '', 'cases': []},
-              'coverage': {**{kind: {'status': 'undecided', 'reason': '', 'assertionIds': []} for kind in FAMILIES},
+              'coverage': {**{kind: {'applicability': 'undetermined', 'status': 'undecided', 'reason': '',
+                                   'assertionIds': [], 'claimIds': []} for kind in FAMILIES},
                            'claim-support': {'status': 'undecided', 'reason': '', 'assertionIds': []},
                            'comparisons': {'status': 'undecided', 'reason': '', 'assertionIds': []},
                            'incremental-flows': {'status': 'undecided', 'reason': '', 'assertionIds': [], 'candidates': []},
                            'brief-fidelity': {'status': 'undecided', 'items': []},
                            'sensitivity': {'status': 'undecided', 'reason': '', 'sensitivityIds': []}},
               'financialAssertions': [], 'claimAssertions': [], 'handoff': h,
-              'task': 'Before reviewing, run publication_review.py begin STUDY --reviewer NAME. Preparation alone is not '
-                      'a review attempt; starting consumes one, even if interrupted or failed. Start a fresh reviewer '
+                'task': 'Before reviewing, run publication_review.py begin STUDY --reviewer NAME. Preparation alone is not '
+                        'a review attempt; starting consumes one, even if interrupted or failed. '
+                        'Check automatic numerical triggers at the displayed precision; rounded watch levels invite '
+                      'reassessment and cannot promise a new rating. Financial applicability follows the economic '
+                      'claim, not whether a model row was built: applicable but unbound means incomplete verification. '
+                      'Read the payoff explanation against price gain and eligible cash receipts on the same horizon, '
+                      'with dividends still separate from the rating. Multi-year levels do not establish what drove '
+                      'a particular period change; test date-matched alternatives and qualify causal attribution. '
+                      'In a full initiation, inspect whether drivers precede detailed valuation beyond the compact header. '
+                        'Start a fresh reviewer '
                       'context. Read the exact draft PDFs, brief, calculated model and original '
                       'pivotal evidence. Review the six writing dimensions and financial definitions. Record actual '
                       'findings; do not defend the author or mark unperformed work complete. Read the brief against the report: '
@@ -297,7 +311,7 @@ def check(study, record, spec, workbook):
     try:
         path = local(study, record.get('review', DEFAULT_PATH))
         packet = json.loads(path.read_text(encoding='utf-8-sig'))
-        if packet.get('schemaVersion') != '1.1':
+        if packet.get('schemaVersion') != '1.2':
             raise ValueError('Unsupported publication-review schema')
         h = packet['handoff']
         test('research-mode-declared', packet.get('researchMode') in ('initiation', 'regular-review', 'earnings-update', 'catalyst-update')
@@ -350,11 +364,9 @@ def check(study, record, spec, workbook):
         test('financial-assertion-identities', len(set(ids)) == len(ids), 'Financial assertion IDs must be unique')
         for family in FAMILIES:
             coverage = packet['coverage'][family]
-            linked = coverage.get('assertionIds', [])
-            valid = (coverage.get('status') == 'not-applicable' and bool(coverage.get('reason', '').strip()) and not linked
-                     or coverage.get('status') == 'checked' and bool(linked)
-                     and all(any(a['id'] == i and a['kind'] == family for a in assertions) for i in linked))
-            test('financial-coverage:' + family, valid, 'Declare applicable assertions or a reasoned non-applicability; reviewer verifies coverage')
+            import financial_coverage
+            valid,detail=financial_coverage.verify(family,coverage,packet)
+            test('financial-coverage:' + family, valid, detail)
         sens = packet['coverage'].get('sensitivity', {})
         ok, detail = sensitivity_coverage(spec, sens)
         test('sensitivity-coverage', ok, detail)

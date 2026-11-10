@@ -1,3 +1,35 @@
+# Research skill verification - 10 November 2026, version 2.10.0
+
+This section records the current standalone export. Earlier sections retain their original outcomes.
+
+## Changes
+
+- Decision contract 1.1 requires explicit numerical-trigger coverage. Automatic rating conditions probe the full model at the printed strict/inclusive boundary and one display increment further inside; approximate watch levels do not promise a new call. Decimal price-return arithmetic avoids binary noise at exact house thresholds. Local probes do not establish monotonicity outside the tested points or detect omitted prose.
+- Publication wrapper 1.2 separates economic applicability from verification status for cash coverage, normalized ratios and financing. Applicable families need definition-aware assertions and registered claim links. Missing inputs/rows are incomplete implementation, not non-applicability. Genuine absent instruments/claims remain N/A; no automatic ownership haircut or sector cash formula is imposed.
+- Writer and reviewer instructions test price/cash payoff explanations, date-matched alternatives to causal claims, and drivers before detailed valuation. The original synthetic payoff asset and positive/negative regressions support the checks; argument quality remains a substantive judgment.
+- Added a generic real-evidence trial preparer that copies a host-curated source-only snapshot into a new workspace, retains real timestamps, stores audit hashes outside the author workspace and refuses overwriting. It supplies no issuer source data, expected call or synthetic clock. Context separation is not an OS sandbox or authenticated reviewer independence.
+- Retained the public coverage planner, 20 company-research skills, 11 flows, 21 sector activity guides, all source adaptations/licenses and cleaned synthetic workbook assets. Private issuer reports/models, live provider responses, local trial material, correspondence and credentials are excluded.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Standalone structure | 20 skills, 11 flows; 860 relative links, coverage and shared schema passed |
+| Standalone JavaScript | 69 tests passed |
+| Standalone Python | 242 tests passed, including public coverage planning and new trigger/applicability/preparation regressions |
+| Skill entrypoints | All 20 validations passed |
+| Synthetic workbook | Existing cleaned example checked against its specification before manifest creation; numeric-cell result recorded in manifest |
+| Export scan | Common token/private-key patterns and private machine paths checked, including workbook XML; no private credential file read |
+| Manifest | Canonical staged Git bytes, excluding the manifest itself |
+
+## Limits and migration
+
+No new fresh-agent research outcome, native Excel recalculation, PDF print/visual trial, live provider entitlement test or investment performance was evaluated for this export. Deterministic regressions and clean trial preparation do not establish consistently high research quality, source truth, complete claim coverage or independence. Actual source interpretation, claims omitted from declarations, causal reasoning and prose meaning require a reader.
+
+Adopt decision 1.1 and review wrapper 1.2 explicitly. Preserve earlier study outcomes, original rule snapshots, findings and review budgets rather than relabeling old packets or adding an unbudgeted review to obtain a release. Detailed contracts and migration instructions remain in the bundle.
+
+---
+
 # Research skill verification - 9 November 2026, version 2.9.0
 
 This section records this standalone export. Earlier sections retain their original release results.

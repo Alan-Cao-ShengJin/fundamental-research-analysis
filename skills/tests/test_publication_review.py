@@ -89,6 +89,25 @@ class PublicationReviewTests(unittest.TestCase):
         self.write_packet(p)
         self.assertIn('draft-review-complete', self.failures())
 
+    def test_applicable_financial_claim_with_no_model_row_cannot_be_called_inapplicable(self):
+        p=self.prepared()
+        p['coverage']['cash-coverage'].update(applicability='applicable',status='not-applicable',
+            reason='The economic claim is in the report but no coverage row was built.',claimIds=['fixture'])
+        self.write_packet(p)
+        self.assertIn('financial-coverage:cash-coverage',self.failures())
+        p['coverage']['cash-coverage']['status']='checked'
+        self.write_packet(p)
+        self.assertIn('financial-coverage:cash-coverage',self.failures())
+
+    def test_missing_economic_applicability_is_not_inferred_from_no_assertions(self):
+        p=self.prepared()
+        del p['coverage']['financing']['applicability']
+        self.write_packet(p)
+        self.assertIn('financial-coverage:financing',self.failures())
+        p['coverage']['financing']['applicability']='not-applicable'
+        self.write_packet(p)
+        self.assertEqual(self.failures(),[])
+
     def test_coverage_must_be_decided_and_rounds_are_bounded(self):
         p = self.prepared(False)
         self.assertIn('financial-coverage:cash-coverage', self.failures())

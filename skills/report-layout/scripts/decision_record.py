@@ -65,7 +65,7 @@ def derived(study, record, spec, decision):
         target_date = cutoff.replace(year=cutoff.year+1)
     except ValueError:
         target_date = cutoff.replace(year=cutoff.year+1,day=28)
-    core = {'/schemaVersion':'1.0', '/security':record['security'], '/currency':record['currency'],
+    core = {'/schemaVersion':'1.1', '/security':record['security'], '/currency':record['currency'],
             '/cutoff':record['cutoff'], '/researchMode':record['researchMode'],
             '/quote/price':vals['referencePrice'], '/quote/date':record['priceDate'],
             '/rating':vals['rating'], '/targetPrice':vals['target'], '/targetDate':target_date.isoformat(),
@@ -89,12 +89,14 @@ def derived(study, record, spec, decision):
     pointers = [x['pointer'] for x in decision.get('bindings',[])]+[x['pointer'] for x in decision.get('boundText',[])]
     if len(set(pointers))!=len(pointers):
         raise ValueError('Decision binding pointers must be unique')
-    protected = ('/model','/quote','/bindings','/boundText')
+    protected = ('/model','/quote','/bindings','/boundText','/triggerCoverage','/triggerTests')
     for p in extras:
         if p in core or any(p==root or p.startswith(root+'/') for root in protected):
             raise ValueError('Extra bindings cannot overwrite decision core or binding definitions')
         if any(q!=p and q.startswith(p+'/') for q in extras):
             raise ValueError('Decision binding pointers cannot overlap')
+    from decision_triggers import verify
+    verify(decision,spec,record)
     return dict(core,**extras)
 
 

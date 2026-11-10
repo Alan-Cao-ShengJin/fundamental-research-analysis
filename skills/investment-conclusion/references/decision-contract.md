@@ -82,6 +82,8 @@ For a dividend-led case, follow [valuation drivers and dividends](../../valuatio
 
 ## Machine-consumable result
 
+When a published numerical condition promises a rating switch, bind and test its displayed precision under the [trigger-meaning contract](../../report-layout/references/decision-record.md#numerical-trigger-meaning). A correctly rounded threshold is not necessarily a sufficient condition for the promised call. Distinguish approximate reassessment levels from automatic triggers. Explain the investor payoff using consistent price and cash windows, keeping distributions outside rating/target calculations.
+
 Current publication uses the [decision-record contract and synchronizer](../../report-layout/references/decision-record.md). Bind material numerical triggers and method inputs, preserve the current model/spec identity, and refresh before writing/review. The helper updates derived fields; it does not establish a source classification or renew qualitative conviction automatically.
 
 Retain the decision record with quote/security basis; target date and valuation basis; primary/bear/bull targets; price return; dividend yield; separate new-money judgment/hurdle; evidence and material uncertainty; and current model/run references. A null dividend is unknown, not zero. Preserve prior decisions and invalidate dependent claims when upstream facts change. Reference the record through the existing [handoff](../../research-cycle/references/handoffs.md), without adding undeclared envelope fields. Research completion does not authorise allocation, trading, outreach or monitoring activation.

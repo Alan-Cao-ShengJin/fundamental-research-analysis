@@ -1,5 +1,13 @@
 # Version 2.0 name migration
 
+## Version 2.10 decision and review contracts
+
+The decision schema is **1.1**, independently of the publication wrapper **1.2**. Before synchronization, explicitly supply `triggerCoverage` and `triggerTests` under the [decision contract](skills/report-layout/references/decision-record.md#numerical-trigger-meaning). Bind automatic call conditions to their economic input, strict/inclusive relation, displayed boundary and expected rating. Approximate watch levels carry no automatic call promise. Local probes do not establish global monotonicity or detect omitted conditions.
+
+For each financial assertion family, declare economic `applicability` separately from verification `status`. Applicable families need checked definition-aware assertions and registered `claimIds`; generic arithmetic alone is not the family check. Missing rows, data or displays leave verification incomplete. Genuine non-applicability needs a reason and no hidden family assertions or claim links. Preparation leaves these judgments undecided; it never marks them passed. See the [publication workflow](skills/report-layout/references/publication-review.md).
+
+Keep frozen historical outcomes, rule bytes, findings and actual review attempts. Current preparation refuses to silently relabel an earlier review history. Adopt current contracts in new work or perform an explicit migration preserving prior attempts/findings; do not reset a review budget to obtain publication. Earlier-version contracts below describe their own releases.
+
 ## Version 2.9 publication contracts
 
 Current builders must generate a synchronized decision record before writing/review, including spec/workbook hashes and declared trigger-text bindings. The package defaults to `evidence/decision.json`; see [decision migration](skills/report-layout/references/decision-record.md). New scalar/range prose bindings use `bound_measure` and matching source/calculation assertions; existing financial-family `bound_value` bindings remain supported.

@@ -1,18 +1,18 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.9.0** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.10.0** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
-## Latest update: consistent periods, reasoning and decision artifacts
+## Latest update: displayed decisions and completed financial checks
 
-Version 2.9.0 adds dated NTM calculations over quarters, halves or irregular periods; changing-share profit/EPS bridges; definition-aware comparisons and incremental-flow coverage; and separate draft versions and actual started review attempts. Prior blocking findings survive revisions and failed/interrupted reviews retain their budget. Justified annual interpolation and contextual comparisons remain supported.
+Version 2.10.0 tests the local rating implication of numerical triggers at their displayed precision. Approximate watch levels remain valid when they invite reassessment without promising a new call. The [decision contract](skills/report-layout/references/decision-record.md#numerical-trigger-meaning) is now 1.1; exact decimal return boundaries avoid binary rounding flips.
 
-Current publication also requires a [synchronized decision checkpoint](skills/report-layout/references/decision-record.md), with current spec/workbook hashes and model-bound trigger text. [Rendered measure bindings](skills/report-layout/references/claim-support.md#feasible-bridges-and-actual-displayed-figures) check actual printed signs and range endpoints against calculations. A [bounded bridge helper](skills/company-model/scripts/bounded_bridge.py) tests feasibility over stated independent linear ranges; it does not infer consensus components. Modeling guidance separates observed facts, inferred classifications, recognition/payment states and binding versus assumed deadlines. These controls prescribe no conservative forecast or matching target across analysts.
+The [publication wrapper](skills/report-layout/references/publication-review.md) is now 1.2. It separates economic applicability from completed verification and links applicable financial-family assertions to registered claims. Missing rows or inputs mean unfinished checks, not non-applicability. Genuine non-applicability remains supported; no automatic forecast haircut or sector formula is imposed.
 
-Added an optical-networking activity guide, calendar-year comparison tooling where relevant, and original synthetic acceptance packs with clean-workspace preparation helpers. `AGENTS.md` and `CLAUDE.md` route ordinary requests such as “initiation on X” and “update view on X”; the user need not supply a checklist. The public coverage planner and research-only scope remain intact.
+Writer/reviewer guidance now explicitly tests price-versus-cash payoff descriptions, date-matched explanations and drivers-before-detailed-valuation sequencing. An original synthetic payoff asset, positive/negative regressions and a [real-evidence trial preparer](skills/evals/scripts/prepare_research_trial.py) support calibration. The preparer copies a host-curated source-only snapshot into a new context without a synthetic clock, records byte hashes outside it and never overwrites a run. The host still curates evidence and launches fresh sessions; context separation is not an OS sandbox or proof of source truth.
 
-The host still launches fresh writer/reviewer contexts. Completion and provenance checks do not authenticate reviewer independence or establish source truth, sound reasoning or consistent research scores. Older builders must migrate; historical integrity inspection is explicitly labeled `--legacy`. No runtime research controller or automatic semantic judge is included.
+All 2.9 period, comparison, review-budget, decision-lineage and rendered-figure controls remain. Ordinary short requests route through AGENTS.md and CLAUDE.md. Earlier studies keep their original outcomes and budgets; they are not silently migrated. The public coverage planner and 20-skill/11-flow research-only scope remain intact. No live issuer data or private trial artifacts are included. These checks do not establish consistent research quality or authenticate reviewer independence.
 
 ## Choose the research mode
 

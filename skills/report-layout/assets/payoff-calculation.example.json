@@ -1,0 +1,20 @@
+{
+  "id": "gross-payoff",
+  "kind": "calculation",
+  "role": "author",
+  "claimId": "investment-payoff",
+  "location": "Payoff explanation beside the price return and cash component",
+  "sourceIds": ["cash-payment-schedule"],
+  "rationale": "Original synthetic example: a 200 entry price, 180 exit assumption and 30 eligible cash receipts give 5% gross combined return. Check receipt eligibility in the same horizon; declarations alone are not receipts. No reinvestment, tax or costs are included. Cash remains separate from the rating and target.",
+  "inputs": {
+    "entry": {"model": "Valuation!D4"},
+    "exit": {"model": "Valuation!D11"},
+    "receipts": {"model": "Cash Schedule!F20"}
+  },
+  "expression": "(exit + receipts) / entry - 1",
+  "shown": 0.05,
+  "decimals": 4,
+  "displays": [
+    {"document": "deliverables/report.html", "id": "gross-payoff", "period": "2032-01-15 to 2033-01-15", "unit": "return", "style": "percent", "decimals": 1}
+  ]
+}

@@ -7,6 +7,10 @@
     "rationale": "Illustrative normalization after a transition, to be justified with this project's evidence."
   },
   "invalidation": {"condition": ""},
+  "triggerCoverage": {"status": "checked", "testIds": ["return-watch"]},
+  "triggerTests": [
+    {"id": "return-watch", "mode": "watch", "boundary": {"pointer": "/invalidation/condition", "token": "return_floor"}, "rationale": "This approximate level invites reassessment; it does not promise an automatic rating change."}
+  ],
   "bindings": [
     {"pointer": "/valuationBasis/sustainableMetric", "model": "Economics!D8"}
   ],

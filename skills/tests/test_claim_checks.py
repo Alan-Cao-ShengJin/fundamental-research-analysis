@@ -190,6 +190,14 @@ class ClaimChecksTests(unittest.TestCase):
         packet['coverage']['claim-support']['assertionIds'] = []
         self.assertFalse(cc.coverage(packet)[0])
 
+    def test_cash_yield_does_not_equal_combined_payoff_when_the_price_changes(self):
+        # Synthetic prices 100 -> 70, with 20 of eligible cash, yield -10% combined, not +20%.
+        case={'kind':'calculation','role':'author','inputs':{'initial':{'model':'M!A1'},'ending':{'model':'M!A4'},'receipts':{'model':'M!A2'}},
+              'expression':'(ending + receipts) / initial - 1','shown':.20,'decimals':4}
+        with self.assertRaisesRegex(ValueError,'does not reproduce'): self.check(case)
+        case['shown']=-.1
+        self.assertIn('reproduces',self.check(case))
+
 
 if __name__ == '__main__':
     unittest.main()

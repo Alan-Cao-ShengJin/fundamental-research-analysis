@@ -10,6 +10,12 @@ Ask what else could produce the observation. Use the strongest economically plau
 
 ## Apply the relevant test
 
+Read the actual payoff sentence, not only the rating box. A cash yield is not a combined return when the modeled capital value falls. Reconcile entry/exit price and cash eligible for that buyer in the same window, labeling gross versus net and any reinvestment. Keep dividends separate from target/rating. Use a bound calculation when a combined payoff is material; the [original generic example](../../report-layout/assets/payoff-calculation.example.json) uses the existing assertion machinery. A valid separately stated yield needs no manufactured total-return forecast.
+
+Distinguish a multi-year level comparison from a change over a named interval. Peers below their own long-run valuation averages establish a level observation; they do not prove most of a stock's recent move came from the sector. Match start/end dates and numerator/denominator definitions, then test a conditional constant-relative-valuation counterfactual or another defensible benchmark. Such decompositions are arithmetic, not causal identification. Preserve a reasoned common-regime hypothesis with its uncertainty rather than labeling an unmeasured majority contribution proven. Likewise different physical measures and application/delivery lags can explain different growth rates without demonstrating share loss.
+
+For each automatic numerical call trigger, test the actual displayed threshold, its units and strict/inclusive wording through the model. A rounded number can reproduce its source yet switch the call too soon. Approximate watch levels can legitimately trigger a review without promising Buy/Sell. The [decision trigger contract](../../report-layout/references/decision-record.md#numerical-trigger-meaning) checks this local implication; broader causal conditions and omitted triggers still require the reader.
+
 | Argument | Test before relying on it |
 | --- | --- |
 | A company or unit looks cheaper than peers | Match asset/income boundaries, ownership, period, accounting and financing. Show how adjustments affect the ordering. Follow [peer valuation](../../valuation-thesis/references/method-selection.md#peer-valuation); a residual operating multiple is not directly a whole-equity multiple. |

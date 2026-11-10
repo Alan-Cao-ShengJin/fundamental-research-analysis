@@ -106,6 +106,11 @@ def rating_for(price_return):
     return 'Buy' if r > Decimal('0.10') else 'Sell' if r < Decimal('-0.10') else 'Hold'
 
 
+def price_return(target, price):
+    """Keep exact decimal quote/target boundaries from crossing a band through binary subtraction."""
+    return Decimal(str(target))/Decimal(str(price))-Decimal('1')
+
+
 def text_of(path):
     path = Path(path)
     if path.suffix.lower() == '.pdf':
@@ -375,12 +380,12 @@ def run(study, record, model_check=None, legacy=False):
     brief = json.loads((study / record['brief']).read_text(encoding='utf-8'))
     d, meta = brief['decision'], brief['meta']
     if isinstance(price, (int, float)) and isinstance(target, (int, float)) and price:
-        ret = target / price - 1
+        ret = price_return(target,price)
         want = rating_for(ret)
         check('rating-from-unrounded-return', d.get('rating') == want and (v.get('rating') in (None, want)),
               f'price return {ret:.4%} gives {want}; brief says {d.get("rating")!r}, workbook says {v.get("rating")!r}')
         check('tier-on-price-return-only', not any(k in d for k in ('dividendPerShare', 'dividendsToTargetDate')) and
-              (d.get('attractiveness') != 'attractive' or ret >= 0.5) and (d.get('attractiveness') != 'decent' or 0.3 <= ret < 0.5),
+              (d.get('attractiveness') != 'attractive' or ret >= Decimal('0.5')) and (d.get('attractiveness') != 'decent' or Decimal('0.3') <= ret < Decimal('0.5')),
               f'tier {d.get("attractiveness")!r} on price return {ret:.1%}; dividend yield stays separate')
     check('rating-present', d.get('rating') in RATING, f'rating {d.get("rating")!r}')
     try:

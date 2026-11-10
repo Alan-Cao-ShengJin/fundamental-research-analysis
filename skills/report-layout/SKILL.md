@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.7.0
+  version: 2.8.0
 ---
 
 # Full report layout
@@ -16,6 +16,8 @@ Each `section(..., covers=(...))` names the investor questions it answers (`QUES
 The report is built from arguments, not paragraphs. Write each substantive point as `Argument(point, evidence, inference, implication)`: the point and its data; how the data was derived, citing its source (`{{src:key}}`) or exhibit (`{{ex:key}}`); what it means against a comparison; and what it does to EPS, the multiple or the target. It renders as one paragraph without labels. Write each contested question as `Debate(question, claims, answer, moves, settles)`: the claims each side rests on, each with the evidence that tests it and its status (supported, contradicted or untested); our answer; the number it moves (a forecast, margin or multiple, quantified); and the observation and date that would settle it. Choose the debates by how much each moves the target; when most of the return is a change in multiple, one debate is why the multiple moves. Bull and bear appear once, as the priced scenarios. Declare the business units the report must analyse with `segments([...])`, every unit above about 15% of segment profit or one a debate turns on; each needs an Argument tagged `segment=` that cites the exhibit showing its driver build (stores and sales per store, units and price, or channel and growth, with history).
 
 The build stops when a section that covers a question holds no Argument or Debate, when a section covering the debate holds no Debate, when a plain paragraph carries a judgement ("we forecast", "we assume", "we expect", "we think", "we believe", "our view", "our reading", "we side") outside an Argument, or when a declared business unit has no argument. Plain paragraphs remain for context and definitions.
+
+In a full initiation, put the business drivers and their earnings/cash consequences before detailed valuation pages; the compact front-page call and valuation summary remain appropriate. Review the [displayed trigger contract](references/decision-record.md#numerical-trigger-meaning) and [economic applicability versus completed verification](references/publication-review.md#review-packet-and-financial-assertions) on every applicable study.
 
 These are structure and reference checks. Claim statuses are analyst judgments, and a cited exhibit may not support the inference attached to it. Before release, apply the [inference review](../research-challenge/references/inference-quality.md) to the actual arguments; passing the build does not mark them supported.
 

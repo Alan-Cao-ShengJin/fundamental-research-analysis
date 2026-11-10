@@ -91,6 +91,8 @@ def complete_review(study):
         check.update(result='pass', detail='Synthetic reviewer test double: isolated fixture verified.')
     for kind in packet['coverage']:
         packet['coverage'][kind] = {'status': 'not-applicable', 'reason': 'This isolated fixture has no such financial claim.', 'assertionIds': []}
+    for kind in ('cash-coverage','normalized-ratio','financing'):
+        packet['coverage'][kind].update(applicability='not-applicable',claimIds=[])
     frozen = json.loads((Path(study) / packet['snapshot']['path'] / 'manifest.json').read_text())['releaseRecord']
     if frozen['method'] == 'P/E':
         b = frozen['bindings']
@@ -129,7 +131,9 @@ class ReleaseCheckTests(unittest.TestCase):
         # A current publication also needs the reusable decision checkpoint.
         import decision_record
         (self.dir / 'evidence').mkdir(exist_ok=True)
-        self.write('evidence/decision.json',json.dumps(decision_record.synchronize(self.dir,record(),spec())))
+        self.write('evidence/decision.json',json.dumps(decision_record.synchronize(self.dir,record(),spec(),{
+            'triggerCoverage':{'status':'not-applicable','reason':'This isolated fixture publishes no numerical rating triggers.','testIds':[]},
+            'triggerTests':[]})))
 
     def write(self, rel, text):
         (self.dir / rel).write_text(text, encoding='utf-8')
