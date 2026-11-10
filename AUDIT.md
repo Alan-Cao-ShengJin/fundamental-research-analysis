@@ -1,3 +1,37 @@
+# Research skill verification - 10 November 2026, version 2.11.1
+
+This section records the calibration update. Earlier release records remain below.
+
+## Changes
+
+- A central forecast follows the evidence without an automatic pessimistic or optimistic bias. Supported execution risks remain in base; joint scenarios do not combine every independent worst or best endpoint. Material asymmetric outcomes distinguish most likely from expected value.
+- Scenario coverage extends to cash flow, funding, dilution and asset value as well as EPS and dividends. One authoritative input feeds the scenario and local calculations; pivotal values and rationale remain visible locally. Justified invariants are allowed.
+- Dividend valuation compares economically relevant yield investments where available, retaining justified alternatives when peers are weak. Yield-to-P/E conversion is not independent validation, while an independently sourced benchmark can challenge the target. Conditional event weights require explicit outcome values; price alone does not identify real-world probabilities.
+- Transcript attribution is checked against available context/original evidence, ambiguity remains unresolved, and subsequent results respect the research cutoff.
+- The reverse-DCF helper requires an explicit equity risk premium for component-derived rates, reconciles a supplied total with its components, and always validates inputs. Supplied output metadata can no longer bypass financial checks. Standalone explicit discount rates remain supported.
+- The actual pre-writing reader task directs the reviewer to the owning calibration, scenario and dividend references. No new research stage, publication schema or review budget was introduced.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 297 Python tests, 73 JavaScript tests, all 23 skill validations and 787 relative links passed |
+| Public export | 298 Python tests, 73 JavaScript tests, all 20 skill validations and 870 relative links passed |
+| Focused calculator regressions | 17 tests passed, including 4 new tests for explicit premium, total/component reconciliation, normalized-input revalidation and metadata bypass |
+| Public structure | 20 skills, 11 flows, shared schema and coverage planning passed |
+| Existing synthetic workbook | Rechecked against its specification during manifest preparation; no workbook asset was changed |
+| Export integrity | Public scope links and original attribution retained; common credential and private-path pattern scan passed, including workbook XML; canonical staged manifest checked before push |
+
+The first public structural run caught two restored private-workflow links; their public scope references were repaired and the affected structural validation rerun. No Python or JavaScript regression failed. The public Python count includes coverage-planner tests and excludes private portfolio-risk tests.
+
+## Limits and adoption
+
+Numerical checks establish the tested input/calculation behavior, not sound market calibration. Added host-only behavioral cases have not been run. No new issuer study, live-provider test, native Excel recalculation or PDF rendering was performed for this patch. The model reader must actually interpret evidence, test scenario connections and assess assumptions; task wording does not automate or authenticate that work.
+
+The house rating thresholds, current-forward convention, public research-only scope and frozen studies remain unchanged. See [migration](MIGRATION.md) for the explicit-premium input change. New studies pin the new production files; old studies retain their archived rules, findings and budgets. Private research, source packs and credentials are excluded.
+
+---
+
 # Research skill verification - 10 November 2026, version 2.11.0
 
 The overview covered all 23 workspace skill entrypoints, company-mode sequencing, sector applicability, key financial and publication contracts, and targeted implementation counterexamples. This public release retains 20 company-research skills, 11 flows and 21 sector activity guides; the three portfolio/strategy extensions remain outside it. Earlier audit entries below retain their original dates and outcomes.

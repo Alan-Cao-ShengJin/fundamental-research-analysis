@@ -2,7 +2,7 @@
 name: investment-conclusion
 description: Turn audited company forecasts, governance, valuation and thesis validation into a Buy, Hold or Sell recommendation with a primary target price, upside/downside scenarios and a concise but logically sequenced investment rationale. Portfolio sizing remains a downstream task.
 metadata:
-  version: 2.5.1
+  version: 2.5.2
 ---
 
 # Investment conclusion

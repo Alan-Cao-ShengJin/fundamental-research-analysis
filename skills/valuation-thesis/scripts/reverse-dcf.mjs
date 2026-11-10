@@ -7,19 +7,24 @@ export function validateInputs(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('An input object is required.');
   const allowed = ['basis', 'currency', 'unit', 'marketEquityValue', 'forecastFcfe', 'costOfEquityPct', 'riskFreePct', 'equityRiskPremiumPct', 'riskAdjustmentPct', 'terminalGrowthPct', 'transitionYears', 'firstFlowYears', 'costOfEquityComponents'];
   if (Object.keys(value).some(key => !allowed.includes(key))) throw new Error('Unknown valuation input field.');
-  if (value.costOfEquityComponents !== undefined && value.costOfEquityPct !== undefined) return { firstFlowYears: 1, ...value, forecastFcfe: [...value.forecastFcfe] }; // already validated
   if (value.basis !== 'FCFE-equity') throw new Error('Use FCFE-equity: this helper does not discount net income or FCFF.');
   for (const key of ['currency', 'unit']) if (typeof value[key] !== 'string' || !value[key].trim()) throw new Error(`Explicit ${key} is required.`);
-  // House convention: cost of equity = 10-year government yield of the valuation currency + 5% ERP, +/- up to 1 point for business risk with a stated reason.
+  // Rebuild component metadata on every call; supplied output fields never bypass validation.
   const components = {};
-  if (value.costOfEquityPct === undefined) {
-    if (typeof value.riskFreePct !== 'number' || !Number.isFinite(value.riskFreePct)) throw new Error('Give costOfEquityPct, or riskFreePct for the house convention (risk-free + 5% ERP +/- riskAdjustmentPct).');
-    for (const key of ['equityRiskPremiumPct', 'riskAdjustmentPct']) if (value[key] !== undefined && (typeof value[key] !== 'number' || !Number.isFinite(value[key]))) throw new Error(`Finite ${key} is required when given.`);
+  const hasComponents = ['riskFreePct', 'equityRiskPremiumPct', 'riskAdjustmentPct'].some(key => value[key] !== undefined);
+  if (value.costOfEquityPct === undefined || hasComponents) {
+    for (const key of ['riskFreePct', 'equityRiskPremiumPct']) {
+      if (typeof value[key] !== 'number' || !Number.isFinite(value[key])) throw new Error(`Give costOfEquityPct alone, or explicit finite riskFreePct and equityRiskPremiumPct; missing or invalid ${key}.`);
+    }
+    if (value.riskAdjustmentPct !== undefined && (typeof value.riskAdjustmentPct !== 'number' || !Number.isFinite(value.riskAdjustmentPct))) throw new Error('Finite riskAdjustmentPct is required when given.');
     components.riskFreePct = value.riskFreePct;
-    components.equityRiskPremiumPct = value.equityRiskPremiumPct ?? 5;
+    components.equityRiskPremiumPct = value.equityRiskPremiumPct;
     components.riskAdjustmentPct = value.riskAdjustmentPct ?? 0;
     if (Math.abs(components.riskAdjustmentPct) > 1) components.note = 'riskAdjustmentPct outside the +/-1 point convention; state the reason beside the assumption.';
-    value = { ...value, costOfEquityPct: components.riskFreePct + components.equityRiskPremiumPct + components.riskAdjustmentPct };
+    const derived = components.riskFreePct + components.equityRiskPremiumPct + components.riskAdjustmentPct;
+    if (value.costOfEquityPct !== undefined && (typeof value.costOfEquityPct !== 'number' || !Number.isFinite(value.costOfEquityPct)
+      || Math.abs(value.costOfEquityPct - derived) > 1e-10 * Math.max(1, Math.abs(derived)))) throw new Error('costOfEquityPct must agree with the supplied rate components.');
+    value = { ...value, costOfEquityPct: derived };
   }
   for (const key of ['marketEquityValue', 'costOfEquityPct', 'terminalGrowthPct']) if (typeof value[key] !== 'number' || !Number.isFinite(value[key])) throw new Error(`Finite ${key} is required.`);
   if (value.marketEquityValue <= 0) throw new Error('Market equity value must be positive.');

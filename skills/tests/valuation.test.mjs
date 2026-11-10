@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { equityValue, impliedSteadyFcfe } from '../valuation-thesis/scripts/reverse-dcf.mjs';
+import { equityValue, impliedSteadyFcfe, validateInputs } from '../valuation-thesis/scripts/reverse-dcf.mjs';
 
 const example = JSON.parse(readFileSync(new URL('../valuation-thesis/references/fcfe-example.json', import.meta.url), 'utf8'));
 describe('conditional equity cash-flow calculator', () => {
@@ -55,14 +55,46 @@ describe('conditional equity cash-flow calculator', () => {
   it('requires more terminal cash at the same price when the discount rate is higher', () => {
     expect(impliedSteadyFcfe({ ...example, costOfEquityPct: 12 }).impliedSteadyFcfe).toBeGreaterThan(impliedSteadyFcfe(example).impliedSteadyFcfe);
   });
-  it('derives the cost of equity from the house convention when riskFreePct is given', () => {
+  it('derives the cost of equity from explicitly selected market components', () => {
     const { costOfEquityPct, ...rest } = example;
-    const byConvention = impliedSteadyFcfe({ ...rest, riskFreePct: 4.98 });
+    const byConvention = impliedSteadyFcfe({ ...rest, riskFreePct: 4.98, equityRiskPremiumPct: 5 });
     expect(byConvention.costOfEquityPct).toBeCloseTo(9.98, 9);
     expect(byConvention.costOfEquityComponents).toMatchObject({ riskFreePct: 4.98, equityRiskPremiumPct: 5, riskAdjustmentPct: 0 });
     expect(byConvention.impliedSteadyFcfe).toBeCloseTo(impliedSteadyFcfe({ ...example, costOfEquityPct: 9.98 }).impliedSteadyFcfe, 9);
-    expect(impliedSteadyFcfe({ ...rest, riskFreePct: 4.98, riskAdjustmentPct: 2 }).costOfEquityComponents.note).toMatch(/outside/);
+    expect(impliedSteadyFcfe({ ...rest, riskFreePct: 4.98, equityRiskPremiumPct: 5, riskAdjustmentPct: 2 }).costOfEquityComponents.note).toMatch(/outside/);
     expect(() => impliedSteadyFcfe(rest)).toThrow(/riskFreePct/);
+  });
+  it('does not silently supply an equity risk premium', () => {
+    const { costOfEquityPct, ...rest } = example;
+    for (const premium of [undefined, null, true, '5', NaN, Infinity]) {
+      expect(() => impliedSteadyFcfe({ ...rest, riskFreePct: 4, equityRiskPremiumPct: premium })).toThrow(/equityRiskPremiumPct/);
+    }
+    const selected = impliedSteadyFcfe({ ...rest, riskFreePct: 4, equityRiskPremiumPct: 6.5, riskAdjustmentPct: -0.5 });
+    expect(selected.costOfEquityPct).toBe(10);
+    expect(selected.impliedSteadyFcfe).toBeCloseTo(100, 9);
+    expect(selected.costOfEquityComponents.equityRiskPremiumPct).toBe(6.5);
+  });
+  it('accepts a standalone explicit rate and checks any supplied component bridge', () => {
+    expect(impliedSteadyFcfe(example).costOfEquityComponents).toEqual({});
+    expect(equityValue({ ...example, riskFreePct: 4, equityRiskPremiumPct: 6 }, 100)).toBeCloseTo(1000, 9);
+    expect(() => equityValue({ ...example, riskFreePct: 4, equityRiskPremiumPct: 5 }, 100)).toThrow(/agree/);
+    expect(() => equityValue({ ...example, riskFreePct: 4 }, 100)).toThrow(/equityRiskPremiumPct/);
+  });
+  it('revalidates normalized inputs and regenerates component metadata', () => {
+    const { costOfEquityPct, ...rest } = example;
+    const normalized = validateInputs({ ...rest, riskFreePct: 4, equityRiskPremiumPct: 6 });
+    expect(validateInputs(normalized)).toEqual(normalized);
+    expect(equityValue(normalized, 100)).toBeCloseTo(1000, 9);
+    expect(validateInputs({ ...normalized, costOfEquityComponents: { equityRiskPremiumPct: 99 } }).costOfEquityComponents.equityRiskPremiumPct).toBe(6);
+    expect(() => equityValue({ ...normalized, terminalGrowthPct: 10 }, 100)).toThrow(/strictly below/);
+    expect(() => equityValue({ ...normalized, equityRiskPremiumPct: 7 }, 100)).toThrow(/agree/);
+  });
+  it('does not let supplied output metadata bypass financial input checks', () => {
+    const annotated = { ...example, costOfEquityComponents: {} };
+    expect(() => impliedSteadyFcfe({ ...annotated, basis: 'net-income' })).toThrow(/FCFE-equity/);
+    expect(() => impliedSteadyFcfe({ ...annotated, forecastFcfe: [100, 0] })).toThrow(/positive final/);
+    expect(() => impliedSteadyFcfe({ ...annotated, costOfEquityPct: NaN })).toThrow(/Finite/);
+    expect(() => impliedSteadyFcfe({ ...annotated, firstFlowYears: -1 })).toThrow(/firstFlowYears/);
   });
   it('rejects nonfinite values and unsupported input fields', () => {
     expect(() => impliedSteadyFcfe({ ...example, forecastFcfe: [NaN, 100, 100] })).toThrow(/finite/);

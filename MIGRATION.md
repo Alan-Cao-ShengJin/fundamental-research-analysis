@@ -1,5 +1,11 @@
 # Version 2.0 name migration
 
+## Version 2.11.1 calibration and explicit rate inputs
+
+New reverse-DCF inputs either supply `costOfEquityPct` alone or both `riskFreePct` and `equityRiskPremiumPct`, with optional `riskAdjustmentPct`. The old implicit 5% premium is removed; choose and document a relevant premium rather than inserting 5 merely to make an old input run. If both the total and components are present, they must reconcile. Output metadata never bypasses input validation. See [DCF mechanics](skills/valuation-thesis/references/valuation-method.md).
+
+The publication wrapper remains 1.2 and decision schema 1.1. New studies pin the changed production files normally. Existing frozen studies continue with their preserved helpers, instructions, findings and budgets. No issuer model or historic trial is migrated by this release. The reader task now explicitly applies the existing central-case, scenario and dividend references; it adds no review stage or automatic economic judgment.
+
 ## Version 2.11 production rules and early model review
 
 The publication wrapper remains 1.2 and the decision schema remains 1.1; the strengthened implementation is pinned by its production fingerprint, not by relabeling those schemas. At new study creation run `python -B -X utf8 skills/report-layout/scripts/research_rules.py pin STUDY`. Retain the runtime receipt and execute preserved helpers through `research_rules.py run STUDY HELPER ...` after shared rules change. This preserves code and records dependency versions; it does not install or recreate the dependency environment. Historical archives without runtime receipts retain that provenance limitation.

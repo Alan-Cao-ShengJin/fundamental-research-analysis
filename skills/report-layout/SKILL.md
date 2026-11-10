@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.9.2
+  version: 2.9.3
 ---
 
 # Full report layout
