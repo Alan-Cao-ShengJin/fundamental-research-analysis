@@ -2,6 +2,8 @@
 
 ## Version 2.11.1 calibration and explicit rate inputs
 
+The analyst system owns rate selection: retrieve dated evidence, calibrate the market/company exposure and derive the input under [discount-rate selection](skills/valuation-thesis/references/discount-rate-selection.md). A required explicit input is supplied by that workflow, not a demand that the user choose a rate. On a new cutoff refresh relevant evidence; frozen studies retain their original vintage.
+
 New reverse-DCF inputs either supply `costOfEquityPct` alone or both `riskFreePct` and `equityRiskPremiumPct`, with optional `riskAdjustmentPct`. The old implicit 5% premium is removed; choose and document a relevant premium rather than inserting 5 merely to make an old input run. If both the total and components are present, they must reconcile. Output metadata never bypasses input validation. See [DCF mechanics](skills/valuation-thesis/references/valuation-method.md).
 
 The publication wrapper remains 1.2 and decision schema 1.1. New studies pin the changed production files normally. Existing frozen studies continue with their preserved helpers, instructions, findings and budgets. No issuer model or historic trial is migrated by this release. The reader task now explicitly applies the existing central-case, scenario and dividend references; it adds no review stage or automatic economic judgment.

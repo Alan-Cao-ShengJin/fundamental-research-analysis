@@ -2,6 +2,8 @@
 
 This section records the calibration update. Earlier release records remain below.
 
+Main-branch clarification after v2.11.1: the analyst system autonomously retrieves and calibrates required-return inputs; explicit calculator parameters do not require user selection. Added a dated rate-selection reference, source routing and a host-only behavioral case. Numerical helper logic is unchanged. This instruction update has not been established by a fresh research run; historical verification below retains its original scope.
+
 ## Changes
 
 - A central forecast follows the evidence without an automatic pessimistic or optimistic bias. Supported execution risks remain in base; joint scenarios do not combine every independent worst or best endpoint. Material asymmetric outcomes distinguish most likely from expected value.

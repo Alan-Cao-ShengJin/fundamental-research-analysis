@@ -2,7 +2,7 @@
 name: evidence-intake
 description: Build a traceable, time-aware evidence pack from filings, market data, operating trackers and transcripts. Use before modelling or testing, or to resolve conflicting research inputs.
 metadata:
-  version: 2.3.2
+  version: 2.3.3
 ---
 
 # Evidence intake and reconciliation
@@ -10,6 +10,8 @@ metadata:
 Return facts that another analyst can reproduce, plus the conflicts and gaps that remain. Follow the common [handoff contract](../research-cycle/references/handoffs.md).
 
 For connector data outside the HTTP adapter, retain available original output bytes and a tool/source locator using [evidence_receipt.py](scripts/evidence_receipt.py). Explicitly label a hand-typed consolidation as `manual-compilation`; its hash does not authenticate a provider response. A second identical pull is an integrity comparison, not an independent source.
+
+When valuation needs a required return, retrieve the dated market-rate, equity-premium and relevant risk-exposure evidence under [discount-rate selection](../valuation-thesis/references/discount-rate-selection.md). The analyst system resolves these inputs; do not ask the user to select a rate. The approved internet route includes original public economic/valuation datasets, while existing connector and frozen-pack boundaries still apply.
 
 ## Inventory before retrieval
 

@@ -49,14 +49,15 @@
     "Exact reviewed/published model identity and strict numeric valuation inputs",
     "Sector-appropriate modeling and evidence-based consensus and incentive treatment",
     "Neutral central-case calibration, material linked scenarios and conditional yield/event anchors",
-    "Explicit risk-premium inputs and revalidation of reverse-DCF component metadata"
+    "Explicit risk-premium inputs and revalidation of reverse-DCF component metadata",
+    "Analyst-owned dated discount-rate selection; explicit helper inputs do not require manual user choices"
   ],
   "verification": {
     "entryPointsValidated": 20,
     "javascriptTestsPassed": 73,
     "pythonTestsPassed": 298,
     "bundleCheck": "passed",
-    "relativeMarkdownLinks": 870,
+    "relativeMarkdownLinks": 876,
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Common credential/token patterns and private machine paths, including workbook XML; no private credential file read and no forensic guarantee.",
     "syntheticWorkbookModelCheck": {
@@ -101,8 +102,8 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 54404,
-      "sha256": "7249f11ecb8e074109519a3b8cc561b5182ced56a991eaba0182b07987a060e6"
+      "bytes": 54846,
+      "sha256": "bfd821e7d9ddae5885e9b63bbdd9cbcb4c52dae1d3f826a4394e9a12a507b220"
     },
     {
       "path": "CLAUDE.md",
@@ -111,13 +112,13 @@
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 10711,
-      "sha256": "1f9ea5b327fedd382c13e62c9573ce3e531a232c9ac893854d263cc410fbfe7f"
+      "bytes": 11119,
+      "sha256": "e765a4507485ab3fff2333c8a3b357f64089cf6b3913c8de2625ebb1fda6b82e"
     },
     {
       "path": "README.md",
-      "bytes": 17474,
-      "sha256": "558478b8146d37e45fbc2427d6f5c9c5b721406a911ac5aad7bcff6979670534"
+      "bytes": 17785,
+      "sha256": "e35aba9b7d4542f630f11fc7943a6b0f530ca2ae69d061f544b6402b3a18a8a1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -661,8 +662,8 @@
     },
     {
       "path": "skills/evals/research-cases.md",
-      "bytes": 68804,
-      "sha256": "443c0ba59b81daa573af8824baf426e8bbab9038253394d776070a5c308fc503"
+      "bytes": 69463,
+      "sha256": "fd36e9dfa371af4eff4c9dd302e06525f451b8a888c4e07d1bb396c331b0fbc8"
     },
     {
       "path": "skills/evals/scripts/build_alder_fixtures.py",
@@ -691,8 +692,8 @@
     },
     {
       "path": "skills/evidence-intake/SKILL.md",
-      "bytes": 11799,
-      "sha256": "81e953558f1b1ee7be5ce59d9f33445cf4953dc2d7d978f68a5d786f6eea6552"
+      "bytes": 12242,
+      "sha256": "b3713ec36e0bca0a14cce329df096a6b0c8fc17e084adf1acce55d6d9bc07b2e"
     },
     {
       "path": "skills/evidence-intake/assets/provider-endpoints.json",
@@ -701,8 +702,8 @@
     },
     {
       "path": "skills/evidence-intake/references/research-data-providers.md",
-      "bytes": 16135,
-      "sha256": "53e8910eb19f4eb017fbdb6f427f1cb60b30237821b8d84ed0ae797fa5bf90cc"
+      "bytes": 16378,
+      "sha256": "56d0b3179635c9e0f40a94a73f417e6dab3a9af61d9b2e9095d8173eae7aee84"
     },
     {
       "path": "skills/evidence-intake/scripts/evidence_receipt.py",
@@ -1376,13 +1377,18 @@
     },
     {
       "path": "skills/valuation-thesis/SKILL.md",
-      "bytes": 17118,
-      "sha256": "4c39d1182c3baab5a02471a7d6534c288be6de21fb1a338de388bde79988bbaf"
+      "bytes": 17501,
+      "sha256": "bdde21f65d97e1f53b369d71829a80ad34971230ee640317ae0b1a1a4836e4d8"
     },
     {
       "path": "skills/valuation-thesis/references/current-expectations.md",
       "bytes": 5114,
       "sha256": "a10e8ce34324d60febd4224194743e5ae174a8a923db4a43055ff14c9e50ffbd"
+    },
+    {
+      "path": "skills/valuation-thesis/references/discount-rate-selection.md",
+      "bytes": 4959,
+      "sha256": "549ad24175af7b412dec0fe779c56901837859ea7db1f34e12f8db3696d7e736"
     },
     {
       "path": "skills/valuation-thesis/references/fcfe-example.json",
@@ -1421,8 +1427,8 @@
     },
     {
       "path": "skills/valuation-thesis/references/valuation-method.md",
-      "bytes": 6952,
-      "sha256": "321c5219c956343489742e9a87a74d244e235d23680b07b0f9507882a44036d6"
+      "bytes": 7422,
+      "sha256": "f045a80e16e39ef0d8851f1c1c29f24d3a1a37258f41b8f7fadc8edd9cc4931e"
     },
     {
       "path": "skills/valuation-thesis/scripts/compare_forward_pe.mjs",

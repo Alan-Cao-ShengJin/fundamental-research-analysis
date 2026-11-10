@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.8.3
+  version: 2.8.4
 ---
 
 # Valuation, expectations and provisional thesis
@@ -10,6 +10,8 @@ metadata:
 For current company valuation, use a completed audited forecast, [model-audit findings](../financial-quality/SKILL.md) and the [governance-to-value assessment](../corporate-governance/SKILL.md). Produce a [valuation-thesis handoff](../research-cycle/references/handoffs.md) for validation, not a final verdict or executable recommendation. Choose a method suitable for the underlying. Historical/short-window modes use their point-in-time evidence rather than requiring a current forecast.
 
 Treat a narrative as a falsifiable account of future business economics, funding and cash flows. Distinguish observed facts, attributed commentary, conditional price-implied assumptions and independent scenarios.
+
+When a cost of equity or WACC is needed, apply [discount-rate selection](references/discount-rate-selection.md): autonomously retrieve dated inputs, select and justify the method, and link the resulting rate into valuation. Do not ask the user to choose a premium or rate; explicit calculator inputs are resolved by the analyst system, with their evidence and uncertainty retained.
 
 Use [economic thesis and market evidence](references/thesis-tests.md) when building or challenging a name-specific case: state the testable proposition, anchor its peer/chain comparisons, separate economic support from evidence of recognition, and retain load-bearing assumptions and disconfirming observations for review. No differentiated view or momentum confirmation should be invented to complete the format.
 

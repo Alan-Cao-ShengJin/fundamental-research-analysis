@@ -4,7 +4,7 @@
 
 Research uses only these sources:
 
-- Internet search, to find and read original issuer, exchange and regulator material (filings, announcements, IR material and earnings calls) on the issuer's or exchange's own site, and public information about the company and its industry.
+- Internet search, to find and read original issuer, exchange and regulator material (filings, announcements, IR material and earnings calls) on the issuer's or exchange's own site, public information about the company and its industry, and original public market-rate or valuation-input data published by central banks, treasuries, exchanges or academic authors. Preserve publication/observation dates and methods; a current academic dataset does not establish a historical vintage.
 - The FactSet AI-Ready Data connector, for consensus, valuation bands and price history only (below).
 - AlphaPai, Alpha Vantage, API Ninjas and Massive, through the [local adapter](#local-adapter-and-endpoint-catalog).
 
