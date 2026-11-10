@@ -12,7 +12,7 @@ For each assumption that can change the call, show its value, basis, source and 
 
 Align current evidence and comparable periods on the [earnings clock](../../company-model/references/earnings-clock-and-peer-readthrough.md); preserve source availability before inferring surprises, peer signals or what was priced in.
 
-A plausible adverse case reversing the call is normal. Explain why the central case deserves more weight, margin for error, financing survival and evidence that would change the view. Always give a call under the [decision contract](../../investment-conclusion/references/decision-contract.md).
+A plausible adverse case reversing the call is normal. Explain why the central case deserves more weight, margin for error, financing survival and evidence that would change the view. Give a call on completed, supportable research under the [decision contract](../../investment-conclusion/references/decision-contract.md).
 
 ## Economics, funding and shareholder access
 

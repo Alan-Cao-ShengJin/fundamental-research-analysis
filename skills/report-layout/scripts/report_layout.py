@@ -1103,7 +1103,11 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
             reason += f'\n  (failure record could not be written: {exc})'
         raise SystemExit('Release check failed; no package written:\n  ' + reason)
 
-    # Supersede the previous attempt before anything that can fail.
+    # A refused operation must not remove a package, rewrite a record or reprint reviewed bytes.
+    review_exists = pr.local(study, record['review']).is_file()
+    if revise or not review_exists:
+        pr.preflight(study,record,revise=revise)
+    # Supersede only after eligibility is established.
     zip_path.unlink(missing_ok=True)
     tmp_zip.unlink(missing_ok=True)
     try:
@@ -1120,11 +1124,6 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
         if revise and not review_exists:
             raise ValueError('revise=True needs an existing review to archive; make the first call without it')
         draft = revise or not review_exists
-        if draft:
-            for source, expected in ((report_html, report_pdf), (brief_html, brief_pdf)):
-                actual = print_pdf(source, expected)
-                if actual is not None and Path(actual).resolve() != expected.resolve():
-                    raise ValueError('Requested PDF is locked; close it and reprint before preparing review: ' + str(expected))
         deliverables = [Path(report_pdf), Path(brief_pdf)] + [Path(f) for f in files]
         record = dict(record, deliverables=[rel(p) for p in deliverables], briefPdf=rel(brief_pdf),
                       renders={'report': {'html': rel(report_html), 'pdf': rel(report_pdf)},
@@ -1133,9 +1132,8 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
             record[key] = rel(study / record[key]) if not Path(record[key]).is_absolute() else rel(record[key])
         record.pop('fingerprints', None)   # a new build is checked on its own files, then fingerprinted
         if draft:
-            checks, fails = rc.run(study, record, legacy=True)
-            if fails:
-                fail('\n  '.join(fails), checks)
+            from draft_transaction import render
+            checks=render(study,record)
             review_path = pr.prepare(study, record, revise=revise)
             write_record(dict(record, checks=checks, status='awaiting-review', scope=rc.SCOPE))
             raise SystemExit(f'Draft PDFs ready; no release ZIP. A fresh reviewer must complete {review_path}, then run '

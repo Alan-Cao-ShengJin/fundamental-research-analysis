@@ -1,3 +1,42 @@
+# Research skill verification - 10 November 2026, version 2.11.0
+
+The overview covered all 23 workspace skill entrypoints, company-mode sequencing, sector applicability, key financial and publication contracts, and targeted implementation counterexamples. This public release retains 20 company-research skills, 11 flows and 21 sector activity guides; the three portfolio/strategy extensions remain outside it. Earlier audit entries below retain their original dates and outcomes.
+
+## Findings patched in this overview
+
+- **Review identity:** a pre-writing review could verify its original model while publication selected a different spec/workbook. The checkpoint now requires both declared files in its frozen inputs and matches their resolved identities to the published model. The writer automatically receives the reviewed model/evidence and receipt. Positive and negative synthetic tests cover this boundary.
+- **Valuation input semantics:** zero FX or required yield could silently become unity in some method checks. Shared adapters now reject supplied missing, nonfinite, boolean or nonpositive denominators and unusable multiple bases. Omitted same-currency FX and zero DPS have explicit valid controls. Asset parts must be finite.
+- **Analytical consistency:** removed a requirement for exclusive information/certainty before disagreeing with consensus, an automatic incentive-hurdle earnings floor, blanket assumptions about dual-listing disclosures, and wording that could hide material qualifications or force a call on an unusable baseline. A known event date does not establish how its outcome is priced.
+- **General applicability:** the manufacturer example supplies depth and readable sequence, not compulsory industrial accounts for financial institutions or asset-based companies. Inapplicable ratios and unavailable bands are identified rather than fabricated. Pivotal rationale stays visible beside calculations; comments hold longer source detail.
+
+These changes preserve the house rating thresholds, current-forward target convention, approved-source boundary, fundamental dependency sequence and distinction between target, rating, attractiveness and action. House conventions remain mandate choices, not universal valuation standards.
+
+## Other repairs included since 2.10
+
+This release also publishes the already-tested production-rule archive/runner, early fresh model review, staged printing and read-only preflight, frozen companions, brief-content consistency, bounded original-reader presentation confirmation, worksheet/date/display corrections, enterprise/asset valuation bridges, generic model layout, source-byte receipt and bond/yield-spread helper. Post-pair additions include metric-identity guidance and an original IRR/profit counterexample, dated cash-receipt calculations and claims, live numerical/rating explanations, and explicit sourced/discretionary/price-implied valuation derivations. Native Excel testing of linked text exposed a formula-normalization defect that is fixed: sheet identity and spaces inside literal text are preserved.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 297 Python tests, 69 JavaScript tests, all 23 skill validations and the bundle check passed |
+| Public export | 298 Python tests, 69 JavaScript tests, all 20 skill validations and the public coverage/schema/link checks passed |
+| New targeted regressions | 8 tests added for review/model identity, writing inputs and valuation inputs, with valid controls |
+| Synthetic integrated workbook | 6,778 numeric cells checked against the existing specification; cleaned public workbook retained |
+| Native Excel component test | Earlier local repair verified linked figures and Buy/Sell/Hold text in Excel 16.0 after input changes; not a new issuer-model recalculation in this overview |
+| Export integrity | Common credential/private-key and private-machine-path patterns checked, including workbook XML; original attribution footers and licenses retained |
+| Release manifest | Canonical staged Git bytes, excluding the manifest itself; checked before push |
+
+The public test count differs because its coverage-planner tests are included while portfolio-risk tests are excluded with that module. Test-double publication fixtures are explicitly synthetic; they do not represent an independent research review.
+
+## Limits and next validation
+
+No fresh issuer research, live provider coverage, investment-performance evaluation or full behavioral transfer trial was performed in this overview. Earlier component/native-rendering tests and real-evidence trials retain their own scope and outcomes. Deterministic checks do not authenticate source truth, event completeness, reviewer independence or omitted analytical claims. A host must actually launch fresh writer/reviewer contexts. Further cross-sector runs should measure first-draft errors, escaped material errors, false blocks and corrective interventions, not just successful packaging or equal targets.
+
+New studies follow [migration](MIGRATION.md) and [publication review](skills/report-layout/references/publication-review.md). Frozen earlier work keeps its rule bytes and review budgets; it is not retroactively regraded or silently migrated. Private research, source packs, live provider outputs, credentials and correspondence are excluded from this export.
+
+---
+
 # Research skill verification - 10 November 2026, version 2.10.0
 
 This section records the current standalone export. Earlier sections retain their original outcomes.

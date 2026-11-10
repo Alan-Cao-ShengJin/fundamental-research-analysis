@@ -18,6 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import model_workbook as mw  # noqa: E402
+import model_layout
 
 COVER, SUMMARY, THESIS, BAND, SCEN, RP, S3, DATA, PRICES, GUIDE, QS, CHECKS = (
     'Cover', 'Summary', 'Valuation', 'Valuation Band', 'Scenarios', 'Revenue Build', 'Statements', 'Data', 'Input Prices',
@@ -52,57 +53,12 @@ CASE_TEXT = f'=CHOOSE({SEL},"Active case: Bear","Active case: Base","Active case
 STATUS = f'=IF({q(CHECKS)}${CHECK_CELL[0]}${CHECK_CELL[1:]}=0,"All checks OK","Checks failing: see the Checks sheet")'
 
 
-class Sheet:
-    def __init__(self, name, last='X', notes='Z', label_width=46, column_width=11, freeze='D6', tab='BFC7D0'):
-        self.name, self.r, self.R = name, 6, {}
-        self.d = {'lastColumn': last, 'notes': notes, 'labelWidth': label_width, 'columnWidth': column_width,
-                  'freeze': freeze, 'tabColor': tab, 'sections': [], 'cells': {}}
-        if notes is None:
-            self.d.pop('notes')
-
-    def put(self, addr, value, kind='calculation', pct=False, bold=False, fmt=None, **extra):
-        if value is None:
-            return
-        c = {'value': value, 'kind': kind}
-        if pct:
-            c['pct'] = True
-        if bold:
-            c['bold'] = True
-        if fmt:
-            c['format'] = fmt
-        c.update(extra)
-        self.d['cells'][addr] = c
-
-    def reserve(self, order):
-        """Give each key a row in order, so rows can refer to rows written later."""
-        for k in order.split():
-            self.R[k] = self.r
-            self.r += 1
-
-    def section(self, k, title):
-        r = self.R[k]
-        self.put(f'B{r}', title)
-        self.d['sections'].append(r)
-
-    def note(self, r, text):
-        self.put(f"{self.d['notes']}{r}", text)
-
+class Sheet(model_layout.Sheet):
+    def __init__(self,name,last='X',notes='Z',label_width=46,column_width=11,freeze='D6',tab='BFC7D0'):
+        super().__init__(name,last,notes,label_width,column_width,freeze,tab)
     def period_sheet(self):
-        """A time-series sheet: source-tag column, regime and period header rows, shaded forecast headers, grouped quarters."""
-        self.d.update({'tagColumn': 'D', 'tags': {}, 'headerRows': [4, 5], 'forecastColumns': list('IJKTUVWX'),
-                       'groupColumns': [['M', 'X']], 'groupRows': [], 'zoom': 85})
-        self.d.setdefault('widths', {})['L'] = 2   # spacer between the annual and quarterly blocks
+        super().period_sheet(list('IJKTUVWX'),[['M','X']],spacer='L')
 
-    def group_sections(self):
-        """Group each section's detail rows; the section header and its last row (the closing or total row) stay visible."""
-        notes = self.d.get('notes')
-        used = sorted({mw.split(a)[1] for a in self.d['cells'] if mw.split(a)[0] != notes})
-        starts = sorted(self.d['sections'])
-        for i, s in enumerate(starts):
-            end = starts[i + 1] if i + 1 < len(starts) else max(used) + 1
-            body = [r for r in used if s < r < end]
-            if len(body) >= 3:
-                self.d.setdefault('groupRows', []).append([s + 1, body[-1] - 1])
 
 
 FREEZE = []   # (sheet, row, mode, derive, estimated columns)
@@ -110,41 +66,16 @@ TAGS = {}     # (sheet, row) -> source tag that replaces the automatic one
 SENS = []    # declared sensitivities: model inputs shocked and recalculated when the model is built
 
 
-def prow(sh, k, label, unit, fn, note=None, pct=False, fmt=None, bold=False, mode='total', derive=None, est=(), cols=COLS,
-         tag=None):
-    """One period row. fn(c, r) gives a value or '=formula' per column. After the history is generated,
-    mode 'line' freezes history as reported figures, 'driver' replaces history with derive(c, r) and
-    'total' keeps the formulas. The source tag follows from what the row finally holds, unless given."""
-    r = sh.R[k]
-    sh.put(f'B{r}', label, bold=bold)
-    if unit:
-        sh.put(f'C{r}', unit)
-    if note:
-        sh.note(r, note)
-    if tag:
-        TAGS[(sh.name, r)] = tag
-    for c in cols:
-        v = fn(c, r)
-        if v is None:
-            continue
-        kind = 'calculation' if mw.is_formula(v) else ('input' if c in FORECAST else 'actual')
-        sh.put(f'{c}{r}', v, kind, pct, bold, fmt)
-    FREEZE.append((sh, r, mode, derive, set(est)))
-    return r
+def prow(sh,k,label,unit,fn,note=None,pct=False,fmt=None,bold=False,mode='total',derive=None,est=(),cols=COLS,tag=None):
+    row=model_layout.period_row(sh,k,label,unit,fn,cols,FORECAST,note,pct,fmt,bold,tag,TAGS)
+    FREEZE.append((sh,row,mode,derive,set(est)))
+    return row
 
 
-def header(sh, title, units, periods=True):
-    """Rows 1-3 of every sheet: company and sheet; active case, units and price date; master check status."""
-    sh.put('B1', f'{COMPANY} | {title}', bold=True, title=True)
-    sh.put('B2', CASE_TEXT, text=True)
-    sh.put('C2', f'{units} | prices as of {PRICE_DATE}', align='left')
-    sh.put('B3', STATUS, flag=True, text=True)
-    if periods:
-        sh.put('B4', 'Basis')
-        sh.put('B5', 'Period', bold=True)
-        for c, p in {**ANNUAL, **QUARTERS}.items():
-            sh.put(f'{c}4', REGIME[c])
-            sh.put(f'{c}5', p, bold=True)
+
+def header(sh,title,units,periods=True):
+    model_layout.header(sh,title,units,COMPANY,PRICE_DATE,CASE_TEXT,STATUS,{**ANNUAL,**QUARTERS} if periods else None,REGIME)
+
 
 
 def agg_sum(c, r):
@@ -1400,17 +1331,9 @@ QUESTIONS = [
 ]
 
 
-def build_text(name, heads, rows, widths, intro):
-    sh = Sheet(name, last=chr(ord('B') + len(heads) - 1), notes=None, label_width=widths[0], column_width=16, freeze='A6',
-               tab='BDD7EE')
-    sh.d.update({'wrap': True, 'widths': widths[1], 'unitColumn': None, 'fitPages': 1})
-    header(sh, name, intro, periods=False)
-    for i, h in enumerate(heads):
-        sh.put(f'{chr(66 + i)}5', h, bold=True)
-    for j, row in enumerate(rows):
-        for i, v in enumerate(row):
-            sh.put(f'{chr(66 + i)}{6 + j}', v)
-    return sh
+def build_text(name,heads,rows,widths,intro):
+    return model_layout.text_sheet(name,heads,rows,widths,intro,header)
+
 
 
 # ---------------------------------------------------------------- assemble

@@ -33,7 +33,9 @@ For each assumption that can change the call, the model shows its value, basis, 
 - consensus contributor count and post-results freshness;
 - differences versus each broker's own accounting/forecast definitions.
 
-Decompose a consensus gap into starting base, volume, price/mix, margins, costs, tax, shares and omitted items. Do not calibrate the model to consensus or decide a broker is wrong solely because it differs. If no comparable consensus exists, say so and continue using clearly attributed scenarios.
+Decompose a consensus gap into starting base, volume, price/mix, margins, costs, tax, shares and omitted items. Do not calibrate the model to consensus or decide a broker is wrong solely because it differs. If no comparable consensus exists, say so and continue using clearly attributed scenarios. Apply [metric identity](metric-identity.md) when a rate, return or appraisal is converted into forecast profit; a live formula does not validate that conversion.
+
+With only one or two contributors, describe the feed as a limited broker sample, identify contributors where licensed and available, and inspect their underlying component forecasts where accessible; compare each on a matched basis rather than implying a broad market consensus. Do not invent contributor detail or treat inaccessible reports as read.
 
 Where component estimates are absent, audit the bridge as a conditional reconciliation, not an identified contributor forecast. Apply the [counterexample/feasibility test](benchmark-comparison.md#a-conditional-bridge-is-not-a-unique-explanation) before asserting that an aggregate target requires particular driver assumptions. Review material [classification and timing states](statement-forecast.md#classification-recognition-and-payment-states), including unsourced attribution and assumed target-restoration deadlines, separately from the arithmetic.
 

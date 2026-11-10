@@ -209,6 +209,11 @@ class PublicationReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'future'):
             pr.prepare(self.dir, self.rec)
         self.rec['evaluation'] = {'mode': 'synthetic-fixture', 'now': future + 'T12:00:00Z', 'reason': 'Fixed synthetic pack date'}
+        # The earlier model checkpoint belongs to the same invented evidence date.
+        model_path=self.dir/'evidence/model-review.json'; model=json.loads(model_path.read_text())
+        model['evaluation']=self.rec['evaluation']; model['handoff']['asOf']=future+'T00:00:00+08:00'
+        for source in model['handoff']['sources']: source['synthetic']=True
+        model_path.write_text(json.dumps(model),encoding='utf-8')
         p = self.prepared(False)
         self.assertLess(datetime.fromisoformat(p['handoff']['producedAt']), datetime.fromisoformat(p['handoff']['asOf']))
         self.assertTrue(all(s['synthetic'] for s in p['handoff']['sources']))
@@ -321,7 +326,7 @@ class PublicationReviewTests(unittest.TestCase):
         self.assertLess(len(p['handoff']['sources']), 200)
         self.assertEqual(self.failures(), [])
 
-    def test_exhausted_revision_budget_does_not_leave_a_stale_release_zip(self):
+    def test_exhausted_revision_is_refused_without_changing_previous_artifacts(self):
         self.prepared(); pr.prepare(self.dir, self.rec, revise=True)
         complete_review(self.dir)
         rec = dict(self.rec, zipPath='deliverables/old.zip', status='validated', fingerprints={'old': 'hash'})
@@ -329,12 +334,11 @@ class PublicationReviewTests(unittest.TestCase):
         zipped = self.dir / 'deliverables/old.zip'; zipped.write_bytes(b'old')
         self.f.write('deliverables/report.html', 'Changed draft requiring another review')
         with patch.object(sys, 'argv', ['publication_review.py', 'prepare', str(self.dir), '--revise']):
-            with self.assertRaisesRegex(ValueError, 'correction budget'):
+            with self.assertRaisesRegex(ValueError, 'budget exhausted'):
                 pr.main()
-        self.assertFalse(zipped.exists())
+        self.assertEqual(zipped.read_bytes(),b'old')
         current = json.loads(record_path.read_text())
-        self.assertEqual(current['status'], 'failed')
-        self.assertNotIn('fingerprints', current)
+        self.assertEqual(current,rec)
 
 
 class FinancialAssertionTests(unittest.TestCase):

@@ -2,7 +2,7 @@
 name: investment-conclusion
 description: Turn audited company forecasts, governance, valuation and thesis validation into a Buy, Hold or Sell recommendation with a primary target price, upside/downside scenarios and a concise but logically sequenced investment rationale. Portfolio sizing remains a downstream task.
 metadata:
-  version: 2.4.0
+  version: 2.5.1
 ---
 
 # Investment conclusion
@@ -13,7 +13,7 @@ Reach the view after the model, governance, valuation and evidence checks. Follo
 
 Apply the [underwriting standard](../research-cycle/references/underwriting-standard.md) and [investor judgment](../research-cycle/references/investor-judgment.md). Qualify ordinary uncertainty; the [decision contract](references/decision-contract.md) defines when an unusable baseline prevents a call.
 
-Load the current model/forecast and assumption versions, [governance findings](../corporate-governance/SKILL.md), model audit, conditional valuation/market-expectations analysis, targeted financial/thesis validation and counter-case. Confirm that governance consequences and material model revisions propagated through valuation and all quoted numbers. Research is an exercise of intelligent guessing with imperfect information: work from what is available and give the call. Do not list missing items in the research brief.
+Load the current model/forecast and assumption versions, [governance findings](../corporate-governance/SKILL.md), model audit, conditional valuation/market-expectations analysis, targeted financial/thesis validation and counter-case. Confirm that governance consequences and material model revisions propagated through valuation and all quoted numbers. Form a reasoned view with imperfect information. Keep routine retrieval gaps in supporting records, but retain qualifications that materially affect the forecast, target or investability in the brief.
 
 Review the current [red-flag issue dispositions](../financial-quality/references/financial-red-flags.md). High-priority minority-governance concerns and material cash/reporting/solvency risks must change the thesis, model, target or readiness when warranted, rather than survive as decorative risk bullets. Separate suspected issues from established findings. A discounted price does not itself compensate for inaccessible value or an unreliable essential baseline. Follow the decision contract when translating these effects into a target and call.
 
@@ -21,7 +21,7 @@ Apply the [target-underwriting checks](../valuation-thesis/references/target-und
 
 ## Synthesis
 
-Use [investment conviction](../investment-conviction/SKILL.md) to state and preserve the one primary economic or avoidance proposition, its evidence and reconsideration conditions. Read the original record before revising an existing view. Distinguish belief strength, current forecast/value, investment eligibility, the price-based rating and any proposed portfolio action. Bring up red flags only when they should stop investors from considering the stock; if they are not serious, leave them out of the notes. The present mandate plans for at least a year, without promising market convergence or requiring patience after the case breaks.
+Use [investment conviction](../investment-conviction/SKILL.md) to state and preserve the one primary economic or avoidance proposition, its evidence and reconsideration conditions. Read the original record before revising an existing view. Distinguish belief strength, current forecast/value, investment eligibility, the price-based rating and any proposed portfolio action. Include risks that materially affect earnings, cash access, valuation or eligibility, even when they do not prohibit investment; omit routine immaterial warnings. The present mandate plans for at least a year, without promising market convergence or requiring patience after the case breaks.
 
 Form a stock-pitch judgment the reader can repeat in ordinary language: why the price compensates, or fails to compensate, for the risks and how owners earn a return. Prove that judgment with evidence and valuation, rather than substituting technical qualifications for the thesis. Apply the [valuation calendar](../valuation-thesis/references/valuation-calendar.md); an incorrect fiscal roll or profit definition requires recomputation before preserving the call.
 
@@ -33,7 +33,7 @@ Explain two things separately, in concise language for an informed nonspecialist
 
 Select one primary target price for a stated date/horizon and explain the preferred valuation method. Show its signed price return from the timestamped current price and keep bear and bull targets at the same horizon in the analysis, without much emphasis. Show dividend yield, FX and costs separately from the target. State downside mechanisms and observable thesis breakers, checked against our own base case ([investment conviction](../investment-conviction/SKILL.md)); recompute all dependent targets when evidence changes.
 
-Apply the [decision contract](references/decision-contract.md) for the realisable target, rating, price return and separate new-money judgment. Always give a call.
+Apply the [decision contract](references/decision-contract.md) for the realisable target, rating, price return and separate new-money judgment. Give a call on completed, supportable research; if an essential dependency prevents any defensible target, retain the incomplete outcome rather than inventing a number or a placeholder Hold.
 
 If the target needs a higher P/E, explain why investors would pay it and what evidence would change their assessment. Apply the [rerating test](../valuation-thesis/references/method-selection.md#rerating-and-derating); lower the central target and reconsider the call if the required change lacks support. Saying that a rerating is needed does not justify one.
 

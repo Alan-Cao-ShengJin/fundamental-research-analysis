@@ -1,0 +1,11 @@
+{
+  "description": "Original invented investments: no taxes, debt, working capital or salvage. Both buy a 100-unit asset and depreciate it evenly over two years.",
+  "initialInvestment": 100,
+  "lifeYears": 2,
+  "equityIrr": 0.1,
+  "cases": [
+    {"id": "late-receipts", "cashFlows": [-100, 0, 121], "accountingProfit": [-50, 71]},
+    {"id": "earlier-receipts", "cashFlows": [-100, 55, 60.5], "accountingProfit": [5, 10.5]}
+  ],
+  "lesson": "The same investment and equity IRR support different annual accounting profits. Initial investment times IRR does not identify annual net profit."
+}

@@ -1,6 +1,6 @@
 # DCF mechanics (cross-check only)
 
-Use a DCF sparingly: most of the time investors do not value stocks this way. Use it only for companies with strong, predictable cash flow, and at most as a cross-check of the midpoint intrinsic value against the P/E or other primary target. Do not rely on it, set the target from it or discuss it in the write-up. The mechanics below apply only when that test is met.
+Use a DCF sparingly: most of the time investors do not value stocks this way. Use it only for companies with strong, predictable cash flow, and at most as a cross-check of the midpoint intrinsic value against the P/E or other primary target. Do not rely on it as the target. Explain a material cross-check briefly when it changes confidence or exposes a pivotal assumption; do not narrate routine calculation steps. The mechanics below apply only when that test is met.
 
 ## Match the claim and cash flows
 

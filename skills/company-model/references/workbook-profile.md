@@ -43,7 +43,7 @@ Map accounts, periods and dependencies by meaning rather than fixed coordinates 
 - Keep existing valid sheet names and reporting structure. Add components only when needed.
 - Label periods, currencies, scales, accounting basis and the actual/forecast boundary.
 - Distinguish reported data, derived data, formulas and editable assumptions through explicit classifications and a documented visual legend.
-- Give every assumption and hardcoded figure a short visible source tag beside its units ("AR25", "3Q26 call", "Est.") and put the fuller explanation, with its source date and qualification, in a cell comment on the row label. Cite sources a reader can follow, never pipeline file paths. Preserve useful existing annotations during narrow updates.
+- Give every assumption and hardcoded figure a short visible source tag beside its units ("AR25", "3Q26 call", "Est."). Keep decision-driving assumptions, qualifications and their concise rationale visible beside the calculation; a wrapped explanation cell can use [linked text](linked-explanations.md) for live figures. Longer source detail may sit in a row-label comment, but do not hide the logic needed to check the forecast there. Cite sources a reader can follow, never pipeline file paths. Preserve useful existing annotations during narrow updates.
 - Preserve readable existing fonts and styles. For a new view, use restrained formatting, consistent numeric formats and clear section hierarchy.
 - Use historical valuation charts only with suitable dated inputs. Identify realised earnings separately from historical forecast vintages and handle nonpositive denominators explicitly.
 
@@ -71,7 +71,7 @@ Use the clean [model theme](../assets/model-theme.json) for new models and autho
 | Columns | Spacer 2; labels 46 (40 on output sheets, widened up to 60 rather than clipped); units 8, centred; source tag 11, 8pt grey, indented; periods 11; a spacer of 2 between annual and quarterly blocks |
 | Rows | Data rows 15 high, no wrap; text-heavy tables wrap, top-aligned, with rows sized to fit; sub-items indented with the cell indent |
 | Grouping | Quarterly columns; each schedule's detail rows, leaving its header and total visible; chart-only helper data grouped and greyed; `#N/A` chart gaps never visible |
-| Notes | A short source tag beside the units; the full reasoning in a cell comment on the row label |
+| Notes | Visible source tag and pivotal rationale beside the calculation; longer source detail may use row-label comments |
 | Charts | Palette navy `#1B2A41`, teal `#1F6F78`, slate `#6E7F96`, light teal `#8DBCC1`, greys `#9AA3AE`, `#B9C1CB`; takeaway title 11pt bold; legend at the bottom; light grey horizontal gridlines only; no border; forecasts hatched (bars) or dashed (lines); clipped data noted on the chart; anchored inside the print area, aligned to column edges, off every table |
 | Print | A4 landscape, one page wide, centred, 0.5-inch margins; title rows (rows 1-5 and columns A-D on time-series sheets, rows 1-3 elsewhere) repeated; print area includes every chart and excludes helper data; breaks between sections; footer with file, sheet, page N of M and date |
 

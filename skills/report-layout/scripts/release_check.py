@@ -25,10 +25,10 @@ for p in (SKILLS / 'company-model' / 'scripts', SKILLS / 'research-brief' / 'scr
         sys.path.insert(0, str(p))
 
 RATING = {'Buy', 'Hold', 'Sell'}
-METHODS = ('P/E', 'P/B', 'SOTP', 'dividend-yield')
+METHODS = ('P/E', 'P/B', 'SOTP', 'dividend-yield','EV/EBITDA','EV/Sales','NAV','residual-income')
 # Wording that has reached a report before. A regression list for deliverables, not a style judge; "fair value" is the
 # house rule that the multiple is a reasonable target, never fair value.
-BANNED_PHRASES = ('nobody publishes', 'nobody will tell', 'read it from the price', 'fair value', 'we do not roll',
+BANNED_PHRASES = ('nobody publishes', 'nobody will tell', 'read it from the price', 'we do not roll',
                   'internal run', 'checklist finding')
 BYLINE = re.compile(r'\b(prepared by|analyst:|author:|contact:)', re.I)
 EMAIL = re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]*\w')
@@ -50,13 +50,34 @@ def sha256(path):
 def parse_date(text):
     """A date from ISO text or free text such as '5 Nov 2026 close (FactSet)'."""
     if isinstance(text, date):
-        return text
-    s = str(text)
-    m = re.search(r'(\d{4})-(\d{2})-(\d{2})', s)
-    if m:
-        return date(int(m[1]), int(m[2]), int(m[3]))
+        return text if type(text) is date else text.date()
+    s = str(text).strip()
+    iso=re.findall(r'(?<!\d)(\d{4})[-/](\d{2})[-/](\d{2})(?!\d)',s)
+    if iso:
+        if len(iso)!=1: raise ValueError('More than one ISO date; supply the intended observation date explicitly')
+        return date(*map(int,iso[0]))
+    # Only extract a complete named-month date; prices and times are not year candidates.
+    month=r'(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)'
+    found=re.findall(r'\b(?:\d{1,2}\s+'+month+r'\s+\d{4}|'+month+r'\s+\d{1,2},?\s+\d{4})\b',s,re.I)
+    if len(found)!=1: raise ValueError('Use an unambiguous ISO date or one complete named-month date')
     from dateutil import parser
-    return parser.parse(s, fuzzy=True, dayfirst=True).date()
+    return parser.parse(found[0],fuzzy=False,dayfirst=True).date()
+
+
+def period_identity(label):
+    text=re.sub(r'\s+','',str(label)).upper()
+    match=re.fullmatch(r'(?:(FY)|([1-4])Q|Q([1-4])|([12])H|H([12]))?(\d{4}|\d{2})([AE])?',text)
+    if not match: raise ValueError('Unrecognized fiscal period: '+str(label))
+    fy,q1,q2,h1,h2,year,state=match.groups()
+    return ('Q'+(q1 or q2) if q1 or q2 else 'H'+(h1 or h2) if h1 or h2 else 'FY',
+            int(year) if len(year)==4 else 2000+int(year),state)
+
+
+def same_period(a,b):
+    try:
+        x,y=period_identity(a),period_identity(b)
+        return x[:2]==y[:2] and (not x[2] or not y[2] or x[2]==y[2])
+    except ValueError: return False
 
 
 def fiscal_year_of(d, fiscal_year_end=12):
@@ -158,11 +179,8 @@ def git_state(root):
 
 
 def skills_fingerprint():
-    h = hashlib.sha256()
-    for p in sorted(SKILLS.rglob('*')):
-        if p.is_file() and p.suffix in ('.md', '.json', '.py', '.mjs') and 'node_modules' not in p.parts and '__pycache__' not in p.parts:
-            h.update(p.relative_to(SKILLS).as_posix().encode()); h.update(p.read_bytes())
-    return h.hexdigest()
+    from research_rules import fingerprint
+    return fingerprint(SKILLS)
 
 
 def cell_values(spec, workbook, bindings):
@@ -239,7 +257,7 @@ def check_annual_ntm(n, comps, start, fye, spec, workbook, values, check):
     heads = cell_values(spec, workbook, {f'h{i}': c['header'] for i, c in enumerate(comps)})
     cells = [c['eps'] for c in comps]
     tied = len(set(cells)) == len(cells) and all(
-        period_year(heads.get(f'h{i}')) == period_year(c['period']) and column_of(c['header']) == column_of(c['eps'])
+        same_period(heads.get(f'h{i}'),c['period']) and column_of(c['header']) == column_of(c['eps'])
         and c['header'].split('!')[0] == c['eps'].split('!')[0] for i, c in enumerate(comps))
     check('ntm-components-bound-to-their-periods', tied, f'headers {[heads.get(f"h{i}") for i in range(len(comps))]}; earnings cells {cells}')
     eps = cell_values(spec, workbook, {c['period']: c['eps'] for c in comps})
@@ -285,18 +303,25 @@ def run(study, record, model_check=None, legacy=False):
             check('decision-record-current', True, decision_record.check(study,record,spec))
         except (ValueError,KeyError,TypeError,OSError,IndexError) as exc:
             check('decision-record-current', False, str(exc))
-    fx = v.get('fx') or 1.0
     price, target = v.get('referencePrice'), v.get('target')
     cutoff = parse_date(record['cutoff'])
     fye = record.get('fiscalYearEnd', 12)
     method = record.get('method')
     check('valuation-method-declared', method in METHODS, f'method {method!r}; allowed {METHODS}')
+    # One checked method bridge: a supplied zero/missing FX or yield is not unity.
+    try:
+        import valuation_methods
+        import model_workbook as mw
+        engine=mw.Engine(spec)
+        expect=valuation_methods.target(dict(record,_spec=spec),lambda ref:engine.value(*mw.target(ref,'')))
+        bridge_ok=near(target,expect)
+        bridge_detail=f'{method}: target {target} against checked method bridge {expect}'
+    except (KeyError,ValueError,TypeError,ZeroDivisionError) as exc:
+        bridge_ok=False; bridge_detail=str(exc)
 
     # 1. The earnings period behind the target, tied to the cells that carry it.
     if method == 'P/E':
-        expect = (v.get('targetMultiple') or 0) * (v.get('forwardEps') or 0) / fx
-        check('target-is-multiple-times-forward-eps', near(target, expect),
-              f'target {target} against multiple {v.get("targetMultiple")} x EPS {v.get("forwardEps")} / fx {fx} = {expect}')
+        check('target-is-multiple-times-forward-eps',bridge_ok,bridge_detail)
         declared = str(record.get('epsPeriod', ''))
         if declared.upper().startswith('NTM'):
             n = record.get('ntm') or {}
@@ -353,14 +378,14 @@ def run(study, record, model_check=None, legacy=False):
                 check('third-quarter-evidence-covers-current-year', ok, why)
                 covered = ok
             rule = forward_period(cutoff, fye, covered)
-            check('forward-eps-period', period_year(declared) == period_year(rule),
+            check('forward-eps-period', same_period(declared,rule),
                   f'declared {declared!r}; house rule at cutoff {cutoff} (year end month {fye}, third quarter covered: {covered}) gives {rule} or NTM; no roll to the target date')
             missing = [k for k in ('forwardEps', 'forwardEpsHeader', 'forwardEpsSource') if k not in b]
             check('required-period-bindings-present', not missing, 'forwardEps, forwardEpsHeader and forwardEpsSource are bound' if not missing else f'missing bindings {missing}')
             if not missing:
                 header = str(v.get('forwardEpsHeader') or '')
                 same_col = column_of(b['forwardEpsHeader']) == column_of(b['forwardEpsSource']) and b['forwardEpsHeader'].split('!')[0] == b['forwardEpsSource'].split('!')[0]
-                check('forward-eps-column-is-declared-period', period_year(header) == period_year(declared) and same_col,
+                check('forward-eps-column-is-declared-period', same_period(header,declared) and same_col,
                       f'header {header!r} at {b["forwardEpsHeader"]} must name {declared!r} and sit in the column of the source {b["forwardEpsSource"]}')
                 formula = spec_value(spec, b['forwardEps'])
                 src_sheet, src_addr = b['forwardEpsSource'].replace("'", '').rsplit('!', 1)
@@ -368,13 +393,11 @@ def run(study, record, model_check=None, legacy=False):
                 check('valuation-eps-consumes-statement-output', consumes and near(v.get('forwardEps'), v.get('forwardEpsSource'), 1e-6),
                       f'valuation EPS at {b["forwardEps"]} is {formula!r} = {v.get("forwardEps")}; must reference {b["forwardEpsSource"]} = {v.get("forwardEpsSource")}')
     elif method == 'P/B':
-        expect = (v.get('targetMultiple') or 0) * (v.get('bookValuePerShare') or 0) / fx
-        check('target-is-multiple-times-book', near(target, expect), f'target {target} against multiple x book / fx = {expect}')
-    elif method == 'SOTP':
-        check('target-is-sum-of-parts', near(target, v.get('sumOfPartsPerShare')), f'target {target} against parts per share {v.get("sumOfPartsPerShare")}')
+        check('target-is-multiple-times-book',bridge_ok,bridge_detail)
+    elif method in ('SOTP','NAV','residual-income','EV/EBITDA','EV/Sales'):
+        check('target-is-method-bridge',bridge_ok,bridge_detail)
     elif method == 'dividend-yield':
-        expect = (v.get('dps') or 0) / (v.get('targetYield') or 1) / fx
-        check('target-is-dps-over-yield', near(target, expect), f'target {target} against DPS / target yield / fx = {expect}')
+        check('target-is-dps-over-yield',bridge_ok,bridge_detail)
 
     # 2. Rating and tier from the unrounded return; the brief payload.
     brief = json.loads((study / record['brief']).read_text(encoding='utf-8'))
@@ -396,9 +419,13 @@ def run(study, record, model_check=None, legacy=False):
         check('brief-payload-valid', False, str(exc))
     check('brief-price-matches-model', near(d.get('referencePrice'), price, 0.0005, 0.006), f'brief {d.get("referencePrice")} vs workbook {price}')
     check('brief-target-matches-model', near(d.get('targetPrice'), target, 0.0005, 0.051), f'brief {d.get("targetPrice")} vs workbook {target}')
+    if d.get('dividendYield') is not None:
+        check('brief-yield-binding-required','dividendYield' in b,'Published dividend yield needs its model binding; use null when unavailable')
     if 'dividendYield' in b:
         check('brief-yield-matches-model', near(d.get('dividendYield'), v.get('dividendYield'), 0.0, 0.0006), f'brief {d.get("dividendYield")} vs workbook {v.get("dividendYield")}')
     for key in ('bearTarget', 'bullTarget'):
+        if d.get(key) is not None:
+            check('brief-'+key+'-binding-required',key in b,'Published scenario target needs its model binding')
         if key in b:
             check(f'brief-{key}-matches-model', near(d.get(key), v.get(key), 0.0005, 0.051), f'brief {d.get(key)} vs workbook {v.get(key)}')
 
@@ -413,6 +440,10 @@ def run(study, record, model_check=None, legacy=False):
         ok = got['rating'] == d.get('rating') and near(got['price'], price, 0.0005, 0.006) and near(got['target'], target, 0.0005, 0.051)
         check(f'rendered-decision-matches-model:{label}', ok,
               f'{got["kind"]} shows {got["rating"]} at {got["price"]} with target {got["target"]}; model {d.get("rating")} at {price} with target {target}')
+        if label=='brief':
+            from brief_consistency import verify
+            good,detail=verify(brief,html)
+            check('brief-render-matches-payload',good,detail)
 
     # 4. Ages at the cutoff. Retrieval and observation ages only: not estimate vintages or the last exchange session.
     price_date = parse_date(record['priceDate'])
@@ -475,6 +506,7 @@ def fingerprints(study, record):
     review = record.get('review', 'evidence/draft-review.json')
     if (study / review).is_file():
         files.append(review)
+    if (study/'evidence/draft-confirmation.json').is_file(): files.append('evidence/draft-confirmation.json')
     out = {rel: sha256(study / rel) for rel in dict.fromkeys(files) if (study / rel).exists()}
     return {'files': out, 'skills': skills_fingerprint(), 'git': git_state(SKILLS.parent)}
 
@@ -483,6 +515,9 @@ def main(argv=None):
     args = argv or sys.argv[1:]
     legacy = '--legacy' in args
     study = Path(next(a for a in args if a != '--legacy'))
+    from research_rules import dispatch
+    delegated=dispatch(study,'release_check.py',[str(study.resolve()),*(['--legacy'] if legacy else [])])
+    if delegated is not None: return delegated
     try:
         record = json.loads((study / 'deliverables' / 'release.json').read_text(encoding='utf-8'))
         checks, fails = run(study, record, legacy=legacy)

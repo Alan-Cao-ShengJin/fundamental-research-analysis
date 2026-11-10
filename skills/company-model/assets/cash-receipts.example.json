@@ -1,0 +1,13 @@
+{
+  "purchaseDate": "2030-11-15",
+  "window": {"start": "2030-11-15", "end": "2031-11-15"},
+  "currency": "USD",
+  "unit": "per-share",
+  "amountBasis": "gross",
+  "referencePrice": 20,
+  "distributions": [
+    {"id": "past-interim", "amountPerUnit": 0.4, "status": "declared", "exDate": "2030-09-10", "paymentDate": "2030-09-30", "sourceIds": ["invented-declaration"]},
+    {"id": "prior-year-final", "amountPerUnit": 0.6, "status": "forecast", "exDate": "2031-05-15", "paymentDate": "2031-06-15", "sourceIds": ["invented-payout-assumption"]},
+    {"id": "next-interim", "amountPerUnit": 0.45, "status": "forecast", "exDate": "2031-09-10", "paymentDate": "2031-09-30", "sourceIds": ["invented-payout-assumption"]}
+  ]
+}

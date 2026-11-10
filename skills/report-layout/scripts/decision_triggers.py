@@ -55,6 +55,8 @@ def verify(decision, spec, record):
         input_key=mw.target(input_ref,'')
         if input_key==mw.target(record['bindings']['rating'],''):
             raise ValueError('Test an economic input, not an override of the rating output')
+        if input_key not in rc.dependencies(spec,record['bindings']['target']) and input_key not in rc.dependencies(spec,record['bindings']['referencePrice']):
+            raise ValueError('Automatic trigger input must influence the target or reference price; a disconnected input proves no decision relevance')
         if input_key[1] not in spec['sheets'].get(input_key[0],{}).get('cells',{}):
             raise ValueError('Trigger inputRef must identify an existing model cell')
         numeric=re.sub(r'[%x,]','',shown)

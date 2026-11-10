@@ -98,6 +98,35 @@ def evaluate(study, assertion, spec, packet):
         return number(result) if numeric else result
 
     kind = assertion['kind']
+    if kind == 'cash-receipts':
+        from cash_receipts import summarize
+        if assertion.get('role') not in ('author', 'reviewer'):
+            raise ValueError('Identify the author/reviewer receipt calculation')
+        schedule = copy.deepcopy(read(assertion['schedule'], numeric=False))
+        if not isinstance(schedule, dict):
+            raise ValueError('Bind a frozen dated receipt schedule')
+        if isinstance(schedule.get('referencePrice'), dict):
+            schedule['referencePrice'] = read(schedule['referencePrice'])
+        for event in schedule['distributions']:
+            if isinstance(event['amountPerUnit'], dict): event['amountPerUnit'] = read(event['amountPerUnit'])
+            if not set(event.get('sourceIds', [])) <= registered:
+                raise ValueError('Receipt event sources must be registered in the review')
+        result = summarize(schedule)
+        if result['status'] != 'complete':
+            raise ValueError('Receipt window is incomplete: ' + json.dumps(result['unresolved']))
+        outputs = {'cashPerUnit': result['cashPerUnit']}
+        if 'cashYield' in result: outputs['cashYield'] = result['cashYield']
+        elif 'cashYield' in assertion:
+            raise ValueError('A dated cash yield requires a bound reference price in the schedule')
+        for metric, expected in outputs.items():
+            if metric not in assertion or not math.isclose(read(assertion[metric]), expected, rel_tol=1e-8, abs_tol=1e-9):
+                raise ValueError('Dated ' + metric + ' does not reproduce; a fiscal-year yield is not buyer receipts')
+        for display in assertion.get('displays', []):
+            metric = display.get('metric')
+            if metric not in outputs: raise ValueError('Receipt display metric must be cashPerUnit or cashYield')
+            from display_bindings import check_displays
+            check_displays(study, [display], [outputs[metric]], packet)
+        return json.dumps({k: result[k] for k in ('status', 'cashPerUnit', 'declaredCashPerUnit', 'forecastCashPerUnit', 'conditional')})
     if kind == 'bounded-bridge':
         from bounded_bridge import solve
         if not assertion.get('domainRationale','').strip():
@@ -185,8 +214,11 @@ def evaluate(study, assertion, spec, packet):
         decimals = assertion.get('decimals', 6)
         if type(decimals) is not int or not 0 <= decimals <= 6:
             raise ValueError('Declare zero to six display decimals')
-        if round(expected, decimals) != round(number(assertion['shown']), decimals):
-            raise ValueError(f'Calculation shown {assertion["shown"]} does not reproduce: {expected}')
+        if 'shown' in assertion:
+            shown=read(assertion['shown']) if isinstance(assertion['shown'],dict) else number(assertion['shown'])
+            if round(expected,decimals)!=round(shown,decimals): raise ValueError(f'Calculation shown {shown} does not reproduce: {expected}')
+        elif not assertion.get('displays'):
+            raise ValueError('Bind a displayed result, a model-backed shown result or an explicit reviewer replacement value')
         if assertion.get('displays'):
             from display_bindings import check_displays
             check_displays(study,assertion['displays'],[expected],packet)

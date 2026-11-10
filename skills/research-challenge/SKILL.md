@@ -2,7 +2,7 @@
 name: research-challenge
 description: Fact-check and challenge an investment opinion, research thesis, valuation or strategy. Use for standalone devil's-advocate reviews or pre-decision scrutiny of unsupported claims, causal gaps, fragile assumptions and implementation risks.
 metadata:
-  version: 2.6.0
+  version: 2.7.1
 ---
 
 # Research challenge
@@ -53,7 +53,7 @@ For company recommendations, apply the [underwriting standard](../research-cycle
 
 Test [market-context/narrative repricing](../macro-event-analysis/references/market-regime-and-investor-base.md) when it contributes to the thesis, with no automatic priority over other dimensions. Examine credible association, what is priced in and persistence/fade without requiring named buyers or proven inflows. Deepen access/capacity/supply checks when they are themselves decisive. Keep operating exposure, attention, holdings and measured flows distinct.
 
-Reconstruct pivotal claims from original evidence, reproduce important arithmetic and retain contrary/failed analogues. Record what was actually checked; repetition is not independent evidence, a second self-review is not an independent review, and drafted evaluation cases are not passed behavioral tests. This procedure does not require additional agents or delegation.
+Reconstruct pivotal claims from original evidence, reproduce important arithmetic and retain contrary/failed analogues. Record what was actually checked; repetition is not independent evidence, a second self-review is not an independent review, and drafted evaluation cases are not passed behavioral tests. A standalone opinion challenge may be a self-review. Full initiations and material model changes require the fresh pre-writing model checkpoint in the company sequence; host capability and actual execution must be reported honestly.
 
 For an opinion-only request, return the reconstructed claim, fact checks, logical gaps, strongest contrary evidence, failure scenarios and tests that would settle them. Classify individual claims as supported, contradicted or unresolved according to the evidence. Include evidence strengthening the claim when found; challenge does not require reaching an adverse answer. State access gaps rather than fabricating counterexamples. This mode does not add a final stock rating.
 

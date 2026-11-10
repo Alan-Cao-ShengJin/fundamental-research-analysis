@@ -1,5 +1,15 @@
 # Version 2.0 name migration
 
+## Version 2.11 production rules and early model review
+
+The publication wrapper remains 1.2 and the decision schema remains 1.1; the strengthened implementation is pinned by its production fingerprint, not by relabeling those schemas. At new study creation run `python -B -X utf8 skills/report-layout/scripts/research_rules.py pin STUDY`. Retain the runtime receipt and execute preserved helpers through `research_rules.py run STUDY HELPER ...` after shared rules change. This preserves code and records dependency versions; it does not install or recreate the dependency environment. Historical archives without runtime receipts retain that provenance limitation.
+
+For initiations and material model changes, complete the fresh pre-writing model challenge in [the publication workflow](skills/report-layout/references/publication-review.md). It freezes the exact spec/workbook and pivotal evidence, and uses two started review attempts independently of the later publication-reader budget. Preparing a packet does not perform a review. A renamed/replaced model needs the correct reviewed identity; leaving the old reviewed files unchanged cannot certify another model.
+
+Use live linked text for repeated model numbers/rating words, with a compatible recalculation engine and cache verification. Qualitative explanations still require reassessment. Use dated cash-receipt assertions only for claims about cash arriving within a specified window; annual yield stays a separate measure. Explicit zero/missing FX or required yield cannot default to one. Negative earnings/book bases require a suitable alternative valuation method rather than two negative factors producing a positive target.
+
+Preserve frozen old studies and their failed findings and attempts. Do not apply the new presentation confirmation retrospectively by replacing archived rules or restart a failed study under a new name to erase its budget. New independent calibration runs declare their own purpose and retain previous outcomes.
+
 ## Version 2.10 decision and review contracts
 
 The decision schema is **1.1**, independently of the publication wrapper **1.2**. Before synchronization, explicitly supply `triggerCoverage` and `triggerTests` under the [decision contract](skills/report-layout/references/decision-record.md#numerical-trigger-meaning). Bind automatic call conditions to their economic input, strict/inclusive relation, displayed boundary and expected rating. Approximate watch levels carry no automatic call promise. Local probes do not establish global monotonicity or detect omitted conditions.

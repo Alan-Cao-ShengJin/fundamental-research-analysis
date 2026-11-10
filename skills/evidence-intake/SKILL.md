@@ -2,12 +2,14 @@
 name: evidence-intake
 description: Build a traceable, time-aware evidence pack from filings, market data, operating trackers and transcripts. Use before modelling or testing, or to resolve conflicting research inputs.
 metadata:
-  version: 2.2.0
+  version: 2.3.1
 ---
 
 # Evidence intake and reconciliation
 
 Return facts that another analyst can reproduce, plus the conflicts and gaps that remain. Follow the common [handoff contract](../research-cycle/references/handoffs.md).
+
+For connector data outside the HTTP adapter, retain available original output bytes and a tool/source locator using [evidence_receipt.py](scripts/evidence_receipt.py). Explicitly label a hand-typed consolidation as `manual-compilation`; its hash does not authenticate a provider response. A second identical pull is an integrity comparison, not an independent source.
 
 ## Inventory before retrieval
 
@@ -17,7 +19,7 @@ Use the [local provider retrieval guide](references/research-data-providers.md) 
 
 Use [investor judgment](../research-cycle/references/investor-judgment.md) to rank retrieval by decision value: seek observations that distinguish competing economic explanations, considering materiality, timeliness, accessibility and cost. Assess source access, method, incentives and claim-specific track record; separate reported observations from interpretation. Multiple interested sources need not be rejected, and repeated commentary is not independent evidence. Stop low-value collection when a reasoned estimate is sufficient.
 
-Identify the entity or instrument and research cutoff. For a dual-listed issuer, read both exchanges' filings: Hong Kong reports carry customer concentration and regional revenue that A-share reports omit. Inspect evidence already collected for this study first; a fresh initiation does not reopen earlier research. Use only the [approved sources](references/research-data-providers.md#approved-sources): internet search for original issuer, exchange and regulator material, the FactSet AI-Ready Data connector, and the AlphaPai, Alpha Vantage, API Ninjas and Massive adapters. Do not use other connectors, databases or applications, even when they are connected, or local files outside the study's own folder. Prioritise authoritative issuer, exchange, regulator and economic-series sources appropriate to the fact. Treat company assertions as claims, not independent validation.
+Identify the entity or instrument and research cutoff. For a dual-listed issuer, check the relevant exchanges' filings for complementary disclosures and reconcile reporting perimeter, share class and accounting basis. Disclosure detail varies by issuer, jurisdiction and document; do not assume one listing's reports always contain a particular breakdown. Inspect evidence already collected for this study first; a fresh initiation does not reopen earlier research. Use only the [approved sources](references/research-data-providers.md#approved-sources): internet search for original issuer, exchange and regulator material, the FactSet AI-Ready Data connector, and the AlphaPai, Alpha Vantage, API Ninjas and Massive adapters. Do not use other connectors, databases or applications, even when they are connected, or unrelated local files. Explicitly supplied documents/inbox packs are permitted; updates reuse eligible prior study components under model revision. Prioritise authoritative issuer, exchange, regulator and economic-series sources appropriate to the fact. Treat company assertions as claims, not independent validation.
 
 Use the applicable [sector activity reference](../company-model/references/sectors/index.md) to identify the useful source questions and KPI definitions: for example, contract timing, loan/claim cohorts, clinical rights, grade/recovery or lease/spectrum obligations. These are retrieval priorities, not evidence that a field or provider is available.
 

@@ -48,6 +48,8 @@ def begin(study, record, reviewer=None, mode='independent-agent'):
     if packet.get('schemaVersion') != '1.2':
         raise ValueError('Prepare a current review packet before starting an attempt')
     check_snapshot(study, packet)
+    changed=[rel for rel,value in packet['reviewedFiles'].items() if not local(study,rel).is_file() or digest(local(study,rel))!=value]
+    if changed: raise ValueError('Live inputs differ from prepared review; no attempt started: '+', '.join(changed[:8]))
     prepared = json.loads((local(study, packet['snapshot']['path']) / 'prepared-review.json').read_text(encoding='utf-8'))
     fixed_context(packet, prepared)
     identity = {'id': reviewer or packet['reviewer']['id'], 'mode': mode, 'context': 'fresh'}

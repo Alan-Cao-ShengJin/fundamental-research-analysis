@@ -2,7 +2,7 @@
 name: corporate-governance
 description: Analyse a listed company's ownership, control, minority-shareholder rights, management incentives, conduct, capital allocation and disclosure. Use for governance reviews and full company research, especially when governance may explain a persistent valuation discount or change the investment case.
 metadata:
-  version: 2.1.1
+  version: 2.1.2
 ---
 
 # Corporate governance and shareholder outcomes
@@ -34,7 +34,7 @@ Retain source dates, locators, denominators and reporting scope. Separate benefi
 | Conduct and controls | Check material enforcement, restatements, audit qualifications, control failures, related-party dealings, guarantees, diverted funds, insolvency/default history and litigation. Distinguish an allegation, investigation, finding, appeal, remediation and unresolved proceeding; do not infer guilt. |
 | Shareholder behaviour and returns | Reconcile insider purchases/sales, pledges, lock-up expiries, shareholder concentration and dividends/buybacks. Consider stated liquidity/diversification reasons and actual net share retirement versus compensation issuance. Selling, pledging or low payout alone does not establish abuse. |
 | Financing and capital allocation | Trace issuance, rights offers, convertibles, preferred/debt claims, dilution, discounts, subscribers, acquisitions and proceeds. Compare promised uses and realised returns. Distinguish necessary growth/regulatory capital from persistent value diversion or poor allocation. |
-| Incentives and price exposure | Inspect pay/vesting metrics, award terms, insider economic exposure, financing windows, pledge obligations and transactions. Describe evidence-supported incentives and competing explanations; a possible motive is not proof of manipulation or a desired share-price direction. Read the actual terms of share options, restricted shares and employee share plans (base year, metric, alternatives, vesting share and purchase price) and test our forecast against each hurdle. Management, especially at Chinese companies, usually works hard to meet these hurdles, so treat them as a soft floor and explain any forecast below one. |
+| Incentives and price exposure | Inspect pay/vesting metrics, award terms, insider economic exposure, financing windows, pledge obligations and transactions. Describe evidence-supported incentives and competing explanations; a possible motive is not proof of manipulation or a desired share-price direction. Read the actual terms of share options, restricted shares and employee share plans (base year, metric, alternatives, vesting share and purchase price) and compare our forecast with each material hurdle. Incentives can affect effort or accounting choices but do not establish an earnings floor. Test attainability against operating evidence, funding, prior delivery and amendment history; explain a material gap without moving the forecast merely to reach the award threshold. |
 | Culture and disclosure | Compare guidance with delivery, corrections, accountability, disclosure consistency and responsiveness to material questions. Corroborate employee/customer or media claims; marketing, ESG scores and IR activity are not evidence of integrity by themselves. |
 
 Use [the assessment rubric](references/scoring-rubric.md) for a comparable qualitative assessment or an explicitly requested numerical score. Do not let a weighted average offset a material minority-rights or integrity concern.

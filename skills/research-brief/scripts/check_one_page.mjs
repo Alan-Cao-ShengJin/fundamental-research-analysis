@@ -12,7 +12,9 @@ const require=createRequire(import.meta.url);
 const inputBytes=await fs.readFile(options.input),payload=JSON.parse(inputBytes),expected=payload.sections;
 if(payload.schemaVersion!=='2.0.0'||!Array.isArray(expected)||!expected.length)throw Error('Use a validated version-2 brief payload');
 const load=async name=>{const loaded=await import(pathToFileURL(require.resolve(name,options['runtime-modules']?{paths:[path.dirname(path.resolve(options['runtime-modules']))]}:undefined)).href);return loaded.default??loaded;};
-const {chromium}=await load('playwright'),{PDFDocument}=await load('pdf-lib');
+let chromium,PDFDocument;
+try { ({chromium}=await load('playwright')); ({PDFDocument}=await load('pdf-lib')); }
+catch { throw Error('Optional browser geometry check needs playwright and pdf-lib. Supply an existing --runtime-modules directory, or install those optional dependencies in the host. The production package path uses Chrome/PyMuPDF and still requires actual PDF visual review; no geometry pass has occurred.'); }
 const browser=await chromium.launch({headless:true,...(options['browser-path']?{executablePath:options['browser-path']}:{})});
 const report={input:path.resolve(options.input),inputSHA256:createHash('sha256').update(inputBytes).digest('hex'),html:path.resolve(options.html),pdf:path.resolve(options.pdf),htmlSHA256:createHash('sha256').update(await fs.readFile(options.html)).digest('hex'),checks:[],pageCount:null,passed:false};
 try{

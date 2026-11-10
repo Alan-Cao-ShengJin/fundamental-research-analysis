@@ -2,16 +2,16 @@
 name: chart-visualization
 description: Build consistent, data-linked charts and business diagrams using AntV G2 and AntV Infographic with a shared professional theme. Use for research-report visuals, chart selection, rendering and export; preserve model values and reporting bases.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Consistent charts and diagrams
 
-Use AntV as the default chart-building approach for research reports. It adds financial-report conventions and a reusable house theme. It supports the communication stage; it does not replace analysis, valuation or the decision contract.
+For full house reports, use the built-in charts in report_layout.py when they answer the question. Use AntV optionally for custom charts or diagrams when the host has its dependencies; do not assume it is installed. It adds financial-report conventions and a reusable house theme. It supports the communication stage; it does not replace analysis, valuation or the decision contract.
 
 Explicit user templates or style requirements override the default theme while preserving data integrity and consistent visual meaning.
 
-Read [the AntV workflow](references/antv-workflow.md) when building a visual. Load [the shared theme](assets/chart-theme.json) for every report, and apply it to all figures in that report. The report structure and reading budget remain in [visual report design](../research-brief/references/visual-reports.md).
+Read [the AntV workflow](references/antv-workflow.md) only when selecting that optional renderer. Load [the shared theme](assets/chart-theme.json) for every report, and apply it to all figures in that report. The report structure and reading budget remain in [visual report design](../research-brief/references/visual-reports.md).
 
 ## Build from the question and data
 

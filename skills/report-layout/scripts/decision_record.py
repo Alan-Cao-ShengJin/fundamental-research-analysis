@@ -141,7 +141,8 @@ def main():
     old = json.loads(path.read_text(encoding='utf-8-sig')) if path.exists() else {}
     out = synchronize(args.study,record,spec,old)
     path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    if not path.exists() or out!=old:
+        path.write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     print('Derived decision fields refreshed; dependent reviews must be refreshed before release.')
 
 

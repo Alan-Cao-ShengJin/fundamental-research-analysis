@@ -21,6 +21,8 @@ Separate these measures:
 - **Annual forward yield:** forecast annual dividend per share divided by the dated share price. State the earnings year, currency, share basis and gross/net-tax treatment.
 - **Next-twelve-month receipts:** only distributions a buyer at the reference date can still receive within the target window. Exclude already-ex dividends. Show receipts separately; they are never added to the target, rating or attractiveness tier.
 
+For a material claim about cash arriving over a dated window, use the [dated receipt helper](../../company-model/scripts/cash_receipts.py) with [the original synthetic schedule](../../company-model/assets/cash-receipts.example.json) as a field example. Declare the buyer date, window, currency/unit, gross/net basis and each event's amount, status, entitlement and payment dates. Missing dates remain unresolved; forecast dates remain assumptions. Ordinary ex-date entitlement excludes purchases on/after the ex-date. Due-bill or other unusual rights need explicit sourced entitlement treatment. A fiscal-year DPS is not a receipt schedule. Bind material published totals/yields with the existing [claim-support mechanism](../../report-layout/references/claim-support.md#dated-cash-receipts); the helper cannot discover omitted events or authenticate rights.
+
 Show the dividend if the payout ratio stays at its supported level, not merely a guessed cash amount. If the policy floor differs from the latest actual payout, show both as distinct scenarios. A higher payout is upside until management intent and cash capacity support it.
 
 ## Cash coverage and room for more payout
@@ -34,6 +36,12 @@ Compare the proposed dividend with recurring cash capacity, statutory/distributa
 Quantify cash coverage and the amount left after the base dividend. Show a higher-payout case and a stress with weaker earnings, tighter working capital or higher investment. A theoretical maximum payout that exhausts recurring cash is not a sustainable recommendation. Distinguish capacity, management willingness and an approved declaration.
 
 Show recent historical/current-year coverage as well as the forward point. If coverage improves sharply, explain the operating cash, working-capital and investment assumptions behind the change; do not describe borrowing-funded payments as evidence of recurring dividend strength.
+
+## Bond benchmark and spread calibration
+
+For a dividend-led case, compare the sustainable ordinary yield with the government-bond opportunity available to relevant investors, alongside absolute-yield history and comparable equity yields. Justify currency, market, tenor (often a 10-year reference), observation dates, tax/FX/access and the window's rate regime. The listing label alone does not universally select the benchmark. The analyst chooses and explains it; show a material alternative when it changes the conclusion.
+
+Build dated observations and show the spread's level and distribution, not just an absolute equity yield. The generic [yield_spread.py](../scripts/yield_spread.py) separates equity-yield and government-rate changes and retains benchmark/source definitions. Its mean spread is descriptive; a target requires an explicitly selected spread or required yield supported by payout growth/reliability, leverage, rights and regime relevance. Do not apply a historical mean spread automatically to every dividend stock, or treat a stock distribution as a guaranteed bond coupon.
 
 ## Price, yield and the investment argument
 

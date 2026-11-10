@@ -1,0 +1,17 @@
+{
+  "id": "synthetic-buyer-receipts",
+  "kind": "cash-receipts",
+  "role": "author",
+  "claimId": "synthetic-dated-cash-claim",
+  "location": "Report distribution paragraph and linked figure",
+  "period": "2030-11-15 to 2031-11-15 exclusive",
+  "unit": "USD/share",
+  "sourceIds": ["invented-declaration", "invented-payout-assumption"],
+  "rationale": "Original synthetic field example: replace the invented schedule, cells and registered claims with this study's supported records.",
+  "schedule": {"file": "data/receipt-schedule.json", "pointer": ""},
+  "cashPerUnit": {"model": "Distributions!D12"},
+  "cashYield": {"model": "Distributions!D13"},
+  "displays": [
+    {"document": "deliverables/report.html", "id": "buyer-cash-yield", "period": "2030-11-15 to 2031-11-15 exclusive", "unit": "%", "metric": "cashYield", "style": "percent", "decimals": 2, "transform": "identity", "order": "input"}
+  ]
+}

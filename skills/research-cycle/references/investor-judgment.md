@@ -60,6 +60,6 @@ Use reasonable ranges and coherent adverse cases. Probabilities can be qualitati
 
 Reach a call from a defensible central estimate using the [decision contract](../../investment-conclusion/references/decision-contract.md). Explain decisive assumptions, downside, conviction and what would change the view.
 
-Always give a call based on the financials available. If the stock is an avoid, unattractive or raises a red flag, say so beside the call.
+Give a call on completed, supportable research under the decision contract; an unusable essential baseline leaves the numerical conclusion incomplete, not a placeholder Hold. If the stock is an avoid, unattractive or raises a red flag, say so beside the call.
 
 Apply incentive and credibility analysis within the research. Investor-facing output should state the resulting forecast judgment and evidence concisely; avoid generic commentary about brokers' or management's motives. Explain a specific credibility issue when it materially affects the decision, with attribution and appropriate qualification. Preserve factual accuracy even when simplifying the presentation.

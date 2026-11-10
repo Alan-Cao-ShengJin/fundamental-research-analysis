@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.7.1
+  version: 2.8.2
 ---
 
 # Valuation, expectations and provisional thesis
@@ -14,6 +14,8 @@ Treat a narrative as a falsifiable account of future business economics, funding
 Use [economic thesis and market evidence](references/thesis-tests.md) when building or challenging a name-specific case: state the testable proposition, anchor its peer/chain comparisons, separate economic support from evidence of recognition, and retain load-bearing assumptions and disconfirming observations for review. No differentiated view or momentum confirmation should be invented to complete the format.
 
 Consume current [financial-red-flag dispositions](../financial-quality/references/financial-red-flags.md) alongside governance and the audited model. Credit supported usable/excess cash and recoverable assets, not all reported balances mechanically. Model material losses/access constraints once through a stated mechanism; cheapness or arbitrary haircuts cannot resolve an unbounded essential baseline.
+
+When usable excess cash materially distorts reported returns, compare a clearly defined operating return excluding that cash and its related income with reported returns; match the profit and capital exclusions, and remove the same income from any ex-cash earnings multiple. Do not impose industrial cash/return definitions on banks, insurers or other businesses where cash is an operating asset.
 
 ## Choose the mode
 
@@ -30,7 +32,7 @@ For current valuation, query the [agent model's](../company-model/references/age
 
 ## Establish the valuation basis
 
-Start by comparing our EPS and the valuation it implies with consensus, and explain the gap, using [target-underwriting check 1](references/target-underwriting.md). Do this before choosing the primary method, so the method answers the actual disagreement. State which variable and period set the price ([what the market trades](../research-cycle/references/what-the-market-trades.md)): when the market trades a year beyond the forward year, compare that year too and explain the multiple by it; when it trades an asset outside current earnings, value that asset explicitly against what the price places on it. A listed stake, surplus cash or other claim large enough to move the value (about a tenth of market value, or less when its earnings or funding effect is large) gets our own assessment of its value and next result, which can agree with consensus after testing it; a sum of the parts carries stakes and cash at market or face, or states the discount applied, at one date and at attributable ownership, says what multiple the core is left on (and, when that residual carries the thesis, what it implies for the weakest unit once the others are valued, and how it moves with the stakes' share prices), and never counts an investee's earnings and its stake value twice. Date the consensus and say where the live buy-side view appears to sit above or below it.
+Start by comparing our decision-driving forecast and the valuation it implies with comparable consensus where available, and explain the gap, using [target-underwriting check 1](references/target-underwriting.md). Do this before choosing the primary method, so the method answers the actual disagreement. State which variable and period set the price ([what the market trades](../research-cycle/references/what-the-market-trades.md)): when the market trades a year beyond the forward year, compare that year too and explain the multiple by it; when it trades an asset outside current earnings, value that asset explicitly against what the price places on it. A listed stake, surplus cash or other claim large enough to move the value (about a tenth of market value, or less when its earnings or funding effect is large) gets our own assessment of its value and next result, which can agree with consensus after testing it; a sum of the parts carries stakes and cash at market or face, or states the discount applied, at one date and at attributable ownership, says what multiple the core is left on (and, when that residual carries the thesis, what it implies for the weakest unit once the others are valued, and how it moves with the stakes' share prices), and never counts an investee's earnings and its stake value twice. Date the consensus and say where the live buy-side view appears to sit above or below it.
 
 Follow the [target and earnings-basis contract](../investment-conclusion/references/decision-contract.md#target-and-earnings-basis) and [calendar guide](references/valuation-calendar.md). Show the headline multiple's arithmetic and selected earnings period in the pitch.
 

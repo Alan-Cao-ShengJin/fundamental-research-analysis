@@ -18,9 +18,10 @@ shows differs from that recalculation (see sensitivities()).
 
 Cell kinds: actual (blue), input/judgment (blue on light yellow), calculation (black; green when it
 links to another sheet; dark grey italic for ratios; bold black for spec outputs).
-Formulas use + - * / ^, cell and range references across sheets, SUM, MIN, MAX, AVERAGE,
+Formulas use + - * / ^ and scalar text concatenation (&), simple numeric TEXT formats,
+cell and range references across sheets, SUM, MIN, MAX, AVERAGE,
 COUNT, STDEV (sample), SQRT, ABS, ROUND, IF with comparisons, NA() and CHOOSE for scenario
-selection. Range functions ignore text, as Excel does. No eval, macros or external links.
+selection. The supported numeric subset uses worksheet precedence/rounding and case-insensitive plain text comparison. Range aggregates ignore text/logicals, retain numeric values and reject error values; scalar numeric strings/logicals are handled explicitly. Unsupported formula/type behavior is rejected rather than certified as general Excel compatibility. No eval, macros or external links.
 Sheet options: notes (column whose text becomes cell comments on the row label), tagColumn + tags
 (a physical column inserted for short source tags; the specification keeps its own addresses),
 headerRows and forecastColumns (shaded headers and a rule at the forecast boundary), groupColumns and
@@ -124,9 +125,11 @@ class Engine:
                 name = 'ref_' + str(len(refs))
                 refs[name] = (m[1] or m[2] or sheet, m[3].replace('$', ''), m[4].replace('$', '') if m[4] else None)
                 return name
-            text = REF.sub(sub, v[1:]).replace('^', '**').replace('<>', '!=')
-            text = re.sub(r'(?<![<>!=])=(?!=)', '==', text)
-            result = self._walk(ast.parse(text, mode='eval').body, refs, key)
+            # References inside quoted worksheet strings are literal text, not precedents.
+            parts = re.split(r'("(?:[^"]|"")*")', v[1:])
+            text = ''.join(part if i % 2 else REF.sub(sub, part) for i, part in enumerate(parts))
+            from worksheet_expression import parse
+            result = self._walk(parse(text), refs, key)
             if type(result) in (int, float) and not math.isfinite(result):
                 raise ModelError(f'Nonfinite result at {sheet}!{address}')
             return result
@@ -142,12 +145,15 @@ class Engine:
 
     def _walk(self, n, refs, key):
         walk = lambda x: self._walk(x, refs, key)
-        if isinstance(n, ast.Constant) and type(n.value) in (int, float, str):
+        if isinstance(n, ast.Constant) and type(n.value) in (int, float, str, bool):
             return n.value
         if isinstance(n, ast.Name) and n.id in refs:
             sheet, start, end = refs[n.id]
             return self._range(sheet, start, end) if end else self.value(sheet, start)
         if isinstance(n, ast.BinOp):
+            if isinstance(n.op, ast.BitAnd):
+                from model_text import concatenate
+                return concatenate(walk(n.left), walk(n.right))
             a, b = walk(n.left), walk(n.right)
             if type(a) not in (int, float) or type(b) not in (int, float):
                 raise ModelError(f'Nonnumeric precedent at {key[0]}!{key[1]}')
@@ -163,8 +169,18 @@ class Engine:
             return -x if isinstance(n.op, ast.USub) else x
         if isinstance(n, ast.Compare) and len(n.ops) == 1:
             a, b = walk(n.left), walk(n.comparators[0])
-            return {ast.Lt: a < b, ast.LtE: a <= b, ast.Gt: a > b, ast.GtE: a >= b, ast.Eq: a == b, ast.NotEq: a != b}[type(n.ops[0])]
+            if isinstance(a,str) and isinstance(b,str): a,b=a.casefold(),b.casefold()
+            import operator
+            comparisons={ast.Lt:operator.lt,ast.LtE:operator.le,ast.Gt:operator.gt,ast.GtE:operator.ge,ast.Eq:operator.eq,ast.NotEq:operator.ne}
+            ranks={int:0,float:0,str:1,bool:2}
+            if type(a) not in ranks or type(b) not in ranks: raise ModelError('Unsupported worksheet comparison operand')
+            if ranks[type(a)]!=ranks[type(b)]: a,b=ranks[type(a)],ranks[type(b)]
+            try: return comparisons[type(n.ops[0])](a,b)
+            except TypeError as exc: raise ModelError('Unsupported mixed-type worksheet comparison') from exc
         if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and not n.keywords:
+            if n.func.id.upper() == 'TEXT' and len(n.args) == 2:
+                from model_text import format_number
+                return format_number(walk(n.args[0]), walk(n.args[1]))
             name, args = n.func.id.upper(), n.args
             if name == 'CHOOSE':
                 i = walk(args[0])
@@ -174,13 +190,24 @@ class Engine:
             if name == 'NA' and not args:
                 return NA
             if name == 'IF' and len(args) == 3:
-                return walk(args[1]) if walk(args[0]) else walk(args[2])
+                condition=walk(args[0])
+                if isinstance(condition,str):
+                    if condition.upper() not in ('TRUE','FALSE'): raise ModelError('IF condition must be logical or numeric')
+                    condition=condition.upper()=='TRUE'
+                if type(condition) not in (bool,int,float): raise ModelError('IF condition must be logical or numeric')
+                return walk(args[1]) if condition else walk(args[2])
             if name in ('SUM', 'MIN', 'MAX', 'AVERAGE', 'COUNT', 'STDEV'):
                 xs = []
                 for a in args:
                     v = walk(a)
-                    xs.extend(v if isinstance(v, list) else [v])
-                xs = [x for x in xs if type(x) in (int, float)]
+                    if isinstance(v,list):
+                        if NA in v: raise ModelError(f'Error value in {name} range at {key[0]}!{key[1]}')
+                        xs.extend(x for x in v if type(x) in (int,float))
+                    elif type(v) in (int,float,bool): xs.append(int(v) if isinstance(v,bool) else v)
+                    elif isinstance(v,str) and v!=NA:
+                        try: xs.append(float(v))
+                        except ValueError as exc: raise ModelError('Unsupported nonnumeric scalar argument; use a numeric input or a range') from exc
+                    else: raise ModelError(f'Error/unsupported value in {name}')
                 if name == 'SUM':
                     return sum(xs)
                 if name == 'COUNT':
@@ -199,7 +226,13 @@ class Engine:
             if name == 'ABS' and len(args) == 1:
                 return abs(walk(args[0]))
             if name == 'ROUND' and len(args) == 2:
-                return round(walk(args[0]), int(walk(args[1])))
+                from decimal import Decimal, ROUND_HALF_UP, localcontext
+                value,digits=walk(args[0]),walk(args[1])
+                if type(value) not in (int,float) or type(digits) not in (int,float):
+                    raise ModelError('ROUND requires numeric arguments')
+                with localcontext() as context:
+                    context.prec=50
+                    return float(Decimal(str(value)).quantize(Decimal(1).scaleb(-int(digits)),rounding=ROUND_HALF_UP))
         raise ModelError(f'Unsupported expression at {key[0]}!{key[1]}')
 
 
@@ -738,13 +771,25 @@ def add_chart(ws, chart, L=None, sheet=None, book=None):
 
 
 def same_formula(a, b):
-    """Excel drops quotes around sheet names that do not need them."""
-    norm = lambda s: re.sub(r"'([A-Za-z_][A-Za-z0-9_]*)'!", r'!', str(s).replace(' ', ''))  # noqa: E731
-    return norm(a) == norm(b)
+    """Ignore harmless syntax normalization, preserving sheet identity and literal text."""
+    def norm(value):
+        parts=re.split(r'''("(?:[^"]|"")*"|'(?:[^']|'')*'!)''',str(value))
+        result=[]
+        for part in parts:
+            if part.startswith('"'):
+                result.append(part)  # spaces and case inside output text are meaningful
+            elif part.startswith("'") and part.endswith("'!"):
+                name=part[1:-2]
+                result.append((name+'!' if re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',name) else part).upper())
+            else:
+                result.append(re.sub(r'\s+','',part).upper())
+        return ''.join(result)
+    return norm(a)==norm(b)
 
 
 def shocked(spec, inputs, shock, mode):
     """A copy of the specification with each input cell moved by the shock: 'add' adds it, 'scale' multiplies by 1+shock."""
+    if mode not in ('add','scale'): raise ModelError('Sensitivity mode must be add or scale')
     s = copy.deepcopy(spec)
     for ref in inputs:
         sheet, address = target(ref, '')

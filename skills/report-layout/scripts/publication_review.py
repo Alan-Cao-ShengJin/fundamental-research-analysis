@@ -6,7 +6,7 @@ The host starts a fresh writer/reviewer context; this module does not call an LL
 from __future__ import annotations
 import argparse
 import copy
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import hashlib
 from html.parser import HTMLParser
 import json
@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import re
 import tarfile
 from uuid import uuid4
@@ -27,15 +28,25 @@ FAMILIES = ('cash-coverage', 'normalized-ratio', 'financing')
 DEFAULT_PATH = 'evidence/draft-review.json'
 
 
-def writing_packet(study, paths):
+def writing_packet(study, paths, research_mode='initiation', model_changed=False):
     """Freeze an upstream checkpoint for a host-launched fresh writer. This records work to do, not completed work."""
     if not paths:
         raise ValueError('Provide the model/decision/evidence checkpoint paths with --inputs')
+    from model_review import verify
+    if research_mode in ('initiation','earnings-update','catalyst-update') or model_changed:
+        verify(study)
+        from model_review import PATH as model_review_path
+        reviewed=json.loads(local(study,model_review_path).read_text(encoding='utf-8'))
+        paths=list(dict.fromkeys([*paths,*reviewed['inputs'],model_review_path]))
     packet = {'role': 'fresh-writer', 'status': 'prepared',
               'inputs': {rel: digest(local(study, rel)) for rel in paths},
               'read': ['research-brief/SKILL.md', 'research-brief/references/natural-writing.md', 'report-layout/SKILL.md'],
               'task': 'Start in a fresh context. Write from the frozen model and decision/evidence record, with access to '
                       'original pivotal sources. Apply the short writing standard; return discrepancies to analysis. '
+                      'Return stale causal explanations to analysis as well as stale figures. A fiscal-year yield is not '
+                      'cash arriving to a buyer over a dated window; retain the checked receipt basis and forecast qualifications. '
+                      'Follow the report length guide in research-brief/references/visual-reports.md; explain a material '
+                      'departure in the handoff, without padding the report. '
                       'Develop business drivers before detailed valuation, beyond the compact header. When describing '
                       'the overall payoff, reconcile price movement and eligible cash on the same dated horizon; '
                       'cash yield is separate from the price-target rating. Compare matched periods before attributing '
@@ -112,7 +123,7 @@ def inputs(record):
     for value in record.get('renders', {}).values():
         files.extend([value['html'], value['pdf']] if isinstance(value, dict) else [value])
     files.append(record.get('decisionRecord','evidence/decision.json'))
-    return list(dict.fromkeys(files + record.get('reviewInputs', [])))
+    return list(dict.fromkeys(files + record.get('reviewInputs', []) + record.get('deliverables', [])))
 
 
 def evaluation_context(study, record):
@@ -132,25 +143,40 @@ def evaluation_context(study, record):
     return context
 
 
+def cutoff_timestamp(cutoff,stamp,zone_name,evaluation=None):
+    """A date includes its available session day, capped at actual/declared fixture time."""
+    from zoneinfo import ZoneInfo
+    zone=ZoneInfo(zone_name)
+    horizon=datetime.fromisoformat((evaluation['now'] if evaluation else stamp).replace('Z','+00:00')).astimezone(zone)
+    start=datetime.fromisoformat(cutoff[:10]).replace(tzinfo=zone)
+    if start.date()>horizon.date(): raise ValueError('Cutoff exceeds the available date in the declared timezone')
+    return min(start+timedelta(days=1)-timedelta(microseconds=1),horizon).isoformat()
+
+
 def freeze_inputs(study, files, record, stamp, fingerprint, round_number, evaluation):
     """Copy before handoff. The live builder may subsequently change; reviewed bytes must survive."""
     relative = f'evidence/review-snapshots/round-{round_number:02d}-{uuid4().hex[:12]}'
     root = local(study, relative)
     root.mkdir(parents=True, exist_ok=False)
     hashes = {}
+    def retain(source,destination):
+        value=digest(source); objects=Path(study)/'.review-objects'; objects.mkdir(exist_ok=True)
+        obj=objects/value
+        if obj.exists() and digest(obj)!=value: raise ValueError('Retained snapshot object changed')
+        if not obj.exists(): shutil.copyfile(source,obj)
+        try: os.link(obj,destination)
+        except OSError: shutil.copyfile(obj,destination)
     for rel in files:
         source, destination = local(study, rel), local(root / 'files', rel)
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, destination)
+        retain(source,destination)
         hashes[rel] = digest(destination)
         if digest(source) != hashes[rel]:
             raise ValueError('Input changed during snapshot: ' + rel)
     # Retain the actual rule bytes as well as their aggregate fingerprint; no extraction is needed to verify it.
-    with tarfile.open(root / 'rules.tar', 'w') as archive:
-        for source in sorted(SKILLS.rglob('*')):
-            if (source.is_file() and source.suffix in ('.md', '.json', '.py', '.mjs')
-                    and 'node_modules' not in source.parts and '__pycache__' not in source.parts):
-                archive.add(source, arcname=source.relative_to(SKILLS).as_posix(), recursive=False)
+    from research_rules import require_current
+    lock=require_current(study)
+    retain(local(study,lock['archive']),root/'rules.tar')
     manifest = {'createdAt': stamp, 'reviewedFiles': hashes, 'releaseRecord': record,
                 'skillsFingerprint': fingerprint, 'rulesSHA256': digest(root / 'rules.tar'), 'evaluation': evaluation}
     manifest_path = root / 'manifest.json'
@@ -175,13 +201,35 @@ def check_snapshot(study, packet):
         raise ValueError('Archived rule bytes changed')
 
 
+def preflight(study,record,revise=False,max_rounds=2):
+    """Read-only eligibility check; callers run it before rendering or invalidating anything."""
+    from review_attempts import state
+    from research_rules import require_current
+    require_current(study)
+    from zoneinfo import ZoneInfo
+    if not evaluation_context(study,record) and datetime.fromisoformat(record['cutoff'][:10]).date()>datetime.now(timezone.utc).astimezone(ZoneInfo(record.get('timezone',os.environ.get('RESEARCH_TIMEZONE','Asia/Singapore')))).date():
+        raise ValueError('Research cutoff is in the future in the declared timezone; no draft changed')
+    study=Path(study).resolve(); path=local(study,record.get('review',DEFAULT_PATH))
+    usage=state(study); budget=usage['maxRounds'] or max_rounds
+    if type(budget) is not int or budget<1: raise ValueError('Review budget must be a positive integer')
+    if usage['used']>=budget: raise ValueError('Review budget exhausted; no files changed')
+    if usage['draftVersion'] and (not path.exists() or path!=local(study,usage['reviewPath'])):
+        raise ValueError('Preserve the existing review path and history')
+    if path.exists() and not revise: raise FileExistsError('Review exists; use --revise for a permitted new draft')
+    if revise and not path.exists(): raise ValueError('Revision needs an existing review')
+    if record.get('researchMode') in ('initiation','earnings-update','catalyst-update') or record.get('modelChanged'):
+        from model_review import verify
+        verify(study,record)
+    return usage
+
+
 def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_rounds=2, revise=False):
     """After rendering, create a PARTIAL review. Never overwrite an existing review or manufacture a pass."""
     import release_check as rc
     study = Path(study).resolve()
     path = local(study, record.get('review', DEFAULT_PATH))
     from review_attempts import state
-    usage = state(study)
+    usage = preflight(study,record,revise,max_rounds)
     max_rounds = usage['maxRounds'] or max_rounds
     if type(max_rounds) is not int or max_rounds < 1:
         raise ValueError('Review budget must be a positive integer')
@@ -200,6 +248,10 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
         prior_review = {'path': archive.relative_to(study).as_posix(), 'sha256': digest(archive)}
         if previous.get('snapshot'):
             shutil.copyfile(path, local(study, previous['snapshot']['path']) / f'archived-review.{digest(path)[:12]}.json')
+        confirmation=local(study,'evidence/draft-confirmation.json')
+        if confirmation.exists():
+            shutil.copyfile(confirmation,local(study,previous['snapshot']['path'])/('confirmation.'+digest(confirmation)[:12]+'.json'))
+            confirmation.unlink()
     if max_rounds < 1:
         raise ValueError('Review budget must be positive')
     files = inputs(record)
@@ -218,8 +270,9 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
     files = list(dict.fromkeys(files))
     stamp = datetime.now(timezone.utc).isoformat()
     evaluation = evaluation_context(study, record)
-    cutoff = record['cutoff'][:10] + 'T00:00:00+00:00'
-    if not evaluation and datetime.fromisoformat(cutoff) > datetime.fromisoformat(stamp):
+    from zoneinfo import ZoneInfo
+    zone=ZoneInfo(record.get('timezone',os.environ.get('RESEARCH_TIMEZONE','Asia/Singapore')))
+    if not evaluation and datetime.fromisoformat(record['cutoff'][:10]).date() > datetime.fromisoformat(stamp).astimezone(zone).date():
         raise ValueError('Research cutoff is in the future; use a host-declared synthetic fixture clock, not a false producedAt')
     fingerprint = rc.skills_fingerprint()
     hashes, snapshot = freeze_inputs(study, files, record, stamp, fingerprint, round_number, evaluation)
@@ -234,7 +287,7 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
                 'synthetic': evaluation is not None} for i, rel in enumerate(inputs(record))]
     h = {'id': 'publication-challenge', 'kind': 'challenge', 'version': 1, 'status': 'partial',
          'notApplicableReason': None, 'mandateId': None, 'mandateVersion': None,
-         'scopeIds': [record['security']], 'asOf': record['cutoff'][:10] + 'T00:00:00+00:00',
+         'scopeIds': [record['security']], 'asOf': cutoff_timestamp(record['cutoff'],stamp,record.get('timezone',os.environ.get('RESEARCH_TIMEZONE','Asia/Singapore')),evaluation),
          'producedAt': stamp, 'summary': 'Draft prepared; substantive review has not run.', 'sources': sources,
          'claims': [], 'dependencies': [], 'checks': [
              {'name': name, 'result': 'not-run', 'blocking': True, 'detail': 'Review the actual draft and underlying evidence.'}
@@ -267,8 +320,14 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
                       'In a full initiation, inspect whether drivers precede detailed valuation beyond the compact header. '
                         'Start a fresh reviewer '
                       'context. Read the exact draft PDFs, brief, calculated model and original '
-                      'pivotal evidence. Review the six writing dimensions and financial definitions. Record actual '
+                      'pivotal evidence. Classify findings by materiality: errors of financial meaning or readability '
+                      'block in any dimension; harmless cosmetic defects may be explicitly nonblocking with a reason. '
+                      'The four analytical dimensions must pass, and all eight dimensions must actually be reviewed. Read '
+                      'the six writing dimensions and financial definitions. Record actual '
                       'findings; do not defend the author or mark unperformed work complete. Read the brief against the report: '
+                      'test material metric conversions, original versus revised valuation derivations and dated cash '
+                      'entitlement, not merely arithmetic. A correct rate-times-investment calculation does not identify '
+                      'accounting profit. An unchanged call does not excuse a wrong financial definition or explanation. '
                       'a brief stated more firmly than the report supports is a finding. Comparative claims require '
                       'evidence for both sides on compatible definitions. Record ordinary forecast uncertainty as '
                       'assumption/inference claims with scenarios and revision triggers; criticalUnknowns is reserved '
@@ -314,6 +373,11 @@ def check(study, record, spec, workbook):
         if packet.get('schemaVersion') != '1.2':
             raise ValueError('Unsupported publication-review schema')
         h = packet['handoff']
+        if record.get('researchMode') in ('initiation','earnings-update','catalyst-update') or record.get('modelChanged'):
+            try:
+                from model_review import verify as verify_model
+                test('pre-writing-model-review',True,verify_model(study,record))
+            except (ValueError,KeyError,OSError) as exc: test('pre-writing-model-review',False,str(exc))
         test('research-mode-declared', packet.get('researchMode') in ('initiation', 'regular-review', 'earnings-update', 'catalyst-update')
              and packet['researchMode'] == record.get('researchMode'), 'Use the routed research mode; it is not a user prompt requirement')
         validate_handoff(h, packet.get('evaluation'))
@@ -343,20 +407,30 @@ def check(study, record, spec, workbook):
         test('draft-review-cutoff', h['asOf'][:10] == record['cutoff'][:10] and record['security'] in h['scopeIds'],
              'Review cutoff and security must match the publication')
         checks = {c['name']: c for c in h['checks']}
-        test('draft-review-required-checks', all(name in checks and checks[name]['result'] == 'pass' for name in CHECKS)
-             and not any(c['blocking'] and c['result'] != 'pass' for c in h['checks']),
-             'Six editorial dimensions, source/financial basis and visual inspection must be reviewed; scores do not gate release')
+        confirmed={}
+        confirmation_path=local(study,'evidence/draft-confirmation.json')
+        if confirmation_path.exists():
+            try:
+                from presentation_confirmation import verify as verify_confirmation
+                confirmation=verify_confirmation(study,record,packet); confirmed=confirmation['changedFiles']
+                for name in confirmation['resolvedChecks']: checks[name]=dict(checks[name],result='pass',blocking=False)
+                test('presentation-confirmation',True,'Original reader confirmed one content-equivalent presentation correction; substantive review is retained')
+            except (ValueError,KeyError,OSError) as exc: test('presentation-confirmation',False,str(exc))
+        analytical={'critical-thinking','argument-support','defensible-view','source-and-financial-basis'}
+        test('draft-review-required-checks', all(name in checks and checks[name]['result'] in ('pass','fail') for name in CHECKS)
+             and all(checks.get(name,{}).get('result')=='pass' for name in analytical)
+             and not any(c['blocking'] and c['result'] != 'pass' for c in checks.values()),
+             'All dimensions must be reviewed. Analytical checks pass; material defects of any type block. Minor cosmetic findings may remain explicitly nonblocking with their rationale')
         hashes = packet['reviewedFiles']
         missing = [p for p in inputs(record) if p not in hashes]
         test('draft-review-inputs-covered', not missing, 'Missing reviewed artifacts: ' + ', '.join(missing))
-        changed = [p for p, sha in hashes.items() if not local(study, p).is_file() or digest(local(study, p)) != sha]
+        changed = [p for p, sha in hashes.items() if not local(study, p).is_file() or digest(local(study, p)) != confirmed.get(p,sha)]
         test('draft-review-files-current', not changed, 'Changed/missing reviewed files: ' + ', '.join(changed[:10]))
         test('draft-review-skills-current', packet['skillsFingerprint'] == rc.skills_fingerprint(),
              'The review must use the current skill/rule snapshot')
         report_paths = record['renders']['report']
         report_html = local(study, report_paths['html'] if isinstance(report_paths, dict) else report_paths).read_text(encoding='utf-8')
-        title = re.search(r'<title>(.*?)</title>', report_html, re.I | re.S)
-        if title and 'initiat' in title[1].lower():
+        if record.get('researchMode')=='initiation':
             test('initiation-financial-summary', 'data-financial-summary="true"' in report_html,
                  'An initiation needs model-linked summary statements; sector-appropriate rows and available history')
         assertions = packet.get('financialAssertions', [])
@@ -381,17 +455,23 @@ def check(study, record, spec, workbook):
                  'Bind material comparable/incremental assertions or reasoned non-applicability; the reader checks omissions')
         test('brief-fidelity-coverage', comparison_checks.brief_fidelity(packet),
              'Review decisive brief claims against the report, including denominator, timing, ownership and conditional conclusions')
+        verified_displays=set()
+        display_kinds={'rendered-measure','calculation','cash-receipts'}
         for assertion in packet.get('claimAssertions', []):
             try:
-                test('claim-assertion:' + assertion['id'], True, claim_checks.evaluate(study, assertion, spec, packet))
+                detail=claim_checks.evaluate(study, assertion, spec, packet)
+                test('claim-assertion:' + assertion['id'], True, detail)
+                if assertion['kind'] in display_kinds:
+                    verified_displays.update((d['document'],d['id']) for d in assertion.get('displays',[]))
+                elif assertion.get('displays'):
+                    test('claim-display-kind:'+assertion['id'],False,'This assertion kind does not verify displayed values; attach a value-checking assertion')
             except Exception as exc:
                 test('claim-assertion:' + str(assertion.get('id')), False, str(exc))
         # A new formatted span cannot be only self-declared; it needs a source/model assertion.
-        declared_displays = {(d['document'],d['id']) for a in packet.get('claimAssertions',[]) for d in a.get('displays',[])}
         for paths in record['renders'].values():
             rel = paths['html'] if isinstance(paths,dict) else paths
             parser = Figures(); parser.feed(local(study,rel).read_text(encoding='utf-8'))
-            uncovered = [f['data-model-claim'] for f in parser.figures if 'data-measure-format' in f and (rel,f['data-model-claim']) not in declared_displays]
+            uncovered = [f['data-model-claim'] for f in parser.figures if 'data-measure-format' in f and (rel,f['data-model-claim']) not in verified_displays]
             test('rendered-measures-covered:'+rel, not uncovered, 'Unbound formatted measures: '+', '.join(uncovered))
         for assertion in assertions:
             try:
@@ -615,17 +695,26 @@ def financial_assertion(study, a, spec, workbook, record=None):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action', choices=('writing', 'prepare', 'begin', 'check', 'finalize'))
+    p.add_argument('action', choices=('writing', 'prepare', 'begin', 'check', 'finalize','confirm'))
     p.add_argument('study', type=Path)
     p.add_argument('--reviewer', default='unassigned')
     p.add_argument('--review-mode', choices=('independent-agent', 'human'), default='independent-agent')
     p.add_argument('--revise', action='store_true')
     p.add_argument('--max-rounds', type=int, default=2)
     p.add_argument('--inputs', nargs='+')
+    p.add_argument('--research-mode',choices=('initiation','regular-review','earnings-update','catalyst-update'),default='initiation')
+    p.add_argument('--model-changed',action='store_true')
     args = p.parse_args()
+    from research_rules import dispatch
+    delegated_args=list(sys.argv[1:]); delegated_args[1]=str(args.study.resolve())
+    delegated=dispatch(args.study,'publication_review.py',delegated_args)
+    if delegated is not None: return delegated
     if args.action == 'writing':
-        print(writing_packet(args.study, args.inputs)); return 0
+        print(writing_packet(args.study, args.inputs,args.research_mode,args.model_changed)); return 0
     record = json.loads((args.study / 'deliverables/release.json').read_text(encoding='utf-8'))
+    if args.action=='confirm':
+        from presentation_confirmation import prepare as prepare_confirmation
+        print(prepare_confirmation(args.study,record)); return 0
     if args.action == 'begin':
         from review_attempts import begin
         print(begin(args.study, record, reviewer=args.reviewer, mode=args.review_mode)); return 0
@@ -633,6 +722,7 @@ def main():
         import report_layout as rl
         record.setdefault('decisionRecord','evidence/decision.json')
         record_path = args.study / 'deliverables/release.json'
+        preflight(args.study,record,revise=args.revise,max_rounds=args.max_rounds)
         def save():
             tmp = record_path.with_suffix('.json.tmp')
             tmp.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8'); tmp.replace(record_path)
@@ -649,18 +739,8 @@ def main():
                 usage = state(args.study)
                 if not args.revise or usage['used'] >= usage['maxRounds']:
                     raise ValueError('Existing review needs --revise and remaining correction budget')
-            for paths in record['renders'].values():
-                if isinstance(paths, dict):
-                    expected = local(args.study, paths['pdf'])
-                    actual = rl.print_pdf(local(args.study, paths['html']), expected)
-                    if actual is not None and Path(actual).resolve() != expected:
-                        raise ValueError('Requested PDF is locked; close it and reprint before preparing review: ' + str(expected))
-            import release_check as rc
-            # The saved record holds the previous draft's bindings and results; recheck them against the revised files.
-            record['checks'], fails = rc.run(args.study, record, legacy=True)
-            if fails:
-                raise ValueError('Revised draft fails integrity checks with the saved bindings; rerun the package adapter '
-                                 'with revise=True if bindings changed:\n  ' + '\n  '.join(fails))
+            from draft_transaction import render
+            record['checks']=render(args.study,record)
             save()
             print(prepare(args.study, record, reviewer=args.reviewer, revise=args.revise, max_rounds=args.max_rounds))
         except Exception as exc:

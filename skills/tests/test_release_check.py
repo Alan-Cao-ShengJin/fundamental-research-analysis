@@ -34,7 +34,8 @@ def spec():
             'B17': {'value': 'NTM EPS'}, 'D17': {'value': '=D16*2/12+D4*10/12'},
             'B18': {'value': 'NTM target'}, 'D18': {'value': '=D5*D17/D3'},
             'B19': {'value': 'FY2028E'}, 'D19': {'value': 6.0, 'kind': 'input'},
-            'B20': {'value': 'Typed EPS, same value as the statement'}, 'D20': {'value': 5.55, 'kind': 'input'}}}},
+            'B20': {'value': 'Typed EPS, same value as the statement'}, 'D20': {'value': 5.55, 'kind': 'input'},
+            'D21':{'value':62.9},'D22':{'value':118.4},'D23':{'value':8267.1},'D24':{'value':100}}}},
         'outputs': {'target': 'Valuation!D6'}}
 
 
@@ -57,21 +58,24 @@ def record(**over):
          'deliverables': ['deliverables/report.html'], 'renders': {'report': 'deliverables/report.html', 'brief': 'deliverables/brief.html'},
          'bindings': {'referencePrice': 'Valuation!D2', 'fx': 'Valuation!D3', 'forwardEps': 'Valuation!D4', 'targetMultiple': 'Valuation!D5',
                       'target': 'Valuation!D6', 'dividendYield': 'Valuation!D7', 'rating': 'Valuation!D8',
+                      'bearTarget':'Valuation!D21','bullTarget':'Valuation!D22',
                       'forwardEpsSource': 'Statements!I43', 'forwardEpsHeader': 'Statements!I5'}}
     r.update(over)
     return r
 
 
 def report_html(rating='Buy', price='HK$79.25', target='HK$97.3'):
-    return (f'<html><body><div class="rbox"><div class="rating" style="color:#2E7D4F">{rating}</div><table class="kv">'
+    return (f'<html><body><div data-financial-summary="true"></div><div class="rbox"><div class="rating" style="color:#2E7D4F">{rating}</div><table class="kv">'
             f'<tr><td>Price, 5 Nov 2026</td><td>{price}</td></tr><tr><td>12-month target</td><td><b>{target}</b></td></tr>'
             f'<tr><td>Price return</td><td><b>+22.8%</b></td></tr></table></div><p>We forecast 7% growth. Internal use only.</p></body></html>')
 
 
 def brief_html(rating='Buy', price='HK$79.25', target='HK$97.3'):
-    return (f'<html><body><span class="rating">{rating} | Price return +22.8%</span><div class="decision-strip">'
-            f'<div class="metric"><small>Reference price</small><strong class="">{price}</strong></div>'
-            f'<div class="metric"><small>Price target</small><strong class="">{target}</strong></div></div></body></html>')
+    import render_one_page
+    p,t=float(price.replace('HK$','')),float(target.replace('HK$',''))
+    call=rc.rating_for(rc.price_return(t,p))
+    payload=brief(rating=call,referencePrice=p,targetPrice=t)
+    return render_one_page.render(payload)[0].replace(call+' |',rating+' |')
 
 
 def passing_check(s, path):
@@ -134,6 +138,16 @@ class ReleaseCheckTests(unittest.TestCase):
         self.write('evidence/decision.json',json.dumps(decision_record.synchronize(self.dir,record(),spec(),{
             'triggerCoverage':{'status':'not-applicable','reason':'This isolated fixture publishes no numerical rating triggers.','testIds':[]},
             'triggerTests':[]})))
+        # Explicit synthetic reviewer double for the pre-writing checkpoint; never production approval.
+        import model_review
+        path=model_review.prepare(self.dir,'model/spec.json','deliverables/model.xlsx',[],record()['security'],record()['cutoff'])
+        model_review.begin(self.dir,'synthetic-model-reader')
+        packet=json.loads(path.read_text()); h=packet['handoff']; h['status']='complete'
+        h['summary']='Synthetic pre-writing review for an isolated regression.'
+        h['claims']=[{'id':'model-fixture','text':'Original synthetic assumptions are stipulated.','material':True,'basis':'assumption',
+                      'sourceIds':[],'calculation':None,'rationale':'Synthetic test double only.'}]
+        for c in h['checks']: c.update(result='pass',detail='Synthetic test fixture only.')
+        path.write_text(json.dumps(packet),encoding='utf-8')
 
     def write(self, rel, text):
         (self.dir / rel).write_text(text, encoding='utf-8')
@@ -216,9 +230,10 @@ class ReleaseCheckTests(unittest.TestCase):
         pb = dict(base, target='Valuation!D10', targetMultiple='Valuation!D11', bookValuePerShare='Valuation!D9')
         self.assertEqual(self.fails(record(method='P/B', bindings=pb)), [])
         self.assert_fails('target-is-multiple-times-book', record(method='P/B', bindings=dict(pb, targetMultiple='Valuation!D5')))
-        sotp = dict(base, target='Valuation!D12', sumOfPartsPerShare='Valuation!D12')
-        self.assertEqual(self.fails(record(method='SOTP', bindings=sotp)), [])
-        self.assert_fails('target-is-sum-of-parts', record(method='SOTP', bindings=dict(sotp, sumOfPartsPerShare='Valuation!D9')))
+        sotp = dict(base, target='Valuation!D12', shares='Valuation!D24')
+        parts=[{'id':'business','valueRef':'Valuation!D23','rationale':'Original synthetic aggregate owner value.'}]
+        self.assertEqual(self.fails(record(method='SOTP', bindings=sotp,valuationParts=parts)), [])
+        self.assert_fails('target-is-method-bridge', record(method='SOTP', bindings=sotp,valuationParts=[dict(parts[0],valueRef='Valuation!D12')]))
         dy = dict(base, target='Valuation!D15', dps='Valuation!D13', targetYield='Valuation!D14')
         self.assertEqual(self.fails(record(method='dividend-yield', bindings=dy)), [])
         self.assert_fails('target-is-dps-over-yield', record(method='dividend-yield', bindings=dict(dy, dps='Valuation!D9')))

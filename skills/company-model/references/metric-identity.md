@@ -1,0 +1,11 @@
+# A metric is not a profit forecast
+
+Read when a return, yield, ratio, project appraisal or unit statistic supplies a pivotal forecast. Identify its numerator, denominator, timing, cash/accounting basis, ownership and scope before converting it. Match those definitions to the output being forecast; source citations and correct multiplication do not establish that mapping.
+
+An equity IRR is the discount rate that makes a dated equity cash-flow stream's net present value zero. It is not annual accounting return on equity. Investment times IRR does not uniquely identify mature net profit. A payback period, capex budget or capacity figure likewise cannot identify net profit without the missing timing and economic inputs.
+
+The original [synthetic example](../assets/metric-identity.example.json) has two investments of 100 with a 10% two-year IRR. One returns 0 then 121; the other returns 55 then 60.5. With equal two-year depreciation and no other adjustments, their annual accounting profits are -50/71 and 5/10.5. Both have the same IRR, yet neither implies a recurring profit of 10. This is a counterexample to identification, not a prediction about a business.
+
+Forecast profit from the economic build: output/adoption and price or fee, operating costs, investment and depreciation, financing/tax and the attributable share, with material time lags. Financial institutions and asset businesses need their own balance-sheet and recognition mechanics. If the source only supplies an appraisal rate, retain it as a reasonableness check or an explicitly conditional approximation; obtain the missing operating/cash bridge before presenting a uniquely implied profit. Use plausible alternatives where the distinction matters. No default haircut or bullish/bearish direction follows from missing identification.
+
+In challenge, distinguish **our assumption differs** from **the evidence contradicts the other view**. An older schedule or an illustrative model can support execution risk without proving newer guidance was withdrawn. Cite an actual incompatible fact before labeling a material claim contradicted. Apply the same standard to favorable and unfavorable claims, and to numerical corrections suggested by the reviewer.

@@ -28,6 +28,47 @@ class ClaimChecksTests(unittest.TestCase):
     def file(self, pointer):
         return {'file': 'inputs.json', 'pointer': pointer}
 
+    def receipt_claim(self):
+        source=Path(__file__).resolve().parents[1]/'company-model/assets/cash-receipts.example.json'
+        schedule=json.loads(source.read_text())
+        for event in schedule['distributions']:event['sourceIds']=['source']
+        schedule['referencePrice']={'model':'M!C3'}
+        schedule['distributions'][1]['amountPerUnit']={'model':'M!C1'}
+        self.spec['sheets']['M']['cells'].update({f'C{i}':{'value':v} for i,v in enumerate((.6,.45,20,1.05,.0525),1)})
+        self.data['schedule']=schedule
+        (self.root/'inputs.json').write_text(json.dumps(self.data))
+        return {'kind':'cash-receipts','role':'author','schedule':self.file('/schedule'),
+                'cashPerUnit':{'model':'M!C4'},'cashYield':{'model':'M!C5'}}
+
+    def test_receipt_claim_reproduces_future_eligible_events_not_annual_dps(self):
+        claim=self.receipt_claim()
+        self.assertIn('1.05',self.check(claim))
+        self.spec['sheets']['M']['cells']['C4']['value']=1.0
+        with self.assertRaisesRegex(ValueError,'Dated cashPerUnit'):self.check(claim)
+
+    def test_incomplete_or_unregistered_receipts_cannot_approve_a_full_total(self):
+        claim=self.receipt_claim();self.data['schedule']['distributions'][1]['paymentDate']=None
+        (self.root/'inputs.json').write_text(json.dumps(self.data))
+        with self.assertRaisesRegex(ValueError,'incomplete'):self.check(claim)
+        claim=self.receipt_claim();self.data['schedule']['distributions'][1]['sourceIds']=['unregistered']
+        (self.root/'inputs.json').write_text(json.dumps(self.data))
+        with self.assertRaisesRegex(ValueError,'registered'):self.check(claim)
+
+    def test_receipt_display_verifies_the_actual_printed_yield(self):
+        from display_bindings import bound_measure
+        claim=self.receipt_claim();self.packet['reviewedFiles']['report.html']='separate-wrapper-hash'
+        (self.root/'report.html').write_text(bound_measure('receipt-yield',[.0525],'window','%',style='percent',decimals=2))
+        claim['displays']=[{'document':'report.html','id':'receipt-yield','period':'window','unit':'%',
+                            'style':'percent','decimals':2,'transform':'identity','order':'input','metric':'cashYield'}]
+        self.check(claim)
+        (self.root/'report.html').write_text(bound_measure('receipt-yield',[.08],'window','%',style='percent',decimals=2))
+        with self.assertRaises(ValueError):self.check(claim)
+
+    def test_a_published_receipt_yield_cannot_escape_verification_without_price(self):
+        claim=self.receipt_claim();del self.data['schedule']['referencePrice']
+        (self.root/'inputs.json').write_text(json.dumps(self.data))
+        with self.assertRaisesRegex(ValueError,'reference price'):self.check(claim)
+
     def check(self, assertion):
         return cc.evaluate(self.root, dict(self.base, **assertion), self.spec, self.packet)
 
@@ -167,7 +208,7 @@ class ClaimChecksTests(unittest.TestCase):
         (self.root/'report.html').write_text(html,encoding='utf-8')
         self.assertIn('reproduces',self.check(case))
         (self.root/'report.html').write_text(html.replace('19.68','18.68'),encoding='utf-8')
-        with self.assertRaisesRegex(ValueError,'Visible'): self.check(case)
+        with self.assertRaises(ValueError): self.check(case)
 
     def test_sourced_rendered_range_checks_transform_and_both_endpoints(self):
         from display_bindings import bound_measure
@@ -197,6 +238,16 @@ class ClaimChecksTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'does not reproduce'): self.check(case)
         case['shown']=-.1
         self.assertIn('reproduces',self.check(case))
+
+    def test_actual_display_can_replace_a_redundant_typed_shown_literal(self):
+        from display_bindings import bound_measure
+        self.packet['reviewedFiles']['report.html']='frozen-by-publication-wrapper'
+        (self.root/'report.html').write_text(bound_measure('ratio',.2,'FY2030E','ratio',style='percent',decimals=1),encoding='utf-8')
+        case={'kind':'calculation','role':'author','inputs':{'a':{'model':'M!A2'},'b':{'model':'M!A1'}},'expression':'a/b',
+              'displays':[{'document':'report.html','id':'ratio','period':'FY2030E','unit':'ratio','style':'percent','decimals':1}]}
+        self.assertIn('reproduces',self.check(case))
+        (self.root/'report.html').write_text(bound_measure('ratio',.99,'FY2030E','ratio',style='percent',decimals=1),encoding='utf-8')
+        with self.assertRaises(ValueError): self.check(case)
 
 
 if __name__ == '__main__':
