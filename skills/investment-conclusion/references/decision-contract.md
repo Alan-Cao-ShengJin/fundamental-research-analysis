@@ -24,7 +24,7 @@ Explain how the price reaches the target:
 
 - earnings growth above market expectations, which can give the stock a temporary re-rating against peers or its past valuation;
 - consistent earnings growth while the valuation multiple holds;
-- for a dividend payer, its yield re-rating against the bond market as the price rises, through a higher payout or higher earnings.
+- for a dividend payer, its yield re-rating against comparable yield investments as the price rises, through a higher payout or higher earnings.
 
 A known event date is not itself an edge. Its outcome, magnitude and probability may still be disputed; compare our expectation with what is supported by estimates, pricing and attributed views rather than assuming either full pricing or no pricing.
 
