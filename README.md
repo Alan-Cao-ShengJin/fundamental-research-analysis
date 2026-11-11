@@ -1,115 +1,79 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.12.1** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+Instructions and tools that let an AI coding agent do equity research the way a careful analyst would: read the filings, build a financial model, value the stock, have the work challenged, and write it up.
 
-Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
+You ask for "an initiation on X". You get three things back:
 
-## Latest update: clean review of the sequence and harness
+- an **Excel model** you can open and audit, with every forecast built from business drivers;
+- a **full report** (A4 PDF) that explains the business, the forecasts, the valuation and the risks;
+- a **one-page brief** with the call: Buy, Hold or Sell, and a 12-month target price.
 
-Version 2.12.1 is a correction release. Five independent read-throughs covered the research sequence, modelling, valuation and decision rules, writing and publication instructions, and the harness code; the confirmed errors were fixed by deletion or one-sentence replacement.
+Version **2.13.0** contains **20 skills**, **11 research flows** and **21 sector guides**, with helper scripts, a sample model and tests.
 
-Instructions that contradicted the house rules were removed: a return to a stock's own valuation mean needs no catalyst while a multiple above it does; a discounted-cash-flow cross-check is not discussed in the write-up; a steady dividend payer's required yield comes from comparable income investments, with bond spreads as context only. Passages that made reports narrate their method or hedge by default were cut, and the argument description now asks for the point in plain words with the two or three figures that carry it.
+## How to use it
 
-Harness corrections: accompanying files now print as file names rather than links, because relative links became absolute local paths inside printed PDFs; the model builder no longer reports blank text cells as drift and names the cell in its errors; unreadable dates, duplicate check names, byte-order marks, Office lock files and over-long Windows snapshot paths are handled with a clear message instead of a crash or a false pass; the price tolerance scales with the share price; and the rating is tested on the target its bound cells reproduce.
+1. Clone the repository and install it (see [Setup](#setup)).
+2. Open the folder in an agent that reads project instructions, such as Claude Code or Codex. [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md) tell the agent where to start.
+3. Ask for the research in ordinary words:
 
-The research sequence, rating thresholds, review budgets, publication wrapper 1.2 and decision schema 1.1 are unchanged. The bundle contains 20 research skills, 11 flows and 21 sector guides. See [verification and limits](AUDIT.md) and [migration](MIGRATION.md).
-
-## Choose the research mode
-
-| Request | Work |
+| You ask | The agent does |
 | --- | --- |
-| New initiation | Establish the business and historical baseline; review governance, reporting quality and industry economics; build and audit operating and integrated financial forecasts; value, challenge and reach an initial investment view. |
-| Existing coverage: regular review | Read the prior research, model and conviction record; check intervening evidence; preserve operating forecasts unless concrete evidence warrants revision; refresh price, justified valuation inputs and the decision. |
-| Existing coverage: major earnings/catalyst update | Freeze the prior forecast; reconcile new disclosures; compare matched actuals with prior assumptions before replacing estimates; recalibrate affected forecasts, audit and refresh dependent conclusions. |
+| "Initiation on X" | Starts a new study from the company's own filings and builds the model, report and brief from scratch. |
+| "Update view on X" (routine) | Reads the earlier study, checks what has happened since, refreshes the price and the valuation, and changes forecasts only where new evidence calls for it. |
+| "Update X after results" | Compares the results with what the model expected, revises the affected forecasts, and refreshes the valuation and the call. |
 
-Establish the research date from the session/environment and verify market-sensitive facts against the chosen information cutoff. Derive fiscal-year labels, reporting periods, currency and market context from that date and the issuer, rather than copying an example or relying on remembered current conditions. Synthetic asset dates remain examples.
+The skills are instructions the agent follows. They do not run on their own, connect to data services for you, or monitor anything.
 
-A price move alone changes prospective return, not earnings or fair value. Recurrence sets the review cadence; the evidence determines the analytical mode. See [request routing](skills/research-cycle/references/request-routing.md).
+## What the agent does, in order
 
-## Research dependencies
+1. **Gathers evidence.** Company filings and announcements first, then prices, consensus estimates and industry data from the sources you have connected.
+2. **Works out what the share price is paying for**: which year's earnings, at what valuation, and where investors disagree.
+3. **Checks the company**: who controls it, how reliable its accounts are, how its industry works.
+4. **Builds the model.** Revenue and costs come from business drivers (volumes, prices, margins), flow through the three financial statements, and feed a valuation with bear, base and bull cases.
+5. **Has the model challenged** by a second agent that starts fresh, with no memory of how it was built.
+6. **Writes the report and brief** in a fresh session, working only from the finished analysis.
+7. **Has the printed report reviewed** by another fresh reader, who checks the numbers against the model and the sources.
+8. **Runs a release check** and packages the three files.
 
-Scope and evidence → historical statements → early governance and financial-red-flag review → industry analysis → operating drivers and component revenue/cost forecasts → integrated statements → model audit → valuation and expectations → thesis validation and challenge → conviction → investment conclusion → fresh writing and draft rendering → fresh review → checked publication and follow-up.
+The full sequence is in [company-sequence.md](skills/research-cycle/references/company-sequence.md); the entry point is [research-cycle](skills/research-cycle/SKILL.md).
 
-Frame the two or three contested investor questions early, state the strongest case on each side, and use the evidence that would settle them to construct meaningful bear and bull outcomes. The sequence expresses dependencies, not fixed analytical weights. Use [investor judgment](skills/research-cycle/references/investor-judgment.md) and the [underwriting standard](skills/research-cycle/references/underwriting-standard.md) to concentrate on what can change the decision. Reuse valid dated work; new evidence reopens affected stages. Financial quality has three distinct passes: early screening, pre-valuation model audit and post-valuation thesis validation.
+## The house rules, in brief
 
-## Current conditions and market expectations
+These are defaults. Tell the agent if your mandate differs.
 
-Use the [world-state procedure](skills/research-cycle/references/world-state.md) to map company exposures, investigate developments since the last filing/call, retain their status and economic effects, and refresh decision-relevant evidence at release. Reuse the same exposure map in industry analysis and carry unresolved resolution dates into follow-up.
+- **Rating.** Buy if the target is more than 10% above the price, Sell if more than 10% below, Hold in between. The rating looks at price return only.
+- **Target price.** A reasonable valuation multiple times today's forward earnings. The stock's own historical average multiple is the default; going above it needs a clear reason.
+- **Dividend payers.** A steady, high-payout company is valued on the dividend yield that comparable income stocks offer, not on a P/E.
+- **Dividends and total return.** Dividend yield is shown separately. Price return plus yield is shown as total return only where the dividend is a real part of what the holder earns.
+- **Forecasts.** Built independently of consensus. The agent then compares with consensus and explains every material difference; a large gap it cannot explain is treated as a warning.
+- **Base case.** The numbers the analysis believes in most, not a deliberately cautious set. Caution belongs in the bear case.
+- **Cost of equity.** When one is needed, it is the 10-year government yield plus the premium the market's own index implies on the research date, recomputed for every study.
+- **Writing.** Sharp, concise and plain. Every fact has a source; anything not known is said to be not known.
 
-Use [what the market is trading](skills/research-cycle/references/what-the-market-trades.md) to identify the variable, period or undeveloped asset that appears to drive the price. Compare dated estimates/revisions, price reactions, guidance, investor questions and implied scenarios. Retain the conclusion as an inference with its evidence and alternatives. A later forecast year can inform the selected multiple without silently rolling the target's earnings denominator. Where a pipeline or new asset explains a large share of value, analyse its competitive position and outcomes explicitly while retaining the established business model.
+The rules live in the [decision contract](skills/investment-conclusion/references/decision-contract.md), [dividend valuation](skills/valuation-thesis/references/valuation-driver-and-dividends.md), [discount-rate selection](skills/valuation-thesis/references/discount-rate-selection.md) and the [writing standard](skills/research-brief/references/natural-writing.md).
 
-The new references specify research work, not an automatic market-expectations detector or guaranteed provider coverage. The catalog and coverage checker do not execute the reads or validate their conclusions. The [evaluation cases](skills/evals/research-cases.md#what-the-market-is-trading) are authored prompts, not completed independent behavioral tests.
+## What is checked, and what is not
 
-## Modeling and valuation
+The scripts check things that can be checked mechanically: the workbook recalculates to the model, the rating follows from the target, the brief's figures match the model, dates are consistent, the brief fits one page, and a review was actually completed before anything is packaged ([publication workflow](skills/report-layout/references/publication-review.md)).
 
-- Build forecasts from the smallest useful, supportable economic components. Use the [sector guides](skills/company-model/references/sectors/index.md) for the relevant mechanisms rather than imposing every sector KPI.
-- Deliver a formula-driven, [human-auditable Excel model](skills/company-model/references/workbook-profile.md) alongside the executable model interface when forecasts are built or numerically revised. Keep related calculations together, assumptions and explanations nearby, and both interfaces mechanically synchronized.
-- Use the updated workbook theme: gridlines off; historical hardcodes blue; forecast assumptions blue on light yellow; ordinary formulas black and cross-sheet links green; memo ratios grey italic and key outputs bold black. A Cover and Summary lead the workbook, with source tags and pivotal rationale beside inputs, and longer source detail in row-label comments. Checks, navigation, grouping and print settings support human review.
-- Match earnings periods, accounting basis, currency, share basis and estimate vintages. Explain the earnings and multiple contributions to the target. Distinguish our forecast P/E from a consensus-based comparison; a multiple implied by our own valuation is not independent confirmation.
-- Anchor the target to an appropriate method, relevant history or peers and a defensible path to realization. Current-forward earnings and the target horizon are separate; do not silently roll the earnings denominator to the target date. See the [valuation calendar](skills/valuation-thesis/references/valuation-calendar.md).
+They cannot check judgment. A passing run does not prove that the sources are right, that the forecasts are sensible or that the call will make money. Treat the output as a well-organised analyst draft and read it critically.
 
-The [full-report layout skill](skills/report-layout/SKILL.md) supplies a reusable A4 renderer, embedded licensed fonts, numbered exhibits and source references, and chart helpers. It is separate from the one-page brief template. Full-report sections now declare the investor questions they cover through `section(..., covers=(...))`; each remaining question needs an explicit `omit(question, reason)`. One section can cover several questions. This checks declared coverage, not whether the analysis is correct. Full initiations package the report, brief and model together.
+## What's inside
 
-The historical forward P/E band remains the primary comparison for a forward-EPS target. A separate trailing band uses earnings already reported at each price date, updating at announcement dates. Compare each band with today's matching P/E; subsequently realised forward earnings belong to forecast-bias analysis, not historical market expectations. Never merge trailing and forward series into one band.
-
-The [company-model standard](skills/company-model/references/model-standard.md) and generic workbook builders support construction and verification. Supplied examples are synthetic, not issuer forecasts or recommended assumptions.
-
-## Release checks
-
-[Report layout](skills/report-layout/SKILL.md) separates draft rendering from publication. `package()` first prints the report and brief, checks integrity and prepares a partial review; it leaves `awaiting-review` and no ZIP. A host-launched fresh reader reviews the exact PDFs against the model and original evidence, records actual findings and completes the existing challenge handoff. Correction rounds are bounded. Finalization requires current file/skill fingerprints, completed review checks and applicable model-linked cash-coverage, normalized-ratio and financing assertions; it packages the exact reviewed PDFs without reprinting.
-
-Follow the [publication workflow](skills/report-layout/references/publication-review.md), including model-linked summary financial statements for full initiations. Recheck an existing release with:
-
-```text
-python -B -X utf8 skills/report-layout/scripts/release_check.py <study-folder>
-```
-
-These checks apply to the supported package path. Older builders need migration. Historical integrity-only inspection explicitly uses `--legacy` and reports `legacy-verified`; that does not establish a current reviewed release. The scripts do not launch fresh contexts or authenticate reviewer independence. Source truth, financial definitions, unbound prose and reasoning still need substantive review. [Synthetic evaluation packs](skills/evals/fixtures/README.md) support calibration; passing unit tests or recording a review does not establish consistently good research.
-
-## Judgment, conviction and communication
-
-[Industry analysis](skills/industry-analysis/SKILL.md) connects growth, competitive position, barriers, upstream costs and downstream behavior to forecast assumptions, valuation and tracking indicators. [Investment conviction](skills/investment-conviction/SKILL.md) preserves the decisive economic or avoidance proposition and the evidence that would change it. Conviction can survive price volatility; it does not excuse errors or a broken thesis.
-
-Before concluding, check both a thesis driver's contribution versus comparable consensus and the target's dependence on that driver. Test numerical thesis breakers against the matching base-case metric and period; resolve conflicts rather than moving thresholds to defend the call. Report builders should obtain figures from calculated model outputs and saved source data, and rebuild the report and brief after model changes. These are analyst/builder requirements, not a claim that a new automated report-claim validator is supplied.
-
-Map actual geographic, channel and customer exposure before researching trade or demand risks. Interpret share changes alongside absolute growth and comparable segments. Test forecasts against the exact incentive-plan terms without forcing earnings to meet a hurdle. Triangulate valuation with relevant own history, close same-market peers and sector investment conditions; a short or single-regime history cannot set the multiple alone. Dividend yield uses the same forward fiscal year as the selected target EPS, with the current-year yield alongside it where useful.
-
-The [decision contract](skills/investment-conclusion/references/decision-contract.md) keeps rating, attractiveness, eligibility and portfolio action distinct. Its thresholds are house mandate defaults, not universal investment standards; an explicit user mandate takes precedence.
-
-Investor output follows the [one-page brief standard](skills/research-brief/references/one-page-brief.md), supported by a fuller stock pitch when requested. Develop the business drivers before valuation. Each substantive argument connects the point/data, derivation, significance and implication for the stock; include only decision-useful content. Use the shared templates and visual checks without changing the investment case merely to fit the layout.
-
-For method changes, use [skill calibration](skills/research-cycle/references/skill-calibration.md): improve the owning instructions and reusable resources, then test transfer to an independent synthetic case. A polished issuer report alone does not validate the method.
-
-## Coverage and scope
-
-For a completed initiation or existing-coverage decision, use the [coverage plan](skills/research-cycle/references/research-coverage.md). It accounts for each bundled skill as performed, validly reused or not applicable. A generated plan starts incomplete; listing a skill does not perform its work.
-
-```text
-python skills/research-cycle/scripts/research_plan.py --mode initiation --out output/research-plan.json
-python skills/research-cycle/scripts/research_plan.py --mode regular --out output/review-plan.json
-python skills/research-cycle/scripts/research_plan.py --validate output/review-plan.json
-```
-
-Fill the plan with actual artifact references before validation. Validation checks declared coverage and dependencies; it does not establish the truth of the underlying work.
-
-This repository publishes the company-research subset. Portfolio allocation, risk budgeting, cross-asset strategy, trading and active monitoring infrastructure remain outside its [scope](skills/research-cycle/references/scope-boundary.md). Issuer research, private models, entitled source materials, credentials and live provider responses are excluded. Included workbook examples are independently authored synthetic fixtures.
-
-## Included skills
-
-| Role | Skills |
+| Purpose | Skills |
 | --- | --- |
-| Routing and entry | [Research cycle](skills/research-cycle/SKILL.md), [stock initiation](skills/stock-initiation/SKILL.md), [model revision](skills/model-revision/SKILL.md) |
-| Evidence and economics | [Evidence intake](skills/evidence-intake/SKILL.md), [industry analysis](skills/industry-analysis/SKILL.md), [company model](skills/company-model/SKILL.md), [issuer questions](skills/issuer-questions/SKILL.md) |
-| Risk and judgment | [Corporate governance](skills/corporate-governance/SKILL.md), [financial quality](skills/financial-quality/SKILL.md), [research challenge](skills/research-challenge/SKILL.md), [investment conviction](skills/investment-conviction/SKILL.md) |
-| Valuation and decision | [Valuation thesis](skills/valuation-thesis/SKILL.md), [investment conclusion](skills/investment-conclusion/SKILL.md) |
-| Context and maintenance | [Theme screening](skills/theme-screening/SKILL.md), [macro event analysis](skills/macro-event-analysis/SKILL.md), [company change tracking](skills/company-change-tracking/SKILL.md), [monitor and review](skills/monitor-review/SKILL.md) |
-| Communication | [Research brief](skills/research-brief/SKILL.md), [chart visualization](skills/chart-visualization/SKILL.md), [full-report layout](skills/report-layout/SKILL.md) |
+| Entry and routing | [Research cycle](skills/research-cycle/SKILL.md), [stock initiation](skills/stock-initiation/SKILL.md), [model revision](skills/model-revision/SKILL.md) |
+| Evidence and the business | [Evidence intake](skills/evidence-intake/SKILL.md), [industry analysis](skills/industry-analysis/SKILL.md), [company model](skills/company-model/SKILL.md), [issuer questions](skills/issuer-questions/SKILL.md) |
+| Risk and challenge | [Corporate governance](skills/corporate-governance/SKILL.md), [financial quality](skills/financial-quality/SKILL.md), [research challenge](skills/research-challenge/SKILL.md), [investment conviction](skills/investment-conviction/SKILL.md) |
+| Valuation and the call | [Valuation thesis](skills/valuation-thesis/SKILL.md), [investment conclusion](skills/investment-conclusion/SKILL.md) |
+| Context and follow-up | [Theme screening](skills/theme-screening/SKILL.md), [macro event analysis](skills/macro-event-analysis/SKILL.md), [company change tracking](skills/company-change-tracking/SKILL.md), [monitor and review](skills/monitor-review/SKILL.md) |
+| Writing and layout | [Research brief](skills/research-brief/SKILL.md), [chart visualization](skills/chart-visualization/SKILL.md), [full-report layout](skills/report-layout/SKILL.md) |
 
-`issuer-questions` replaces the earlier `management-questions` invocation. See [migration notes](MIGRATION.md) for compatibility details.
+There are also [sector guides](skills/company-model/references/sectors/index.md) for 21 industries, a [model standard](skills/company-model/references/model-standard.md) with a sample workbook, and a [skill index](skills/README.md). Keep the whole `skills/` folder together: the files refer to each other.
 
-## Setup and checks
+## Setup
 
-Use Node.js 24.13+ and Python 3.11+. Provider credentials belong in `.env.research-data`, which is ignored by Git; [.env.example](.env.example) contains names only. The [provider guide](skills/evidence-intake/references/research-data-providers.md) documents optional adapters and access limits. Installing this bundle supplies no subscriptions or entitlements.
+You need Node.js 24.13 or later and Python 3.11 or later.
 
 ```text
 npm ci
@@ -119,8 +83,24 @@ npm test
 python -B -m unittest discover -s skills/tests -p "test_*.py"
 ```
 
-On Windows PowerShell, use `npm.cmd` if execution policy blocks the `npm.ps1` wrapper. Full-report PDF printing needs Chrome (`CHROME_PATH` can select it). Page inspection and page images additionally use `python -m pip install -r skills/report-layout/requirements.txt`. Native Excel recalculation needs Microsoft Excel. These optional host capabilities are separate from the portable test suite.
+- **Printing reports** needs Chrome (set `CHROME_PATH` if it is not found) and `python -m pip install -r skills/report-layout/requirements.txt`.
+- **Recalculating the Excel model** needs Microsoft Excel.
+- **Data services** are optional and you bring your own access. Put credentials in `.env.research-data`, which Git ignores; [.env.example](.env.example) lists the names. See the [provider guide](skills/evidence-intake/references/research-data-providers.md).
+- On Windows PowerShell, use `npm.cmd` if the execution policy blocks `npm`.
 
-Checks establish structural and deterministic behavior, not source truth, research judgment or investment performance. Preserve [third-party notices](THIRD_PARTY_NOTICES.md). Research output does not authorize outreach, trading or active monitoring.
+## Latest update: version 2.13.0
 
-The [release verification record](AUDIT.md) and [file manifest](bundle-manifest.json) describe this export. Authored evaluation scenarios are separate from executed tests.
+- **Cost of equity** now comes from the market itself: the premium implied by the index price, with a small solver ([implied_premium.py](skills/valuation-thesis/scripts/implied_premium.py)).
+- **Consensus**: forecasts are built independently, then every material gap is explained.
+- **Removed**: the separate "new money" judgment, attractiveness tiers and entry prices. The rating is the whole judgment on return.
+- **Total return** may be shown, labelled, where the dividend matters.
+- **Smaller bundle**: an unused model scaffold and its tools (about 4,500 lines) and several thousand words of repeated instructions are gone.
+- **This README** was rewritten in plain language.
+
+Earlier changes, verification results and limits are in [AUDIT.md](AUDIT.md); upgrade notes are in [MIGRATION.md](MIGRATION.md).
+
+## Scope and limits
+
+This repository covers research on a single company. Portfolio construction, risk budgeting, cross-asset strategy, trading and live monitoring are [out of scope](skills/research-cycle/references/scope-boundary.md). It contains no research on real companies, no private models, no licensed data and no credentials; the sample workbook is invented.
+
+Nothing here is investment advice, and research output does not authorise trading or outreach. Third-party material is credited in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The files in this release are listed in [bundle-manifest.json](bundle-manifest.json).

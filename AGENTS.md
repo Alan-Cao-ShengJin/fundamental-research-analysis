@@ -4,7 +4,7 @@ Start at `skills/research-cycle/SKILL.md`. Select initiation, regular review or 
 
 Preserve model-before-valuation ordering, early governance/reporting review, distinct financial-quality passes, industry analysis before operating forecasts and indicator refreshes during reviews, sector-specific operating mechanisms, original forecasts and conviction conditions. Regular reviews retain operating forecasts unless concrete evidence warrants changes. Major updates compare matched prior assumptions with new evidence before replacing estimates and recalibrating. Numerical forecast changes require affected risk/calculation/audit/downstream work and a human-auditable Excel model.
 
-Apply the included decision contract consistently unless the user specifies another mandate. Keep rating, attractiveness, eligibility and portfolio action distinct. An active governance exclusion is not cured by cheapness. English is the default; retain original evidence/locators and translate accurately. Preserve user-authored workbook edits.
+Apply the included decision contract consistently unless the user specifies another mandate. Keep rating, eligibility and portfolio action distinct. An active governance exclusion is not cured by cheapness. English is the default; retain original evidence/locators and translate accurately. Preserve user-authored workbook edits.
 
 Do not add issuer-specific assumptions, private models/reports, live provider responses, credentials or raw imported archives. Portfolio allocation, trading and non-company underwriting remain external. Research and proposed follow-up do not send messages, activate monitoring or authorize execution.
 

@@ -1,5 +1,16 @@
 # Version 2.0 name migration
 
+## Version 2.13 rule changes and smaller bundle
+
+New studies pin the 2.13 files normally. Existing frozen studies keep their archived rules, findings and review budgets.
+
+What a builder or a brief written for 2.12 must change:
+
+- **No new-money judgment.** The brief payload no longer takes `attractiveness`, `attractivenessReason` or `newMoney`, and the release check no longer has `tier-on-price-return-only`. Older payloads that still carry those keys render unchanged; the keys are ignored. Remove the tier, the new-money line and entry prices from report text.
+- **Cost of equity.** Where a study needs one, derive it under [discount-rate selection](skills/valuation-thesis/references/discount-rate-selection.md): the 10-year government yield plus the premium implied by the market's own index, solved with `skills/valuation-thesis/scripts/implied_premium.py`, plus or minus one point for company risk. A stock regression beta is no longer part of the build.
+- **Total return.** A total return figure (price return plus dividend yield) may be shown, labelled, where the dividend is a real part of the holder's return. It never enters the rating or the target.
+- **Removed tooling.** The single-sheet forecast scaffold (`forecast_blocks.py`, `forecast_workbook.py`, `init_forecast_plan.py`, `sector_plan.py`, their assets and tests), the node-graph helper (`skills/lib/company-model.mjs`, `run_agent_model.mjs`) and `check_one_page.mjs` are deleted. Every company model is built with `model_workbook.py` from one cell specification. `publication_review.py` no longer writes `prose-number-inventory.json`, and `catalog.json` no longer has `routingNotes`.
+
 ## Version 2.12.1 corrections
 
 New studies pin the 2.12.1 files normally. Existing frozen studies keep their archived rules, findings and review budgets; this release does not reopen them.

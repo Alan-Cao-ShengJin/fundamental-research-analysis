@@ -6,7 +6,7 @@ Apply this standard by economic activity. The detailed rows below describe the s
 
 Build it with [model_workbook.py](../scripts/model_workbook.py): one cell specification produces the Excel workbook and the agent model, [recalc_excel.ps1](../scripts/recalc_excel.ps1) recalculates it in Excel, and `check` confirms Excel and the specification agree. Lay it out for a reader, not the builder, under [Presentation](#presentation): a Cover and Summary up front, short source tags and pivotal assumption reasoning beside the calculation, with longer source detail in comments when useful.
 
-The original integrated example's price-return-plus-annual-yield row is a memo illustration, never the rating input or a forecast of distributions actually received in the target window. New work labels any such row explicitly as a secondary memo and uses eligible dated cash receipts for an investor-payoff forecast.
+A total return row (price return plus dividend yield) belongs in the target table only where the dividend is a real part of the holder's return, and is never the rating input; leave it out where the dividend is absent or negligible.
 
 ## Sample model
 
@@ -113,7 +113,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 - Key metric rows: our forward P/E, P/B, dividend yield and next-year ROIC.
 - Where the investors, the valuation convention or the comparison set work in calendar years, calendar-year rows built from the quarters by their end dates with time-weighted shares ([calendarize.py](../scripts/calendarize.py)); fiscal rows stay the reporting basis. For quarter-ends more than 20 days from a calendar quarter-end, assign each fiscal quarter to the calendar quarter holding two of its three months and label the row an approximation.
 - Consensus comparison rows next to our forecasts.
-- Decision rows: rating, target multiple, target and price return; show dividend yield separately. A combined-return illustration is a secondary memo, on matched price/cash horizons with receipt eligibility, and never the rating hurdle.
+- Decision rows: rating, target multiple, target and price return; show dividend yield separately. Add a total return row only where the dividend is a real part of the holder's return; it never sets the rating.
 - Dividend schedule where distributions matter.
 - Sensitivities for the assumptions that move EPS most, a two-way grid of the two largest, and the value of the main driver that today's price implies at the target multiple.
 - Excel and the agent model kept in sync and recalculated in Excel. Hard numbers appear only as inputs in their own labelled cells, never inside formulas, apart from 0, 1 and period counts. A base ratio adjusted by a case is two rows: the base input, then the formula that adds the case.
@@ -121,19 +121,15 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 
 ## Presentation
 
-The workbook is read by people who did not build it. [model_workbook.py](../scripts/model_workbook.py) applies most of this from the specification; see [workbook-profile.md](workbook-profile.md#house-theme-and-reporting-detail) for the details.
+The workbook is read by people who did not build it. The [house theme table](workbook-profile.md#house-theme-and-reporting-detail) sets colours, fonts, number formats, columns, grouping, charts and print layout; [model_workbook.py](../scripts/model_workbook.py) applies most of it from the specification. In addition:
 
-- Tabs in the order above, coloured by type (outputs navy, calculations grey, inputs and data light blue). The Cover links to every sheet and every other sheet links back to the Cover from row 1. Gridlines off; calculation sheets open at 85% zoom, output sheets at 100%.
 - Header on every sheet: row 1 company, ticker and sheet; row 2 active case, units and price date; row 3 the master check status. Header text never wraps. The colour legend appears once, on the Cover, with an example cell for each style.
-- Colour: hardcoded history blue; assumptions and scenario levers blue on light yellow; formulas black; links to other sheets green; memo ratios dark grey italic; key outputs (rating, target, return, EPS) bold black, never grey. Where rules overlap: key output, then input, then link, then ratio, then formula.
-- One number format per unit (reporting currency in millions to one decimal, per-share to two decimals, % to one decimal, multiples with "x", days whole, FX to four decimals, dates as real dates in d mmm yyyy). Negatives always in parentheses. One currency label throughout.
-- Columns: spacer, label, units (centred), a short source tag ("AR25", "3Q26 call", "Est."), then the periods, with a narrow spacer between annual and quarterly blocks. Sub-items are indented, not padded with spaces. Place pivotal rationale in a visible explanation column beside the build; use row-label comments for longer supporting source detail. Data rows are normally 15 high; rows with visible explanations wrap and expand to fit. Text-heavy tables (Guidance, Questions, scenario rationale) wrap, top-aligned. No text is clipped and no #N/A shows.
-- Forecast columns have shaded headers with a rule at the boundary. Quarterly columns and each schedule's detail rows are grouped so they collapse, leaving the section header and total visible.
+- Where colour rules overlap: key output, then input, then link, then ratio, then formula.
+- Rows with visible explanations wrap and expand to fit. No text is clipped and no #N/A shows.
 - Inputs never sit under period headers they do not belong to; a non-time-series block gets its own header row.
-- Summary fits one landscape page: valuation box (rating, price, target, price return, separate dividend yield, then bear/base/bull; any combined-return memo is secondary), key financials, valuation metrics and why the call on the left; two charts on the right. Chart data sits below the printed area, grouped.
-- Charts use the house palette, a takeaway title in sentence case, the legend at the bottom, hatched bars or dashed lines for forecasts, and a note for data the axis clips. Each sits inside its sheet's print area without covering a table.
-- Defined names only for key outputs and the case selector; the specification holds every cell binding.
-- Every sheet prints A4 landscape, one page wide, centred, with title rows (and on time-series sheets the label columns) repeated and the file, sheet and page number in the footer. Page breaks fall between sections, not inside a table. Cover, Summary, Scenarios, Checks, Guidance and Questions each fit one page.
+- Summary fits one landscape page: valuation box (rating, price, target, price return, separate dividend yield, total return only where the dividend is a real part of the holder's return, then bear/base/bull), key financials, valuation metrics and why the call on the left; two charts on the right. Chart data sits below the printed area, grouped.
+- Chart titles are in sentence case.
+- Cover, Summary, Scenarios, Checks, Guidance and Questions each fit one page.
 - Notes cite sources a reader can follow, never pipeline paths.
 
 ## Sector depth

@@ -4,12 +4,10 @@ Build an explicit waterfall from industry/company drivers to segment revenue, gr
 
 ## Forecast construction
 
-1. Reconcile the historical segment definitions and explain restated or broker-derived splits. Volume x price is meaningful only when their bases match. Reconcile unexplained residuals; do not quietly assign them to other revenue.
-2. Anchor assumptions in historical economics, recent operating data, management guidance and independent industry evidence. Label estimates and preserve ranges when precision is unsupported.
-3. Model demand, capacity, price/mix, margins and cost timing together. Respect start dates of policy changes, new capacity and products. Historical seasonality is a candidate assumption, not a forecast identity.
-4. Examine each segment's implied quarter against capacity, demand, seasonality and the latest evidence.
-5. Classify recurring versus nonrecurring earnings/cash effects. Zeroing future fair-value gains or disposals can be an explicit scenario assumption, not a universal fact. Model potential impairments and uncertain items as risks/scenarios rather than erasing them.
-6. Forecast capex, working capital, debt and liquidity alongside earnings. High growth with no reinvestment or financing need must be justified.
+The [revenue projection](revenue-projection.md) and [statement forecast](statement-forecast.md) own the build. In the audit:
+
+1. Examine each segment's implied quarter against capacity, demand, seasonality and the latest evidence. Historical seasonality is a candidate assumption, not a forecast identity.
+2. Classify recurring versus nonrecurring earnings/cash effects. Zeroing future fair-value gains or disposals can be an explicit scenario assumption, not a universal fact. Model potential impairments and uncertain items as risks/scenarios rather than erasing them.
 
 ## Incentives, shares and accounting
 

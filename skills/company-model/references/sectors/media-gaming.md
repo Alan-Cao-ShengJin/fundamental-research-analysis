@@ -45,13 +45,6 @@ spending less 40 amortisation leave 120; the 20 cash-versus-amortisation gap is 
 separately.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector media-gaming --example --out output/media-gaming.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

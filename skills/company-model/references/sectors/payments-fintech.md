@@ -47,13 +47,6 @@ Subtracting 3,000 of rebates gives 17,000 of net revenue and a 1.7% net take rat
 Rebates have been deducted once.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector payments-fintech --example --out output/payments-fintech.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

@@ -52,13 +52,6 @@ produce 15 of current underwriting contribution. A prior-year reserve release of
 reported contribution to 20 without changing current underwriting.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector insurance --example --out output/insurance.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

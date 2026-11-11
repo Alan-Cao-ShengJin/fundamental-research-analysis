@@ -27,9 +27,6 @@ def money(x,currency,places=2):
     prefix={'USD':'$','HKD':'HK$','SGD':'S$','EUR':'€','GBP':'£','JPY':'¥','CNY':'CN¥'}.get(currency,currency+' ')
     return prefix+f'{x:,.{places}f}'
 def pct(x):return f'{x:+.1%}'
-def rounded(x,currency):
-    # Whole units for prices of 100 or more, as an investor would say them.
-    return money(x,currency,2 if x<100 else 0)
 def validate(payload):
     require(isinstance(payload,dict),'Expected an object')
     require(payload.get('schemaVersion')=='2.0.0','Unsupported payload version')
@@ -42,22 +39,11 @@ def validate(payload):
     pd,td=Decimal(str(p)),Decimal(str(t))
     call='Buy' if td>pd*Decimal('1.10') else 'Sell' if td<pd*Decimal('.90') else 'Hold'
     require(d.get('rating')==call,'Rating conflicts with referencePrice and targetPrice in this payload; write the unrounded model values into brief.json')
-    attr=text(d.get('attractiveness'),'attractiveness').lower()
-    require(attr in ('attractive','decent','unattractive'),'Attractiveness must be attractive, decent or unattractive')
     for old in ('dividendPerShare','dividendsToTargetDate'):
-        require(old not in d, f'Replace {old} with dividendYield; dividends stay out of the target and tiers')
+        require(old not in d, f'Replace {old} with dividendYield; dividends stay out of the target and rating')
     div=d.get('dividendYield')
     if div is not None:
         number(div,'dividendYield');require(div>=0,'Dividend yield cannot be negative')
-    # Tiers on base-case price return only: 50%+ attractive, 30% to below 50% decent.
-    if attr=='attractive':
-        require(call=='Buy' and td>=pd*Decimal('1.50'), 'Attractive requires Buy and at least 50% base price return; keep rating separate')
-    if attr=='decent':
-        require(call=='Buy' and pd*Decimal('1.30')<=td<pd*Decimal('1.50'), 'Decent requires Buy and 30% to below 50% base price return')
-    new_money=d.get('newMoney')
-    if new_money is None:new_money='yes' if attr in ('attractive','decent') else 'no'
-    require(new_money in ('yes','no'),'newMoney must be yes or no')
-    require(not (new_money=='yes' and attr=='unattractive'),'New money cannot be yes below the decent tier')
     for key in ('bearTarget','bullTarget'):number(d.get(key),key,True)
     km=d.get('keyMetrics',[]);require(isinstance(km,list) and len(km)<=4,'Use at most four key metrics')
     for x in km:text(x,'keyMetrics item')
@@ -95,8 +81,7 @@ def validate(payload):
     require(isinstance(payload.get('links',[]),list) and len(payload.get('links',[]))<=4,'Too many support links')
     for x in payload.get('links',[]):text(x.get('label'),'link label');href(x.get('href'))
     return {'rating':call,'priceReturn':t/p-1,'dividendYield':div,
-            'bearReturn':d['bearTarget']/p-1,'bullReturn':d['bullTarget']/p-1,'attractiveness':attr,'newMoney':new_money,
-            'entryAttractive':t/1.5,'entryDecent':t/1.3,
+            'bearReturn':d['bearTarget']/p-1,'bullReturn':d['bullTarget']/p-1,
             'sectionCount':len(ss),'wordCount':sum(len(re.findall(r"\b[\w']+\b",p)) for s in ss for p in s['paragraphs'])}
 
 def render(payload):

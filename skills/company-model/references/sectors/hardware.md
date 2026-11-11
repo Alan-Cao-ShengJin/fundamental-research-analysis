@@ -46,13 +46,6 @@ devices with 40% paid-service adoption and an annual service price of 5 generate
 of service revenue.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector hardware --example --out output/hardware.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

@@ -89,11 +89,4 @@ ramp costs and 15% tax, the laser-source and switch lines add 4,717.5 of profit,
 4.72 per share on 1,000 shares.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector optical-networking --example --out output/optical.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.

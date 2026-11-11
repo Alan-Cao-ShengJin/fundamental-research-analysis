@@ -18,17 +18,7 @@ An answer such as “revenue increased” is insufficient when the agent needs t
 
 ## Persistent model state
 
-Keep a machine-readable model package with:
-
-- **Identity and versions:** entity, model ID/version, information cutoff, fiscal period map, accounting scope and engine/formula version; each scenario/run has its own identity.
-- **Evidence:** raw observations and precise source locators, availability dates, reporting currency/scale and reported/derived/guidance status. Restatements create a new vintage.
-- **Definitions:** stable semantic IDs for metrics, segments, periods and units. A reference such as `fcfe.FY2028.base` must survive an Excel row insertion.
-- **Business drivers and assumptions:** values/ranges, rationale, sensitivity, uncertainty and what evidence would change them. Missing values remain missing.
-- **Executable relationships:** revenue/cost/unit-economics build, linked statements and schedules, dependencies and checks. Use reviewed formulas/functions with a deterministic engine; do not ask a language model to supply calculated answers from memory.
-- **Calculated results:** numeric outputs with model fingerprint, scenario overrides, run ID and check status. A saved cached value without a calculation record is not a current result.
-- **Evaluation history:** downstream valuation and decision versions, catalyst/watch definitions, frozen forecasts and eventual matched actual outcomes.
-
-A structured index can point to an existing Excel workbook and compatible recalculation engine. It need not duplicate every formula in JSON. A later executable graph can use Python, JavaScript or another suitable backend. Choose a backend that actually recalculates and preserves the economics. Analysis-only queries can reuse an existing valid workbook; a newly delivered or revised forecast must also satisfy the human workbook requirement.
+The machine model is the cell specification that [model_workbook.py](../scripts/model_workbook.py) builds the workbook from, with its saved outputs file and check report ([model standard](model-standard.md)). Its `outputs` map gives each decision metric a stable semantic ID, such as `eps.FY2027`, that survives an Excel row insertion. Calculated results come from the builder and the recalculated workbook; do not ask a language model to supply calculated answers from memory. For an inherited workbook, a structured index can point to the workbook and a compatible recalculation engine; it need not duplicate every formula in JSON. Analysis-only queries can reuse an existing valid workbook; a newly delivered or revised forecast must also satisfy the human workbook requirement.
 
 ## Change propagation and valuation
 
@@ -45,16 +35,3 @@ Save the forecast before the outcome is available, including its data cutoff, sc
 Measure forecast error and its contribution to the valuation error. Separate changes in volume, price/mix, margins, costs, capital spending, working capital, tax, shares, and market valuation assumptions. Flag unsupported components rather than inventing attribution that merely adds up. Revise assumptions or model structure when evidence warrants it; a target miss alone does not prove a specific causal explanation.
 
 This history is for calibration and learning. Do not rewrite the original forecast, optimise on the evaluation window and call it independent validation, or treat one successful forecast as established predictive performance.
-
-## Optional calculation helper
-
-The [company-model helper](../../lib/company-model.mjs) supplies a small deterministic JSON graph implementation with explicit units/scales, source cutoff checks, dependency calculation, scenario overrides, lineage, reconciliation checks and model fingerprints. The [runner](../scripts/run_agent_model.mjs) can evaluate a package or compare a scenario:
-
-```powershell
-node skills/company-model/scripts/run_agent_model.mjs skills/company-model/references/agent-model-example.json
-node skills/company-model/scripts/run_agent_model.mjs skills/company-model/references/agent-model-example.json skills/company-model/references/agent-model-scenario.json
-```
-
-The [example](agent-model-example.json) and [scenario](agent-model-scenario.json) are synthetic. A price driver change from 10 to 9 propagates revenue from 1,000 to 900, net income from 285 to 210, FCFE from 255 to 180 and an illustrative P/E value from 57 to 42 per share, while the simplified balance sheet reconciles in both runs. The valuation output is formula-linked to EPS rather than retyped.
-
-The helper evaluates a supplied graph; it does not import workbooks, retrieve evidence, persist runs or activate autonomous updates. Its `calculated` status means arithmetic ran, not that the model is financially complete or decision-ready. Supply issuer-specific statements, schedules, assumptions and appropriate valuation methods separately.

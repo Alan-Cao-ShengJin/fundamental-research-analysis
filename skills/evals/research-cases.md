@@ -10,9 +10,9 @@ Use the self-contained [synthetic review pack](fixtures/inference-review/pack.md
 
 ## One-page investment brief
 
-Prompt: "Write a one-page investment brief using the selective house format and institutional research writing standard." Supply a completed decision, a current forecast, a materially different intrinsic-value cross-check, a Buy below the price-return attractiveness hurdle, issuer evidence, a noisy prior draft, routine governance/background paragraphs and an overlong risk paragraph.
+Prompt: "Write a one-page investment brief using the selective house format and institutional research writing standard." Supply a completed decision, a current forecast, a materially different intrinsic-value cross-check, issuer evidence, a noisy prior draft, routine governance/background paragraphs and an overlong risk paragraph.
 
-Expected behaviour: develop each main point through point/data, derivation, significance and its effect on the stock view in connected prose; remove a bare forecast table when contextual prose is clearer. A metric definition or benchmark comparison alone does not explain how a forecast or valuation input was derived. Do not invent a benchmark. Select and combine only decision-useful content, choose headings around the argument and write a standalone investment case using the shared template. Preserve the numerical decision, forecast/valuation basis, substantive qualifications, source references and strongest counter-case through the editorial review. Use a clear, concise analyst voice with precise terminology and explicit attribution; reject slogans, unsupported comparisons and promotional language. Keep Buy and unattractive as separate judgments. Use the current model outputs, not values copied from the old draft. Omit routine checklist findings and familiar background; retain any binding governance exclusion. Remove internal run/check narration. Export and inspect the actual PDF; if it is too long, shorten prose without clipping, shrinking type, discarding risks or exporting only page one. Verify phone reading order too. A saved HTML file, a nominal A4 stylesheet or an AI-detector score does not establish a one-page result.
+Expected behaviour: develop each main point through point/data, derivation, significance and its effect on the stock view in connected prose; remove a bare forecast table when contextual prose is clearer. A metric definition or benchmark comparison alone does not explain how a forecast or valuation input was derived. Do not invent a benchmark. Select and combine only decision-useful content, choose headings around the argument and write a standalone investment case using the shared template. Preserve the numerical decision, forecast/valuation basis, substantive qualifications, source references and strongest counter-case through the editorial review. Use a clear, concise analyst voice with precise terminology and explicit attribution; reject slogans, unsupported comparisons and promotional language. Use the current model outputs, not values copied from the old draft. Omit routine checklist findings and familiar background; retain any binding governance exclusion. Remove internal run/check narration. Export and inspect the actual PDF; if it is too long, shorten prose without clipping, shrinking type, discarding risks or exporting only page one. Verify phone reading order too. A saved HTML file, a nominal A4 stylesheet or an AI-detector score does not establish a one-page result.
 
 ## Investment conviction
 
@@ -20,7 +20,7 @@ Expected behaviour: develop each main point through point/data, derivation, sign
 
 **The market signals a financing problem.** Keep customer demand strong but supply a falling share price that triggers collateral exposure or makes a necessary equity raise highly dilutive. Expect economic feedback, cash/runway and per-share reassessment despite the original customer proposition remaining true. Do not dismiss the price as sentiment or insist the unchanged anchor makes the investment safe.
 
-**An intact business after a large rally.** Supply unchanged core operating evidence and price far above the supported target. Expect retained business conviction alongside recalculated price-based rating/attractiveness and separate portfolio advice only within scope. Do not raise value to protect a prior Buy or call a lower prospective return a loss of faith in management.
+**An intact business after a large rally.** Supply unchanged core operating evidence and price far above the supported target. Expect retained business conviction alongside recalculated price-based rating and separate portfolio advice only within scope. Do not raise value to protect a prior Buy or call a lower prospective return a loss of faith in management.
 
 **Profits rise under a continuing abusive controller.** Supply established unfavorable transfers, ineffective minority protections and continuing control, plus a low multiple and rising operating profit. Expect an evidenced avoidance disposition with issue IDs and conditions for reconsideration. Do not average away the condition with growth or manufacture a Sell price target; reconcile governance consequences with any defensible numerical rating, or identify an unusable valuation baseline.
 
@@ -156,7 +156,7 @@ Expected behaviour: distinguish business earning power from common-share access 
 
 Prompt: “Write a concise stock decision brief for an informed investor unfamiliar with the company's jargon.” Supply a completed synthetic company model/governance/valuation/challenge package: current price80, a selected twelve-month primary target100, bear60 and bull130, no prospective dividends, and the source/driver explanations. Include competing present intrinsic-value and alternative-method estimates.
 
-Expected behaviour: state Buy because the primary target offers +25%, but explicitly call the opportunity unattractive under the separate decision-contract price-return attractiveness hurdle. Retain the twelve-month target100, bear60/−25% and bull130/+62.5%. Do not use the bull case to call the base attractive or relabel the stock Hold because it fails the attractiveness hurdle. Explain who pays for what, the profit/cash engine, evidence for the moat and the pivotal investment insight. Keep the supported target rather than changing it to force a judgment. The pre-cost maximum entry price meeting the 50% attractiveness hurdle is approximately66.67.
+Expected behaviour: state Buy because the primary target offers +25%. Retain the twelve-month target100, bear60/−25% and bull130/+62.5%. Explain who pays for what, the profit/cash engine, evidence for the moat and the pivotal investment insight. Keep the supported target rather than changing it to force a judgment.
 
 ## 12. Missing evidence and one-off reporting requests
 
@@ -164,9 +164,9 @@ Prompt: “Do a full stock recommendation. Earlier I once asked for a token-cost
 
 Expected behaviour: continue independent evidence gathering, distinguish unknown coverage from clean governance, and avoid an invented governance score or quantified haircut. First bound the issue with plausible scenarios and targeted evidence. Give a call on the financials available and state beside it that the unverified cash-access issue is a red flag that should stop investors considering the stock; do not use Hold as a placeholder. Do not generate, persist or include a token-cost report. This does not suppress company operating costs or investment implementation costs.
 
-## 13. Rating thresholds and separate investment attractiveness
+## 13. Rating thresholds
 
-Prompt: "Apply the stock-call rule to completed research, using a reference price of 100 and independently supported primary targets. Dividend yield is shown separately and never changes the rating or tier. Keep price return distinct from risk scenarios."
+Prompt: "Apply the stock-call rule to completed research, using a reference price of 100 and independently supported primary targets. Dividend yield is shown separately and never changes the rating. Keep price return distinct from risk scenarios."
 
 Expected behaviour:
 
@@ -175,16 +175,13 @@ Expected behaviour:
 | 90 | -10% | Hold: lower boundary is included |
 | 100 | 0% | Hold |
 | 110 | +10% | Hold: upper boundary is included |
-| 105, with a 12% dividend yield | +5% | Hold: the yield is shown separately and changes neither rating nor tier |
+| 105, with a 12% dividend yield | +5% | Hold: the yield is shown separately and does not change the rating |
 | 89.99 | -10.01% | Sell |
-| 110.01 | +10.01% | Buy; price return below 30%, so the risk/reward looks less attractive to compensate for downside risk: new money no, with entry prices target / 1.30 and target / 1.50 |
-| 120 | +20% | Buy; same tier as above |
-| 135 | +35% | Buy; decent tier (30% to below 50%) |
-| 149.99 | +49.99% | Buy; decent tier even if the display rounds to 50.0% |
-| 150 | +50% | Buy; attractive tier, subject to a credible target and acceptable risk |
+| 110.01 | +10.01% | Buy |
+| 120 | +20% | Buy |
 | 160, with an unsupported higher exit P/E | +60% claimed | Reject the unsupported base valuation; revise target and call rather than accepting a large number |
 
-For a target105, bear60 and bull150 do not change the Hold rating. A target120 with a 35% dividend yield stays Buy at +20% in the 10–30% tier; the yield is shown separately as a measure of cheapness and a downside cushion. A supported target150 with catastrophic downside is still Buy by the price-return rule but new money can be no on risk. If an implausible catalyst invalidates the target, revise the valuation and dependent rating. Do not stretch the horizon or raise the multiple to reach a tier. Retain the target/date, signed returns, thesis, business/moat explanation, conviction and invalidation. Check the -10% and +10% rating boundaries and the 30% and 50% tier boundaries before display rounding. Missing evidence does not stop the call.
+For a target105, bear60 and bull150 do not change the Hold rating. A target120 with a 35% dividend yield stays Buy at +20%; the yield is shown separately as a measure of cheapness and a downside cushion. A supported target150 with catastrophic downside is still Buy by the price-return rule. If an implausible catalyst invalidates the target, revise the valuation and dependent rating. Do not stretch the horizon or raise the multiple to reach a rating. Retain the target/date, signed returns, thesis, business/moat explanation, conviction and invalidation. Check the -10% and +10% rating boundaries before display rounding. Missing evidence does not stop the call.
 
 ## 14. Natural writing without changing the investment meaning
 
@@ -229,7 +226,7 @@ Expected behaviour: identify net profit attributable to shareholders as the list
 
 Prompt: "The stock looks cheap and pays dividends. What drives the value?" Supply a synthetic issuer with an adopted conditional 60% earnings-year payout policy, attributable net profit of 100m, 1,000m shares, a price of 0.50, recurring cash after investment and claims of 70m, and a high-capex stress reducing that cash to 45m. The next twelve months include 25m of prior-year final and 30m of current interim dividends; an already-ex dividend is not eligible. Include a proposed 70% payout and an old target based only on a peer P/E.
 
-Expected behaviour: identify whether a sustainable dividend, earnings growth or an evidenced change in valuation is the main argument. On the 60% payout, annual DPS is 0.06 and forward yield 12%; recurring cash coverage is about1.17x with10m headroom. A70% payout consumes all70m of recurring cash before a buffer and is not an automatic recommendation. The higher-capex case has a15m shortfall against the annual60m dividend. Eligible receipts are55m, or0.055 per share, rather than the full annual0.06. At12% required yield the target is0.50 and Hold; at10% it is0.60 and Buy but unattractive under the separate50% hurdle. Explain why a chosen yield is reasonable; do not select it to reproduce the old target. Verify adoption and conditions, distinguish willingness from capacity and show the risk of cuts. P/E equals payout divided by yield on the same basis and is not independent corroboration.
+Expected behaviour: identify whether a sustainable dividend, earnings growth or an evidenced change in valuation is the main argument. On the 60% payout, annual DPS is 0.06 and forward yield 12%; recurring cash coverage is about1.17x with10m headroom. A70% payout consumes all70m of recurring cash before a buffer and is not an automatic recommendation. The higher-capex case has a15m shortfall against the annual60m dividend. Eligible receipts are55m, or0.055 per share, rather than the full annual0.06. At12% required yield the target is0.50 and Hold; at10% it is0.60 and Buy. Explain why a chosen yield is reasonable; do not select it to reproduce the old target. Verify adoption and conditions, distinguish willingness from capacity and show the risk of cuts. P/E equals payout divided by yield on the same basis and is not independent corroboration.
 
 ## Provider selection, translation and whole-company judgment
 
@@ -303,7 +300,7 @@ Counter-example: a cash-distribution investment can support a reasoned return wi
 
 Synthetic prompt: A completed Buy with a target 30% above the price, our forward EPS below consensus, a temporary de-rating against a three-year mean P/E, a known dividend yield and a results date next quarter. Ask for the one-page brief.
 
-Expected behaviour: the headline states the thesis in one short sell-side-style line without repeating the call or return. It is plain and understandable on its own, with no wordplay, slogans or fill-in templates. The line under the prices reads "Price at [date] close; 12-month target" followed by forward P/E, P/B, dividend yield and ROIC. No new-money tier, entry prices, source list, footnotes, "fair value" wording or description of method. Our forecast comes before consensus, in its own paragraph, and the gap is explained. The valuation paragraph starts from our forward P/E against the mean, gives the consensus P/E in brackets and two fiscal years of P/E, and states the re-rating upside. Every month carries its year. Each scenario shows its valuation (multiple and EPS) under its price. Body text is justified and the page fits one A4 sheet.
+Expected behaviour: the headline states the thesis in one short sell-side-style line without repeating the call or return. It is plain and understandable on its own, with no wordplay, slogans or fill-in templates. The line under the prices reads "Price at [date] close; 12-month target" followed by forward P/E, P/B, dividend yield and ROIC. No source list, footnotes, "fair value" wording or description of method. Our forecast comes before consensus, in its own paragraph, and the gap is explained. The valuation paragraph starts from our forward P/E against the mean, gives the consensus P/E in brackets and two fiscal years of P/E, and states the re-rating upside. Every month carries its year. Each scenario shows its valuation (multiple and EPS) under its price. Body text is justified and the page fits one A4 sheet.
 
 ## Calibration preserves the operating argument
 

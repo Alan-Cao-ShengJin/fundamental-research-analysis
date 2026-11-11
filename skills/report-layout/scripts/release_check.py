@@ -32,7 +32,7 @@ BANNED_PHRASES = ('nobody publishes', 'nobody will tell', 'read it from the pric
                   'internal run', 'checklist finding')
 BYLINE = re.compile(r'\b(prepared by|analyst:|author:|contact:)', re.I)
 EMAIL = re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]*\w')
-SCOPE = ('Checked: calculation caches, target basis and period, rating and tier, the decision block in the brief payload '
+SCOPE = ('Checked: calculation caches, target basis and period, rating, the decision block in the brief payload '
          'and in the rendered report and brief, observation and retrieval ages, currency and security, one-page brief, '
          'file hashes and print provenance, and the wording regression list. Current publication additionally checks '
          'completed review declarations bound to current files and skills, and applicable declared financial assertions '
@@ -404,7 +404,7 @@ def run(study, record, model_check=None, legacy=False):
     elif method == 'dividend-yield':
         check('target-is-dps-over-yield',bridge_ok,bridge_detail)
 
-    # 2. Rating and tier from the unrounded return; the brief payload.
+    # 2. Rating from the unrounded return; the brief payload.
     brief = json.loads((study / record['brief']).read_text(encoding='utf-8'))
     d, meta = brief['decision'], brief['meta']
     if isinstance(price, (int, float)) and isinstance(target, (int, float)) and price:
@@ -412,9 +412,6 @@ def run(study, record, model_check=None, legacy=False):
         want = rating_for(ret)
         check('rating-from-unrounded-return', d.get('rating') == want and (v.get('rating') in (None, want)),
               f'price return {ret:.4%} gives {want}; brief says {d.get("rating")!r}, workbook says {v.get("rating")!r}')
-        check('tier-on-price-return-only', not any(k in d for k in ('dividendPerShare', 'dividendsToTargetDate')) and
-              (d.get('attractiveness') != 'attractive' or ret >= Decimal('0.5')) and (d.get('attractiveness') != 'decent' or Decimal('0.3') <= ret < Decimal('0.5')),
-              f'tier {d.get("attractiveness")!r} on price return {ret:.1%}; dividend yield stays separate')
     check('rating-present', d.get('rating') in RATING, f'rating {d.get("rating")!r}')
     try:
         import render_one_page

@@ -282,12 +282,6 @@ class PublicationReviewTests(unittest.TestCase):
         self.write_packet(packet)
         self.assertIn('sensitivity-coverage', self.failures())
 
-    def test_inventory_is_advisory_and_excludes_styles(self):
-        self.f.write('deliverables/report.html', '<style>p {width:999px}</style><p>Annual productivity 0.8%; input 0.5%.</p>')
-        items = pr.inventory(self.dir, self.rec)
-        self.assertTrue(any('0.8%' in i['numbers'] for i in items))
-        self.assertFalse(any('999' in i['numbers'] for i in items))
-
     def test_claim_support_disposition_is_required_at_publication(self):
         packet = self.prepared()
         packet['coverage']['claim-support'] = {'status': 'undecided', 'assertionIds': []}

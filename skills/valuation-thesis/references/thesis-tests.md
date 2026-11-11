@@ -19,7 +19,7 @@ Anchor comparisons in a documented economic peer/chain set. If no map exists, sk
 
 Name the difference between the analyst case, observed price-implied conditions and attributable published expectations. Explain its evidence, magnitude and per-share consequence. A peer discount, broker target spread or neglected name does not establish mispricing. If no differentiated fundamental view is supported, say so and assess the available cash-return/valuation case without inventing a consensus mistake. Do not equate disagreement with edge or declare a crowded trade merely because many articles repeat it.
 
-A business can be attractive before the price confirms it, or richly valued despite strong market confirmation. Describe that distinction when useful; do not favor momentum by default or require identified future buyers for a defensible central case. Use the shared rating/attractiveness rules after validating the target. A deterioration in market context can change timing or the target scenario without falsifying the business claim; operating delivery can also falsify a thesis despite a rising price.
+A business can be attractive before the price confirms it, or richly valued despite strong market confirmation. Describe that distinction when useful; do not favor momentum by default or require identified future buyers for a defensible central case. Use the shared rating rules after validating the target. A deterioration in market context can change timing or the target scenario without falsifying the business claim; operating delivery can also falsify a thesis despite a rising price.
 
 ## Keep the thesis usable after publication
 

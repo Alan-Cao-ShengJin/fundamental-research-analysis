@@ -53,13 +53,6 @@ and 2 of net book disposals closes at 113. An illustrative average of 106.5 with
 share earns 5.325 at 10% allowed ROE, but only 4.7925 at 9% earned ROE.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector utilities --example --out output/utilities.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

@@ -46,7 +46,7 @@ If a higher P/E drives the target, explain why investors would pay it using the 
 
 When dividends drive the valuation, use the [dividend guide](../../valuation-thesis/references/valuation-driver-and-dividends.md): put DPS, annual yield, payout ratio and funded coverage in the brief, with higher-payout and cash-stress detail in the full pitch. Show the price at alternative required yields. Explain whether a higher price comes from a higher sustainable dividend or investors accepting less yield; do not disguise the latter as unexplained peer-P/E convergence. Keep annual yield and horizon cash receipts distinct.
 
-Apply the [decision contract](../../investment-conclusion/references/decision-contract.md), keeping rating, price return, dividend yield and the new-money judgment visible.
+Apply the [decision contract](../../investment-conclusion/references/decision-contract.md), keeping rating, price return and dividend yield visible.
 
 Follow the [target and earnings-basis contract](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis). Show the selected period and dated anchor supporting valuation.
 
@@ -68,4 +68,4 @@ Read the opening as a prospective investor: can the reader explain what the busi
 
 ## Draft review and statement appendix
 
-Give each developed argument one main home; the front page and standalone brief summarize it, with short references elsewhere. Do not repeat the full target justification in each argument or debate. Full initiations include model-linked summary income, balance-sheet and cash-flow tables with the appropriate sector definitions and available history. Tables may split with repeated headers and intact rows; charts stay intact. Use the [bounded publication workflow](../../report-layout/references/publication-review.md) for a fresh reader of the actual PDFs, current model and original evidence. Layout inspection and recorded completion do not certify analytical support.
+Full initiations include model-linked summary income, balance-sheet and cash-flow tables with the appropriate sector definitions and available history. Use the [bounded publication workflow](../../report-layout/references/publication-review.md) for a fresh reader of the actual PDFs, current model and original evidence. Layout inspection and recorded completion do not certify analytical support.

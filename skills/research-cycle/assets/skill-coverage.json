@@ -92,7 +92,7 @@
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Target/date, price-based rating, attractiveness, eligibility and decision-changing evidence."
+      "purpose": "Target/date, price-based rating, eligibility and decision-changing evidence."
     },
     "research-brief": {
       "modes": {

@@ -32,7 +32,7 @@ Preserve the difference between the intended investment duration, the model's fo
 | Evidence/event | Appropriate conviction treatment | Follow-through |
 | --- | --- | --- |
 | Price falls; relevant operating and rights evidence remains sound | Retain the core belief after checking for missing facts | Recompute current payoff and check financing/portfolio constraints; no automatic purchase |
-| Price rises far beyond a supported valuation | Core belief may remain supported | Refresh attractiveness/rating and any proposed exposure separately |
+| Price rises far beyond a supported valuation | Core belief may remain supported | Refresh the rating and any proposed exposure separately |
 | One delivery miss with a supported temporary cause | Evaluate size, cause, repeated pattern and remaining-period burden | Revise affected forecasts where justified; neither automatic abandonment nor automatic excuse |
 | Foundational demand, unit economics, shareholder access or key-person condition fails | Challenge or break the anchor as evidence warrants | Reopen major-update/risk work promptly; do not preserve the call through a replacement story |
 | Repeated evidenced minority-value diversion under continuing control | Maintain an active exclusion while the condition persists | Carry governance issue IDs; cheapness, earnings beats and a rising price do not resolve it |

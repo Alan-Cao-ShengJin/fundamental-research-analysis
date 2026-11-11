@@ -41,7 +41,7 @@ def spec():
 
 def brief(**over):
     d = {'rating': 'Buy', 'referencePrice': 79.25, 'priceObservation': '5 Nov 2026 close (FactSet)', 'targetPrice': 97.3,
-         'targetDate': 'Nov 2027', 'attractiveness': 'unattractive', 'newMoney': 'no', 'bearTarget': 62.9, 'bullTarget': 118.4,
+         'targetDate': 'Nov 2027', 'bearTarget': 62.9, 'bullTarget': 118.4,
          'keyMetrics': ['12.1x FY27E P/E', '3.6% dividend yield'], 'dividendYield': 0.0355}
     d.update(over)
     return {'schemaVersion': '2.0.0', 'meta': {'issuer': 'Example', 'security': '2020.HK (HKD counter)', 'currency': 'HKD', 'asOf': '6 November 2026'},
@@ -251,10 +251,6 @@ class ReleaseCheckTests(unittest.TestCase):
 
     def test_rating_must_follow_the_unrounded_return(self):
         self.write_brief(brief(rating='Hold')); self.assert_fails('rating-from-unrounded-return')
-
-    def test_dividend_inside_the_tier_fails(self):
-        self.write_brief(brief(attractiveness='decent'))   # 22.8% price return is below the decent tier
-        f = self.fails(); self.assertTrue(any(x.startswith('tier-on-price-return-only') or x.startswith('brief-payload-valid') for x in f), f)
 
     def test_price_and_consensus_ages(self):
         self.assert_fails('price-observation-age', record(priceDate='2026-11-07'))

@@ -2,7 +2,7 @@
 name: investment-conviction
 description: Build and maintain an evidence-based reason to stay invested through price volatility or to avoid a company despite apparent cheapness. Use when establishing the pivotal investment belief, reviewing a wavering thesis, testing persistent governance exclusions or updating conviction against new evidence. This supports research conclusions, not automatic sizing or trading.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Investment conviction
@@ -25,7 +25,7 @@ Use within the governing [research modes](../research-cycle/references/request-r
 | --- | --- | --- |
 | Core belief | Does the decisive economic or avoidance proposition still hold? | Relevant evidence, including discovered errors or stronger explanations |
 | Forecast and valuation | What are the supported numbers, uncertainty and attainable value? | Actuals, concrete operating evidence, capital needs, timing and justified valuation inputs |
-| Investment eligibility and attractiveness | Would we commit capital, and is today's prospective payoff adequate? | Persistent exclusions, current price, shareholder access, risk and opportunity cost |
+| Investment eligibility and rating | Would we commit capital, and what does today's price offer against the target? | Persistent exclusions, current price, shareholder access and risk |
 | Position or action | What exposure is feasible under the mandate? | Portfolio constraints, funding, liquidity and authorized implementation |
 
 A stable core belief does not freeze model assumptions or value. A good business can become an unattractive purchase after a rally. A cheap stock can remain excluded by evidenced controller conduct. A position can need reducing for real portfolio constraints while the business belief survives. Keep these explanations explicit and route calculations, governance findings, ratings and portfolio choices to their owners.
@@ -48,6 +48,6 @@ Retain the specific issue IDs, relevant control/incentives, continuing exposure 
 
 Return the primary anchor and consequence, evidence assessment, contrary case, conditions for retention/reconsideration, any active investment exclusion, review date/triggers and record links. Carry unresolved limitations honestly. For each review give the prior/current belief state, what changed and whether the model, target, price-based rating, eligibility or proposed portfolio action changes independently.
 
-[Investment conclusion](../investment-conclusion/SKILL.md) retains ownership of the target, Buy/Hold/Sell and attractiveness rules. An investment exclusion is a separate **do-not-invest** disposition; it does not mechanically force Sell or authorize shorting. Revise a target that ignores material governance damage; where essentials cannot be valued, keep valuation incomplete rather than inventing a number. If a defensible numerical rating and an exclusion coexist, state both plainly so a mechanical Buy cannot be mistaken for permission to invest. Portfolio sizing and trading remain downstream; conviction never implies averaging down, leverage or an order.
+[Investment conclusion](../investment-conclusion/SKILL.md) retains ownership of the target and Buy/Hold/Sell rules. An investment exclusion is a separate **do-not-invest** disposition; it does not mechanically force Sell or authorize shorting. Revise a target that ignores material governance damage; where essentials cannot be valued, keep valuation incomplete rather than inventing a number. If a defensible numerical rating and an exclusion coexist, state both plainly so a mechanical Buy cannot be mistaken for permission to invest. Portfolio sizing and trading remain downstream; conviction never implies averaging down, leverage or an order.
 
 Use matched, dated outcomes, including mistakes and false exclusions, to improve calibration over time. Research context: [evidence-based conviction](references/research-basis.md).

@@ -37,16 +37,16 @@ def prepare(study,spec,workbook,evidence,security,cutoff):
         shutil.copyfile(out,history/(digest(out)+'.json'))
     else: old=None; used=0
     refs=list(dict.fromkeys([spec,workbook,*evidence])); stamp=datetime.now(timezone.utc).isoformat()
+    evaluation=evaluation_context(study,{})
+    from publication_review import cutoff_timestamp
     h={'id':'model-challenge','kind':'challenge','version':used+1,'status':'partial','notApplicableReason':None,
-       'mandateId':None,'mandateVersion':None,'scopeIds':[security],'asOf':cutoff+'T00:00:00+00:00','producedAt':stamp,
+       'mandateId':None,'mandateVersion':None,'scopeIds':[security],
+       'asOf':cutoff_timestamp(cutoff,stamp,os.environ.get('RESEARCH_TIMEZONE','Asia/Singapore'),evaluation),'producedAt':stamp,
        'summary':'Model checkpoint prepared; no substantive review performed.',
        'sources':[{'id':'input-'+str(i),'location':r,'locator':'SHA256 '+digest(local(study,r)),'publishedAt':None,'availableAt':None,
                    'retrievedAt':stamp,'accessStatus':'available','synthetic':False} for i,r in enumerate(refs)],
        'claims':[],'dependencies':[],'checks':[{'name':name,'result':'not-run','blocking':True,'detail':'Read and test the model and pivotal evidence.'} for name in CHECKS],
        'criticalUnknowns':old['handoff']['criticalUnknowns'] if old else [],'nextActions':[]}
-    evaluation=evaluation_context(study,{})
-    from publication_review import cutoff_timestamp
-    h['asOf']=cutoff_timestamp(cutoff,stamp,os.environ.get('RESEARCH_TIMEZONE','Asia/Singapore'),evaluation)
     if evaluation:
         for source in h['sources']: source['synthetic']=True
     record={'schemaVersion':'1.0','id':uuid4().hex,'attempt':used+1,'maxAttempts':2,'startedAt':None,

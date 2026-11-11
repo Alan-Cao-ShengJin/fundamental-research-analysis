@@ -1,49 +1,8 @@
 # Optional writing examples and terminology
 
-The short [writing standard](natural-writing.md) governs drafting and review. Open this reference only for a specific argument, terminology or register question; it is not a second checklist to load in full.
-
-Write for a portfolio manager or investment analyst who has not looked at the company. Write sharply and briefly, in plain and exact words, with explicit attribution. This standard governs the brief and full report.
+The short [writing standard](natural-writing.md) governs drafting and review. Open this reference only for a specific terminology question; it is not a second checklist to load in full.
 
 This is serious research that people invest on: write nothing you cannot support. Every fact traces to a filing, data series, attributed comment or the model; every interpretation is ours and has been tested against the data that could contradict it. If we do not know something, say so or leave it out; never fill a gap with a plausible-sounding sentence, an unsourced comparison or a generic industry belief. Do not place unrelated facts side by side so they read as cause and effect. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold.
-
-Apply the [selective brief guide](one-page-brief.md), preserving substantive qualifications and source references. Professional tone does not require ornate vocabulary, passive constructions or longer sentences. Prefer the shortest wording that states the economic mechanism accurately.
-
-## Argument sequence
-
-Use this sequence for each substantive investment point in briefs, full reports and update notes:
-
-1. **State the point and data.** Lead with the investment-relevant claim and the specific observation or estimate supporting it. Identify the period and metric basis where they affect interpretation.
-2. **Explain how the data was derived.** For reported data, identify the disclosure and any calculation or adjustment. For forecasts, expose the principal business drivers, evidence and assumptions that produce the number. For valuation, explain the economic or comparable basis of the selected input as well as the arithmetic. A definition, citation alone, "our model" or "analyst judgment" does not supply the missing derivation.
-3. **Explain its significance.** Interpret the result against a relevant comparison or economic requirement. Explain the mechanism and materiality for earnings, cash generation, value, shareholder access or risk. State why the difference matters rather than leaving the reader to infer it.
-4. **Tie it back to the stock view.** Explain how that consequence supports, weakens or changes the investment case at the stated price. Separate better business performance from an attractive stock payoff; retain the strongest contrary explanation and material uncertainty.
-
-Write this as a natural argument in concise, connected prose. Do not print four mechanical labels, force exactly four sentences, or append a recommendation slogan after every figure. In the full report the layout module's `Argument` block takes the four parts and renders them as one paragraph, so every substantive point is written with its evidence attached ([report layout](../../report-layout/SKILL.md#arguments-debates-and-business-units)). Related evidence can share one derivation and implication. Put detailed calculations in linked support, but keep the assumptions and causal bridge needed to judge the main point on the page.
-
-Synthetic illustration, with invented units and assumptions:
-
-> The company plans to pay out 0.6bn more than it will generate. We expect 1.8bn of cash from operations and 0.5bn of capital spending, which leaves 1.3bn against 1.9bn of dividends and buybacks. The difference has to come from cash reserves or borrowing, and it leaves less room if trading weakens. People own this stock for its payout, so that is a reason for caution.
-
-Before finalising, trace each main argument through all four steps. Where derivation is missing, resolve it through evidence/model/valuation work or narrow the affected claim with a concise material qualification. Do not invent support or turn the brief into a running commentary on the research process. Preserve selective useful writing: each argument must earn its place.
-
-Keep the strength of an inference within the evidence. Rising aggregate market share supports a competitive-position argument; it does not establish that every customer was retained, prices held or costs were passed through. A permanent tax or regulatory cost can be economically offset, but that does not make the policy temporary. Distinguish a lower earnings level from damage to earnings durability before selecting a valuation response. Headlines must preserve those distinctions.
-
-## Editorial standard
-
-Use **we forecast**, **we estimate** and **we assume** to own the analysis. Replace constructions such as "the build assumes" or "the model believes" with the analyst judgment and its economic basis. In investor prose, write "consensus" or "the consensus estimate" rather than "the provider's consensus"; keep the named data source in citations or support. Removing procedural wording must not hide material earnings-definition or estimate-vintage limitations.
-
-Make compressed technical language understandable on first reading. Translate a cohort into the comparable group of stores, customers or contracts being discussed; explain what costs a cash measure includes and why a valuation input matters. A derived P/E restates a cash valuation and is not independent evidence for it.
-
-- Use the argument sequence above. Explain unfamiliar terms within the reasoning; definitions and comparisons support the derivation and interpretation rather than replacing them. Match periods, currencies, earnings definitions and entity scope. Compare EPS with the issuer's own history/guidance or relate it to the share price; raw EPS levels across different companies are not a valuation benchmark. Do not invent a peer benchmark or describe management guidance as consensus.
-- Use one EPS basis, one net cash or debt figure, one per-share currency and one horizon throughout; label any second basis where it appears.
-- Keep sentences focused. Develop each argument once; the front page and standalone brief may summarize it without repeating the full derivation.
-- Select before polishing. Keep a point only if it changes the investment assessment or supplies evidence needed to judge it. Omit routine checklist findings and familiar background; combine overlapping arguments. Preserve material contrary evidence and forecast-critical qualifications.
-- Lead with the investment conclusion and its economic basis. Develop the argument through evidence, forecasts, valuation and the strongest counter-case.
-- Own the judgment with "we forecast", "we estimate" and "management guides". Use a finance term where it is the exact name of the thing, and explain it when the argument depends on it.
-- Explain a causal mechanism precisely: who pays, what it costs and what changes. A plain comparison that makes the mechanism clear is welcome; a slogan is not.
-- Distinguish reported results, management guidance, consensus estimates and our forecasts. Use "the reference price implies" only with a stated calculation; do not present a unique market belief as observable fact.
-- Avoid slogans, promotional claims and abstraction the reader has to decode. Plain speech is not unprofessional; vagueness is. Use headings and emphasis for navigation, not persuasion by repetition.
-
-Worked examples are in the [before-and-after pairs](natural-writing.md#before-and-after). Name the exact metric where one is meant (free cash flow after capital expenditure, not "cash left over"). Do not substitute a more technical phrase if it changes the metric or weakens the explanation. A simple word is appropriate when it is precise.
 
 ## Profit labels and valuation language
 
@@ -55,16 +14,4 @@ For a multiple-based target, keep the dated benchmark, earnings window, reason f
 
 Use **multiple expansion** or **multiple contraction** when that is the return driver. Explain the operating evidence, allocation change or risk reassessment that supports it. A reference to sentiment or investor confidence alone does not justify a selected multiple.
 
-Distinguish adjusted earnings from cash after investment, price return from dividend yield, economic value from a realisable target, and business quality from investment attractiveness. Apply the [decision contract](../../investment-conclusion/references/decision-contract.md).
-
-## Editing workflow
-
-1. Establish the current numerical decision, model outputs, evidence and qualifications before drafting.
-2. Draft each main point through data, derivation, significance and stock-view implication in the professional register above. Check the causal connection before polishing the wording.
-3. Edit for precision, concision and attribution. Remove repetition, stiff phrasing and unexplained jargon without stripping out the industry or financial terms that carry the analysis. Do not carry wording from the skill instructions into the report; restate it in this register.
-4. Compare the final text with the numerical and evidence records. Preserve prices, dates, signs, units, forecast periods, source links, uncertainty and the strongest counter-case. A wording revision does not authorize changing forecasts or the call.
-5. Render the document and inspect the final reading order, financial labels and page fit. Shorten low-value prose rather than reducing type size or deleting a material qualification. Deliver the final prose, without an editorial transcript or an AI-detector score.
-
-Presentation-facing text in a generator may be revised to implement this edit. Protect numerical assumptions, formula logic, identifiers and link targets. If a factual problem is discovered, resolve it through the evidence/model workflow before regenerating dependent outputs.
-
-## Attribution
+Distinguish adjusted earnings from cash after investment, price return from dividend yield, economic value from a realisable target, and business quality from the return on offer at the price. Apply the [decision contract](../../investment-conclusion/references/decision-contract.md).

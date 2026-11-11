@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.8.6
+  version: 2.8.7
 ---
 
 # Valuation, expectations and provisional thesis
@@ -46,7 +46,7 @@ By default, select the tool most suitable for this company's economics; no singl
 
 Identify the primary [valuation driver](references/valuation-driver-and-dividends.md). If dividends drive investor demand, show the policy, annual payout, sustainable DPS/yield, cash coverage and room for more distributions. For a steady income payer, the house target capitalises dividends at an evidence-based comparable-investment yield, with relevant own-yield history as the fallback; a dividend-discount calculation can cross-check the economics but does not replace that market anchor. Do not substitute a vague P/E rerating claim. Distinguish a higher dividend from investors accepting a lower yield, and do not count those effects twice.
 
-Read [target underwriting](references/target-underwriting.md) before setting a dated target. A large price/value gap raises the burden of evidence; calibrate assumptions, establish the analytical difference and explain realization or persistence. A DCF never supports a Buy or Sell on its own.
+Read [target underwriting](references/target-underwriting.md) before setting a dated target. A large price/value gap raises the burden of evidence; calibrate assumptions, establish the analytical difference and explain realization or persistence.
 
 ## Market expectations versus own assumptions
 
@@ -68,7 +68,7 @@ Explain the business's core cash-earning mechanism and the evidence for its comp
 
 Explain the relevant return mechanisms with supporting and contradictory evidence. Operating changes can affect cash/per-share value and expectations; market-context or narrative changes can affect recognition and willingness to pay before operating results change. Keep these paths distinct without double counting or inventing revenue. Neither path is the universal source of return. Relative price moves or volume correlation do not identify a narrative cause by themselves.
 
-Build coherent adverse/base/favourable scenarios, with driver assumptions, credible return paths, any relevant catalysts, horizon and falsification conditions. Scenario ranges are not statistical confidence intervals. Assign probabilities with their stated basis; do not choose them to obtain a neat target price.
+Build coherent adverse/base/favourable scenarios, with driver assumptions, credible return paths, any relevant catalysts, horizon and falsification conditions. Scenario ranges are not statistical confidence intervals. Probabilities are optional; where given, state their basis and do not choose them to obtain a neat target price.
 
 If using TAM x share x margin, align market definition, period and currency; avoid overlapping segments and reconcile arithmetic. Mathematical consistency does not establish economic feasibility. Do not backfill assumptions to reach a desired valuation.
 
@@ -84,9 +84,7 @@ Distinguish economic value created by the business from value accessible to the 
 
 Test why the stock looks cheap and why the discount could persist. Evidence of active investor avoidance must be attributed or observable; price alone does not establish it. Model a current-governance case and a conditional improvement case when material. Identify the actor, incentive, event and timing that could improve cash returns or allow repricing. Do not assume automatic convergence to peers or full intrinsic value.
 
-Supply one proposed primary target price for an explicit horizon plus same-horizon bear/bull target scenarios for conclusion testing, following the [decision contract](../investment-conclusion/references/decision-contract.md). Keep today's intrinsic value, a future market-price target, entry threshold and alternative-method cross-checks distinct. Select and explain a primary method when they disagree. Preserve a persistent discount where evidence warrants it; reject a Buy thesis whose required shareholder-return path is unsupported.
-
-Keep valuation independent of the desired rating or hurdle. Return the supported realisable target under the [decision contract](../investment-conclusion/references/decision-contract.md).
+Supply one proposed primary target price for an explicit horizon plus same-horizon bear/bull target scenarios for conclusion testing, following the [decision contract](../investment-conclusion/references/decision-contract.md). Keep today's intrinsic value, a future market-price target and alternative-method cross-checks distinct. Select and explain a primary method when they disagree. Preserve a persistent discount where evidence warrants it; reject a Buy thesis whose required shareholder-return path is unsupported.
 
 ## Handoff
 

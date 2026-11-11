@@ -18,7 +18,7 @@ Follow [method selection](../../valuation-thesis/references/method-selection.md)
 
 The twelve-month target applies a reasonable target multiple to today's forward earnings: a price plausibly realisable within the next twelve months. The horizon rolls: at each review the target date is twelve months from the review date, and the target is re-derived from that day's forward earnings.
 
-The target is about the gap between today's intrinsic value and the current share price, and what that intrinsic value will become within twelve months. That cross-check shows how large the gap is and can point towards a target price, but do not rely on it completely. Use a DCF sparingly: only for companies with strong, predictable cash flow, as a cross-check of the midpoint intrinsic value against the P/E or other primary target. Follow the [dated-value mechanics](../../valuation-thesis/references/valuation-method.md#dated-economic-value-and-price-target) when rolling it forward.
+The target is about the gap between today's intrinsic value and the current share price, and what that intrinsic value will become within twelve months. That cross-check shows how large the gap is and can point towards a target price, but do not rely on it completely. Follow the [dated-value mechanics](../../valuation-thesis/references/valuation-method.md#dated-economic-value-and-price-target) when rolling it forward.
 
 Explain how the price reaches the target:
 
@@ -34,7 +34,7 @@ A known event date is not itself an edge. Its outcome, magnitude and probability
 
 Any multiple other than a return to the stock's own band mean, including one used only in the bull case, needs an analysis of how it could actually happen: why the stock is valued where it is now, what changes, what investors will see and when, and why that level. Do not pick a multiple without this. Apply the [rerating test](../../valuation-thesis/references/method-selection.md#rerating-and-derating).
 
-**Consensus.** Compare our target and the decision-driving forecast with comparable, dated consensus where available. Explain material differences through evidence, assumptions and their financial effect, and test the strongest case for consensus. A differentiated interpretation of public information can justify disagreement; neither exclusive information nor certainty about the outcome is required. Consensus is a benchmark, not an instruction to match it. Do not invent consensus where coverage is unavailable or call a residual calculation a uniquely identified market belief.
+**Consensus.** Build our numbers independently of consensus, then compare our target and the decision-driving forecast with comparable, dated consensus where available. Know why we differ: explain each material difference through evidence, assumptions and their financial effect, and test the strongest case for consensus. A gap that is large and that we cannot explain means something is wrong; recheck the model before publishing. Do not invent consensus where coverage is unavailable or call a residual calculation a uniquely identified market belief.
 
 **Always give a call on completed, supportable research.** If essential financial/rights/price inputs cannot be reconstructed well enough to support any defensible target, retain a partial or blocked research outcome with the exact missing dependency; do not invent a target or use Hold as a placeholder. Missing preferred consensus or ordinary forecast uncertainty is not an unusable baseline. A supported governance avoidance judgment is separate from an unsupported numerical target. Arrive at the target through a logical sequence of assumptions, cross-check it with the other valuation methods above, and apply the bands below. Give a call on the financials available. If the stock is an avoid, unattractive or raises a red flag, say so beside the call.
 
@@ -55,18 +55,9 @@ A target more than 10% above the price is a Buy even when it is an unattractive 
 
 Sell is the opposite of Buy. It is a recommendation, not an action or instruction.
 
-**Dividends.** The target price is the main figure. Present dividend yield entirely separately and do not build dividends into the target. Read yield as a measure of cheapness or a cushion for downside. A high-yield stock earns its return through re-rating: as more investors buy into the yield, the price rises and the yield falls, and that price gain is what we cash out. Holding a high-yield stock just for the yield is generally not attractive; above a certain yield it gives downside protection. Companies sometimes promise a return built from yield and buybacks, for example 12% from a 10% dividend yield plus 2% buybacks; report that separately from the target. Do not add buyback yield to a target that already reflects the lower share count. Label FX and costs separately; never invent them.
+**Dividends and total return.** The target price is the main figure and the rating is set on price return. Present dividend yield separately and do not build dividends into the target. Price return plus dividend yield is the total return, which is a different perspective from the rating: show it, labelled as total return with its parts, where the dividend is a real part of what the holder earns (a strong yield, usually alongside earnings growth and buybacks); where the dividend is absent or negligible, leave it out. Read yield also as a measure of cheapness or a cushion for downside. A high-yield stock earns its return through re-rating: as more investors buy into the yield, the price rises and the yield falls, and that price gain is what we cash out. Holding a high-yield stock just for the yield is generally not attractive; above a certain yield it gives downside protection. Companies sometimes promise a return built from yield and buybacks, for example 12% from a 10% dividend yield plus 2% buybacks; report that separately from the target. Do not add buyback yield to a target that already reflects the lower share count. Label FX and costs separately; never invent them.
 
-Keep attractiveness separate from the rating. Judge it on base-case price return over the rolling twelve-month horizon, and state the tier beside the rating:
-
-| Base-case price return | Tier |
-| --- | --- |
-| 50% or more | Attractive |
-| 30% to below 50% | Decent |
-| 10% to below 30% | Risk/reward looks less attractive to compensate for downside risk |
-| Below 10% | Not meaningful |
-
-Write it as **New money: yes/no (tier), because…** A Buy in a lower tier remains Buy. A tier is necessary, not sufficient: consider downside, governance, costs, timing and active exclusions. Use the primary target, never the bull case; do not fix dividends into the target, inflate it or extend the horizon to reach a tier. When new money is no, give the pre-cost entry price for the attractive tier, `primaryTarget / 1.50`, and for the decent tier, `primaryTarget / 1.30`, provided the target remains valid at that price; carry it into the conviction record as a watch level. An explicit current mandate can change these tiers; record its basis.
+The rating is the whole judgment on return. Do not add an attractiveness tier, a new-money call or entry prices: whether a given return is enough is the investor's decision.
 
 ## Decision block
 
@@ -88,4 +79,4 @@ Express what would change the view as observable results or events an investor c
 
 Current publication uses the [decision-record contract and synchronizer](../../report-layout/references/decision-record.md). Bind material numerical triggers and method inputs, preserve the current model/spec identity, and refresh before writing/review. The helper updates derived fields; it does not establish a source classification or renew qualitative conviction automatically.
 
-Retain the decision record with quote/security basis; target date and valuation basis; primary/bear/bull targets; price return; dividend yield; separate new-money judgment/hurdle; evidence and material uncertainty; and current model/run references. A null dividend is unknown, not zero. Preserve prior decisions and invalidate dependent claims when upstream facts change. Reference the record through the existing [handoff](../../research-cycle/references/handoffs.md), without adding undeclared envelope fields. Research completion does not authorise allocation, trading, outreach or monitoring activation.
+Retain the decision record with quote/security basis; target date and valuation basis; primary/bear/bull targets; price return; dividend yield; evidence and material uncertainty; and current model/run references. A null dividend is unknown, not zero. Preserve prior decisions and invalidate dependent claims when upstream facts change. Reference the record through the existing [handoff](../../research-cycle/references/handoffs.md), without adding undeclared envelope fields. Research completion does not authorise allocation, trading, outreach or monitoring activation.

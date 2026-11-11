@@ -48,13 +48,6 @@ The equivalent passenger RASK is 0.08; multiplying 100 million ASK by 0.08 gives
 same revenue, without another load-factor adjustment.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector transport --example --out output/transport.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

@@ -1086,7 +1086,7 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
         raise ValueError('The release ZIP must be inside the study deliverables folder')
     out_dir.mkdir(exist_ok=True)
     rel = lambda p: Path(p).resolve().relative_to(study.resolve()).as_posix()  # noqa: E731
-    record = dict(record, review=record.get('review', pr.DEFAULT_PATH), zipPath=rel(zip_path), reviewPolicyVersion='1.0',
+    record = dict(record, review=record.get('review', pr.DEFAULT_PATH), zipPath=rel(zip_path),
                   decisionRecord=record.get('decisionRecord','evidence/decision.json'))
     record_path = out_dir / 'release.json'
     tmp_zip = zip_path.with_suffix('.partial.zip')

@@ -64,15 +64,15 @@ Genuine non-applicability uses `applicability: not-applicable`, `status: not-app
 
 **Payoff and inference:** review price movement and eligible cash receipts on the same dated horizon when describing an overall investor outcome; a cash yield alone is not that outcome. Dividends remain separate from the price-target rating. The [original payoff example](../assets/payoff-calculation.example.json) demonstrates a generic bound calculation, not a required return forecast. Date-matched comparisons test a claimed period change; historical levels alone do not establish its cause. Inspect drivers-before-detailed-valuation in a full initiation. These judgments remain substantive reader work, not automated prose certification.
 
-**Claim support:** the wrapper's `claimAssertions` and `coverage.claim-support` address material set generalisations, evidence populations, ownership/access of cash metrics, and new numerical corrections proposed by reviewers. Read [claim support](claim-support.md) for bindings and limits. Reproduce replacement figures before prescribing them. A passing ledger does not validate broader unbound prose.
+**Claim support:** complete the wrapper's `claimAssertions`, `coverage.claim-support`, `coverage.comparisons` and `coverage.incremental-flows` under [claim support](claim-support.md).
 
-**Comparable definitions, incremental flows and the brief:** complete `coverage.comparisons` and `coverage.incremental-flows` with their typed assertion IDs or reasoned non-applicability. Earnings updates additionally account for material flow candidates with checked derivations or sourced explanations of unavailable/noncomparable data; initiation and catalyst work do not fabricate a prior forecast or quarter to fill the inventory. `coverage.brief-fidelity` is checked with decisive `items`, each identifying a recorded `claimId`, `reportLocation`, `briefLocation`, `qualification` and `assessment`. Keep material denominator, source-vintage, time, ownership and forecast-condition distinctions. The reader checks omitted candidates/claims and actual prose; a populated ledger alone does not establish completeness.
+**Brief fidelity:** `coverage.brief-fidelity` is checked with decisive `items`, each identifying a recorded `claimId`, `reportLocation`, `briefLocation`, `qualification` and `assessment`. Keep material denominator, source-vintage, time, ownership and forecast-condition distinctions. The reader checks omitted claims and actual prose; a populated ledger alone does not establish completeness.
 
-**NTM calculation modes:** use the [dated NTM guide](dated-ntm.md) for quarter/half/irregular-period coverage and changing shares, or retain a justified, labelled annual interpolation. Passing an implemented convention does not justify its economic selection.
+**NTM calculation modes:** use the [dated NTM guide](dated-ntm.md).
 
 Render critical outputs with `bound_value(id, calculated_value, period, unit, fmt)`, e.g. `bound_value('cash-cover', cover, 'FY2027E', 'x', lambda v: f'{v:.2f}x')`. Its span records raw value, period and unit. The matching display entry is `{"id":"cash-cover","ref":"Cash!H20","period":"FY2027E","unit":"x"}`. The checker compares raw value and visible rounding for a `bound_value` span only when a financial assertion lists it under `displays`; bind other material figures with `bound_measure`. Other metrics need their own model references and substantive review; these three families are a starting scope, not a universal financial theorem.
 
-`prose-number-inventory.json` is an advisory list of figures in rendered text. A nearby or identical workbook value does not establish the right metric, year or accounting basis. Unbound prose remains subject to review. Source facts normalized into a terms schedule can still be wrong; file existence and correct arithmetic cannot validate extraction or source truth.
+Unbound prose remains subject to review. Source facts normalized into a terms schedule can still be wrong; file existence and correct arithmetic cannot validate extraction or source truth.
 
 ## Bounded presentation confirmation
 
@@ -94,6 +94,6 @@ SOTP/NAV/residual-income declare `valuationParts`, each with unique `id`, `value
 
 ## Visual review and migration
 
-Tables may split with repeated headers and intact rows; charts stay intact. Keep a debate in one normal-flow wrapper so its answer cannot overlap a repeated table header. Review page-end headings, gaps, clipped or colliding labels and readable type at the actual printed width. A large blank area can be justified by an intact chart or a long row; the approximate 15% guideline is diagnostic, not an automatic failure or an excuse to shrink type. Use a table for a small earnings bridge; a nonzero chart axis is optional and must be explicit and marked as truncated.
+Inspect the printed pages under the layout skill's [print and look](../SKILL.md#print-and-look) rules.
 
 Existing builders must adopt the financial summary, applicable bindings and review workflow before making a new release. Historical studies are not automatically migrated. For an integrity-only historical inspection, `release_check.py STUDY --legacy` explicitly skips the new review requirement and reports `legacy-verified`, never a current reviewed release. Do not use that flag as a publication shortcut.

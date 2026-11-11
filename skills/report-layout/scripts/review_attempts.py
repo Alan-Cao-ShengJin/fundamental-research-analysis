@@ -3,7 +3,6 @@
 This detects ordinary resets/overwrites; it cannot authenticate a person or resist rewriting all local evidence.
 """
 import json
-from pathlib import Path
 
 
 def state(study):

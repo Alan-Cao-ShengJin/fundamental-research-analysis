@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.9.5
+  version: 2.9.6
 ---
 
 # Full report layout
@@ -21,16 +21,14 @@ In a full initiation, put the business drivers and their earnings/cash consequen
 
 These are structure and reference checks. Claim statuses are analyst judgments, and a cited exhibit may not support the inference attached to it. Before release, apply the [inference review](../research-challenge/references/inference-quality.md) to the actual arguments; passing the build does not mark them supported.
 
-Give each developed argument one main home. The front page and standalone brief summarize it; elsewhere refer back briefly. An implication can concern earnings, cash or risk without repeating the rating or target. Quantify a debate's effect with its answer rather than repeating its valuation argument in every section.
-
 ## Page 1 is the front page
 
 A portfolio manager who reads only page 1 should get the call, the thesis, the key data and the price action.
 
 - Byline: company, ticker, report type and date. Add an author, contact or firm only when the user supplies one.
 - Headline: the thesis in plain words, per the [brief guide](../research-brief/references/one-page-brief.md).
-- Main column: **Key points**, three or four bullets of at most 25 words (the call and its economic rationale, stating an expectations gap and its size where the analysis establishes one; the valuation and target logic, any comparable consensus difference and why, what would change the view), then a summary of at most two short paragraphs, then a 12-month indexed price chart against the local index or a peer basket, with the dated events that moved the stock marked. Do not invent a variant view or unique market belief to fill a bullet. The rating and the new-money judgment are separate: the key points and summary do not tell the reader to wait for a lower price.
-- Sidebar: rating box (rating, price and date, 12-month target, price return computed from the displayed target, dividend yield shown separately, consensus target, bear / base / bull, and the new-money judgment with, when it is no, the decent and attractive entry prices, in the [decision contract's](../investment-conclusion/references/decision-contract.md#return-hurdle-and-calls) words); key data (ticker and exchange, 52-week range, market value, enterprise value, net cash or debt, shares outstanding with dilution, free float, average daily trading value, next catalyst with its date or "not confirmed"); key financials for the last actual and three forecast years (revenue, EPS, P/E, FCF yield or dividend yield).
+- Main column: **Key points**, three or four bullets of at most 25 words (the call and its economic rationale, stating an expectations gap and its size where the analysis establishes one; the valuation and target logic, any comparable consensus difference and why, what would change the view), then a summary of at most two short paragraphs, then a 12-month indexed price chart against the local index or a peer basket, with the dated events that moved the stock marked. Do not invent a variant view or unique market belief to fill a bullet.
+- Sidebar: rating box (rating, price and date, 12-month target, price return computed from the displayed target, dividend yield shown separately, consensus target and bear / base / bull, in the [decision contract's](../investment-conclusion/references/decision-contract.md#return-hurdle-and-calls) words); key data (ticker and exchange, 52-week range, market value, enterprise value, net cash or debt, shares outstanding with dilution, free float, average daily trading value, next catalyst with its date or "not confirmed"); key financials for the last actual and three forecast years (revenue, EPS, P/E, FCF yield or dividend yield).
 
 Use sector-appropriate key data and financial rows. Industrial EV/net-debt/FCF metrics are not mandatory for banks or insurers; use meaningful capital, return and distribution measures, and label unavailable or inapplicable comparisons without manufacturing them.
 
@@ -59,16 +57,8 @@ Numbered sources (publisher, title as a link, date; no raw URLs; primary documen
 
 ## Print and look
 
-Pin production rules at study creation and use the [implemented lifecycle](references/publication-review.md) for early model review, version-aware execution, staged printing and bounded presentation confirmation. The early review must cover the exact spec/workbook published; its frozen model and evidence accompany the writing packet automatically. A refused operation does not rewrite reviewed files. All distributed companions are frozen; the brief's visible content must reproduce its current payload, and its published structured scenario/yield fields need model bindings.
+Publish through the [publication workflow](references/publication-review.md): it owns rule pinning, the model review before writing, draft printing, the fresh reader's review, corrections and finalization. The early model review's frozen model and evidence accompany the writing packet automatically. A refused operation does not rewrite reviewed files. All distributed companions are frozen; the brief's visible content must reproduce its current payload, and its published structured scenario/yield fields need model bindings.
 
-Before freezing a draft, synchronize the [decision record](references/decision-record.md) from the current calculated model, including bound trigger text. Current packages require this checkpoint and freeze it automatically. Render material prose calculations and source ranges with `bound_measure` and matching [claim display bindings](references/claim-support.md#feasible-bridges-and-actual-displayed-figures); the declared raw value alone does not validate a printed sign or range. Rebuild dependent writing after any correction, preserving the actual review budget and freshness requirements.
+HTML generation uses the Python standard library. PDF printing needs Chrome (set `CHROME_PATH` if it is not found); the release check and page inspection need the packages in [requirements.txt](requirements.txt). These host capabilities are separate from installing the skill.
 
-HTML generation uses the Python standard library. PDF printing needs Chrome (set `CHROME_PATH` if it is not found). Printing needs Chrome; the release check and page inspection need the packages in [requirements.txt](requirements.txt). These host capabilities are separate from installing the skill.
-
-Use the [bounded publication workflow](references/publication-review.md). `package(study, zip, report_html, brief_html, [workbook], ...)` first prints drafts, checks integrity and prepares a **partial** review; it stops with `awaiting-review` and no ZIP. A named fresh reader must actually review the PDFs, model and evidence, record findings in the existing challenge handoff and assess applicable financial assertions. The host launches that context; a packet does not perform the work. Use `inspect_pdf` to render and look at every page.
-
-Pass the routed `researchMode` (`initiation`, `regular-review`, `earnings-update` or `catalyst-update`) to the package adapter. Before the reader starts, run `publication_review.py begin STUDY --reviewer NAME`. Draft versions and review attempts are separate: re-rendering an unreviewed packet preserves the prospective attempt number; a started, interrupted or failed review consumes one. Complete the definition-aware comparison, incremental-flow and brief-fidelity coverage in the wrapper. The [claim guide](references/claim-support.md) explains valid reconciliations and data limitations; these controls do not prescribe a forecast or rating.
-
-Correct material findings within the recorded review budget and refresh the draft/review after changes. Finalization checks the completed review, current file hashes and the study's pinned production-rule identity, applicable cash-coverage, normalized-ratio and financing bindings, plus existing model, decision, period, freshness and wording checks. It packages the **exact reviewed PDFs** without reprinting. Failure leaves no ZIP. An unresolved review remains a draft; do not manufacture a pass. Recheck with `release_check.py <study>`.
-
-Fix page-end headings, label collisions/clipping and conflicting figures. About 15% blank space is an inspection prompt; intact charts or rows may justify a gap. Tables may split correctly with repeated headers. The checks verify declared definitions and arithmetic, completion and provenance; they do not certify source truth, reviewer independence, unbound prose or sound judgment. Historical integrity-only checks use the explicitly labeled `--legacy` mode, not a publication bypass.
+Use `inspect_pdf` to render and look at every page. Fix page-end headings, label collisions/clipping, type that is not readable at the actual printed width and conflicting figures. About 15% blank space is an inspection prompt, not an automatic failure or an excuse to shrink type; intact charts or rows may justify a gap. Keep a debate in one normal-flow wrapper so its answer cannot overlap a repeated table header.

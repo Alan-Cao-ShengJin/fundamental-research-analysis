@@ -47,91 +47,22 @@ mechanism and record what remains uncovered; do not force an unrelated template.
 
 ## Use the references to construct assumptions
 
-1. Establish a dated historical operating baseline and map each relevant operating metric to
-   the exact period, units, perimeter, stock/flow, average/closing and gross/net
-   definitions. Provider or broker terminology is not automatically the issuer's.
-2. Identify what changes demand, price/mix, delivery, cost or capital for this
-   activity. Gather the useful breakdown from filings, call detail, contracts and
-   suitable outside observations. Keep inferred splits conditional.
-3. Build [foundational estimates](../foundational-builds.md) locally with their
-   evidence, reason, range and timing. Reconcile components to source totals and
-   explain the latest observed profit/loss before extrapolating a new margin.
-4. Link growth to capacity, service/engineering effort, working capital, required
-   investment and funding. Use applicable capital/claim accounting: banking and
-   insurance are not industrial working-capital templates.
-5. Reuse completed results in the statements and selected valuation. Check
-   important constraints and a coherent adverse case. Freeze observable operating
-   predictions under the existing model/revision/monitor interfaces; a stock-price
-   outcome alone does not validate their economics.
-
-Apply the [shared foundational-build method](../foundational-builds.md): keep each
-assumption, relevant history, explanation and source near the result it drives. Use
-the established workbook theme and supported quarters or halves. Label reported
-actuals, derived actuals, management guidance, third-party estimates and analyst
-assumptions separately. An arithmetic tie does not establish that a component
-allocation is true.
-
-Select material questions and evidence rather than a quota of tables or indicators.
-Keep missing data visible and identify any estimate used in its place. A report
-mentioning a metric is not evidence that its economics have been examined. Use a
-history, forecast horizon and valuation method appropriate to the activity and task.
+Build the estimates with the [foundational-build method](../foundational-builds.md).
+Map each operating metric to its exact period, units, perimeter, stock/flow,
+average/closing and gross/net definitions; provider or broker terminology is not
+automatically the issuer's. Explain the latest observed profit or loss before
+extrapolating a new margin. Check each formula's ratios, units and double counting
+for the task.
 
 The sector references supply methods, not forecast inputs. Establish any claimed
 normal margin, cycle average, success probability or peer range from dated evidence.
-Their synthetic examples cannot supply those empirical assumptions.
-
-## Responsibilities within the research workflow
-
-| Work | Owning skill and sector contribution |
-| --- | --- |
-| Sources and definitions | [Evidence intake](../../../evidence-intake/SKILL.md) retrieves and reconciles observations; the selected sector reference identifies useful questions and fields. |
-| Forecast construction | [Company modelling](../../SKILL.md) owns the local operating builds, linked statements, capital, cash and shares. |
-| Accounting and reporting concerns | [Financial quality](../../../financial-quality/SKILL.md) tests the sector-specific issues using the issuer's accounting basis. |
-| Ownership and shareholder access | [Corporate governance](../../../corporate-governance/SKILL.md) owns control, related-party issues, restrictions and capital allocation. |
-| Valuation and priced expectations | [Valuation](../../../valuation-thesis/SKILL.md) selects suitable methods and reconciles the claim being valued. Sector examples do not select a target price. |
-| New coverage and updates | [Initiation](../../../stock-initiation/SKILL.md) establishes a baseline; [model revision](../../../model-revision/SKILL.md) preserves it and recalculates affected forecasts. |
-
-A task to build or inspect a model does not require an unsolicited recommendation.
-Full stock research continues through the existing challenge, decision and brief
-skills. Sector references add no new rating threshold, report format or portfolio rule.
+Their worked examples cannot supply those empirical assumptions.
 
 Accounting, tax, tariff, reimbursement, regulatory capital, product approvals and
 licence rules vary by place and date. Check the current primary source for an
 actual assignment. The references describe methods, not a current rules database.
 Issuer filings/supplements are the usual starting point; regulator datasets,
-technical reports, contracts and matched industry series then fill specific gaps.
-Use [evidence intake](../../../evidence-intake/SKILL.md) and its existing
-provider guide rather than assuming a new data connection from this directory.
-
-## Tools and clean examples
-
-[sector_plan.py](../../scripts/sector_plan.py) lists supported activities and
-creates a blank scaffold by default. `--example` supplies an independently
-invented arithmetic miniature from [sector examples](../../assets/sector-examples.json).
-Each miniature makes its limited coverage explicit; none is a broker model,
-empirical base rate or full forecast framework.
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --list
-python skills/company-model/scripts/sector_plan.py --sector banks --out output/bank-plan.json
-python skills/company-model/scripts/sector_plan.py --sector transport --example --out output/transport-example.json
-python skills/company-model/scripts/forecast_blocks.py output/transport-example.json --output output/transport-compiled.json
-```
-
-The existing compiler validates dependencies and performs arithmetic; the existing
-workbook adapter can author a chosen compiled plan using the house theme. These
-tools do not determine issuer applicability, estimate inputs or certify economic
-completeness. A full company model still requires appropriate history, other
-material activities, statements/capital, cash, shares and valuation. No Excel
-files or source-collection jobs are created merely by reading a sector card.
-
-## Integration boundaries
-
-Formula conventions still need task-specific checks of ratios, units and double counting.
-
-The other specialists retain responsibility for source access, financial
-quality/governance, valuation, decision thresholds, portfolio sizing, reports
-and monitoring. The house workbook, initiation/update distinction and user
-output preferences continue to apply.
+technical reports, contracts and matched industry series then fill specific gaps,
+retrieved through [evidence intake](../../../evidence-intake/SKILL.md).
 
 Adaptation credit and licence: [notice](NOTICE.txt).

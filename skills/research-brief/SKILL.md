@@ -2,7 +2,7 @@
 name: research-brief
 description: Write a selective, decision-focused investment brief on one readable page using the shared minimalist template and institutional research writing standard. Also write developed stock pitches, results notes and decision updates at the requested depth.
 metadata:
-  version: 3.11.2
+  version: 3.11.3
 ---
 
 # Stock pitch, decision brief and research update
@@ -35,13 +35,11 @@ Include competitive response, marginal returns, advantage duration, narrative as
 
 Complete essential company, forecast and valuation work before writing the brief. Use the four [target-underwriting checks](../valuation-thesis/references/target-underwriting.md) to support a qualified central judgment, rather than publishing a process memo about missing work.
 
-For a full report, begin writing in a fresh context from the frozen analysis checkpoint. Load the short [writing standard](references/natural-writing.md), the selected output template and the relevant financial definitions, retaining access to original pivotal evidence. Develop each conclusion in one main location; a summary may repeat the takeaway, while later sections refer back briefly. The separate fresh review and finalization follow the [publication workflow](../report-layout/references/publication-review.md).
+For a full report, begin writing in a fresh context from the frozen analysis checkpoint. Load the short [writing standard](references/natural-writing.md), the selected output template and the relevant financial definitions, retaining access to original pivotal evidence. The separate fresh review and finalization follow the [publication workflow](../report-layout/references/publication-review.md).
 
 ## Decision and risk block
 
-Follow the [stock decision contract](../investment-conclusion/references/decision-contract.md) for completed stock recommendations: one Buy/Hold/Sell, exact security and current quote/time, one primary target/date, signed price return, how the target differs from consensus and why, and same-horizon bear/bull targets/returns with little emphasis. Put one key thesis sentence immediately beside/below the call. Confidence follows the label; Trim/Avoid/Watch cannot replace it.
-
-Apply the [decision contract](../investment-conclusion/references/decision-contract.md) for rating, price return beside the call, and dividend yield shown separately. The new-money tier and entry prices stay in the decision record, not the brief.
+Follow the [stock decision contract](../investment-conclusion/references/decision-contract.md) for completed stock recommendations: one Buy/Hold/Sell rating, exact security and current quote/time, one primary target/date, signed price return beside the call, dividend yield shown separately, how the target differs from consensus and why, and same-horizon bear/bull targets/returns with little emphasis. Put one key thesis sentence immediately beside/below the call. Confidence follows the label; Trim/Avoid/Watch cannot replace it.
 
 Explain the primary valuation method and the dated anchor supporting its multiple or pivotal input. Use the [target and earnings-basis contract](../investment-conclusion/references/decision-contract.md#target-and-earnings-basis).
 

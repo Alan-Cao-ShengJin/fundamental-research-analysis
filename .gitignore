@@ -12,7 +12,6 @@ reports/
 *.pdf
 
 # Independently authored reusable workbook fixture
-!skills/company-model/assets/forecast-blocks-example.xlsx
 
 # Local caches and private source material
 .pytest_cache/

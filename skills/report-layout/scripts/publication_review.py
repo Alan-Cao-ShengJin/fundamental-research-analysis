@@ -17,7 +17,6 @@ import shutil
 import subprocess
 import sys
 import re
-import tarfile
 from uuid import uuid4
 
 HERE = Path(__file__).resolve().parent
@@ -62,7 +61,7 @@ def writing_packet(study, paths, research_mode='initiation', model_changed=False
 
 class Figures(HTMLParser):
     def __init__(self):
-        super().__init__(); self.figures = []; self.current = None; self.skip = 0; self.prose = []; self.span_depth = 0
+        super().__init__(); self.figures = []; self.current = None; self.skip = 0; self.span_depth = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -77,11 +76,8 @@ class Figures(HTMLParser):
             self.span_depth = 1
 
     def handle_data(self, data):
-        if not self.skip:
-            if data.strip():
-                self.prose.append(data.strip())
-            if self.current is not None:
-                self.current['text'] += data
+        if not self.skip and self.current is not None:
+            self.current['text'] += data
 
     def handle_endtag(self, tag):
         if tag in ('style', 'script'):
@@ -90,19 +86,6 @@ class Figures(HTMLParser):
             self.span_depth -= 1
             if self.span_depth == 0:
                 self.figures.append(self.current); self.current = None
-
-
-def inventory(study, record):
-    """Advisory prose inventory only. An existing model number is never treated as proof of the right metric/period."""
-    output = []
-    for role, paths in record['renders'].items():
-        rel = paths['html'] if isinstance(paths, dict) else paths
-        parser = Figures(); parser.feed(local(study, rel).read_text(encoding='utf-8'))
-        for text in parser.prose:
-            numbers = re.findall(r'[-+]?\d[\d,.]*(?:%|x)?', text)
-            if numbers:
-                output.append({'document': role, 'text': text, 'numbers': numbers})
-    return output
 
 
 def digest(path):
@@ -226,7 +209,6 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
     import release_check as rc
     study = Path(study).resolve()
     path = local(study, record.get('review', DEFAULT_PATH))
-    from review_attempts import state
     usage = preflight(study,record,revise,max_rounds)
     max_rounds = usage['maxRounds'] or max_rounds
     if type(max_rounds) is not int or max_rounds < 1:
@@ -259,7 +241,7 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
             files += [p.relative_to(study).as_posix() for p in sorted(base.rglob('*'))
                       if p.is_file() and p != path and '__pycache__' not in p.parts
                       and 'review-snapshots' not in p.parts and not p.name.startswith(('~$','.'))
-                      and not p.name.startswith('draft-review') and p.name != 'prose-number-inventory.json']
+                      and not p.name.startswith('draft-review')]
     # Include the producer and bindings, not just its outputs. Explicit reviewInputs covers other build arrangements.
     for folder in ('build', 'deliverables'):
         base = study / folder
@@ -278,10 +260,6 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
         raise ValueError('Research cutoff is in the future; use a host-declared synthetic fixture clock, not a false producedAt')
     fingerprint = rc.skills_fingerprint()
     hashes, snapshot = freeze_inputs(study, files, record, stamp, fingerprint, round_number, evaluation)
-    # Advisory inventory is not a completion record and is intentionally outside the frozen input hash set.
-    inv_path = path.with_name('prose-number-inventory.json')
-    inv_path.parent.mkdir(parents=True, exist_ok=True)
-    inv_path.write_text(json.dumps(inventory(study, record), indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     # The strict common envelope permits 200 sources. Keep core draft/model references here;
     # all evidence remains frozen in reviewedFiles, and the reviewer adds pivotal source locators.
     sources = [{'id': f'file-{i}', 'location': rel, 'locator': f'SHA256 {hashes[rel]}',
@@ -753,7 +731,6 @@ def main():
         except Exception as exc:
             record.update(status='failed', error=f'{type(exc).__name__}: {exc}'); save(); raise
     elif args.action == 'check':
-        import release_check as rc
         spec = json.loads(local(args.study, record['spec']).read_text(encoding='utf-8-sig'))
         results = check(args.study, record, spec, local(args.study, record['workbook']))
         print(json.dumps(results, indent=2)); return int(any(c['result'] == 'fail' for c in results))

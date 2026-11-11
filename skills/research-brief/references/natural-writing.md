@@ -25,7 +25,7 @@ Give each developed argument one main home. The front page and standalone brief 
 - When a conclusion is not obvious, give the steps that lead to it, one short sentence each.
 - Do not write to protect yourself. Keep a qualification only if it would change what the reader does, state it once, and say what we do not know as directly as what we do.
 - Own judgments with "we estimate", "we forecast" or "we assume". Distinguish reported data, guidance, consensus and our interpretation. Do not invent a variant view, consensus composition or unique market belief.
-- Give figures their period, unit, accounting/share basis and relevant comparison. Use model-bound values for material derived claims. Different valid bases may coexist when each is labeled and reconciled.
+- Give figures their period, unit, accounting/share basis and relevant comparison. Use one EPS basis, one net cash figure, one per-share currency and one horizon throughout, and label any second basis where it appears. Use model-bound values for material derived claims. Different valid bases may coexist when each is labeled and reconciled.
 - Explain the economic meaning of a statistical result in plain words; keep supporting dispersion statistics and window alternatives in the exhibit unless they are needed to judge the conclusion. Do not replace a qualified result with an unsupported claim of a historical extreme.
 
 Keep the claim within the evidence: a company mix change is not a reported industry demand shift; an illustrative bridge to consensus is not what analysts necessarily assume; selected comparisons are not every possible comparison; cash that covers a shortfall for years is not a dividend that cannot be cut. Use computed counts and the exact tested scope for numerical generalisations. A reviewer correction follows the same source, calculation and rounding standard as an author figure.
@@ -103,11 +103,11 @@ Use net profit attributable to shareholders for earnings after minorities; defin
 
 ## Editing workflow
 
-Draft the argument, then edit once for reasoning and once against the pairs above. Read it as someone who has never seen the company: rewrite any sentence that reader would have to stop and work out, and cut any they would not miss. Resolve factual defects through the owning analysis rather than polishing them away. A concise summary may omit peripheral detail; it must not turn a conditional conclusion into an unconditional one. Write nothing we cannot support: every fact traces to a filing, a data series, an attributed comment or the model. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold. Review and release follow the [publication workflow](../../report-layout/references/publication-review.md).
+Draft the argument, then edit once for reasoning and once against the pairs above. Do not carry wording from these instructions into the report. Read it as someone who has never seen the company: rewrite any sentence that reader would have to stop and work out, and cut any they would not miss. Resolve factual defects through the owning analysis rather than polishing them away. A concise summary may omit peripheral detail; it must not turn a conditional conclusion into an unconditional one. Write nothing we cannot support: every fact traces to a filing, a data series, an attributed comment or the model. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold. Review and release follow the [publication workflow](../../report-layout/references/publication-review.md).
 
 ## Further detail
 
-Use the [optional examples and terminology reference](writing-detail.md) for specific register or profit-label questions. Apply the [inference tests](../../research-challenge/references/inference-quality.md) to decision-driving claims and the [one-page guide](one-page-brief.md) to the brief. Read the finance references relevant to the case rather than loading every specialist into the writing context.
+Use the [optional terminology reference](writing-detail.md) for profit-label and valuation-language questions. Apply the [inference tests](../../research-challenge/references/inference-quality.md) to decision-driving claims and the [one-page guide](one-page-brief.md) to the brief. Read the finance references relevant to the case rather than loading every specialist into the writing context.
 
 ## Attribution
 

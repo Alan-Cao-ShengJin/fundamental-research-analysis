@@ -2,7 +2,7 @@
 name: chart-visualization
 description: Build consistent, data-linked charts and business diagrams using AntV G2 and AntV Infographic with a shared professional theme. Use for research-report visuals, chart selection, rendering and export; preserve model values and reporting bases.
 metadata:
-  version: 2.1.2
+  version: 2.1.3
 ---
 
 # Consistent charts and diagrams
@@ -37,7 +37,7 @@ Use the shared theme's font, colours, spacing and mark styles. Colour meanings f
 
 Actual values are solid. Forecasts use dashed lines, lighter fills or another labelled pattern without changing what the series colour means. Mark the forecast boundary. Bear/base/bull and Buy/Hold/Sell use the named semantic colours in the theme, plus readable labels. A price reference is a neutral line, not another forecast.
 
-Label period, unit, currency and basis clearly, with a short takeaway and readable source. Charts consume the current decision record; they do not determine ratings or attractiveness.
+Label period, unit, currency and basis clearly, with a short takeaway and readable source. Charts consume the current decision record; they do not determine ratings.
 
 ## Render and verify
 

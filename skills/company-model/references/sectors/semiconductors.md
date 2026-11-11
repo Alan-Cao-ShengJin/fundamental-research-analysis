@@ -51,13 +51,6 @@ wafer and 90% yield, output is 72,000 good dies.
 Selling 70,000 with 1,000 in opening stock leaves 3,000 in closing stock.
 
 All figures are invented. They illustrate selected relationships, not an issuer
-forecast or a complete financial model. Generate the matching example with:
-
-```powershell
-python skills/company-model/scripts/sector_plan.py --sector semiconductors --example --out output/semiconductors.json
-```
-
-Omit `--example` to create a blank scaffold. Replace its period and inputs with
-the relevant observations and assessed assumptions before real use.
+forecast or a complete financial model.
 
 Adaptation credit and licence: [notice](NOTICE.txt).

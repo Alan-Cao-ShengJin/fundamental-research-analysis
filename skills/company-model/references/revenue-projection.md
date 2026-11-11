@@ -31,7 +31,7 @@ Use the [competition and capital-return framework](competition-and-capital-retur
 
 ## Choose the business engine
 
-For a more specific activity, select an applicable [sector reference](sectors/index.md). Use its operating chain and evidence questions to design the build; do not turn its miniature example into a company forecast or force unavailable physical units. Banking/insurance and other specialised capital models need their actual statements and funding mechanisms rather than an industrial working-capital schedule.
+For a more specific activity, select an applicable [sector reference](sectors/index.md). Use its operating chain and evidence questions to design the build; do not turn its worked example into a company forecast or force unavailable physical units. Banking/insurance and other specialised capital models need their actual statements and funding mechanisms rather than an industrial working-capital schedule.
 
 | Pattern | Modelling requirement |
 | --- | --- |

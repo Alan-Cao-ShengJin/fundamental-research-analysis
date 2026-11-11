@@ -1,3 +1,33 @@
+# Research skill verification - 11 November 2026, version 2.13.0
+
+This release applies the owner's decisions on the items left open in 2.12.1 and removes unused material. Earlier audit sections keep their original dates, scope and results.
+
+## What changed
+
+- **Cost of equity:** one method, the 10-year government yield plus the equity premium implied by the market's own index at the research date, with a country premium only where index inputs are missing and at most one point of company adjustment. A solver and its tests are added. The method follows Damodaran's implied premium and the implied-cost-of-capital literature cited in the reference.
+- **Consensus:** forecasts are built independently of consensus; material differences are explained and a large unexplained gap is treated as a sign of error.
+- **Scenarios:** probabilities are optional; the base case is the set of numbers the analysis believes in most.
+- **New-money judgment removed:** attractiveness tiers, the new-money line and entry prices are gone from the decision contract, the brief renderer, the release check, templates, evaluation cases and tests. The rating rule is unchanged.
+- **Total return:** may be shown, labelled, where the dividend is a real part of the holder's return; it stays out of the rating and the target.
+- **Smaller bundle:** the unused forecast scaffold and node-graph tooling, an unrunnable layout checker, an unread inventory file and repeated statements of the same rule were deleted. The public README was rewritten in plain language.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 271 Python tests, 65 JavaScript tests, all 23 skill validations and 743 relative links passed |
+| Public export | 272 Python tests, 65 JavaScript tests, all 20 skill validations and 838 relative links passed |
+| Sample model | The unchanged synthetic workbook still reproduces its specification |
+| Scope | No public adaptation line was lost in the export; private research, source packs and credentials excluded; private-path and token pattern checks passed |
+
+Test counts are lower than in 2.12.1 because the tests of the deleted tooling and of the retired new-money concept were removed with them; three tests of the new solver and one of the retained model tracer were added. No test of the rating, target, price return or dividend yield was weakened.
+
+## Limits
+
+No fresh research run, PDF print or native Excel recalculation was performed for this release, so the effect of the rule changes on report quality is untested. The implied-premium solver checks arithmetic only; choosing the index and retrieving its dated inputs remain analyst work. The worked numbers in the sector guides are no longer machine-tested, because the test covered the deleted example file rather than the prose. The sample model still shows a total return row.
+
+---
+
 # Research skill verification - 11 November 2026, version 2.12.1
 
 This is a correction release after a clean review. Earlier audit sections keep their original dates, scope and results.

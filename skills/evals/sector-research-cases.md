@@ -1,7 +1,6 @@
 # Sector mechanism selection and model checks
 
 These are authored forward-evaluation cases, not claims of completed agent runs.
-Arithmetic miniatures are tested separately in `tests/test_sector_plans.py`.
 
 **Sector name versus economic exposure.** Prompt: "Research this mining-technology group." Supply a machinery manufacturer, a small owned solar/PPA portfolio, EPC contracts and a financed equipment-sales receivable. Expect industrial equipment/project/aftermarket mechanisms plus only the material generation/credit detail. Do not assign the entire company a mine-grade/reserve NAV, treat battery factories as regulated utilities, or count EPC and owned-project revenue/capex on the same project twice. Select by actual activities and explain gaps.
 

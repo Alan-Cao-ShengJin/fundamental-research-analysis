@@ -2,7 +2,7 @@
 name: evidence-intake
 description: Build a traceable, time-aware evidence pack from filings, market data, operating trackers and transcripts. Use before modelling or testing, or to resolve conflicting research inputs.
 metadata:
-  version: 2.3.4
+  version: 2.3.5
 ---
 
 # Evidence intake and reconciliation
@@ -29,7 +29,7 @@ Reuse sources within their freshness and licensing constraints. A licensed trans
 
 ## Build the evidence pack
 
-For company research, run the [world-state scan](../research-cycle/references/world-state.md) during intake and keep its dated record in the evidence pack. Collect the inputs for [what the market is trading](../research-cycle/references/what-the-market-trades.md#1-find-what-sets-the-price): consensus for the next three fiscal years and by segment with high, low, count and revisions, its point-in-time history over the past year, the surprise record, guidance against prior consensus, daily prices for the stock and peers with the news on the largest moves, call Q&A and public records of investor meetings.
+For company research, run the [world-state scan](../research-cycle/references/world-state.md) during intake and keep its dated record in the evidence pack. Collect the inputs for [what the market is trading](../research-cycle/references/what-the-market-trades.md#1-find-what-sets-the-price).
 
 Record free float, liquidity and access constraints; expand investor-base analysis only where it could change the call.
 

@@ -2,8 +2,6 @@
 
 Choose the primary tool from the business model, shareholder claim, lifecycle, cash visibility, cyclicality and capital requirements. Follow the [valuation yardstick](../../investment-conclusion/references/decision-contract.md#valuation-yardstick) by company type and explain the choice for the issuer. P/E is the most widely used. A DCF is at most a cross-check, only for companies with predictable cash flow.
 
-Follow the [target and earnings-basis contract](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis) and [calendar guide](valuation-calendar.md).
-
 Read [valuation drivers and dividends](valuation-driver-and-dividends.md) to decide whether earnings growth, a higher multiple, cash distributions or asset realisation drives the target. For dividend-led cases, quantify payout, yield and funded coverage before selecting a required yield. P/E and dividend yield on the same payout are algebraically linked, not independent valuation support.
 
 ## Economic fit
@@ -14,7 +12,7 @@ Apply [advantage-duration and capital-return analysis](../../company-model/refer
 
 | Business economics | Suitable starting methods and checks |
 | --- | --- |
-| Established nonfinancial company | Forward P/E or enterprise multiples against comparable peers and own history; a DCF only as a cross-check when cash flow is predictable. Reconcile debt, leases and other claims. |
+| Established nonfinancial company | Forward P/E or enterprise multiples against comparable peers and own history. Reconcile debt, leases and other claims. |
 | Banks and regulated finance | Residual income, capital-distribution/dividend capacity, normalised P/E or P/B linked to sustainable ROE and cost of equity. Deposits are funding, and required capital is retained investment; an industrial EV bridge may mislead. |
 | Insurance | Earnings, book/residual income or disclosed embedded/value-of-business measures appropriate to the products and accounting. Reconcile capital and shareholder claims. |
 | Property, investment holdings and portfolios | NAV, asset cash flows or sum of parts, reflecting taxes, debt, holding costs and realisability. Distribution metrics need comparable definitions and maintenance investment. |
@@ -45,7 +43,7 @@ Build the band from monthly month-end prices over the consensus forward EPS curr
 
 Reconcile splits, share counts, enterprise-value claims, accounting and perimeter changes. Choose a window relevant to the business and financing regime; distinguish changes in mix, growth, profitability, rates, leverage and governance. Exclude or explain near-zero/negative-earnings multiples and exceptional events. A past peak is not an entitlement to rerate.
 
-Similar forecast growth to the historical window is one comparison, not proof that the old multiple remains appropriate. Test whether growth duration, reinvestment and returns, cash conversion, financing/rates, business mix and shareholder rights still support that regime. Explain the material differences and the strongest case for today's premium or discount persisting. A supported temporary dislocation retains the house mean-reversion default without requiring a new named catalyst; neither a statistical distance from the mean nor an unresolved regime question establishes that premise.
+Similar forecast growth to the historical window is one comparison, not proof that the old multiple remains appropriate. Test whether growth duration, reinvestment and returns, cash conversion, financing/rates, business mix and shareholder rights still support that regime. Explain the material differences and the strongest case for today's premium or discount persisting. Neither a statistical distance from the mean nor an unresolved regime question establishes that a dislocation is temporary.
 
 If estimate vintages are unavailable or listing history is short, state the limitation. Do not relabel trailing multiples, pre-IPO funding valuations or a current-forecast backfill as listed historical forward valuation. Use the supported peer/operating evidence instead.
 
@@ -55,13 +53,13 @@ A trailing band is a separate cross-check: month-end price over the latest twelv
 
 A provider-reported historical mean is a dated benchmark, not a reconstructed time series. Retain its publisher, report date, observation window, forward convention and access scope. For a calculated historical mean, retain the dated price/estimate observations, sampling frequency, valid/excluded counts and treatment of splits, missing or nonpositive earnings. Never manufacture a point-in-time forward history from trailing ratios or later-revised forecasts. A few valid annual observations are an annual sample, not a reconstructed monthly or daily series or a distribution. An indexed excerpt is not a full PDF read.
 
-Apply the canonical [target-multiple rule](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis) after testing whether growth, mix, cash conversion, capital returns, rates and governance support a temporary dislocation or a different regime. Statistical distance alone does not establish the premise. A bull-case range should reflect the normal supported regime, with its empirical size and economic rationale stated.
+Apply the canonical [target-multiple rule](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis). A bull-case range should reflect the normal supported regime, with its empirical size and economic rationale stated.
 
 ### Mixed or partial valuation changes
 
 Partial recognition is already allowed by the decision contract; it needs calibration, not a new rating convention. Where part of a discount is temporary and part reflects changed economics, select a relevant regime/subsample or a normalized comparable anchor, explain the adjustment for durability, returns, cash, funding and rights, and test nearby alternatives. A fraction of historical standard deviation describes the selected distance; it does not independently justify its size. Do not fit a P/E-to-growth relationship merely to reproduce a preferred target: matched point-in-time observations, regime differences and predictive uncertainty matter, and correlation is not a pricing law.
 
-If reasonable single-driver changes cross a rating threshold, state that sensitivity and why the central judgment remains preferable; reflect the margin for error in the separate new-money assessment. An adverse case changing the rating is normal and does not mechanically invalidate the central call. Preserve one supported primary target and its current-forward earnings basis.
+If reasonable single-driver changes cross a rating threshold, state that sensitivity and why the central judgment remains preferable. An adverse case changing the rating is normal and does not mechanically invalidate the central call. Preserve one supported primary target and its current-forward earnings basis.
 
 ### Align the forward convention before calculating a target
 
@@ -73,7 +71,7 @@ State the earnings window used at each endpoint of the return bridge. Separate p
 
 For both higher and lower target multiples, explain where the selected number comes from: a dated comparable anchor plus justified adjustments, relevant point-in-time own-history evidence, or an explicit economic derivation. Show why that supports the selected level rather than merely saying that growth, brand or risk deserves a premium/discount. "Analyst judgment" labels an assumption; it does not calibrate its size. Current valuation is a market observation, not automatic fair value.
 
-A forecast earnings shortfall does not itself prove that the multiple should contract. Explain how the evidence changes expected durability, growth, returns, funding risk or credibility, whether it is already expected, and what investors will observe. Where a valuation change lacks support and the stock is not temporarily away from its own mean, today’s multiple on appropriately dated forecast earnings is a legitimate central case. A peer median is an anchor to assess economically, not automatic fair value.
+A forecast earnings shortfall does not itself prove that the multiple should contract. Explain how the evidence changes expected durability, growth, returns, funding risk or credibility, whether it is already expected, and what investors will observe. Where a valuation change lacks support and the stock is not temporarily away from its own mean, today’s multiple on appropriately dated forecast earnings is a legitimate central case.
 
 Rerating means investors paying a higher valuation, such as a higher P/E, for the company's earnings. Explain the reason before counting the gain. A peer's higher P/E does not establish that this will happen. A return to the stock's own mean after a temporary de-rating needs no further catalyst; a multiple above the mean needs a significant one.
 
@@ -84,7 +82,7 @@ For a target that uses a multiple above the stock's own mean, answer:
 3. **What will investors see, and when?** Identify the observable evidence and confirmed or estimated window. Results dates, "better recognition" and "confidence returns" are not causes by themselves. A hope of reform is not implemented reform.
 4. **Why this target valuation?** Connect the change to earnings durability, growth, returns, shareholder distributions or lower risk. Use comparable peers and dated own-history evidence while retaining justified discounts. Explain what could stop or delay the reassessment.
 
-State this causal argument in the pitch. If support is weak, keep rerating as an upside scenario rather than the central target. A bull-case multiple still needs these answers: analyse how the bull case could become reality rather than picking a number. Recalculate the base target and call; a footnote saying rerating is uncertain does not justify making it the whole Buy case. Do not change the target merely to meet the attractiveness hurdle.
+State this causal argument in the pitch. If support is weak, keep rerating as an upside scenario rather than the central target. A bull-case multiple still needs these answers: analyse how the bull case could become reality rather than picking a number. Recalculate the base target and call; a footnote saying rerating is uncertain does not justify making it the whole Buy case. Do not change the target to reach a rating.
 
 On an explicitly selected comparable basis, `target price = selected forward EPS * justified target multiple`. State the earnings period and follow the [calendar guide](valuation-calendar.md). Separate:
 

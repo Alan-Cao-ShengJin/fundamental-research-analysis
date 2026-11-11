@@ -48,9 +48,8 @@ when the relationship remains clear; no fixed tab name or universal row order is
 required.
 
 Place an editable assumption beside or immediately above/below the numbers it
-drives. Keep a visible source beside the calculation. A small operating scaffold
-can show its full explanation in an ordinary cell to the right; the full company
-workbook uses the compact source tags and row-label comments in the
+drives. Keep a visible source beside the calculation, using the compact source
+tags and row-label comments in the
 [workbook profile](workbook-profile.md#house-theme-and-reporting-detail).
 Changing an assumption should leave its active value and consequences in view,
 with the supporting reasoning easy to retrieve.
@@ -101,22 +100,7 @@ no issuer data or sector assumptions.
   [model_example.py](../scripts/model_example.py): the full multi-sheet model
   the [model standard](model-standard.md) requires, with invented figures. Start
   every company model from this structure.
-- [Blank build plan](../assets/forecast-blocks-template.json): edit the periods,
-  block definitions, foundations, formulas and selected outputs for the task.
-  Null inputs and blank evidence fields intentionally mark unfinished work.
-- [Synthetic worked plan](../assets/forecast-blocks-example.json) and
-  [editable Excel example](../assets/forecast-blocks-example.xlsx): demonstrate
-  two local component builds aggregating to a total on the same worksheet.
-  They are an operating-build example, not a completed issuer model or a claim
-  that every business should use those equations.
-- [Plan initializer](../scripts/init_forecast_plan.py): create a fresh scaffold
-  without copying a prior company's workbook.
-- [Compiler and reviewer](../scripts/forecast_blocks.py): check declared inputs,
-  missing bases, dependencies, cycles, missing values and unused foundations;
-  calculate the plan and compile local Excel formulas. Its findings direct
-  analyst review, without certifying the evidence or economics.
 - [Company model builder](../scripts/model_workbook.py) and [Excel recalculation](../scripts/recalc_excel.ps1): build the full multi-sheet model required by the [model standard](model-standard.md) from one cell specification, calculate every case independently, recalculate in Excel and check that the two agree.
-- [Portable workbook writer and sync checker](../scripts/forecast_workbook.py), for a single-sheet annual operating scaffold only; it cannot hold a company model's statements: build formulas and named bindings from the same executable plan, recalculate its restricted arithmetic, and fail if any declared input/output, formula or saved value differs. See [portable build and sync](workbook-profile.md#portable-build-and-mechanical-sync).
 - [Read-only cell tracer](../scripts/trace_model.py): trace selected cells in an
   existing workbook, including saved formula caches, local/cross-sheet precedents,
   nearby row labels and cell notes. It does not recalculate or infer whether a
@@ -134,36 +118,15 @@ python skills/company-model/scripts/model_workbook.py check output/model_spec.js
 
 `-Selector` and `-Outputs` take workbook addresses: on sheets with a source-tag column, cells from that column rightwards sit one column right of their specification address.
 
-For a single-sheet scaffold:
+To trace cells in an existing workbook:
 
 ```powershell
-python skills/company-model/scripts/init_forecast_plan.py output/plan.json
-python skills/company-model/scripts/forecast_blocks.py output/plan.json --output output/compiled.json
-python skills/company-model/scripts/forecast_workbook.py build output/plan.json output/model.xlsx --compiled output/compiled.json
-python skills/company-model/scripts/forecast_workbook.py check output/plan.json output/model.xlsx
-```
-
-The compiler uses the Python standard library; the portable writer/checker and tracer use the dependencies in [requirements.txt](../requirements.txt), without a proprietary runtime. The portable evaluator recalculates only the documented arithmetic grammar; it is not a general Excel engine. Existing complex workbooks require a compatible engine and the [preservation workflow](workbook-profile.md). No helper refreshes external data or runs macros.
-
-For a numerical sensitivity, set a forecast foundation in a separate run:
-
-```powershell
-python skills/company-model/scripts/forecast_blocks.py output/plan.json --set input_id forecast_period 12 --output output/sensitivity.json
 python skills/company-model/scripts/trace_model.py output/existing.xlsx --cell "Operating build!F15" --output output/trace.json
 ```
 
-Expressions support named rows, `+`, `-`, `*`, `/`, parentheses, unary signs and
-`lag(row_id)` for one prior period. They are parsed, never executed as Python.
-Declare an independent input under `values` by period. Put its basis once in `basis.default` (source for actuals, rationale for forecasts), with optional `basis.periods` overrides; a distinct source or assumption merits a distinct basis, not boilerplate for every cell. A `formula` supplies
-calculated periods; a historical value can anchor the first period of a
-roll-forward. An explicit forecast value on a calculated row is reported as an
-override needing explanation. Formulas can encode assumptions too; explain their
-economic rule locally.
-
-The helpers do not infer dimensions, fiscal calendars, recognition rules,
-business completeness or source truth. They support a documented business design,
-not automatic template fitting. Missing inputs stay unavailable; the workbook
-adapter refuses to export an incomplete calculated build. The blank JSON plan
-is intentionally not calculation-ready. For a full company forecast, add the
-appropriate linked statements, funding, ownership and valuation schedules under
-the existing skill requirements. The model may use another suitable backend.
+The builder and tracer use the dependencies in [requirements.txt](../requirements.txt).
+Existing complex workbooks require a compatible engine and the
+[preservation workflow](workbook-profile.md). No helper refreshes external data,
+runs macros or infers dimensions, fiscal calendars, recognition rules, business
+completeness or source truth. They support a documented business design, not
+automatic template fitting.

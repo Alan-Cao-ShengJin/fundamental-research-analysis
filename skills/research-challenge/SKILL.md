@@ -2,7 +2,7 @@
 name: research-challenge
 description: Fact-check and challenge an investment opinion, research thesis, valuation or strategy. Use for standalone devil's-advocate reviews or pre-decision scrutiny of unsupported claims, causal gaps, fragile assumptions and implementation risks.
 metadata:
-  version: 2.7.3
+  version: 2.7.4
 ---
 
 # Research challenge
@@ -21,7 +21,7 @@ First test whether the debate is the one [the market is trading](../research-cyc
 
 After the report and brief are drafted, read them as a second pass: test the material reasons for the call, each causal assertion, the valuation premise and the contrary evidence against the model and the study's evidence record, and send corrections back through the affected calculations before packaging. This pass adds to the earlier challenge of the thesis and model; it does not replace it.
 
-For publication, perform that pass as the named fresh reader under the [bounded publication workflow](../report-layout/references/publication-review.md). Read the frozen files and original pivotal evidence, not only the author's summaries or defense. Assess the six writing dimensions, review the advisory number inventory, and complete the existing challenge handoff inside the publication packet with actual findings and applicable financial checks. Never auto-complete a review because the build passes. Recheck corrections; exhausted unresolved material findings leave a draft rather than an endless rewrite loop.
+For publication, perform that pass as the named fresh reader under the [bounded publication workflow](../report-layout/references/publication-review.md). Read the frozen files and original pivotal evidence, not only the author's summaries or defense. Assess the six writing dimensions and complete the existing challenge handoff inside the publication packet with actual findings and applicable financial checks. Never auto-complete a review because the build passes. Recheck corrections; exhausted unresolved material findings leave a draft rather than an endless rewrite loop.
 
 Apply the [inference review](references/inference-quality.md) to the claims on which the decision depends. Check what the cited observation actually measures, the assumptions connecting it to the conclusion, the strongest alternative explanation, and whether the proposed test distinguishes them. A source citation, completed Argument block or reproduced calculation does not establish that the inference follows. Record the pivotal links actually tested and their disposition in the existing challenge handoff; preserve a supported central judgment with its material uncertainty rather than forcing bullishness, pessimism or agreement with consensus.
 
@@ -39,13 +39,11 @@ Use issue classifications: invalid fact/calculation, critical missing evidence, 
 
 For a company recommendation, challenge the [governance assessment](../corporate-governance/SKILL.md): is apparent cheapness compensation for weak rights, cash diversion or poor allocation, and what could actually change it? Check that the same risk is not charged multiple times. Test the pivotal investment insight against attributed/price-implied expectations and a credible cash-return or repricing mechanism; do not assume the market is unaware of a known fact.
 
-Challenge the target and the separate new-money judgment under the [decision contract](../investment-conclusion/references/decision-contract.md). Test downside, costs, horizon and opportunity cost. For multiple changes, challenge the evidence and why investors would reassess the company; a results date or peer discount alone is insufficient. Revise unsupported targets rather than adding a disclaimer.
+Challenge the target under the [decision contract](../investment-conclusion/references/decision-contract.md). Test downside, costs, horizon and opportunity cost. For multiple changes, challenge the evidence and why investors would reassess the company; a peer discount alone is insufficient. Revise unsupported targets rather than adding a disclaimer. Reconcile method disagreements. Business quality, a low multiple or polished presentation alone does not establish a Buy.
 
 Challenge the [valuation driver](../valuation-thesis/references/valuation-driver-and-dividends.md): does a dividend narrative actually support the chosen yield, payout and cash coverage, or merely disguise an unexplained P/E? Check policy adoption, earnings-year versus payment-year payout, already-ex dates, recurring cash and higher-capex/cut scenarios. Re-expressing a P/E as a yield is not independent validation.
 
-Check the [decision contract](../investment-conclusion/references/decision-contract.md): rating, price return beside it, the gap to consensus, realisable target, quote/period basis and same-horizon bear/bull cases. Reconcile method disagreements. Business quality, a low multiple or polished presentation alone does not establish a Buy.
-
-Before a severe governance/reporting conclusion, apply the [red-flag review](../financial-quality/references/financial-red-flags.md): reconstruct pivotal evidence, check corrections/remediation and plausible benign explanations, separate severity from confidence and test double-counted losses. An audit qualification, low cash yield or allegation needs its exact scope; no ratio is a fraud finding. Equally, management reassurance, cheapness or a favorable aggregate score cannot dismiss a substantive threat. Review the same issue IDs and state what is bounded, resolved or still essential. A second self-review is not independent assurance.
+Before a severe governance/reporting conclusion, apply the [red-flag review](../financial-quality/references/financial-red-flags.md): reconstruct pivotal evidence, check corrections/remediation and plausible benign explanations, separate severity from confidence and test double-counted losses. An audit qualification, low cash yield or allegation needs its exact scope; no ratio is a fraud finding. Equally, management reassurance, cheapness or a favorable aggregate score cannot dismiss a substantive threat. Review the same issue IDs and state what is bounded, resolved or still essential.
 
 ## Resolve and hand off
 

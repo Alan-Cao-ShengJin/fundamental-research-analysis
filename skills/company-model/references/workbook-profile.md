@@ -14,20 +14,13 @@ Recalculate, scan errors/cycles, inspect formula caches, reconcile material outp
 
 ## Portable build and mechanical sync
 
-The executable forecast plan is one supported machine model; the optional JavaScript node graph is another backend, not a second required set of assumptions. Generate the machine interface and Excel from the same specification or mechanically compare **every named input and output** against the recalculated workbook. Fail on any difference; do not silently choose one representation. Model, source and run versions remain part of the research package.
+Generate the machine interface and Excel from the same specification or mechanically compare **every named input and output** against the recalculated workbook. Fail on any difference; do not silently choose one representation. Model, source and run versions remain part of the research package.
 
-For a company model, write one cell specification and use [model_workbook.py](../scripts/model_workbook.py): `build` writes the styled multi-sheet workbook (named cells only for outputs and the case selector), `calculate` runs every case independently, and `check` compares every cell's formula, input and saved value with the specification after [recalc_excel.ps1](../scripts/recalc_excel.ps1) has recalculated the workbook in Excel. A workbook that has not been recalculated fails the check. A formula cannot reference an empty cell directly; roll periods up with `SUM(first:last)`, which skips blanks.
+For a company model, write one cell specification and use [model_workbook.py](../scripts/model_workbook.py): `build` writes the styled multi-sheet workbook (named cells only for outputs and the case selector), `calculate` runs every case independently, and `check` compares every cell's formula, input and saved value with the specification after [recalc_excel.ps1](../scripts/recalc_excel.ps1) has recalculated the workbook in Excel. A workbook that has not been recalculated fails the check. A formula cannot reference an empty cell directly; roll periods up with `SUM(first:last)`, which skips blanks. If the human model is edited, deliberately reconcile those edits into a new machine-model version, then rebuild and check the pair. Do not overwrite user edits to make the check pass.
 
-For a single-sheet operating scaffold, [forecast_workbook.py](../scripts/forecast_workbook.py) runs with plain Python and openpyxl. Install [requirements.txt](../requirements.txt) into the interpreter actually used (or a virtual environment); a user-site install is not visible under `python -I`:
+The scripts need openpyxl. Install [requirements.txt](../requirements.txt) into the interpreter actually used (or a virtual environment); a user-site install is not visible under `python -I`.
 
-```powershell
-python skills/company-model/scripts/forecast_workbook.py build output/plan.json output/model.xlsx --compiled output/model.json
-python skills/company-model/scripts/forecast_workbook.py check output/plan.json output/model.xlsx
-```
-
-The writer assigns a stable name to every row/period cell, emits readable local formulas and recalculates the saved arithmetic with a restricted AST evaluator before persisting numeric caches. The checker compares bindings, input values, formulas, period/unit labels, recomputed results and saved values for all declared cells. It is read-only and returns a failing exit code on drift, including manual workbook changes. If the human model is edited, deliberately reconcile those edits into a new machine-model version, then rebuild and check the pair. Do not overwrite user edits to make the test pass.
-
-This evaluator supports only the forecast-block grammar, not arbitrary Excel formulas, external links, macros or native Excel features. For existing or complex models use an actual compatible engine and equivalent complete named bindings; a manual spot-check or calculation-on-open setting does not establish sync. The portable output is recalculated in the stated evaluator, with native Excel/LibreOffice behaviour unverified. A synthetic asset demonstrates the mechanism, not full company economics.
+For an existing workbook the builder did not write, use an actual compatible engine and equivalent complete named bindings; a manual spot-check or calculation-on-open setting does not establish sync.
 
 ## Inspect and preserve
 
@@ -51,7 +44,7 @@ Treat any template as an unvalidated starting point. Review periods, labels, cur
 
 ## House theme and reporting detail
 
-Use the clean [model theme](../assets/model-theme.json) for new models and authorised restyling. Preserve a valid existing user layout during a narrow numerical update unless asked to restyle it.
+Use this theme for new models and authorised restyling. Preserve a valid existing user layout during a narrow numerical update unless asked to restyle it.
 
 | Element | Convention |
 | --- | --- |

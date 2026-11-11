@@ -17,7 +17,6 @@ grade('period', bool(re.search(r'FY ?20?27|NTM', period, re.I)) and not re.searc
 grade('price-reference', abs(float(d['referencePrice']) - 30.0) < 0.01 and re.search(r'6 Nov|2026-11-06|Nov(ember)? 6', str(d.get('priceObservation', ''))) is not None,
       f'{d["referencePrice"]} at {d.get("priceObservation")!r}')
 grade('rating', d.get('rating') == 'Buy', str(d.get('rating')))
-grade('tier', str(d.get('attractiveness', '')).lower() == 'unattractive' and d.get('newMoney', 'no') == 'no', f'{d.get("attractiveness")} / new money {d.get("newMoney")}')
 grade('dividend-separate', not any(k in d for k in ('dividendPerShare', 'dividendsToTargetDate')) and 0.030 <= float(d.get('dividendYield') or 0) <= 0.037,
       f'dividendYield {d.get("dividendYield")}')
 sys.exit(0 if all(ok for _, ok, _ in results) else 1)

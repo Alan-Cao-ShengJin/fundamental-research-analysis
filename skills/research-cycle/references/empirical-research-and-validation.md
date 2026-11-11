@@ -30,8 +30,6 @@ Record review scope, artifacts/versions inspected, calculations actually repeate
 
 ## Demonstrate behavior and learn from outcomes
 
-Use realistic public-source exercises or clearly labeled synthetic fixtures to test specific failure modes. Verify observable behavior: rejects an irrelevant citation, preserves a source correction, distinguishes growth from value creation, avoids unsupported perpetual margins, includes failed analogues and assesses a high-win-rate poor-payoff case correctly. Structural validators test metadata, links and artifact shapes, not these analyst judgments.
-
 Freeze each published forecast, assumptions, source cutoff, target horizon and revision conditions. On matched subsequent disclosures, compare actuals with the original estimate before evaluating the revision. Attribute differences to operating drivers, investment/cash, data/accounting/perimeter, capital allocation and valuation assumptions where identifiable. Track losses and rejected theses as well as successes. Do not judge process quality solely by a winning share price or a single forecast error.
 
 For probabilistic claims, define the success event and horizon in advance and assess calibration over enough comparable observations; do not claim skill from one outcome. Preserve unobservable and unresolved results. Learn from repeated evidence without tuning on the same evaluation set and declaring independent success.

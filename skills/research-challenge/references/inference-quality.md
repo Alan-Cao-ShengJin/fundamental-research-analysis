@@ -53,6 +53,6 @@ For a relative-quality claim, inspect evidence for both sides on compatible peri
 
 ## Calibration
 
-Use the existing publication [claim-support checks](../../report-layout/references/claim-support.md) for applicable deterministic parts. Source populations, rights and qualifications still require substantive judgment. "On our inference" does not make an illustrative consensus bridge the only route to those earnings; use necessity language only when alternatives have been ruled out.
+Use the existing publication [claim-support checks](../../report-layout/references/claim-support.md) for applicable deterministic parts. Source populations, rights and qualifications still require substantive judgment.
 
 Host-controlled evaluation material is separate from production evidence. Keep expected answers and critique outside author contexts. A passed example is evidence about that run, not a general reliability guarantee.
