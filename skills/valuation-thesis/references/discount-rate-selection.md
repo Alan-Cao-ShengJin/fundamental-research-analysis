@@ -2,6 +2,8 @@
 
 Use whenever a valuation or capital-return comparison needs a cost of equity or WACC. The analyst system retrieves the inputs, chooses the method and derives the rate autonomously. Do not ask the user to pick the premium, beta or discount rate. A user-specified required return is a mandate to respect and distinguish from a market-calibrated estimate.
 
+For a steady dividend payer, follow the [house market-yield anchor](valuation-driver-and-dividends.md#comparable-yields-own-band-and-bonds) for the primary target. An autonomously derived cost of equity is an input to supporting economic checks, not a substitute target yield. Other business types retain their appropriate cost-of-capital uses.
+
 ## Retrieve, calibrate and calculate
 
 1. **Match the cash-flow claim.** Determine valuation currency, nominal versus real flows, equity versus enterprise claim, forecast duration and research cutoff. Select the rate for those cash flows, not simply the listing venue. Use the [approved source routes](../../evidence-intake/references/research-data-providers.md#approved-sources) and retain original dated observations. Fixed evidence packs retain their declared boundary.

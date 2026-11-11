@@ -1,8 +1,8 @@
 # Optional writing examples and terminology
 
-The short [institutional standard](natural-writing.md) governs drafting and review. Open this reference only for a specific argument, terminology or register question; it is not a second checklist to load in full.
+The short [writing standard](natural-writing.md) governs drafting and review. Open this reference only for a specific argument, terminology or register question; it is not a second checklist to load in full.
 
-Write for a portfolio manager or investment analyst. Use a formal, measured and concise research voice, with precise financial terminology and explicit attribution. This standard governs the brief and full report.
+Write for a portfolio manager or investment analyst who has not looked at the company. Write sharply and briefly, in plain and exact words, with explicit attribution. This standard governs the brief and full report.
 
 This is serious research that people invest on: write nothing you cannot support. Every fact traces to a filing, data series, attributed comment or the model; every interpretation is ours and has been tested against the data that could contradict it. If we do not know something, say so or leave it out; never fill a gap with a plausible-sounding sentence, an unsourced comparison or a generic industry belief. Do not place unrelated facts side by side so they read as cause and effect. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold.
 
@@ -21,7 +21,7 @@ Write this as a natural argument in concise, connected prose. Do not print four 
 
 Synthetic illustration, with invented units and assumptions:
 
-> Planned distributions exceed forecast free cash flow by 0.6bn. The illustrative model assumes 1.8bn of operating cash flow less 0.5bn of capital expenditure, producing 1.3bn available against 1.9bn of dividends and repurchases. The gap requires cash reserves or financing and reduces capacity to absorb an operating shortfall. This weakens the distribution-led investment case and makes funding a reason for caution in the stock view.
+> The company plans to pay out 0.6bn more than it will generate. We expect 1.8bn of cash from operations and 0.5bn of capital spending, which leaves 1.3bn against 1.9bn of dividends and buybacks. The difference has to come from cash reserves or borrowing, and it leaves less room if trading weakens. People own this stock for its payout, so that is a reason for caution.
 
 Before finalising, trace each main argument through all four steps. Where derivation is missing, resolve it through evidence/model/valuation work or narrow the affected claim with a concise material qualification. Do not invent support or turn the brief into a running commentary on the research process. Preserve selective useful writing: each argument must earn its place.
 
@@ -38,24 +38,13 @@ Make compressed technical language understandable on first reading. Translate a 
 - Keep sentences focused. Develop each argument once; the front page and standalone brief may summarize it without repeating the full derivation.
 - Select before polishing. Keep a point only if it changes the investment assessment or supplies evidence needed to judge it. Omit routine checklist findings and familiar background; combine overlapping arguments. Preserve material contrary evidence and forecast-critical qualifications.
 - Lead with the investment conclusion and its economic basis. Develop the argument through evidence, forecasts, valuation and the strongest counter-case.
-- Use normal analyst language: "we forecast," "we estimate," "management guides," "operating leverage," "cash reserves," "capital expenditure" and "valuation multiple." Attribute the judgment rather than implying certainty.
-- Explain a causal mechanism precisely. Identify the revenue driver, expense, investment requirement or shareholder claim affected. Keep business terminology instead of replacing it with conversational imagery.
+- Own the judgment with "we forecast", "we estimate" and "management guides". Use a finance term where it is the exact name of the thing, and explain it when the argument depends on it.
+- Explain a causal mechanism precisely: who pays, what it costs and what changes. A plain comparison that makes the mechanism clear is welcome; a slogan is not.
 - Distinguish reported results, management guidance, consensus estimates and our forecasts. Use "the reference price implies" only with a stated calculation; do not present a unique market belief as observable fact.
-- Avoid colloquialisms, slogans, dramatic contrasts, rhetorical questions and promotional claims. Avoid both informal shorthand and unnecessary technical abstraction. Use headings and emphasis for navigation, not persuasion by repetition.
+- Avoid slogans, promotional claims and abstraction the reader has to decode. Plain speech is not unprofessional; vagueness is. Use headings and emphasis for navigation, not persuasion by repetition.
 - Retain uncertainty where it affects the decision. A valuation multiple remains a judgment, a forecast remains conditional and a scoped governance review does not establish the absence of misconduct.
 
-Examples of the intended register:
-
-| Avoid | Prefer, when supported by the analysis |
-| --- | --- |
-| Little room for costs to disappoint | The valuation is sensitive to the pace of margin recovery. |
-| What investors will pay | The valuation multiple investors assign to forecast earnings. |
-| Buybacks use the cash buffer | Share repurchases reduce cash reserves. |
-| Cheaper rivals | Lower-priced competitors. |
-| Cash left over | Free cash flow after capital expenditure, if that is the metric intended. |
-| The difference rests chiefly on costs | The forecast divergence primarily reflects cost and savings assumptions. |
-
-These examples guide register; they are not a mechanical replacement dictionary. Do not substitute a more technical phrase if it changes the metric or weakens the explanation. A simple word is appropriate when it is precise.
+Worked examples are in the [before-and-after pairs](natural-writing.md#before-and-after). Name the exact metric where one is meant (free cash flow after capital expenditure, not "cash left over"). Do not substitute a more technical phrase if it changes the metric or weakens the explanation. A simple word is appropriate when it is precise.
 
 ## Profit labels and valuation language
 
@@ -73,7 +62,7 @@ Distinguish adjusted earnings from cash after investment, price return from divi
 
 1. Establish the current numerical decision, model outputs, evidence and qualifications before drafting.
 2. Draft each main point through data, derivation, significance and stock-view implication in the professional register above. Check the causal connection before polishing the wording.
-3. Edit for precision, concision and attribution. Remove repetition and informal phrases without stripping out the industry or financial language that carries the analysis. Do not carry wording from the skill instructions into the report; restate it in this register.
+3. Edit for precision, concision and attribution. Remove repetition, stiff phrasing and unexplained jargon without stripping out the industry or financial terms that carry the analysis. Do not carry wording from the skill instructions into the report; restate it in this register.
 4. Compare the final text with the numerical and evidence records. Preserve prices, dates, signs, units, forecast periods, source links, uncertainty and the strongest counter-case. A wording revision does not authorize changing forecasts or the call.
 5. Render the document and inspect the final reading order, financial labels and page fit. Shorten low-value prose rather than reducing type size or deleting a material qualification. Deliver the final prose, without an editorial transcript or an AI-detector score.
 

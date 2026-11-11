@@ -1,5 +1,13 @@
 # Version 2.0 name migration
 
+## Version 2.12 instruction snapshot
+
+New studies pin the 2.12 production instructions normally. Existing frozen studies continue with their archived files, findings and started-review budgets; do not copy this guidance into an exhausted study to obtain another attempt. Numerical helper interfaces, publication wrapper 1.2 and decision schema 1.1 are unchanged.
+
+For a steady dividend payer, follow the updated [income-investor yield anchor](skills/valuation-thesis/references/valuation-driver-and-dividends.md#comparable-yields-own-band-and-bonds). Calibrate the primary required yield to relevant accessible income investments; use a meaningful own-yield band as the fallback. Cost of equity minus growth and target-implied P/E do not set that branch's target. Cost-of-capital estimation remains autonomous and applicable to supporting checks and other appropriate business models. An unavailable benchmark is not permission to fabricate observations.
+
+Read the current [writing standard](skills/research-brief/references/natural-writing.md) for drafting and review. Use concise reasoning while preserving material qualifications and evidence; factual additions return to analysis. Market-history conclusions use the available dated path and coverage, and evidence labels distinguish an unannounced action from a contradicted proposition. These instructions still require substantive analyst work.
+
 ## Version 2.11.1 calibration and explicit rate inputs
 
 The analyst system owns rate selection: retrieve dated evidence, calibrate the market/company exposure and derive the input under [discount-rate selection](skills/valuation-thesis/references/discount-rate-selection.md). A required explicit input is supplied by that workflow, not a demand that the user choose a rate. On a new cutoff refresh relevant evidence; frozen studies retain their original vintage.

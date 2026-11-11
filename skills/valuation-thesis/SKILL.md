@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.8.4
+  version: 2.8.5
 ---
 
 # Valuation, expectations and provisional thesis
@@ -44,7 +44,7 @@ Record price/time, share class and share count, currency/scale, dilution, cash/d
 
 By default, select the tool most suitable for this company's economics; no single method is the universal anchor. Read [method selection, peers and historical forward valuation](references/method-selection.md) for full company research. Assess business-model fit, relevant peers and the company's own historical forward valuation, then build a supported rerating/derating case. Explain unavailable comparisons rather than fabricating coverage. Establish the selected multiple from a sourced, period-consistent anchor and justified adjustments or an explicit economic derivation. If an inherited input is unsupported, reopen the valuation research before publishing the central target; labelling it analyst judgment or conditional does not finish that work. Investigate accessible historical/peer alternatives, explain the operating or risk evidence that could change the premium, and separate earnings growth from multiple change. Apply the same standard to contraction and expansion. If an essential gap remains after that work, narrow the claim and retain the unresolved scope. Preserve an explicitly user-chosen method/input while explaining limitations.
 
-Identify the primary [valuation driver](references/valuation-driver-and-dividends.md). If dividends drive investor demand, show the policy, annual payout, sustainable DPS/yield, cash coverage and room for more distributions; select and justify a yield or dividend-discount method. Do not substitute a vague P/E rerating claim. Distinguish a higher dividend from investors accepting a lower yield, and do not count those effects twice.
+Identify the primary [valuation driver](references/valuation-driver-and-dividends.md). If dividends drive investor demand, show the policy, annual payout, sustainable DPS/yield, cash coverage and room for more distributions. For a steady income payer, the house target capitalises dividends at an evidence-based comparable-investment yield, with relevant own-yield history as the fallback; a dividend-discount calculation can cross-check the economics but does not replace that market anchor. Do not substitute a vague P/E rerating claim. Distinguish a higher dividend from investors accepting a lower yield, and do not count those effects twice.
 
 Read [target underwriting](references/target-underwriting.md) before setting a dated target. A large price/value gap raises the burden of evidence; calibrate assumptions, establish the analytical difference and explain realization or persistence. A DCF never supports a Buy or Sell on its own.
 

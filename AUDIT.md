@@ -1,3 +1,40 @@
+# Research skill verification - 11 November 2026, version 2.12.0
+
+This release locks the updated instructions into a public versioned snapshot. Earlier audit sections retain their original dates, scope and results.
+
+## Changes reviewed and included
+
+- Steady dividend payers use accessible, economically comparable income investments to calibrate the primary required yield. The peer universe follows relevant income investors rather than industry labels alone. Relevant own-yield history is the fallback; unavailable or inapplicable history remains a gap. This is a house mandate for that branch, not a universal valuation law. Cost of equity minus growth and P/E restatements do not silently become its target anchor.
+- Market-expectations analysis examines the available dated valuation path, highs/lows and largest swings before describing stability or rerating. Sample coverage and missing estimate vintages remain explicit.
+- A contradiction needs incompatible evidence on the same proposition and period. No announcement alone leaves a future action untested. Cash that funds a shortfall does not guarantee an uncut dividend.
+- Research writing favors concise, plain, precise explanations, business economics before detailed valuation and one main home per argument. Synthetic writing examples supply the facts they use; editorial improvements cannot create peer/customer evidence or a uniquely observed market belief.
+- Autonomous required-return selection remains part of the analyst workflow for appropriate uses. Users need not pick rates. Numerical interfaces and validation checks remain explicit and reproducible.
+
+Before export, narrow consistency fixes aligned the older DDM instruction with the new steady-payer target policy, clarified the missing-history fallback and the meaning of an unannounced action, preserved path-coverage limitations, and removed an unsupported output/market-belief inference from a writing example. Owning skill patch versions were updated. No numerical helper, review budget, financial schema or research stage changed.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 297 Python tests, 73 JavaScript tests, all 23 skill validations and 793 relative links passed |
+| Public export | 298 Python tests, 73 JavaScript tests, all 20 skill validations and 880 relative links passed |
+| Public structure | 20 skills, 11 research flows and 21 sector guides; shared schema and coverage checks passed |
+| Skill snapshot | Local content inventory captured and rechecked for changes during validation; public snapshot is identified by its canonical Git manifest and release tag |
+| Scope and provenance | Public scope adaptations and original attribution retained; private research, source packs and credentials excluded; bounded private-path/token pattern checks passed |
+| Synthetic workbook | Existing cleaned example retained and rechecked during manifest preparation; no issuer workbook was revised |
+
+The public Python count differs because its coverage-planner tests are included while private portfolio-risk tests are excluded. No new deterministic test is claimed for prose changes; existing suites verify the supported mechanics and structure. Frozen issuer studies, source bytes and review budgets were not changed.
+
+## Limits and adoption
+
+No fresh research run, semantic-transfer evaluation, live provider check, new PDF rendering or native Excel recalculation was performed for this release. Clear instructions and passing arithmetic tests do not establish source truth, correct calibration or reviewer independence. The host must launch the required contexts and analysts must perform the work.
+
+The local message-board comparison proposals are not all represented as completed repairs. This snapshot includes the actual updated guidance and consistency fixes above; it does not claim new historical-line reconciliation automation, scenario/target verification code or translation testing. Subsequent behavioral trials should assess the pinned version and retain material errors and false blocks honestly.
+
+New studies pin these production files. Existing frozen studies keep their archived version, findings and attempts under [migration](MIGRATION.md). The company-research scope, current-forward target convention and rating/attractiveness thresholds remain in force.
+
+---
+
 # Research skill verification - 10 November 2026, version 2.11.1
 
 This section records the calibration update. Earlier release records remain below.

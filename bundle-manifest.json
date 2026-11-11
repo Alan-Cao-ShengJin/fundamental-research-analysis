@@ -1,7 +1,7 @@
 {
-  "bundleVersion": "2.11.1",
+  "bundleVersion": "2.12.0",
   "variant": "fundamental-research-only",
-  "preparedOn": "2026-11-10",
+  "preparedOn": "2026-11-11",
   "skills": [
     "research-cycle",
     "evidence-intake",
@@ -50,14 +50,16 @@
     "Sector-appropriate modeling and evidence-based consensus and incentive treatment",
     "Neutral central-case calibration, material linked scenarios and conditional yield/event anchors",
     "Explicit risk-premium inputs and revalidation of reverse-DCF component metadata",
-    "Analyst-owned dated discount-rate selection; explicit helper inputs do not require manual user choices"
+    "Analyst-owned dated discount-rate selection; explicit helper inputs do not require manual user choices",
+    "Income-investor yield anchors, whole-path valuation context and precise evidence dispositions",
+    "Concise evidence-preserving writing and supported synthetic editorial examples"
   ],
   "verification": {
     "entryPointsValidated": 20,
     "javascriptTestsPassed": 73,
     "pythonTestsPassed": 298,
     "bundleCheck": "passed",
-    "relativeMarkdownLinks": 876,
+    "relativeMarkdownLinks": 880,
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Common credential/token patterns and private machine paths, including workbook XML; no private credential file read and no forensic guarantee.",
     "syntheticWorkbookModelCheck": {
@@ -102,8 +104,8 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 54846,
-      "sha256": "bfd821e7d9ddae5885e9b63bbdd9cbcb4c52dae1d3f826a4394e9a12a507b220"
+      "bytes": 59198,
+      "sha256": "8e7ce362f9609b663534aae1e214f1bee123522923b858ff86aa56facb3b94e6"
     },
     {
       "path": "CLAUDE.md",
@@ -112,13 +114,13 @@
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 11119,
-      "sha256": "e765a4507485ab3fff2333c8a3b357f64089cf6b3913c8de2625ebb1fda6b82e"
+      "bytes": 12521,
+      "sha256": "b179c7a6c3874c96736070a038e2a4be6ec416ec90e59196f0c6cc68c4366104"
     },
     {
       "path": "README.md",
-      "bytes": 17785,
-      "sha256": "e35aba9b7d4542f630f11fc7943a6b0f530ca2ae69d061f544b6402b3a18a8a1"
+      "bytes": 17559,
+      "sha256": "68b382840e474eec45bc95fc7219ea069da89ebbb26d55da5c46755fc42da4e7"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -138,12 +140,12 @@
     {
       "path": "package-lock.json",
       "bytes": 36543,
-      "sha256": "b1fcc5282a8e40cb70f5e34f913f59e2fdd72c9afd6d81570d91f3ba5183ea77"
+      "sha256": "d35cfa8c32bdcf190cf360dfd87a11c5a83c32aa0e39b6ebeace7c9b3842c807"
     },
     {
       "path": "package.json",
       "bytes": 351,
-      "sha256": "4d6530d2351c65b0321c25860023dfdde042f9162757d6e9d35e5b4fc9615441"
+      "sha256": "5f9ccc4e6a55f936942ce322b3e2240d2fb51f771bff3f273e8578b386389355"
     },
     {
       "path": "requirements.txt",
@@ -188,7 +190,7 @@
     {
       "path": "skills/company-model/SKILL.md",
       "bytes": 10640,
-      "sha256": "51b8dbf719bb18e77ebfe15ee4f7f5a37900f9880e7d20d042c8b5d9a71b8877"
+      "sha256": "ffa9d67cf503dd18b0fe12c6f9383aa8261319d10b8cece65218cad6ed90fbc2"
     },
     {
       "path": "skills/company-model/assets/bounded-bridge.example.json",
@@ -312,8 +314,8 @@
     },
     {
       "path": "skills/company-model/references/model-standard.md",
-      "bytes": 17905,
-      "sha256": "1d519fc7df1e6b444a167a98db3939696c96786a958eb26c74bfcdd45368dc62"
+      "bytes": 17874,
+      "sha256": "fc13d4dae092e5b236d0099728b13815d0a88eb82ab61ef51f7d1e5a7986c877"
     },
     {
       "path": "skills/company-model/references/revenue-projection.md",
@@ -662,8 +664,8 @@
     },
     {
       "path": "skills/evals/research-cases.md",
-      "bytes": 69463,
-      "sha256": "fd36e9dfa371af4eff4c9dd302e06525f451b8a888c4e07d1bb396c331b0fbc8"
+      "bytes": 69489,
+      "sha256": "1aab8760d5aedf1685180d10c30b53647930dc1870190646fd5d625e4c20a228"
     },
     {
       "path": "skills/evals/scripts/build_alder_fixtures.py",
@@ -743,12 +745,12 @@
     {
       "path": "skills/investment-conclusion/SKILL.md",
       "bytes": 9384,
-      "sha256": "7eb85cbafb06bc130ba6909658439bef1324b4c0599be4b03664567b82dc9540"
+      "sha256": "c1e5a775e4f2251f7c10c96f6ad54bf9025f860f09bf29fe1c6912315a971462"
     },
     {
       "path": "skills/investment-conclusion/references/decision-contract.md",
-      "bytes": 15503,
-      "sha256": "dfdda73a3d2edb9a4100652a53810392ecd052d83882c82eba123d966bf687e7"
+      "bytes": 15516,
+      "sha256": "1200ec4297844c96b331cd651a250ae34bd7805339bdf4eb9d5dc6f28c3e487a"
     },
     {
       "path": "skills/investment-conviction/SKILL.md",
@@ -817,8 +819,8 @@
     },
     {
       "path": "skills/report-layout/SKILL.md",
-      "bytes": 13674,
-      "sha256": "4fe1dbc17661abb595c6754f43368d08e5133df1f5982df293082e0546c2fae9"
+      "bytes": 13823,
+      "sha256": "4a206a2068e3043004666628cfbfc9e6b8cf5a009b7d681a757916e8e33553d1"
     },
     {
       "path": "skills/report-layout/assets/cash-receipt-claim.example.json",
@@ -1002,8 +1004,8 @@
     },
     {
       "path": "skills/research-brief/SKILL.md",
-      "bytes": 16355,
-      "sha256": "45e2a02654739b595917e32b8e2931dc12448b5a49b87794fb86fa55aa9e8d65"
+      "bytes": 16376,
+      "sha256": "dbb1818617df1e0003585f87c3e985c16c89ef6ad4ba61dacb91cd34d97bbacc"
     },
     {
       "path": "skills/research-brief/assets/calibration-case.json",
@@ -1027,8 +1029,8 @@
     },
     {
       "path": "skills/research-brief/references/natural-writing.md",
-      "bytes": 6696,
-      "sha256": "81f18b1924acbfdc27a0df0dfb82580484849e70888b1b0a94e0334d6d5e0184"
+      "bytes": 12697,
+      "sha256": "4b21e5d4c64dcf492007b8668fbd7f8c1898cbce7307e831f42a242ffdebba20"
     },
     {
       "path": "skills/research-brief/references/one-page-brief.md",
@@ -1042,8 +1044,8 @@
     },
     {
       "path": "skills/research-brief/references/writing-detail.md",
-      "bytes": 11874,
-      "sha256": "1744a5471609525ae2237fcb49cd70a37c0b2786204a428ccd13d82c19b1e3fe"
+      "bytes": 11177,
+      "sha256": "e204a80919c783b830620a773d03c5d4b30ba3670279d0cfae9a6e9475b143f8"
     },
     {
       "path": "skills/research-brief/scripts/check_one_page.mjs",
@@ -1058,17 +1060,17 @@
     {
       "path": "skills/research-challenge/SKILL.md",
       "bytes": 12840,
-      "sha256": "2e43e2507332afc65e7096c7cb5f2ac3e0003ca57c88e477f481f11d6db7914e"
+      "sha256": "7745bac85e73e1c65b9c94f21402b999728b9d6b5c20b0a03c1224042bab2b0c"
     },
     {
       "path": "skills/research-challenge/references/inference-quality.md",
-      "bytes": 11266,
-      "sha256": "e94cd771c03b852f8d9c7c6a6f6154e93d6bae1ba2641fb579dea8ec6758f3d1"
+      "bytes": 11485,
+      "sha256": "f02c0cccb6a5798af8f3c913f6437c8b76a801189562315477f0c624112af563"
     },
     {
       "path": "skills/research-cycle/SKILL.md",
       "bytes": 9508,
-      "sha256": "973a17800bca3b22c847c43e74a8b6ecb9be96b4d05075c75bc87ee6bb4c9c9d"
+      "sha256": "3c5094ae572bd7316baed41865059590f0e107c6a8fef477e1f0db349ab5f595"
     },
     {
       "path": "skills/research-cycle/assets/skill-coverage.json",
@@ -1137,8 +1139,8 @@
     },
     {
       "path": "skills/research-cycle/references/what-the-market-trades.md",
-      "bytes": 10418,
-      "sha256": "8a71e1e764b29d8b8fff31a5c011f8b97b73aed3736e33776f34aebe644cdf09"
+      "bytes": 10781,
+      "sha256": "ef81e2930555594c06b88092cffdf89e592a0a2b3e56ade35d9aa020f6900d3f"
     },
     {
       "path": "skills/research-cycle/references/workflow.md",
@@ -1377,8 +1379,8 @@
     },
     {
       "path": "skills/valuation-thesis/SKILL.md",
-      "bytes": 17501,
-      "sha256": "bdde21f65d97e1f53b369d71829a80ad34971230ee640317ae0b1a1a4836e4d8"
+      "bytes": 17713,
+      "sha256": "324f5ae7bdb5d9ad66f39dfa28da740735df0ee5d202fe9c74182b77514a526d"
     },
     {
       "path": "skills/valuation-thesis/references/current-expectations.md",
@@ -1387,8 +1389,8 @@
     },
     {
       "path": "skills/valuation-thesis/references/discount-rate-selection.md",
-      "bytes": 4959,
-      "sha256": "549ad24175af7b412dec0fe779c56901837859ea7db1f34e12f8db3696d7e736"
+      "bytes": 5305,
+      "sha256": "84f3ffa1c7482f4ef93954b81be7db7dded82fa5a804b4a002582d7053dfb419"
     },
     {
       "path": "skills/valuation-thesis/references/fcfe-example.json",
@@ -1422,8 +1424,8 @@
     },
     {
       "path": "skills/valuation-thesis/references/valuation-driver-and-dividends.md",
-      "bytes": 9614,
-      "sha256": "5d9413f5f400b5864ea1ef35319e66074ec38767be2ed4f06a4065a8c28d288e"
+      "bytes": 10561,
+      "sha256": "5416f8c102400742fb981f288a9587fbea332ed70feb3498f9c13876b0cccbd9"
     },
     {
       "path": "skills/valuation-thesis/references/valuation-method.md",
