@@ -14,8 +14,6 @@ Reproduce material baseline outputs where possible. Check accounting definitions
 
 If only a narrative report or unrecalculable workbook exists, identify missing calculation/source support. Continue useful source analysis, but do not fabricate an EPS/target bridge. Reconstruct the necessary baseline explicitly, or use [stock initiation](../../stock-initiation/SKILL.md) when a new investment case is needed. Major acquisitions, accounting/perimeter changes, an unusable baseline or a broken thesis can reopen broader stages. Age alone does not require starting over.
 
-For behavioral calibration of the short update entrypoint, the [Alder fixtures](../../evals/fixtures/README.md) separate a price-only review from an official earnings update using a genuinely checked prior model. Their host-only staging and grading are not additional user prompt requirements or a production issuer template.
-
 ## Map evidence to assumptions
 
 Use one table for each changed material assumption: old forecast, new forecast, matched actual where available, and reason/source. Record why a material observation leaves an assumption unchanged when useful.

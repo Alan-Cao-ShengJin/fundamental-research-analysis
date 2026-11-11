@@ -1,3 +1,34 @@
+# Research skill verification - 11 November 2026, version 2.12.1
+
+This is a correction release after a clean review. Earlier audit sections keep their original dates, scope and results.
+
+## What was reviewed and changed
+
+Five independent readers each read one area in full without editing: sequence and routing; modelling and company analysis; valuation, decision and challenge; writing, layout and publication instructions; and the harness code, where the reader also reproduced defects on temporary fixtures. The author then checked each finding against the files and applied the confirmed ones.
+
+- Sequence: the initiation trigger, the update order, the stage owners and the fresh model challenge on updates now agree between routing, the sequence table and the entry skills; the research record handed to the writer is defined.
+- Valuation and decision: the rerating test no longer demands a catalyst for a return to the stock's own mean; discounted-cash-flow cross-checks stay out of the write-up; bond spreads and analyst-assumed yields no longer offer a route around comparable income investments for steady dividend payers; text left from an earlier product was removed.
+- Modelling: the builder accepts blank text cells, names the cell and the fix in its errors, and records source tags passed to period rows; the standard no longer describes a second model backend or claims the sample holds every required feature.
+- Writing and publication: passages that forced method narration, default hedging and figure-heavy paragraphs were deleted; the publication reference states the identifier rule, the reader's completion conditions, the route for a correction after the review budget is used, and no longer carries its own design history.
+- Harness: file names instead of print-time links; pinned-rule check before a release archive is replaced; clearer runtime, identifier and rating-binding messages; consistent reading of reader-edited files; named failures for unreadable dates; lock files excluded from reviewed inputs; duplicate check names rejected; price tolerance scaled to the share price; rating tested on the reproduced target.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 297 Python tests, 73 JavaScript tests, all 23 skill validations and 791 relative links passed |
+| Public export | 298 Python tests, 73 JavaScript tests, all 20 skill validations and 878 relative links passed |
+| Sample model | The unchanged synthetic workbook still reproduces its specification under the corrected builder |
+| Scope | Each exported file matched its pre-review public counterpart apart from notices and scope links before it was replaced; private research, source packs and credentials excluded; private-path and token pattern checks passed |
+
+## Limits
+
+No fresh research run, PDF print or native Excel recalculation was performed for this release, so the effect of the instruction changes on report quality is untested. One existing test assertion was updated because it asserted the link that caused the path leak. A proposed check of the dividend yield quoted in a brief's key metrics was not added: its formatting rule conflicted with existing fixtures.
+
+Known items left for the owner: the sample model still shows a combined price-plus-dividend return row; an unused single-sheet model scaffold and a brief layout checker that cannot run remain in the bundle; the cost-of-equity guidance allows both an additive and a beta build; several rules are still restated in more than one file.
+
+---
+
 # Research skill verification - 11 November 2026, version 2.12.0
 
 This release locks the updated instructions into a public versioned snapshot. Earlier audit sections retain their original dates, scope and results.

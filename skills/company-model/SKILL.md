@@ -2,7 +2,7 @@
 name: company-model
 description: Build and maintain executable company financial models with operating drivers and linked income statements, cash flows and balance sheets. Use for new issuer models, historical updates, forecast revisions, scenarios and forecast evaluation; preserve existing workbook models when requested.
 metadata:
-  version: 2.5.4
+  version: 2.5.5
 ---
 
 # Company model building and updates
@@ -35,7 +35,7 @@ Modes:
 - **New model:** complete the sequence. Choose the structure from the business economics, reporting cadence and evidence. Use the [sector references](references/sectors/index.md) for the relevant mechanisms, loading only the cards that apply; a card's example is not a company forecast.
 - **Historical update:** follow [actuals](references/actuals.md) and produce a reconciled baseline before forecasting.
 - **Operating-driver update:** follow [drivers and guidance](references/drivers-guidance.md).
-- **Forecast build/revision:** stages 5 to 8 of the sequence above; incorporate existing quality findings before valuation.
+- **Forecast build/revision:** steps 5 to 8 of the table above; incorporate existing quality findings before valuation.
 - **Workbook update:** preserve user edits, formulas, period structure and notes. If an inherited model falls short of the [model standard](references/model-standard.md), say where and bring it up to standard in a full update. If no compatible recalculation engine is available, label the workbook uncalculated and do not call it valuation-ready.
 - **Existing coverage:** [model revision](../model-revision/SKILL.md) selects regular review or major update.
 
@@ -57,6 +57,6 @@ Modes:
 
 ## Handoff
 
-Return the period/metric map, statement reconciliations, driver map, guidance register, actual/forecast boundary, assumption table with sources and sensitivity, outputs versus comparable consensus, changed cells/records and dependent artifacts, unresolved questions and the next task. Identify the executable model, engine/formula version, fingerprint, scenario/run and frozen forecasts for later evaluation; downstream agents consume these outputs directly. For the workbook, give the path/version, baseline fingerprint and backup, Revenue Build-to-Statements links, cash/financing checks, recalculation evidence and presentation review. [inspect_workbook.py](scripts/inspect_workbook.py) gives a read-only inventory; it does not recalculate.
+Return the period/metric map, statement reconciliations, driver map, guidance register, actual/forecast boundary, assumption table with sources and sensitivity, outputs versus comparable consensus, changed cells/records and dependent artifacts, unresolved questions and the next task. Identify the specification file, the workbook path, the check report (workbook SHA-256), the active case and the saved outputs file. For the workbook, give the path/version, baseline fingerprint and backup, Revenue Build-to-Statements links, cash/financing checks, recalculation evidence and presentation review. [inspect_workbook.py](scripts/inspect_workbook.py) gives a read-only inventory; it does not recalculate.
 
 Claims that a workbook was calculated, preserved or visually verified need actual evidence. A zero balance-sheet check alone does not validate the model or its cash flow. If assumptions move, invalidate dependent valuation, thesis, questions and quoted numbers.

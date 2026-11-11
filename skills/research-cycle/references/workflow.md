@@ -4,7 +4,7 @@
 
 Start with a research brief: question, objective, horizon/deadline, information cutoff, existing work, available sources/tools and required deliverable. For portfolio or implementation work, also record mandate/version, permitted instruments and exposures, capital/liquidity needs, positions in scope and actual/paper mode. Do not infer missing constraints from account balances or a return aspiration.
 
-The approved mandate is owned by the application. A research brief may propose a change but cannot make it effective. Personal loss capacity is neither an expected return nor an instruction to consume the full loss budget.
+A research brief may propose a mandate change but cannot make it effective. Personal loss capacity is neither an expected return nor an instruction to consume the full loss budget.
 
 [Request routing](request-routing.md) selects initiation, regular review or major update and defines the two update procedures. [Company sequence](company-sequence.md) defines the initiation stages and gates. A revision can end with no material change or identify an invalid baseline needing targeted reconstruction; carry unaffected artifacts by reference. Use the [workbook profile](../../company-model/references/workbook-profile.md) for the synchronised human and machine models.
 

@@ -42,7 +42,6 @@ Make compressed technical language understandable on first reading. Translate a 
 - Explain a causal mechanism precisely: who pays, what it costs and what changes. A plain comparison that makes the mechanism clear is welcome; a slogan is not.
 - Distinguish reported results, management guidance, consensus estimates and our forecasts. Use "the reference price implies" only with a stated calculation; do not present a unique market belief as observable fact.
 - Avoid slogans, promotional claims and abstraction the reader has to decode. Plain speech is not unprofessional; vagueness is. Use headings and emphasis for navigation, not persuasion by repetition.
-- Retain uncertainty where it affects the decision. A valuation multiple remains a judgment, a forecast remains conditional and a scoped governance review does not establish the absence of misconduct.
 
 Worked examples are in the [before-and-after pairs](natural-writing.md#before-and-after). Name the exact metric where one is meant (free cash flow after capital expenditure, not "cash left over"). Do not substitute a more technical phrase if it changes the metric or weakens the explanation. A simple word is appropriate when it is precise.
 
@@ -54,7 +53,7 @@ Introduce a valuation assertion with its period and earnings basis: "The shares 
 
 For a multiple-based target, keep the dated benchmark, earnings window, reason for the selected level and observable repricing mechanism in the argument. Distinguish a provider-reported mean from a calculated history, and a market observation from fair value. A target-price multiplication or a statement that the multiple changes does not supply the investment reasoning.
 
-Use **multiple expansion** or **multiple contraction** when that is the return driver. Explain the operating evidence, allocation change or risk reassessment that supports it. Show the alternative outcome if the current multiple persists. A reference to sentiment or investor confidence alone does not justify a selected multiple.
+Use **multiple expansion** or **multiple contraction** when that is the return driver. Explain the operating evidence, allocation change or risk reassessment that supports it. A reference to sentiment or investor confidence alone does not justify a selected multiple.
 
 Distinguish adjusted earnings from cash after investment, price return from dividend yield, economic value from a realisable target, and business quality from investment attractiveness. Apply the [decision contract](../../investment-conclusion/references/decision-contract.md).
 

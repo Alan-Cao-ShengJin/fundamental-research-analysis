@@ -10,7 +10,7 @@ The original integrated example's price-return-plus-annual-yield row is a memo i
 
 ## Sample model
 
-The [sample model](../assets/company-model-example.xlsx) is a complete model of a fictitious manufacturer, built from the [specification](../assets/company-model-example.json) that [model_example.py](../scripts/model_example.py) writes. It has every tab and feature below: five annual columns of history (the first an opening year) with three forecast years, quarters from 1Q25 to 4Q27, the full schedules, a case selector, guidance tests, segment unit economics, a live target table, sensitivities and a ten-year valuation band with a chosen cut-off. Copy its structure, row patterns and linking; replace every number, label and note with the company's own evidence, including its currency, price date and period labels, which come from the research date and the issuer's fiscal calendar. All its figures and dates are invented.
+The [sample model](../assets/company-model-example.xlsx) is a complete model of a fictitious manufacturer, built from the [specification](../assets/company-model-example.json) that [model_example.py](../scripts/model_example.py) writes. It shows the tab order, row patterns and linking; the list below, not the sample, defines what a company model must contain. Copy its structure, row patterns and linking; replace every number, label and note with the company's own evidence, including its currency, price date and period labels, which come from the research date and the issuer's fiscal calendar. All its figures and dates are invented.
 
 In the sample, history follows these conventions:
 
@@ -83,11 +83,11 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 **Valuation.**
 
 - Why we invest, in a few numbered points, each a driver the target depends on ([research challenge](../../research-challenge/SKILL.md)).
-- The target price table, linked live to model EPS and DPS and the current price: target multiple, target, upside, dividend yield on the same forward year as the target EPS, and current P/E on two fiscal years.
+- The target price table, linked live to model EPS (a forward EPS row on the house basis: next twelve months from the quarterly or half-year forecast, or the next fiscal year once third-quarter results are out) and DPS and the current price: target multiple, target, upside, dividend yield on the same forward year as the target EPS, and current P/E on two fiscal years.
 - Consensus comparison: profit, EPS and target.
 - One sensitivity table: thesis risk, shock size, EPS change, EPS change % and target change, sorted by impact. Each shock moves named model inputs and is recalculated through the whole model when it is built, declared under `sensitivities` in the specification, so tax, each unit's minority share, financing and the target EPS's share basis act as they do in the forecast; `model_workbook.py check` fails a row that does not reproduce. One tax rate × one group minority share ÷ one share count is a shortcut, not a sensitivity.
 - Peers: P/E for two years, EPS growth, P/E per growth point and market value, each average labelled with its sample, the closest same-market peers doing the same business first.
-- Scenario outcomes recalculated on every build, with the build date and a check that the active case matches the live model.
+- Scenario outcomes recalculated on every build, with the build date and a check that the active case matches the live model. The study's builder fills each sensitivity's shown cell from `model_workbook.recalculated(spec, d)[1]` and each scenario's EPS from `calculate(spec)` before `build`, as `model_example.spec()` does.
 - A summary of the valuation band.
 
 **Valuation Band.**
@@ -111,7 +111,7 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 
 - One bear/base/bull selector that drives every case, with each case's driver values shown side by side.
 - Key metric rows: our forward P/E, P/B, dividend yield and next-year ROIC.
-- Where the investors, the valuation convention or the comparison set work in calendar years, calendar-year rows built from the quarters by their end dates with time-weighted shares ([calendarize.py](../scripts/calendarize.py)); fiscal rows stay the reporting basis.
+- Where the investors, the valuation convention or the comparison set work in calendar years, calendar-year rows built from the quarters by their end dates with time-weighted shares ([calendarize.py](../scripts/calendarize.py)); fiscal rows stay the reporting basis. For quarter-ends more than 20 days from a calendar quarter-end, assign each fiscal quarter to the calendar quarter holding two of its three months and label the row an approximation.
 - Consensus comparison rows next to our forecasts.
 - Decision rows: rating, target multiple, target and price return; show dividend yield separately. A combined-return illustration is a secondary memo, on matched price/cash horizons with receipt eligibility, and never the rating hurdle.
 - Dividend schedule where distributions matter.

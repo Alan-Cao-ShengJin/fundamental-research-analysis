@@ -19,7 +19,7 @@ Use the JSON schema in [handoff.schema.json](handoff.schema.json) when a machine
 
 `not-applicable` requires a reason. It does not mean a dependency silently passed. `complete` means this artifact's scoped research is complete, not that a candidate is approved or live monitoring works.
 
-No ceremonial blocking-check record is required. An actual blocking check tests an essential condition or whether required analysis was performed correctly. Do not define investment readiness as every scenario having a positive return. A well-supported forecast assumption can remain uncertain in a complete artifact; label it as an assumption/inference with its rationale instead of presenting it as an unsourced reported fact. A source gap blocks reliance on a claim attributed to that source, not all independent estimates or research.
+An actual blocking check tests an essential condition or whether required analysis was performed correctly. Do not define investment readiness as every scenario having a positive return. A well-supported forecast assumption can remain uncertain in a complete artifact; label it as an assumption/inference with its rationale instead of presenting it as an unsourced reported fact. A source gap blocks reliance on a claim attributed to that source, not all independent estimates or research.
 
 For material governance/financial-quality issues, record issue, evidence, plausible explanations, forecast/value effect and status. Reuse the same record across screens, model audit and thesis challenge. Ordinary uncertainty is not a critical unknown.
 

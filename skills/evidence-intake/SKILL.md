@@ -2,7 +2,7 @@
 name: evidence-intake
 description: Build a traceable, time-aware evidence pack from filings, market data, operating trackers and transcripts. Use before modelling or testing, or to resolve conflicting research inputs.
 metadata:
-  version: 2.3.3
+  version: 2.3.4
 ---
 
 # Evidence intake and reconciliation

@@ -133,6 +133,12 @@ class Engine:
             if type(result) in (int, float) and not math.isfinite(result):
                 raise ModelError(f'Nonfinite result at {sheet}!{address}')
             return result
+        except ModelError as exc:
+            if str(exc).startswith('Missing input ') and ', needed by ' not in str(exc):
+                raise ModelError(f'{exc}, needed by {sheet}!{address}') from None
+            raise
+        except (ValueError, TypeError, ArithmeticError) as exc:
+            raise ModelError(f'{exc} at {sheet}!{address}') from exc
         finally:
             self.visiting.discard(key)
 
@@ -156,7 +162,10 @@ class Engine:
                 return concatenate(walk(n.left), walk(n.right))
             a, b = walk(n.left), walk(n.right)
             if type(a) not in (int, float) or type(b) not in (int, float):
-                raise ModelError(f'Nonnumeric precedent at {key[0]}!{key[1]}')
+                bad = n.left if type(a) not in (int, float) else n.right
+                ref = refs.get(bad.id) if isinstance(bad, ast.Name) else None
+                where = f'{ref[0]}!{ref[1]}' if ref and not ref[2] else 'a referenced cell'
+                raise ModelError(f'Nonnumeric precedent at {key[0]}!{key[1]}: {where} holds text; a formula must start with "="')
             ops = {ast.Add: lambda: a + b, ast.Sub: lambda: a - b, ast.Mult: lambda: a * b, ast.Pow: lambda: a ** b}
             if isinstance(n.op, ast.Div):
                 if b == 0:
@@ -253,7 +262,12 @@ def calculate(spec):
         s = with_case(spec, i if label else None)
         e = Engine(s)
         values = {f'{sh}!{a}': e.value(sh, a) for sh, d in s['sheets'].items() for a, c in d['cells'].items() if numeric(c.get('value'))}
-        outs = {name: values[f'{target(ref, "")[0]}!{target(ref, "")[1]}'] for name, ref in spec.get('outputs', {}).items()}
+        outs = {}
+        for name, ref in spec.get('outputs', {}).items():
+            cell = '{}!{}'.format(*target(ref, ''))
+            if cell not in values:
+                raise ModelError(f'Output {name} points at {cell}, which has no calculated value')
+            outs[name] = values[cell]
         result[label or 'Model'] = {'outputs': outs, 'cells': values}
     return result
 
@@ -415,7 +429,7 @@ def build(spec, path):
     import datetime
     path = Path(path)
     if path.exists():
-        raise ModelError('Refusing to overwrite ' + str(path) + '; archive it first')
+        raise ModelError('Refusing to overwrite ' + str(path) + ': move the existing workbook into an archive folder beside it under a name that records the review attempt, then build, recalculate and check again')
     calculate(spec)  # fail before writing anything
     engine = Engine(spec)   # text that formulas return, for wrapped row heights
     L = Layout(spec)
@@ -862,7 +876,7 @@ def check(spec, path):
                     got = got.date().isoformat() if hasattr(got, 'date') else got
                 elif isinstance(v, str) and not is_formula(v):
                     want = shown_text(v)[0]
-                if got != want:
+                if got != want and not (got is None and want == ''):   # Excel stores empty text as a blank cell
                     issues.append({'cell': f'{name}!{address}', 'reason': 'text drift'})
                 continue
             count += 1

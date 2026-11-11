@@ -24,7 +24,7 @@ def summarize(data):
         bond=date.fromisoformat(r['bondDate'])
         if bond>d: raise ValueError('A benchmark observation cannot come from the future')
         dy,rate=r['dividendYield'],r['governmentYield']
-        if any(type(v) not in (int,float) or not math.isfinite(v) for v in (dy,rate)) or dy<0: raise ValueError('Use finite fractional yields and nonnegative dividend yield')
+        if any(type(v) not in (int,float) or not math.isfinite(v) for v in (dy,rate)) or dy<0 or dy>1 or abs(rate)>1: raise ValueError('Use finite fractional yields (0.07 for 7%) and nonnegative dividend yield')
         yields.append(dy); spreads.append(dy-rate); lags.append((d-bond).days)
     result={'observations':len(rows),'start':rows[0]['date'],'end':rows[-1]['date'],'benchmark':benchmark,
             'yieldBasis':data['yieldBasis'],'meanSpread':statistics.mean(spreads),'medianSpread':statistics.median(spreads),
@@ -32,9 +32,10 @@ def summarize(data):
             'maxBondObservationLagDays':max(lags),'sourceIds':data['sourceIds'],
             'limit':'Observed spreads are descriptive. Benchmark choice, rate/regime changes, payout sustainability and timing require economic judgment.'}
     if 'targetSpread' in data:
-        required=rows[-1]['governmentYield']+data['targetSpread']; dps=data['sustainableDps']
-        if required<=0 or type(dps) not in (int,float) or not math.isfinite(dps) or dps<0: raise ValueError('Conditional capitalization needs positive required yield and nonnegative sustainable DPS')
-        result.update(selectedTargetSpread=data['targetSpread'],conditionalRequiredYield=required,conditionalPrice=dps/required)
+        dps=data.get('sustainableDps'); spread=data['targetSpread']
+        if type(spread) not in (int,float) or not math.isfinite(spread) or rows[-1]['governmentYield']+spread<=0 or type(dps) not in (int,float) or not math.isfinite(dps) or dps<0: raise ValueError('Conditional capitalization needs positive required yield and nonnegative sustainable DPS')
+        required=rows[-1]['governmentYield']+spread
+        result.update(selectedTargetSpread=spread,conditionalRequiredYield=required,conditionalPrice=dps/required)
     return result
 
-if __name__=='__main__': print(json.dumps(summarize(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))),indent=2))
+if __name__=='__main__': print(json.dumps(summarize(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8-sig'))),indent=2))

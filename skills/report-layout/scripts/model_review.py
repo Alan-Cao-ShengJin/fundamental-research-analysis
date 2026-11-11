@@ -12,7 +12,7 @@ CHECKS=('model-integrity','source-basis','assumption-build','valuation-anchor')
 
 def starts(study):
     directory=Path(study)/'evidence/model-review-starts'
-    entries=[json.loads(p.read_text()) for p in sorted(directory.glob('attempt-*.json'))]
+    entries=[json.loads(p.read_text(encoding='utf-8-sig')) for p in sorted(directory.glob('attempt-*.json'))]
     if [r['attempt'] for r in entries]!=list(range(1,len(entries)+1)) or len(entries)>2: raise ValueError('Model review receipt history is incomplete or exceeds its budget')
     return entries
 
@@ -30,7 +30,7 @@ def prepare(study,spec,workbook,evidence,security,cutoff):
     receipts=starts(study)
     if not out.exists() and (receipts or (study/'evidence/model-reviews').exists()): raise ValueError('Missing model review packet; preserve its prior findings and receipt history')
     if out.exists():
-        old=json.loads(out.read_text()); used=len(receipts)
+        old=json.loads(out.read_text(encoding='utf-8-sig')); used=len(receipts)
         if old.get('startedAt') and (not receipts or receipts[-1]['id']!=old['id']): raise ValueError('Model review receipt history conflicts with the current packet')
         if used>=2: raise ValueError('Pre-writing model review budget exhausted; retain unresolved findings')
         history=study/'evidence/model-reviews'; history.mkdir(exist_ok=True)
@@ -60,7 +60,7 @@ def prepare(study,spec,workbook,evidence,security,cutoff):
 
 def begin(study,reviewer,mode='independent-agent'):
     from publication_review import local,digest
-    path=local(study,PATH); p=json.loads(path.read_text())
+    path=local(study,PATH); p=json.loads(path.read_text(encoding='utf-8-sig'))
     if not reviewer.strip() or reviewer=='unassigned' or mode not in ('human','independent-agent'): raise ValueError('Name a fresh reader')
     if any(digest(local(study,r))!=v for r,v in p['inputs'].items()): raise ValueError('Model checkpoint changed; no review started')
     identity={'id':reviewer,'mode':mode,'context':'fresh'}
@@ -79,14 +79,15 @@ def begin(study,reviewer,mode='independent-agent'):
 def verify(study,record=None):
     from publication_review import local,digest,validate_handoff
     from research_rules import require_current
-    p=json.loads(local(study,PATH).read_text()); h=p['handoff']
+    p=json.loads(local(study,PATH).read_text(encoding='utf-8-sig')); h=p['handoff']
     lock=require_current(study)
     for field in ('spec','workbook'):
         if p.get(field) not in p.get('inputs',{}):
             raise ValueError('Model review must freeze its declared spec and workbook')
         if record and local(study,p[field])!=local(study,record[field]):
             raise ValueError('Model review must cover the published spec and workbook')
-    if record and (record['security'] not in h['scopeIds'] or h['asOf'][:10]!=record['cutoff'][:10]): raise ValueError('Model review cutoff/security must match this material research checkpoint')
+    if record and record['security'] not in h['scopeIds']: raise ValueError(f"Model review is registered for {h['scopeIds']}, the release record says {record['security']!r}; use the same identifier in both")
+    if record and h['asOf'][:10]!=record['cutoff'][:10]: raise ValueError(f"Model review cutoff {h['asOf'][:10]} differs from the release cutoff {record['cutoff'][:10]}")
     if p['rulesFingerprint']!=lock['productionFingerprint']: raise ValueError('Model review uses another rule version')
     if not p.get('startedAt') or p['reviewer']['id']=='unassigned' or p['reviewer']['context']!='fresh' or p['reviewer']['mode'] not in ('human','independent-agent'): raise ValueError('A named fresh model reader must actually start')
     receipts=starts(study)
@@ -99,7 +100,7 @@ def verify(study,record=None):
     if p.get('priorReviewSHA256'):
         previous=local(study,'evidence/model-reviews/'+p['priorReviewSHA256']+'.json')
         if digest(previous)!=p['priorReviewSHA256']: raise ValueError('Prior model review changed')
-        old=json.loads(previous.read_text())
+        old=json.loads(previous.read_text(encoding='utf-8-sig'))
         expected=requirements(old)
         if prior!=expected: raise ValueError('Prior model finding inventory changed')
     if h['status']!='complete' or h['criticalUnknowns'] or any(d['changed'] for d in h['dependencies']) or not any(c['material'] for c in h['claims']) or any(checks.get(k,{}).get('result')!='pass' for k in CHECKS) or any(c['blocking'] and c['result']!='pass' for c in h['checks']): raise ValueError('Pre-writing model challenge is incomplete or has material unresolved findings')

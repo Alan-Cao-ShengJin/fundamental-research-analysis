@@ -2,7 +2,7 @@
 name: stock-initiation
 description: Initiate investment coverage of a stock with a historical/model baseline, independent forecasts, valuation and investment case. Use for a first stock report or explicitly fresh initiation; use model-revision for new evidence on an existing model.
 metadata:
-  version: 2.2.1
+  version: 2.2.2
 ---
 
 # Initiate stock coverage
@@ -28,7 +28,7 @@ Use the [sample model](../company-model/assets/company-model-example.xlsx) for r
 
 Use evidence intake, company modeling, governance, financial quality, valuation, challenge and investment conclusion across the material company case. Theme, macro, management questions and portfolio work remain conditional. Existing uncertainty and rating rules apply.
 
-The output explains the business, the industry and its effect on the forecasts, competitive economics, supported investment insight, model/valuation, counter-case and what would change the view. Deliver the [human-auditable Excel forecast model](../company-model/references/workbook-profile.md), built to the [model standard](../company-model/references/model-standard.md), with the initial coverage package, alongside any machine interface. Use [research brief](../research-brief/SKILL.md) for the initial pitch and its decision brief, matching the requested format and length. Deliver the full report, the one-page brief and the Excel model together in the study's deliverables folder and as one zip made by `package()` in [report layout](../report-layout/SKILL.md), which release-checks the deliverables against the calculated model before writing it; the report lists the model and brief as accompanying files (`Report.companions`). A source folder or earnings summary alone is not an initiation. A request for fewer deliverables trims what is delivered, not the stages behind it.
+The output explains the business, the industry and its effect on the forecasts, competitive economics, supported investment insight, model/valuation, counter-case and what would change the view. Deliver the [human-auditable Excel forecast model](../company-model/references/workbook-profile.md), built to the [model standard](../company-model/references/model-standard.md), with the initial coverage package, alongside any machine interface. Use [research brief](../research-brief/SKILL.md) for the initial pitch and its decision brief, matching the requested format and length. Deliver the full report, the one-page brief and the Excel model together in the study's deliverables folder and, once the fresh review completes, as the release zip under the publication workflow below; the report lists the model and brief as accompanying files (`Report.companions`). A source folder or earnings summary alone is not an initiation. A request for fewer deliverables trims what is delivered, not the stages behind it.
 
 For existing coverage, follow the governing [request routing](../research-cycle/references/request-routing.md) into a regular review or major earnings/catalyst update through [model revision](../model-revision/SKILL.md). Invalid or missing foundations can require targeted rebuilding; identify that scope before calling the analysis complete.
 

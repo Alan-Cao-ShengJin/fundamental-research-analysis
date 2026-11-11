@@ -18,7 +18,7 @@ Start from a user-provided company list or a sourced [theme shortlist](../../the
 
 Compare as-of date, fiscal periods, FX, accounting perimeter, cash-flow definition and valuation basis. Avoid comparing enterprise multiples directly with equity multiples. Show upstream/downstream revenue dependence, customer/supplier bargaining power and margin transfer; do not sum transactions along a value chain as independent end demand. Cross-market comparisons also identify share-class rights, accessibility and material market-structure differences.
 
-Highlight where expected growth/profit pools concentrate and which assumptions compete for the same economics. Separate business exposure from market expectations. Choose the primary valuation by business economics; peer and own historical forward valuations support justified multiples/discounts and the rerating case rather than being automatically subordinate to DCF.
+Highlight where expected growth/profit pools concentrate and which assumptions compete for the same economics. Separate business exposure from market expectations. Choose the primary valuation by business economics; peer and own historical forward valuations support justified multiples/discounts and the rerating case.
 
 ## Optional keyword attention analysis
 

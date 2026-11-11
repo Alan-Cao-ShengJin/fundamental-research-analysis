@@ -49,6 +49,7 @@ def period_row(sheet,key,label,unit,values,columns,forecast_columns=(),note=None
     row=sheet.R[key]; sheet.put(f'B{row}',label,bold=bold)
     if unit: sheet.put(f'C{row}',unit)
     if note: sheet.note(row,note)
+    if tag and 'tagColumn' in sheet.d: sheet.d.setdefault('tags',{})[str(row)]=tag
     if tag and tags is not None: tags[(sheet.name,row)]=tag
     for column in columns:
         value=values(column,row) if callable(values) else values.get(column)

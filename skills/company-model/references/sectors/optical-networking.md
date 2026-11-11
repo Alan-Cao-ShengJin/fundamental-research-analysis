@@ -26,8 +26,8 @@ Then place every product in the network tier and link architecture it serves.
 
 For a given link the architectures are alternatives: copper (passive or active
 cables); pluggable modules with a signal processor; linear-drive pluggables; high-
-density pluggable form factors such as XPO (many more lanes per module, liquid
-cooled); near-packaged optics (NPO, optical engines on the board or substrate beside
+density pluggable form factors;
+near-packaged optics (NPO, optical engines on the board or substrate beside
 the chip); and co-packaged optics (CPO, optical engines inside the switch or
 accelerator package, fed by external laser sources). An optical circuit switch (OCS)
 is different: it redirects light between fibres and replaces electrical switch ports,

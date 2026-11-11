@@ -253,7 +253,7 @@ class ReportLayoutTests(unittest.TestCase):
         r.companions = [('Model & assumptions', 'synthetic model.xlsx')]
         document = r.html()
         self.assertIn('Model &amp; assumptions', document)
-        self.assertIn('href="synthetic model.xlsx"', document)
+        self.assertIn('Model &amp; assumptions: synthetic model.xlsx', document)
 
 
 if __name__ == '__main__':

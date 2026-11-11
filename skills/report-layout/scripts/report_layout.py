@@ -351,12 +351,12 @@ class Report:
                 n += 1
                 order[k] = n
         items = sorted(self.src, key=lambda s: order[s[0]])
-        lis = ''.join(f'<li>{esc(pub)}, ' + (f'<a href="{esc(url)}">{esc(title)}</a>' if url else f'"{esc(title)}"')
+        lis = ''.join(f'<li>{esc(pub)}, ' + (f'<a href="{esc(url)}">{esc(title)}</a>' if url and re.match(r'[A-Za-z][A-Za-z0-9+.-]*:', url) else f'"{esc(title)}"')
                       + f', {esc(date)}.</li>' for _, pub, title, date, url in items)
         back = (f'<section class="back"><h2>Sources</h2><ol>{lis}</ol>'
                 + (f'<p><b>Author.</b> {", ".join(esc(x) for x in (self.author, self.email, self.firm) if x)}.</p>'
                    if self.author or self.firm else '')
-                + (f'<p><b>Accompanying files.</b> ' + '; '.join(f'{esc(a)}: <a href="{esc(f)}">{esc(f)}</a>'
+                + (f'<p><b>Accompanying files.</b> ' + '; '.join(f'{esc(a)}: {esc(f)}'
                                                                    for a, f in self.companions) + '.</p>'
                    if self.companions else '')
                 + f'<p><b>Ratings.</b> {RATING_DEFINITIONS}</p>'
@@ -507,6 +507,8 @@ def scale(lo, hi, ticks=5, zero=True):
     e = 10 ** math.floor(math.log10(raw))
     step = next(m * e for m in (1, 2, 2.5, 5, 10) if m * e >= raw - 1e-12)
     a, b = math.floor(lo / step + 1e-9) * step, math.ceil(hi / step - 1e-9) * step
+    if a == b:
+        b = a + step
     return a, b, step
 
 
@@ -984,7 +986,7 @@ def flow_diagram(title, nodes, edges, w=700, h=156):
         out.append(f'<line x1="{mx:.1f}" x2="{mx:.1f}" y1="{y}" y2="{ly - 8 if kind == "goods" else ly + 3}" '
                    f'stroke="{col}" stroke-width=".7"/>')
         out.append(txt(mx, ly, lab, 'middle', 8, col))
-    _legend(out, [('Goods or power', NAVY, 'line'), ('Cash', TEAL, 'dash')], 2, h - 3)
+    _legend(out, [('Goods or services', NAVY, 'line'), ('Cash', TEAL, 'dash')], 2, h - 3)
     out.append('</svg>')
     return Block(''.join(out))
 
@@ -1053,7 +1055,7 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
     package(ROOT, OUT / 'Company_initiation_2026-11-06.zip', OUT / 'Company_initiation.html', OUT / 'Company_brief.html',
             [OUT / 'Company_model.xlsx'],
             cutoff='2026-11-06', fiscalYearEnd=12, priceDate='2026-11-05', consensusDate='2026-11-06',
-            security='2020.HK', currency='HKD', method='P/E', epsPeriod='FY2027E',
+            security='EXAMPLE', currency='HKD', method='P/E', epsPeriod='FY2027E', researchMode='initiation',
             latestPublished={'period': '3Q26', 'kind': 'operating update', 'date': '2026-10-21', 'coversThirdQuarter': True},
             spec='model/spec.json', workbook='deliverables/Company_model.xlsx', brief='deliverables/brief.json',
             bindings={'referencePrice': 'Valuation!D20', 'target': 'Valuation!D37', 'targetMultiple': 'Valuation!D35',
@@ -1107,6 +1109,9 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
     review_exists = pr.local(study, record['review']).is_file()
     if revise or not review_exists:
         pr.preflight(study,record,revise=revise)
+    else:
+        from research_rules import require_current
+        require_current(study)
     # Supersede only after eligibility is established.
     zip_path.unlink(missing_ok=True)
     tmp_zip.unlink(missing_ok=True)

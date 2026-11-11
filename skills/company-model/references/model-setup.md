@@ -4,7 +4,7 @@ Establish model identity, reporting definitions and a calculation backend before
 
 ## Choose the model state and calculation backend
 
-Start with the [agent-model contract](agent-model.md): stable metric/period IDs, evidence and assumptions, executable dependencies, versioned runs and checks. Choose an available backend that can actually recalculate the issuer model. It can initially be Excel plus a semantic map; the agent need not navigate the human presentation to query inputs/outputs. A code-based economic model is also valid. Preserve an auditable mapping when importing a workbook.
+Start with the [agent-model contract](agent-model.md): stable metric/period IDs, evidence and assumptions, executable dependencies, versioned runs and checks. Preserve an auditable mapping when importing a workbook.
 
 - Follow the [workbook contract](workbook-profile.md) for the synchronized human and machine interfaces. A scoped query can reuse a current model without rebuilding it.
 
@@ -33,7 +33,7 @@ Represent annual and interim periods explicitly. In a workbook, keep period colu
 | Scenarios | Bear/Base/Bull driver values with the active case chosen by the selector |
 | Checks | Every model check in one place, with the failing count shown on each sheet |
 
-These are functional components, not mandatory sheet names. Preserve valid existing names and check dependencies before replacing or retiring a component.
+Preserve valid existing names and check dependencies before replacing or retiring a component.
 
 ## Preserve features and authority
 

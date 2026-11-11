@@ -45,8 +45,6 @@ def writing_packet(study, paths, research_mode='initiation', model_changed=False
                       'original pivotal sources. Apply the short writing standard; return discrepancies to analysis. '
                       'Return stale causal explanations to analysis as well as stale figures. A fiscal-year yield is not '
                       'cash arriving to a buyer over a dated window; retain the checked receipt basis and forecast qualifications. '
-                      'Follow the report length guide in research-brief/references/visual-reports.md; explain a material '
-                      'departure in the handoff, without padding the report. '
                       'Develop business drivers before detailed valuation, beyond the compact header. When describing '
                       'the overall payoff, reconcile price movement and eligible cash on the same dated horizon; '
                       'cash yield is separate from the price-target rating. Compare matched periods before attributing '
@@ -242,7 +240,7 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
     if path.exists():
         if not revise:
             raise FileExistsError(f'Review exists: {path}; use --revise to archive it and review a changed draft')
-        previous = json.loads(path.read_text(encoding='utf-8'))
+        previous = json.loads(path.read_text(encoding='utf-8-sig'))
         archive = path.with_name(f'draft-review.round{previous["round"]}.{digest(path)[:8]}.json')
         shutil.copyfile(path, archive)
         prior_review = {'path': archive.relative_to(study).as_posix(), 'sha256': digest(archive)}
@@ -260,7 +258,7 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
         if base.exists():
             files += [p.relative_to(study).as_posix() for p in sorted(base.rglob('*'))
                       if p.is_file() and p != path and '__pycache__' not in p.parts
-                      and 'review-snapshots' not in p.parts
+                      and 'review-snapshots' not in p.parts and not p.name.startswith(('~$','.'))
                       and not p.name.startswith('draft-review') and p.name != 'prose-number-inventory.json']
     # Include the producer and bindings, not just its outputs. Explicit reviewInputs covers other build arrangements.
     for folder in ('build', 'deliverables'):
@@ -268,6 +266,10 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
         files += [p.relative_to(study).as_posix() for p in sorted(base.glob('*'))
                   if p.is_file() and p.suffix in ('.py', '.json') and p.name != 'release.json']
     files = list(dict.fromkeys(files))
+    if os.name == 'nt':
+        worst = max(files, key=len); n = len(str(study)) + 55 + len(worst)
+        if n > 259:
+            raise ValueError(f'Snapshot path would be {n} characters (Windows limit 259); shorten the study folder or rename {worst}')
     stamp = datetime.now(timezone.utc).isoformat()
     evaluation = evaluation_context(study, record)
     from zoneinfo import ZoneInfo
@@ -341,7 +343,9 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
                       'overlapping cumulative flows derive the latest non-overlapping period; ratios, per-share values '
                       'and balances need separate bridges. Explain unavailable/noncomparable data rather than inventing it. '
                       'Complete brief-fidelity items for decisive claims and their qualifications. A passing ledger does '
-                      'not validate unbound prose or establish that the coverage list is complete.'}
+                      'not validate unbound prose or establish that the coverage list is complete. '
+                      'Shapes: report-layout/references/publication-review.md; report-layout/assets/*.example.json; '
+                      'research-cycle/references/handoff-example.json.'}
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(packet, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     shutil.copyfile(path, local(study, snapshot['path']) / 'prepared-review.json')
@@ -417,7 +421,7 @@ def check(study, record, spec, workbook):
                 test('presentation-confirmation',True,'Original reader confirmed one content-equivalent presentation correction; substantive review is retained')
             except (ValueError,KeyError,OSError) as exc: test('presentation-confirmation',False,str(exc))
         analytical={'critical-thinking','argument-support','defensible-view','source-and-financial-basis'}
-        test('draft-review-required-checks', all(name in checks and checks[name]['result'] in ('pass','fail') for name in CHECKS)
+        test('draft-review-required-checks', len(checks)==len(h['checks']) and all(name in checks and checks[name]['result'] in ('pass','fail') for name in CHECKS)
              and all(checks.get(name,{}).get('result')=='pass' for name in analytical)
              and not any(c['blocking'] and c['result'] != 'pass' for c in checks.values()),
              'All dimensions must be reviewed. Analytical checks pass; material defects of any type block. Minor cosmetic findings may remain explicitly nonblocking with their rationale')
@@ -453,8 +457,10 @@ def check(study, record, spec, workbook):
         for key, kinds in (('comparisons', {'comparison'}), ('incremental-flows', {'incremental-flow'})):
             test(key + '-coverage', comparison_checks.coverage(packet, key, kinds),
                  'Bind material comparable/incremental assertions or reasoned non-applicability; the reader checks omissions')
-        test('brief-fidelity-coverage', comparison_checks.brief_fidelity(packet),
-             'Review decisive brief claims against the report, including denominator, timing, ownership and conditional conclusions')
+        fidelity = comparison_checks.brief_fidelity(packet)
+        test('brief-fidelity-coverage', fidelity,
+             'Review decisive brief claims against the report, including denominator, timing, ownership and conditional conclusions' if fidelity
+             else "coverage['brief-fidelity'] needs status 'checked' and items[] of {claimId, reportLocation, briefLocation, qualification, assessment}")
         verified_displays=set()
         display_kinds={'rendered-measure','calculation','cash-receipts'}
         for assertion in packet.get('claimAssertions', []):
@@ -494,7 +500,8 @@ def valuation_basis(spec, record, declaration, handoff, sensitivity_ids=()):
     if record['method'] != 'P/E':
         ok = (declaration.get('status') == 'not-applicable' and bool(declaration.get('reason', '').strip())
               and not declaration.get('cases'))
-        return ok, 'P/E period contract not applicable; other methods retain their own financial-basis review'
+        return ok, ('P/E period contract not applicable; other methods retain their own financial-basis review' if ok
+                    else "set valuationBasis to {status:'not-applicable', reason, cases:[]}")
     if declaration.get('status') != 'checked':
         return False, 'Declare the primary and scenario P/E economic anchors before publication'
     try:

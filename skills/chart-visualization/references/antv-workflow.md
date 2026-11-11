@@ -10,7 +10,7 @@ Use the AntV library guidance with the house theme and financial-data rules in t
 
 Check the project's available packages before adding a dependency. When a library is used, retain its exact version and any local bundle needed to reproduce the figure. Verify current APIs against the relevant official library documentation when implementing unfamiliar features. Do not rely on a moving `latest` CDN URL for a final report.
 
-Local G2 rendering is the normal report path. The AntV chart-image HTTP API is an optional hosted-image route, not a required service or a replacement for the shared theme. Do not make offline reports depend on an expiring returned URL.
+The AntV chart-image HTTP API is an optional hosted-image route, not a required service or a replacement for the shared theme. Do not make offline reports depend on an expiring returned URL.
 
 ## Prepare a chart specification
 
@@ -34,8 +34,7 @@ Use a labelled forecast segment with dashed line or lighter fill. Handle dense l
 
 Use the documented `infographic <template-name>` syntax and two-space indentation for nested `data` and `theme` blocks. Select the template's required data structure: lists, sequences, relationships or a hierarchy. Avoid mixing payload fields from unrelated template families. Set the house font and semantic palette explicitly.
 
-Represent only supported relationships and dated events. Arrow width or node size must not imply invented amounts. Use the library's documented export to produce a stable SVG/image after rendering and font loading. Its syntax-only response convention applies to the configuration payload; the requested report still contains the chart, sources and concise explanation.
-
+Represent only supported relationships and dated events. Arrow width or node size must not imply invented amounts. Use the library's documented export to produce a stable SVG/image after rendering and font loading.
 ## Final output checks
 
 Inspect chart errors and the rendered figure, not merely whether a file exists. Compare visible values with the current model/observations and ensure fonts, axes, labels, legends and source notes survive desktop, mobile and print/export. Re-render after visible changes. Save a static artifact with accessible description and a compact data table when exact reading or fallback requires one.

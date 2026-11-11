@@ -58,8 +58,6 @@ Build the base case from the most persuasive combination of economics, observed 
 
 Use reasonable ranges and coherent adverse cases. Probabilities can be qualitative, or numerical when a defensible basis exists; avoid precise weights without support. A credible downside scenario can reverse the sign of the return without invalidating the base-case call. Assess prospective reward, loss severity, financing survival, price paid, persistence of discounts and the margin for estimation error together. Do not require investment success in every scenario.
 
-Reach a call from a defensible central estimate using the [decision contract](../../investment-conclusion/references/decision-contract.md). Explain decisive assumptions, downside, conviction and what would change the view.
-
 Give a call on completed, supportable research under the decision contract; an unusable essential baseline leaves the numerical conclusion incomplete, not a placeholder Hold. If the stock is an avoid, unattractive or raises a red flag, say so beside the call.
 
 Apply incentive and credibility analysis within the research. Investor-facing output should state the resulting forecast judgment and evidence concisely; avoid generic commentary about brokers' or management's motives. Explain a specific credibility issue when it materially affects the decision, with attribution and appropriate qualification. Preserve factual accuracy even when simplifying the presentation.

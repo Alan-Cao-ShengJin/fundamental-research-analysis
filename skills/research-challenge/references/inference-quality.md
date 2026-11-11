@@ -41,7 +41,7 @@ Use business-appropriate measures. An industrial cash adjustment is not a bank l
 
 - **Supported:** the observation and calculation fit the claimed scope and the material alternative has been addressed. This supports the stated conclusion, not certainty about the outcome.
 - **Conditional:** the conclusion depends on an explicit, reasoned assumption or an unresolved distinction. Retain a defensible central forecast, quantify its sensitivity where useful and narrow the wording to what is supported.
-- **Contradicted or invalid:** a material source, comparison, period or inference does not support the claim. Correct the affected model/valuation or remove the unsupported implication; adding a citation or softening one word is not a resolution.
+- **Unsupported or invalid:** a material source, comparison, period or inference does not support the claim. Correct the affected model/valuation or remove the unsupported implication; adding a citation or softening one word is not a resolution.
 
 Use these dispositions in the existing claim rationale/checks; do not add undeclared handoff fields. The report renderer's supported/contradicted/untested labels remain analyst judgments, not automated findings: contradicted needs incompatible evidence on the same proposition and period. Absence of an announcement alone leaves a future action untested; an explicit rejection or binding incompatible constraint can contradict it. Recheck both the report and brief after corrections: a claim can be qualified correctly in the full report and overstated in the headline or brief.
 
@@ -55,4 +55,4 @@ For a relative-quality claim, inspect evidence for both sides on compatible peri
 
 Use the existing publication [claim-support checks](../../report-layout/references/claim-support.md) for applicable deterministic parts. Source populations, rights and qualifications still require substantive judgment. "On our inference" does not make an illustrative consensus bridge the only route to those earnings; use necessity language only when alternatives have been ruled out.
 
-Host-controlled evaluation material is separate from production evidence. Keep expected answers and critique outside author contexts; the evaluation index is for hosts running calibration. A passed example is evidence about that run, not a general reliability guarantee.
+Host-controlled evaluation material is separate from production evidence. Keep expected answers and critique outside author contexts. A passed example is evidence about that run, not a general reliability guarantee.

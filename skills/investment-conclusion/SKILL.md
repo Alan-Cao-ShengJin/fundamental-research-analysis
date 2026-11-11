@@ -2,7 +2,7 @@
 name: investment-conclusion
 description: Turn audited company forecasts, governance, valuation and thesis validation into a Buy, Hold or Sell recommendation with a primary target price, upside/downside scenarios and a concise but logically sequenced investment rationale. Portfolio sizing remains a downstream task.
 metadata:
-  version: 2.5.3
+  version: 2.5.4
 ---
 
 # Investment conclusion
@@ -35,7 +35,7 @@ Select one primary target price for a stated date/horizon and explain the prefer
 
 Apply the [decision contract](references/decision-contract.md) for the realisable target, rating, price return and separate new-money judgment. Give a call on completed, supportable research; if an essential dependency prevents any defensible target, retain the incomplete outcome rather than inventing a number or a placeholder Hold.
 
-If the target needs a higher P/E, explain why investors would pay it and what evidence would change their assessment. Apply the [rerating test](../valuation-thesis/references/method-selection.md#rerating-and-derating); lower the central target and reconsider the call if the required change lacks support. Saying that a rerating is needed does not justify one.
+If the target needs a multiple above the stock's own mean, explain why investors would pay it and what evidence would change their assessment. Apply the [rerating test](../valuation-thesis/references/method-selection.md#rerating-and-derating); lower the central target and reconsider the call if the required change lacks support. Saying that a rerating is needed does not justify one.
 
 Understand what type of company you are looking at, dividend, growth or other, and select the valuation method that fits that type ([valuation drivers](../valuation-thesis/references/valuation-driver-and-dividends.md)). Keep that method consistent throughout as the main anchor; other metrics can support it but only as secondary. Recompute the rating, attractiveness and scenarios if the primary method changes.
 
@@ -47,6 +47,6 @@ List the important metrics to watch closely, most important first: the ones that
 
 Before handing the conclusion to writing, save the [current decision checkpoint](../report-layout/references/decision-record.md), with model/spec hashes and bound numerical trigger text. Preserve qualitative judgment separately from derived fields. A target that stayed unchanged does not validate an older workbook or trigger. Refresh affected dependencies before freezing the draft; never repair the record silently after review.
 
-This is an investment-research conclusion, not an approved position, portfolio weight or order. If implementation is requested, send it to [strategy research (external workflow)](../research-cycle/references/scope-boundary.md) and [portfolio review (external workflow)](../research-cycle/references/scope-boundary.md) with the exact instrument and mandate constraints. An underlying share valuation does not transfer unchanged to a perpetual contract.
+This is an investment-research conclusion, not an approved position, portfolio weight or order. If implementation is requested, send it to [strategy research (external workflow)](../research-cycle/references/scope-boundary.md) and [portfolio review (external workflow)](../research-cycle/references/scope-boundary.md) with the exact instrument and mandate constraints.
 
 Return an investment-conclusion handoff referencing the decision record, Buy/Hold/Sell call, target and return calculations, business/moat and pivotal insight, governance consequences, supporting/counterevidence, catalysts/invalidation and material gaps. Keep prior versions for later learning. Research status and portfolio execution status are separate from the stock rating; a completed Sell need not generate an order, and portfolio decisions require their own assessment.

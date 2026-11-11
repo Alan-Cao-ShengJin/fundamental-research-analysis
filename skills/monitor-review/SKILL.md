@@ -2,7 +2,7 @@
 name: monitor-review
 description: Convert research decisions into explicit watch specifications and scheduled reviews, distinguish active monitoring from plans, and update theses and portfolio decisions from new evidence and outcome attribution.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Monitor, review and learn
@@ -23,7 +23,7 @@ Where material, specify [market-context and investor-base triggers](../macro-eve
 
 For each watch, state the metric, threshold, source, review date and what a change would affect. Check data health before interpreting silence.
 
-Examples to adapt: a forecast driver breaches the thesis range; net carry changes enough to invalidate a trade; a hedge ratio/regime changes materially; liquidity deteriorates; a margin/oracle/contract setting changes; a withdrawal deadline approaches; required data becomes stale. A price change need not be a thesis change.
+Examples to adapt: a forecast driver breaches the thesis range; net carry changes enough to invalidate a trade; a hedge ratio/regime changes materially; liquidity deteriorates; required data becomes stale. A price change need not be a thesis change.
 
 A saved condition or schedule is a plan. Call it active only after the actual monitoring service acknowledges activation; retain that acknowledgement with the watch.
 

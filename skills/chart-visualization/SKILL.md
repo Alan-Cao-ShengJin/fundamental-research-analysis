@@ -2,7 +2,7 @@
 name: chart-visualization
 description: Build consistent, data-linked charts and business diagrams using AntV G2 and AntV Infographic with a shared professional theme. Use for research-report visuals, chart selection, rendering and export; preserve model values and reporting bases.
 metadata:
-  version: 2.1.1
+  version: 2.1.2
 ---
 
 # Consistent charts and diagrams
@@ -33,7 +33,7 @@ Consume the current model outputs or dated observations directly. Preserve numer
 
 ## Apply one visual language
 
-Use the shared theme's font, colours, spacing and mark styles. Each colour has one meaning across the whole report (the theme's `meaning` field): navy actuals, grey forecasts and the base case, teal the covered company, red negatives and the bear case only, green the bull case only. Keep a metric's colour and legend order consistent across figures; avoid a different colour for every bar in a single-series comparison.
+Use the shared theme's font, colours, spacing and mark styles. Colour meanings follow the theme's `meaning` field. Keep a metric's colour and legend order consistent across figures; avoid a different colour for every bar in a single-series comparison.
 
 Actual values are solid. Forecasts use dashed lines, lighter fills or another labelled pattern without changing what the series colour means. Mark the forecast boundary. Bear/base/bull and Buy/Hold/Sell use the named semantic colours in the theme, plus readable labels. A price reference is a neutral line, not another forecast.
 
@@ -41,6 +41,6 @@ Label period, unit, currency and basis clearly, with a short takeaway and readab
 
 ## Render and verify
 
-Use local AntV rendering for report files, with exact dependency versions retained when used. Export a static figure or inline SVG for print and offline reading; interactive views may supplement it. Essential numbers and qualifications must remain visible without hover or JavaScript.
+Export a static figure or inline SVG for print and offline reading; interactive views may supplement it. Essential numbers and qualifications must remain visible without hover or JavaScript.
 
 Check data-to-figure totals, scenario/bridge arithmetic, axis ranges, actual/forecast styles, labels, sources and colour consistency. Inspect the rendered desktop/mobile/export result. Keep the static artifact and its spec together so later updates regenerate figures from the revised model. If the preferred runtime is unavailable, preserve the same data specification/theme in a deterministic SVG fallback and record that implementation choice in supporting metadata.

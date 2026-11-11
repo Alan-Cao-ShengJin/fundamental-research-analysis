@@ -132,6 +132,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File skills/company-model/scripts
 python skills/company-model/scripts/model_workbook.py check output/model_spec.json output/model.xlsx --report output/model-sync.json
 ```
 
+`-Selector` and `-Outputs` take workbook addresses: on sheets with a source-tag column, cells from that column rightwards sit one column right of their specification address.
+
 For a single-sheet scaffold:
 
 ```powershell

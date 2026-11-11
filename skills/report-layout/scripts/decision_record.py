@@ -60,7 +60,8 @@ def derived(study, record, spec, decision):
     vals = rc.cell_values(spec,local(study,record['workbook']),record['bindings'])
     if type(vals['referencePrice']) not in (int,float) or vals['referencePrice']<=0:
         raise ValueError('A decision needs a positive reference price')
-    cutoff = date.fromisoformat(record['cutoff'])
+    if 'rating' not in record['bindings']: raise ValueError('Add bindings.rating (the model rating cell) to the release record')
+    cutoff = date.fromisoformat(record['cutoff'][:10])
     try:
         target_date = cutoff.replace(year=cutoff.year+1)
     except ValueError:

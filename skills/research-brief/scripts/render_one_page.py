@@ -41,7 +41,7 @@ def validate(payload):
     # Decimal boundaries retain Hold at exactly +/-10%, before display rounding.
     pd,td=Decimal(str(p)),Decimal(str(t))
     call='Buy' if td>pd*Decimal('1.10') else 'Sell' if td<pd*Decimal('.90') else 'Hold'
-    require(d.get('rating')==call,'Rating conflicts with the unrounded primary price return')
+    require(d.get('rating')==call,'Rating conflicts with referencePrice and targetPrice in this payload; write the unrounded model values into brief.json')
     attr=text(d.get('attractiveness'),'attractiveness').lower()
     require(attr in ('attractive','decent','unattractive'),'Attractiveness must be attractive, decent or unattractive')
     for old in ('dividendPerShare','dividendsToTargetDate'):
@@ -112,8 +112,8 @@ def render(payload):
         paragraphs=''.join('<p>'+esc(p)+(f'<sup>{citations}</sup>' if n==len(s['paragraphs'])-1 and citations else '')+'</p>' for n,p in enumerate(s['paragraphs']))
         extra=table if financials and s['id']==financials['sectionId'] else ''
         return f'<section class="brief-section" data-section="{esc(s["id"])}"><h2>{esc(s["title"])}</h2>{paragraphs}{extra}</section>'
-    sources=('Sources: '+''.join(f'<a id="source-{esc(s["id"])}" href="{esc(s["href"])}">[{i+1}] {esc(s["label"])}</a>' for i,s in enumerate(payload['sources']))) if payload.get('sources') else ''
-    links=''.join(f'<a href="{esc(s["href"])}">{esc(s["label"])}</a>' for s in payload.get('links',[]))
+    sources=('Sources: '+''.join(f'<a id="source-{esc(s["id"])}"'+(f' href="{esc(s["href"])}"' if urlsplit(s['href']).scheme else '')+f'>[{i+1}] {esc(s["label"])}</a>' for i,s in enumerate(payload['sources']))) if payload.get('sources') else ''
+    links=''.join(f'<a href="{esc(s["href"])}">{esc(s["label"])}</a>' if urlsplit(s['href']).scheme else f'<span>{esc(s["label"])}: {esc(s["href"])}</span>' for s in payload.get('links',[]))
     identity=f'{m["security"]} / {currency}'
     metrics=[('Reference price',money(d['referencePrice'],currency),''),('Price target',money(d['targetPrice'],currency),''),('Price return',pct(result['priceReturn']),'return-value')]
     metrics_html=''.join(f'<div class="metric"><small>{esc(label)}</small><strong class="{cls}">{esc(value)}</strong></div>' for label,value,cls in metrics)

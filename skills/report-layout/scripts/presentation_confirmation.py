@@ -13,7 +13,7 @@ EDITORIAL={'conciseness','professional-language','sharp-writing','visual-inspect
 
 def meaning(path):
     path=Path(path)
-    if path.suffix=='.json': return json.loads(path.read_text())
+    if path.suffix=='.json': return json.loads(path.read_text(encoding='utf-8-sig'))
     if path.suffix=='.pdf':
         import fitz
         parts=[]
@@ -46,7 +46,7 @@ def prepare(study,record):
     from review_attempts import verify as verify_attempt
     require_current(study); path=local(study,PATH)
     if path.exists(): raise ValueError('One confirmation per reviewed draft; preserve it rather than looping')
-    original=local(study,record.get('review',DEFAULT_PATH)); p=json.loads(original.read_text())
+    original=local(study,record.get('review',DEFAULT_PATH)); p=json.loads(original.read_text(encoding='utf-8-sig'))
     check_snapshot(study,p); verify_attempt(study,p)
     failed={c['name'] for c in p['handoff']['checks'] if c['result']!='pass'}
     if p['handoff']['status']!='complete' or p['handoff']['criticalUnknowns'] or not failed or not failed<=EDITORIAL:
@@ -62,7 +62,7 @@ def prepare(study,record):
 
 def verify(study,record,packet):
     from publication_review import local,digest,validate_handoff,DEFAULT_PATH
-    receipt=json.loads(local(study,PATH).read_text()); h=receipt['handoff']
+    receipt=json.loads(local(study,PATH).read_text(encoding='utf-8-sig')); h=receipt['handoff']
     original=local(study,record.get('review',DEFAULT_PATH))
     if receipt['originalReviewSHA256']!=digest(original) or receipt['reviewer']!=packet['reviewer'] or receipt['draftVersion']!=packet['draftVersion'] or receipt['attempt']!=packet['round']:
         raise ValueError('Confirmation does not match the original review, reader and attempt')

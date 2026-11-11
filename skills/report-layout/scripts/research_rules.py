@@ -38,6 +38,12 @@ def runtime():
     node_version=subprocess.check_output([node,'--version'],text=True).strip() if node else None
     return {'python':sys.version.split()[0],'node':node_version,'packages':versions}
 
+def runtime_diff(pinned,now):
+    """(pinned, current) for each differing entry; the nested packages dict is flattened to packages.NAME."""
+    flat=lambda r:{**{k:v for k,v in r.items() if k!='packages'},**{'packages.'+k:v for k,v in (r.get('packages') or {}).items()}}
+    pinned,now=flat(pinned),flat(now)
+    return {k:(pinned.get(k),now.get(k)) for k in sorted(set(pinned)|set(now)) if pinned.get(k)!=now.get(k)}
+
 def load(study):
     study=Path(study).resolve(); value=json.loads((study/LOCK).read_text(encoding='utf-8'))
     archive=(study/value['archive']).resolve()
@@ -60,7 +66,7 @@ def require_current(study):
     if not (Path(study)/LOCK).is_file(): raise ValueError('Pin the study rules before model construction: research_rules.py pin STUDY')
     value=load(study)
     if value['productionFingerprint']!=fingerprint(): raise ValueError('Different pinned rules: use research_rules.py run rather than mixing live rules')
-    if value['runtime']!=runtime(): raise ValueError('Runtime differs from pinned dependency receipt; use that environment or explicitly migrate')
+    if value['runtime']!=runtime(): raise ValueError(f'Runtime differs from the pinned dependency receipt: {runtime_diff(value["runtime"],runtime())}; use that environment or explicitly migrate')
     return value
 
 def archived(study):
@@ -77,7 +83,7 @@ def archived(study):
 
 def run(study,entry,args=()):
     study=Path(study).resolve(); archive,receipt=archived(study)
-    if not receipt.get('legacyArchive') and receipt['runtime']!=runtime(): raise ValueError('Runtime differs from pinned dependency receipt')
+    if not receipt.get('legacyArchive') and receipt['runtime']!=runtime(): raise ValueError(f'Runtime differs from the pinned dependency receipt: {runtime_diff(receipt["runtime"],runtime())}')
     print(json.dumps({'rulesExecution':{'archiveSHA256':receipt['archiveSHA256'],
           'standard':'preserved-historical-rules' if receipt.get('legacyArchive') else 'study-pinned-production-rules',
           'originalRuntimeRecorded':not receipt.get('originalRuntimeUnrecorded',False)}}),file=sys.stderr)
@@ -102,7 +108,7 @@ paths=sorted({str(p.parent) for p in root.rglob("*.py")})
 class Pinned(importlib.abc.MetaPathFinder):
     def find_spec(self,fullname,path=None,target=None):
         if "." not in fullname: return importlib.machinery.PathFinder.find_spec(fullname,paths)
-sys.meta_path.insert(0,Pinned()); sys.path[:0]=paths; sys.argv=[script]+args
+sys.meta_path.insert(0,Pinned()); sys.path[:0]=[str(pathlib.Path(script).parent)]+paths; sys.argv=[script]+args
 runpy.run_path(script,run_name="__main__")
 ''',encoding='utf-8')
         env=dict(os.environ,RESEARCH_PINNED_RUN='1',RESEARCH_SKILLS_ROOT=str(skills))

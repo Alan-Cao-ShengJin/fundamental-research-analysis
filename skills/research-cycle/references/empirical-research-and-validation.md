@@ -24,9 +24,9 @@ If the original is inaccessible, label the intermediary and limitation and seek 
 
 Reproduce pivotal arithmetic using the executable model or a separate calculation: segment/per-share conversions, cash bridges, valuation claims, return components and scenario consequences. Where material, perturb a key input and verify dependent outputs and quoted prose update. Inspect an explicit adverse case and a case with an unchanged multiple/discount. Reconciliation verifies arithmetic, not the evidence behind the assumptions.
 
-For the economic review, start with original evidence and reconstruct the core mechanism before reading the finished recommendation where practical. Test a credible competing explanation, the strongest disconfirming observations, competitor response, reinvestment returns, advantage duration, priced expectations and odds versus payoff. Re-reading the original conclusion or repeating its assumptions is not independent validation. This procedure does not require additional agents or authorize delegation.
+For the economic review, start with original evidence and reconstruct the core mechanism before reading the finished recommendation where practical. Test a credible competing explanation, the strongest disconfirming observations, competitor response, reinvestment returns, advantage duration, priced expectations and odds versus payoff. Re-reading the original conclusion or repeating its assumptions is not independent validation.
 
-Record review scope, artifacts/versions inspected, calculations actually repeated, findings/corrections, remaining disagreements and consequences for the call. If no separate reviewer is available, describe a second self-review accurately. Never claim a blind or independent review that did not occur. Resolve a material correction by rerunning affected models/valuations and updating dependent wording; a softer sentence alone is not resolution.
+Record review scope, artifacts/versions inspected, calculations actually repeated, findings/corrections, remaining disagreements and consequences for the call. Never claim a blind or independent review that did not occur. Resolve a material correction by rerunning affected models/valuations and updating dependent wording; a softer sentence alone is not resolution.
 
 ## Demonstrate behavior and learn from outcomes
 

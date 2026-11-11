@@ -85,6 +85,6 @@ function result(x, steadyFcfe) {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
     if (!process.argv[2]) throw new Error('Usage: node reverse-dcf.mjs INPUT.json');
-    console.log(JSON.stringify(impliedSteadyFcfe(JSON.parse(await readFile(process.argv[2], 'utf8'))), null, 2));
+    console.log(JSON.stringify(impliedSteadyFcfe(JSON.parse((await readFile(process.argv[2], 'utf8')).replace(/^﻿/, ''))), null, 2));
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

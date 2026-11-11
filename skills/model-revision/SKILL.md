@@ -2,7 +2,7 @@
 name: model-revision
 description: Update existing stock research in regular-review or major earnings/catalyst mode. Regular reviews preserve operating forecasts unless concrete new evidence warrants revision; major updates compare prior assumptions with disclosures and recalibrate affected forecasts. Use stock-initiation for first coverage.
 metadata:
-  version: 2.3.0
+  version: 2.3.1
 ---
 
 # Revise an existing stock model

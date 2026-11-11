@@ -103,7 +103,7 @@ Use net profit attributable to shareholders for earnings after minorities; defin
 
 ## Editing workflow
 
-Draft the argument, then edit once for reasoning and once against the pairs above. Read it as someone who has never seen the company: rewrite any sentence that reader would have to stop and work out, and cut any they would not miss. Resolve factual defects through the owning analysis rather than polishing them away. A concise summary may omit peripheral detail; it must not turn a conditional conclusion into an unconditional one. Review and release follow the [publication workflow](../../report-layout/references/publication-review.md).
+Draft the argument, then edit once for reasoning and once against the pairs above. Read it as someone who has never seen the company: rewrite any sentence that reader would have to stop and work out, and cut any they would not miss. Resolve factual defects through the owning analysis rather than polishing them away. A concise summary may omit peripheral detail; it must not turn a conditional conclusion into an unconditional one. Write nothing we cannot support: every fact traces to a filing, a data series, an attributed comment or the model. Before release, reread every sentence of the report and brief against the evidence and delete or qualify what does not hold. Review and release follow the [publication workflow](../../report-layout/references/publication-review.md).
 
 ## Further detail
 

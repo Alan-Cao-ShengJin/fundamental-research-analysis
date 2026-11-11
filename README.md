@@ -1,18 +1,18 @@
 # Fundamental Research Analysis
 
-An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.12.0** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
+An English-language equity-research skill system for forming an investment view and maintaining it as evidence changes. Version **2.12.1** contains **20 skills**, **11 research flows** and **21 sector activity guides**, with reusable scripts, human-readable model templates, synthetic examples and tests.
 
 Start with [research-cycle](skills/research-cycle/SKILL.md) and the [skill index](skills/README.md). Keep the complete `skills/` tree together so sibling references and helper imports resolve. These files guide an agent; they do not automatically run research, connect data services or activate monitoring.
 
-## Latest update: income-investor valuation and clearer research writing
+## Latest update: clean review of the sequence and harness
 
-Version 2.12.0 locks the updated instructions into a versioned snapshot. For a steady dividend payer, the house target uses the forward yields of economically comparable income investments accessible to the relevant investors, rather than deriving a target yield from cost of equity minus growth. Relevant own-yield history is the fallback when suitable income investments are unavailable. Unsupported comparisons or missing history remain evidence gaps; historical data are never invented. Cost-of-capital and dividend-discount calculations retain their supporting economic roles.
+Version 2.12.1 is a correction release. Five independent read-throughs covered the research sequence, modelling, valuation and decision rules, writing and publication instructions, and the harness code; the confirmed errors were fixed by deletion or one-sentence replacement.
 
-Market-expectations analysis now examines the available valuation path, including dated highs, lows and major swings, before describing it as stable or rerated. Coverage limitations and missing estimate vintages remain explicit. An announcement's absence alone leaves a future action untested; contradiction requires incompatible evidence on the same proposition and period.
+Instructions that contradicted the house rules were removed: a return to a stock's own valuation mean needs no catalyst while a multiple above it does; a discounted-cash-flow cross-check is not discussed in the write-up; a steady dividend payer's required yield comes from comparable income investments, with bond spreads as context only. Passages that made reports narrate their method or hedge by default were cut, and the argument description now asks for the point in plain words with the two or three figures that carry it.
 
-The writing standard emphasizes concise, plain and precise arguments: explain how the business earns money, connect evidence to earnings/cash/value, and develop each argument once. Synthetic before/after examples carry their supporting facts, and editing must preserve material uncertainty, financial definitions and the strongest counter-case. Clear language does not authorize invented peer evidence, customer comparisons or market beliefs.
+Harness corrections: accompanying files now print as file names rather than links, because relative links became absolute local paths inside printed PDFs; the model builder no longer reports blank text cells as drift and names the cell in its errors; unreadable dates, duplicate check names, byte-order marks, Office lock files and over-long Windows snapshot paths are handled with a clear message instead of a crash or a false pass; the price tolerance scales with the share price; and the rating is tested on the target its bound cells reproduce.
 
-Autonomous rate selection, model-before-writing review, archived production rules and the separate printed-report review remain. The system chooses and records assumptions; the user need not supply the premium or discount rate. This release changes instructions and evaluation guidance, not numerical helper logic, review budgets or financial schemas. It contains 20 research skills, 11 flows and 21 sector guides. See [verification and limits](AUDIT.md) and [migration](MIGRATION.md).
+The research sequence, rating thresholds, review budgets, publication wrapper 1.2 and decision schema 1.1 are unchanged. The bundle contains 20 research skills, 11 flows and 21 sector guides. See [verification and limits](AUDIT.md) and [migration](MIGRATION.md).
 
 ## Choose the research mode
 

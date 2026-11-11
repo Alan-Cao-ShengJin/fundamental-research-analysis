@@ -1,5 +1,13 @@
 # Version 2.0 name migration
 
+## Version 2.12.1 corrections
+
+New studies pin the 2.12.1 files normally. Existing frozen studies keep their archived rules, findings and review budgets; this release does not reopen them.
+
+Builders written for 2.12.0 run unchanged, with three visible differences. Accompanying files and relative source links print as text, so list the model and brief by bare file name and keep them in the deliverables folder. The release check compares brief and report targets with the model within 1% of the price (capped at 0.051), so a low-priced stock needs two decimals in the rating box. The model review and the release record must carry the same security string; a mismatch is now reported with both values.
+
+Reports printed with earlier versions can contain absolute local paths in their PDF link annotations. Reprint them with this version, or remove the link annotations, before distributing them.
+
 ## Version 2.12 instruction snapshot
 
 New studies pin the 2.12 production instructions normally. Existing frozen studies continue with their archived files, findings and started-review budgets; do not copy this guidance into an exhausted study to obtain another attempt. Numerical helper interfaces, publication wrapper 1.2 and decision schema 1.1 are unchanged.

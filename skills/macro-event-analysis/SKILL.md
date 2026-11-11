@@ -2,7 +2,7 @@
 name: macro-event-analysis
 description: Assess macro regimes and events, sector preferences, topical narratives and their effects on company economics and repricing. Use for policy/rate/geopolitical shocks and company market-context analysis; retain investor access and liquidity as supporting checks when material.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Macro event analysis

@@ -241,6 +241,11 @@ def near(a, b, rel=0.005, abs_=0.0):
     return isinstance(a, (int, float)) and isinstance(b, (int, float)) and abs(a - b) <= max(abs(b) * rel, abs_)
 
 
+def price_tolerance(value):
+    """Absolute price tolerance scaled to the model value; a non-numeric value already fails `near`."""
+    return min(0.051, max(0.0051, 0.01 * abs(value))) if isinstance(value, (int, float)) else 0.051
+
+
 def check_annual_ntm(n, comps, start, fye, spec, workbook, values, check):
     """Historical whole-month annual interpolation remains a supported approximation."""
     periods = [str(c.get('period')) for c in comps]
@@ -403,7 +408,7 @@ def run(study, record, model_check=None, legacy=False):
     brief = json.loads((study / record['brief']).read_text(encoding='utf-8'))
     d, meta = brief['decision'], brief['meta']
     if isinstance(price, (int, float)) and isinstance(target, (int, float)) and price:
-        ret = price_return(target,price)
+        ret = price_return(expect if bridge_ok else target,price)
         want = rating_for(ret)
         check('rating-from-unrounded-return', d.get('rating') == want and (v.get('rating') in (None, want)),
               f'price return {ret:.4%} gives {want}; brief says {d.get("rating")!r}, workbook says {v.get("rating")!r}')
@@ -418,7 +423,7 @@ def run(study, record, model_check=None, legacy=False):
     except (ValueError, KeyError, TypeError) as exc:
         check('brief-payload-valid', False, str(exc))
     check('brief-price-matches-model', near(d.get('referencePrice'), price, 0.0005, 0.006), f'brief {d.get("referencePrice")} vs workbook {price}')
-    check('brief-target-matches-model', near(d.get('targetPrice'), target, 0.0005, 0.051), f'brief {d.get("targetPrice")} vs workbook {target}')
+    check('brief-target-matches-model', near(d.get('targetPrice'), target, 0.0005, price_tolerance(target)), f'brief {d.get("targetPrice")} vs workbook {target}')
     if d.get('dividendYield') is not None:
         check('brief-yield-binding-required','dividendYield' in b,'Published dividend yield needs its model binding; use null when unavailable')
     if 'dividendYield' in b:
@@ -427,7 +432,7 @@ def run(study, record, model_check=None, legacy=False):
         if d.get(key) is not None:
             check('brief-'+key+'-binding-required',key in b,'Published scenario target needs its model binding')
         if key in b:
-            check(f'brief-{key}-matches-model', near(d.get(key), v.get(key), 0.0005, 0.051), f'brief {d.get(key)} vs workbook {v.get(key)}')
+            check(f'brief-{key}-matches-model', near(d.get(key), v.get(key), 0.0005, price_tolerance(v.get(key))), f'brief {d.get(key)} vs workbook {v.get(key)}')
 
     # 3. The decision block as rendered, in the report and the brief HTML the PDFs are printed from.
     for label, paths in (record.get('renders') or {}).items():
@@ -437,7 +442,7 @@ def run(study, record, model_check=None, legacy=False):
         if not got:
             check(f'rendered-decision-found:{label}', False, f'no rating box or decision strip recognised in {html_rel}')
             continue
-        ok = got['rating'] == d.get('rating') and near(got['price'], price, 0.0005, 0.006) and near(got['target'], target, 0.0005, 0.051)
+        ok = got['rating'] == d.get('rating') and near(got['price'], price, 0.0005, 0.006) and near(got['target'], target, 0.0005, price_tolerance(target))
         check(f'rendered-decision-matches-model:{label}', ok,
               f'{got["kind"]} shows {got["rating"]} at {got["price"]} with target {got["target"]}; model {d.get("rating")} at {price} with target {target}')
         if label=='brief':
@@ -446,16 +451,24 @@ def run(study, record, model_check=None, legacy=False):
             check('brief-render-matches-payload',good,detail)
 
     # 4. Ages at the cutoff. Retrieval and observation ages only: not estimate vintages or the last exchange session.
-    price_date = parse_date(record['priceDate'])
-    check('price-observation-age', cutoff - timedelta(days=7) <= price_date <= cutoff,
-          f'price observed {price_date} for cutoff {cutoff}: on or before the cutoff and within seven days; this is an age check, not a session lookup')
-    observed = parse_date(d.get('priceObservation', ''))
-    check('brief-price-date-matches-record', observed == price_date, f'brief says {observed}, record says {price_date}')
+    def when(name, text):
+        try: return parse_date(text)
+        except ValueError as exc: check(name+'-readable', False, f'{name} {text!r}: {exc}'); return None
+    price_date = when('priceDate', record['priceDate'])
+    if price_date:
+        check('price-observation-age', cutoff - timedelta(days=7) <= price_date <= cutoff,
+              f'price observed {price_date} for cutoff {cutoff}: on or before the cutoff and within seven days; this is an age check, not a session lookup')
+    observed = when('priceObservation', d.get('priceObservation', ''))
+    if observed and price_date:
+        check('brief-price-date-matches-record', observed == price_date, f'brief says {observed}, record says {price_date}')
     if record.get('consensusDate'):
-        cd = parse_date(record['consensusDate'])
-        check('consensus-retrieval-age', cutoff - timedelta(days=7) <= cd <= cutoff,
-              f'consensus retrieved {cd} for cutoff {cutoff}: a retrieval-age check; contributor estimate dates are not validated')
-    check('brief-as-of-is-cutoff', parse_date(meta.get('asOf', '')) == cutoff, f'brief asOf {meta.get("asOf")!r} vs cutoff {cutoff}')
+        cd = when('consensusDate', record['consensusDate'])
+        if cd:
+            check('consensus-retrieval-age', cutoff - timedelta(days=7) <= cd <= cutoff,
+                  f'consensus retrieved {cd} for cutoff {cutoff}: a retrieval-age check; contributor estimate dates are not validated')
+    as_of = when('asOf', meta.get('asOf', ''))
+    if as_of:
+        check('brief-as-of-is-cutoff', as_of == cutoff, f'brief asOf {meta.get("asOf")!r} vs cutoff {cutoff}')
     check('currency-agrees', meta.get('currency') == record.get('currency'), f'brief {meta.get("currency")!r} vs record {record.get("currency")!r}')
     check('security-agrees', str(record.get('security', '')) in str(meta.get('security', '')), f'brief {meta.get("security")!r} vs record {record.get("security")!r}')
 

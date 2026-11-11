@@ -11,7 +11,7 @@ def state(study):
     root = local(study, 'evidence/review-snapshots')
     drafts = []
     for path in root.glob('*/prepared-review.json'):
-        packet = json.loads(path.read_text(encoding='utf-8'))
+        packet = json.loads(path.read_text(encoding='utf-8-sig'))
         if packet.get('schemaVersion') != '1.2':
             raise ValueError('Legacy review history needs explicit migration; keep its original outcome and budget')
         drafts.append(packet)
@@ -22,11 +22,11 @@ def state(study):
         raise ValueError('Draft history has conflicting budgets or duplicate versions')
     receipts = []
     for path in root.glob('*/review-start.json'):
-        receipt = json.loads(path.read_text(encoding='utf-8'))
+        receipt = json.loads(path.read_text(encoding='utf-8-sig'))
         prepared = path.with_name('prepared-review.json')
         if digest(prepared) != receipt['preparedSHA256']:
             raise ValueError('Prepared review changed after its attempt started')
-        packet = json.loads(prepared.read_text(encoding='utf-8'))
+        packet = json.loads(prepared.read_text(encoding='utf-8-sig'))
         check_snapshot(study, packet)
         if (receipt['snapshot'] != packet['snapshot'] or receipt['draftVersion'] != packet['draftVersion']
                 or receipt['maxRounds'] != packet['maxRounds'] or receipt['attempt'] != packet['round']):
@@ -44,13 +44,13 @@ def begin(study, record, reviewer=None, mode='independent-agent'):
     from datetime import datetime, timezone
     from publication_review import local, digest, check_snapshot, DEFAULT_PATH
     path = local(study, record.get('review', DEFAULT_PATH))
-    packet = json.loads(path.read_text(encoding='utf-8'))
+    packet = json.loads(path.read_text(encoding='utf-8-sig'))
     if packet.get('schemaVersion') != '1.2':
         raise ValueError('Prepare a current review packet before starting an attempt')
     check_snapshot(study, packet)
     changed=[rel for rel,value in packet['reviewedFiles'].items() if not local(study,rel).is_file() or digest(local(study,rel))!=value]
     if changed: raise ValueError('Live inputs differ from prepared review; no attempt started: '+', '.join(changed[:8]))
-    prepared = json.loads((local(study, packet['snapshot']['path']) / 'prepared-review.json').read_text(encoding='utf-8'))
+    prepared = json.loads((local(study, packet['snapshot']['path']) / 'prepared-review.json').read_text(encoding='utf-8-sig'))
     fixed_context(packet, prepared)
     identity = {'id': reviewer or packet['reviewer']['id'], 'mode': mode, 'context': 'fresh'}
     if identity['id'] in (None, '', 'unassigned') or mode not in ('human', 'independent-agent'):
@@ -58,7 +58,7 @@ def begin(study, record, reviewer=None, mode='independent-agent'):
     usage = state(study)
     receipt_path = local(study, packet['snapshot']['path']) / 'review-start.json'
     if receipt_path.exists():
-        receipt = json.loads(receipt_path.read_text(encoding='utf-8'))
+        receipt = json.loads(receipt_path.read_text(encoding='utf-8-sig'))
         if receipt['reviewer'] != identity:
             raise ValueError('This draft already has a started review; do not replace the reader identity')
         return receipt_path
@@ -80,8 +80,8 @@ def verify(study, packet):
     from publication_review import local
     usage = state(study)
     path = local(study, packet['snapshot']['path']) / 'review-start.json'
-    receipt = json.loads(path.read_text(encoding='utf-8'))
-    prepared = json.loads(path.with_name('prepared-review.json').read_text(encoding='utf-8'))
+    receipt = json.loads(path.read_text(encoding='utf-8-sig'))
+    prepared = json.loads(path.with_name('prepared-review.json').read_text(encoding='utf-8-sig'))
     fixed_context(packet, prepared)
     if (receipt['reviewer'] != packet['reviewer'] or receipt['attempt'] != packet['round']
             or receipt['draftVersion'] != packet['draftVersion'] or receipt['maxRounds'] != packet['maxRounds']
@@ -105,7 +105,7 @@ def prior_requirements(study, prior):
         if path in seen or digest(path) != prior['sha256']:
             raise ValueError('Prior review findings changed or history is cyclic')
         seen.add(path)
-        previous = json.loads(path.read_text(encoding='utf-8'))
+        previous = json.loads(path.read_text(encoding='utf-8-sig'))
         prefix = f'draft-{previous["draftVersion"]}/'
         requirements += [{'id': prefix+c['name'], 'finding': c['detail'], 'reviewPath': prior['path']}
             for c in previous['handoff']['checks'] if c['blocking'] and c['result'] == 'fail']

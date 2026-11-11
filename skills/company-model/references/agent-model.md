@@ -58,7 +58,3 @@ node skills/company-model/scripts/run_agent_model.mjs skills/company-model/refer
 The [example](agent-model-example.json) and [scenario](agent-model-scenario.json) are synthetic. A price driver change from 10 to 9 propagates revenue from 1,000 to 900, net income from 285 to 210, FCFE from 255 to 180 and an illustrative P/E value from 57 to 42 per share, while the simplified balance sheet reconciles in both runs. The valuation output is formula-linked to EPS rather than retyped.
 
 The helper evaluates a supplied graph; it does not import workbooks, retrieve evidence, persist runs or activate autonomous updates. Its `calculated` status means arithmetic ran, not that the model is financially complete or decision-ready. Supply issuer-specific statements, schedules, assumptions and appropriate valuation methods separately.
-
-## Backends
-
-The [forecast-block plan](foundational-builds.md#generic-tools-and-clean-assets) is a portable executable backend. Its writer/checker generates and validates the human and machine views from one specification; use the same principle for another chosen backend. Do not maintain both graph and forecast-plan assumptions independently.

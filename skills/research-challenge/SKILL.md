@@ -2,7 +2,7 @@
 name: research-challenge
 description: Fact-check and challenge an investment opinion, research thesis, valuation or strategy. Use for standalone devil's-advocate reviews or pre-decision scrutiny of unsupported claims, causal gaps, fragile assumptions and implementation risks.
 metadata:
-  version: 2.7.2
+  version: 2.7.3
 ---
 
 # Research challenge
@@ -55,7 +55,7 @@ Test [market-context/narrative repricing](../macro-event-analysis/references/mar
 
 Reconstruct pivotal claims from original evidence, reproduce important arithmetic and retain contrary/failed analogues. Record what was actually checked; repetition is not independent evidence, a second self-review is not an independent review, and drafted evaluation cases are not passed behavioral tests. A standalone opinion challenge may be a self-review. Full initiations and material model changes require the fresh pre-writing model checkpoint in the company sequence; host capability and actual execution must be reported honestly.
 
-For an opinion-only request, return the reconstructed claim, fact checks, logical gaps, strongest contrary evidence, failure scenarios and tests that would settle them. Classify individual claims as supported, contradicted or unresolved according to the evidence. Include evidence strengthening the claim when found; challenge does not require reaching an adverse answer. State access gaps rather than fabricating counterexamples. This mode does not add a final stock rating.
+For an opinion-only request, return the reconstructed claim, fact checks, logical gaps, strongest contrary evidence, failure scenarios and tests that would settle them. Classify individual claims as supported, contradicted or untested according to the evidence. Include evidence strengthening the claim when found; challenge does not require reaching an adverse answer. State access gaps rather than fabricating counterexamples. This mode does not add a final stock rating.
 
 Return the strongest counter-case, reproduced checks, unresolved issues, evidence that would settle each issue, and which upstream/downstream artifacts must be revised. State which issues block a candidate and which permit further paper observation.
 

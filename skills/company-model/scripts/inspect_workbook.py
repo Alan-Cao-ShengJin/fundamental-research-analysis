@@ -46,7 +46,7 @@ def inspect(path: Path) -> dict:
    'vba':any('vbaProject' in n for n in names),
    'legacy_drawing_or_controls':sum('/ctrlProps/' in n or n.endswith('.vml') for n in names)}
   result['calculation_properties']=attrs(wb.find('s:calcPr',N))
-  result['defined_names']=[{'name':e.get('name'),'ref':e.text} for e in wb.findall('s:definedNames/s:definedName',N)][:35]
+  result['defined_names']=[{'name':e.get('name'),'ref':e.text} for e in wb.findall('s:definedNames/s:definedName',N)]
   result['sheets']=[]
   for sh in wb.findall('s:sheets/s:sheet',N):
    target=targets[sh.get('{'+N['r']+'}id')]
