@@ -31,12 +31,6 @@ def writing_packet(study, paths, research_mode='initiation', model_changed=False
     """Freeze an upstream checkpoint for a host-launched fresh writer. This records work to do, not completed work."""
     if not paths:
         raise ValueError('Provide the model/decision/evidence checkpoint paths with --inputs')
-    from model_review import verify
-    if research_mode in ('initiation','earnings-update','catalyst-update') or model_changed:
-        verify(study)
-        from model_review import PATH as model_review_path
-        reviewed=json.loads(local(study,model_review_path).read_text(encoding='utf-8'))
-        paths=list(dict.fromkeys([*paths,*reviewed['inputs'],model_review_path]))
     packet = {'role': 'fresh-writer', 'status': 'prepared',
               'inputs': {rel: digest(local(study, rel)) for rel in paths},
               'read': ['research-brief/references/natural-writing.md', 'research-brief/SKILL.md', 'report-layout/SKILL.md'],
@@ -176,7 +170,7 @@ def check_snapshot(study, packet):
         raise ValueError('Archived rule bytes changed')
 
 
-def preflight(study,record,revise=False,max_rounds=2):
+def preflight(study,record,revise=False,max_rounds=1):
     """Read-only eligibility check; callers run it before rendering or invalidating anything."""
     from review_attempts import state
     from research_rules import require_current
@@ -192,13 +186,10 @@ def preflight(study,record,revise=False,max_rounds=2):
         raise ValueError('Preserve the existing review path and history')
     if path.exists() and not revise: raise FileExistsError('Review exists; use --revise for a permitted new draft')
     if revise and not path.exists(): raise ValueError('Revision needs an existing review')
-    if record.get('researchMode') in ('initiation','earnings-update','catalyst-update') or record.get('modelChanged'):
-        from model_review import verify
-        verify(study,record)
     return usage
 
 
-def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_rounds=2, revise=False):
+def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_rounds=1, revise=False):
     """After rendering, create a PARTIAL review. Never overwrite an existing review or manufacture a pass."""
     import release_check as rc
     study = Path(study).resolve()
@@ -222,10 +213,11 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
         prior_review = {'path': archive.relative_to(study).as_posix(), 'sha256': digest(archive)}
         if previous.get('snapshot'):
             shutil.copyfile(path, local(study, previous['snapshot']['path']) / f'archived-review.{digest(path)[:12]}.json')
-        confirmation=local(study,'evidence/draft-confirmation.json')
-        if confirmation.exists():
-            shutil.copyfile(confirmation,local(study,previous['snapshot']['path'])/('confirmation.'+digest(confirmation)[:12]+'.json'))
-            confirmation.unlink()
+        from author_fixes import PATH as fixes_rel
+        fixes=local(study,fixes_rel)
+        if fixes.exists():
+            shutil.copyfile(fixes,local(study,previous['snapshot']['path'])/('author-fixes.'+digest(fixes)[:12]+'.json'))
+            fixes.unlink()
     if max_rounds < 1:
         raise ValueError('Review budget must be positive')
     files = inputs(record)
@@ -294,8 +286,9 @@ def prepare(study, record, reviewer='unassigned', mode='independent-agent', max_
                       'In a full initiation, inspect whether drivers precede detailed valuation beyond the compact header. '
                         'Start a fresh reviewer '
                       'context. Read the exact draft PDFs, brief, calculated model and original '
-                      'pivotal evidence. Classify findings by materiality: errors of financial meaning or readability '
-                      'block in any dimension; harmless cosmetic defects may be explicitly nonblocking with a reason. '
+                      'pivotal evidence. This is the only read: the author fixes blocking findings afterwards without a second '
+                      'review. Mark a finding blocking only when it would move the target, the rating or a decisive claim, '
+                      'or misleads the reader; everything else is nonblocking (minor) with a reason and is left unfixed. '
                       'The four analytical dimensions must pass, and all eight dimensions must actually be reviewed. Read '
                       'the six writing dimensions and financial definitions. Record actual '
                       'findings; do not defend the author or mark unperformed work complete. Read the brief against the report: '
@@ -349,11 +342,6 @@ def check(study, record, spec, workbook):
         if packet.get('schemaVersion') != '1.2':
             raise ValueError('Unsupported publication-review schema')
         h = packet['handoff']
-        if record.get('researchMode') in ('initiation','earnings-update','catalyst-update') or record.get('modelChanged'):
-            try:
-                from model_review import verify as verify_model
-                test('pre-writing-model-review',True,verify_model(study,record))
-            except (ValueError,KeyError,OSError) as exc: test('pre-writing-model-review',False,str(exc))
         test('research-mode-declared', packet.get('researchMode') in ('initiation', 'regular-review', 'earnings-update', 'catalyst-update')
              and packet['researchMode'] == record.get('researchMode'), 'Use the routed research mode; it is not a user prompt requirement')
         validate_handoff(h, packet.get('evaluation'))
@@ -384,14 +372,14 @@ def check(study, record, spec, workbook):
              'Review cutoff and security must match the publication')
         checks = {c['name']: c for c in h['checks']}
         confirmed={}
-        confirmation_path=local(study,'evidence/draft-confirmation.json')
-        if confirmation_path.exists():
+        from author_fixes import PATH as fixes_rel
+        if local(study,fixes_rel).exists():
             try:
-                from presentation_confirmation import verify as verify_confirmation
-                confirmation=verify_confirmation(study,record,packet); confirmed=confirmation['changedFiles']
-                for name in confirmation['resolvedChecks']: checks[name]=dict(checks[name],result='pass',blocking=False)
-                test('presentation-confirmation',True,'Original reader confirmed one content-equivalent presentation correction; substantive review is retained')
-            except (ValueError,KeyError,OSError) as exc: test('presentation-confirmation',False,str(exc))
+                from author_fixes import verify as verify_fixes
+                fixes=verify_fixes(study,record,packet); confirmed=fixes['changedFiles']
+                for f in fixes['findings']: checks[f['check']]=dict(checks[f['check']],result='pass',blocking=False)
+                test('author-fixes',True,'After the single review the author fixed the major findings and recorded minor ones; no second read')
+            except (ValueError,KeyError,OSError) as exc: test('author-fixes',False,str(exc))
         analytical={'critical-thinking','argument-support','defensible-view','source-and-financial-basis'}
         test('draft-review-required-checks', len(checks)==len(h['checks']) and all(name in checks and checks[name]['result'] in ('pass','fail') for name in CHECKS)
              and all(checks.get(name,{}).get('result')=='pass' for name in analytical)
@@ -674,12 +662,12 @@ def financial_assertion(study, a, spec, workbook, record=None):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action', choices=('writing', 'prepare', 'begin', 'check', 'finalize','confirm'))
+    p.add_argument('action', choices=('writing', 'prepare', 'begin', 'check', 'finalize'))
     p.add_argument('study', type=Path)
     p.add_argument('--reviewer', default='unassigned')
     p.add_argument('--review-mode', choices=('independent-agent', 'human'), default='independent-agent')
     p.add_argument('--revise', action='store_true')
-    p.add_argument('--max-rounds', type=int, default=2)
+    p.add_argument('--max-rounds', type=int, default=1)
     p.add_argument('--inputs', nargs='+')
     p.add_argument('--research-mode',choices=('initiation','regular-review','earnings-update','catalyst-update'),default='initiation')
     p.add_argument('--model-changed',action='store_true')
@@ -691,9 +679,6 @@ def main():
     if args.action == 'writing':
         print(writing_packet(args.study, args.inputs,args.research_mode,args.model_changed)); return 0
     record = json.loads((args.study / 'deliverables/release.json').read_text(encoding='utf-8'))
-    if args.action=='confirm':
-        from presentation_confirmation import prepare as prepare_confirmation
-        print(prepare_confirmation(args.study,record)); return 0
     if args.action == 'begin':
         from review_attempts import begin
         print(begin(args.study, record, reviewer=args.reviewer, mode=args.review_mode)); return 0

@@ -1,5 +1,16 @@
 # Version 2.0 name migration
 
+## Version 3.2 single review and author fixes
+
+New studies pin the 3.2 files. Each run gets one fresh review, after drafting, covering the calculated model, printed report and brief together. The author challenges the analysis before writing; that is no longer a separate fresh-model checkpoint. No second read follows corrections.
+
+- The package adapter adds `fix=True`. After the completed fresh review, fix blocking findings through the owning analysis, regenerate the model/HTML and call `package(..., fix=True)` with the current bindings. It reprints, reruns integrity checks and prepares `evidence/author-fixes.json`. Complete each failed blocking check as `fixed` with what changed, or `minor` with the reason it does not affect the target, rating, a decisive claim or the reader's understanding; then finalize. Minor findings are left unfixed. See [publication review](skills/report-layout/references/publication-review.md).
+- A premature fix is refused before changing the package, release record or print outputs. Completed-review status and start/snapshot eligibility are checked first. The fix receipt binds changed-file hashes to the original completed review and is included in release fingerprints. It records the author's declaration, not independent verification that the fix is economically correct.
+- `publication_review.py` now defaults to one started review. `revise=True` is not the author-fix path. Do not enlarge an existing budget to obtain a pass. The `confirm` command, `model_review.py` and `presentation_confirmation.py` are retired from the current bundle.
+- The writing-packet helper no longer requires the separate pre-writing model checkpoint. Authors still perform source, calculation and assumption checks under the [company sequence](skills/research-cycle/references/company-sequence.md) and [model standard](skills/company-model/references/model-standard.md#common-slips-to-fix-while-building).
+
+Existing frozen studies retain their archived files, findings and budgets. Execute their preserved helpers through `research_rules.py run STUDY HELPER ...`; do not relabel them as a one-review run or retrofit the new author-fix path. The publication wrapper remains 1.2 and the decision schema remains 1.1; the implementation is identified by its pinned production files. Author-fix receipts use their own schema 1.0. A stored review record does not authenticate reviewer independence, and author dispositions do not supply a second substantive read.
+
 ## Version 3.1 broker notes and narrower scenarios
 
 New studies pin the 3.1 files normally. Existing frozen studies keep their archived rules, findings and review budgets. No file was renamed or deleted and no helper interface changed.

@@ -1,6 +1,6 @@
 # Host-only grading: Alder distributor initiation
 
-Do not give this note, calibration critiques or expected numbers to the author. The raw pack and facts.json are invented. Prompt: `initiation on Alder Industrial Supply (ALDR); evidence in inbox/alder-industrial-supply/pack.md`. Grade the first draft and corrected draft separately within two review rounds; no rating or target is prescribed.
+Do not give this note, calibration critiques or expected numbers to the author. The raw pack and facts.json are invented. Prompt: `initiation on Alder Industrial Supply (ALDR); evidence in inbox/alder-industrial-supply/pack.md`. Grade the reviewed draft and the author-fixed draft separately (one review per run); no rating or target is prescribed.
 
 ## Required economic reasoning
 

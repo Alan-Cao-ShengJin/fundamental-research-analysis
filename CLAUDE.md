@@ -16,7 +16,7 @@ python -B -X utf8 skills/report-layout/scripts/research_rules.py pin STUDY
 
 Keep that rule version through the run. After shared rules change, use `research_rules.py run STUDY HELPER ...` (or a study-relative builder) to execute the preserved version. Do not relabel contracts or reset old findings and attempts. Historical archives without a runtime receipt have an explicitly limited dependency provenance.
 
-Follow the company sequence for modeling, governance, industry work, valuation and challenge. Full initiations and material model changes receive a fresh model/evidence challenge before writing. The later reader reviews the actual report and brief. Deliver the human-readable Excel model, full report and one-page brief through the [publication workflow](skills/report-layout/references/publication-review.md).
+Follow the company sequence for modeling, governance, industry work, valuation and challenge. Each run gets one fresh review, after drafting, of the model, report and brief together; fix the blocking findings without a second read and leave minor ones. Deliver the human-readable Excel model, full report and one-page brief through the [publication workflow](skills/report-layout/references/publication-review.md).
 
 The author session may launch the required fresh contexts through the host's available, authorized delegation tools. In Claude Code that is the Agent tool; other hosts use their supported equivalent. Tell each fresh context to work in batches as [research-cycle](skills/research-cycle/SKILL.md#continue-intelligently) sets out. Keep actual independent-reader work separate from self-review. If the host cannot provide it, retain an awaiting-review draft rather than fabricate completion. Skills do not themselves dispatch agents.
 
@@ -24,11 +24,11 @@ In Claude Code, launch each fresh context with an explicit model and effort; a c
 
 | Role | Model | Effort |
 | --- | --- | --- |
-| Model reviewer and report reader | The top model the author is not running: `opus` when the author runs on Fable, `fable` otherwise | `high` |
+| Reviewer (model, report and brief) | The top non-Fable model: `opus` | `high` |
 | Writer | The author's model | `high` |
 | Mechanical helper (lookup, page fetch, extraction) | `sonnet` | `medium` |
 
-A reader on the same model as the work it checks shares its blind spots. Do not use `xhigh` or `max`: they add time and tokens for an uneven gain.
+When the author also runs on Opus, the reader is a fresh context on the same model and shares its blind spots; record it as a fresh same-model reader, not an independent one. Do not use `xhigh` or `max`: they add time and tokens for an uneven gain.
 
 Prefer a slower run to one that uses tokens faster. Launch fresh contexts one at a time, do not split work across parallel helpers to save time, and do not turn on a faster output mode.
 

@@ -1,3 +1,35 @@
+# Research skill verification - 13 November 2026, version 3.2.0
+
+This release publishes the updated single-review workflow and its supporting code. Earlier audit sections retain their original scope and outcomes.
+
+## What changed
+
+- One fresh review after drafting covers the model, report and brief together. The author self-challenges before writing and fixes blocking findings after the fresh read. Minor findings are recorded and left unfixed. There is no separate early model review or second correction read.
+- `package(..., fix=True)` stages the corrected print, reruns integrity checks and writes an author-fix receipt. Finalization checks the receipt's review binding and changed-file hashes. The author records each failed blocking check as fixed or minor, with a note; this is an author attestation, not a second independent assessment.
+- Added `author_fixes.py`; removed the retired `model_review.py` and `presentation_confirmation.py` helpers and the current `confirm` CLI action. Existing archived study rules remain separate. Defaults, routing, initiation/challenge instructions and public README/AGENTS/CLAUDE now describe the same review sequence.
+- The model standard adds common mistakes to check while building. The provider guide, synthetic evaluation answer and regression fixtures reflect the updated workflow. Numeric table placeholders align with the figure columns.
+- Release inspection found a premature-fix defect: an incomplete-review call could remove an existing package before refusing. A synthetic regression reproduced it. A read-only eligibility check now runs before deleting a package, rewriting the release record or printing. The focused regression verifies preservation and no printer call.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 257 Python tests, 66 JavaScript tests, all 19 skill validations and 1247 relative links passed |
+| Public export | 266 Python tests, 66 JavaScript tests, all 19 skill validations and 1338 relative links passed |
+| Refusal regression | Reproduced package deletion before the repair; final focused test preserves package/record bytes and refuses to print before review completion |
+| Existing synthetic workbook | 6,778 numeric cells checked; previously recalculated and cleaned workbook retained without a new native Excel run |
+| Export | Current public scope and original attributions retained; bounded credential/private-path scan passed, including workbook XML; canonical staged manifest verified before push |
+
+Initial full-suite results are retained separately from the final run after the refusal repair. Reduced test counts relative to 3.1 reflect retired checkpoint/confirmation tests; they are not a new measure of research quality. Public coverage-planner tests account for the public/local count difference.
+
+## Limits
+
+No live research run, genuine reviewer trial, native PDF print or Excel recalculation was performed for this release. Synthetic fixtures exercise supported mechanics; they do not demonstrate the quality of future reports. Corrections can change financial or analytical content after the single review. The author-fix receipt binds bytes and declarations, but it does not verify that the correction resolves an inference error or that a reclassified finding is actually minor. This is a material trade-off of the requested workflow, not independent correction approval.
+
+The six-step valuation sequence, 100 sector cards, house rating rules, independent forecasts and market-implied premium method remain. The earlier sector-card limits still apply: cards and missing-guidance fallbacks have not been audited source by source or established by fresh research runs. New studies follow [migration](MIGRATION.md); frozen studies keep their original outcomes and budgets. Private research, provider captures and credentials are excluded.
+
+---
+
 # Research skill verification - 13 November 2026, version 3.1.0
 
 This release publishes corrections that came out of one initiation run under 3.0.0. Earlier audit sections keep their original dates, scope and results.

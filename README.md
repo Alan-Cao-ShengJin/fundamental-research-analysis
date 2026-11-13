@@ -8,7 +8,7 @@ You ask for "an initiation on X". You get three things back:
 - a **full report** (A4 PDF) that explains the business, the forecasts, the valuation and the risks;
 - a **one-page brief** with the call: Buy, Hold or Sell, and a 12-month target price.
 
-Version **3.1.0** contains **19 skills**, **11 research flows** and **100 sector cards**, with helper scripts, a sample model and tests.
+Version **3.2.0** contains **19 skills**, **11 research flows** and **100 sector cards**, with helper scripts, a sample model and tests.
 
 ## How to use it
 
@@ -31,10 +31,10 @@ The skills are instructions the agent follows. They do not run on their own, con
 3. **Checks the company**: who controls it, how reliable its accounts are, how its industry works.
 4. **Builds the model.** It picks the [sector card](skills/company-model/references/sectors/index.md) for each business unit and builds revenue and costs from business drivers (volumes, prices, margins). Each driver is set from the best evidence available: a specific supported number first, then the recent trend and its cause, and a plain average only as a last resort. The forecasts flow through the three financial statements.
 5. **Values the stock in six steps.** It names the kind of company and the yardstick investors value it on (P/E, P/B, EV/EBITDA, a yield and so on), reads today's price on that yardstick, sets a target level, applies it to its own forecast, builds the bear and bull cases, and gives one target and a rating.
-6. **Has the model challenged** by a second agent that starts fresh, with no memory of how it was built.
-7. **Writes the report and brief** in a fresh session, working only from the finished analysis.
-8. **Has the printed report reviewed** by another fresh reader, who checks the numbers against the model and the sources.
-9. **Runs a release check** and packages the three files.
+6. **Challenges its own analysis** before writing, testing the decisive assumptions, sources and strongest opposing case.
+7. **Writes the report and brief** in a fresh session, working from the finished analysis.
+8. **Gets one fresh review** of the calculated model, printed report and brief together, against the original evidence.
+9. **Fixes blocking findings**, reprints and reruns the integrity checks, records the author's fixes, and packages the files. There is no second read. Minor findings are recorded and left unfixed.
 
 The full sequence is in [company-sequence.md](skills/research-cycle/references/company-sequence.md); the entry point is [research-cycle](skills/research-cycle/SKILL.md).
 
@@ -57,7 +57,7 @@ The rules live in the [decision contract](skills/investment-conclusion/reference
 
 ## What is checked, and what is not
 
-The scripts check things that can be checked mechanically: the workbook recalculates to the model, the rating follows from the target, the brief's figures match the model, dates are consistent, the brief fits one page, and a review was actually completed before anything is packaged ([publication workflow](skills/report-layout/references/publication-review.md)).
+The scripts check things that can be checked mechanically: the workbook agrees with the model, the rating follows from the target, bound report/brief figures match the model, dates are consistent, and a completed review record is present before packaging. After a correction, the changed files must match the author's fix receipt and pass the integrity checks ([publication workflow](skills/report-layout/references/publication-review.md)). The receipt records the author's work; it is not a second independent review or proof that a reasoning defect was resolved.
 
 They cannot check judgment. A passing run does not prove that the sources are right, that the forecasts are sensible or that the call will make money. Treat the output as a well-organised analyst draft and read it critically.
 
@@ -91,17 +91,13 @@ python -B -m unittest discover -s skills/tests -p "test_*.py"
 - **Data services** are optional and you bring your own access. Put credentials in `.env.research-data`, which Git ignores; [.env.example](.env.example) lists the names. See the [provider guide](skills/evidence-intake/references/research-data-providers.md).
 - On Windows PowerShell, use `npm.cmd` if the execution policy blocks `npm`.
 
-## Latest update: version 3.1.0
+## Latest update: version 3.2.0
 
-- **Broker notes.** Before modelling, the agent reads the past year's results calls and the covering brokers' notes in full. It takes the company facts they record and sets every assumption itself, because brokers lean optimistic ([evidence intake](skills/evidence-intake/SKILL.md)).
-- **Bear and bull cases.** Each case moves only the drivers of the main debate and is priced at the base multiple unless its own outcome changes what investors pay. Other uncertain assumptions go in the sensitivity table. The sample model is rebuilt this way ([valuation sequence](skills/valuation-thesis/SKILL.md#value-the-company-in-six-steps)).
-- **Loss-making units.** A unit that loses money or is being exited gets its own revenue and profit rows ([model standard](skills/company-model/references/model-standard.md)).
-- **Running a study.** The agent works in batches and prefers a slower run to one that uses tokens faster. [CLAUDE.md](CLAUDE.md) names the model and effort for each reviewer and writer in Claude Code.
-- **Standing instructions.** When you correct how the research is done, the agent writes the correction into the skills, so another computer behaves the same way ([skill calibration](skills/research-cycle/references/skill-calibration.md)).
+Each new run gets one fresh review after drafting, covering the model, report and brief together. The author resolves blocking findings, records the changes in `evidence/author-fixes.json`, reprints and reruns integrity checks, then finalizes without a second read. The earlier separate model checkpoint and presentation-confirmation command are retired. The review is blocking where an issue changes the target, rating or a decisive claim, or misleads the reader; minor findings are left unfixed.
 
-Version 3.0.0 brought the six-step valuation, the order for setting revenue drivers, the 100 sector cards and debates written as what bears and bulls say.
+The package adapter adds `fix=True` for that correction path. New studies default to one review attempt; old studies retain their pinned rules and budgets. Table placeholders align with numeric figures. Public entry instructions, examples, tests and migration notes now describe the same process.
 
-Earlier changes, verification results and limits are in [AUDIT.md](AUDIT.md); upgrade notes are in [MIGRATION.md](MIGRATION.md).
+Read [MIGRATION.md](MIGRATION.md) before adapting an older builder and [AUDIT.md](AUDIT.md) for executed checks and limits. The six-step valuation, 100 sector cards, independent forecasts and market-implied cost-of-equity method remain.
 
 ## Scope and limits
 

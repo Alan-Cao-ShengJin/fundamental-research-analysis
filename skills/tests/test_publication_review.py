@@ -21,7 +21,7 @@ class PublicationReviewTests(unittest.TestCase):
         self.dir, self.rec = self.f.dir, record()
 
     def prepared(self, complete=True):
-        pr.prepare(self.dir, self.rec)
+        pr.prepare(self.dir, self.rec, max_rounds=2)  # the multi-round machinery; production default is one read
         if complete:
             return complete_review(self.dir)
         return json.loads((self.dir / pr.DEFAULT_PATH).read_text())
@@ -209,11 +209,6 @@ class PublicationReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'future'):
             pr.prepare(self.dir, self.rec)
         self.rec['evaluation'] = {'mode': 'synthetic-fixture', 'now': future + 'T12:00:00Z', 'reason': 'Fixed synthetic pack date'}
-        # The earlier model checkpoint belongs to the same invented evidence date.
-        model_path=self.dir/'evidence/model-review.json'; model=json.loads(model_path.read_text())
-        model['evaluation']=self.rec['evaluation']; model['handoff']['asOf']=future+'T00:00:00+08:00'
-        for source in model['handoff']['sources']: source['synthetic']=True
-        model_path.write_text(json.dumps(model),encoding='utf-8')
         p = self.prepared(False)
         self.assertLess(datetime.fromisoformat(p['handoff']['producedAt']), datetime.fromisoformat(p['handoff']['asOf']))
         self.assertTrue(all(s['synthetic'] for s in p['handoff']['sources']))

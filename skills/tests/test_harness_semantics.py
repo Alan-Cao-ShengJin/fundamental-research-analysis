@@ -16,8 +16,7 @@ import publication_review as pr
 import research_rules as rules
 import review_attempts as attempts
 import decision_record as decisions
-import model_review
-import presentation_confirmation as confirmation
+import author_fixes
 import test_release_check as fx
 
 class WorksheetSemanticsTests(unittest.TestCase):
@@ -62,51 +61,6 @@ class HarnessWorkflowTests(unittest.TestCase):
     def save(self,p): (self.study/pr.DEFAULT_PATH).write_text(json.dumps(p),encoding='utf-8')
     def failures(self): return [c['name'] for c in pr.check(self.study,self.record,fx.spec(),self.study/self.record['workbook']) if c['result']=='fail']
 
-    def test_model_review_is_required_before_writing_or_publication(self):
-        p=self.study/model_review.PATH; value=json.loads(p.read_text()); value['handoff']['status']='partial'; p.write_text(json.dumps(value))
-        with self.assertRaisesRegex(ValueError,'model challenge'): pr.prepare(self.study,self.record)
-        with self.assertRaisesRegex(ValueError,'model challenge'): pr.writing_packet(self.study,['model/spec.json'])
-
-    def test_model_review_history_cannot_be_reset_by_deleting_the_packet(self):
-        path=self.study/model_review.PATH; path.unlink()
-        with self.assertRaisesRegex(ValueError,'Missing model review'): model_review.prepare(self.study,'model/spec.json','deliverables/model.xlsx',[],self.record['security'],self.record['cutoff'])
-
-    def test_model_review_cannot_certify_a_different_published_model(self):
-        import shutil
-        for field,other in (('spec','model/other.json'),('workbook','deliverables/other.xlsx')):
-            with self.subTest(field=field):
-                shutil.copyfile(self.study/self.record[field],self.study/other)
-                changed=dict(self.record,**{field:other})
-                with self.assertRaisesRegex(ValueError,'published spec and workbook'):
-                    pr.preflight(self.study,changed)
-        self.assertIn('complete',model_review.verify(self.study,self.record))
-        self.assertEqual(len(model_review.starts(self.study)),1)
-
-    def test_model_review_declared_model_must_be_in_frozen_inputs(self):
-        path=self.study/model_review.PATH; p=json.loads(path.read_text())
-        del p['inputs'][p['workbook']]; path.write_text(json.dumps(p))
-        with self.assertRaisesRegex(ValueError,'freeze its declared'):
-            model_review.verify(self.study,self.record)
-
-    def test_writer_receives_the_reviewed_model_even_when_caller_omits_it(self):
-        path=pr.writing_packet(self.study,['evidence/decision.json'])
-        packet=json.loads(path.read_text())
-        for rel in ('model/spec.json','deliverables/model.xlsx',model_review.PATH):
-            self.assertEqual(packet['inputs'][rel],rc.sha256(self.study/rel))
-
-    def test_model_review_started_budget_is_retained_across_preparations(self):
-        model_review.prepare(self.study,'model/spec.json','deliverables/model.xlsx',[],self.record['security'],self.record['cutoff'])
-        model_review.begin(self.study,'second-synthetic-reader')
-        path=self.study/model_review.PATH; before=path.read_bytes()
-        with self.assertRaisesRegex(ValueError,'budget exhausted'): model_review.prepare(self.study,'model/spec.json','deliverables/model.xlsx',[],self.record['security'],self.record['cutoff'])
-        self.assertEqual(path.read_bytes(),before); self.assertEqual(len(model_review.starts(self.study)),2)
-
-    def test_unstarted_model_preparation_neither_spends_a_round_nor_invents_findings(self):
-        for _ in range(2):
-            path=model_review.prepare(self.study,'model/spec.json','deliverables/model.xlsx',[],self.record['security'],self.record['cutoff'])
-        value=json.loads(path.read_text()); self.assertEqual(value['attempt'],2); self.assertEqual(value['priorFindings'],[])
-        self.assertEqual(len(model_review.starts(self.study)),1)
-
     def test_begin_does_not_spend_a_review_on_stale_live_inputs(self):
         pr.prepare(self.study,self.record); self.f.write('deliverables/report.html','Changed')
         with self.assertRaisesRegex(ValueError,'no attempt started'): attempts.begin(self.study,self.record,'reader')
@@ -140,18 +94,25 @@ class HarnessWorkflowTests(unittest.TestCase):
         c.update(blocking=True,detail='A clipped minus sign reverses the economic meaning.'); self.save(p)
         self.assertIn('draft-review-required-checks',self.failures())
 
-    def test_confirmation_is_actual_bounded_reader_work_and_cannot_clear_analysis_changes(self):
-        p=self.prepared(); c=next(c for c in p['handoff']['checks'] if c['name']=='visual-inspection'); c.update(result='fail',detail='Move caption beside its table.'); self.save(p)
-        html=self.study/'deliverables/report.html'; html.write_text('<style>p{margin:1em}</style>'+html.read_text())
-        receipt=confirmation.prepare(self.study,self.record)
-        self.assertIn('presentation-confirmation',self.failures())
-        value=json.loads(receipt.read_text()); value['handoff']['status']='complete'; value['handoff']['summary']='Synthetic reader confirmed the exact content-equivalent presentation correction.'
-        for c in value['handoff']['checks']: c.update(result='pass',detail='Synthetic confirmation test double only.')
+    def test_single_review_then_author_fixes_without_a_second_read(self):
+        p=self.prepared(); c=next(c for c in p['handoff']['checks'] if c['name']=='critical-thinking')
+        c.update(result='fail',detail='The base case is called partial when it is a full return.'); self.save(p)
+        self.assertIn('draft-review-required-checks',self.failures())
+        html=self.study/'deliverables/report.html'; html.write_text(html.read_text()+'<p>Corrected framing.</p>')
+        receipt=author_fixes.prepare(self.study,self.record)
+        self.assertIn('author-fixes',self.failures())
+        value=json.loads(receipt.read_text()); value['findings'][0].update(status='fixed',note='Reworded to a full return; numbers unchanged.')
         receipt.write_text(json.dumps(value)); self.assertEqual(self.failures(),[])
         self.assertEqual(attempts.state(self.study)['used'],1)
-        with self.assertRaisesRegex(ValueError,'One confirmation'): confirmation.prepare(self.study,self.record)
-        self.f.write('model/spec.json','Changed analytical input')
-        self.assertIn('presentation-confirmation',self.failures())
+        self.f.write('model/spec.json','Changed after the receipt')
+        self.assertIn('author-fixes',self.failures())
+
+    def test_a_minor_blocking_label_can_be_recorded_without_a_fix(self):
+        p=self.prepared(); c=next(c for c in p['handoff']['checks'] if c['name']=='conciseness')
+        c.update(result='fail',detail='Valuation alternatives repeated three times.'); self.save(p)
+        receipt=author_fixes.prepare(self.study,self.record)
+        value=json.loads(receipt.read_text()); value['findings'][0].update(status='minor',note='Repetition only; target, rating and claims unchanged.')
+        receipt.write_text(json.dumps(value)); self.assertEqual(self.failures(),[])
 
     def test_nonvalue_assertion_does_not_verify_a_printed_value(self):
         import report_layout as layout
@@ -181,8 +142,25 @@ class HarnessWorkflowTests(unittest.TestCase):
         path=self.study/'deliverables/release.json'; path.write_text(json.dumps(r)); before=path.read_bytes()
         archive=self.study/'deliverables/old.zip'; archive.write_bytes(b'original')
         with patch.object(sys,'argv',['publication_review.py','prepare',str(self.study)]):
-            with self.assertRaises(FileExistsError): pr.main()
+            with self.assertRaises((FileExistsError,ValueError)): pr.main()
         self.assertEqual(archive.read_bytes(),b'original'); self.assertEqual(path.read_bytes(),before)
+
+    def test_fix_before_completed_review_preserves_existing_artifacts(self):
+        import report_layout as layout
+        pr.prepare(self.study,self.record)
+        r=dict(self.record,zipPath='deliverables/old.zip',status='awaiting-review')
+        record_path=self.study/'deliverables/release.json'
+        record_path.write_text(json.dumps(r)); before=record_path.read_bytes()
+        archive=self.study/r['zipPath']; archive.write_bytes(b'original package')
+        excluded={'renders','deliverables','briefPdf','checks','fingerprints','status','scope','error','zipPath'}
+        with patch.object(layout,'print_pdf') as printer:
+            with self.assertRaises((ValueError,SystemExit)):
+                layout.package(self.study,archive,self.study/'deliverables/report.html',self.study/'deliverables/brief.html',
+                               [self.study/r['workbook']],fix=True,**{k:v for k,v in r.items() if k not in excluded})
+        self.assertTrue(archive.is_file(),'A refused fix must preserve the existing package')
+        self.assertEqual(archive.read_bytes(),b'original package')
+        self.assertEqual(record_path.read_bytes(),before)
+        printer.assert_not_called()
 
     def test_session_cutoff_before_utc_midnight_is_valid_in_its_declared_timezone(self):
         from datetime import datetime,timezone
@@ -190,16 +168,9 @@ class HarnessWorkflowTests(unittest.TestCase):
             @classmethod
             def now(cls,tz=None): return cls(2026,11,9,18,30,tzinfo=timezone.utc)
         r=dict(self.record,cutoff='2026-11-10',timezone='Asia/Singapore')
-        path=self.study/model_review.PATH; p=json.loads(path.read_text()); p['handoff']['asOf']='2026-11-10T00:00:00+08:00'; path.write_text(json.dumps(p))
         with patch.object(pr,'datetime',Clock):
             prepared=pr.prepare(self.study,r)
         value=json.loads(prepared.read_text()); self.assertEqual(value['handoff']['asOf'],'2026-11-10T02:30:00+08:00')
-
-    def test_price_only_writing_can_reuse_a_baseline_without_another_model_reader(self):
-        path=self.study/model_review.PATH; path.unlink()
-        result=pr.writing_packet(self.study,['model/spec.json'],research_mode='regular-review')
-        self.assertTrue(result.is_file())
-        with self.assertRaises(FileNotFoundError): pr.writing_packet(self.study,['model/spec.json'],research_mode='regular-review',model_changed=True)
 
 class PinnedRulesTests(unittest.TestCase):
     def test_tests_do_not_change_production_identity_and_archived_code_actually_runs(self):

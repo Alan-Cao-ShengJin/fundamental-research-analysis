@@ -138,16 +138,8 @@ class ReleaseCheckTests(unittest.TestCase):
         self.write('evidence/decision.json',json.dumps(decision_record.synchronize(self.dir,record(),spec(),{
             'triggerCoverage':{'status':'not-applicable','reason':'This isolated fixture publishes no numerical rating triggers.','testIds':[]},
             'triggerTests':[]})))
-        # Explicit synthetic reviewer double for the pre-writing checkpoint; never production approval.
-        import model_review
-        path=model_review.prepare(self.dir,'model/spec.json','deliverables/model.xlsx',[],record()['security'],record()['cutoff'])
-        model_review.begin(self.dir,'synthetic-model-reader')
-        packet=json.loads(path.read_text()); h=packet['handoff']; h['status']='complete'
-        h['summary']='Synthetic pre-writing review for an isolated regression.'
-        h['claims']=[{'id':'model-fixture','text':'Original synthetic assumptions are stipulated.','material':True,'basis':'assumption',
-                      'sourceIds':[],'calculation':None,'rationale':'Synthetic test double only.'}]
-        for c in h['checks']: c.update(result='pass',detail='Synthetic test fixture only.')
-        path.write_text(json.dumps(packet),encoding='utf-8')
+        import research_rules
+        research_rules.pin(self.dir)
 
     def write(self, rel, text):
         (self.dir / rel).write_text(text, encoding='utf-8')

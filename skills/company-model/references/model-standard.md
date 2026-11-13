@@ -120,6 +120,20 @@ Identities must hold: months sum to quarters, and domestic plus export equals th
 - Excel and the agent model kept in sync and recalculated in Excel. Hard numbers appear only as inputs in their own labelled cells, never inside formulas, apart from 0, 1 and period counts. A base ratio adjusted by a case is two rows: the base input, then the formula that adds the case.
 - Text that quotes a model number links to it (a model value column) instead of retyping it.
 
+## Common slips to fix while building
+
+There is one review per run, so prevent the findings it usually raises:
+
+- Compare valuations on one earnings basis, and name the consensus basis (adjusted or GAAP).
+- Fetch the full history for the company and its peers before choosing a valuation window, and start both windows by the same rule.
+- Give cost lines that behave differently their own drivers; one blended margin hides operating leverage.
+- Forecast working capital from its trend plus the seasonal step in the quarter.
+- Let the case selector drive the target multiple as well as the earnings.
+- Make the bear and bull cases move the levers their stories name.
+- Keep quarterly seasonality in the forecast quarters.
+- Bind text figures in the source currency before converting.
+- Check every count, "last seen" or "first since" claim and chart end-point against the data.
+
 ## Presentation
 
 The workbook is read by people who did not build it. The [house theme table](workbook-profile.md#house-theme-and-reporting-detail) sets colours, fonts, number formats, columns, grouping, charts and print layout; [model_workbook.py](../scripts/model_workbook.py) applies most of it from the specification. In addition:

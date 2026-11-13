@@ -516,7 +516,7 @@ def fingerprints(study, record):
     review = record.get('review', 'evidence/draft-review.json')
     if (study / review).is_file():
         files.append(review)
-    if (study/'evidence/draft-confirmation.json').is_file(): files.append('evidence/draft-confirmation.json')
+    if (study/'evidence/author-fixes.json').is_file(): files.append('evidence/author-fixes.json')
     out = {rel: sha256(study / rel) for rel in dict.fromkeys(files) if (study / rel).exists()}
     return {'files': out, 'skills': skills_fingerprint(), 'git': git_state(SKILLS.parent)}
 

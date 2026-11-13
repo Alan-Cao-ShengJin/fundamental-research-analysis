@@ -2,7 +2,7 @@
 name: research-cycle
 description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Coordinate company follow-up and focused equity research; portfolio construction is outside this module.
 metadata:
-  version: 2.6.1
+  version: 2.7.0
 ---
 
 # Research cycle

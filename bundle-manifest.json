@@ -1,5 +1,5 @@
 {
-  "bundleVersion": "3.1.0",
+  "bundleVersion": "3.2.0",
   "variant": "fundamental-research-only",
   "preparedOn": "2026-11-13",
   "skills": [
@@ -42,8 +42,6 @@
     "Displayed automatic trigger probes and explicit approximate watch levels",
     "Economic financial applicability separated from verification, with registered claim links",
     "Generic real-evidence trial preparation, payoff illustration and date-matched inference guidance",
-    "Pinned production rules, archived execution and separate early model review",
-    "Staged publication, frozen companions and bounded original-reader presentation confirmation",
     "Metric identity, dated cash receipts, live linked explanations and explicit valuation-input derivations",
     "Exact reviewed/published model identity and strict numeric valuation inputs",
     "Sector-appropriate modeling and evidence-based consensus and incentive treatment",
@@ -56,21 +54,24 @@
     "Market-implied cost of equity, independent-of-consensus forecasts, optional scenario probabilities and labelled total return",
     "New-money judgment, attractiveness tiers and entry prices retired; unused forecast scaffold and node-graph tooling removed",
     "Six-step valuation on the yardstick investors use, a ladder for setting each revenue driver, debates written as what bears and bulls say, a worked-example writing standard, one sector card for each of 100 kinds of company, and company follow-up folded into company change tracking",
-    "Covering-broker notes read for company facts before modelling with assumptions kept independent, bear and bull cases as the main debate resolved each way, own rows for a loss-making or exiting unit, batch working with a slower run preferred to faster token use, and user corrections written into the skills"
+    "Covering-broker notes read for company facts before modelling with assumptions kept independent, bear and bull cases as the main debate resolved each way, own rows for a loss-making or exiting unit, batch working with a slower run preferred to faster token use, and user corrections written into the skills",
+    "One fresh combined model/report/brief review, author-fix receipts and no second read; retired separate model-review and presentation-confirmation helpers",
+    "Pinned production rules and archived execution; combined fresh review after drafting",
+    "Staged publication, frozen companions and author-fix receipts for the single-review workflow"
   ],
   "verification": {
     "entryPointsValidated": 19,
     "javascriptTestsPassed": 66,
-    "pythonTestsPassed": 272,
+    "pythonTestsPassed": 266,
     "bundleCheck": "passed",
-    "relativeMarkdownLinks": 1337,
+    "relativeMarkdownLinks": 1338,
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Common credential/token patterns and private machine paths, including workbook XML; no private credential file read and no forensic guarantee.",
     "syntheticWorkbookModelCheck": {
       "passed": true,
       "numericCellsChecked": 6778
     },
-    "workbookMetadataCleanup": "Sample workbook rebuilt and recalculated in Excel; only its local save-path element was removed for the export",
+    "workbookMetadataCleanup": "Retained the previously recalculated and cleaned synthetic workbook; no native recalculation or metadata edit in this release",
     "liveAgentBehaviorEvaluated": false,
     "newEvaluationCasesExecuted": false,
     "liveProviderCoverageVerified": false,
@@ -103,28 +104,28 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 4308,
-      "sha256": "7714071874101a6258f223c94bd330e42c37240258d99670dc5a1aab191070a9"
+      "bytes": 4473,
+      "sha256": "8420bb6dd01046977e15a93eaeb7d65493d0d12daa935a3ea7f3eec64261dfaf"
     },
     {
       "path": "AUDIT.md",
-      "bytes": 71987,
-      "sha256": "ade7bb8c33ab04feeb2ec9e6a835c895a8ac6475c6a1998a39f001dffe85e5cf"
+      "bytes": 75862,
+      "sha256": "6271736f2c9ec99be74b503226e13eec0def294b47369d671cc47c4fa38894c3"
     },
     {
       "path": "CLAUDE.md",
-      "bytes": 4258,
-      "sha256": "46d9ec1ec4ab3188df4c3cb3dc3ab5941d62f1fa1067a59589d63223689f2643"
+      "bytes": 4301,
+      "sha256": "d7e624ae86cbe97df684bc7da3d5ea64cfd58810cb4004b0d3eb39504cea6e8f"
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 18977,
-      "sha256": "d2526e64732abc616530b63234f2fffae5c58d990f15c817da3a8a48a887cc6c"
+      "bytes": 21462,
+      "sha256": "b61484aaacb2ae46c0505b14b1aa653be3f5ec06ec1ff21030b8b7b733eb09d9"
     },
     {
       "path": "README.md",
-      "bytes": 11063,
-      "sha256": "0f90d078fee38d3a9ac1b42a95da2a7a1adcc4b8fd2962c0987f3eda76f96eff"
+      "bytes": 10911,
+      "sha256": "f62c5deda2ff3941e6611b981bac63053e40a1aa7d293c62c86428edf7b21b63"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -144,12 +145,12 @@
     {
       "path": "package-lock.json",
       "bytes": 36541,
-      "sha256": "bddb7d8bf973673ee7e5f07c3ce1df9dab4c9f347ae54deaaa8f1a0579035361"
+      "sha256": "95201d314bbb76486ba55fb186d789a3d00ebb690068a6450238bd3ff45cbe49"
     },
     {
       "path": "package.json",
       "bytes": 350,
-      "sha256": "79197ad9a7f2af5af4177435c752b3bc852edd3447f27f79db5977e7955aff5f"
+      "sha256": "b7b7f93a17f28daf64337efb7d4614d379a94a4366d43ade2df77c7744301f13"
     },
     {
       "path": "requirements.txt",
@@ -194,7 +195,7 @@
     {
       "path": "skills/company-model/SKILL.md",
       "bytes": 10847,
-      "sha256": "9eaebfa5b32931f50e37c5f5c163d73ef01118fc4d42b6d9046a2a49018813cc"
+      "sha256": "88f117900db89bb66b31da92d7bded919019c49d8c8aaceb67a4018aaaff2955"
     },
     {
       "path": "skills/company-model/assets/bounded-bridge.example.json",
@@ -283,8 +284,8 @@
     },
     {
       "path": "skills/company-model/references/model-standard.md",
-      "bytes": 16943,
-      "sha256": "18c2e8da16582590071a6b809b1175771077514979939eac8901c43e00903e51"
+      "bytes": 17821,
+      "sha256": "5a8ccf00afd8e7eafff4b79c0b91a9832d8754603bb27f8123b11a8976ccc01d"
     },
     {
       "path": "skills/company-model/references/revenue-projection.md",
@@ -918,8 +919,8 @@
     },
     {
       "path": "skills/evals/fixtures/answers/alder-industrial-supply.md",
-      "bytes": 3706,
-      "sha256": "c4ad0347b6812f0abff98cf810d6a0885797b20be05693c688b59a12d5179786"
+      "bytes": 3712,
+      "sha256": "587d851dddddc9f221d1a30e86f9a796e2f8e6ac4cb3aed5a9e2edc209c6040c"
     },
     {
       "path": "skills/evals/fixtures/answers/alder-updates.md",
@@ -1029,7 +1030,7 @@
     {
       "path": "skills/evidence-intake/SKILL.md",
       "bytes": 12395,
-      "sha256": "180500646b7d1f35c0cec7a95633145c3fdd6f9cc22ad55c8a2171fca491a3d1"
+      "sha256": "4cb21de0f8721c57923579159dc3274db55849d3a5adaa2d7291cd8282ee65bd"
     },
     {
       "path": "skills/evidence-intake/assets/provider-endpoints.json",
@@ -1038,8 +1039,8 @@
     },
     {
       "path": "skills/evidence-intake/references/research-data-providers.md",
-      "bytes": 17170,
-      "sha256": "a6aec2e3440b4e0e7fe8a80d8c553e2accd02caf43f7241a2d2ca4ac609c98f7"
+      "bytes": 17932,
+      "sha256": "981057081b53d8b8c6bed78dff5fee6e23f449444f6e570d40b34eb40f7166e0"
     },
     {
       "path": "skills/evidence-intake/scripts/evidence_receipt.py",
@@ -1138,8 +1139,8 @@
     },
     {
       "path": "skills/report-layout/SKILL.md",
-      "bytes": 12144,
-      "sha256": "15a03e447e735546e8134f46bb5f4a2df27ceb3127a92c9ef8560ab33786a107"
+      "bytes": 12048,
+      "sha256": "1206274bfc21407b644d9e6fb5f79727fbfa1f6ab7d8bb2ccac5d4fc08727189"
     },
     {
       "path": "skills/report-layout/assets/cash-receipt-claim.example.json",
@@ -1228,13 +1229,18 @@
     },
     {
       "path": "skills/report-layout/references/publication-review.md",
-      "bytes": 24810,
-      "sha256": "3db1a4f41e3412fbc21de1a0b60030c9ade66b12ddcb12e85e25a55276544d49"
+      "bytes": 21165,
+      "sha256": "49ecfac1184935b2cd8dc9c7d68f7f1acd8b56bcca67bf52e832fc6f5cfa6167"
     },
     {
       "path": "skills/report-layout/requirements.txt",
       "bytes": 169,
       "sha256": "f344a51966350b9d7ab868f564d38205d3b8fcb18edd3274c4f6246374088b68"
+    },
+    {
+      "path": "skills/report-layout/scripts/author_fixes.py",
+      "bytes": 3843,
+      "sha256": "f8570fe7f8d8ea0ce47d2c75bd36f13be86b1ec6fb0898664ce8d4dda1af356a"
     },
     {
       "path": "skills/report-layout/scripts/brief_consistency.py",
@@ -1273,8 +1279,8 @@
     },
     {
       "path": "skills/report-layout/scripts/draft_transaction.py",
-      "bytes": 2436,
-      "sha256": "cde693a26d5d18cb17a39b09371f27a72867fcbd19221d636ec37f498bbc7cce"
+      "bytes": 2497,
+      "sha256": "7323b16f009f4582b50cb282a397ed5ec7ff751bf8395ff06440907fd9c9255f"
     },
     {
       "path": "skills/report-layout/scripts/financial_coverage.py",
@@ -1282,29 +1288,19 @@
       "sha256": "c8eb95cb349344116c645271666196ab04758578ebe58f3a43d12d27c4e84afe"
     },
     {
-      "path": "skills/report-layout/scripts/model_review.py",
-      "bytes": 10952,
-      "sha256": "4c4d120fbb6ee87f8b19078ef478a185ac39b63c834f0389b8d2d105d4084495"
-    },
-    {
-      "path": "skills/report-layout/scripts/presentation_confirmation.py",
-      "bytes": 5078,
-      "sha256": "cef7a5bad48f9e9b01a4b4539444bb3bee2b91f09f8a5db246a8c37e172bc5e4"
-    },
-    {
       "path": "skills/report-layout/scripts/publication_review.py",
-      "bytes": 50268,
-      "sha256": "99c1e3c389d010f1ca834c508d66b7a1ea0e64190b3ef4a2737910b534088071"
+      "bytes": 49160,
+      "sha256": "d436e65de7ec26883f2674063ce27b4bbbc3a61744ad7c881b90d4facbd42af8"
     },
     {
       "path": "skills/report-layout/scripts/release_check.py",
-      "bytes": 31379,
-      "sha256": "165f97e23ffc1051893552c049b37f967183c70b2de4c4dbff2415daff386b7c"
+      "bytes": 31367,
+      "sha256": "477e8b611287a41b4b6915814e511722852f694ef049c051db50715622221495"
     },
     {
       "path": "skills/report-layout/scripts/report_layout.py",
-      "bytes": 65869,
-      "sha256": "10b26d80318ba403eca5901dccc67b652dc8f57f69cc42309c4828dc1393c362"
+      "bytes": 66947,
+      "sha256": "2296a9c0cd55573302096fadfaf036f46df2dac7af8fbfa0fb5a09412601abb2"
     },
     {
       "path": "skills/report-layout/scripts/research_rules.py",
@@ -1368,8 +1364,8 @@
     },
     {
       "path": "skills/research-challenge/SKILL.md",
-      "bytes": 12896,
-      "sha256": "bff5765d0833522fce4c94d90593449ea44e578c5e3be83368c142073103965c"
+      "bytes": 12848,
+      "sha256": "b8ade223245157f1fcb7db0fb137555e935d5e9005c0170071e9987c7efaa0c5"
     },
     {
       "path": "skills/research-challenge/references/inference-quality.md",
@@ -1379,7 +1375,7 @@
     {
       "path": "skills/research-cycle/SKILL.md",
       "bytes": 9791,
-      "sha256": "305852b5fb130eabe89d07a3d2072637f1008e23eca05fe05ed316eeaf3d79dc"
+      "sha256": "087dd07dadb73a78f06242bce7bae2d149c4a479f1f4290a6ee7663eb35c7514"
     },
     {
       "path": "skills/research-cycle/assets/skill-coverage.json",
@@ -1393,8 +1389,8 @@
     },
     {
       "path": "skills/research-cycle/references/company-sequence.md",
-      "bytes": 14138,
-      "sha256": "11d6b86d5e15252b504b9d78f7fba367163e71ade355a08c3fd07f4842411912"
+      "bytes": 13405,
+      "sha256": "4cad317408933c777403079e6331832689a154b591d9145b1d47ac35128c0839"
     },
     {
       "path": "skills/research-cycle/references/empirical-research-and-validation.md",
@@ -1423,8 +1419,8 @@
     },
     {
       "path": "skills/research-cycle/references/request-routing.md",
-      "bytes": 8281,
-      "sha256": "edcb363f9c01a143d465823072e377d5ba2c75389298f9d4b96990862c04d283"
+      "bytes": 8255,
+      "sha256": "b7209ec629ed09df4188924d00d35b728270f1dab077d95b018bee6f4ae94623"
     },
     {
       "path": "skills/research-cycle/references/research-branches.md",
@@ -1483,8 +1479,8 @@
     },
     {
       "path": "skills/stock-initiation/SKILL.md",
-      "bytes": 6641,
-      "sha256": "07dc016277604e72da91038c6fc3cebee8984ff1f2c45c5530bf5cc20f76cdca"
+      "bytes": 6730,
+      "sha256": "cc04182500c1daaf546fff2e38c81dddd8e97fa53886884e22e13330d87d6d0f"
     },
     {
       "path": "skills/tests/forward-pe.test.mjs",
@@ -1578,8 +1574,8 @@
     },
     {
       "path": "skills/tests/test_harness_semantics.py",
-      "bytes": 15306,
-      "sha256": "d4fb101e30ea441badad2b930bb209377f2d82349831eccffce000c3ca5a57a3"
+      "bytes": 12966,
+      "sha256": "9635ea872611ded13d001a199450fb602f0c5d2985df5c413e95c3f8d2fd4170"
     },
     {
       "path": "skills/tests/test_implied_premium.py",
@@ -1628,13 +1624,13 @@
     },
     {
       "path": "skills/tests/test_publication_review.py",
-      "bytes": 26615,
-      "sha256": "02380b00634d63f1ceb1ccaaef42c5385e13ff65185fbc32610f30386e977519"
+      "bytes": 26264,
+      "sha256": "e4b0be8de9c6af3745523b8b1ca2395325314eb484719c76ff18f8086220af2d"
     },
     {
       "path": "skills/tests/test_release_check.py",
-      "bytes": 28742,
-      "sha256": "59a7c18716f57a7a45985f0a6f249d8f3267da440ebf38c348221c639abebc21"
+      "bytes": 27925,
+      "sha256": "6517163a9a8ba3669e20dea9bb9e4f826a8f5bb38c7fb8cd70f332bc3a529e77"
     },
     {
       "path": "skills/tests/test_report_layout.py",

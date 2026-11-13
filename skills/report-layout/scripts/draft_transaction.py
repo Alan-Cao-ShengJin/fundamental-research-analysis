@@ -5,7 +5,7 @@ import os
 import shutil
 import tempfile
 
-def render(study,record):
+def render(study,record,fix=False):
     import publication_review as pr
     import report_layout as rl
     import release_check as rc
@@ -26,8 +26,8 @@ def render(study,record):
         candidate.pop('fingerprints',None)
         checks,fails=rc.run(study,candidate,legacy=True)
         if fails: raise ValueError('Staged draft fails integrity checks with current bindings:\n  '+'\n  '.join(fails))
-        # Ensure eligibility is still true before replacing any reviewed output.
-        pr.preflight(study,record,revise=pr.local(study,record.get('review',pr.DEFAULT_PATH)).exists())
+        # Ensure eligibility is still true before replacing any reviewed output. A fix print follows the single review.
+        if not fix: pr.preflight(study,record,revise=pr.local(study,record.get('review',pr.DEFAULT_PATH)).exists())
         backups={}
         for _,final in replacements:
             if final.exists():

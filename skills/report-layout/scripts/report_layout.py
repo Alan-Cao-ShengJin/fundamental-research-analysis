@@ -463,7 +463,8 @@ def table(head, rows, cls='text', compact=False):
         raise ValueError(f'Unknown table class {cls!r}; use text, num or fin')
     if any(len(row) != len(head) for row in rows):
         raise ValueError('Each table row must match the header width')
-    numeric = lambda x: bool(re.fullmatch(r'[+\-\u2212(]?(?:[$\u20ac\u00a3\u00a5]|HK\$|US\$|RMB)?\s*\d[\d,.]*(?:%|x|pt)?\)?', re.sub('<[^>]+>', '', str(x)).strip()))
+    numeric = lambda x: bool(re.fullmatch(r'[+\-\u2212(]?(?:[$\u20ac\u00a3\u00a5]|HK\$|US\$|RMB)?\s*\d[\d,.]*(?:%|x|pt)?\)?|n/a|nm|[\u2013\u2014-]',
+                                          re.sub('<[^>]+>', '', str(x)).strip()))   # placeholders align with the figures
     h = ''.join(f'<th>{esc(x)}</th>' for x in head)
     b = ''.join('<tr>' + ''.join('<td{}>{}</td>'.format(' class="numeric"' if numeric(x) and i else '', x)
                                 for i, x in enumerate(r)) + '</tr>' for r in rows)
@@ -1049,7 +1050,7 @@ def inspect_pdf(pdf_path, image_dir=None, dpi=100):
     return out
 
 
-def package(study, zip_path, report_html, brief_html, files, revise=False, **record):
+def package(study, zip_path, report_html, brief_html, files, revise=False, fix=False, **record):
     """Validate the rendered HTML against the calculated model, print the PDFs from those exact files, and write
     deliverables/release.json and the zip only when every release check passes.
 
@@ -1068,11 +1069,12 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
     For an NTM basis pass epsPeriod='NTM' and ntm={'start', 'end', 'components': [{'period', 'weight', 'eps', 'header'}]}.
     Paths in the record are relative to the study folder; bindings are logical addresses as in the specification.
     First call without a review prints drafts, performs integrity checks and creates a partial review packet;
-    it exits awaiting-review with no ZIP. After an actual fresh-reader review, finalization verifies the exact
-    reviewed PDF bytes without reprinting. After a correction, call the same adapter with revise=True: it reprints,
-    reruns every integrity check with the bindings passed now (never the saved record's), archives the review and
-    opens the next draft version. The reader starts a bounded attempt with publication_review.py begin;
-    re-rendering an unreviewed draft alone does not consume an attempt. Pass the routed researchMode
+    it exits awaiting-review with no ZIP. One fresh reader reviews once (publication_review.py begin). With no
+    blocking findings, finalization packages the exact reviewed PDF bytes. Otherwise fix the blocking findings and
+    call the adapter with fix=True: it reprints and reruns every integrity check with the bindings passed now, without
+    a second review, and writes evidence/author-fixes.json for the author to mark each failed blocking check fixed
+    or minor; then finalize. revise=True (archive the review, open a new draft for another read) is only for a
+    budget explicitly set above one. Re-rendering an unreviewed draft does not consume an attempt. Pass the routed researchMode
     (initiation, regular-review, earnings-update or catalyst-update) in the release record.
     The PDFs take the HTML file names with .pdf. The attempt starts by removing the previous zip and marking the record
     in progress; on any failure or error, in validation or in packaging, the record says failed with the reason, no zip
@@ -1108,11 +1110,16 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
 
     # A refused operation must not remove a package, rewrite a record or reprint reviewed bytes.
     review_exists = pr.local(study, record['review']).is_file()
-    if revise or not review_exists:
+    if fix and (revise or not review_exists):
+        raise ValueError('fix=True follows a completed review; do not combine it with revise')
+    if (revise or not review_exists) and not fix:
         pr.preflight(study,record,revise=revise)
     else:
         from research_rules import require_current
         require_current(study)
+        if fix:
+            from author_fixes import require_completed_review
+            require_completed_review(study, record)
     # Supersede only after eligibility is established.
     zip_path.unlink(missing_ok=True)
     tmp_zip.unlink(missing_ok=True)
@@ -1137,6 +1144,14 @@ def package(study, zip_path, report_html, brief_html, files, revise=False, **rec
         for key in ('spec', 'workbook', 'brief'):
             record[key] = rel(study / record[key]) if not Path(record[key]).is_absolute() else rel(record[key])
         record.pop('fingerprints', None)   # a new build is checked on its own files, then fingerprinted
+        if fix:
+            from draft_transaction import render
+            import author_fixes
+            checks=render(study,record,fix=True)
+            fixes_path=author_fixes.prepare(study,record)
+            write_record(dict(record, checks=checks, status='awaiting-fix-notes', scope=rc.SCOPE))
+            raise SystemExit(f'Fixed drafts printed; no second review. Mark each failed blocking check fixed or minor in '
+                             f'{fixes_path}, then run publication_review.py finalize "{study}".')
         if draft:
             from draft_transaction import render
             checks=render(study,record)

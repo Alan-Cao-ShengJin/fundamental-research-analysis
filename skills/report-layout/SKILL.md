@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.10.1
+  version: 2.11.0
 ---
 
 # Full report layout
@@ -63,7 +63,7 @@ Numbered sources (publisher, title as a link, date; no raw URLs; primary documen
 
 ## Print and look
 
-Publish through the [publication workflow](references/publication-review.md): it owns rule pinning, the model review before writing, draft printing, the fresh reader's review, corrections and finalization. The early model review's frozen model and evidence accompany the writing packet automatically. A refused operation does not rewrite reviewed files. All distributed companions are frozen; the brief's visible content must reproduce its current payload, and its published structured scenario/yield fields need model bindings.
+Publish through the [publication workflow](references/publication-review.md): it owns rule pinning, draft printing, the single fresh review of model, report and brief, the author's fixes and finalization. A refused operation does not rewrite reviewed files. All distributed companions are frozen; the brief's visible content must reproduce its current payload, and its published structured scenario/yield fields need model bindings.
 
 HTML generation uses the Python standard library. PDF printing needs Chrome (set `CHROME_PATH` if it is not found); the release check and page inspection need the packages in [requirements.txt](requirements.txt). These host capabilities are separate from installing the skill.
 
