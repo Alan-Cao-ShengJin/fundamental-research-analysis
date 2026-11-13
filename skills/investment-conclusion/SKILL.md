@@ -2,7 +2,7 @@
 name: investment-conclusion
 description: Turn audited company forecasts, governance, valuation and thesis validation into a Buy, Hold or Sell recommendation with a primary target price, upside/downside scenarios and a concise but logically sequenced investment rationale. Portfolio sizing remains a downstream task.
 metadata:
-  version: 2.5.5
+  version: 2.5.6
 ---
 
 # Investment conclusion
@@ -17,7 +17,7 @@ Load the current model/forecast and assumption versions, [governance findings](.
 
 Review the current [red-flag issue dispositions](../financial-quality/references/financial-red-flags.md). High-priority minority-governance concerns and material cash/reporting/solvency risks must change the thesis, model, target or readiness when warranted, rather than survive as decorative risk bullets. Separate suspected issues from established findings. A discounted price does not itself compensate for inaccessible value or an unreliable essential baseline. Follow the decision contract when translating these effects into a target and call.
 
-Apply the [target-underwriting checks](../valuation-thesis/references/target-underwriting.md), including the comparison with consensus, then select a defensible central realisable target under the [decision contract](references/decision-contract.md). Full recognition, partial recognition or no multiple change can each be appropriate.
+Confirm the [valuation sequence](../valuation-thesis/SKILL.md#value-the-company-in-six-steps) was followed, including its use of consensus, then select a defensible central realisable target under the [decision contract](references/decision-contract.md). Full recognition, partial recognition or no multiple change can each be appropriate.
 
 ## Synthesis
 
@@ -47,6 +47,6 @@ List the important metrics to watch closely, most important first: the ones that
 
 Before handing the conclusion to writing, save the [current decision checkpoint](../report-layout/references/decision-record.md), with model/spec hashes and bound numerical trigger text. Preserve qualitative judgment separately from derived fields. A target that stayed unchanged does not validate an older workbook or trigger. Refresh affected dependencies before freezing the draft; never repair the record silently after review.
 
-This is an investment-research conclusion, not an approved position, portfolio weight or order. If implementation is requested, send it to [strategy research (external workflow)](../research-cycle/references/scope-boundary.md) and [portfolio review (external workflow)](../research-cycle/references/scope-boundary.md) with the exact instrument and mandate constraints.
+This is an investment-research conclusion, not an approved position, portfolio weight or order. Portfolio construction and implementation are outside this research module; preserve the dated conclusion and evidence for the separate portfolio workflow when requested.
 
 Return an investment-conclusion handoff referencing the decision record, Buy/Hold/Sell call, target and return calculations, business/moat and pivotal insight, governance consequences, supporting/counterevidence, catalysts/invalidation and material gaps. Keep prior versions for later learning. Research status and portfolio execution status are separate from the stock rating; a completed Sell need not generate an order, and portfolio decisions require their own assessment.

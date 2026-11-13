@@ -1,8 +1,8 @@
 ---
 name: research-cycle
-description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Also coordinate portfolio and non-company research; route narrow tasks to the relevant specialist.
+description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Coordinate company follow-up and focused equity research; portfolio construction is outside this module.
 metadata:
-  version: 2.5.5
+  version: 2.6.0
 ---
 
 # Research cycle
@@ -11,7 +11,7 @@ Complete the requested research scope, selecting the investigations that can cha
 
 ## Start from the task
 
-Identify the question, decision horizon, information cutoff, deliverable and available evidence/tools. Include investment constraints, account scope and holdings when relevant to a portfolio or implementation request. Resolve observable facts through available sources; ask for missing intent or constraints only when they materially affect the task. [workflow.md](references/workflow.md) lists the research-brief fields.
+Identify the question, decision horizon, information cutoff, deliverable and available evidence/tools. Retain the company-research scope; portfolio allocation and account implementation are separate work. Resolve observable facts through available sources; ask for missing intent or constraints only when they materially affect the task. [workflow.md](references/workflow.md) lists the research-brief fields.
 
 Take the research date from the environment, never from memory: the model's own knowledge ends before today and the world has moved since. Before writing anything dated, work through the [world state at the research date](references/world-state.md): what has changed since the last filing and in the wider world, exposure by exposure, and which developments could change the call. For a stock, then infer [what the market is trading](references/what-the-market-trades.md) from the price, the estimates and the record of investor questions, since that view is not disclosed. Treat anything remembered about "current" conditions as a hypothesis to verify. Name periods relative to that date (the latest quarter, the current and next fiscal year) and never copy a year, currency, market or regime from a skill example or an earlier study.
 
@@ -27,7 +27,7 @@ For stock research, apply [request routing](references/request-routing.md) first
 - **New stock initiation:** [stock initiation](../stock-initiation/SKILL.md), following the full [company sequence](references/company-sequence.md). Honour an explicitly fresh/independent study.
 - **Existing coverage, regular review:** [model revision](../model-revision/SKILL.md) in regular-review mode. Read the prior research and model, check intervening evidence, carry operating forecasts forward unless concrete data supports a specific change, and refresh price, valuation and prospective return with separate attribution. A price move alone changes neither EPS nor fair value.
 - **Existing coverage, major update:** the same entry skill in major-update mode. Freeze the prior forecast, gather official disclosures and calls, compare matched actuals with prior assumptions, record hits/misses and causes, then recalibrate affected forecasts, audit and refresh the decision. Reuse unaffected work.
-- **Portfolio or non-company idea:** outside this bundle; follow the [scope boundary](references/scope-boundary.md) and provide only the supported company-research handoff. Do not impose stock initiation on another asset.
+- **Portfolio construction or implementation:** outside the research module. Deliver the dated company findings for the separate portfolio workflow; do not add allocation stages to company research. The [scope boundary](references/scope-boundary.md) says what this bundle does not contain.
 - **Recurring review:** recurrence sets cadence, not the analytical mode. Company reviews use the regular or major branch according to the evidence; a narrow request does not require a full report.
 
 [Research branches](references/research-branches.md) cover theme screening, macro scenarios, narrative comparisons, statement questions, company-change chains, opinion challenges and portfolio risk budgets. They can inform or reopen a stage without requiring a full company cycle. Use [issuer questions](../issuer-questions/SKILL.md) whenever an unanswered issuer question could change the decision; drafting questions does not authorise contacting anyone.
@@ -52,17 +52,17 @@ Read [handoffs.md](references/handoffs.md) before handing work between specialis
 
 Maintain a ranked backlog: for each task, the uncertainty, the decision it could change, the next read or calculation and its completion condition. Prefer resolving a material uncertainty over adding narrative or re-reading unchanged data. Record rejected hypotheses so they are not rediscovered.
 
-When evidence changes, invalidate dependent forecasts, valuation, sizing and fixed-text summaries. Preserve old versions and their information cutoffs. Work may return to any affected stage.
+When evidence changes, invalidate dependent forecasts, valuation and fixed-text summaries. Preserve old versions and their information cutoffs. Work may return to any affected stage.
 
-Completed company research ends in Buy/Hold/Sell under the decision contract. Work in progress, screening and portfolio work can end in one of these statuses:
+Completed company research ends in Buy/Hold/Sell under the decision contract. Work in progress and screening can end in one of these statuses:
 
 - **Continue research:** a specific, permitted next read or test within remaining resources.
-- **Watch (screening/portfolio work only):** why acting is not justified, the next investigation, review time and observable triggers.
+- **Watch (screening work only):** why acting is not justified, the next investigation, review time and observable triggers.
 - **Needs input:** the one essential user answer or connection action, while independent research continues.
-- **Candidate (screening/portfolio work only):** a sourced proposal awaiting independent checks and any required approval.
+- **Candidate (screening work only):** a sourced proposal awaiting independent checks and any required approval.
 - **Infeasible:** explain the conflict and offer concrete changes to target, horizon or funding for the user to choose. Never widen risk automatically.
 
-Recurring work uses [self-contained review work items](../monitor-review/references/recurring-research.md). State when a review is complete and which follow-up remains proposed or actually scheduled.
+Recurring work uses [self-contained company follow-up work](references/company-follow-up.md). State when a review is complete and which follow-up remains proposed or actually scheduled.
 
 ## Authority and completion
 

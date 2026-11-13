@@ -1,5 +1,5 @@
 {
-  "version": "2.9.0",
+  "version": "2.10.0",
   "entrySkill": "research-cycle",
   "runtimeIntegrated": false,
   "skills": [
@@ -61,11 +61,6 @@
     {
       "id": "report-layout",
       "path": "report-layout/SKILL.md",
-      "sourceSkills": []
-    },
-    {
-      "id": "monitor-review",
-      "path": "monitor-review/SKILL.md",
       "sourceSkills": []
     },
     {
@@ -254,7 +249,7 @@
       ]
     },
     "company-follow-up": {
-      "skill": "monitor-review",
+      "skill": "company-change-tracking",
       "output": "monitor-review",
       "requiredBefore": [
         "investment-brief",
@@ -262,14 +257,14 @@
       ]
     },
     "revision-follow-up": {
-      "skill": "monitor-review",
+      "skill": "company-change-tracking",
       "output": "monitor-review",
       "requiredBefore": [
         "revision-brief"
       ]
     },
     "regular-follow-up": {
-      "skill": "monitor-review",
+      "skill": "company-change-tracking",
       "output": "monitor-review",
       "requiredBefore": [
         "regular-brief"
@@ -278,13 +273,6 @@
     "brief": {
       "skill": "research-brief",
       "output": "brief",
-      "requiredBefore": [
-        "evidence"
-      ]
-    },
-    "monitor-review": {
-      "skill": "monitor-review",
-      "output": "monitor-review",
       "requiredBefore": [
         "evidence"
       ]
@@ -537,6 +525,13 @@
         "revision-draft-review"
       ],
       "when": "publish the exact reviewed files through checked packaging"
+    },
+    "company-review": {
+      "skill": "company-change-tracking",
+      "output": "monitor-review",
+      "requiredBefore": [
+        "evidence"
+      ]
     }
   },
   "flows": {
@@ -612,7 +607,7 @@
     "recurring-review": [
       "scope",
       "evidence",
-      "monitor-review",
+      "company-review",
       "brief"
     ],
     "theme-discovery": [
@@ -637,7 +632,7 @@
       "scope",
       "evidence",
       "company-changes",
-      "monitor-review",
+      "company-review",
       "brief"
     ],
     "financial-red-flag-review": [

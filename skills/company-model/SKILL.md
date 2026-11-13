@@ -2,7 +2,7 @@
 name: company-model
 description: Build and maintain executable company financial models with operating drivers and linked income statements, cash flows and balance sheets. Use for new issuer models, historical updates, forecast revisions, scenarios and forecast evaluation; preserve existing workbook models when requested.
 metadata:
-  version: 2.5.6
+  version: 2.6.0
 ---
 
 # Company model building and updates
@@ -42,7 +42,7 @@ Modes:
 ## Principles
 
 - Carry known governance and financial-quality findings into model inputs. The governance assessment and red-flag screen run at initiation or when new evidence raises an issue; reuse valid prior findings otherwise. Map [governance findings](../corporate-governance/SKILL.md) into supported cash-access, related-party, dilution, compensation and financing assumptions. Do not bury value diversion in Other; keep an unquantifiable rights issue explicit for valuation rather than inventing a cash-flow haircut.
-- Anchor near-term forecasts on the latest reported period, its call and peers already reported ([earnings clock](references/earnings-clock-and-peer-readthrough.md)). History supplies seasonality, cycle context and calibration. Carry the component build through the year [the market is trading](../research-cycle/references/what-the-market-trades.md#2-which-period-the-market-trades) when that is beyond the forward year. For a fast-growing line, build from the latest run rate and the capacity ramp with seasonality, channel inventory and demand tested, then set the result against management's plan and its guidance record; forecast above or below the plan when the evidence supports it.
+- Anchor near-term forecasts on the latest reported period, its call and peers already reported ([earnings clock](references/earnings-clock-and-peer-readthrough.md)). History supplies seasonality, cycle context and calibration. Carry the component build through the year [the market is trading](../research-cycle/references/what-the-market-trades.md#2-which-period-the-market-trades) when that is beyond the forward year. For a fast-growing line, build from the latest run rate and the capacity ramp with seasonality, channel inventory and demand tested, then set the result against management's plan and its guidance record; forecast above or below the plan when the evidence supports it. Set each revenue driver's base-case value in the [base-case order](references/revenue-projection.md#set-the-base-case-value-of-each-revenue-driver): a solid number first, then the recent trend and its cause, and never a low figure chosen to feel safe.
 - Choose drivers that explain the economics: units/price/mix, capacity/utilisation, users/monetisation or another suitable decomposition. Reconcile segment totals and cash requirements; do not impose a volume model where it misleads.
 - Apply [metric identity](references/metric-identity.md) before converting a pivotal rate, ratio or project appraisal into profit. Use [linked explanations](references/linked-explanations.md) for repeated numerical/rating notes so the human model stays connected to its calculations.
 - Treat reported actuals, derived actuals, guidance, broker estimates and analyst assumptions as distinct, and preserve provenance when derived quarters are displayed as hard values. A guide is an input to assess, not a total to reach.

@@ -8,13 +8,23 @@ For an existing workbook, retain useful row order, product/geographic breakdown,
 
 For a new workbook view, keep related calculations in a clear sequence on one worksheet. Place active assumptions, their basis and relevant history beside the results they drive. Longer source archives can sit in support tables. Reuse completed totals across schedules rather than scattering a local calculation chain between tabs.
 
-Use [foundational builds](foundational-builds.md) to decompose material financial items into the smallest useful forecastable components. Investigate breakdowns available only in management calls or external series before settling for aggregate growth/margin assumptions. Forecast the foundational estimates from history, assessed guidance and matched third-party observations, with the remaining judgement explicit. Aggregate component forecasts upward. The evidence and reasoning behind the pieces determine how much conviction the segment forecast warrants.
+Use [foundational builds](foundational-builds.md) to decompose material financial items into the smallest useful forecastable components. Investigate breakdowns available only in management calls or external series before settling for aggregate growth/margin assumptions. Forecast the foundational estimates from history, assessed guidance and matched third-party observations, with the remaining judgement explicit; revenue drivers follow the [base-case order](#set-the-base-case-value-of-each-revenue-driver). Aggregate component forecasts upward. The evidence and reasoning behind the pieces determine how much conviction the segment forecast warrants.
 
 ## Test what a driver actually measures
 
 Before forecasting from a derived unit ratio, align its numerator and denominator by activity, ownership, channel, cohort and period. Total revenue divided by stores can include online revenue, acquisitions and wholesale; it is not automatically store productivity or same-store growth. Revenue per customer can rise through churn of small customers, and output per asset through disposals. Separate these effects where supported, retain a composite proxy's actual label otherwise, and do not infer demand, pricing power or margins that the proxy cannot identify. Match average active units to period flows and test seasonality before annualising an interim result.
 
 Distinguish an explanatory driver from a ratio back-solved to reproduce a growth assumption. Show what independently supports the forecast change in units, price, utilization, retention or other relevant components. Greater detail adds confidence only when those components are predictive and substantiated; do not invent undisclosed splits or a numerical elasticity to make the model look granular. Where a coarser forecast is the best supported approach, state its basis, limits and decision-sensitive range in the assumption note.
+
+## Set the base-case value of each revenue driver
+
+Work down this order and stop at the first step the evidence supports. Say in the assumption note which step set the value.
+
+1. **Solid evidence for a specific number.** A figure from management, weighed against its [guidance record](drivers-guidance.md#guidance-register), or a data series we have backtested against reported results and shown to work. This is the best basis. Still check it against the recent trend: a number the trend contradicts needs its reason before it goes in.
+2. **The recent trend and the reason for it.** Without such a number, start from the last few quarters or halves and decide whether the driver increases, holds or slows from here. The reason for the past performance decides it: a structural or sustainable cause carries forward, a one-off drops out. Judge the cause with the [industry findings](../../industry-analysis/SKILL.md): market growth, share, price and customer behaviour show whether a move is structural or one-off. Do not pick a low figure just to feel safe; caution belongs in the bear case.
+3. **A link to another part of the business.** Where the driver's own record does not settle it, see whether something management does disclose leads to the number. Capex and the capacity it adds is one example.
+4. **The steady-state average.** If the steps above fail, or nothing much has changed in recent periods, carry the average of the past X periods, where X covers the most recent stretch of steady performance.
+5. **GDP-level growth or flat.** The last resort, when nothing above applies.
 
 ## Build the operating waterfall
 

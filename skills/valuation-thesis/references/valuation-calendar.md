@@ -2,6 +2,8 @@
 
 Apply the [target definition](../../investment-conclusion/references/decision-contract.md#target-and-earnings-basis). Record the research cutoff, fiscal year-end, current open fiscal year, latest actual period, current forward earnings window, target date and target earnings window separately. Use explicit dates, profit definition, shares and currency; vendor FY1/FY2 labels are not reliable period identities.
 
+The rules here use P/E as the example. They apply in the same way to every yardstick in the [yardstick list](yardsticks.md#how-each-yardstick-is-measured): the band, the headline level and the target all use the same forward figure (EPS, book value per share, EBITDA, sales or DPS).
+
 Keep headline P/E on current forward earnings. The target applies the target multiple to the same forward earnings, a price the stock should reach within twelve months. Do not roll the earnings forward to the target date.
 
 Keep the economic anchor on that period too. Multiplying another period's EPS by its peer multiple, then dividing the result by current-forward EPS to print a forward multiple, is a restatement of a different target basis. It does not satisfy this convention. A comparison on another calendar/fiscal period may inform a supported multiple judgment, with the bridge and its limitations stated; it does not silently replace the target denominator. Bear, base, bull and material sensitivity prices retain the selected target convention. The publication [economic-basis contract](../../report-layout/references/publication-review.md#review-packet-and-financial-assertions) records their actual anchors and tests exact inverse-EPS cancellation. It does not decide which company deserves a premium.
@@ -15,6 +17,8 @@ For publication, [dated NTM controls](../../report-layout/references/dated-ntm.m
 `current forward P/E = reference price / current forward EPS`
 
 `target price = our selected current-forward EPS * justified target multiple`
+
+For an enterprise-value yardstick, `target price = (target multiple * our forward figure - net debt and other claims) / shares`, with the claims at the same date as the price.
 
 Include currency conversion where required. Across dated reviews, separate changes in the current earnings window, forecast revisions and multiples. Within one fixed current-forward target calculation, there is no earnings-period roll; with identical EPS at both endpoints the earnings contribution is zero. Recompute targets, returns and ratings when a period error is corrected, preserving the prior dated decision. Profit terminology follows the [writing guide](../../research-brief/references/natural-writing.md#profit-labels-and-valuation-language).
 
@@ -30,7 +34,7 @@ Use the same price, period, earnings definition, currency and share basis before
 - Consensus-based forward P/E = price / matched consensus forward EPS.
 - Target = target multiple * our forward EPS.
 
-These are two ratios describing the same reference price. A higher P/E on our forecast can simply reflect lower forecast EPS, not a different observed market valuation. Use our ratio for the headline and target-return comparison; show the consensus-based ratio separately. A limited broker sample remains a sample.
+The same split applies to any yardstick, with EPS replaced by the figure the yardstick is applied to. These are two ratios describing the same reference price. A higher P/E on our forecast can simply reflect lower forecast EPS, not a different observed market valuation. Use our ratio for the headline and target-return comparison; show the consensus-based ratio separately. A limited broker sample remains a sample.
 
 Holding our current P/E against the same own EPS reproduces the reference price. Applying the consensus-based P/E to our EPS instead resets the earnings estimate while retaining the multiple derived from consensus. Label that as an earnings downgrade or upgrade scenario, according to its direction; do not call it unchanged own P/E. Keep this secondary explanation in supporting research when it would confuse the brief.
 

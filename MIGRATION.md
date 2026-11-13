@@ -1,5 +1,19 @@
 # Version 2.0 name migration
 
+## Version 3.0 research sequence
+
+New studies pin the 3.0 files normally. Existing frozen studies keep their archived rules, findings and review budgets.
+
+What a builder, a brief or a plan written for 2.13 must change:
+
+- **Debate block.** `Debate(question, claims, answer, moves, settles)` is now `Debate(question, live, bears, bulls, view, worth, settles)`. `bears` and `bulls` are lists of points, and every point cites a source (`{{src:key}}`) or an exhibit (`{{ex:key}}`). The claims table and its supported, contradicted or untested status are gone. Where investors are not clearly arguing about anything that matters, drop the section with `omit('debate', reason)`.
+- **Argument block.** `Argument(point, evidence)` is enough. `inference` and `implication` are optional, so existing four-part calls still work.
+- **Valuation.** `valuation-thesis/references/target-underwriting.md` is deleted. Follow the six steps in [valuation thesis](skills/valuation-thesis/SKILL.md#value-the-company-in-six-steps) and take the yardstick from the [yardstick list](skills/valuation-thesis/references/yardsticks.md). The target is a target level of that yardstick times today's forward figure for it.
+- **Revenue drivers.** Set each base-case driver by the order in [revenue projection](skills/company-model/references/revenue-projection.md#set-the-base-case-value-of-each-revenue-driver), and say in the assumption note which step set the value.
+- **Sector references.** The 21 sector guides are replaced by 100 cards, one for each kind of company, most under new file names. Find the card through the [sector index](skills/company-model/references/sectors/index.md); a link to a deleted guide must point to the card for the kind of company.
+- **Writing.** `research-brief/references/writing-detail.md` is deleted. [natural-writing.md](skills/research-brief/references/natural-writing.md) is the one writing standard.
+- **Follow-up.** The `monitor-review` skill is removed. Its work is in [company change tracking](skills/company-change-tracking/SKILL.md) and the [follow-up guide](skills/research-cycle/references/company-follow-up.md). The catalog stage `monitor-review` is renamed `company-review`; the handoff type `monitor-review` keeps its name. A coverage plan generated for 2.13 lists a skill that no longer exists: generate a new one.
+
 ## Version 2.13 rule changes and smaller bundle
 
 New studies pin the 2.13 files normally. Existing frozen studies keep their archived rules, findings and review budgets.

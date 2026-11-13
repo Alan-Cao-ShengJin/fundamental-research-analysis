@@ -2,7 +2,7 @@
 name: industry-analysis
 description: Analyse the industry a company competes in. Cover how fast the market grows and why, the company's competitive niche, whether entry barriers are rising or falling, upstream input-cost and supply changes, and downstream customer and end-user behaviour. Turn the findings into model assumptions, valuation judgments, report content and tracking indicators. Use in every initiation before operating forecasts, in reviews when industry evidence changes, and for standalone industry questions.
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Industry analysis
@@ -63,7 +63,7 @@ A forecast that needs implausible share gains, or stable margins while barriers 
 
 - An industry section in the full report, placed before the forecasts. Organise it around the lenses that matter, and end each with its effect on the forecast or valuation. It is not a textbook description of the industry.
 - In the one-page brief, include the industry point only when it drives the call.
-- Industry indicators, handed to [monitor review](../monitor-review/SKILL.md) and checked in every regular review.
+- Industry indicators, retained in the [company follow-up record](../research-cycle/references/company-follow-up.md) and checked in every regular review.
 - A handoff of kind `industry-analysis` under the [shared contract](../research-cycle/references/handoffs.md).
 
 ## Reviews

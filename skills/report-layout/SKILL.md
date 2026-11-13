@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.9.6
+  version: 2.10.0
 ---
 
 # Full report layout
@@ -13,7 +13,13 @@ Each `section(..., covers=(...))` names the investor questions it answers (`QUES
 
 ## Arguments, debates and business units
 
-The report is built from arguments, not paragraphs. Write each substantive point as `Argument(point, evidence, inference, implication)`: the point in plain words; the two or three figures or the reason behind it, citing its source (`{{src:key}}`) or exhibit (`{{ex:key}}`); what it means; and what follows for earnings, cash, risk or the multiple. It renders as one paragraph without labels. Write each contested question as `Debate(question, claims, answer, moves, settles)`: the claims each side rests on, each with the evidence that tests it and its status (supported, contradicted or untested; contradicted needs incompatible evidence on the same proposition and period, while absence of an announcement alone leaves a future action untested); our answer; the number it moves (a forecast, margin or multiple, quantified); and the observation and date that would settle it. Choose the debates by how much each moves the target; when most of the return is a change in multiple, one debate is why the multiple moves. Bull and bear appear once, as the priced scenarios. Declare the business units the report must analyse with `segments([...])`, every unit above about 15% of segment profit or one a debate turns on; each needs an Argument tagged `segment=` that cites the exhibit showing its driver build (stores and sales per store, units and price, or channel and growth, with history).
+Write each substantive point as `Argument(point, evidence)`: the point in plain words, then the reason and the two or three figures behind it, citing its source (`{{src:key}}`) or exhibit (`{{ex:key}}`). It renders as one paragraph, kept to the [limits](../research-brief/references/natural-writing.md#limits). The optional `inference` and `implication` add what it means and what it does to earnings, cash, risk or the multiple. Use them only where the reader would not see that unprompted, so paragraphs do not all end the same way.
+
+Write each debate as `Debate(question, live, bears, bulls, view, worth, settles)`: the question in the words investors use; why it is live (what raised it, where we saw investors argue it, and what today's price assumes); what the bears say and what the bulls say, each side's two or three best points with the evidence cited; our view, with the evidence that decides it and what the other side gets right; what the share price is worth if each side is right, quoting the bear and bull scenario prices and not a second set; and the observation, its date and the level that would change our mind.
+
+A debate is a question investors visibly disagree on: cite the call questions, broker split or price reaction that shows it. A sensitive assumption nobody disputes belongs in the forecast section. Rank debates by the gap between the bull and bear price and print the ones that are real. One is fine. Where investors are not clearly arguing about anything that matters, do not squeeze one out: drop the section with `omit('debate', reason)`. A switched [yardstick](../valuation-thesis/references/yardsticks.md#when-the-yardstick-switches) is always one; when most of the return is a change in multiple, the debate is what investors need to see to pay more, not which number we chose. Put the debates in one section straight after the business description, give each a line with our side on the front page, and let later sections refer back to them. An update opens that section with what has moved on each debate since the last report.
+
+Declare the business units the report must analyse with `segments([...])`, every unit above about 15% of segment profit or one a debate turns on; each needs an Argument tagged `segment=` that cites the exhibit showing its driver build (stores and sales per store, units and price, or channel and growth, with history).
 
 The build stops when a section that covers a question holds no Argument or Debate, when a section covering the debate holds no Debate, when a plain paragraph carries a judgement ("we forecast", "we assume", "we expect", "we think", "we believe", "our view", "our reading", "we side") outside an Argument, or when a declared business unit has no argument. Plain paragraphs remain for context and definitions.
 

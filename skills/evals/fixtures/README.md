@@ -1,6 +1,6 @@
 # Behavioural fixtures
 
-Synthetic evidence packs for the user to run and grade. Each pack is self-contained and invented; nothing in it is a real company, price or estimate. The expected outcomes sit in [answers/](answers/), outside the pack, and are not given to the agent.
+Synthetic evidence packs for the user to run and grade. Each pack is self-contained and invented; nothing in it is a real company, price or estimate. The expected outcomes sit in [answers/](answers), outside the pack, and are not given to the agent.
 
 How to run one:
 

@@ -1,7 +1,7 @@
 {
-  "bundleVersion": "2.13.0",
+  "bundleVersion": "3.0.0",
   "variant": "fundamental-research-only",
-  "preparedOn": "2026-11-11",
+  "preparedOn": "2026-11-13",
   "skills": [
     "research-cycle",
     "evidence-intake",
@@ -15,7 +15,6 @@
     "research-brief",
     "chart-visualization",
     "report-layout",
-    "monitor-review",
     "theme-screening",
     "company-change-tracking",
     "macro-event-analysis",
@@ -55,14 +54,15 @@
     "Concise evidence-preserving writing and supported synthetic editorial examples",
     "Clean review of sequence, valuation, modelling, writing and harness: corrected contradictions, stale design text, error messages and print-time file links",
     "Market-implied cost of equity, independent-of-consensus forecasts, optional scenario probabilities and labelled total return",
-    "New-money judgment, attractiveness tiers and entry prices retired; unused forecast scaffold and node-graph tooling removed"
+    "New-money judgment, attractiveness tiers and entry prices retired; unused forecast scaffold and node-graph tooling removed",
+    "Six-step valuation on the yardstick investors use, a ladder for setting each revenue driver, debates written as what bears and bulls say, a worked-example writing standard, one sector card for each of 100 kinds of company, and company follow-up folded into company change tracking"
   ],
   "verification": {
-    "entryPointsValidated": 20,
-    "javascriptTestsPassed": 65,
+    "entryPointsValidated": 19,
+    "javascriptTestsPassed": 66,
     "pythonTestsPassed": 272,
     "bundleCheck": "passed",
-    "relativeMarkdownLinks": 838,
+    "relativeMarkdownLinks": 1332,
     "suppliedFileAndCredentialPatternScan": "passed",
     "scanLimit": "Common credential/token patterns and private machine paths, including workbook XML; no private credential file read and no forensic guarantee.",
     "syntheticWorkbookModelCheck": {
@@ -107,8 +107,8 @@
     },
     {
       "path": "AUDIT.md",
-      "bytes": 65599,
-      "sha256": "fe8aade08b1f6ee4a113ce9af8cc0fbd5821f2cd99ad150a04b7d4573b5ff20f"
+      "bytes": 69145,
+      "sha256": "04bb880f02122364b6dd3a65189f7b65fca434693910427d1ee3486975f257b2"
     },
     {
       "path": "CLAUDE.md",
@@ -117,13 +117,13 @@
     },
     {
       "path": "MIGRATION.md",
-      "bytes": 15078,
-      "sha256": "1c524e2f91e515ab0aa5b809ad20f01181193b569f77d0d2fdd1dbda7c1566ba"
+      "bytes": 17415,
+      "sha256": "29efc661f3145290c44428b4d2e98786d9ef85bea99015fe1e1ee836fe161d71"
     },
     {
       "path": "README.md",
-      "bytes": 9054,
-      "sha256": "df9981a4c304da458a606f34d53bf9c6c45a622e16ce170c87798d2f08658b83"
+      "bytes": 11052,
+      "sha256": "547ce203461eb047ca91c03183ac9c7729e9704dad85b30027060cbb30638296"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -142,13 +142,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 36543,
-      "sha256": "d0b53e6a1f7b6a9476b4afc13423c2bd3c6be1a3f1d335239614e32d33986fa5"
+      "bytes": 36541,
+      "sha256": "b9c7dd88d43cc969779321409e0d20bf5c30bb2f50d31f2e0d2b311185f9d5ab"
     },
     {
       "path": "package.json",
-      "bytes": 351,
-      "sha256": "a6273b64bc2847139101e517fd1515615d0f861defb152e1e39cb1f678effe79"
+      "bytes": 350,
+      "sha256": "1fa2be357a27c44f75d1019347556bf33f016c30dc4874562d3dfbc4860620bf"
     },
     {
       "path": "requirements.txt",
@@ -157,8 +157,8 @@
     },
     {
       "path": "skills/README.md",
-      "bytes": 14186,
-      "sha256": "806d74c38b3fdb2778bf7461a8028be0e9c1578d311dc7b13c739ee24e5133c1"
+      "bytes": 7391,
+      "sha256": "15a5aa927cd3bbdebe9147c8300f99fbb86b7f7a33d3889b60502d40f7aa88ea"
     },
     {
       "path": "skills/THIRD_PARTY_NOTICES.md",
@@ -167,8 +167,8 @@
     },
     {
       "path": "skills/catalog.json",
-      "bytes": 16910,
-      "sha256": "89942000f1f6d929a5dfda8a352631bf2f9166ae61303e52aa892597e36031f8"
+      "bytes": 16838,
+      "sha256": "9d6c2f60487faa0e64f8ffc51dece94cd31a15a7a95263a32299d6138dc84abf"
     },
     {
       "path": "skills/chart-visualization/SKILL.md",
@@ -187,13 +187,13 @@
     },
     {
       "path": "skills/company-change-tracking/SKILL.md",
-      "bytes": 4369,
-      "sha256": "c52c9fbaa317b4ba475d5b4a6ff68f3b17b2935a83e81395b4492d785b2b85e6"
+      "bytes": 4505,
+      "sha256": "6451068a963ebec3a28b74530585bfdde60726abdabaaeb91d943941a00efb54"
     },
     {
       "path": "skills/company-model/SKILL.md",
-      "bytes": 10595,
-      "sha256": "80daab86bc2a9d49f5838896008dddbb90c02c0546f2ca41f6f2b45aef5200e1"
+      "bytes": 10847,
+      "sha256": "b10b71615121608da94625c9beeb7b91989d8c8c3826f2314f5325c2d54a88d5"
     },
     {
       "path": "skills/company-model/assets/bounded-bridge.example.json",
@@ -282,128 +282,523 @@
     },
     {
       "path": "skills/company-model/references/model-standard.md",
-      "bytes": 16264,
-      "sha256": "47a3eef60e320930a73b689d2570c39e3fc41d99c1b9a317af04bba72f4f0952"
+      "bytes": 16288,
+      "sha256": "57db8cd7eb756c0dc85616b6cfa7f418401b0873e82390cfb50949313e03f9dd"
     },
     {
       "path": "skills/company-model/references/revenue-projection.md",
-      "bytes": 10053,
-      "sha256": "1cadb2925b596acbb8d04ad0fd2ebe72803b4ed9efd1bb49589c75a719c1afc5"
+      "bytes": 11739,
+      "sha256": "ccc2f3616cdb951c66510eab61094c2b339541b8e792e7f1e3b90dfd474d8035"
     },
     {
       "path": "skills/company-model/references/sectors/NOTICE.txt",
-      "bytes": 1666,
-      "sha256": "06bc2cc61d465ea2dc86c014ba168d835c592dd13791f1b698ded944eb99a39d"
+      "bytes": 1894,
+      "sha256": "ed91ce3b3a6a137a9284b4d932ebddb2a3ae4d00b3950b97441c8933fa268805"
     },
     {
-      "path": "skills/company-model/references/sectors/autos-ev.md",
-      "bytes": 2225,
-      "sha256": "f905f0055ff5812b478a62044d3976e0b6b3a1fab71a858703275e1b6fb07718"
+      "path": "skills/company-model/references/sectors/aerospace-defence.md",
+      "bytes": 9026,
+      "sha256": "d5989422aa51155c91a75e0cd3bcbd97cc983e9bee812958b8cd1a710001d1ba"
+    },
+    {
+      "path": "skills/company-model/references/sectors/airlines.md",
+      "bytes": 7980,
+      "sha256": "4397f7821ca219212944690b3ab08c31c0390a13c1ae9b6ce4d40189db8091b0"
+    },
+    {
+      "path": "skills/company-model/references/sectors/analogue-power-chips.md",
+      "bytes": 10390,
+      "sha256": "532017a4442fd418cdf568c0e0b0efd55a72964fb1e1eccfa881a31afd416af5"
+    },
+    {
+      "path": "skills/company-model/references/sectors/asset-wealth-managers.md",
+      "bytes": 7738,
+      "sha256": "c182d657ce83b154ce5f68966c27ce456a5817466fec71b275d4db5f70cdde27"
+    },
+    {
+      "path": "skills/company-model/references/sectors/auto-parts.md",
+      "bytes": 7704,
+      "sha256": "88354822719b7966e0e2f9cd970ca539192af10166397ab4037a3aded8dae4db"
+    },
+    {
+      "path": "skills/company-model/references/sectors/baijiu.md",
+      "bytes": 7697,
+      "sha256": "3cce037ee7c265f85f9256cc5bf917e6a590cb68f92679e27830b7e34606e2a7"
     },
     {
       "path": "skills/company-model/references/sectors/banks.md",
-      "bytes": 2318,
-      "sha256": "7faf8a7b363f3e4028651922a63f0e464cc17c0bd08d5e858ad23442b1703d27"
+      "bytes": 9012,
+      "sha256": "192523a09e3fc4f572b9a82fdf4cc9356758e8f6506b715ded91abb61822d3d2"
     },
     {
-      "path": "skills/company-model/references/sectors/capital-markets.md",
-      "bytes": 2146,
-      "sha256": "86458650ef04d2179ba7f729b4fca5f0e7cc4c7beaf52c1101a26cb4201d60f2"
+      "path": "skills/company-model/references/sectors/batteries.md",
+      "bytes": 10783,
+      "sha256": "df8832760cc0ac1842615a83c5d95dee279592be96c7a05038738ce6d0c38e3a"
     },
     {
-      "path": "skills/company-model/references/sectors/consumer.md",
-      "bytes": 2861,
-      "sha256": "259386f36e912eb45f623b46334e41d641b61f40ad939dab4d3602a24a7835c2"
+      "path": "skills/company-model/references/sectors/beauty-personal-care.md",
+      "bytes": 8410,
+      "sha256": "df0e44eaeee808eecf1cc4653001adc2fb5df71d9b69b75ed15f1eba5adb0718"
     },
     {
-      "path": "skills/company-model/references/sectors/energy.md",
-      "bytes": 2586,
-      "sha256": "4bb06deec959f307963539dbb1ddaa458cfeeafb78ccb60e56edc44b44a62d6a"
+      "path": "skills/company-model/references/sectors/beer.md",
+      "bytes": 7943,
+      "sha256": "8c980717bf3f3913b1b66541f356ae3c451dfbe230ee357c6a2d2940fbed2f82"
     },
     {
-      "path": "skills/company-model/references/sectors/hardware.md",
-      "bytes": 2120,
-      "sha256": "d3fe856aa89fa0ea0f0b257f733a268d4420917da7ce695e01669eb395bb5b6b"
+      "path": "skills/company-model/references/sectors/brokers.md",
+      "bytes": 8070,
+      "sha256": "c4b1a7e9cd83e3a584bbeb14cd4cd6f3fab3be65ec4a5d86936bdda416d52a9b"
     },
     {
-      "path": "skills/company-model/references/sectors/healthcare-services.md",
-      "bytes": 2179,
-      "sha256": "3958f94c0e315ad984ffc22a1f5ab47ca9e7090c921d4a92922f98f25f15ec11"
+      "path": "skills/company-model/references/sectors/building-products.md",
+      "bytes": 8813,
+      "sha256": "8803bb8cf36f5c532c08439a3f96275c74beea0989515f39f445f39c7ede2f3e"
+    },
+    {
+      "path": "skills/company-model/references/sectors/buses.md",
+      "bytes": 9862,
+      "sha256": "e9b10551073caea453434a0cf5ec903cd0ef1b9868832e60212becaadc67313c"
+    },
+    {
+      "path": "skills/company-model/references/sectors/casinos.md",
+      "bytes": 7785,
+      "sha256": "c47d0a4b2d5a34b0514cad988931835e3b584421dc997908630637a73a60c94c"
+    },
+    {
+      "path": "skills/company-model/references/sectors/chip-design.md",
+      "bytes": 7578,
+      "sha256": "bc6e0254f6d601cf54d5cb10dade3ee49ae4c0fa54282eeabebccecf537ad7a8"
+    },
+    {
+      "path": "skills/company-model/references/sectors/chip-equipment.md",
+      "bytes": 7975,
+      "sha256": "2d2a721653f614bfb03f7341adc690a9301a5dd84786fd4c9b903d4d940a4311"
+    },
+    {
+      "path": "skills/company-model/references/sectors/chip-materials.md",
+      "bytes": 10322,
+      "sha256": "e08ac4a0354710e6cf19f30f418d1e2a84e2428bb5a9158f491bcaed4398e9fc"
+    },
+    {
+      "path": "skills/company-model/references/sectors/chip-packaging-testing.md",
+      "bytes": 9395,
+      "sha256": "a6373642601d1fb5764ff8a8470bab3ec8876efcf59b4f3faee4150ba1fcab8e"
+    },
+    {
+      "path": "skills/company-model/references/sectors/cinemas.md",
+      "bytes": 7004,
+      "sha256": "7b9ea8873b75ec9871d54e08d186154a7abdafbaff93b91331777e4ef80aad8d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/coal.md",
+      "bytes": 9194,
+      "sha256": "8f1efdc6c79b11614648334abf97e297d599a9f0a8a550a034b04a70ec4188ab"
+    },
+    {
+      "path": "skills/company-model/references/sectors/commodity-chemicals.md",
+      "bytes": 8880,
+      "sha256": "abefe126bf819ce0459d63f6f92056b305bbf865beb6df1d7ddd4c6bbb800ffc"
+    },
+    {
+      "path": "skills/company-model/references/sectors/construction-engineering.md",
+      "bytes": 8641,
+      "sha256": "ec0f6375d4800a56c9ef6bf382f3f8e3168c2e68fbc1cf9a74e78c8a199aea92"
+    },
+    {
+      "path": "skills/company-model/references/sectors/consumer-electronics-brands.md",
+      "bytes": 8244,
+      "sha256": "684acd4cc35e7aba4f5e908d3745eb9058d15af4174f973f435f45c5cca2d0a9"
+    },
+    {
+      "path": "skills/company-model/references/sectors/contract-manufacturing.md",
+      "bytes": 9942,
+      "sha256": "fe84923045dc52fc7084525c37ff7cb790245efa8c24c30565333e354153b3f3"
+    },
+    {
+      "path": "skills/company-model/references/sectors/contract-research-manufacturing.md",
+      "bytes": 9428,
+      "sha256": "2618ab7618d0b1b4bc180a724b64145c026739ed2872797b14004eb85a195836"
+    },
+    {
+      "path": "skills/company-model/references/sectors/cruise-lines.md",
+      "bytes": 7580,
+      "sha256": "9b681bc5088f2cfd9d9c1bd7eb6a04e963ebea0cd3d982f11d250d5d4ee26f67"
+    },
+    {
+      "path": "skills/company-model/references/sectors/diagnostics.md",
+      "bytes": 8253,
+      "sha256": "e836ca03b18876f78300308a9ecd93155447d90df1dcd717e5040614126a227a"
+    },
+    {
+      "path": "skills/company-model/references/sectors/display-panels.md",
+      "bytes": 8950,
+      "sha256": "3c6e18889e84f68f3109674851e3797241b32fb786470677d0e6dd9fc01a1843"
+    },
+    {
+      "path": "skills/company-model/references/sectors/drug-distribution.md",
+      "bytes": 8923,
+      "sha256": "e49a65a09932c2b501809309793498e86aa76f54736b46f36cc1268f3d592cc2"
+    },
+    {
+      "path": "skills/company-model/references/sectors/ecommerce-advertising-platforms.md",
+      "bytes": 9418,
+      "sha256": "e865bb6ed0d2000d0edd769773a443b39cef6ed4aef0961092932712301c6289"
+    },
+    {
+      "path": "skills/company-model/references/sectors/electronic-components.md",
+      "bytes": 9890,
+      "sha256": "21e3f1cdb66c65ab0dfc842f95e8bf6e0a0159cd8db4507252c5f3f62fd07768"
+    },
+    {
+      "path": "skills/company-model/references/sectors/exchanges.md",
+      "bytes": 7054,
+      "sha256": "2891a84672cfe894ed2742ca6bace63f70b25d2782b49a71520ba3cefc53d909"
+    },
+    {
+      "path": "skills/company-model/references/sectors/film-tv-production.md",
+      "bytes": 8659,
+      "sha256": "c2b2313a49df8e6c3091a75b447ae6a62aa3cdbd701effd5082c2e2c1c9eb40d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/foundries.md",
+      "bytes": 8569,
+      "sha256": "b7a7594da9c080d3392f1de546bb773f404d72f142e87fe732a85928ab70064e"
+    },
+    {
+      "path": "skills/company-model/references/sectors/games.md",
+      "bytes": 9828,
+      "sha256": "34a7b6e053e9ac3d272fbda205fe436ddc58ff7ea51c5064148b1dd3b954e855"
+    },
+    {
+      "path": "skills/company-model/references/sectors/gas-distributors.md",
+      "bytes": 10398,
+      "sha256": "c94e2db17c516fbf8adfc2a78ebb089ddc811026e30ebb8500eb78bf2596bcfe"
+    },
+    {
+      "path": "skills/company-model/references/sectors/generic-drugs.md",
+      "bytes": 10579,
+      "sha256": "f36544e12eefd88f1782c17d4fc7e57835385424cbdf14cf1a96f6c266e9cc05"
+    },
+    {
+      "path": "skills/company-model/references/sectors/holding-companies.md",
+      "bytes": 9588,
+      "sha256": "28bfdca43dbd67592e0db53b677e56be7077670eb235a269bca12dd4545f52f9"
+    },
+    {
+      "path": "skills/company-model/references/sectors/home-appliances.md",
+      "bytes": 8779,
+      "sha256": "a7debabc46d9516fa955947938164a07b08d8a5bc4eecfe2d6ca8a3d12035e33"
+    },
+    {
+      "path": "skills/company-model/references/sectors/hospitals-healthcare-services.md",
+      "bytes": 8532,
+      "sha256": "9a48858f5ca6d2202b19f3e08bd10c737758dda99f60a15edb1d83845a3d8ce6"
+    },
+    {
+      "path": "skills/company-model/references/sectors/hotels.md",
+      "bytes": 7573,
+      "sha256": "a866ad69f93cfea05ae0992cff2d3cd33ab103317821eb864fb9ee3500a73ac1"
     },
     {
       "path": "skills/company-model/references/sectors/index.md",
-      "bytes": 5574,
-      "sha256": "d44edb667a1fcc763ab6baf6022f410e58ff20770f251aa9225ada59523cfaf8"
+      "bytes": 23576,
+      "sha256": "3ca4d5275f57c7d20fdade1166ab0afef207268978e458fd29ff41081213c992"
     },
     {
-      "path": "skills/company-model/references/sectors/industrials.md",
-      "bytes": 2127,
-      "sha256": "9aa190705913496daf6e00ab261bf7dbe2fc03a3283cb03712e49df22aeba3bf"
+      "path": "skills/company-model/references/sectors/inverters-energy-storage.md",
+      "bytes": 10661,
+      "sha256": "22fa09aab80f54b532e32e9996e2bbdef3d9478659b5f045136da063212e2572"
     },
     {
-      "path": "skills/company-model/references/sectors/insurance.md",
-      "bytes": 2737,
-      "sha256": "d20e1a4db4829ff10971634a3d8a715228b3727b75f4352e8ada8ef220fa98cb"
+      "path": "skills/company-model/references/sectors/it-services.md",
+      "bytes": 9285,
+      "sha256": "03db2f94dbe2bd9ce677eb25e9d02ba3985e2e4d024dac5bf9bbc614eea6ee71"
     },
     {
-      "path": "skills/company-model/references/sectors/internet-platform.md",
-      "bytes": 2348,
-      "sha256": "43eb4e586972a01ece5aec0e32fd639fbfbeb4c8c51f49e4ba2ec8fd537bbb56"
+      "path": "skills/company-model/references/sectors/jewellery.md",
+      "bytes": 7413,
+      "sha256": "3acb906ce309f9d2084b37649e4e70909c9a97b3d82fe549aa528c45c85fc0ea"
     },
     {
-      "path": "skills/company-model/references/sectors/media-gaming.md",
-      "bytes": 2144,
-      "sha256": "51d8d27d965b53769afeb38b20bdf5ff263d57d8310a15adb2f66d24e74342c4"
+      "path": "skills/company-model/references/sectors/life-insurers.md",
+      "bytes": 8868,
+      "sha256": "c8ecf5fdaffd40271238b6293c5e1a4de151f7880925ce3acd7767aeeb6a00f2"
     },
     {
-      "path": "skills/company-model/references/sectors/metals-mining.md",
-      "bytes": 2965,
-      "sha256": "5547ee950ac3cc176755c06578a227c511ed767720431983335b2f72f9866c6d"
+      "path": "skills/company-model/references/sectors/livestock-feed.md",
+      "bytes": 8748,
+      "sha256": "afca44f0ed87149c40e46ce1e4400a1c4ad87c17203539a47aef925dc212206d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/logistics-express.md",
+      "bytes": 8732,
+      "sha256": "f17c1fb7eb47032dcc2cf9d968b195583a4bd14c9ee791a6921332b183012756"
+    },
+    {
+      "path": "skills/company-model/references/sectors/luxury-goods.md",
+      "bytes": 7181,
+      "sha256": "7beca75189bd1fbad4d892a6b7564e64a862768bbe657af4dd1d0e0434d08b48"
+    },
+    {
+      "path": "skills/company-model/references/sectors/machinery.md",
+      "bytes": 9242,
+      "sha256": "9b9d0e33725ce2ced173f4b693ee51bf76605c95e66f366aad7449a91afd5fa9"
+    },
+    {
+      "path": "skills/company-model/references/sectors/meat-processing.md",
+      "bytes": 8862,
+      "sha256": "1b45aa99e436b9c446338e57afe6fd339668406d3fef5518c251a21d1d8ff52c"
+    },
+    {
+      "path": "skills/company-model/references/sectors/medical-devices.md",
+      "bytes": 10022,
+      "sha256": "58e11b25d6bf9d399adcf748641815859233c8e4e1100d29b460629f0b63e52c"
+    },
+    {
+      "path": "skills/company-model/references/sectors/memory.md",
+      "bytes": 8119,
+      "sha256": "d6281601e5d6e10d456ca85b32f1898a8b018179607b4e23fa167314be9924d1"
+    },
+    {
+      "path": "skills/company-model/references/sectors/metal-miners.md",
+      "bytes": 10517,
+      "sha256": "4591124fcaa2b160922b02f4eaafce7f134bf2dab7fd599b76dce1d7a2a9d762"
+    },
+    {
+      "path": "skills/company-model/references/sectors/motorcycles.md",
+      "bytes": 8685,
+      "sha256": "ec34cf578088de929f6f516d5a5a915d11fdcea0b62d760d42172fdb46fde31d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/non-bank-lenders.md",
+      "bytes": 8010,
+      "sha256": "c37bfa7b2320a5d4cc07ca357ad2ac4b2530bf059866204ebbe1608ecf4b7a12"
+    },
+    {
+      "path": "skills/company-model/references/sectors/oil-gas-producers.md",
+      "bytes": 9478,
+      "sha256": "5df0870fec36111a8bdcbde89cdcbd2d867f9bcdad22f42520de80cb14a5aef2"
+    },
+    {
+      "path": "skills/company-model/references/sectors/oil-services.md",
+      "bytes": 8402,
+      "sha256": "90b1141cce6e7dd6228c2cc8c031b3b5ae26e5118c35878b2c4086e2f6cc1558"
+    },
+    {
+      "path": "skills/company-model/references/sectors/online-travel.md",
+      "bytes": 6934,
+      "sha256": "bd8697b47ceac9c16844dd197cc402c98791545ec2ccf41ccf40e37d34a5601c"
     },
     {
       "path": "skills/company-model/references/sectors/optical-networking.md",
-      "bytes": 5799,
-      "sha256": "f3f899f0608dca15464067bf48c50917af594f83806499d26aca7ef8f5c65730"
+      "bytes": 11134,
+      "sha256": "c150b96ed33168e20645c552075edbcf8af8b6ca1bf50355280fd7a54d3090f9"
     },
     {
-      "path": "skills/company-model/references/sectors/payments-fintech.md",
-      "bytes": 2109,
-      "sha256": "ca197534975dd9a5bbdc742d9716a23221ffa7363e459493f3b3a7646196e1c5"
+      "path": "skills/company-model/references/sectors/packaged-food-drink.md",
+      "bytes": 8020,
+      "sha256": "f01348fcd1a55b5b22f056b74c966350cba137a9299c0d41a5c44894d1be06ba"
+    },
+    {
+      "path": "skills/company-model/references/sectors/passenger-vehicles.md",
+      "bytes": 9382,
+      "sha256": "30c0d4dfeb608ab69b6698f9383d10beca6a313c7cde6b4e01f665c1f5fc299b"
+    },
+    {
+      "path": "skills/company-model/references/sectors/payments.md",
+      "bytes": 8158,
+      "sha256": "b94754a8188e5a6ec8c272b97283c7818cee4f0c6be2b2f6f6a834556a44056a"
+    },
+    {
+      "path": "skills/company-model/references/sectors/pc-insurers.md",
+      "bytes": 8134,
+      "sha256": "ce876c38887b4527558dcc27a3215edcd369eb4b60c415ea626ba54a0f70435f"
     },
     {
       "path": "skills/company-model/references/sectors/pharma.md",
-      "bytes": 4019,
-      "sha256": "c025406d95482065385a485b5a69da7b29a278ff5ed8a5d60b0e8394877b0229"
+      "bytes": 11661,
+      "sha256": "0470eaaa44c36bfafcf29062bedf852e188cdd0e3da495c6bef870c9ca2b9169"
     },
     {
-      "path": "skills/company-model/references/sectors/reits.md",
-      "bytes": 2673,
-      "sha256": "52559ebeb7038511b807c189b393768f989baede7e086137978101617a05b42a"
+      "path": "skills/company-model/references/sectors/pharmacies.md",
+      "bytes": 7373,
+      "sha256": "11b0039020ada049eabff83c2891e8ae3bd1b469f91feea06124994b589f2c72"
     },
     {
-      "path": "skills/company-model/references/sectors/saas.md",
-      "bytes": 2397,
-      "sha256": "516996984db2bc6b54416f2e1df6b9d06ae476aba2e57e490bd823cd9217e63e"
+      "path": "skills/company-model/references/sectors/pipelines-lng.md",
+      "bytes": 8634,
+      "sha256": "9e9c294c02af3f89145c479123774f33f2e14dcab0c6a019df8120c0b1292e53"
     },
     {
-      "path": "skills/company-model/references/sectors/semiconductors.md",
-      "bytes": 2349,
-      "sha256": "495b90106d598eb70d2cb44763981f221ebee73f86e1dd5a6665f8adaf557c5c"
+      "path": "skills/company-model/references/sectors/power-generation.md",
+      "bytes": 9985,
+      "sha256": "0dd01b5caa82d910a661dbefd57e9f7897f04939cd2678047b2bda8648bcde8e"
     },
     {
-      "path": "skills/company-model/references/sectors/telecom.md",
-      "bytes": 2246,
-      "sha256": "734f5695e621b716b315bf302a5d4a5a045975986e88d3c11cdfbd485b4ebb10"
+      "path": "skills/company-model/references/sectors/property-agents-services.md",
+      "bytes": 10554,
+      "sha256": "744124665736d2e8ac66ea98e758e146b1bacfeec69e9dfe109a20c4328280b9"
     },
     {
-      "path": "skills/company-model/references/sectors/transport.md",
-      "bytes": 2156,
-      "sha256": "d47eb33715f0520b93a50a2a0e43d59b607ee06496d7beb8ad87892c5a9f4a44"
+      "path": "skills/company-model/references/sectors/property-developers.md",
+      "bytes": 11014,
+      "sha256": "c231b7d613e709423b3e5e013a528a2e490bc7b2b93fe4baf2259ae92a058e75"
     },
     {
-      "path": "skills/company-model/references/sectors/utilities.md",
-      "bytes": 2817,
-      "sha256": "124a0b1251b8e7a14e628f9afb7ef29970bab78f9b3ffc88f7d0fdb2bc14ac23"
+      "path": "skills/company-model/references/sectors/property-management.md",
+      "bytes": 9040,
+      "sha256": "70cff21c6a6414c29333c02a8c066d5140b7b5ef5fa023907b772cc0664e1cb9"
+    },
+    {
+      "path": "skills/company-model/references/sectors/railways.md",
+      "bytes": 10135,
+      "sha256": "6f72780c8f950f432359d34e2a05d2e3115401137cd9e622cfb49b88b3a94996"
+    },
+    {
+      "path": "skills/company-model/references/sectors/regulated-networks.md",
+      "bytes": 9034,
+      "sha256": "254ecdc267e7ec02e2b0893ab9ab4c838584c6bb0d97ae9bfcde7e748746f8a0"
+    },
+    {
+      "path": "skills/company-model/references/sectors/reits-landlords.md",
+      "bytes": 11770,
+      "sha256": "4f924d87fa84b6dbbcedcdc08eaee2b69417dc96da5491a76639ed765b19597b"
+    },
+    {
+      "path": "skills/company-model/references/sectors/restaurants.md",
+      "bytes": 10180,
+      "sha256": "955a05fb0eb172979cefd184c56303ad6b52ad96e68a0744752f4b0e78302402"
+    },
+    {
+      "path": "skills/company-model/references/sectors/retail.md",
+      "bytes": 8209,
+      "sha256": "c7ce5a5fb034a50872dc63fa2cf92ad7db9d2f8e206f1efbf0b72d746a4a31c3"
+    },
+    {
+      "path": "skills/company-model/references/sectors/ride-hailing-delivery.md",
+      "bytes": 10367,
+      "sha256": "08750317cf03d7af2a0623408f5ddff67dcad2497517cacbdab97c71f1ec30c0"
+    },
+    {
+      "path": "skills/company-model/references/sectors/schools-colleges.md",
+      "bytes": 7600,
+      "sha256": "f34312379ff25dc181f257e500b18033558a6723a2bea8cee0156b77bf5b3698"
+    },
+    {
+      "path": "skills/company-model/references/sectors/seeds.md",
+      "bytes": 8017,
+      "sha256": "cda7f23a75857558c69213e1fa006a22c3d4ca48e68bf4f3b6f409d6a98345c7"
+    },
+    {
+      "path": "skills/company-model/references/sectors/shipbuilding.md",
+      "bytes": 8127,
+      "sha256": "59b3ff5cf5f8f203058229b92af755d1e46afe1e69a8f9eb7f45f6fe05ee034b"
+    },
+    {
+      "path": "skills/company-model/references/sectors/shipping.md",
+      "bytes": 8399,
+      "sha256": "83e0268b30377847efddd8c5e9f1274a02dc5f124a90464ba088efa4b6267eca"
+    },
+    {
+      "path": "skills/company-model/references/sectors/software.md",
+      "bytes": 9201,
+      "sha256": "c0c62b324f34b0de26a732e9c363aa34796de949f21f671bb337f05b05ef3669"
+    },
+    {
+      "path": "skills/company-model/references/sectors/solar.md",
+      "bytes": 10824,
+      "sha256": "2a1f9d4007d4dc131f9bdb96e7f2596f342673a714fd9b2c8de5f32f9efb5337"
+    },
+    {
+      "path": "skills/company-model/references/sectors/specialty-chemicals.md",
+      "bytes": 9360,
+      "sha256": "a4801678764c1527aa62ddda52979412a326bb2f5c0653a21b8254bb59498609"
+    },
+    {
+      "path": "skills/company-model/references/sectors/spirits.md",
+      "bytes": 8775,
+      "sha256": "4f7596804b040eb2353f281da99af8bbdff157f5681b047787d9950f22b53031"
+    },
+    {
+      "path": "skills/company-model/references/sectors/sportswear-apparel.md",
+      "bytes": 9630,
+      "sha256": "a083ed324d9b1ec756cb5bfb1e353298bea201edb7aca5e227dee9f764784228"
+    },
+    {
+      "path": "skills/company-model/references/sectors/staffing.md",
+      "bytes": 8369,
+      "sha256": "171fba441f8b54dccf65549997450fd3b776fc6dc8f7f63bc54c1cbc14078c58"
+    },
+    {
+      "path": "skills/company-model/references/sectors/steel-aluminium-cement.md",
+      "bytes": 9220,
+      "sha256": "ebc938af00a04b5a914bb3c94c7fe0e14426de88dd38bbb6eb035d80d900b797"
+    },
+    {
+      "path": "skills/company-model/references/sectors/streaming.md",
+      "bytes": 8841,
+      "sha256": "f71eb171a80ca41d24534f92e47862dce9bdfcefe4986278ca5ff258105518a6"
+    },
+    {
+      "path": "skills/company-model/references/sectors/telecom-operators.md",
+      "bytes": 8959,
+      "sha256": "af10c5569df21d8a21ae933418899c671f485dec8260cf4343ee5a16272f3844"
+    },
+    {
+      "path": "skills/company-model/references/sectors/testing-inspection.md",
+      "bytes": 7681,
+      "sha256": "c01c872d5181df772df3440863c540719d29aaf5e7e950d5b0f3f9157a07684c"
+    },
+    {
+      "path": "skills/company-model/references/sectors/theme-parks-sites.md",
+      "bytes": 6614,
+      "sha256": "e1643dd4f2463b2cacf3df7aeb5d770525653386f3f042259438943168edd3cc"
+    },
+    {
+      "path": "skills/company-model/references/sectors/towers-data-centres.md",
+      "bytes": 9989,
+      "sha256": "4ae5c75297cdb0c5d82ede881351aa64871c55cd418a6160fabbc42a20cb854d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/toys-collectibles.md",
+      "bytes": 7455,
+      "sha256": "ac4ee0cae6bf0d299266654da1f2a9cccb9576998fe7da80c5b748bb6106b18d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/trading-distribution.md",
+      "bytes": 8567,
+      "sha256": "152d058e8c0b114f7f917dfe90d7a27f4af8c336a57dffbe8be9992b497846a1"
+    },
+    {
+      "path": "skills/company-model/references/sectors/transport-infrastructure.md",
+      "bytes": 9088,
+      "sha256": "9a27101b4a0937eb7c0363afcbb06cff5d36dfc2ff7a0c5a608d8df6d4475b61"
+    },
+    {
+      "path": "skills/company-model/references/sectors/travel-retail.md",
+      "bytes": 7317,
+      "sha256": "4e0aa3d6b33cda2ecd5f2ac3c300f1b78fb468480913647c6e1e1f8352fbfd9d"
+    },
+    {
+      "path": "skills/company-model/references/sectors/trucks.md",
+      "bytes": 9989,
+      "sha256": "2e36b835da328fc2496ce3fa7268307421a87ea9331108fd6adca5b8ba513215"
+    },
+    {
+      "path": "skills/company-model/references/sectors/tutoring-training.md",
+      "bytes": 7227,
+      "sha256": "953deefad165c08822d6984c7bb6f63243fbc6a12060662206f36bfd72ceaec0"
+    },
+    {
+      "path": "skills/company-model/references/sectors/tyres.md",
+      "bytes": 8637,
+      "sha256": "eac89f1ea66ba95c04f5c6d65a72f604383001d2cea706b3df27046dfb25f3e6"
+    },
+    {
+      "path": "skills/company-model/references/sectors/wind-equipment.md",
+      "bytes": 9884,
+      "sha256": "83097d8da4a0acf6158706e03596e2c7180a457c8c3b82f6a78ca702b0808a99"
     },
     {
       "path": "skills/company-model/references/statement-forecast.md",
@@ -492,8 +887,8 @@
     },
     {
       "path": "skills/evals/fixtures/README.md",
-      "bytes": 6051,
-      "sha256": "4d1068b388ca4f0135285a54fc4b2dc5889f44a0c555733a740ac337936fc77e"
+      "bytes": 6050,
+      "sha256": "c8205e2bf937ad174bc60bab0e4869c96d1f4fd617b6a928e0a79df961ad0fd7"
     },
     {
       "path": "skills/evals/fixtures/alder-earnings-update/facts.json",
@@ -677,18 +1072,18 @@
     },
     {
       "path": "skills/industry-analysis/SKILL.md",
-      "bytes": 8207,
-      "sha256": "951199de8e774c0cf8510475448d1e2b9b187806cd4702e9b7115741eb8ae4f4"
+      "bytes": 8246,
+      "sha256": "8f05c9a6eb5da35b55727ca1b197a7c45f8754dbf93ee4becef3715b26082dfd"
     },
     {
       "path": "skills/investment-conclusion/SKILL.md",
-      "bytes": 8923,
-      "sha256": "b7957f74dd68a2fa4b5f13041630abfe0ab42988e78938f17250dd2ccfb5bf04"
+      "bytes": 8825,
+      "sha256": "bdfa20d6e745472bb0e1977938398c86ae9241fbce3746bdf031c3c5fa72e1ed"
     },
     {
       "path": "skills/investment-conclusion/references/decision-contract.md",
-      "bytes": 14739,
-      "sha256": "a88ce1faef0768690389cf27901fb651cad8d9f8540e3cc0ab68f095a2973ac1"
+      "bytes": 14311,
+      "sha256": "1b73337cc4933c92ca8cc677bc0bb8abaa19f7c978a20c19130b52a9becc8807"
     },
     {
       "path": "skills/investment-conviction/SKILL.md",
@@ -722,8 +1117,8 @@
     },
     {
       "path": "skills/macro-event-analysis/SKILL.md",
-      "bytes": 5296,
-      "sha256": "b37cf57225ef269bf1087811437adb785a3bc7f83f4b0e57fab51550e4cd175b"
+      "bytes": 5127,
+      "sha256": "dd58929c15f9b6ddb8ceb2040c3ee10b85b7f8c21cdf6327422dc7f11a257c25"
     },
     {
       "path": "skills/macro-event-analysis/references/market-regime-and-investor-base.md",
@@ -741,19 +1136,9 @@
       "sha256": "a3fbfed0e47992865db8c8c4b7fe9d219249be9cb172056a8f185cb46f67f2b8"
     },
     {
-      "path": "skills/monitor-review/SKILL.md",
-      "bytes": 8682,
-      "sha256": "e34b8e65c36bfa279201529d1d4c3c92e7cf1ef60ec02ecf9e399f25e71d9d4c"
-    },
-    {
-      "path": "skills/monitor-review/references/recurring-research.md",
-      "bytes": 4690,
-      "sha256": "7af1ad8c13759f2adc31203a8f28bfba08d84935266e800c08e983cedcd9cc52"
-    },
-    {
       "path": "skills/report-layout/SKILL.md",
-      "bytes": 10950,
-      "sha256": "ff2f3de826802ea9bd3e1799c9208b9195e96f0746acd3bbd16c662c3df81ee6"
+      "bytes": 11950,
+      "sha256": "6b9b3920c1345295fbda047765f07beb1c6cf6e03645bdfbce48659279c9d11a"
     },
     {
       "path": "skills/report-layout/assets/cash-receipt-claim.example.json",
@@ -842,8 +1227,8 @@
     },
     {
       "path": "skills/report-layout/references/publication-review.md",
-      "bytes": 24595,
-      "sha256": "8e0426f759c190e44177ab73cf17df1c4038deb32770024f7446b4baa241d6ce"
+      "bytes": 24810,
+      "sha256": "3db1a4f41e3412fbc21de1a0b60030c9ade66b12ddcb12e85e25a55276544d49"
     },
     {
       "path": "skills/report-layout/requirements.txt",
@@ -907,8 +1292,8 @@
     },
     {
       "path": "skills/report-layout/scripts/publication_review.py",
-      "bytes": 50981,
-      "sha256": "3a25aa4a8b9304034dfd2e4b1f841a3d95c08011ffecc4946f4bf508687eeb0d"
+      "bytes": 50268,
+      "sha256": "99c1e3c389d010f1ca834c508d66b7a1ea0e64190b3ef4a2737910b534088071"
     },
     {
       "path": "skills/report-layout/scripts/release_check.py",
@@ -917,8 +1302,8 @@
     },
     {
       "path": "skills/report-layout/scripts/report_layout.py",
-      "bytes": 65812,
-      "sha256": "21c65ffbb7cfd1835324cb1823aff7e97928df726b5c768c1533414cdd6324d6"
+      "bytes": 65869,
+      "sha256": "10b26d80318ba403eca5901dccc67b652dc8f57f69cc42309c4828dc1393c362"
     },
     {
       "path": "skills/report-layout/scripts/research_rules.py",
@@ -937,8 +1322,8 @@
     },
     {
       "path": "skills/research-brief/SKILL.md",
-      "bytes": 15634,
-      "sha256": "7e338e347f4c55afa78a0e1aba43d1ce13b5ad8dd5db1a892a17bfb0f9f29d72"
+      "bytes": 14562,
+      "sha256": "e366a7c6514ca4421ca4f488f9be5ea445d000788332b1161b15e1bcf73bf5ac"
     },
     {
       "path": "skills/research-brief/assets/calibration-case.json",
@@ -962,23 +1347,18 @@
     },
     {
       "path": "skills/research-brief/references/natural-writing.md",
-      "bytes": 13124,
-      "sha256": "65e4cc1262703407bd1b7507c388b65e8dbdfe87a4f45320d691076b39bcba95"
+      "bytes": 15416,
+      "sha256": "5ef260b811264ad7ec453cf8e3bdb813ff1a69ba26c378e762bcfebd5beb2bde"
     },
     {
       "path": "skills/research-brief/references/one-page-brief.md",
-      "bytes": 7952,
-      "sha256": "6fb84535998492e2e53291e10ef02a0ce6c4230301429b323fd23a54b6aff69a"
+      "bytes": 7701,
+      "sha256": "b43f7d6a6edead4b6f55cda70e9baca5bfd80651d525976b1e7ab1c74b19115c"
     },
     {
       "path": "skills/research-brief/references/visual-reports.md",
-      "bytes": 11289,
-      "sha256": "f55fb27b55005a47b6601ef542dcbe0dbcc2e7f64d4cc5c1c37e6d14b93f0e90"
-    },
-    {
-      "path": "skills/research-brief/references/writing-detail.md",
-      "bytes": 2611,
-      "sha256": "8101e0971b895561545dc9df42ca20ada608b31d5f00adec354a5f193d291fab"
+      "bytes": 10938,
+      "sha256": "c734d0ea230cd2f781c98f72a268a4b7f2e9315763af553cbd2af1344aa67858"
     },
     {
       "path": "skills/research-brief/scripts/render_one_page.py",
@@ -987,8 +1367,8 @@
     },
     {
       "path": "skills/research-challenge/SKILL.md",
-      "bytes": 12480,
-      "sha256": "8fe5f3f16a5b81e2e45295166c5d432712c47192b9a3e80c9d60d1f8fa8c24ee"
+      "bytes": 12896,
+      "sha256": "bff5765d0833522fce4c94d90593449ea44e578c5e3be83368c142073103965c"
     },
     {
       "path": "skills/research-challenge/references/inference-quality.md",
@@ -997,18 +1377,23 @@
     },
     {
       "path": "skills/research-cycle/SKILL.md",
-      "bytes": 9389,
-      "sha256": "ac4a3b451cb374926243b48d930b224e1e07607b9d576bfc1c05fe6640dda29a"
+      "bytes": 9392,
+      "sha256": "4c92351ecd59979f9e3eb20391d8993989771512163f6cd91a41831fccfca6b0"
     },
     {
       "path": "skills/research-cycle/assets/skill-coverage.json",
-      "bytes": 6783,
-      "sha256": "b9ab72da246a0959f71004a65da7da86597336dd64a921c9d245891fd4018836"
+      "bytes": 6490,
+      "sha256": "c0e94e97e37252e8d4cab4ccd67c03e7d677e5f08992fa00926b22b94d1bc9dc"
+    },
+    {
+      "path": "skills/research-cycle/references/company-follow-up.md",
+      "bytes": 1876,
+      "sha256": "4587d7f9df4fdd6205105ebcafc7cd0f0d3bb591e78526e7d307643009a56002"
     },
     {
       "path": "skills/research-cycle/references/company-sequence.md",
-      "bytes": 13950,
-      "sha256": "03871b8387c454b27c9bbc3b4cbae4638766f6810e09a1c07d2600b3174745c4"
+      "bytes": 14138,
+      "sha256": "11d6b86d5e15252b504b9d78f7fba367163e71ade355a08c3fd07f4842411912"
     },
     {
       "path": "skills/research-cycle/references/empirical-research-and-validation.md",
@@ -1027,8 +1412,8 @@
     },
     {
       "path": "skills/research-cycle/references/handoffs.md",
-      "bytes": 10762,
-      "sha256": "c5abf7dba3486aa644e4584b5fde5878c3448bd092cc80f59f338ce4cca447d3"
+      "bytes": 11143,
+      "sha256": "d3ded88e04bad73763010117380d5d157bc97ab10e036a11794425a437811b6e"
     },
     {
       "path": "skills/research-cycle/references/investor-judgment.md",
@@ -1042,8 +1427,8 @@
     },
     {
       "path": "skills/research-cycle/references/research-branches.md",
-      "bytes": 5503,
-      "sha256": "f0f165a84634201ff583364186ee763c20b2a72774161810a1495596c485fc70"
+      "bytes": 5322,
+      "sha256": "adbf795fd4b923b3ca98b91526db8c973719cafee901635b61e97e83d4a2d6e4"
     },
     {
       "path": "skills/research-cycle/references/research-coverage.md",
@@ -1062,23 +1447,23 @@
     },
     {
       "path": "skills/research-cycle/references/underwriting-standard.md",
-      "bytes": 5607,
-      "sha256": "c13291c5ffa37d098355ead45b2193cc705532c212d0a18acf7f96a6524bd9c2"
+      "bytes": 5616,
+      "sha256": "964fe07ec47d63112b7910b1bbb6e74bcadff0fdb245362a255c20bfb52980dc"
     },
     {
       "path": "skills/research-cycle/references/what-the-market-trades.md",
-      "bytes": 10695,
-      "sha256": "784f08462c0b7f5fe8272bd839e3014d8b4069a724d14e493241453e6a03aba0"
+      "bytes": 10689,
+      "sha256": "898d8ff97ccb9f6004c732a19f96ff43af3df99723de16485a4078eedd6d1883"
     },
     {
       "path": "skills/research-cycle/references/workflow.md",
-      "bytes": 6497,
-      "sha256": "0a75878797c0fba20e8aa98c3859594b67b5cd1c27d50da2b1ef62d57655c6fc"
+      "bytes": 2567,
+      "sha256": "65938782fbf1f9443c8ec94b82d0cbe34e43b6a448b16e5f2f3642792595e5dc"
     },
     {
       "path": "skills/research-cycle/references/world-state.md",
-      "bytes": 7240,
-      "sha256": "dc9581c054f9141e1b91c894c49d5fc807174db8d5fd8c422e7d5591cb208191"
+      "bytes": 7234,
+      "sha256": "e49e3c2070cda24c98384844b9ee1e56f5f73150b175653d36844fc20666ef63"
     },
     {
       "path": "skills/research-cycle/scripts/research_plan.py",
@@ -1112,8 +1497,8 @@
     },
     {
       "path": "skills/tests/research-routing.test.mjs",
-      "bytes": 11621,
-      "sha256": "1471df6c2dac9950bdd43eacd73138fd8243d511bedfccf38e4ed7f3efd8cb13"
+      "bytes": 12126,
+      "sha256": "87125f2053fe3e56bfc74562fde78126b7df7aa6c8d0aed1f1aafc8bc8816e66"
     },
     {
       "path": "skills/tests/test_alder_fixtures.py",
@@ -1252,8 +1637,8 @@
     },
     {
       "path": "skills/tests/test_report_layout.py",
-      "bytes": 14474,
-      "sha256": "ce9c0af21348395bef9f1690bf1258b56abff161298cd0ac2e3e44f79e4f0324"
+      "bytes": 14635,
+      "sha256": "abb67dbaf7de5cc7704972f25c8379c3110584ee4d3fa0cb118a022be4fbe8a6"
     },
     {
       "path": "skills/tests/test_research_data.py",
@@ -1297,13 +1682,13 @@
     },
     {
       "path": "skills/valuation-thesis/SKILL.md",
-      "bytes": 17346,
-      "sha256": "2469787db10b15ac02a769d7f4e3666bfbdd95a964717483bcd48f0c4c38df9e"
+      "bytes": 18187,
+      "sha256": "15cd58040ff081e5331960fc271d794d9b5c3606f90865c48b7730473f1e9c72"
     },
     {
       "path": "skills/valuation-thesis/references/current-expectations.md",
-      "bytes": 4966,
-      "sha256": "59c13ded417425d0906716a2bbbb32cabccc041a044884053d5b87b55443efbb"
+      "bytes": 4939,
+      "sha256": "6ae349fc2252dac1b4d1db917a9584112787c6c591d4775fe057d69a7f08d2e0"
     },
     {
       "path": "skills/valuation-thesis/references/discount-rate-selection.md",
@@ -1322,23 +1707,18 @@
     },
     {
       "path": "skills/valuation-thesis/references/method-selection.md",
-      "bytes": 19499,
-      "sha256": "cef2fde092d22bc37737ba3f61905512c73128fa7c4766804542e8524cdbfd3d"
-    },
-    {
-      "path": "skills/valuation-thesis/references/target-underwriting.md",
-      "bytes": 2532,
-      "sha256": "27a2195a5036e1a7213e1ed812d5eb9ece8f2c658cf604165ef58af23695273c"
+      "bytes": 17777,
+      "sha256": "2d7cf64199367e44ca321ade4a849f3e2a07ac02b95fd5514620b1e9273cd95c"
     },
     {
       "path": "skills/valuation-thesis/references/thesis-tests.md",
-      "bytes": 3541,
-      "sha256": "5a5fe3c206ccfbb67e4c7b3cfc5d7b93d108f6e454ade8fae05e2d000409045a"
+      "bytes": 3551,
+      "sha256": "7e7da2b29e01f9ff57bbfc87495c3bf13e87e919274a418d395f349a91619740"
     },
     {
       "path": "skills/valuation-thesis/references/valuation-calendar.md",
-      "bytes": 6626,
-      "sha256": "f983c43a220d1d52177ed39a5a339856c1e4389e7027f24515a0861c771acd31"
+      "bytes": 7189,
+      "sha256": "ab631704d82f1e449c1921046e626afd19f4a97c882ee34e0dd5133d0e9f7d8f"
     },
     {
       "path": "skills/valuation-thesis/references/valuation-driver-and-dividends.md",
@@ -1349,6 +1729,11 @@
       "path": "skills/valuation-thesis/references/valuation-method.md",
       "bytes": 6977,
       "sha256": "96aa1fbba5a9d72c279ac8538ed4e6587beabe4401f46f9acf35ed78e5573178"
+    },
+    {
+      "path": "skills/valuation-thesis/references/yardsticks.md",
+      "bytes": 10960,
+      "sha256": "55dcbe39fb1bccb63b9bd9b8579688fd23afa8d36762c3855907be0c63574e24"
     },
     {
       "path": "skills/valuation-thesis/scripts/compare_forward_pe.mjs",

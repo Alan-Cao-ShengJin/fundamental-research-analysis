@@ -35,6 +35,8 @@ For earnings/event work, keep the [earnings clock](../../company-model/reference
 
 ## Stage-specific artifacts
 
+Artifact kinds are data contracts, not skill routes. The envelope retains `hypothesis`, `strategy-test` and `portfolio-decision` for downstream compatibility; their portfolio workflows and owning skills are outside this research module. Company follow-up can still use the `monitor-review` artifact kind. The research catalog defines which skills and flows belong to this module.
+
 | Kind | Required substantive content |
 | --- | --- |
 | `research-brief` | Decision, horizon/deadline, mandate, capital scope, baseline, capabilities and budget |

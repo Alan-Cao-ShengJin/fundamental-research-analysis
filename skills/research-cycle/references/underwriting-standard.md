@@ -30,7 +30,7 @@ Integrate [market context](../../macro-event-analysis/references/market-regime-a
 
 Use an executable bridge separating earnings/operating change, multiple change, cash/debt/share effects and distributions. State interaction conventions and show the outcome if today's valuation persists. Match claims, earnings horizons, accounting and estimate vintages across methods. Explain material method disagreements rather than selecting the result that suits the thesis.
 
-A dated target needs a credible route to realisation within the horizon: earnings and cash delivery, distributions or a supported re-rating. A known dated catalyst is usually already priced in. A low multiple, a known weakness or an undated hope of reform alone does not establish mispricing. Apply [target underwriting](../../valuation-thesis/references/target-underwriting.md).
+A dated target needs a credible route to realisation within the horizon: earnings and cash delivery, distributions or a supported re-rating. A known dated catalyst is usually already priced in. A low multiple, a known weakness or an undated hope of reform alone does not establish mispricing. Apply the [valuation sequence](../../valuation-thesis/SKILL.md#value-the-company-in-six-steps).
 
 ## Challenge and subsequent learning
 

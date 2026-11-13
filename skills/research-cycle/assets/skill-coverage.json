@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "modes": {
     "initiation": "new-company-research",
     "regular": "company-regular-review",
@@ -102,22 +102,13 @@
       },
       "purpose": "Requested pitch or update, numerical/prose consistency and linked technical support."
     },
-    "monitor-review": {
+    "company-change-tracking": {
       "modes": {
         "initiation": "required",
         "regular": "required",
         "major": "required"
       },
-      "purpose": "Next decisive observations, milestones and learning; planning does not activate monitoring."
-    },
-    "company-change-tracking": {
-      "modes": {
-        "initiation": "conditional",
-        "regular": "required",
-        "major": "required"
-      },
-      "purpose": "Comparable observation/change ledger and frozen forecast-to-actual learning.",
-      "trigger": "Existing-coverage review, or a historical change/surprise chain that materially informs initiation."
+      "purpose": "Comparable observation and change ledger, frozen forecast-to-actual learning, and the next decisive observations and milestones; planning does not activate monitoring."
     },
     "macro-event-analysis": {
       "modes": {

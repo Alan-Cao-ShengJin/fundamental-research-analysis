@@ -2,7 +2,7 @@
 name: macro-event-analysis
 description: Assess macro regimes and events, sector preferences, topical narratives and their effects on company economics and repricing. Use for policy/rate/geopolitical shocks and company market-context analysis; retain investor access and liquidity as supporting checks when material.
 metadata:
-  version: 2.1.1
+  version: 2.1.2
 ---
 
 # Macro event analysis
@@ -19,7 +19,7 @@ For a request about sector leadership or rotation, use the [multi-window rotatio
 2. **Transmission.** Trace shock → policy/business response → growth/inflation/cash flow or discount rate → asset pricing. Mark direction, horizon, lag, feedback and dampening/amplifying mechanisms. Consider how starting valuations and existing expectations alter the effect. Avoid mechanical claims such as every rate cut helping every equity market.
 3. **Historical analogues.** Select comparable episodes by mechanism and initial conditions, including contrary outcomes. Define event timestamp, return windows, instruments, currency, price versus total return and a benchmark. Report data availability and material differences; do not invent returns when historical data is absent.
 4. **Scenarios.** Describe a central path and plausible alternatives, using observable conditions and time horizons. Define what favourable/adverse means for the named assets. Probability weights are optional subjective assumptions unless calibrated; explain their basis, sum them to one when used and show sensitivity. Distinguish absolute asset direction from performance relative to a benchmark.
-5. **Trade expressions.** When implementation is requested, propose candidate instrument/direction, entry conditions, horizon, costs/carry, liquidity, sizing policy and exit rules. Verify instrument availability. Without a mandate, holdings and risk inputs, leave weights unsized. Use [strategy testing (external workflow)](../research-cycle/references/scope-boundary.md) and [portfolio review (external workflow)](../research-cycle/references/scope-boundary.md) before treating a macro view as an implementable candidate.
+5. **Downstream implications.** Explain which companies, operating drivers or valuation assumptions the macro view changes. Portfolio selection, instrument implementation and position sizing belong to the separate portfolio module; retain the evidence and uncertainty for that handoff without assigning weights here.
 6. **Invalidation.** State measurable observations that would break a causal link or change a scenario, with the next review action. Separate thesis invalidation, time expiry and a proposed price stop; a stop does not guarantee an execution price or cap loss through gaps.
 
 ## Deliverable and routing
@@ -28,4 +28,4 @@ Return a sourced Markdown analysis scaled to the request. Use a transmission dia
 
 For agents, retain stable scenario/variable IDs, dated observations, causal links with lags and confidence, assumption ranges, affected asset/model metric IDs and observable review conditions in a referenced structured record. Use a `hypothesis` [handoff](../research-cycle/references/handoffs.md).
 
-The standalone event deep dive is an optional branch after evidence intake; a proportionate market-context assessment forms part of full company research. Feed relevant conditions into the [company model](../company-model/SKILL.md) through explicit price, volume, cost, FX and funding assumptions, and investor-demand/discount-rate effects into valuation with separate lineage. Recalculate affected outputs before revising a conclusion. Feed proposed observations into [monitor review](../monitor-review/SKILL.md). Neither analysis nor proposed observations submit an order or activate a watch.
+The standalone event deep dive is an optional branch after evidence intake; a proportionate market-context assessment forms part of full company research. Feed relevant conditions into the [company model](../company-model/SKILL.md) through explicit price, volume, cost, FX and funding assumptions, and investor-demand/discount-rate effects into valuation with separate lineage. Recalculate affected outputs before revising a conclusion. Feed proposed observations into the [company follow-up record](../research-cycle/references/company-follow-up.md). Neither analysis nor proposed observations submit an order or activate a watch.

@@ -74,7 +74,6 @@ from display_bindings import bound_measure
 
 # Judgement wording that belongs in an Argument, with its evidence, not in a plain paragraph.
 JUDGEMENT = ('we forecast', 'we assume', 'we expect', 'we think', 'we believe', 'our view', 'our reading', 'we side')
-CLAIM_STATUS = ('supported', 'contradicted', 'untested')
 _CITES = re.compile(r'\{\{(src|ex):')
 
 
@@ -84,48 +83,50 @@ def _nonempty(name, text, where):
 
 
 class Argument(Block):
-    """One substantive investment point, written through the argument sequence and rendered as one paragraph without
-    labels: the point and its data; how the data was derived, citing its source ({{src:key}}) or exhibit ({{ex:key}});
-    what it means against a comparison; and what it does to EPS, the multiple or the target. `segment` tags the business
-    unit the argument analyses; a segment argument must cite the exhibit that shows the unit's driver build."""
+    """One point of the investment case, rendered as one paragraph without labels: the point in plain words, then the
+    reason and the two or three figures behind it, citing its source ({{src:key}}) or exhibit ({{ex:key}}). Add
+    `inference` (what it means) and `implication` (what it does to EPS, the multiple or the target) only where the
+    reader would not see them unprompted. `segment` tags the business unit the argument analyses; a segment argument
+    must cite the exhibit that shows the unit's driver build."""
 
-    def __new__(cls, point, evidence, inference, implication, segment=None):
-        for name, text in (('point', point), ('evidence', evidence), ('inference', inference), ('implication', implication)):
+    def __new__(cls, point, evidence, inference='', implication='', segment=None):
+        for name, text in (('point', point), ('evidence', evidence)):
             _nonempty(name, text, 'Argument')
         if not _CITES.search(evidence):
             raise ValueError('Argument evidence must cite a source ({{src:key}}) or an exhibit ({{ex:key}}): ' + point[:80])
-        if segment and '{{ex:' not in evidence + inference:
+        if segment and '{{ex:' not in evidence + (inference or ''):
             raise ValueError(f'The {segment} argument must cite the exhibit that shows its driver build')
-        self = super().__new__(cls, f'<p class="arg">{point} {evidence} {inference} {implication}</p>')
+        text = ' '.join(part.strip() for part in (point, evidence, inference, implication) if part and part.strip())
+        self = super().__new__(cls, f'<p class="arg">{text}</p>')
         self.segment = segment
         return self
 
 
 class Debate(Block):
-    """One contested question the stock turns on, answered: the claims each side rests on, each with its evidence and
-    status (supported, contradicted, untested); our answer; the number it moves (a forecast, margin or multiple,
-    quantified); and the observation and date that would settle it. Bull and bear appear once, as priced scenarios."""
+    """One question investors are arguing about. `live` says why it is live: what raised it, where investors argue it
+    and what today's price assumes. `bears` and `bulls` are each side's best points, every point citing its source
+    ({{src:key}}) or exhibit ({{ex:key}}). `view` is the side we take, the evidence that decides it and what the other
+    side gets right. `worth` is the share price if each side is right, from the bear and bull scenarios. `settles` is
+    the observation, its date and the level that would change our mind."""
 
-    def __new__(cls, question, claims, answer, moves, settles):
-        for name, text in (('question', question), ('answer', answer), ('moves', moves), ('settles', settles)):
-            _nonempty(name, text, f'Debate {question[:60]!r}')
-        if len(claims) < 2:
-            raise ValueError(f'Debate {question[:60]!r} needs at least two claims that must hold, with their evidence')
-        rows = []
-        for claim, evidence, status in claims:
-            _nonempty('claim', claim, 'Debate claim')
-            if status not in CLAIM_STATUS:
-                raise ValueError(f'Claim status must be one of {CLAIM_STATUS}, not {status!r}')
-            if not _CITES.search(evidence):
-                raise ValueError('Each debate claim cites the source or exhibit that tests it: ' + claim[:80])
-            rows.append([claim, evidence, status.capitalize()])
-        if not re.search(r'\d', moves):
-            raise ValueError(f'Debate {question[:60]!r}: say what the answer moves, with the number (a forecast, margin or multiple)')
-        if not re.search(r'\d', settles):
-            raise ValueError(f'Debate {question[:60]!r}: name the observation and its date that would settle the question')
-        tab = table(['Claim that must hold', 'Evidence', 'Status'], rows, cls='text', compact=True)
-        # Keep the heading, paginated table and answer in one normal-flow grid item.
-        html_ = f'<div class="debate"><h3>{esc(question)}</h3>{tab}<p><b>Our answer.</b> {answer} {moves} {settles}</p></div>'
+    def __new__(cls, question, live, bears, bulls, view, worth, settles):
+        where = f'Debate {str(question)[:60]!r}'
+        for name, text in (('question', question), ('live', live), ('view', view), ('worth', worth), ('settles', settles)):
+            _nonempty(name, text, where)
+        for side, points in (('bears', bears), ('bulls', bulls)):
+            if isinstance(points, str) or not points:
+                raise ValueError(f'{where} needs what the {side} say, as a list of points with their evidence')
+            for point in points:
+                _nonempty(f'{side} point', point, where)
+                if not _CITES.search(point):
+                    raise ValueError(f'{where}: each point cites its source or exhibit: ' + point[:80])
+        rows = [[bears[i] if i < len(bears) else '', bulls[i] if i < len(bulls) else '']
+                for i in range(max(len(bears), len(bulls)))]
+        sides = table(['Bears say', 'Bulls say'], rows, cls='text')
+        # Keep the heading, both sides and our view in one normal-flow grid item.
+        html_ = (f'<div class="debate"><h3>{esc(question)}</h3><p><b>Why it is live.</b> {live}</p>{sides}'
+                 f'<p><b>Our view.</b> {view}</p><p><b>What it is worth.</b> {worth}</p>'
+                 f'<p><b>What settles it.</b> {settles}</p></div>')
         self = super().__new__(cls, html_)
         self.question = question
         return self
@@ -190,7 +191,7 @@ h3 {{ font-size: 10pt; font-weight: 600; color: {COL['ink']}; margin: 2mm 0 1mm;
 .exhibit {{ break-inside: avoid; margin: 1.5mm 0 3.5mm; }}
 .exhibit.splittable {{ break-inside: auto; }}
 .debate {{ min-width: 0; }}
-.debate table {{ margin-bottom: 2mm; }}
+.debate table {{ margin-bottom: 2mm; table-layout: fixed; }}
 thead {{ display: table-header-group; }}
 tr {{ break-inside: avoid; }}
 .ex-head {{ font-size: 8.5pt; font-weight: 600; color: {COL['ink']}; border-top: 1px solid {COL['ink']}; padding-top: 1mm;
@@ -314,8 +315,8 @@ class Report:
             raise ValueError(f'Section {title!r} answers {sorted(covers)} but holds no Argument or Debate: it describes, '
                              f'it does not analyse. Write each substantive point as an Argument with its evidence.')
         if 'debate' in covers and not any(isinstance(it, Debate) for it in items):
-            raise ValueError(f'Section {title!r} covers the debate but holds no Debate block: each contested question '
-                             f'needs both cases, the claims tested, our answer, what it moves and what settles it.')
+            raise ValueError(f'Section {title!r} covers the debate but holds no Debate block: each debate needs why it '
+                             f'is live, what each side says, our view, what it is worth and what settles it.')
         body = [f'<div class="rail"><h2>{esc(title)}</h2><div class="take">{takeaway}</div></div>']
         for it in items:
             if isinstance(it, Sub):

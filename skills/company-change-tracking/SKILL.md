@@ -2,7 +2,7 @@
 name: company-change-tracking
 description: Maintain a sourced comparison chain for changes in a listed company's investment drivers, separating realised changes from surprises and linking evidence to affected model assumptions. Use for company updates, inflection-point tracking and recurring thesis reviews.
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Company change tracking
@@ -34,4 +34,4 @@ Keep cause as reported explanation or analyst inference, with evidence and alter
 
 Pass supported changes into [model revision](../model-revision/SKILL.md) when an existing financial model or decision needs updating; the [company model](../company-model/references/agent-model.md) supplies calculations. Change tracking can end with an evidence ledger when no model revision is requested or supported. Preserve the original forecast for later matched forecast-to-actual evaluation. For suspected accounting explanations, invoke [financial quality](../financial-quality/SKILL.md).
 
-Return a `monitor-review` [handoff](../research-cycle/references/handoffs.md) with ledger location, material changes, dependency versions and next tests. Use [monitor review](../monitor-review/SKILL.md) to define cadence and watch status. Short-window return attribution uses the historical mode of [valuation and narrative analysis](../valuation-thesis/SKILL.md).
+Return a `monitor-review` [handoff](../research-cycle/references/handoffs.md) with ledger location, material changes, dependency versions and next tests. Use the [company follow-up guide](../research-cycle/references/company-follow-up.md) for unresolved questions, cadence, frozen-forecast learning and scheduling status, including a plan prepared after initial publication. Short-window return attribution uses the historical mode of [valuation and narrative analysis](../valuation-thesis/SKILL.md).

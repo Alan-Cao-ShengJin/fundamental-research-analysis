@@ -39,19 +39,13 @@ def writing_packet(study, paths, research_mode='initiation', model_changed=False
         paths=list(dict.fromkeys([*paths,*reviewed['inputs'],model_review_path]))
     packet = {'role': 'fresh-writer', 'status': 'prepared',
               'inputs': {rel: digest(local(study, rel)) for rel in paths},
-              'read': ['research-brief/SKILL.md', 'research-brief/references/natural-writing.md', 'report-layout/SKILL.md'],
-              'task': 'Start in a fresh context. Write from the frozen model and decision/evidence record, with access to '
-                      'original pivotal sources. Apply the short writing standard; return discrepancies to analysis. '
-                      'Return stale causal explanations to analysis as well as stale figures. A fiscal-year yield is not '
-                      'cash arriving to a buyer over a dated window; retain the checked receipt basis and forecast qualifications. '
-                      'Develop business drivers before detailed valuation, beyond the compact header. When describing '
-                      'the overall payoff, reconcile price movement and eligible cash on the same dated horizon; '
-                      'cash yield is separate from the price-target rating. Compare matched periods before attributing '
-                      'a change to peers or a common regime, and qualify causal inferences. Rounded watch levels invite '
-                      'reassessment; automatic numeric rating conditions require tested displayed thresholds. '
-                      'Do not change the forecast or target just to improve the prose. A brief conclusion keeps the conditions '
-                      'the report attaches: alternatives that change the rating, partial answers, management-only evidence. '
-                      'Render drafts, not a release.',
+              'read': ['research-brief/references/natural-writing.md', 'research-brief/SKILL.md', 'report-layout/SKILL.md'],
+              'task': 'Start in a fresh context. Write for a reader who has never looked at the company, to the research '
+                      'writing standard: say the report aloud first, draft it in plain text, keep to the limits and edit '
+                      'out the habits it lists. Write from the frozen model and decision/evidence record, with access to '
+                      'original pivotal sources. Send discrepancies and stale explanations back to analysis; never change '
+                      'the forecast or target to improve the prose. The brief keeps the conditions the report attaches '
+                      'to a conclusion. Render drafts, not a release.',
               'execution': 'The host launches the fresh context; this packet does not launch an agent.'}
     out = local(study, 'evidence/writing-packet.json')
     out.parent.mkdir(parents=True, exist_ok=True)

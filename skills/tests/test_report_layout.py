@@ -28,16 +28,16 @@ def arg(point='Invented point.', segment=None, evidence='Invented evidence{{src:
 
 
 def debate():
-    return rl.Debate('Synthetic question?',
-                     [('Claim one', 'Evidence one{{src:syn}}', 'supported'), ('Claim two', 'Evidence two{{src:syn}}', 'untested')],
-                     'Our invented answer.', 'It moves margin by 1 point.', 'Settled by the 1Q update in April 2027.')
+    return rl.Debate('Synthetic question?', 'Invented reason it is live.',
+                     ['Bear point one{{src:syn}}', 'Bear point two{{src:syn}}'], ['Bull point one{{src:syn}}'],
+                     'Our invented view.', 'Invented price if each side is right.', 'Settled by the 1Q update in April 2027.')
 
 
 class ReportLayoutTests(unittest.TestCase):
     def test_debate_is_one_normal_flow_item_and_numeric_tables_have_a_supported_class(self):
         root = ET.fromstring(str(debate()))
         self.assertEqual(root.tag, 'div')
-        self.assertEqual([child.tag for child in root], ['h3', 'table', 'p'])
+        self.assertEqual([child.tag for child in root], ['h3', 'p', 'table', 'p', 'p', 'p'])
         self.assertIn('class="num', str(rl.table(['Metric', 'Value'], [['EPS', '5.2']], cls='num')))
         self.assertIn('class="numeric"', str(rl.table(['Metric', 'Value'], [['EPS', '5.2']])))
         with self.assertRaisesRegex(ValueError, 'Unknown table class'):
@@ -106,8 +106,10 @@ class ReportLayoutTests(unittest.TestCase):
     def test_argument_requires_cited_evidence_and_segment_arguments_cite_their_build(self):
         with self.assertRaisesRegex(ValueError, 'must cite a source'):
             rl.Argument('Point.', 'Evidence with no citation.', 'Inference.', 'Implication.')
-        with self.assertRaisesRegex(ValueError, 'nonempty inference'):
-            rl.Argument('Point.', 'Evidence{{src:syn}}.', '', 'Implication.')
+        with self.assertRaisesRegex(ValueError, 'nonempty evidence'):
+            rl.Argument('Point.', ' ')
+        # A point and its reason are enough; what it means and what it moves are added only where needed.
+        self.assertEqual(str(rl.Argument('Point.', 'Reason{{src:syn}}.')), '<p class="arg">Point. Reason{{src:syn}}.</p>')
         with self.assertRaisesRegex(ValueError, 'driver build'):
             arg(segment='Brand A')
         built = arg(segment='Brand A', evidence='Stores and sales per store ({{ex:build}}).')
@@ -122,24 +124,24 @@ class ReportLayoutTests(unittest.TestCase):
         r.section('Judgement with evidence', '', arg('We forecast growth of 5%.'))
         self.assertIn('We forecast growth of 5%.', r.html())
 
-    def test_debate_requires_claims_answer_quantified_effect_and_dated_test(self):
-        claims = [('Claim one', 'Evidence{{src:syn}}', 'supported'), ('Claim two', 'Evidence{{src:syn}}', 'contradicted')]
-        with self.assertRaisesRegex(ValueError, 'at least two claims'):
-            rl.Debate('Q?', claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027 update.')
-        with self.assertRaisesRegex(ValueError, 'cites the source or exhibit'):
-            rl.Debate('Q?', [('Claim', 'No citation', 'supported')] + claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027.')
-        with self.assertRaisesRegex(ValueError, 'Claim status'):
-            rl.Debate('Q?', [('Claim', 'Evidence{{src:syn}}', 'likely')] + claims[:1], 'Answer.', 'Moves 1 point.', 'April 2027.')
-        with self.assertRaisesRegex(ValueError, 'with the number'):
-            rl.Debate('Q?', claims, 'Answer.', 'It moves the forecast.', 'April 2027.')
-        with self.assertRaisesRegex(ValueError, 'its date'):
-            rl.Debate('Q?', claims, 'Answer.', 'Moves 1 point.', 'The next update.')
-        with self.assertRaisesRegex(ValueError, 'nonempty answer'):
-            rl.Debate('Q?', claims, ' ', 'Moves 1 point.', 'April 2027.')
+    def test_debate_needs_both_sides_cited_and_every_part_filled(self):
+        bears, bulls = ['Bear point{{src:syn}}'], ['Bull point{{ex:build}}']
+        with self.assertRaisesRegex(ValueError, 'what the bulls say'):
+            rl.Debate('Q?', 'Live.', bears, [], 'View.', 'Worth.', 'April 2027.')
+        with self.assertRaisesRegex(ValueError, 'what the bears say'):
+            rl.Debate('Q?', 'Live.', 'One string, not a list{{src:syn}}', bulls, 'View.', 'Worth.', 'April 2027.')
+        with self.assertRaisesRegex(ValueError, 'cites its source or exhibit'):
+            rl.Debate('Q?', 'Live.', ['No citation'], bulls, 'View.', 'Worth.', 'April 2027.')
+        for blank in ('live', 'view', 'worth', 'settles'):
+            parts = dict(live='Live.', view='View.', worth='Worth.', settles='April 2027.')
+            parts[blank] = ' '
+            with self.assertRaisesRegex(ValueError, f'nonempty {blank}'):
+                rl.Debate('Q?', parts['live'], bears, bulls, parts['view'], parts['worth'], parts['settles'])
         document = str(debate())
-        self.assertIn('Our answer.', document)
-        self.assertNotIn('The bear case.', document)   # bull and bear appear once, as priced scenarios
-        self.assertIn('Contradicted', str(rl.Debate('Q?', claims, 'A.', 'Moves 1 point.', 'April 2027.')))
+        for label in ('Why it is live.', 'Bears say', 'Bulls say', 'Our view.', 'What it is worth.', 'What settles it.'):
+            self.assertIn(label, document)
+        self.assertNotIn('Status', document)   # the claim test is working for the challenge stage, not printed
+        self.assertEqual(document.count('<tr>'), 3)   # header plus two rows; the shorter side is padded
 
     def test_declared_business_units_each_need_an_argument(self):
         r = report()

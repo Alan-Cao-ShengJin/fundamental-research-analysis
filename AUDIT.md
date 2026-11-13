@@ -1,3 +1,36 @@
+# Research skill verification - 13 November 2026, version 3.0.0
+
+This release publishes the reworked research sequence. Earlier audit sections keep their original dates, scope and results.
+
+## What changed
+
+- **Valuation:** one six-step sequence. Name the kind of company and the yardstick buy-side investors value it on; read today's price on that yardstick; set the target level; apply it to our own numbers; build the bear and bull cases; give one target and the rating. A new yardstick list covers economic profiles, sectors with their own convention, how each yardstick is measured and when the market switches from one to another. Consensus enters at three named points and never while the forecast is being built.
+- **Revenue drivers:** a fixed order for setting each base-case driver, from a specific supported number down to GDP-level growth as the last resort.
+- **Sector cards:** 100 cards in one shape replace 21 broader guides. Each card covers what is sold and who decides demand, the driver tree with a fallback for missing data, the data behind the rows, costs and margin, capacity and working capital, the cycle and its traps, what investors argue about with the yardstick, and a worked example in invented figures. A card is a guide: each business unit takes its own card, and a business no card fits is modelled from first principles.
+- **Debates:** written as why the question is live, what the bears say, what the bulls say, our view, what the share is worth either way and what settles it. The claims table is gone, and no debate is printed where investors are not arguing.
+- **Writing:** the writing standard now teaches by before-and-after examples; the separate detail file is deleted.
+- **Follow-up:** the monitor-and-review skill is folded into company change tracking and a short follow-up guide. The routing files now state the research-only scope directly.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 263 Python tests, 66 JavaScript tests, all 19 skill validations and 1243 relative links passed |
+| Public export | 272 Python tests, 66 JavaScript tests, all 19 skill validations and 1332 relative links passed |
+| Sample model | The unchanged synthetic workbook still reproduces its specification |
+| Sector cards | Every card has the same eight headings, one index row, intact tables and working links; the arithmetic of all 100 worked examples was recomputed in review |
+| Scope | Private research, source packs and credentials excluded; private-path and token pattern checks passed |
+
+## How the sector cards were checked
+
+Each of the 100 cards was read once by a fresh reader that saw only the card and laid out a model for a real company of that kind. The findings were applied, and cards that mixed unlike businesses were split. Six cards rewritten after their read were read a second time.
+
+## Limits
+
+This release was not validated by a fresh end-to-end research run, a PDF print or a native Excel recalculation, so the effect of the new sequence on report quality is untested. On the sector cards: corrections made after a card's read were not read again; statements about costs, margins and named data sources rest on those reads and on general knowledge and were not audited source by source; and 113 fallbacks for missing guidance, added on 13 November, have not been read independently. The yardstick list records market conventions to start from, which each study confirms for its own stock. The worked numbers in the cards are invented and are not machine-tested.
+
+---
+
 # Research skill verification - 11 November 2026, version 2.13.0
 
 This release applies the owner's decisions on the items left open in 2.12.1 and removes unused material. Earlier audit sections keep their original dates, scope and results.

@@ -1,7 +1,20 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 const catalog = JSON.parse(readFileSync(new URL('../catalog.json', import.meta.url), 'utf8'));
+
+describe('research and portfolio module boundary', () => {
+  it('keeps portfolio skills and their allocation routes out of the research bundle', () => {
+    for (const id of ['portfolio-decision', 'risk-budget', 'cross-asset-strategy', 'monitor-review']) {
+      expect(catalog.skills.some(skill => skill.id === id)).toBe(false);
+      expect(Object.values(catalog.stages).some(stage => stage.skill === id)).toBe(false);
+      expect(existsSync(new URL(`../${id}/SKILL.md`, import.meta.url))).toBe(false);
+    }
+    for (const flow of ['company-to-portfolio', 'new-non-company-research', 'portfolio-risk-review']) {
+      expect(catalog.flows[flow]).toBeUndefined();
+    }
+  });
+});
 
 function dependencies(stage, visited = new Set()) {
   for (const name of catalog.stages[stage].requiredBefore) {
@@ -132,7 +145,7 @@ describe('publication within research modes', () => {
   it('publishes a stock brief only after the conclusion, while evidence summaries need no stock call', () => {
     expect(dependencies('investment-brief').has('conclusion')).toBe(true);
     expect(dependencies('brief').has('conclusion')).toBe(false);
-    for (const name of ['new-company-research', 'company-to-portfolio'].filter(name => catalog.flows[name])) expect(catalog.flows[name]).toContain('investment-brief');
+    expect(catalog.flows['new-company-research']).toContain('investment-brief');
     for (const name of ['industry-review', 'corporate-governance-review', 'financial-red-flag-review']) expect(catalog.flows[name]).toContain('brief');
   });
   it('renders and release-checks deliverables after the brief in every company mode', () => {
@@ -157,7 +170,7 @@ describe('conviction within research modes', () => {
       ['company-update', 'revision-follow-up', 'revision-conclusion']
     ]) {
       expect(catalog.flows[flowName].at(-1)).toBe(followup);
-      expect(catalog.stages[followup].skill).toBe('monitor-review');
+      expect(catalog.stages[followup].skill).toBe('company-change-tracking');
       expect(dependencies(followup).has(conclusion)).toBe(true);
     }
   });
@@ -167,7 +180,6 @@ describe('conviction within research modes', () => {
       ['company-update', 'revision-conviction', 'revision-conclusion'],
       ['company-regular-review', 'regular-conviction', 'regular-conclusion']
     ];
-    if (catalog.flows['company-to-portfolio']) cases.push(['company-to-portfolio', 'conviction', 'conclusion']);
     for (const [flowName, convictionStage, conclusionStage] of cases) {
       const flow = catalog.flows[flowName];
       expect(flow).toContain(convictionStage);

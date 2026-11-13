@@ -8,6 +8,10 @@ No upstream company forecasts, sample reports or scripts are installed as active
 research defaults. Fixed output, action, metric-count and valuation quotas are
 not adopted. Adaptations do not verify upstream factual claims or source access.
 
+From version 3.0 of this bundle the sector references were rewritten as one card
+for each kind of company and extended to kinds the upstream work does not cover.
+The cards for those additional kinds are independently authored.
+
 MIT License
 
 Copyright (c) 2026 Sirius

@@ -86,7 +86,7 @@ Keep a dated world-state record in the research files with one row per developme
 - whether it is priced;
 - next resolution date.
 
-Rank the rows by group. The record belongs in the evidence pack. The report's market context covers only the decision-changing items and the model inputs. [Monitor review](../../monitor-review/SKILL.md) inherits the resolution dates.
+Rank the rows by group. The record belongs in the evidence pack. The report's market context covers only the decision-changing items and the model inputs. [Company follow-up](company-follow-up.md) inherits the resolution dates.
 
 ## 8. Refresh at the cutoff
 

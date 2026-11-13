@@ -1,0 +1,9 @@
+# Company research follow-up
+
+Retain the questions, evidence dates and forecast conditions that could change the company view after publication. [Company change tracking](../../company-change-tracking/SKILL.md) owns the follow-up record; [model revision](../../model-revision/SKILL.md) owns an actual regular review or major earnings/catalyst update. Portfolio allocation and account monitoring are outside this research module.
+
+For each material open question, record its source, metric/definition, expected observation or event date, the assumption or conviction condition affected, and the next useful read or calculation. Preserve original forecast versions, unresolved findings and the evidence that would change the view. Industry indicators, world-state developments and the observation that settles the investor debate belong in the same issuer record rather than separate competing watch lists.
+
+When a review runs, check evidence freshness and data health first. Apply the existing [request routing](request-routing.md), reuse valid work and update only affected calculations and conclusions. Compare matched actuals with the frozen forecast before replacing estimates. Record a valid no-change result separately from missing data or failed retrieval. Attribute supported differences without treating a price gain as proof that the analysis was correct.
+
+If recurring research is requested, save a self-contained work definition: issuer/share class, cutoff and baseline paths/versions; permitted sources; the question and concrete work; update and missing-data rules; output/check requirements; authorized cadence/timezone, expiry and budget; and delivery conditions. Keep that task separate from dated results. A saved plan is active only after the actual scheduling service acknowledges it; creating this reference does not schedule a task or authorize outreach.
