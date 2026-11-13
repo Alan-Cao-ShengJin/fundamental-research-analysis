@@ -2,7 +2,7 @@
 name: research-brief
 description: Write a selective, decision-focused investment brief on one readable page using the shared minimalist template and institutional research writing standard. Also write developed stock pitches, results notes and decision updates at the requested depth.
 metadata:
-  version: 3.12.0
+  version: 3.12.1
 ---
 
 # Stock pitch, decision brief and research update
@@ -27,7 +27,7 @@ After the thesis, give a compact statement of [what the market is trading](../re
 
 Explain the principal reason for the call and the economic mechanism behind it. In an initiation, establish how each material business earns profit, who buys from it and what protects it before developing the detailed forecast and valuation; in an update, repeat business context only where needed to follow a change. Identify the supported difference from priced or attributed expectations and how it affects shareholder return. Define issuer-specific jargon. If no overlooked driver is established, explain the valuation/return judgment without inventing a market mistake.
 
-Write to the [research writing standard](references/natural-writing.md). Its method, limits, habit list and worked examples govern every sentence of the report and the brief. For each number the call depends on, the reader should see where it comes from, what it means and what it does to the stock, without opening the model. That is a test of the report, not a shape for every paragraph.
+Write to the [research writing standard](references/natural-writing.md). Its method, limits, habit list and worked examples govern every sentence of the report and the brief, and replies in chat about the research. For each number the call depends on, the reader should see where it comes from, what it means and what it does to the stock, without opening the model. That is a test of the report, not a shape for every paragraph.
 
 A full company recommendation is a stock pitch: make a defensible investment argument and prove it. Lead with why this price offers, or fails to offer, an attractive payoff. Organise evidence around that argument rather than narrating the research sequence or listing account changes. Persuasion requires a clear causal explanation, valuation and strongest counter-case; it does not justify cherry-picking or preserving a call after its numbers change.
 

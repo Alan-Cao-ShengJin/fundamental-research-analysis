@@ -8,7 +8,7 @@ Inventory source trackers, definitions and publication dates. Distinguish produc
 
 Retain raw volume, price and value series with their definitions. A presentation that shows only one series does not replace the broader evidence register.
 
-Gather the breakdowns needed for the [foundational forecast build](foundational-builds.md), including detail discussed only in earnings calls and Q&A. Preserve reported figures, attributed management-only breakdowns, external observations, inferred allocations and analyst estimates as distinct. An absent filing table does not establish that useful finer evidence is unavailable. Keep the important basis and uncertainty beside its model input and retain longer originals in the evidence archive.
+Gather the breakdowns needed for the [foundational forecast build](foundational-builds.md), including detail given only in results presentations, earnings calls and Q&A and the covering-broker notes that record them. Preserve reported figures, attributed management-only breakdowns, external observations, inferred allocations and analyst estimates as distinct. An absent filing table does not establish that useful finer evidence is unavailable: estimate a split only after those sources have been read. Keep the important basis and uncertainty beside its model input and retain longer originals in the evidence archive.
 
 Compute monthly/quarterly/annual sums only for compatible series. Where a missing month is derived from YTD, label it derived. Reconcile mutually exclusive, exhaustive categories; when categories overlap or omit a segment, show that limitation. Preserve the original source total and a separate residual rather than forcing one component to balance.
 

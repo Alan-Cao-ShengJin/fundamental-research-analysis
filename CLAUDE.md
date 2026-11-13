@@ -18,6 +18,22 @@ Keep that rule version through the run. After shared rules change, use `research
 
 Follow the company sequence for modeling, governance, industry work, valuation and challenge. Full initiations and material model changes receive a fresh model/evidence challenge before writing. The later reader reviews the actual report and brief. Deliver the human-readable Excel model, full report and one-page brief through the [publication workflow](skills/report-layout/references/publication-review.md).
 
-The author session may launch the required fresh contexts through the host's available, authorized delegation tools. In Claude Code that is the Agent tool; other hosts use their supported equivalent. Keep actual independent-reader work separate from self-review. If the host cannot provide it, retain an awaiting-review draft rather than fabricate completion. Skills do not themselves dispatch agents.
+The author session may launch the required fresh contexts through the host's available, authorized delegation tools. In Claude Code that is the Agent tool; other hosts use their supported equivalent. Tell each fresh context to work in batches as [research-cycle](skills/research-cycle/SKILL.md#continue-intelligently) sets out. Keep actual independent-reader work separate from self-review. If the host cannot provide it, retain an awaiting-review draft rather than fabricate completion. Skills do not themselves dispatch agents.
+
+In Claude Code, launch each fresh context with an explicit model and effort; a context launched without them runs on the author's model at the session's effort.
+
+| Role | Model | Effort |
+| --- | --- | --- |
+| Model reviewer and report reader | The top model the author is not running: `opus` when the author runs on Fable, `fable` otherwise | `high` |
+| Writer | The author's model | `high` |
+| Mechanical helper (lookup, page fetch, extraction) | `sonnet` | `medium` |
+
+A reader on the same model as the work it checks shares its blind spots. Do not use `xhigh` or `max`: they add time and tokens for an uneven gain.
+
+Prefer a slower run to one that uses tokens faster. Launch fresh contexts one at a time, do not split work across parallel helpers to save time, and do not turn on a faster output mode.
 
 Keep production/retrieval times truthful and declare the session timezone with the research cutoff (`RESEARCH_TIMEZONE` or the release record's `timezone`; this workspace defaults to Asia/Singapore). Synthetic fixture clocks apply only to host-declared invented evidence packs. Supplied real-evidence snapshots retain their stated information cutoff and real timestamps.
+
+## Standing instructions
+
+When the user asks to remember something, or corrects how the research is done, write it into the owning skill under [skill calibration](skills/research-cycle/references/skill-calibration.md), in generic words. Do not keep it only in machine-local memory: another computer running these skills must behave the same way.

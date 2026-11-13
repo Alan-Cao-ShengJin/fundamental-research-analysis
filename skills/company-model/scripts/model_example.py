@@ -612,33 +612,60 @@ def build_3s(rp):
 
 
 # ---------------------------------------------------------------- Scenarios
-SCEN_ORDER = """_case case_head case_dom27 case_dom28 case_exp27 case_exp28 case_expasp case_domgm"""
+SCEN_ORDER = """_case case_head case_exp27 case_exp28 case_expasp .1
+_held held_head case_dom27 case_dom28 case_domgm .2
+_cases cs_bear cs_bear_sign cs_bear_odds cs_bull cs_bull_sign cs_bull_odds"""
 
 
 def build_scenarios():
     sh = SCENSHEET
-    header(sh, 'Scenarios', 'Bear, base and bull driver values; the case selector on the Cover picks the active column', periods=False)
+    header(sh, 'Scenarios', 'The main debate resolved each way; the Cover selector picks the active case', periods=False)
     R = sh.R
-    sh.section('_case', 'SCENARIO DRIVERS')
-    for c, h in zip('BCDEFGH', ['Driver', 'Unit', 'Bear', 'Base', 'Bull', 'Active', 'Rationale']):
-        sh.put(f'{c}{R["case_head"]}', h, bold=True, **({'align': 'left'} if c == 'H' else {}))
-    for k, label, vals, why in [
-            ('case_dom27', 'Domestic industry growth, FY2027E', [-.10, .03, .12],
-             'Base: replacement demand supports modest growth after the FY2026 recovery; bear repeats a policy-led downturn.'),
-            ('case_dom28', 'Domestic industry growth, FY2028E', [-.08, .02, .08], 'Mean-reverting thereafter.'),
-            ('case_exp27', 'Company export growth, FY2027E', [.00, .12, .22],
-             'Base: new dealer markets and order cover; bear: tariff or credit shock in two large markets.'),
-            ('case_exp28', 'Company export growth, FY2028E', [-.05, .08, .15], 'Slower as the base grows.'),
-            ('case_expasp', 'Export price change, FY2027E', [-.04, -.01, .01], 'Competition from other exporters.'),
-            ('case_domgm', 'Domestic heavy margin before input costs, FY2027E-28E', [.13, .155, .17],
-             'Base: scale and mix hold the FY2026 level; bear: price war returns.')]:
+
+    def head(key):
+        for c, h in zip('BCDEFGH', ['Driver', 'Unit', 'Bear', 'Base', 'Bull', 'Active', 'Rationale']):
+            sh.put(f'{c}{R[key]}', h, bold=True, **({'align': 'left'} if c == 'H' else {}))
+
+    def driver(k, label, vals, why):
         r = R[k]
         sh.put(f'B{r}', label)
         sh.put(f'C{r}', '%')
-        for c, v in zip('DEF', vals):
-            sh.put(f'{c}{r}', v, 'judgment', pct=True)
+        if isinstance(vals, list):
+            for c, v in zip('DEF', vals):
+                sh.put(f'{c}{r}', v, 'judgment', pct=True)
+        else:           # held at the base case: one input, and the bear and bull columns follow it
+            sh.put(f'D{r}', f'=E{r}', pct=True)
+            sh.put(f'E{r}', vals, 'judgment', pct=True)
+            sh.put(f'F{r}', f'=E{r}', pct=True)
         sh.put(f'G{r}', f'=CHOOSE({SEL},D{r},E{r},F{r})', pct=True, bold=True)
         sh.put(f'H{r}', why, align='left')
+
+    sh.section('_case', 'THE MAIN DEBATE: CAN EXPORTS KEEP GROWING AFTER THE DEALER BUILD-OUT?')
+    head('case_head')
+    driver('case_exp27', 'Company export growth, FY2027E', [.00, .12, .22],
+           'Base: new dealer markets and order cover; bear: tariff or credit shock in two large markets.')
+    driver('case_exp28', 'Company export growth, FY2028E', [-.05, .08, .15], 'Slower as the base grows.')
+    driver('case_expasp', 'Export price change, FY2027E', [-.04, -.01, .01], 'Competition from other exporters.')
+    sh.section('_held', 'HELD AT THE BASE CASE IN EVERY CASE (EACH IS TESTED IN THE SENSITIVITY TABLE)')
+    head('held_head')
+    driver('case_dom27', 'Domestic industry growth, FY2027E', .03,
+           'Replacement demand supports modest growth after the FY2026 recovery. Not the main debate.')
+    driver('case_dom28', 'Domestic industry growth, FY2028E', .02, 'Mean-reverting thereafter.')
+    driver('case_domgm', 'Domestic heavy margin before input costs, FY2027E-28E', .155,
+           'Scale and mix hold the FY2026 level. Not the main debate.')
+    sh.section('_cases', 'WHAT EACH CASE MEANS (BOTH ARE PRICED AT THE BASE MULTIPLE)')
+    for k, label, text in [
+            ('cs_bear', 'Bear: what happens',
+             'A tariff or credit shock in two large export markets stops export growth in FY2027E and cuts export prices 4%.'),
+            ('cs_bear_sign', 'Bear: what would show it',
+             'Export volume below the year-ago level for two quarters running, or dealer stock above three months of sales.'),
+            ('cs_bear_odds', 'Bear: how likely, from the record', 'Export volume fell year on year in 2 of the last 10 years.'),
+            ('cs_bull', 'Bull: what happens',
+             'The new dealer markets ramp faster: export growth reaches 22% in FY2027E and prices hold.'),
+            ('cs_bull_sign', 'Bull: what would show it', 'Export orders up more than 20% on the year for two quarters running.'),
+            ('cs_bull_odds', 'Bull: how likely, from the record', 'Export volume grew 20% or more in 3 of the last 10 years.')]:
+        sh.put(f'B{R[k]}', label)
+        sh.put(f'C{R[k]}', text, merge='H', wrap=True, align='left')
     return sh
 
 
@@ -948,8 +975,10 @@ def build_thesis():
     sh.section('_scen', 'SCENARIO OUTCOMES (each case recalculated when the model is built)')
     for c, h in zip('BCDEFG', ['Case', 'Multiple basis', 'FY2027E EPS, RMB', 'Target multiple', 'Target, HKD', 'Price return']):
         sh.put(f'{c}{R["sc_head"]}', h, bold=True)
-    for k, case, basis, ref in [('sc_bear', 'Bear', 'Band mean -1 SD', 'm1'), ('sc_base', 'Base', 'Band mean', 'mean'),
-                                ('sc_bull', 'Bull', 'Band mean +1 SD', 'p1')]:
+    # Each case is priced at the base multiple; a case takes another level only where its own outcome changes what
+    # investors pay, with that reason written in the basis column.
+    for k, case, basis, ref in [('sc_bear', 'Bear', 'Band mean', 'mean'), ('sc_base', 'Base', 'Band mean', 'mean'),
+                                ('sc_bull', 'Bull', 'Band mean', 'mean')]:
         r = R[k]
         sh.put(f'B{r}', case)
         sh.put(f'C{r}', basis)
@@ -1119,7 +1148,7 @@ def scale_band(values):
 INDEX = [(SUMMARY, 'Call, target, key financials, valuation and the reasons for the call on one screen'),
          (THESIS, 'Target price, consensus, sensitivities, scenario outcomes, band summary and peers'),
          (BAND, 'Ten years of monthly forward P/E, the window used and implied prices'),
-         (SCEN, 'Bear, base and bull driver values; the selector above picks the active case'),
+         (SCEN, 'The main debate resolved each way, what would show each case and how likely it is'),
          (RP, 'Industry, share, volumes, prices, segment revenue and margins, unit economics'),
          (S3, 'Income statement, cash flow, balance sheet and schedules, annual and quarterly'),
          (DATA, 'Monthly and quarterly sales volumes and the annual-report reconciliation'),

@@ -1,3 +1,31 @@
+# Research skill verification - 13 November 2026, version 3.1.0
+
+This release publishes corrections that came out of one initiation run under 3.0.0. Earlier audit sections keep their original dates, scope and results.
+
+## What changed
+
+- **Broker notes:** before modelling, the agent reads the past year's results-call records and the covering brokers' notes in full. Where a company does not file its presentation or call, those notes are the written record of its product revenue, margins, order book and unit profit or loss. The agent takes the facts and sets every assumption itself, because brokers lean optimistic. The provider guide says how to list and open the notes.
+- **Bear and bull cases:** each is the main debate resolved the other way, with the rest of the base case kept, so the range is narrow enough to act on. A case changes the multiple only where its own outcome changes what investors pay. A likelihood is given only from a record that can be cited. The sample model's scenario sheet is rebuilt this way: its range moved from -8% and +78% around a +35% base to +22% and +45%.
+- **Model:** a unit that loses money or is being exited gets its own revenue and profit rows, because a blended margin hides what its loss costs and what its removal adds.
+- **Running a study:** work in batches, and prefer a slower run to one that uses tokens faster. `CLAUDE.md` names the model and effort for each fresh context in Claude Code: reviewers on a different top model from the author, no parallel helpers to save time.
+- **Standing instructions:** when the user corrects how research is done, the correction is written into the owning skill in generic words, so another computer behaves the same way. Skill calibration states how such fixes are written.
+- **Sector cards:** the index now says how to revise a card.
+
+## Executed verification
+
+| Check | Result |
+| --- | --- |
+| Workspace | 263 Python tests, 66 JavaScript tests, all 19 skill validations and 1245 relative links passed |
+| Public export | 272 Python tests, 66 JavaScript tests, all 19 skill validations and 1337 relative links passed |
+| Sample model | Rebuilt from its builder, recalculated in Excel and checked against its specification (6,778 numeric cells); the exported copy differs only by the removed local save path |
+| Scope | Private research, source packs and credentials excluded; private-path and token pattern checks passed |
+
+## Limits
+
+No research run has been made under these rules, so their effect on report quality and run time is untested. The run that prompted them produced a draft that was not released. The model and effort settings were chosen from published guidance and one run's logs, not from a comparison of reviewers. The rule on a loss-making unit and the scenario rule are instructions to the agent; no script enforces them.
+
+---
+
 # Research skill verification - 13 November 2026, version 3.0.0
 
 This release publishes the reworked research sequence. Earlier audit sections keep their original dates, scope and results.

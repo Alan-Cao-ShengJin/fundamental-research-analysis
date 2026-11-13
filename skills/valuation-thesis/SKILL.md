@@ -2,7 +2,7 @@
 name: valuation-thesis
 description: Analyse company value, price-implied expectations and competing company or industry narratives; reconstruct historical narrative changes and investigate short-window returns. Use audited forecasts for current valuation and point-in-time evidence for historical work; form a final investment view only after validation and challenge.
 metadata:
-  version: 2.9.0
+  version: 2.9.1
 ---
 
 # Valuation, expectations and provisional thesis
@@ -56,7 +56,7 @@ Consensus enters at three points and never while the forecast is being built. Be
 
 4. **Apply it to our numbers.** `target price = target level × our figure`, for the same period and definition the band was built on: today's forward figure, never rolled forward to the target date ([valuation calendar](references/valuation-calendar.md)). Split the return into our earnings against consensus and the change in the multiple, so optimism is not counted once in above-consensus earnings and again in a re-rating ([own forecast and consensus](references/valuation-calendar.md#own-forecast-and-consensus-pe); the [comparison helper](scripts/compare_forward_pe.mjs) checks the arithmetic). Say how the price reaches the target within twelve months: earnings above expectations, steady growth at a held multiple, or a yield re-rating. A large gap between target and price raises the burden of evidence. Cross-check with a second yardstick from the list, set from its own evidence; a figure backed out of the primary target confirms nothing.
 
-5. **Build the bear and bull cases** on the same horizon. Each is a coherent resolution of the actual debate, or of the main earnings drivers where there is no clear debate, with its effect on valuation, funding, dilution and access to cash where material. Where step 1 found a switched yardstick, the bear case values the stock on the old one. A bear price is not a loss floor: show a more severe plausible outcome separately when the three cases leave out a material tail. If a bear case uses a higher multiple than today's, give the earnings reason; trough earnings can raise P/E while value falls.
+5. **Build the bear and bull cases** on the same horizon. The decision rests on the base case, so a range too wide to act on means nothing. Each case is the main debate resolved the other way, or the main earnings driver where there is no clear debate, with the rest of the base case kept and with its effect on valuation, funding, dilution and access to cash where material. Do not stack every adverse driver with a lower multiple: a case changes the multiple only where its own outcome changes what investors pay, under the same rerating test as any other level. Say how likely each case is only from a record that can be cited (how often the company, forecasts of it or its multiple have done this before, or the weight today's price puts on it); where there is none, say so and do not invent a percentage. Where step 1 found a switched yardstick, the bear case values the stock on the old one. A bear price is not a loss floor: show a more severe plausible outcome separately when the three cases leave out a material tail. If a bear case uses a higher multiple than today's, give the earnings reason; trough earnings can raise P/E while value falls.
 
 6. **Give one primary target and the rating** under the [decision contract](../investment-conclusion/references/decision-contract.md): Buy, Hold or Sell on price return, with dividend yield shown separately.
 

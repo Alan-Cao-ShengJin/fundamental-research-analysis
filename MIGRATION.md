@@ -1,5 +1,16 @@
 # Version 2.0 name migration
 
+## Version 3.1 broker notes and narrower scenarios
+
+New studies pin the 3.1 files normally. Existing frozen studies keep their archived rules, findings and review budgets. No file was renamed or deleted and no helper interface changed.
+
+What a study or a builder written for 3.0 should change:
+
+- **Scenarios sheet.** Bear and bull move only the drivers of the main debate. Every other driver is held at its base value and tested in the sensitivity table. Each case is priced at the base multiple unless its own outcome changes what investors pay. Say for each case what happens, what would show it and the record behind how likely it is. The regenerated sample builder `skills/company-model/scripts/model_example.py` shows the layout; the rule is step 5 of the [valuation sequence](skills/valuation-thesis/SKILL.md#value-the-company-in-six-steps).
+- **Report.** Only the main debate takes the bear and bull scenario prices as what each side is worth. Any other debate takes its effect on the target from the model's sensitivities. The scenario table adds, for the bear and the bull, what would show the case and the record behind how likely it is.
+- **Model.** A unit that loses money, or that the company is selling, closing or winding down, needs its own revenue and profit rows ([model standard](skills/company-model/references/model-standard.md)).
+- **Evidence.** Read the past year's results-call records and the covering brokers' notes in full before modelling, and record what could not be opened ([stock initiation](skills/stock-initiation/SKILL.md)).
+
 ## Version 3.0 research sequence
 
 New studies pin the 3.0 files normally. Existing frozen studies keep their archived rules, findings and review budgets.

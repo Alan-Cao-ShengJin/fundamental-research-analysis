@@ -183,7 +183,7 @@
      "link": "#'Scenarios'!A1"
     },
     "C25": {
-     "value": "Bear, base and bull driver values; the selector above picks the active case",
+     "value": "The main debate resolved each way, what would show each case and how likely it is",
      "kind": "calculation"
     },
     "B26": {
@@ -1086,7 +1086,6 @@
   },
   "Valuation": {
    "lastColumn": "G",
-   "notes": "H",
    "labelWidth": 60,
    "columnWidth": 18,
    "freeze": "A4",
@@ -1791,16 +1790,16 @@
      "kind": "calculation"
     },
     "C60": {
-     "value": "Band mean -1 SD",
+     "value": "Band mean",
      "kind": "calculation"
     },
     "D60": {
-     "value": 1.2307805660882183,
+     "value": 1.4156219269942818,
      "kind": "actual",
      "format": "0.00"
     },
     "E60": {
-     "value": "='Valuation Band'!$D$12",
+     "value": "='Valuation Band'!$D$9",
      "kind": "calculation",
      "format": "0.0\"x\""
     },
@@ -1847,16 +1846,16 @@
      "kind": "calculation"
     },
     "C62": {
-     "value": "Band mean +1 SD",
+     "value": "Band mean",
      "kind": "calculation"
     },
     "D62": {
-     "value": 1.8099826388682285,
+     "value": 1.6748465706704128,
      "kind": "actual",
      "format": "0.00"
     },
     "E62": {
-     "value": "='Valuation Band'!$D$11",
+     "value": "='Valuation Band'!$D$9",
      "kind": "calculation",
      "format": "0.0\"x\""
     },
@@ -2094,12 +2093,12 @@
      "kind": "calculation"
     }
    },
+   "notes": "H",
    "unitWidth": 13,
    "keyBold": true
   },
   "Valuation Band": {
    "lastColumn": "P",
-   "notes": "R",
    "labelWidth": 40,
    "columnWidth": 11,
    "freeze": "A4",
@@ -11564,6 +11563,7 @@
      "kind": "calculation"
     }
    },
+   "notes": "R",
    "helperColumns": [
     "I",
     "P"
@@ -11615,7 +11615,9 @@
    "freeze": "A7",
    "tabColor": "BDD7EE",
    "sections": [
-    5
+    5,
+    11,
+    17
    ],
    "cells": {
     "B1": {
@@ -11630,7 +11632,7 @@
      "text": true
     },
     "C2": {
-     "value": "Bear, base and bull driver values; the case selector on the Cover picks the active column | prices as of 3 Nov 2026",
+     "value": "The main debate resolved each way; the Cover selector picks the active case | prices as of 3 Nov 2026",
      "kind": "calculation",
      "align": "left"
     },
@@ -11641,7 +11643,7 @@
      "text": true
     },
     "B5": {
-     "value": "SCENARIO DRIVERS",
+     "value": "THE MAIN DEBATE: CAN EXPORTS KEEP GROWING AFTER THE DEALER BUILD-OUT?",
      "kind": "calculation"
     },
     "B6": {
@@ -11681,7 +11683,7 @@
      "align": "left"
     },
     "B7": {
-     "value": "Domestic industry growth, FY2027E",
+     "value": "Company export growth, FY2027E",
      "kind": "calculation"
     },
     "C7": {
@@ -11689,17 +11691,17 @@
      "kind": "calculation"
     },
     "D7": {
-     "value": -0.1,
+     "value": 0.0,
      "kind": "judgment",
      "pct": true
     },
     "E7": {
-     "value": 0.03,
+     "value": 0.12,
      "kind": "judgment",
      "pct": true
     },
     "F7": {
-     "value": 0.12,
+     "value": 0.22,
      "kind": "judgment",
      "pct": true
     },
@@ -11710,12 +11712,12 @@
      "bold": true
     },
     "H7": {
-     "value": "Base: replacement demand supports modest growth after the FY2026 recovery; bear repeats a policy-led downturn.",
+     "value": "Base: new dealer markets and order cover; bear: tariff or credit shock in two large markets.",
      "kind": "calculation",
      "align": "left"
     },
     "B8": {
-     "value": "Domestic industry growth, FY2028E",
+     "value": "Company export growth, FY2028E",
      "kind": "calculation"
     },
     "C8": {
@@ -11723,17 +11725,17 @@
      "kind": "calculation"
     },
     "D8": {
-     "value": -0.08,
+     "value": -0.05,
      "kind": "judgment",
      "pct": true
     },
     "E8": {
-     "value": 0.02,
+     "value": 0.08,
      "kind": "judgment",
      "pct": true
     },
     "F8": {
-     "value": 0.08,
+     "value": 0.15,
      "kind": "judgment",
      "pct": true
     },
@@ -11744,12 +11746,12 @@
      "bold": true
     },
     "H8": {
-     "value": "Mean-reverting thereafter.",
+     "value": "Slower as the base grows.",
      "kind": "calculation",
      "align": "left"
     },
     "B9": {
-     "value": "Company export growth, FY2027E",
+     "value": "Export price change, FY2027E",
      "kind": "calculation"
     },
     "C9": {
@@ -11757,17 +11759,17 @@
      "kind": "calculation"
     },
     "D9": {
-     "value": 0.0,
+     "value": -0.04,
      "kind": "judgment",
      "pct": true
     },
     "E9": {
-     "value": 0.12,
+     "value": -0.01,
      "kind": "judgment",
      "pct": true
     },
     "F9": {
-     "value": 0.22,
+     "value": 0.01,
      "kind": "judgment",
      "pct": true
     },
@@ -11778,110 +11780,220 @@
      "bold": true
     },
     "H9": {
-     "value": "Base: new dealer markets and order cover; bear: tariff or credit shock in two large markets.",
-     "kind": "calculation",
-     "align": "left"
-    },
-    "B10": {
-     "value": "Company export growth, FY2028E",
-     "kind": "calculation"
-    },
-    "C10": {
-     "value": "%",
-     "kind": "calculation"
-    },
-    "D10": {
-     "value": -0.05,
-     "kind": "judgment",
-     "pct": true
-    },
-    "E10": {
-     "value": 0.08,
-     "kind": "judgment",
-     "pct": true
-    },
-    "F10": {
-     "value": 0.15,
-     "kind": "judgment",
-     "pct": true
-    },
-    "G10": {
-     "value": "=CHOOSE(Cover!$C$9,D10,E10,F10)",
-     "kind": "calculation",
-     "pct": true,
-     "bold": true
-    },
-    "H10": {
-     "value": "Slower as the base grows.",
-     "kind": "calculation",
-     "align": "left"
-    },
-    "B11": {
-     "value": "Export price change, FY2027E",
-     "kind": "calculation"
-    },
-    "C11": {
-     "value": "%",
-     "kind": "calculation"
-    },
-    "D11": {
-     "value": -0.04,
-     "kind": "judgment",
-     "pct": true
-    },
-    "E11": {
-     "value": -0.01,
-     "kind": "judgment",
-     "pct": true
-    },
-    "F11": {
-     "value": 0.01,
-     "kind": "judgment",
-     "pct": true
-    },
-    "G11": {
-     "value": "=CHOOSE(Cover!$C$9,D11,E11,F11)",
-     "kind": "calculation",
-     "pct": true,
-     "bold": true
-    },
-    "H11": {
      "value": "Competition from other exporters.",
      "kind": "calculation",
      "align": "left"
     },
-    "B12": {
-     "value": "Domestic heavy margin before input costs, FY2027E-28E",
+    "B11": {
+     "value": "HELD AT THE BASE CASE IN EVERY CASE (EACH IS TESTED IN THE SENSITIVITY TABLE)",
      "kind": "calculation"
     },
+    "B12": {
+     "value": "Driver",
+     "kind": "calculation",
+     "bold": true
+    },
     "C12": {
+     "value": "Unit",
+     "kind": "calculation",
+     "bold": true
+    },
+    "D12": {
+     "value": "Bear",
+     "kind": "calculation",
+     "bold": true
+    },
+    "E12": {
+     "value": "Base",
+     "kind": "calculation",
+     "bold": true
+    },
+    "F12": {
+     "value": "Bull",
+     "kind": "calculation",
+     "bold": true
+    },
+    "G12": {
+     "value": "Active",
+     "kind": "calculation",
+     "bold": true
+    },
+    "H12": {
+     "value": "Rationale",
+     "kind": "calculation",
+     "bold": true,
+     "align": "left"
+    },
+    "B13": {
+     "value": "Domestic industry growth, FY2027E",
+     "kind": "calculation"
+    },
+    "C13": {
      "value": "%",
      "kind": "calculation"
     },
-    "D12": {
-     "value": 0.13,
+    "D13": {
+     "value": "=E13",
+     "kind": "calculation",
+     "pct": true
+    },
+    "E13": {
+     "value": 0.03,
      "kind": "judgment",
      "pct": true
     },
-    "E12": {
-     "value": 0.155,
-     "kind": "judgment",
+    "F13": {
+     "value": "=E13",
+     "kind": "calculation",
      "pct": true
     },
-    "F12": {
-     "value": 0.17,
-     "kind": "judgment",
-     "pct": true
-    },
-    "G12": {
-     "value": "=CHOOSE(Cover!$C$9,D12,E12,F12)",
+    "G13": {
+     "value": "=CHOOSE(Cover!$C$9,D13,E13,F13)",
      "kind": "calculation",
      "pct": true,
      "bold": true
     },
-    "H12": {
-     "value": "Base: scale and mix hold the FY2026 level; bear: price war returns.",
+    "H13": {
+     "value": "Replacement demand supports modest growth after the FY2026 recovery. Not the main debate.",
      "kind": "calculation",
+     "align": "left"
+    },
+    "B14": {
+     "value": "Domestic industry growth, FY2028E",
+     "kind": "calculation"
+    },
+    "C14": {
+     "value": "%",
+     "kind": "calculation"
+    },
+    "D14": {
+     "value": "=E14",
+     "kind": "calculation",
+     "pct": true
+    },
+    "E14": {
+     "value": 0.02,
+     "kind": "judgment",
+     "pct": true
+    },
+    "F14": {
+     "value": "=E14",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G14": {
+     "value": "=CHOOSE(Cover!$C$9,D14,E14,F14)",
+     "kind": "calculation",
+     "pct": true,
+     "bold": true
+    },
+    "H14": {
+     "value": "Mean-reverting thereafter.",
+     "kind": "calculation",
+     "align": "left"
+    },
+    "B15": {
+     "value": "Domestic heavy margin before input costs, FY2027E-28E",
+     "kind": "calculation"
+    },
+    "C15": {
+     "value": "%",
+     "kind": "calculation"
+    },
+    "D15": {
+     "value": "=E15",
+     "kind": "calculation",
+     "pct": true
+    },
+    "E15": {
+     "value": 0.155,
+     "kind": "judgment",
+     "pct": true
+    },
+    "F15": {
+     "value": "=E15",
+     "kind": "calculation",
+     "pct": true
+    },
+    "G15": {
+     "value": "=CHOOSE(Cover!$C$9,D15,E15,F15)",
+     "kind": "calculation",
+     "pct": true,
+     "bold": true
+    },
+    "H15": {
+     "value": "Scale and mix hold the FY2026 level. Not the main debate.",
+     "kind": "calculation",
+     "align": "left"
+    },
+    "B17": {
+     "value": "WHAT EACH CASE MEANS (BOTH ARE PRICED AT THE BASE MULTIPLE)",
+     "kind": "calculation"
+    },
+    "B18": {
+     "value": "Bear: what happens",
+     "kind": "calculation"
+    },
+    "C18": {
+     "value": "A tariff or credit shock in two large export markets stops export growth in FY2027E and cuts export prices 4%.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
+     "align": "left"
+    },
+    "B19": {
+     "value": "Bear: what would show it",
+     "kind": "calculation"
+    },
+    "C19": {
+     "value": "Export volume below the year-ago level for two quarters running, or dealer stock above three months of sales.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
+     "align": "left"
+    },
+    "B20": {
+     "value": "Bear: how likely, from the record",
+     "kind": "calculation"
+    },
+    "C20": {
+     "value": "Export volume fell year on year in 2 of the last 10 years.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
+     "align": "left"
+    },
+    "B21": {
+     "value": "Bull: what happens",
+     "kind": "calculation"
+    },
+    "C21": {
+     "value": "The new dealer markets ramp faster: export growth reaches 22% in FY2027E and prices hold.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
+     "align": "left"
+    },
+    "B22": {
+     "value": "Bull: what would show it",
+     "kind": "calculation"
+    },
+    "C22": {
+     "value": "Export orders up more than 20% on the year for two quarters running.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
+     "align": "left"
+    },
+    "B23": {
+     "value": "Bull: how likely, from the record",
+     "kind": "calculation"
+    },
+    "C23": {
+     "value": "Export volume grew 20% or more in 3 of the last 10 years.",
+     "kind": "calculation",
+     "merge": "H",
+     "wrap": true,
      "align": "left"
     }
    },
@@ -11895,7 +12007,6 @@
   },
   "Revenue Build": {
    "lastColumn": "X",
-   "notes": "Z",
    "labelWidth": 46,
    "columnWidth": 11,
    "freeze": "D6",
@@ -12173,7 +12284,7 @@
      "kind": "calculation"
     },
     "K11": {
-     "value": "=Scenarios!$G$8",
+     "value": "=Scenarios!$G$14",
      "kind": "calculation",
      "pct": true
     },
@@ -12183,22 +12294,22 @@
      "pct": true
     },
     "U11": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "V11": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "W11": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "X11": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
@@ -12839,7 +12950,7 @@
      "kind": "calculation"
     },
     "K18": {
-     "value": "=Scenarios!$G$10",
+     "value": "=Scenarios!$G$8",
      "kind": "calculation",
      "pct": true
     },
@@ -12849,22 +12960,22 @@
      "pct": true
     },
     "U18": {
-     "value": "=Scenarios!$G$9",
+     "value": "=Scenarios!$G$7",
      "kind": "calculation",
      "pct": true
     },
     "V18": {
-     "value": "=Scenarios!$G$9",
+     "value": "=Scenarios!$G$7",
      "kind": "calculation",
      "pct": true
     },
     "W18": {
-     "value": "=Scenarios!$G$9",
+     "value": "=Scenarios!$G$7",
      "kind": "calculation",
      "pct": true
     },
     "X18": {
-     "value": "=Scenarios!$G$9",
+     "value": "=Scenarios!$G$7",
      "kind": "calculation",
      "pct": true
     },
@@ -13171,22 +13282,22 @@
      "pct": true
     },
     "U22": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "V22": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "W22": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
     "X22": {
-     "value": "=Scenarios!$G$7",
+     "value": "=Scenarios!$G$13",
      "kind": "calculation",
      "pct": true
     },
@@ -13911,22 +14022,22 @@
      "pct": true
     },
     "U35": {
-     "value": "=Scenarios!$G$11",
+     "value": "=Scenarios!$G$9",
      "kind": "calculation",
      "pct": true
     },
     "V35": {
-     "value": "=Scenarios!$G$11",
+     "value": "=Scenarios!$G$9",
      "kind": "calculation",
      "pct": true
     },
     "W35": {
-     "value": "=Scenarios!$G$11",
+     "value": "=Scenarios!$G$9",
      "kind": "calculation",
      "pct": true
     },
     "X35": {
-     "value": "=Scenarios!$G$11",
+     "value": "=Scenarios!$G$9",
      "kind": "calculation",
      "pct": true
     },
@@ -15209,7 +15320,7 @@
      "kind": "calculation"
     },
     "K56": {
-     "value": "=Scenarios!$G$12",
+     "value": "=Scenarios!$G$15",
      "kind": "calculation",
      "pct": true
     },
@@ -15219,22 +15330,22 @@
      "pct": true
     },
     "U56": {
-     "value": "=Scenarios!$G$12",
+     "value": "=Scenarios!$G$15",
      "kind": "calculation",
      "pct": true
     },
     "V56": {
-     "value": "=Scenarios!$G$12",
+     "value": "=Scenarios!$G$15",
      "kind": "calculation",
      "pct": true
     },
     "W56": {
-     "value": "=Scenarios!$G$12",
+     "value": "=Scenarios!$G$15",
      "kind": "calculation",
      "pct": true
     },
     "X56": {
-     "value": "=Scenarios!$G$12",
+     "value": "=Scenarios!$G$15",
      "kind": "calculation",
      "pct": true
     },
@@ -18506,8 +18617,10 @@
      "pct": true
     }
    },
+   "notes": "Z",
    "tagColumn": "D",
    "tags": {
+    "51": "Consensus",
     "7": "Guidance",
     "8": "Guidance",
     "11": "Est.",
@@ -18527,7 +18640,6 @@
     "43": "Rep./est.",
     "45": "Reports",
     "46": "Est.",
-    "51": "Consensus",
     "56": "Est.",
     "59": "Est.",
     "60": "Est.",
@@ -18586,7 +18698,6 @@
   },
   "Statements": {
    "lastColumn": "X",
-   "notes": "Z",
    "labelWidth": 46,
    "columnWidth": 11,
    "freeze": "D6",
@@ -33832,6 +33943,7 @@
      "kind": "calculation"
     }
    },
+   "notes": "Z",
    "tagColumn": "D",
    "tags": {
     "9": "Reports",
@@ -34002,7 +34114,6 @@
   },
   "Data": {
    "lastColumn": "K",
-   "notes": "M",
    "labelWidth": 14,
    "columnWidth": 13,
    "freeze": "C6",
@@ -36460,6 +36571,7 @@
      "kind": "calculation"
     }
    },
+   "notes": "M",
    "unitColumn": null,
    "groupRows": [
     [
@@ -36478,7 +36590,6 @@
   },
   "Input Prices": {
    "lastColumn": "X",
-   "notes": "Z",
    "labelWidth": 46,
    "columnWidth": 11,
    "freeze": "D6",
@@ -36950,6 +37061,7 @@
      "pct": true
     }
    },
+   "notes": "Z",
    "tagColumn": "D",
    "tags": {
     "7": "Rep./est.",

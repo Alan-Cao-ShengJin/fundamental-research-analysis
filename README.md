@@ -8,7 +8,7 @@ You ask for "an initiation on X". You get three things back:
 - a **full report** (A4 PDF) that explains the business, the forecasts, the valuation and the risks;
 - a **one-page brief** with the call: Buy, Hold or Sell, and a 12-month target price.
 
-Version **3.0.0** contains **19 skills**, **11 research flows** and **100 sector cards**, with helper scripts, a sample model and tests.
+Version **3.1.0** contains **19 skills**, **11 research flows** and **100 sector cards**, with helper scripts, a sample model and tests.
 
 ## How to use it
 
@@ -26,7 +26,7 @@ The skills are instructions the agent follows. They do not run on their own, con
 
 ## What the agent does, in order
 
-1. **Gathers evidence.** Company filings and announcements first, then prices, consensus estimates and industry data from the sources you have connected.
+1. **Gathers evidence.** Company filings and announcements first, then the past year's results calls and the covering brokers' notes, then prices, consensus estimates and industry data from the sources you have connected. Broker notes supply facts the company gave out; the agent sets its own assumptions.
 2. **Works out what the share price is paying for**: which year's earnings, at what valuation, and where investors disagree.
 3. **Checks the company**: who controls it, how reliable its accounts are, how its industry works.
 4. **Builds the model.** It picks the [sector card](skills/company-model/references/sectors/index.md) for each business unit and builds revenue and costs from business drivers (volumes, prices, margins). Each driver is set from the best evidence available: a specific supported number first, then the recent trend and its cause, and a plain average only as a last resort. The forecasts flow through the three financial statements.
@@ -48,6 +48,7 @@ These are defaults. Tell the agent if your mandate differs.
 - **Dividends and total return.** Dividend yield is shown separately. Price return plus yield is shown as total return only where the dividend is a real part of what the holder earns.
 - **Forecasts.** Built independently of consensus. The agent then compares with consensus and explains every material difference; a large gap it cannot explain is treated as a warning.
 - **Base case.** The numbers the analysis believes in most, not a deliberately cautious set. Caution belongs in the bear case.
+- **Bear and bull cases.** Each is the main debate resolved the other way, with the rest of the base case kept, so the range is narrow enough to act on. A likelihood is given only where a record supports it.
 - **Cost of equity.** When one is needed, it is the 10-year government yield plus the premium the market's own index implies on the research date, recomputed for every study.
 - **Debates.** The report prints only the questions investors are really arguing about: what the bears say, what the bulls say, our view, and what the share is worth if each side is right. Where there is no real debate, none is invented.
 - **Writing.** Sharp, concise and plain. Every fact has a source; anything not known is said to be not known.
@@ -90,15 +91,15 @@ python -B -m unittest discover -s skills/tests -p "test_*.py"
 - **Data services** are optional and you bring your own access. Put credentials in `.env.research-data`, which Git ignores; [.env.example](.env.example) lists the names. See the [provider guide](skills/evidence-intake/references/research-data-providers.md).
 - On Windows PowerShell, use `npm.cmd` if the execution policy blocks `npm`.
 
-## Latest update: version 3.0.0
+## Latest update: version 3.1.0
 
-- **Valuation in six steps.** The agent first names the kind of company and the yardstick investors value it on, using a new [yardstick list](skills/valuation-thesis/references/yardsticks.md). It then reads today's price on that yardstick, sets the target level, applies it to its own numbers, builds the bear and bull cases and gives the call ([valuation sequence](skills/valuation-thesis/SKILL.md#value-the-company-in-six-steps)).
-- **Revenue drivers.** Each driver's base-case value is set by working down a fixed order of evidence, and the model says which step set it ([revenue projection](skills/company-model/references/revenue-projection.md#set-the-base-case-value-of-each-revenue-driver)).
-- **Sector cards.** 100 cards, one for each kind of company, replace the 21 broad sector guides. Each gives the driver tree, the data behind each row, what to use when the data is missing, how costs behave, the traps and the yardstick. A card is a guide: a company with several unlike businesses takes a card for each, and an unusual business is modelled from first principles.
-- **Debates.** A debate is written as what the bears say, what the bulls say, what today's price assumes, our view and what the share is worth either way. A report with no real debate leaves the section out.
-- **Writing.** The [writing standard](skills/research-brief/references/natural-writing.md) now teaches by before-and-after examples.
-- **Follow-up.** The separate monitor-and-review skill is folded into [company change tracking](skills/company-change-tracking/SKILL.md) and a short [follow-up guide](skills/research-cycle/references/company-follow-up.md).
-- **Breaking change for report builders.** The `Debate` block takes new fields; see [MIGRATION.md](MIGRATION.md).
+- **Broker notes.** Before modelling, the agent reads the past year's results calls and the covering brokers' notes in full. It takes the company facts they record and sets every assumption itself, because brokers lean optimistic ([evidence intake](skills/evidence-intake/SKILL.md)).
+- **Bear and bull cases.** Each case moves only the drivers of the main debate and is priced at the base multiple unless its own outcome changes what investors pay. Other uncertain assumptions go in the sensitivity table. The sample model is rebuilt this way ([valuation sequence](skills/valuation-thesis/SKILL.md#value-the-company-in-six-steps)).
+- **Loss-making units.** A unit that loses money or is being exited gets its own revenue and profit rows ([model standard](skills/company-model/references/model-standard.md)).
+- **Running a study.** The agent works in batches and prefers a slower run to one that uses tokens faster. [CLAUDE.md](CLAUDE.md) names the model and effort for each reviewer and writer in Claude Code.
+- **Standing instructions.** When you correct how the research is done, the agent writes the correction into the skills, so another computer behaves the same way ([skill calibration](skills/research-cycle/references/skill-calibration.md)).
+
+Version 3.0.0 brought the six-step valuation, the order for setting revenue drivers, the 100 sector cards and debates written as what bears and bulls say.
 
 Earlier changes, verification results and limits are in [AUDIT.md](AUDIT.md); upgrade notes are in [MIGRATION.md](MIGRATION.md).
 

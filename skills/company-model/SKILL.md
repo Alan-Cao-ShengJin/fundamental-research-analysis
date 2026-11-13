@@ -2,7 +2,7 @@
 name: company-model
 description: Build and maintain executable company financial models with operating drivers and linked income statements, cash flows and balance sheets. Use for new issuer models, historical updates, forecast revisions, scenarios and forecast evaluation; preserve existing workbook models when requested.
 metadata:
-  version: 2.6.0
+  version: 2.6.1
 ---
 
 # Company model building and updates

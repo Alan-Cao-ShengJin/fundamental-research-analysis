@@ -160,6 +160,24 @@ the study:
 A nearby card can supply some of these parts. Say which, and what it does not cover.
 Do not force an unrelated card onto the business.
 
+## Revising a card
+
+A card has the seven parts listed under [when no card fits](#when-no-card-fits), then a
+worked build on invented figures. It gives method only, with no real company figures.
+
+- One business model per card. Split a card when the driver tree itself differs between
+  the kinds of company it holds; otherwise add a second route table.
+- Every row of the driver tree needs a fallback for missing data that does not rely on
+  company guidance, because many companies give no guidance, units or orders.
+- Lay industry data out by market and name the usual publisher.
+- Do not state a balance-sheet habit, a margin level or "costs are fixed" as universal,
+  and define any word that has two meanings.
+- A first draft leans on one market's disclosure. Test the card on a company from
+  another market, and check the worked build's arithmetic and its logic, such as a
+  margin held flat through a price change.
+- Sector content is the reviser's call: decide splits, scope and wording, and report
+  what changed instead of asking the user to rule on sector detail.
+
 ## Use the references to construct assumptions
 
 Build the estimates with the [foundational-build method](../foundational-builds.md).

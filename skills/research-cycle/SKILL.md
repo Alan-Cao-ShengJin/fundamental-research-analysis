@@ -2,7 +2,7 @@
 name: research-cycle
 description: Govern research routing and specialist use. Classify stock research as new initiation or existing coverage, then distinguish regular reviews from major earnings/catalyst updates. Coordinate company follow-up and focused equity research; portfolio construction is outside this module.
 metadata:
-  version: 2.6.0
+  version: 2.6.1
 ---
 
 # Research cycle
@@ -51,6 +51,8 @@ Read [handoffs.md](references/handoffs.md) before handing work between specialis
 ## Continue intelligently
 
 Maintain a ranked backlog: for each task, the uncertainty, the decision it could change, the next read or calculation and its completion condition. Prefer resolving a material uncertainty over adding narrative or re-reading unchanged data. Record rejected hypotheses so they are not rediscovered.
+
+Work in batches. Send independent reads and retrievals together, make a set of edits before each rebuild or print, look at all the pages in one step, and keep each hand-off to what the next step needs. One call per step and a rebuild after every small change add time and nothing else. Where a faster run would use tokens faster, take the slower one: do not add parallel workers only to save time.
 
 When evidence changes, invalidate dependent forecasts, valuation and fixed-text summaries. Preserve old versions and their information cutoffs. Work may return to any affected stage.
 

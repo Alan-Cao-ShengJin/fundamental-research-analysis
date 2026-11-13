@@ -2,7 +2,7 @@
 name: report-layout
 description: Lay out and print a full stock report (initiation or full update) in the house style, so every company's report looks the same and reads like a research report rather than a printed web page. Use when producing the full visual pitch as an A4 PDF; the one-page brief keeps its own template in research-brief.
 metadata:
-  version: 2.10.0
+  version: 2.10.1
 ---
 
 # Full report layout
@@ -15,7 +15,7 @@ Each `section(..., covers=(...))` names the investor questions it answers (`QUES
 
 Write each substantive point as `Argument(point, evidence)`: the point in plain words, then the reason and the two or three figures behind it, citing its source (`{{src:key}}`) or exhibit (`{{ex:key}}`). It renders as one paragraph, kept to the [limits](../research-brief/references/natural-writing.md#limits). The optional `inference` and `implication` add what it means and what it does to earnings, cash, risk or the multiple. Use them only where the reader would not see that unprompted, so paragraphs do not all end the same way.
 
-Write each debate as `Debate(question, live, bears, bulls, view, worth, settles)`: the question in the words investors use; why it is live (what raised it, where we saw investors argue it, and what today's price assumes); what the bears say and what the bulls say, each side's two or three best points with the evidence cited; our view, with the evidence that decides it and what the other side gets right; what the share price is worth if each side is right, quoting the bear and bull scenario prices and not a second set; and the observation, its date and the level that would change our mind.
+Write each debate as `Debate(question, live, bears, bulls, view, worth, settles)`: the question in the words investors use; why it is live (what raised it, where we saw investors argue it, and what today's price assumes); what the bears say and what the bulls say, each side's two or three best points with the evidence cited; our view, with the evidence that decides it and what the other side gets right; what the share price is worth if each side is right (for the main debate the bear and bull scenario prices, for any other debate its effect on the target from the model's sensitivities, never a second set of scenarios); and the observation, its date and the level that would change our mind.
 
 A debate is a question investors visibly disagree on: cite the call questions, broker split or price reaction that shows it. A sensitive assumption nobody disputes belongs in the forecast section. Rank debates by the gap between the bull and bear price and print the ones that are real. One is fine. Where investors are not clearly arguing about anything that matters, do not squeeze one out: drop the section with `omit('debate', reason)`. A switched [yardstick](../valuation-thesis/references/yardsticks.md#when-the-yardstick-switches) is always one; when most of the return is a change in multiple, the debate is what investors need to see to pay more, not which number we chose. Put the debates in one section straight after the business description, give each a line with our side on the front page, and let later sections refer back to them. An update opens that section with what has moved on each debate since the last report.
 
@@ -51,7 +51,7 @@ Use sector-appropriate key data and financial rows. Industrial EV/net-debt/FCF m
 ## Exhibits and tables
 
 - Charts: round axis ticks, units at the top left of the axis, a legend entry for every series and state (actual, forecast, estimated history), no label overlaps (moved labels get leader lines), nothing drawn outside the plot, values on bars where they carry the point. Actuals solid; forecasts grey, lighter or dashed; estimated history dotted. One meaning per colour (the theme's `meaning`).
-- Scenarios: a football field (bear, base, bull bars from the current price) with a table of the assumptions behind each case in the same format, base case included.
+- Scenarios: a football field (bear, base, bull bars from the current price) with a table of the assumptions behind each case in the same format, base case included, and for the bear and bull what would show the case and the record behind how likely it is.
 - Sensitivities: a tornado of the resulting target price that includes the valuation input the method rests on (the target multiple, required yield, asset discount or equivalent). Size each shock from history or guidance and name the basis in the exhibit's source line. Add a two-way grid when material risks move together, using the selected method's operating/value driver against its valuation input and marking the current price. Isolated shocks do not replace the coherent adverse scenario.
 - Financial tables: rows grouped under bold labels (volume, P&L, per share, cash flow, valuation); explicit row names; actual columns marked A and estimate columns E and shaded; consensus rows grey italic; negatives in parentheses; percentages and multiples to one decimal; currency as US$1,234m and -US$27; n/a, not blank. A peer table states each average's sample and shows the reference row that sets the target and the company at the target.
 
